@@ -47,7 +47,7 @@ export default function VendorTrackingPage() {
   return (
     <div className="w-full py-2 space-y-3">
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </Button>
@@ -99,9 +99,9 @@ export default function VendorTrackingPage() {
         <CardContent>
           <div className="space-y-8">
             {shipments.map((shipment) => (
-              <div key={shipment.poId} className="border rounded-lg p-4 space-y-2">
+              <div key={shipment.poId} className="border rounded-lg p-3 space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="p-2 bg-gray-100 rounded-full">
                       <Package className="w-6 h-6 text-gray-600" />
                     </div>
@@ -132,7 +132,7 @@ export default function VendorTrackingPage() {
                 </div>
 
                 <div className="flex items-center justify-between pt-2 border-t">
-                  <div className="flex gap-4 text-sm text-gray-600">
+                  <div className="flex gap-2 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <MapPin className="w-4 h-4" />
                       Current Location: {shipment.status === 'In Transit' ? 'Hub, Mumbai' : 'Vendor Warehouse'}

@@ -30,8 +30,8 @@ export default function AuditTrail() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <FileText className="h-8 w-8 text-indigo-600" />
           Audit Trail
@@ -39,7 +39,7 @@ export default function AuditTrail() {
         <p className="text-gray-600 mt-1">Complete activity log with timestamps</p>
       </div>
 
-      <div className="bg-white shadow-lg border border-gray-200 p-6">
+      <div className="bg-white shadow-lg border border-gray-200 p-3">
         <div className="space-y-3">
           {entries.map((entry) => (
             <div key={entry.id} className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
@@ -51,7 +51,7 @@ export default function AuditTrail() {
                     <span className="text-xs text-gray-600">{entry.timestamp}</span>
                   </div>
                   <p className="text-sm text-gray-700 mb-2">{entry.details}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-2 text-xs text-gray-600">
                     <span className="flex items-center gap-1">
                       <User className="h-3 w-3" />
                       {entry.user}

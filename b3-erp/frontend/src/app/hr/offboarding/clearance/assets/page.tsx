@@ -20,15 +20,15 @@ export default function AssetsClearancePage() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Assets Department Clearance</h1>
         <p className="text-sm text-gray-600 mt-1">Physical assets and property return</p>
       </div>
 
       {mockClearances.map(clearance => (
-        <div key={clearance.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">{clearance.employeeName}</h3>
+        <div key={clearance.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">{clearance.employeeName}</h3>
           <div className="space-y-3">
             {clearance.items.map((item, idx) => (
               <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">

@@ -551,7 +551,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Building2 className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Basic Information</h2>
             </div>
@@ -681,7 +681,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
       case 4:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Scope & Requirements</h2>
             </div>
@@ -726,11 +726,11 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
       case 5:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Paperclip className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Project Attachments</h2>
             </div>
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-3">
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-3">
               <p className="text-sm text-blue-800">
                 Upload relevant project documents such as contracts, engineering drawings, site photos, or technical specifications.
               </p>
@@ -748,7 +748,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
       case 6:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review & Update Project</h2>
             </div>
@@ -757,7 +757,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
               {/* Basic Info Summary */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Basic Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project Name:</span>
                     <p className="font-medium text-gray-900">{formData.projectName || '-'}</p>
@@ -784,7 +784,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
               {/* Timeline & Budget Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Timeline & Budget</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Duration:</span>
                     <p className="font-medium text-gray-900">
@@ -817,7 +817,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
               {/* Team Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Team</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project Manager:</span>
                     <p className="font-medium text-gray-900">{formData.projectManager || '-'}</p>
@@ -887,13 +887,13 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Edit Project</h1>
-              <div className="flex items-center gap-4 mt-1">
+              <div className="flex items-center gap-2 mt-1">
                 <p className="text-sm text-gray-600">Phase 1: Project Initiation</p>
                 <div className="h-4 w-px bg-gray-300" />
                 <div className="flex bg-gray-100 p-0.5 rounded-lg border border-gray-200">
@@ -912,7 +912,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <FormProgressIndicator
                 fields={formFields}
                 values={formData}

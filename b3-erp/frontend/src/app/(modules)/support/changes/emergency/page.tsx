@@ -281,7 +281,7 @@ export default function EmergencyChanges() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -294,7 +294,7 @@ export default function EmergencyChanges() {
       </div>
 
       {/* Alert Banner */}
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+      <div className="bg-red-50 border border-red-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5" />
           <div>
@@ -308,8 +308,8 @@ export default function EmergencyChanges() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Emergency</p>
@@ -319,7 +319,7 @@ export default function EmergencyChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -329,7 +329,7 @@ export default function EmergencyChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -339,7 +339,7 @@ export default function EmergencyChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">This Month</p>
@@ -349,7 +349,7 @@ export default function EmergencyChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Resolution</p>
@@ -359,7 +359,7 @@ export default function EmergencyChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending Review</p>
@@ -371,8 +371,8 @@ export default function EmergencyChanges() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -407,15 +407,15 @@ export default function EmergencyChanges() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="text-left p-4 font-medium text-gray-600">Ticket</th>
-                <th className="text-left p-4 font-medium text-gray-600">Title</th>
-                <th className="text-left p-4 font-medium text-gray-600">Severity</th>
-                <th className="text-left p-4 font-medium text-gray-600">Status</th>
-                <th className="text-left p-4 font-medium text-gray-600">Reported</th>
-                <th className="text-left p-4 font-medium text-gray-600">Duration</th>
-                <th className="text-left p-4 font-medium text-gray-600">Implementer</th>
-                <th className="text-left p-4 font-medium text-gray-600">Review</th>
-                <th className="text-left p-4 font-medium text-gray-600">Actions</th>
+                <th className="text-left p-3 font-medium text-gray-600">Ticket</th>
+                <th className="text-left p-3 font-medium text-gray-600">Title</th>
+                <th className="text-left p-3 font-medium text-gray-600">Severity</th>
+                <th className="text-left p-3 font-medium text-gray-600">Status</th>
+                <th className="text-left p-3 font-medium text-gray-600">Reported</th>
+                <th className="text-left p-3 font-medium text-gray-600">Duration</th>
+                <th className="text-left p-3 font-medium text-gray-600">Implementer</th>
+                <th className="text-left p-3 font-medium text-gray-600">Review</th>
+                <th className="text-left p-3 font-medium text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -524,9 +524,9 @@ export default function EmergencyChanges() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status and Severity */}
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Severity</p>
                   <span className={`inline-block px-2 py-1 rounded text-xs font-medium border mt-1 ${getSeverityColor(selectedChange.severity)}`}>
@@ -552,7 +552,7 @@ export default function EmergencyChanges() {
               </div>
 
               {/* Timeline */}
-              <div className="border rounded-lg p-4">
+              <div className="border rounded-lg p-3">
                 <h3 className="font-medium mb-3">Timeline</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -575,7 +575,7 @@ export default function EmergencyChanges() {
               </div>
 
               {/* Business Impact */}
-              <div className="border rounded-lg p-4 bg-red-50 border-red-200">
+              <div className="border rounded-lg p-3 bg-red-50 border-red-200">
                 <h3 className="font-medium mb-2 text-red-900">Business Impact</h3>
                 <p className="text-sm text-red-800">{selectedChange.businessImpact}</p>
               </div>
@@ -593,19 +593,19 @@ export default function EmergencyChanges() {
               </div>
 
               {/* Root Cause & Resolution */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="border rounded-lg p-4">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="border rounded-lg p-3">
                   <h3 className="font-medium mb-2">Root Cause</h3>
                   <p className="text-sm text-gray-700">{selectedChange.rootCause}</p>
                 </div>
-                <div className="border rounded-lg p-4">
+                <div className="border rounded-lg p-3">
                   <h3 className="font-medium mb-2">Resolution</h3>
                   <p className="text-sm text-gray-700">{selectedChange.resolution}</p>
                 </div>
               </div>
 
               {/* Team & Approval */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Requester</p>
                   <p className="font-medium mt-1">{selectedChange.requester}</p>

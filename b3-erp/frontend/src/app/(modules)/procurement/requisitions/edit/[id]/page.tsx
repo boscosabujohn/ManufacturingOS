@@ -229,18 +229,18 @@ export default function EditRequisitionPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={handleCancel}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Requisition</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-start justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Edit Purchase Requisition</h1>
@@ -266,14 +266,14 @@ export default function EditRequisitionPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Requester Information */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <User className="h-6 w-6 mr-2 text-blue-600" />
             Requester Information
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Requested By <span className="text-red-500">*</span>
@@ -377,12 +377,12 @@ export default function EditRequisitionPage() {
         </div>
 
         {/* Priority Selection */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <AlertCircle className="h-6 w-6 mr-2 text-blue-600" />
             Priority Level <span className="text-red-500 ml-1">*</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {priorities.map((priority) => (
               <div
                 key={priority.value}
@@ -409,12 +409,12 @@ export default function EditRequisitionPage() {
         </div>
 
         {/* Purpose & Justification */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileText className="h-6 w-6 mr-2 text-blue-600" />
             Purpose & Justification
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Purpose <span className="text-red-500">*</span>
@@ -452,17 +452,17 @@ export default function EditRequisitionPage() {
         </div>
 
         {/* Line Items */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Package className="h-6 w-6 mr-2 text-blue-600" />
             Line Items ({formData.items.length})
           </h2>
 
           {/* Existing Items */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-2 mb-3">
             {formData.items.map((item, index) => (
-              <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                <div className="flex items-start justify-between mb-4">
+              <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                <div className="flex items-start justify-between mb-2">
                   <h4 className="text-sm font-bold text-gray-900">Item {index + 1}</h4>
                   <button
                     type="button"
@@ -473,7 +473,7 @@ export default function EditRequisitionPage() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                   <div>
                     <label className="block text-xs font-medium text-gray-700 mb-1">
                       Item Code <span className="text-red-500">*</span>
@@ -605,9 +605,9 @@ export default function EditRequisitionPage() {
           </div>
 
           {/* Add New Item */}
-          <div className="border-2 border-dashed border-blue-300 rounded-lg p-4 bg-blue-50">
-            <h4 className="text-sm font-bold text-gray-900 mb-4">Add New Item</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="border-2 border-dashed border-blue-300 rounded-lg p-3 bg-blue-50">
+            <h4 className="text-sm font-bold text-gray-900 mb-2">Add New Item</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Item Code</label>
                 <div className="relative">
@@ -720,7 +720,7 @@ export default function EditRequisitionPage() {
           </div>
 
           {/* Total */}
-          <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <DollarSign className="h-6 w-6 text-green-600" />
@@ -732,8 +732,8 @@ export default function EditRequisitionPage() {
         </div>
 
         {/* Notes */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <MessageSquare className="h-6 w-6 mr-2 text-blue-600" />
             Additional Notes
           </h2>
@@ -747,12 +747,12 @@ export default function EditRequisitionPage() {
         </div>
 
         {/* Attachments */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Upload className="h-6 w-6 mr-2 text-blue-600" />
             Attachments
           </h2>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center">
             <Upload className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-sm text-gray-600 mb-2">Upload specifications, drawings, or quotes</p>
             <button
@@ -784,7 +784,7 @@ export default function EditRequisitionPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
               <AlertCircle className="inline h-4 w-4 mr-1" />
@@ -794,13 +794,13 @@ export default function EditRequisitionPage() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
+                className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
               >
                 <Save className="h-5 w-5" />
                 <span>Save Changes</span>

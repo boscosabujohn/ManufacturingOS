@@ -126,7 +126,7 @@ export default function RFQListPage() {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-amber-600" />
           Request for Quotation (RFQ)
@@ -135,8 +135,8 @@ export default function RFQListPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Total RFQs</p>
@@ -145,7 +145,7 @@ export default function RFQListPage() {
             <FileText className="h-10 w-10 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Active</p>
@@ -154,7 +154,7 @@ export default function RFQListPage() {
             <Clock className="h-10 w-10 text-green-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Awarded</p>
@@ -163,7 +163,7 @@ export default function RFQListPage() {
             <CheckCircle className="h-10 w-10 text-purple-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-600 text-sm font-medium">Draft</p>
@@ -175,8 +175,8 @@ export default function RFQListPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -226,12 +226,12 @@ export default function RFQListPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">RFQ Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timeline</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendors/Responses</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">RFQ Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Timeline</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendors/Responses</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -242,19 +242,19 @@ export default function RFQListPage() {
 
                 return (
                   <tr key={rfq.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="text-sm font-semibold text-gray-900">{rfq.rfqNumber}</div>
                         <div className="text-sm text-gray-600 mt-1">{rfq.title}</div>
                         <div className="text-xs text-gray-500 mt-1">{rfq.itemCount} items</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
                         {rfq.category}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm">
                         <div className="text-gray-600">Issue: {rfq.issueDate}</div>
                         <div className="text-gray-600">Close: {rfq.closingDate}</div>
@@ -266,7 +266,7 @@ export default function RFQListPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm">
                         <div className="text-gray-900 font-medium">{rfq.responseCount}/{rfq.vendorCount} vendors</div>
                         <div className="text-xs text-gray-500 mt-1">
@@ -274,13 +274,13 @@ export default function RFQListPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-2 py-1 inline-flex items-center gap-1 text-xs font-semibold rounded-full ${statusInfo.color}`}>
                         <StatusIcon className="h-3 w-3" />
                         {statusInfo.label}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex gap-2">
                         <Link
                           href={`/rfq/view/${rfq.id}`}
@@ -307,7 +307,7 @@ export default function RFQListPage() {
         </div>
 
         {/* Pagination */}
-        <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing <span className="font-medium">1</span> to <span className="font-medium">{filteredRFQs.length}</span> of{' '}
             <span className="font-medium">{mockRFQs.length}</span> results

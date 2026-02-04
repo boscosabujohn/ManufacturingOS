@@ -33,10 +33,10 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <RefreshCw className="w-5 h-5 text-white" />
@@ -51,9 +51,9 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Entry Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Entry Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Entry Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
                 <input
@@ -78,9 +78,9 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
           </div>
 
           {/* Recurrence Pattern */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recurrence Pattern</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Recurrence Pattern</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Frequency *</label>
                 <select
@@ -115,9 +115,9 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
           </div>
 
           {/* Duration */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Duration</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Duration</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
                 <input
@@ -178,8 +178,8 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
           </div>
 
           {/* Options */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Options</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Options</h3>
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -195,7 +195,7 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
           </div>
 
           {/* Preview Schedule */}
-          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
             <h4 className="text-indigo-800 font-medium mb-3">📅 Schedule Preview</h4>
             <div className="space-y-2 text-sm text-indigo-700">
               <p>First entry: Feb 1, 2025</p>
@@ -209,7 +209,7 @@ export function RecurringJournalEntryModal({ isOpen, onClose, entryId, onSave }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -296,10 +296,10 @@ export function MultiCurrencyJournalEntryModal({ isOpen, onClose, onSave }: Mult
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl my-8">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-2xl w-full  my-8">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
@@ -317,7 +317,7 @@ export function MultiCurrencyJournalEntryModal({ isOpen, onClose, onSave }: Mult
         {/* Content */}
         <div className="p-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
           {/* Header Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Entry Date *</label>
               <input
@@ -340,7 +340,7 @@ export function MultiCurrencyJournalEntryModal({ isOpen, onClose, onSave }: Mult
           </div>
 
           {/* Currency Lines */}
-          <div className="border border-gray-200 rounded-lg overflow-hidden mb-6">
+          <div className="border border-gray-200 rounded-lg overflow-hidden mb-3">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50">
@@ -452,7 +452,7 @@ export function MultiCurrencyJournalEntryModal({ isOpen, onClose, onSave }: Mult
           </div>
 
           {/* Exchange Rate Info */}
-          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3">
             <h4 className="text-cyan-800 font-medium mb-2">💱 Exchange Rate Information</h4>
             <p className="text-sm text-cyan-700">
               Exchange rates are applied automatically. All amounts are calculated in base currency ({baseCurrency}) for balancing.
@@ -462,7 +462,7 @@ export function MultiCurrencyJournalEntryModal({ isOpen, onClose, onSave }: Mult
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex justify-between items-center">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex justify-between items-center">
           <div className="text-sm text-gray-600">
             {isBalanced ? (
               <span className="text-green-600 font-medium">✓ Entry is balanced in base currency</span>
@@ -563,10 +563,10 @@ export function JournalEntryTemplateModal({ isOpen, onClose, onSelect }: Journal
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Copy className="w-5 h-5 text-white" />
@@ -581,7 +581,7 @@ export function JournalEntryTemplateModal({ isOpen, onClose, onSelect }: Journal
         {/* Content */}
         <div className="p-6">
           {/* Search and Filter */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -614,7 +614,7 @@ export function JournalEntryTemplateModal({ isOpen, onClose, onSelect }: Journal
             {filteredTemplates.map((template) => (
               <div
                 key={template.id}
-                className="border border-gray-200 rounded-lg p-4 hover:bg-violet-50 hover:border-violet-300 transition-colors cursor-pointer"
+                className="border border-gray-200 rounded-lg p-3 hover:bg-violet-50 hover:border-violet-300 transition-colors cursor-pointer"
                 onClick={() => handleSelectTemplate(template)}
               >
                 <div className="flex items-start justify-between mb-2">
@@ -637,7 +637,7 @@ export function JournalEntryTemplateModal({ isOpen, onClose, onSelect }: Journal
                     Use Template
                   </button>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-gray-500">
                   <span>ID: {template.id}</span>
                   <span>Used {template.usageCount} times</span>
                   <span>Last used: {template.lastUsed}</span>
@@ -654,7 +654,7 @@ export function JournalEntryTemplateModal({ isOpen, onClose, onSelect }: Journal
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between items-center">
           <div className="text-sm text-gray-600">
             {filteredTemplates.length} template{filteredTemplates.length !== 1 ? 's' : ''} available
           </div>
@@ -701,10 +701,10 @@ export function BulkImportJournalEntriesModal({ isOpen, onClose, onImport }: Bul
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileUp className="w-5 h-5 text-white" />
@@ -719,10 +719,10 @@ export function BulkImportJournalEntriesModal({ isOpen, onClose, onImport }: Bul
         {/* Content */}
         <div className="p-6">
           {/* File Upload */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Upload File *</label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-emerald-400 transition-colors">
-              <FileUp className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-emerald-400 transition-colors">
+              <FileUp className="w-12 h-12 text-gray-400 mb-3" />
               <input
                 type="file"
                 accept=".xlsx,.xls,.csv"
@@ -750,7 +750,7 @@ export function BulkImportJournalEntriesModal({ isOpen, onClose, onImport }: Bul
           </div>
 
           {/* Import Mode */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Import Mode</label>
             <div className="grid grid-cols-2 gap-3">
               <button
@@ -779,7 +779,7 @@ export function BulkImportJournalEntriesModal({ isOpen, onClose, onImport }: Bul
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -807,7 +807,7 @@ export function BulkImportJournalEntriesModal({ isOpen, onClose, onImport }: Bul
           </div>
 
           {/* Template Download */}
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
             <h4 className="text-emerald-800 font-medium mb-3">📥 Download Template</h4>
             <p className="text-sm text-emerald-700 mb-3">
               Use our template to ensure your data is formatted correctly
@@ -826,7 +826,7 @@ export function BulkImportJournalEntriesModal({ isOpen, onClose, onImport }: Bul
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -884,10 +884,10 @@ export function ExportJournalEntriesModal({ isOpen, onClose, onExport }: ExportJ
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileDown className="w-5 h-5 text-white" />
@@ -902,9 +902,9 @@ export function ExportJournalEntriesModal({ isOpen, onClose, onExport }: ExportJ
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Date Range */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="grid grid-cols-3 gap-3 mb-2">
               <button
                 onClick={() => setDateRange('all')}
                 className={`p-2 border rounded-lg transition-colors ${
@@ -961,7 +961,7 @@ export function ExportJournalEntriesModal({ isOpen, onClose, onExport }: ExportJ
           </div>
 
           {/* Export Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
               <button
@@ -1001,7 +1001,7 @@ export function ExportJournalEntriesModal({ isOpen, onClose, onExport }: ExportJ
           </div>
 
           {/* Include Fields */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Include Fields</label>
             <div className="grid grid-cols-2 gap-3">
               {Object.entries(includeFields).map(([key, value]) => (
@@ -1019,7 +1019,7 @@ export function ExportJournalEntriesModal({ isOpen, onClose, onExport }: ExportJ
           </div>
 
           {/* Export Summary */}
-          <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
             <h4 className="text-slate-800 font-medium mb-2">📊 Export Summary</h4>
             <ul className="text-sm text-slate-700 space-y-1">
               <li>• Estimated entries: 234</li>
@@ -1030,7 +1030,7 @@ export function ExportJournalEntriesModal({ isOpen, onClose, onExport }: ExportJ
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -1103,10 +1103,10 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Filter className="w-5 h-5 text-white" />
@@ -1121,7 +1121,7 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Date Range */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
             <div className="grid grid-cols-2 gap-3">
               <input
@@ -1142,7 +1142,7 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
           </div>
 
           {/* Voucher Type */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Voucher Type</label>
             <div className="grid grid-cols-2 gap-2">
               {['JV', 'ADJ', 'RV', 'REC', 'OPN', 'CLS'].map((type) => (
@@ -1162,7 +1162,7 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
           </div>
 
           {/* Status */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
             <div className="grid grid-cols-3 gap-2">
               {['Draft', 'Posted', 'Reversed'].map((s) => (
@@ -1182,7 +1182,7 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
           </div>
 
           {/* Amount Range */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Amount Range</label>
             <div className="grid grid-cols-2 gap-3">
               <input
@@ -1203,8 +1203,8 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
           </div>
 
           {/* Cost Center & Project */}
-          <div className="mb-6">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Cost Center</label>
                 <input
@@ -1229,7 +1229,7 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
           </div>
 
           {/* Created By */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Created By</label>
             <select
               value={createdBy}
@@ -1245,7 +1245,7 @@ export function FilterJournalEntriesModal({ isOpen, onClose, onApply }: FilterJo
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-between">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-between">
           <button
             onClick={handleReset}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"

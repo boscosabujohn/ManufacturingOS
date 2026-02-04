@@ -106,9 +106,9 @@ export default function HazardsPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Eye className="h-8 w-8 text-orange-600" />
@@ -123,8 +123,8 @@ export default function HazardsPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Total Hazards</p>
@@ -139,7 +139,7 @@ export default function HazardsPage() {
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Pending Eval</p>
@@ -152,7 +152,7 @@ export default function HazardsPage() {
           <p className="text-xs text-blue-600 mt-2 flex items-center">Requires risk assessment</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Reported (MTD)</p>
@@ -165,7 +165,7 @@ export default function HazardsPage() {
           <p className="text-xs text-gray-500 mt-2">Month-to-date identification</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Critical Alerts</p>
@@ -179,9 +179,9 @@ export default function HazardsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Content: Hazard Log */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-2">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
             <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <h2 className="font-bold text-gray-900">Hazard Identification Log</h2>
@@ -205,31 +205,31 @@ export default function HazardsPage() {
               <table className="w-full text-left text-sm text-gray-600">
                 <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500 border-b border-gray-100">
                   <tr>
-                    <th className="px-6 py-4">Hazard ID & Title</th>
-                    <th className="px-6 py-4">Category</th>
-                    <th className="px-6 py-4">Location</th>
-                    <th className="px-6 py-4">Identified By</th>
-                    <th className="px-6 py-4">Severity</th>
-                    <th className="px-6 py-4">Status</th>
+                    <th className="px-3 py-2">Hazard ID & Title</th>
+                    <th className="px-3 py-2">Category</th>
+                    <th className="px-3 py-2">Location</th>
+                    <th className="px-3 py-2">Identified By</th>
+                    <th className="px-3 py-2">Severity</th>
+                    <th className="px-3 py-2">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
                   {filteredHazards.map((hazard) => (
                     <tr key={hazard.id} className="hover:bg-gray-50 transition-colors cursor-pointer group">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="font-medium text-gray-900 group-hover:text-orange-600 transition-colors">{hazard.title}</div>
                         <div className="text-xs text-gray-400">{hazard.id}</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="inline-flex items-center px-2 py-1 rounded bg-gray-100 text-gray-500 text-xs">
                           {hazard.category}
                         </span>
                       </td>
-                      <td className="px-6 py-4 flex items-center gap-1.5">
+                      <td className="px-3 py-2 flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-gray-400" />
                         {hazard.location}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-500 border border-white">
                             {hazard.identifiedBy.charAt(0)}
@@ -240,7 +240,7 @@ export default function HazardsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium ${hazard.initialSeverity === 'High' ? 'bg-red-100 text-red-800' :
                             hazard.initialSeverity === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
                               'bg-blue-100 text-blue-800'
@@ -248,7 +248,7 @@ export default function HazardsPage() {
                           {hazard.initialSeverity}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`text-xs font-medium ${hazard.status.includes('Critical') ? 'text-red-600' :
                             hazard.status.includes('Pending') ? 'text-orange-600' : 'text-gray-500'
                           }`}>
@@ -264,9 +264,9 @@ export default function HazardsPage() {
         </div>
 
         {/* Sidebar: Distribution Chart */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">Hazard Distribution</h3>
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Hazard Distribution</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={categoryData} layout="vertical" margin={{ left: 10, right: 30 }}>
@@ -295,7 +295,7 @@ export default function HazardsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-red-600 p-6 rounded-xl shadow-lg text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-red-600 p-3 rounded-xl shadow-lg text-white">
             <h3 className="font-bold mb-2">Safety Tip</h3>
             <p className="text-sm opacity-90 italic">"Ensure that all machine guards are in place and properly adjusted before operating equipment. If a guard is missing, report it immediately as a critical hazard."</p>
           </div>

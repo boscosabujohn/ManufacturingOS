@@ -18,8 +18,8 @@ export default function SpendAnalysisReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Spend Analysis</h1>
                     <p className="text-gray-600">Analyze procurement costs and budget</p>
@@ -27,7 +27,7 @@ export default function SpendAnalysisReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Spend"
                     value={`₹${(data.totalSpend / 100000).toFixed(1)}L`}
@@ -52,7 +52,7 @@ export default function SpendAnalysisReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => router.push('/reports/procurement/spend-analysis/category')}>
                     <CardHeader><CardTitle>Category Breakdown</CardTitle></CardHeader>
                     <CardContent>

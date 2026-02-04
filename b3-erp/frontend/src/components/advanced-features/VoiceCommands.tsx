@@ -657,7 +657,7 @@ export function VoiceCommandHelp({ isOpen, onClose }: VoiceCommandHelpProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-lg w-full mx-4 max-h-[80vh] overflow-hidden">
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-semibold">Voice Commands</h2>
           <button
             onClick={onClose}
@@ -671,7 +671,7 @@ export function VoiceCommandHelp({ isOpen, onClose }: VoiceCommandHelpProps) {
 
         <div className="p-4 overflow-y-auto max-h-96">
           {Object.entries(groupedCommands).map(([category, cmds]) => (
-            <div key={category} className="mb-6 last:mb-0">
+            <div key={category} className="mb-3 last:mb-0">
               <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
                 {category}
               </h3>

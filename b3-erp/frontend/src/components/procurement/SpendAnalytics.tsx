@@ -123,9 +123,9 @@ const SpendAnalytics: React.FC = () => {
   const overallVariance = ((totalActualSpend - totalBudget) / totalBudget) * 100;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <BarChart3 className="h-8 w-8" />
@@ -193,8 +193,8 @@ const SpendAnalytics: React.FC = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Spend (YTD)</p>
@@ -206,7 +206,7 @@ const SpendAnalytics: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Budget (YTD)</p>
@@ -218,7 +218,7 @@ const SpendAnalytics: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Variance</p>
@@ -230,7 +230,7 @@ const SpendAnalytics: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Suppliers</p>
@@ -245,7 +245,7 @@ const SpendAnalytics: React.FC = () => {
 
       {/* Category Spend Analysis */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <PieChart className="h-5 w-5 text-purple-600" />
             <h3 className="text-lg font-semibold text-gray-900">Spend by Category</h3>
@@ -255,30 +255,30 @@ const SpendAnalytics: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spend</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">YoY Growth</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suppliers</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distribution</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spend</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">YoY Growth</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suppliers</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distribution</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {categorySpend.map((category, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{category.category}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{category.category}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(category.spend / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{category.percent}%</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{category.percent}%</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${category.growth > 0 ? 'text-red-600' : 'text-green-600'}`}>
                       {category.growth > 0 ? '+' : ''}{category.growth}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{category.supplierCount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{category.supplierCount}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
                         className="bg-purple-500 h-2 rounded-full"
@@ -286,7 +286,7 @@ const SpendAnalytics: React.FC = () => {
                       ></div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleViewCategoryDetails(category)}
                       className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
@@ -305,7 +305,7 @@ const SpendAnalytics: React.FC = () => {
 
       {/* Top Suppliers */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <div className="flex items-center space-x-2">
             <Users className="h-5 w-5 text-blue-600" />
             <h3 className="text-lg font-semibold text-gray-900">Top Suppliers by Spend</h3>
@@ -315,28 +315,28 @@ const SpendAnalytics: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Spend</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transactions</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Order Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distribution</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Spend</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transactions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Order Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distribution</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {topSuppliers.map((supplier, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{supplier.supplier}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{supplier.supplier}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(supplier.spend / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{supplier.percent}%</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{supplier.transactions}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{supplier.percent}%</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{supplier.transactions}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${supplier.avgOrderValue.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
                         className="bg-blue-500 h-2 rounded-full"
@@ -344,7 +344,7 @@ const SpendAnalytics: React.FC = () => {
                       ></div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleViewSupplierDetails(supplier)}
                       className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
@@ -363,7 +363,7 @@ const SpendAnalytics: React.FC = () => {
 
       {/* Monthly Spend Trend */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <TrendingUp className="h-5 w-5 text-green-600" />
@@ -380,7 +380,7 @@ const SpendAnalytics: React.FC = () => {
           </div>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {monthlySpend.map((month, idx) => (
               <div key={idx}>
                 <div className="flex items-center justify-between mb-2">
@@ -422,9 +422,9 @@ const SpendAnalytics: React.FC = () => {
       </div>
 
       {/* Spend Concentration Analysis */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend Concentration</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Spend Concentration</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="p-4 bg-blue-50 rounded-lg">
             <p className="text-sm text-gray-600 mb-1">Top 3 Suppliers</p>
             <p className="text-2xl font-bold text-blue-600">

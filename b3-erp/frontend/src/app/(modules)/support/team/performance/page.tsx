@@ -240,7 +240,7 @@ export default function TeamPerformance() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -262,8 +262,8 @@ export default function TeamPerformance() {
       </div>
 
       {/* Overall Statistics */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Resolved</p>
@@ -273,7 +273,7 @@ export default function TeamPerformance() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg CSAT</p>
@@ -283,7 +283,7 @@ export default function TeamPerformance() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg SLA</p>
@@ -293,7 +293,7 @@ export default function TeamPerformance() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Productivity</p>
@@ -303,7 +303,7 @@ export default function TeamPerformance() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Top Performer</p>
@@ -315,8 +315,8 @@ export default function TeamPerformance() {
       </div>
 
       {/* Team Comparison */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold mb-4">Team Comparison</h2>
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <h2 className="text-xl font-semibold mb-2">Team Comparison</h2>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
@@ -372,7 +372,7 @@ export default function TeamPerformance() {
       </div>
 
       {/* Filter */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
         <select
           value={selectedTeam}
           onChange={(e) => setSelectedTeam(e.target.value)}
@@ -389,11 +389,11 @@ export default function TeamPerformance() {
       </div>
 
       {/* Individual Performance Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredData.map((agent) => (
-          <div key={agent.agentId} className="bg-white rounded-lg shadow-sm border p-6">
+          <div key={agent.agentId} className="bg-white rounded-lg shadow-sm border p-3">
             {/* Agent Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                   {agent.avatar}
@@ -412,7 +412,7 @@ export default function TeamPerformance() {
             </div>
 
             {/* Key Metrics */}
-            <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b">
+            <div className="grid grid-cols-3 gap-3 mb-2 pb-4 border-b">
               <div>
                 <p className="text-xs text-gray-600">Resolved</p>
                 <div className="flex items-center gap-1">
@@ -440,7 +440,7 @@ export default function TeamPerformance() {
             </div>
 
             {/* Performance Metrics */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-2 gap-3 mb-2">
               <div>
                 <p className="text-xs text-gray-600">Avg Resolution Time</p>
                 <p className="font-medium">{agent.metrics.avgResolutionTime}</p>

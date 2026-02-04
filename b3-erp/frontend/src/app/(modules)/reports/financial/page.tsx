@@ -43,11 +43,11 @@ export default function FinancialReportsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6">
-          <Link href="/reports" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4">
+        <div className="mb-3">
+          <Link href="/reports" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-2">
             <ArrowLeft className="w-4 h-4" />
             Back to Reports
           </Link>
@@ -63,8 +63,8 @@ export default function FinancialReportsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow border border-gray-200 p-4 mb-6">
-          <div className="flex flex-wrap gap-4">
+        <div className="bg-white rounded-lg shadow border border-gray-200 p-3 mb-3">
+          <div className="flex flex-wrap gap-2">
             <div className="flex-1 min-w-[300px]">
               <input
                 type="text"
@@ -89,7 +89,7 @@ export default function FinancialReportsPage() {
         </div>
 
         {/* Reports Grid - NOW CLICKABLE */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredReports.map((report) => (
             <Link
               key={report.id}

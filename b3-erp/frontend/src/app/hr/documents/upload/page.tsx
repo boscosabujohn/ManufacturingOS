@@ -91,15 +91,15 @@ export default function UploadDocumentsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Upload Documents</h1>
         <p className="text-sm text-gray-600 mt-1">Upload new documents to your employee profile</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Select Document Category</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Select Document Category</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {documentCategories.map((category) => (
             <button
               key={category.value}
@@ -125,8 +125,8 @@ export default function UploadDocumentsPage() {
       </div>
 
       {selectedCategory && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Upload Files</h2>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Upload Files</h2>
 
           <div
             onDragEnter={handleDrag}
@@ -147,7 +147,7 @@ export default function UploadDocumentsPage() {
               onChange={handleFileSelect}
               className="hidden"
             />
-            <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="h-12 w-12 text-gray-400 mb-2" />
             <label
               htmlFor="file-upload"
               className="cursor-pointer text-blue-600 hover:text-blue-700 font-medium"
@@ -161,8 +161,8 @@ export default function UploadDocumentsPage() {
       )}
 
       {selectedFiles.length > 0 && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">
             Selected Files ({selectedFiles.length})
           </h2>
           <div className="space-y-3">
@@ -190,7 +190,7 @@ export default function UploadDocumentsPage() {
 
           <div className="mt-6 pt-6 border-t border-gray-200">
             <h3 className="font-medium text-gray-900 mb-3">Additional Information</h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Document Description (Optional)
@@ -208,7 +208,7 @@ export default function UploadDocumentsPage() {
             <button
               onClick={handleUpload}
               disabled={uploading}
-              className={`flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2 ${
+              className={`flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2 ${
                 uploading ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >
@@ -224,14 +224,14 @@ export default function UploadDocumentsPage() {
             <button
               onClick={() => setSelectedFiles([])}
               disabled={uploading}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Clear All
             </button>
           </div>
 
           {uploadSuccess && (
-            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2 text-green-800">
+            <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2 text-green-800">
               <CheckCircle className="h-5 w-5" />
               <span className="font-medium">Upload successful! Documents submitted for verification.</span>
             </div>
@@ -239,7 +239,7 @@ export default function UploadDocumentsPage() {
         </div>
       )}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <AlertCircle className="h-5 w-5" />
           Upload Guidelines

@@ -264,8 +264,8 @@ export default function TemplatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -282,8 +282,8 @@ export default function TemplatesPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <FileText className="w-6 h-6 text-blue-600" />
@@ -295,7 +295,7 @@ export default function TemplatesPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-50 rounded-lg">
               <FileText className="w-6 h-6 text-green-600" />
@@ -307,7 +307,7 @@ export default function TemplatesPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-purple-50 rounded-lg">
               <FileText className="w-6 h-6 text-purple-600" />
@@ -319,7 +319,7 @@ export default function TemplatesPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-orange-50 rounded-lg">
               <Download className="w-6 h-6 text-orange-600" />
@@ -332,10 +332,10 @@ export default function TemplatesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Template Types */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Template Types</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Template Types</h2>
 
           <div className="space-y-2">
             {templateTypes.map((type) => {
@@ -360,7 +360,7 @@ export default function TemplatesPage() {
             })}
           </div>
 
-          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-bold text-blue-900 mb-3">Quick Tips</h3>
             <ul className="text-xs text-blue-700 space-y-1">
               <li>• Use {'{'}variables{'}'} for dynamic content</li>
@@ -372,8 +372,8 @@ export default function TemplatesPage() {
         </div>
 
         {/* Templates List */}
-        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
-          <div className="mb-4">
+        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3">
+          <div className="mb-2">
             <h2 className="text-lg font-bold text-gray-900">
               {selectedType === 'all' ? 'All Templates' : templateTypes.find(t => t.id === selectedType)?.name}
             </h2>
@@ -382,7 +382,7 @@ export default function TemplatesPage() {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredTemplates.map((template) => (
               <div key={template.id} className={`border-2 rounded-lg p-5 ${template.active ? 'border-gray-200' : 'border-gray-200 bg-gray-50 opacity-70'}`}>
                 <div className="flex items-start justify-between mb-3">
@@ -417,7 +417,7 @@ export default function TemplatesPage() {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div>
                         <p className="text-xs font-semibold text-gray-600 mb-2">Variables ({template.variables.length}):</p>
                         <div className="flex flex-wrap gap-1">
@@ -491,7 +491,7 @@ export default function TemplatesPage() {
             </div>
           )}
 
-          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-yellow-900 mb-2">Template Guidelines:</h3>
             <ul className="text-sm text-yellow-700 space-y-1">
               <li>• Variables are case-sensitive and must match exactly</li>
@@ -507,7 +507,7 @@ export default function TemplatesPage() {
 
       {/* Preview Modal */}
       {showPreview && selectedTemplate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl max-w-3xl w-full max-h-[80vh] overflow-hidden flex flex-col">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
               <div>
@@ -525,13 +525,13 @@ export default function TemplatesPage() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="mb-4">
+            <div className="flex-1 overflow-y-auto p-3">
+              <div className="mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <Code className="w-4 h-4 text-gray-600" />
                   <h3 className="text-sm font-semibold text-gray-700">Template Content</h3>
                 </div>
-                <pre className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs overflow-x-auto">
+                <pre className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-xs overflow-x-auto">
                   {selectedTemplate.content}
                 </pre>
               </div>

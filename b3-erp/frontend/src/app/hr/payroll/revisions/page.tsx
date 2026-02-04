@@ -197,14 +197,14 @@ export default function PayrollRevisionsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Salary Revisions</h1>
         <p className="text-sm text-gray-600 mt-1">Track salary increment and revision history</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Revisions</p>
@@ -214,7 +214,7 @@ export default function PayrollRevisionsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -224,7 +224,7 @@ export default function PayrollRevisionsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Approved</p>
@@ -234,7 +234,7 @@ export default function PayrollRevisionsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Processed</p>
@@ -244,7 +244,7 @@ export default function PayrollRevisionsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Total Increase</p>
@@ -255,8 +255,8 @@ export default function PayrollRevisionsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -303,10 +303,10 @@ export default function PayrollRevisionsPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRevisions.map(revision => (
-          <div key={revision.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={revision.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{revision.employeeName}</h3>
@@ -333,8 +333,8 @@ export default function PayrollRevisionsPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="h-4 w-4 text-red-600" />
                   <h4 className="text-xs font-semibold text-red-900">Previous CTC</h4>
@@ -342,7 +342,7 @@ export default function PayrollRevisionsPage() {
                 <p className="text-2xl font-bold text-red-900">{formatCurrency(revision.previousCTC)}</p>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="h-4 w-4 text-green-600" />
                   <h4 className="text-xs font-semibold text-green-900">Revised CTC</h4>
@@ -350,7 +350,7 @@ export default function PayrollRevisionsPage() {
                 <p className="text-2xl font-bold text-green-900">{formatCurrency(revision.revisedCTC)}</p>
               </div>
 
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="h-4 w-4 text-blue-600" />
                   <h4 className="text-xs font-semibold text-blue-900">Increase</h4>
@@ -359,7 +359,7 @@ export default function PayrollRevisionsPage() {
                 <p className="text-xs text-blue-700 mt-1">+{revision.increasePercentage.toFixed(2)}%</p>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-4 w-4 text-purple-600" />
                   <h4 className="text-xs font-semibold text-purple-900">Effective From</h4>
@@ -374,13 +374,13 @@ export default function PayrollRevisionsPage() {
               </div>
             </div>
 
-            <div className="mt-4 bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="mt-4 bg-gray-50 rounded-lg p-3 border border-gray-200">
               <h4 className="text-sm font-semibold text-gray-900 mb-2">Revision Reason</h4>
               <p className="text-sm text-gray-700">{revision.reason}</p>
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-600">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-gray-600">
                 <div>
                   <p>Approved by: {revision.approvedBy} on {new Date(revision.approvedOn).toLocaleDateString('en-IN')}</p>
                 </div>
@@ -418,7 +418,7 @@ export default function PayrollRevisionsPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Salary Revision Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>Annual:</strong> Regular annual increments based on company policy</li>

@@ -58,10 +58,10 @@ export const GenerateQuoteModal: React.FC<GenerateQuoteModalProps> = ({
   const configProgress = (completedSteps / totalSteps) * 100;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <FileText className="h-6 w-6" />
             <h2 className="text-xl font-bold">Generate Quote</h2>
@@ -71,12 +71,12 @@ export const GenerateQuoteModal: React.FC<GenerateQuoteModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Configuration Summary */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Configuration Summary</h3>
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
-              <div className="grid grid-cols-2 gap-4 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Configuration Summary</h3>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <p className="text-sm text-blue-700 mb-1">Base Price</p>
                   <p className="text-xl font-bold text-blue-900">₹{(configuration.basePrice / 100000).toFixed(2)}L</p>
@@ -118,8 +118,8 @@ export const GenerateQuoteModal: React.FC<GenerateQuoteModalProps> = ({
 
           {/* Customer Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
                 <input
@@ -181,8 +181,8 @@ export const GenerateQuoteModal: React.FC<GenerateQuoteModalProps> = ({
 
           {/* Quote Details */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quote Details</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Quote Details</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Project Name *</label>
                 <input
@@ -223,7 +223,7 @@ export const GenerateQuoteModal: React.FC<GenerateQuoteModalProps> = ({
 
           {/* Options */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quote Options</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Quote Options</h3>
             <div className="space-y-3">
               <label className="flex items-center space-x-3 cursor-pointer">
                 <input
@@ -295,10 +295,10 @@ export const QuoteSuccessModal: React.FC<QuoteSuccessModalProps> = ({
   if (!isOpen || !quote) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center space-x-2">
             <CheckCircle className="h-6 w-6" />
             <h2 className="text-xl font-bold">Quote Generated Successfully!</h2>
@@ -308,10 +308,10 @@ export const QuoteSuccessModal: React.FC<QuoteSuccessModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Success Message */}
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-2">
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">Quote Created!</h3>
@@ -321,7 +321,7 @@ export const QuoteSuccessModal: React.FC<QuoteSuccessModalProps> = ({
           </div>
 
           {/* Quote Details */}
-          <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+          <div className="bg-gray-50 rounded-lg p-3 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-600">Quote Number:</span>
               <span className="text-sm font-semibold text-gray-900">{quote.quoteNumber}</span>
@@ -418,10 +418,10 @@ export const SaveConfigModal: React.FC<SaveConfigModalProps> = ({ isOpen, onClos
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-md">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center space-x-2">
             <Save className="h-5 w-5" />
             <h2 className="text-xl font-bold">Save Configuration</h2>
@@ -431,7 +431,7 @@ export const SaveConfigModal: React.FC<SaveConfigModalProps> = ({ isOpen, onClos
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Configuration Name *</label>
             <input

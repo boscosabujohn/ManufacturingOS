@@ -30,9 +30,9 @@ export function ScheduleSurveyModal({ isOpen, onClose, onSchedule }: ScheduleSur
   const isValid = formData.projectId && formData.surveyDate && formData.siteName && formData.siteAddress && formData.surveyorName;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
@@ -47,8 +47,8 @@ export function ScheduleSurveyModal({ isOpen, onClose, onSchedule }: ScheduleSur
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Project *</label>
               <select
@@ -166,7 +166,7 @@ export function ScheduleSurveyModal({ isOpen, onClose, onSchedule }: ScheduleSur
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -223,9 +223,9 @@ export function EditSurveyModal({ isOpen, onClose, onEdit, survey }: EditSurveyM
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -240,8 +240,8 @@ export function EditSurveyModal({ isOpen, onClose, onEdit, survey }: EditSurveyM
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Survey Date</label>
               <input
@@ -329,7 +329,7 @@ export function EditSurveyModal({ isOpen, onClose, onEdit, survey }: EditSurveyM
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -386,9 +386,9 @@ export function UpdateMeasurementsModal({ isOpen, onClose, onUpdate, survey }: U
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Ruler className="w-5 h-5 text-white" />
@@ -403,10 +403,10 @@ export function UpdateMeasurementsModal({ isOpen, onClose, onUpdate, survey }: U
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
             <h3 className="text-sm font-semibold text-blue-900 mb-3">Site Dimensions</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Length (m)</label>
                 <input
@@ -489,7 +489,7 @@ export function UpdateMeasurementsModal({ isOpen, onClose, onUpdate, survey }: U
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -526,9 +526,9 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Camera className="w-5 h-5 text-white" />
@@ -543,7 +543,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Photo Category</label>
             <select
@@ -562,8 +562,8 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
           </div>
 
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <Camera className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-sm text-gray-600 mb-4">
+            <Camera className="w-12 h-12 text-gray-400 mb-2" />
+            <p className="text-sm text-gray-600 mb-2">
               Drag and drop photos here, or click to select files
             </p>
             <input
@@ -583,7 +583,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
           </div>
 
           {selectedFiles && (
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <p className="text-sm font-semibold text-gray-900 mb-2">
                 Selected Files: {selectedFiles.length}
               </p>
@@ -595,14 +595,14 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
             </div>
           )}
 
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+          <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
             <p className="text-sm text-blue-800">
               <strong>Tips:</strong> Capture clear photos of site layout, measurements, existing conditions, utilities, and any obstacles or challenges.
             </p>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -640,9 +640,9 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -657,7 +657,7 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Drawing Type</label>
             <select
@@ -676,8 +676,8 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
           </div>
 
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-sm text-gray-600 mb-4">
+            <FileText className="w-12 h-12 text-gray-400 mb-2" />
+            <p className="text-sm text-gray-600 mb-2">
               Upload CAD files, PDFs, or images of site drawings
             </p>
             <input
@@ -700,7 +700,7 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
           </div>
 
           {selectedFiles && (
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <p className="text-sm font-semibold text-gray-900 mb-2">
                 Selected Files: {selectedFiles.length}
               </p>
@@ -713,7 +713,7 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -766,9 +766,9 @@ export function RecordSiteConditionsModal({ isOpen, onClose, onRecord, survey }:
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -783,8 +783,8 @@ export function RecordSiteConditionsModal({ isOpen, onClose, onRecord, survey }:
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Utility Availability</h3>
             <div className="space-y-2">
               <label className="flex items-center space-x-3 cursor-pointer">
@@ -862,7 +862,7 @@ export function RecordSiteConditionsModal({ isOpen, onClose, onRecord, survey }:
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -893,9 +893,9 @@ export function AddIssuesModal({ isOpen, onClose, onAdd, survey }: AddIssuesModa
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-white" />
@@ -910,7 +910,7 @@ export function AddIssuesModal({ isOpen, onClose, onAdd, survey }: AddIssuesModa
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Issue Severity</label>
             <select
@@ -937,7 +937,7 @@ export function AddIssuesModal({ isOpen, onClose, onAdd, survey }: AddIssuesModa
           </div>
 
           {survey.issues.length > 0 && (
-            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+            <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
               <p className="text-sm font-semibold text-gray-900 mb-2">Existing Issues:</p>
               <ul className="space-y-1 text-sm text-gray-700">
                 {survey.issues.map((iss: string, index: number) => (
@@ -948,7 +948,7 @@ export function AddIssuesModal({ isOpen, onClose, onAdd, survey }: AddIssuesModa
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -980,9 +980,9 @@ export function AddRecommendationsModal({ isOpen, onClose, onAdd, survey }: AddR
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -997,7 +997,7 @@ export function AddRecommendationsModal({ isOpen, onClose, onAdd, survey }: AddR
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
             <select
@@ -1027,7 +1027,7 @@ export function AddRecommendationsModal({ isOpen, onClose, onAdd, survey }: AddR
           </div>
 
           {survey.recommendations.length > 0 && (
-            <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+            <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
               <p className="text-sm font-semibold text-gray-900 mb-2">Existing Recommendations:</p>
               <ul className="space-y-1 text-sm text-gray-700">
                 {survey.recommendations.map((rec: string, index: number) => (
@@ -1038,7 +1038,7 @@ export function AddRecommendationsModal({ isOpen, onClose, onAdd, survey }: AddR
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1083,9 +1083,9 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, survey }: UpdateS
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-xl w-full">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -1100,7 +1100,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, survey }: UpdateS
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Survey Status</label>
             <select
@@ -1148,7 +1148,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, survey }: UpdateS
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1185,9 +1185,9 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -1202,7 +1202,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
             <select
@@ -1280,7 +1280,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1315,9 +1315,9 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-xl w-full">
-        <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Download className="w-5 h-5 text-white" />
@@ -1332,7 +1332,7 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Export Scope</label>
             <select
@@ -1393,7 +1393,7 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1420,9 +1420,9 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
   if (!isOpen || !survey) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -1437,11 +1437,11 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Site Information */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Site Information</h3>
-            <div className="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+            <div className="grid grid-cols-2 gap-2 bg-gray-50 p-3 rounded-lg">
               <div>
                 <p className="text-sm text-gray-600">Site Name</p>
                 <p className="font-medium text-gray-900">{survey.siteName}</p>
@@ -1464,7 +1464,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
           {/* Measurements */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Measurements</h3>
-            <div className="grid grid-cols-4 gap-4 bg-blue-50 p-4 rounded-lg">
+            <div className="grid grid-cols-4 gap-2 bg-blue-50 p-3 rounded-lg">
               <div>
                 <p className="text-sm text-gray-600">Length</p>
                 <p className="text-xl font-bold text-gray-900">{survey.measurements.length} m</p>
@@ -1487,7 +1487,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
           {/* Utilities */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Utility Availability</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div className={`p-4 rounded-lg ${survey.powerAvailable ? 'bg-green-50' : 'bg-red-50'}`}>
                 <p className="text-sm text-gray-600">Power</p>
                 <p className={`font-semibold ${survey.powerAvailable ? 'text-green-600' : 'text-red-600'}`}>
@@ -1552,7 +1552,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
           </div>
 
           {/* Issues & Recommendations */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center space-x-2">
                 <AlertTriangle className="h-5 w-5 text-yellow-600" />
@@ -1582,7 +1582,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
           </div>
 
           {/* Documentation */}
-          <div className="grid grid-cols-3 gap-4 bg-purple-50 p-4 rounded-lg">
+          <div className="grid grid-cols-3 gap-2 bg-purple-50 p-3 rounded-lg">
             <div>
               <p className="text-sm text-gray-600">Photos</p>
               <p className="text-2xl font-bold text-purple-600">{survey.photosCount}</p>
@@ -1598,7 +1598,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetail
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
             <Download className="h-4 w-4" />
             <span>Download Report</span>

@@ -198,10 +198,10 @@ export default function AddEmployeePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button onClick={handleCancel} className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
               <span className="text-gray-700">Back</span>
@@ -240,10 +240,10 @@ export default function AddEmployeePage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Personal Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                 <User className="w-5 h-5 text-blue-600" />
               </div>
@@ -253,7 +253,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Employee ID <span className="text-red-500">*</span>
@@ -370,8 +370,8 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <Phone className="w-5 h-5 text-green-600" />
               </div>
@@ -381,7 +381,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email <span className="text-red-500">*</span>
@@ -489,8 +489,8 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Employment Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                 <Briefcase className="w-5 h-5 text-purple-600" />
               </div>
@@ -500,7 +500,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Department <span className="text-red-500">*</span>
@@ -611,8 +611,8 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Statutory Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5 text-orange-600" />
               </div>
@@ -622,7 +622,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">PAN Number</label>
                 <input
@@ -676,8 +676,8 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Bank Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <CreditCard className="w-5 h-5 text-green-600" />
               </div>
@@ -687,7 +687,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Bank Name</label>
                 <input
@@ -727,8 +727,8 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Emergency Contact */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
                 <AlertTriangle className="w-5 h-5 text-red-600" />
               </div>
@@ -738,7 +738,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Contact Name</label>
                 <input
@@ -775,8 +775,8 @@ export default function AddEmployeePage() {
           </div>
 
           {/* Education & Skills */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5 text-indigo-600" />
               </div>
@@ -786,7 +786,7 @@ export default function AddEmployeePage() {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Education</label>
                 <input

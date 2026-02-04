@@ -70,14 +70,14 @@ export default function HelpPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-2">
             <HelpCircle className="w-8 h-8 text-blue-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">How can we help you?</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">How can we help you?</h1>
           <p className="text-gray-600 text-lg mb-8">
             Search our knowledge base or browse by category
           </p>
@@ -98,10 +98,10 @@ export default function HelpPage() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-12">
           <Link
             href="/documentation"
-            className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all text-center"
+            className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all text-center"
           >
             <BookOpen className="w-12 h-12 text-blue-600 mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Documentation</h3>
@@ -110,7 +110,7 @@ export default function HelpPage() {
 
           <Link
             href="/help/videos"
-            className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all text-center"
+            className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all text-center"
           >
             <Video className="w-12 h-12 text-red-600 mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Video Tutorials</h3>
@@ -119,7 +119,7 @@ export default function HelpPage() {
 
           <Link
             href="/support/incidents"
-            className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all text-center"
+            className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all text-center"
           >
             <MessageCircle className="w-12 h-12 text-green-600 mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Contact Support</h3>
@@ -129,17 +129,17 @@ export default function HelpPage() {
 
         {/* Help Categories */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Browse by Category</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Browse by Category</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {helpCategories.map((category) => {
               const Icon = category.icon;
               return (
                 <Link
                   key={category.id}
                   href={category.href}
-                  className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all"
+                  className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all"
                 >
-                  <div className={`${category.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}>
+                  <div className={`${category.color} w-12 h-12 rounded-lg flex items-center justify-center mb-2`}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{category.name}</h3>
@@ -153,13 +153,13 @@ export default function HelpPage() {
 
         {/* Popular Articles */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Popular Articles</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Popular Articles</h2>
           <div className="bg-white rounded-lg shadow border border-gray-200 divide-y divide-gray-200">
             {quickLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                className="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-between p-3 hover:bg-gray-50 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-gray-400" />
@@ -176,10 +176,10 @@ export default function HelpPage() {
 
         {/* FAQs */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
+          <div className="space-y-2">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white rounded-lg shadow border border-gray-200 p-6">
+              <div key={index} className="bg-white rounded-lg shadow border border-gray-200 p-3">
                 <h4 className="font-semibold text-gray-900 mb-2">{faq.q}</h4>
                 <p className="text-gray-600">{faq.a}</p>
               </div>
@@ -190,17 +190,17 @@ export default function HelpPage() {
         {/* Contact Support */}
         <div className="mt-12 bg-blue-600 rounded-lg shadow-lg p-8 text-center text-white">
           <h3 className="text-2xl font-bold mb-2">Still need help?</h3>
-          <p className="mb-6">Our support team is here to assist you</p>
-          <div className="flex gap-4 justify-center">
+          <p className="mb-3">Our support team is here to assist you</p>
+          <div className="flex gap-2 justify-center">
             <Link
               href="/support/incidents"
-              className="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+              className="px-3 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
             >
               Create Support Ticket
             </Link>
             <a
               href="mailto:support@kreupai.com"
-              className="px-6 py-3 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors"
+              className="px-3 py-2 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors"
             >
               Email Support
             </a>

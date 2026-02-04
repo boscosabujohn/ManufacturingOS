@@ -172,16 +172,16 @@ export function OperatorWorkstation({
   };
 
   const renderProductionMode = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Job Status Card */}
-      <div className="bg-gray-800 rounded-2xl p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gray-800 rounded-2xl p-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <p className="text-gray-400 text-lg">Current Job</p>
             <p className="text-3xl font-bold text-white">{job.workOrderId}</p>
             <p className="text-xl text-gray-300">{job.productName}</p>
           </div>
-          <div className={`px-6 py-3 rounded-xl ${getStatusColor(job.status)}`}>
+          <div className={`px-3 py-2 rounded-xl ${getStatusColor(job.status)}`}>
             <p className="text-white text-xl font-bold uppercase">
               {job.status.replace('_', ' ')}
             </p>
@@ -189,7 +189,7 @@ export function OperatorWorkstation({
         </div>
 
         {/* Progress */}
-        <div className="mb-6">
+        <div className="mb-3">
           <div className="flex justify-between text-lg mb-2">
             <span className="text-gray-400">Progress</span>
             <span className="text-white font-bold">{job.completedQuantity} / {job.targetQuantity}</span>
@@ -207,7 +207,7 @@ export function OperatorWorkstation({
         </div>
 
         {/* Timer */}
-        <div className="flex items-center justify-between bg-gray-700 rounded-xl p-4">
+        <div className="flex items-center justify-between bg-gray-700 rounded-xl p-3">
           <div className="flex items-center gap-3">
             <span className="text-3xl">⏱️</span>
             <div>
@@ -223,7 +223,7 @@ export function OperatorWorkstation({
       </div>
 
       {/* Main Action Buttons */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {job.status === 'not_started' && (
           <button
             onClick={() => setShowConfirmDialog('start')}
@@ -275,9 +275,9 @@ export function OperatorWorkstation({
 
       {/* Count Entry */}
       {job.status === 'in_progress' && (
-        <div className="bg-gray-800 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-white mb-4">Log Production Count</h3>
-          <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="bg-gray-800 rounded-2xl p-3">
+          <h3 className="text-xl font-bold text-white mb-2">Log Production Count</h3>
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="text-gray-400 block mb-2">Good Parts</label>
               <div className="flex items-center gap-2">
@@ -338,14 +338,14 @@ export function OperatorWorkstation({
   );
 
   const renderQualityMode = () => (
-    <div className="space-y-6">
-      <div className="bg-gray-800 rounded-2xl p-6">
-        <h3 className="text-2xl font-bold text-white mb-4">Quality Checks</h3>
-        <p className="text-gray-400 mb-6">Complete all required quality checks for the current job</p>
+    <div className="space-y-3">
+      <div className="bg-gray-800 rounded-2xl p-3">
+        <h3 className="text-2xl font-bold text-white mb-2">Quality Checks</h3>
+        <p className="text-gray-400 mb-3">Complete all required quality checks for the current job</p>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {qualityChecks.map(check => (
-            <div key={check.id} className="bg-gray-700 rounded-xl p-4">
+            <div key={check.id} className="bg-gray-700 rounded-xl p-3">
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="text-white text-xl font-medium">{check.name}</p>
@@ -391,12 +391,12 @@ export function OperatorWorkstation({
   );
 
   const renderMaintenanceMode = () => (
-    <div className="space-y-6">
-      <div className="bg-gray-800 rounded-2xl p-6">
-        <h3 className="text-2xl font-bold text-white mb-4">Request Maintenance</h3>
-        <p className="text-gray-400 mb-6">Select issue type and describe the problem</p>
+    <div className="space-y-3">
+      <div className="bg-gray-800 rounded-2xl p-3">
+        <h3 className="text-2xl font-bold text-white mb-2">Request Maintenance</h3>
+        <p className="text-gray-400 mb-3">Select issue type and describe the problem</p>
 
-        <div className="grid grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-2 mb-3">
           <button
             onClick={() => setShowConfirmDialog('maintenance-urgent')}
             className="py-8 bg-red-600 hover:bg-red-700 text-white text-xl font-bold rounded-2xl transition-colors active:scale-95"
@@ -437,7 +437,7 @@ export function OperatorWorkstation({
             value={maintenanceNote}
             onChange={e => setMaintenanceNote(e.target.value)}
             placeholder="Describe the issue..."
-            className="w-full h-32 bg-gray-700 text-white text-lg p-4 rounded-xl border-2 border-gray-600 focus:border-blue-500 outline-none resize-none"
+            className="w-full h-32 bg-gray-700 text-white text-lg p-3 rounded-xl border-2 border-gray-600 focus:border-blue-500 outline-none resize-none"
           />
         </div>
       </div>
@@ -445,12 +445,12 @@ export function OperatorWorkstation({
   );
 
   const renderSetupMode = () => (
-    <div className="space-y-6">
-      <div className="bg-gray-800 rounded-2xl p-6">
-        <h3 className="text-2xl font-bold text-white mb-4">Job Setup</h3>
-        <p className="text-gray-400 mb-6">Complete setup checklist before starting production</p>
+    <div className="space-y-3">
+      <div className="bg-gray-800 rounded-2xl p-3">
+        <h3 className="text-2xl font-bold text-white mb-2">Job Setup</h3>
+        <p className="text-gray-400 mb-3">Complete setup checklist before starting production</p>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {[
             { id: 1, task: 'Load raw materials', icon: '📦' },
             { id: 2, task: 'Verify machine settings', icon: '⚙️' },
@@ -460,7 +460,7 @@ export function OperatorWorkstation({
           ].map(item => (
             <label
               key={item.id}
-              className="flex items-center gap-4 p-4 bg-gray-700 rounded-xl cursor-pointer hover:bg-gray-650 transition-colors"
+              className="flex items-center gap-2 p-3 bg-gray-700 rounded-xl cursor-pointer hover:bg-gray-650 transition-colors"
             >
               <input
                 type="checkbox"
@@ -482,8 +482,8 @@ export function OperatorWorkstation({
   return (
     <div className={`bg-gray-900 min-h-screen ${className}`}>
       {/* Header */}
-      <div className="bg-gray-800 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="bg-gray-800 px-3 py-2 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-2xl">
             👷
           </div>
@@ -552,31 +552,31 @@ export function OperatorWorkstation({
 
       {/* Confirmation Dialog */}
       {showConfirmDialog && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-2xl p-6 w-full max-w-md">
-            <h3 className="text-2xl font-bold text-white mb-4">Confirm Action</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-2xl p-3 w-full max-w-md">
+            <h3 className="text-2xl font-bold text-white mb-2">Confirm Action</h3>
 
             {showConfirmDialog === 'start' && (
-              <p className="text-gray-300 text-lg mb-6">Are you sure you want to start this job?</p>
+              <p className="text-gray-300 text-lg mb-3">Are you sure you want to start this job?</p>
             )}
             {showConfirmDialog === 'pause' && (
-              <p className="text-gray-300 text-lg mb-6">Are you sure you want to pause this job?</p>
+              <p className="text-gray-300 text-lg mb-3">Are you sure you want to pause this job?</p>
             )}
             {showConfirmDialog === 'complete' && (
-              <p className="text-gray-300 text-lg mb-6">Are you sure you want to complete this job?</p>
+              <p className="text-gray-300 text-lg mb-3">Are you sure you want to complete this job?</p>
             )}
             {showConfirmDialog.startsWith('maintenance') && (
               <>
-                <p className="text-gray-300 text-lg mb-4">
+                <p className="text-gray-300 text-lg mb-2">
                   Submit {showConfirmDialog.split('-')[1].toUpperCase()} maintenance request?
                 </p>
                 {maintenanceNote && (
-                  <p className="text-gray-400 text-sm mb-4 p-3 bg-gray-700 rounded-lg">{maintenanceNote}</p>
+                  <p className="text-gray-400 text-sm mb-2 p-3 bg-gray-700 rounded-lg">{maintenanceNote}</p>
                 )}
               </>
             )}
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setShowConfirmDialog(null)}
                 className="py-4 bg-gray-700 hover:bg-gray-600 text-white text-xl font-bold rounded-xl transition-colors"

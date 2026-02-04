@@ -400,7 +400,7 @@ export default function DriverAssignmentsPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -419,8 +419,8 @@ export default function DriverAssignmentsPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <User className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalAssignments}</span>
@@ -429,7 +429,7 @@ export default function DriverAssignmentsPage() {
           <div className="text-xs text-blue-600 mt-1">All Driver-Vehicle Pairs</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{activeAssignments}</span>
@@ -438,7 +438,7 @@ export default function DriverAssignmentsPage() {
           <div className="text-xs text-green-600 mt-1">Currently Operational</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{onTripDrivers}</span>
@@ -447,7 +447,7 @@ export default function DriverAssignmentsPage() {
           <div className="text-xs text-purple-600 mt-1">Currently Driving</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{availableDrivers}</span>
@@ -458,8 +458,8 @@ export default function DriverAssignmentsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -516,21 +516,21 @@ export default function DriverAssignmentsPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignment ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle Assigned</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignment Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Availability</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignment ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle Assigned</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignment Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Availability</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredAssignments.map((assignment) => (
                 <tr key={assignment.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="font-medium text-gray-900">{assignment.assignmentId}</div>
                     <div className="text-xs text-gray-500">
                       From: {new Date(assignment.validFrom).toLocaleDateString()}
@@ -541,7 +541,7 @@ export default function DriverAssignmentsPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{assignment.driverName}</div>
                     <div className="text-sm text-gray-600">{assignment.driverId}</div>
                     <div className="flex items-center space-x-1 text-xs text-gray-500 mt-1">
@@ -552,18 +552,18 @@ export default function DriverAssignmentsPage() {
                       License: {assignment.licenseNumber}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{assignment.vehicleNumber}</div>
                     <div className="text-sm text-gray-600">{assignment.vehicleType}</div>
                     <div className="text-xs text-gray-500">{assignment.vehicleId}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getAssignmentTypeColor(assignment.assignmentType)}`}>
                       {assignment.assignmentType.toUpperCase()}
                     </span>
                     <div className="text-xs text-gray-500 mt-1">{assignment.shiftType} shift</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {assignment.currentTrip ? (
                       <>
                         <div className="text-sm font-medium text-blue-600">{assignment.currentTrip}</div>
@@ -588,25 +588,25 @@ export default function DriverAssignmentsPage() {
                       </>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{assignment.totalTripsAssigned} trips</div>
                     <div className="text-xs text-green-600">✓ {assignment.completedTrips} completed</div>
                     <div className="text-xs text-gray-600">{assignment.totalDistance.toLocaleString()} km</div>
                     <div className="text-xs text-blue-600">₹{(assignment.totalRevenue / 1000).toFixed(0)}K revenue</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{assignment.workingHours}h/week</div>
                     <div className="text-xs text-gray-600">Rest: {assignment.restHours}h</div>
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${getTripStatusColor(assignment.tripStatus)}`}>
                       {assignment.tripStatus.replace('-', ' ').toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(assignment.status)}`}>
                       {assignment.status.replace('-', ' ').toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
@@ -630,9 +630,9 @@ export default function DriverAssignmentsPage() {
       </div>
 
       {/* Driver Assignment Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <User className="w-6 h-6 text-blue-600" />
             </div>
@@ -649,8 +649,8 @@ export default function DriverAssignmentsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <TrendingUp className="w-6 h-6 text-green-600" />
             </div>
@@ -666,8 +666,8 @@ export default function DriverAssignmentsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-orange-100 rounded-lg">
               <Clock className="w-6 h-6 text-orange-600" />
             </div>

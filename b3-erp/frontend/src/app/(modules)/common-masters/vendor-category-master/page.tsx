@@ -271,7 +271,7 @@ export default function VendorCategoryMasterPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-violet-50 to-purple-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="px-3 py-2 space-y-3">
           {/* Toast Notification */}
           {toast && (
             <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
@@ -312,37 +312,37 @@ export default function VendorCategoryMasterPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Categories</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Vendors</div>
           <div className="text-2xl font-bold text-blue-600">{stats.totalVendors}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> Total Purchases
           </div>
           <div className="text-2xl font-bold text-green-600">₹{(stats.totalPurchases / 10000000).toFixed(1)}Cr</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Pending Payments</div>
           <div className="text-2xl font-bold text-orange-600">₹{(stats.totalPending / 1000000).toFixed(1)}M</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Avg Quality</div>
           <div className="text-2xl font-bold text-purple-600">{stats.avgQuality.toFixed(1)}/5</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">On-time Delivery</div>
           <div className="text-2xl font-bold text-teal-600">{stats.avgOnTime}%</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -379,7 +379,7 @@ export default function VendorCategoryMasterPage() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Vendor Type
@@ -419,7 +419,7 @@ export default function VendorCategoryMasterPage() {
         />
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <Package className="w-5 h-5" />
           Vendor Category Guidelines

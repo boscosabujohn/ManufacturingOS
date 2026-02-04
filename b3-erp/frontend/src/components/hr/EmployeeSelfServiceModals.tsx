@@ -22,9 +22,9 @@ export function ApplyLeaveModal({ isOpen, onClose, onSubmit }: any) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Calendar className="h-5 w-5" />
             Apply for Leave
@@ -34,7 +34,7 @@ export function ApplyLeaveModal({ isOpen, onClose, onSubmit }: any) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Leave Type</label>
             <select
@@ -52,7 +52,7 @@ export function ApplyLeaveModal({ isOpen, onClose, onSubmit }: any) {
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">From Date</label>
               <input
@@ -87,7 +87,7 @@ export function ApplyLeaveModal({ isOpen, onClose, onSubmit }: any) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
               <input
@@ -110,7 +110,7 @@ export function ApplyLeaveModal({ isOpen, onClose, onSubmit }: any) {
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -162,9 +162,9 @@ export function UploadDocumentModal({ isOpen, onClose, onUpload }: any) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Upload className="h-5 w-5" />
             Upload Document
@@ -174,7 +174,7 @@ export function UploadDocumentModal({ isOpen, onClose, onUpload }: any) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Document Category</label>
             <select
@@ -266,9 +266,9 @@ export function NewServiceRequestModal({ isOpen, onClose, onSubmit }: any) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <AlertCircle className="h-5 w-5" />
             New Service Request
@@ -278,7 +278,7 @@ export function NewServiceRequestModal({ isOpen, onClose, onSubmit }: any) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Request Type</label>
             <select
@@ -376,9 +376,9 @@ export function BrowseCoursesModal({ isOpen, onClose, onEnroll }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <GraduationCap className="h-5 w-5" />
             Browse Training Courses
@@ -389,7 +389,7 @@ export function BrowseCoursesModal({ isOpen, onClose, onEnroll }: any) {
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <input
               type="text"
               placeholder="Search courses..."
@@ -397,9 +397,9 @@ export function BrowseCoursesModal({ isOpen, onClose, onEnroll }: any) {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {courses.map((course) => (
-              <div key={course.id} className="border rounded-lg p-4 hover:border-indigo-300 hover:shadow-md transition-all">
+              <div key={course.id} className="border rounded-lg p-3 hover:border-indigo-300 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">{course.name}</h3>
@@ -449,9 +449,9 @@ export function DownloadPayslipModal({ isOpen, onClose, payslip, onConfirm }: an
   if (!isOpen || !payslip) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Download className="h-5 w-5" />
             Download Payslip
@@ -462,7 +462,7 @@ export function DownloadPayslipModal({ isOpen, onClose, payslip, onConfirm }: an
         </div>
 
         <div className="p-6">
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-4">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 mb-2">
             <p className="font-semibold text-gray-900 mb-2">Payslip Details:</p>
             <div className="space-y-1 text-sm text-gray-700">
               <p><strong>Period:</strong> {payslip.month} {payslip.year}</p>
@@ -471,7 +471,7 @@ export function DownloadPayslipModal({ isOpen, onClose, payslip, onConfirm }: an
             </div>
           </div>
 
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="text-sm text-gray-600 mb-2">
             Your payslip will be downloaded as a PDF file. This document is confidential and should be stored securely.
           </p>
 

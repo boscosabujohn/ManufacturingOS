@@ -99,10 +99,10 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -122,12 +122,12 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Employee Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
               Employee Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Employee Code *
@@ -190,12 +190,12 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
           </div>
 
           {/* Overtime Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">2</span>
               Overtime Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Calendar className="w-4 h-4 inline mr-1" />
@@ -232,12 +232,12 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
           </div>
 
           {/* Time Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">3</span>
               Time Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Shift Start Time *
@@ -276,7 +276,7 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Actual Start Time *
@@ -308,12 +308,12 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
 
           {/* Calculated Hours */}
           {calculatedHours.overtimeHours > 0 && (
-            <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+            <div className="mb-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
               <div className="flex items-center gap-2 mb-3">
                 <Calculator className="w-5 h-5 text-blue-600" />
                 <h4 className="font-semibold text-gray-900">Calculated Hours & Amount</h4>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Regular Hours</p>
                   <p className="text-2xl font-bold text-gray-900">{calculatedHours.regularHours}</p>
@@ -332,12 +332,12 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
           )}
 
           {/* Reason & Description */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">4</span>
               Reason & Work Description
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Reason for Overtime *
@@ -377,7 +377,7 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
           </div>
 
           {/* Manager Approval */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
               <input
                 type="checkbox"
@@ -395,7 +395,7 @@ export function NewOvertimeRequestModal({ isOpen, onClose, onSubmit }: NewOverti
           </div>
 
           {/* Info Alert */}
-          <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
               <div className="flex-1 text-sm">

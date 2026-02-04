@@ -360,7 +360,7 @@ export default function DepartmentMaster() {
               <div className="text-sm text-gray-600">Head: {department.headOfDepartment}</div>
             </div>
 
-            <div className="flex items-center gap-4 ml-4">
+            <div className="flex items-center gap-2 ml-4">
               <div className="text-sm text-gray-600">
                 <Users className="w-4 h-4 inline mr-1" />
                 {department.employeeInfo.totalEmployees} employees
@@ -404,8 +404,8 @@ export default function DepartmentMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Building2 className="w-8 h-8 text-blue-600" />
@@ -432,7 +432,7 @@ export default function DepartmentMaster() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <div className="flex border border-gray-300 rounded-lg">
             <button
               onClick={() => setViewMode('tree')}
@@ -456,7 +456,7 @@ export default function DepartmentMaster() {
         </div>
 
         {viewMode === 'list' && (
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row gap-2 mb-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
@@ -492,7 +492,7 @@ export default function DepartmentMaster() {
 
       {viewMode === 'tree' ? (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="border-b border-gray-200 px-6 py-3 bg-gray-50">
+          <div className="border-b border-gray-200 px-3 py-2 bg-gray-50">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-medium text-gray-900">Department Hierarchy</h3>
               <div className="flex gap-2">
@@ -521,19 +521,19 @@ export default function DepartmentMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Head & Contact</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employees</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metrics</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Head & Contact</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employees</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metrics</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredDepartments.map((department) => (
                   <tr key={department.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{department.departmentName}</div>
                         <div className="text-sm text-gray-500">{department.departmentCode}</div>
@@ -542,7 +542,7 @@ export default function DepartmentMaster() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{department.headOfDepartment}</div>
                       <div className="text-sm text-gray-500 flex items-center gap-1">
                         <Mail className="w-3 h-3" />
@@ -553,12 +553,12 @@ export default function DepartmentMaster() {
                         Ext: {department.contact.extension}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">Total: {department.employeeInfo.totalEmployees}</div>
                       <div className="text-sm text-gray-500">Managers: {department.employeeInfo.managers}</div>
                       <div className="text-sm text-gray-500">Staff: {department.employeeInfo.staff}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         ${department.budgetAllocated.toLocaleString()}
                       </div>
@@ -569,17 +569,17 @@ export default function DepartmentMaster() {
                         {Math.round((department.actualSpent / department.budgetAllocated) * 100)}% utilized
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">Productivity: {department.operationalMetrics.productivity}%</div>
                       <div className="text-sm text-gray-500">Efficiency: {department.operationalMetrics.efficiency}%</div>
                       <div className="text-sm text-gray-500">Quality: {department.operationalMetrics.qualityScore}%</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(department.status)}>
                         {department.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditDepartment(department)}
@@ -731,8 +731,8 @@ function DepartmentModal({ department, departments, onSave, onClose, activeTab, 
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {department?.id ? 'Edit Department' : 'Add New Department'}
           </h2>
@@ -761,9 +761,9 @@ function DepartmentModal({ department, departments, onSave, onClose, activeTab, 
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department Code</label>
                   <input
@@ -898,7 +898,7 @@ function DepartmentModal({ department, departments, onSave, onClose, activeTab, 
             )}
 
             {activeTab === 'contact' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                   <input
@@ -973,7 +973,7 @@ function DepartmentModal({ department, departments, onSave, onClose, activeTab, 
             )}
 
             {activeTab === 'employees' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Total Employees</label>
                   <input
@@ -1032,7 +1032,7 @@ function DepartmentModal({ department, departments, onSave, onClose, activeTab, 
             )}
 
             {activeTab === 'metrics' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Productivity (%)</label>
                   <input
@@ -1082,7 +1082,7 @@ function DepartmentModal({ department, departments, onSave, onClose, activeTab, 
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

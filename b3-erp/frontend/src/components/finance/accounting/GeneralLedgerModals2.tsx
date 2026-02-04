@@ -94,9 +94,9 @@ export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: LedgerAna
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <div>
             <h2 className="text-xl font-bold text-white">Ledger Analytics</h2>
             <p className="text-sm text-indigo-200 mt-1">{accountInfo?.accountCode} - {accountInfo?.accountName}</p>
@@ -105,43 +105,43 @@ export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: LedgerAna
         </div>
         <div className="p-6">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm font-medium text-green-700">Total Debits</p>
               <p className="text-2xl font-bold text-green-900 mt-1">₹{analytics.totalDebits.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-700">Total Credits</p>
               <p className="text-2xl font-bold text-red-900 mt-1">₹{analytics.totalCredits.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-700">Net Movement</p>
               <p className="text-2xl font-bold text-blue-900 mt-1">₹{analytics.netMovement.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm font-medium text-purple-700">Transactions</p>
               <p className="text-2xl font-bold text-purple-900 mt-1">{analytics.transactionCount}</p>
             </div>
           </div>
 
           {/* Additional Metrics */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm font-medium text-gray-700">Average Transaction</p>
               <p className="text-xl font-bold text-gray-900 mt-1">₹{analytics.averageTransactionSize.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm font-medium text-gray-700">Largest Debit</p>
               <p className="text-xl font-bold text-gray-900 mt-1">₹{analytics.largestDebit.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm font-medium text-gray-700">Largest Credit</p>
               <p className="text-xl font-bold text-gray-900 mt-1">₹{analytics.largestCredit.toLocaleString('en-IN')}</p>
             </div>
           </div>
 
           {/* Monthly Trend */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Monthly Trend</h3>
             <div className="border rounded-lg overflow-hidden">
               <table className="w-full">
@@ -170,9 +170,9 @@ export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: LedgerAna
           {/* By Voucher Type */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">By Voucher Type</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               {analytics.byVoucherType.map((item, index) => (
-                <div key={index} className="border rounded-lg p-4">
+                <div key={index} className="border rounded-lg p-3">
                   <div className="flex justify-between items-start mb-2">
                     <p className="text-sm font-medium text-gray-700">{item.type}</p>
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{item.count} txns</span>
@@ -183,7 +183,7 @@ export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: LedgerAna
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
             <Download className="h-4 w-4" />
@@ -211,21 +211,21 @@ export function PrintLedgerModal({ isOpen, onClose, onPrint, accountInfo }: Prin
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Print Ledger</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-sm font-medium text-blue-900">
               Account: {accountInfo?.accountCode} - {accountInfo?.accountName}
             </p>
           </div>
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Page Orientation</label>
                 <select
@@ -307,7 +307,7 @@ export function PrintLedgerModal({ isOpen, onClose, onPrint, accountInfo }: Prin
             </div>
 
             {settings.includeSignature && (
-              <div className="grid grid-cols-2 gap-4 pl-6">
+              <div className="grid grid-cols-2 gap-2 pl-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Signature Name</label>
                   <input
@@ -332,7 +332,7 @@ export function PrintLedgerModal({ isOpen, onClose, onPrint, accountInfo }: Prin
             )}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Print Ledger:', settings); onPrint(settings); }}
@@ -362,14 +362,14 @@ export function EmailLedgerModal({ isOpen, onClose, onSend, accountInfo }: Email
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Email Ledger Report</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Recipients (Email) *</label>
               <input
@@ -436,7 +436,7 @@ export function EmailLedgerModal({ isOpen, onClose, onSend, accountInfo }: Email
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Send Email:', formData); onSend(formData); }}
@@ -466,14 +466,14 @@ export function CompareLedgerPeriodsModal({ isOpen, onClose, onCompare }: Compar
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Compare Ledger Periods</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Comparison Type</label>
               <select
@@ -488,7 +488,7 @@ export function CompareLedgerPeriodsModal({ isOpen, onClose, onCompare }: Compar
               </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div className="border-r pr-6">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Period 1 (Current)</h3>
                 <div className="space-y-3">
@@ -563,7 +563,7 @@ export function CompareLedgerPeriodsModal({ isOpen, onClose, onCompare }: Compar
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Compare Periods:', formData); onCompare(formData); }}

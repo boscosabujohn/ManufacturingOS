@@ -310,7 +310,7 @@ const SchedulerHistoryPage = () => {
   return (
     <div className="p-6 max-w-[1600px]">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-indigo-100 rounded-lg">
@@ -334,7 +334,7 @@ const SchedulerHistoryPage = () => {
       {/* Toast Notification */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 animate-fade-in">
-          <div className={`rounded-lg shadow-lg p-4 flex items-center gap-3 ${
+          <div className={`rounded-lg shadow-lg p-3 flex items-center gap-3 ${
             toast.type === 'success' ? 'bg-green-50 border-2 border-green-500' :
             toast.type === 'error' ? 'bg-red-50 border-2 border-red-500' :
             'bg-blue-50 border-2 border-blue-500'
@@ -355,10 +355,10 @@ const SchedulerHistoryPage = () => {
       )}
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-3">
         <button
           onClick={() => handleStatsCardClick('total')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-indigo-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-indigo-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total</span>
@@ -370,7 +370,7 @@ const SchedulerHistoryPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('success')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-green-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Successful</span>
@@ -382,7 +382,7 @@ const SchedulerHistoryPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('failed')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-red-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-red-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Failed</span>
@@ -394,7 +394,7 @@ const SchedulerHistoryPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('warning')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-yellow-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-yellow-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Warnings</span>
@@ -404,7 +404,7 @@ const SchedulerHistoryPage = () => {
           <p className="text-xs text-yellow-600 mt-1">Click to filter</p>
         </button>
 
-        <div className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Duration</span>
             <TrendingUp className="w-4 h-4 text-blue-600" />
@@ -414,7 +414,7 @@ const SchedulerHistoryPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('analytics')}
-          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-3 hover:border-purple-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-purple-600 font-medium">Analytics</span>
@@ -426,12 +426,12 @@ const SchedulerHistoryPage = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           <div className="flex-1 min-w-[250px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -571,9 +571,9 @@ const SchedulerHistoryPage = () => {
 
       {/* Analytics Modal */}
       {showAnalyticsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
-            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-3 sticky top-0 z-10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-white bg-opacity-20 rounded-lg">
@@ -595,10 +595,10 @@ const SchedulerHistoryPage = () => {
 
             <div className="p-6">
               {/* Performance Metrics */}
-              <div className="mb-6">
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Performance Overview</h4>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="mb-3">
+                <h4 className="text-lg font-bold text-gray-900 mb-2">Performance Overview</h4>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                     <div className="flex items-center gap-2 mb-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600" />
                       <p className="text-sm font-medium text-green-900">Success Rate</p>
@@ -608,7 +608,7 @@ const SchedulerHistoryPage = () => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
                     <div className="flex items-center gap-2 mb-2">
                       <XCircle className="w-5 h-5 text-red-600" />
                       <p className="text-sm font-medium text-red-900">Failure Rate</p>
@@ -618,7 +618,7 @@ const SchedulerHistoryPage = () => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
                     <div className="flex items-center gap-2 mb-2">
                       <AlertTriangle className="w-5 h-5 text-yellow-600" />
                       <p className="text-sm font-medium text-yellow-900">Warning Rate</p>
@@ -628,7 +628,7 @@ const SchedulerHistoryPage = () => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                     <div className="flex items-center gap-2 mb-2">
                       <Clock className="w-5 h-5 text-blue-600" />
                       <p className="text-sm font-medium text-blue-900">Avg Duration</p>
@@ -639,14 +639,14 @@ const SchedulerHistoryPage = () => {
               </div>
 
               {/* Job Type Analysis */}
-              <div className="mb-6">
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Job Type Breakdown</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="mb-3">
+                <h4 className="text-lg font-bold text-gray-900 mb-2">Job Type Breakdown</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {['Backup', 'Report', 'Data Sync', 'Monitoring', 'Cleanup', 'Archive'].map((type) => {
                     const typeCount = history.filter(h => h.jobType === type).length;
                     const typeSuccess = history.filter(h => h.jobType === type && h.status === 'Success').length;
                     return typeCount > 0 ? (
-                      <div key={type} className="bg-white border border-gray-200 rounded-lg p-4">
+                      <div key={type} className="bg-white border border-gray-200 rounded-lg p-3">
                         <p className="text-sm font-medium text-gray-700 mb-2">{type}</p>
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-2xl font-bold text-gray-900">{typeCount}</span>
@@ -667,12 +667,12 @@ const SchedulerHistoryPage = () => {
               </div>
 
               {/* Recent Trends */}
-              <div className="mb-6">
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Recent Executions Timeline</h4>
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="mb-3">
+                <h4 className="text-lg font-bold text-gray-900 mb-2">Recent Executions Timeline</h4>
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="space-y-3">
                     {history.slice(0, 5).map((exec) => (
-                      <div key={exec.id} className="flex items-center gap-4 bg-white p-3 rounded-lg border border-gray-200">
+                      <div key={exec.id} className="flex items-center gap-2 bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex-shrink-0">
                           {getStatusIcon(exec.status)}
                         </div>
@@ -696,23 +696,23 @@ const SchedulerHistoryPage = () => {
 
               {/* Key Insights */}
               <div>
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Key Insights</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 className="text-lg font-bold text-gray-900 mb-2">Key Insights</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <h5 className="font-semibold text-blue-900 mb-2">Most Reliable Job</h5>
                     <p className="text-sm text-blue-700">System Health Check - 100% success rate</p>
                   </div>
-                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                     <h5 className="font-semibold text-purple-900 mb-2">Longest Running Job</h5>
                     <p className="text-sm text-purple-700">Data Archive - {stats.longestDuration}</p>
                   </div>
-                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                     <h5 className="font-semibold text-orange-900 mb-2">Total Records Processed</h5>
                     <p className="text-sm text-orange-700">
                       {history.reduce((sum, h) => sum + (h.recordsProcessed || 0), 0).toLocaleString()} records
                     </p>
                   </div>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                     <h5 className="font-semibold text-green-900 mb-2">System Reliability</h5>
                     <p className="text-sm text-green-700">
                       {stats.successful} of {stats.totalExecutions} jobs completed successfully
@@ -722,7 +722,7 @@ const SchedulerHistoryPage = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50">
               <button
                 onClick={() => setShowAnalyticsModal(false)}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-medium"
@@ -746,7 +746,7 @@ const SchedulerHistoryPage = () => {
 
       {/* Details Modal */}
       {selectedExecution && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
             <div className={`p-6 sticky top-0 z-10 bg-gradient-to-r ${
               selectedExecution.status === 'Success' ? 'from-green-600 to-emerald-600' :
@@ -768,7 +768,7 @@ const SchedulerHistoryPage = () => {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-600 mb-1">Job Name</label>
                   <div className="bg-gray-50 rounded-lg p-3 font-semibold text-gray-900">{selectedExecution.jobName}</div>
@@ -844,7 +844,7 @@ const SchedulerHistoryPage = () => {
                 {selectedExecution.errorMessage && (
                   <div className="col-span-2">
                     <label className="block text-sm font-medium text-gray-600 mb-1">Error Message</label>
-                    <pre className="bg-red-900 text-red-100 rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap font-mono">
+                    <pre className="bg-red-900 text-red-100 rounded-lg p-3 text-xs overflow-x-auto whitespace-pre-wrap font-mono">
                       {selectedExecution.errorMessage}
                     </pre>
                   </div>
@@ -861,7 +861,7 @@ const SchedulerHistoryPage = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200">
               <button
                 onClick={handleCloseDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"

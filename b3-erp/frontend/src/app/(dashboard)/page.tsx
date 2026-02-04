@@ -167,7 +167,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-gradient-to-r from-white via-white to-brand-blue/5 border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className=" px-3">
           <div className="flex justify-between items-center h-16">
             {/* Logo and Title */}
             <div className="flex items-center">
@@ -307,7 +307,7 @@ export default function DashboardPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className=" px-3 py-8">
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -319,8 +319,8 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-white rounded-lg shadow p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Orders</p>
@@ -333,7 +333,7 @@ export default function DashboardPage() {
             <p className="text-xs text-green-600 mt-2">↑ 12% from last month</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Revenue</p>
@@ -346,7 +346,7 @@ export default function DashboardPage() {
             <p className="text-xs text-green-600 mt-2">↑ 8% from last month</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Production</p>
@@ -359,7 +359,7 @@ export default function DashboardPage() {
             <p className="text-xs text-green-600 mt-2">↑ 15% from last month</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Inventory Items</p>
@@ -374,7 +374,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="mb-6">
+        <div className="mb-3">
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex space-x-8">
               {categories.map((category) => (
@@ -394,7 +394,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Module Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           {filteredModules.map((module) => {
             const Icon = module.icon;
             return (
@@ -405,7 +405,7 @@ export default function DashboardPage() {
               >
                 <div className="p-6">
                   {/* Icon */}
-                  <div className={`${module.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-200`}>
+                  <div className={`${module.color} w-12 h-12 rounded-lg flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200`}>
                     <Icon className="h-6 w-6 text-white" />
                   </div>
 
@@ -415,7 +415,7 @@ export default function DashboardPage() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-gray-600 mb-2">
                     {module.description}
                   </p>
 
@@ -449,7 +449,7 @@ export default function DashboardPage() {
         {/* Empty State */}
         {filteredModules.length === 0 && (
           <div className="text-center py-12">
-            <Search className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Search className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No modules found</h3>
             <p className="text-gray-600">Try adjusting your search query</p>
           </div>
@@ -458,7 +458,7 @@ export default function DashboardPage() {
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className=" px-3 py-2">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm font-semibold text-gray-700 mb-1">

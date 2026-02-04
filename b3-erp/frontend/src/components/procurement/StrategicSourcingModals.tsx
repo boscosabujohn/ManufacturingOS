@@ -88,9 +88,9 @@ export function CreateSourcingProjectModal({ isOpen, onClose, onSubmit }: Create
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Target className="w-6 h-6" />
@@ -105,8 +105,8 @@ export function CreateSourcingProjectModal({ isOpen, onClose, onSubmit }: Create
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <FileText className="w-5 h-5 text-blue-600" />
               Project Details
@@ -124,7 +124,7 @@ export function CreateSourcingProjectModal({ isOpen, onClose, onSubmit }: Create
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
                 <select
@@ -167,7 +167,7 @@ export function CreateSourcingProjectModal({ isOpen, onClose, onSubmit }: Create
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Timeline</label>
                 <select
@@ -259,9 +259,9 @@ export function AnalyzeSpendModal({ isOpen, onClose, onSubmit }: AnalyzeSpendMod
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <BarChart3 className="w-6 h-6" />
@@ -276,14 +276,14 @@ export function AnalyzeSpendModal({ isOpen, onClose, onSubmit }: AnalyzeSpendMod
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Settings className="w-5 h-5 text-purple-600" />
               Analysis Configuration
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Analysis Type</label>
                 <select
@@ -407,9 +407,9 @@ export function DevelopStrategyModal({ isOpen, onClose, category, onSubmit }: De
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Award className="w-6 h-6" />
@@ -424,8 +424,8 @@ export function DevelopStrategyModal({ isOpen, onClose, category, onSubmit }: De
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900">Strategy Overview</h3>
 
             <div>
@@ -439,7 +439,7 @@ export function DevelopStrategyModal({ isOpen, onClose, category, onSubmit }: De
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
                 <select
@@ -540,9 +540,9 @@ export function TrackImplementationModal({ isOpen, onClose, project, onSubmit }:
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Activity className="w-6 h-6" />
@@ -557,8 +557,8 @@ export function TrackImplementationModal({ isOpen, onClose, project, onSubmit }:
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900">Implementation Status</h3>
 
             <div>

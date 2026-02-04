@@ -155,9 +155,9 @@ export default function ResourceSchedulingPage() {
   const overloaded = resources.filter(r => r.status === 'overloaded').length;
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+    <div className="w-full px-3 py-2">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
             <ArrowLeft className="h-5 w-5" />
             <span>Back</span>
@@ -170,8 +170,8 @@ export default function ResourceSchedulingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Resources</span>
             <Settings className="h-5 w-5 text-blue-600" />
@@ -180,7 +180,7 @@ export default function ResourceSchedulingPage() {
           <div className="text-xs text-blue-700 mt-1">Labor & Equipment</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Avg Utilization</span>
             <TrendingUp className="h-5 w-5 text-green-600" />
@@ -189,7 +189,7 @@ export default function ResourceSchedulingPage() {
           <div className="text-xs text-green-700 mt-1">Overall efficiency</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-red-900">Overloaded</span>
             <AlertCircle className="h-5 w-5 text-red-600" />
@@ -198,7 +198,7 @@ export default function ResourceSchedulingPage() {
           <div className="text-xs text-red-700 mt-1">Need rebalancing</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Active WOs</span>
             <Calendar className="h-5 w-5 text-purple-600" />
@@ -210,7 +210,7 @@ export default function ResourceSchedulingPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
@@ -224,14 +224,14 @@ export default function ResourceSchedulingPage() {
         </select>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredResources.map((resource) => {
           const statusInfo = getStatusBadge(resource.status);
           const StatusIcon = statusInfo?.icon || Clock;
 
           return (
             <div key={resource.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-5">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     {resource.resourceType === 'labor' ? <Users className="h-5 w-5 text-blue-600" /> : <Settings className="h-5 w-5 text-purple-600" />}
@@ -249,7 +249,7 @@ export default function ResourceSchedulingPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="text-xs text-gray-600 mb-1">Total Capacity</div>
                   <div className="text-lg font-bold text-gray-900">{resource.totalCapacity}h</div>

@@ -86,8 +86,8 @@ export default function PredictiveForecasting() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -96,7 +96,7 @@ export default function PredictiveForecasting() {
             </h2>
             <p className="text-gray-600 mt-1">AI-powered revenue predictions with confidence intervals</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="text-sm text-gray-600 flex items-center gap-2">
               Last updated: {new Date().toLocaleTimeString()}
               <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -153,10 +153,10 @@ export default function PredictiveForecasting() {
         </div>
 
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {forecasts.map((forecast, idx) => (
               <div key={idx} className="p-5 border border-gray-200 rounded-lg">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <Calendar className="h-5 w-5 text-purple-600" />
                     <h4 className="font-bold text-gray-900">{forecast.month}</h4>
@@ -172,7 +172,7 @@ export default function PredictiveForecasting() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div className="p-3 bg-purple-50 rounded-lg">
                     <p className="text-xs text-purple-600 font-medium">Predicted Revenue</p>
                     <p className="text-xl font-bold text-purple-900">{formatCurrency(forecast.predicted)}</p>

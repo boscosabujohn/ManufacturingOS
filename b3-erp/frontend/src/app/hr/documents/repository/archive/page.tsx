@@ -10,14 +10,14 @@ export default function ArchiveRepositoryPage() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Archived Documents</h1>
         <p className="text-sm text-gray-600 mt-1">View and restore archived documents</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Archived</p>
@@ -28,11 +28,11 @@ export default function ArchiveRepositoryPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Archived Documents</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Archived Documents</h2>
         <div className="space-y-3">
           {archivedDocs.map((doc) => (
-            <div key={doc.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div key={doc.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-3 flex-1">
                 <File className="h-6 w-6 text-gray-600" />
                 <div className="flex-1 min-w-0">

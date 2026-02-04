@@ -162,8 +162,8 @@ export default function SubmitExpensePage() {
   const totalAmount = expenseItems.reduce((sum, item) => sum + item.amount, 0);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Receipt className="h-7 w-7 text-purple-600" />
           Submit Expense Claim
@@ -171,14 +171,14 @@ export default function SubmitExpensePage() {
         <p className="text-sm text-gray-600 mt-1">Create and submit expense reimbursement request</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Form */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Expense Title */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Expense Details</h2>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Expense Details</h2>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Expense Title <span className="text-red-600">*</span>
               </label>
@@ -193,8 +193,8 @@ export default function SubmitExpensePage() {
           </div>
 
           {/* Expense Items */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold text-gray-900">Expense Items</h2>
               <button
                 onClick={addExpenseItem}
@@ -206,9 +206,9 @@ export default function SubmitExpensePage() {
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {expenseItems.map((item, index) => (
-                <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="font-medium text-gray-900">Item {index + 1}</h3>
                     {expenseItems.length > 1 && (
@@ -222,7 +222,7 @@ export default function SubmitExpensePage() {
                     )}
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Category <span className="text-red-600">*</span>
@@ -317,10 +317,10 @@ export default function SubmitExpensePage() {
 
         {/* Summary Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-6 sticky top-6">
-            <h2 className="text-lg font-semibold text-purple-900 mb-4">Summary</h2>
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3 sticky top-6">
+            <h2 className="text-lg font-semibold text-purple-900 mb-2">Summary</h2>
 
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-3">
               <div className="flex justify-between text-sm">
                 <span className="text-purple-700">Total Items:</span>
                 <span className="font-semibold text-purple-900">{expenseItems.length}</span>
@@ -358,7 +358,7 @@ export default function SubmitExpensePage() {
               )}
             </button>
 
-            <div className="mt-6 p-4 bg-white rounded-lg border border-purple-200">
+            <div className="mt-6 p-3 bg-white rounded-lg border border-purple-200">
               <h3 className="text-sm font-semibold text-gray-900 mb-2">Guidelines:</h3>
               <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Attach receipts for all expenses</li>

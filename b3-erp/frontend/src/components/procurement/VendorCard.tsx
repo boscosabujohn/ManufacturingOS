@@ -89,8 +89,8 @@ export default function VendorCard({
 
   if (viewMode === 'list') {
     return (
-      <div className={`bg-white rounded-lg border ${isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200'} hover:shadow-md transition-all p-4`}>
-        <div className="flex items-center gap-4">
+      <div className={`bg-white rounded-lg border ${isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200'} hover:shadow-md transition-all p-3`}>
+        <div className="flex items-center gap-2">
           {/* Selection Checkbox */}
           {onSelect && (
             <input
@@ -107,7 +107,7 @@ export default function VendorCard({
           </div>
 
           {/* Main Info */}
-          <div className="flex-1 grid grid-cols-6 gap-4 items-center">
+          <div className="flex-1 grid grid-cols-6 gap-2 items-center">
             {/* Vendor Details */}
             <div className="col-span-2">
               <div className="flex items-center gap-2">
@@ -130,7 +130,7 @@ export default function VendorCard({
             </div>
 
             {/* Performance Metrics */}
-            <div className="col-span-2 flex items-center gap-6">
+            <div className="col-span-2 flex items-center gap-3">
               {/* Rating */}
               <div className="text-center">
                 <div className="flex items-center gap-1">
@@ -162,7 +162,7 @@ export default function VendorCard({
             </div>
 
             {/* Business Metrics */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div>
                 <p className="text-sm font-bold text-gray-900">${((vendor.totalPurchases || 0) / 1000).toFixed(0)}K</p>
                 <p className="text-xs text-gray-500">Total Spend</p>
@@ -297,7 +297,7 @@ export default function VendorCard({
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-2">
         {/* Rating and Performance */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">

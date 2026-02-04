@@ -285,7 +285,7 @@ export default function DriverMaster() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {/* Toast Notification */}
       {toast && (
         <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
@@ -301,14 +301,14 @@ export default function DriverMaster() {
       )}
 
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">Driver Master</h2>
         <p className="text-gray-600">Manage driver personnel database and information</p>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 mb-6">
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-2 mb-3">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Drivers</p>
@@ -318,7 +318,7 @@ export default function DriverMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active</p>
@@ -328,7 +328,7 @@ export default function DriverMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">On Leave</p>
@@ -338,7 +338,7 @@ export default function DriverMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Inactive</p>
@@ -348,7 +348,7 @@ export default function DriverMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Rating</p>
@@ -358,7 +358,7 @@ export default function DriverMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Trips</p>
@@ -368,7 +368,7 @@ export default function DriverMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-red-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-red-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -380,9 +380,9 @@ export default function DriverMaster() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -427,7 +427,7 @@ export default function DriverMaster() {
 
           {/* Advanced Filters */}
           {showAdvancedFilters && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-4 border-t border-gray-200">
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
@@ -460,14 +460,14 @@ export default function DriverMaster() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">License</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Experience</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">License</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Experience</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -477,7 +477,7 @@ export default function DriverMaster() {
 
                 return (
                   <tr key={driver.id} className="hover:bg-blue-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
                           <User className="h-5 w-5 text-blue-600" />
@@ -488,7 +488,7 @@ export default function DriverMaster() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-900 flex items-center gap-1">
                         <Phone className="h-3 w-3" />
                         {driver.phone}
@@ -498,7 +498,7 @@ export default function DriverMaster() {
                         {driver.email}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-900">{driver.licenseNumber}</div>
                       <div className="text-xs text-gray-500">{driver.licenseType}</div>
                       {isExpiringSoon && (
@@ -508,30 +508,30 @@ export default function DriverMaster() {
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-900">{driver.experience} years</div>
                       <div className="text-xs text-gray-500">Since {driver.dateOfJoining.getFullYear()}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       {driver.vehicleAssigned ? (
                         <div className="text-sm text-gray-900">{driver.vehicleAssigned}</div>
                       ) : (
                         <div className="text-sm text-gray-400">Not assigned</div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
                         <span className="text-sm font-medium text-gray-900">{driver.rating}</span>
                       </div>
                       <div className="text-xs text-gray-500">{driver.totalTrips} trips</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[driver.status]}`}>
                         {driver.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleView(driver)}
@@ -575,9 +575,9 @@ export default function DriverMaster() {
 
       {/* View Driver Modal */}
       {showViewModal && selectedDriver && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white">{selectedDriver.name}</h2>
                 <p className="text-sm text-blue-100">{selectedDriver.code}</p>
@@ -590,9 +590,9 @@ export default function DriverMaster() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status and Rating */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium border ${statusColors[selectedDriver.status]}`}>
                   {selectedDriver.status}
                 </span>
@@ -604,12 +604,12 @@ export default function DriverMaster() {
               </div>
 
               {/* Personal Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <User className="h-5 w-5 text-blue-600" />
                   Personal Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Date of Birth</p>
                     <p className="text-base font-medium text-gray-900">
@@ -634,12 +634,12 @@ export default function DriverMaster() {
               </div>
 
               {/* Contact Information */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Phone className="h-5 w-5 text-blue-600" />
                   Contact Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Phone</p>
                     <p className="text-base font-medium text-gray-900">{selectedDriver.phone}</p>
@@ -662,12 +662,12 @@ export default function DriverMaster() {
               </div>
 
               {/* License Information */}
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <CreditCard className="h-5 w-5 text-purple-600" />
                   License Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">License Number</p>
                     <p className="text-base font-medium text-gray-900">{selectedDriver.licenseNumber}</p>
@@ -717,9 +717,9 @@ export default function DriverMaster() {
 
       {/* Add/Edit Modal Placeholder */}
       {(showAddModal || showEditModal) && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white">
                 {showAddModal ? 'Add New Driver' : 'Edit Driver'}
               </h2>

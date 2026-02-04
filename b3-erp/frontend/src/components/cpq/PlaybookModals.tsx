@@ -120,9 +120,9 @@ export function PlaybookModal({ isOpen, onClose, onSave, playbook }: PlaybookMod
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             {playbook ? 'Edit Playbook' : 'Create New Playbook'}
           </h2>
@@ -131,8 +131,8 @@ export function PlaybookModal({ isOpen, onClose, onSave, playbook }: PlaybookMod
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="space-y-2">
             <h3 className="text-lg font-medium text-gray-900">Basic Information</h3>
 
             <div>
@@ -153,7 +153,7 @@ export function PlaybookModal({ isOpen, onClose, onSave, playbook }: PlaybookMod
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Category *
@@ -241,7 +241,7 @@ export function PlaybookModal({ isOpen, onClose, onSave, playbook }: PlaybookMod
               )}
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Number of Stages
@@ -354,39 +354,39 @@ export function ViewPlaybookModal({ isOpen, onClose, playbook }: ViewPlaybookMod
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Playbook Details</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">{playbook.playbookName}</h3>
             <p className="text-gray-600">{playbook.description}</p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-blue-50 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 rounded-lg p-3">
               <div className="text-sm text-blue-700 mb-1">Playbook Code</div>
               <div className="text-lg font-bold text-blue-900">{playbook.playbookCode}</div>
             </div>
-            <div className="bg-green-50 rounded-lg p-4">
+            <div className="bg-green-50 rounded-lg p-3">
               <div className="text-sm text-green-700 mb-1">Category</div>
               <div className="text-lg font-bold text-green-900">{playbook.category}</div>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-purple-50 rounded-lg p-3">
               <div className="text-sm text-purple-700 mb-1">Target Segment</div>
               <div className="text-lg font-bold text-purple-900">{playbook.targetSegment}</div>
             </div>
           </div>
 
           <div className="border-t border-gray-200 pt-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h4>
-            <div className="grid grid-cols-4 gap-4">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Performance Metrics</h4>
+            <div className="grid grid-cols-4 gap-2">
               <div>
                 <div className="text-sm text-gray-600 mb-1">Win Rate</div>
                 <div className="text-2xl font-bold text-green-600">{playbook.winRate.toFixed(1)}%</div>
@@ -407,11 +407,11 @@ export function ViewPlaybookModal({ isOpen, onClose, playbook }: ViewPlaybookMod
           </div>
 
           <div className="border-t border-gray-200 pt-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Sales Stages ({stages.length})</h4>
-            <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Sales Stages ({stages.length})</h4>
+            <div className="space-y-2">
               {stages.map((stage, index) => (
-                <div key={stage.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
-                  <div className="flex items-start gap-4">
+                <div key={stage.id} className="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition-colors">
+                  <div className="flex items-start gap-2">
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-900 font-bold flex-shrink-0">
                       {index + 1}
                     </div>
@@ -419,7 +419,7 @@ export function ViewPlaybookModal({ isOpen, onClose, playbook }: ViewPlaybookMod
                       <h5 className="font-semibold text-gray-900 mb-1">{stage.stageName}</h5>
                       <p className="text-sm text-gray-600 mb-3">{stage.description}</p>
 
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-2">
                         <div>
                           <div className="text-xs font-medium text-gray-700 mb-2">Key Actions:</div>
                           <ul className="space-y-1">
@@ -493,9 +493,9 @@ export function UsePlaybookModal({ isOpen, onClose, playbook }: UsePlaybookModal
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Start New Deal with Playbook</h2>
             <p className="text-sm text-gray-600">{playbook.playbookName}</p>
@@ -505,14 +505,14 @@ export function UsePlaybookModal({ isOpen, onClose, playbook }: UsePlaybookModal
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="p-6 space-y-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <Play className="h-6 w-6 text-blue-600 mt-1" />
               <div>
                 <h4 className="font-semibold text-gray-900 mb-1">About This Playbook</h4>
                 <p className="text-sm text-gray-700 mb-2">{playbook.description}</p>
-                <div className="flex items-center gap-4 text-xs text-gray-600">
+                <div className="flex items-center gap-2 text-xs text-gray-600">
                   <span>{playbook.stages} stages</span>
                   <span>•</span>
                   <span>{playbook.avgCycleTime} day cycle</span>
@@ -545,7 +545,7 @@ export function UsePlaybookModal({ isOpen, onClose, playbook }: UsePlaybookModal
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Expected Deal Value (₹)</label>
               <input
@@ -579,7 +579,7 @@ export function UsePlaybookModal({ isOpen, onClose, playbook }: UsePlaybookModal
             />
           </div>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <div className="text-sm text-green-900">
               <strong>Next Steps:</strong> Once you start, you'll be guided through {playbook.stages} stages of the sales process.
               Each stage will provide key actions, success criteria, and best practices to maximize your win rate.
@@ -661,9 +661,9 @@ export function StageBuilderModal({ isOpen, onClose, playbook }: StageBuilderMod
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Stage Builder</h2>
             <p className="text-sm text-gray-600">{playbook.playbookName}</p>
@@ -673,12 +673,12 @@ export function StageBuilderModal({ isOpen, onClose, playbook }: StageBuilderMod
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="space-y-4">
+        <div className="p-6 space-y-3">
+          <div className="space-y-2">
             <h3 className="text-lg font-medium text-gray-900">Stages ({stages.length})</h3>
 
             {stages.map((stage, index) => (
-              <div key={stage.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+              <div key={stage.id} className="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition-colors">
                 <div className="flex items-start gap-3">
                   <GripVertical className="h-5 w-5 text-gray-400 mt-1 cursor-move" />
                   <div className="flex-1">
@@ -709,7 +709,7 @@ export function StageBuilderModal({ isOpen, onClose, playbook }: StageBuilderMod
             ))}
           </div>
 
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 space-y-4">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 space-y-2">
             <h3 className="text-lg font-medium text-gray-900">Add New Stage</h3>
 
             <div>
@@ -734,7 +734,7 @@ export function StageBuilderModal({ isOpen, onClose, playbook }: StageBuilderMod
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Expected Duration (days)</label>
                 <input

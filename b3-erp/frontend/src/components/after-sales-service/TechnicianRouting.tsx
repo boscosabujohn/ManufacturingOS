@@ -33,9 +33,9 @@ export default function TechnicianRouting() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header Section */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3 flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
             <div className="p-2 bg-green-100 rounded-lg">
@@ -72,15 +72,15 @@ export default function TechnicianRouting() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {[
           { label: 'Total Technicians', value: '45', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50', trend: '+2 this week' },
           { label: 'Active Routes', value: '128', icon: Route, color: 'text-green-600', bg: 'bg-green-50', trend: '98% efficiency' },
           { label: 'Avg. Travel Time', value: '24m', icon: Clock, color: 'text-purple-600', bg: 'bg-purple-50', trend: '-12% improved' },
           { label: 'Fuel Saved', value: '15%', icon: TrendingUp, color: 'text-orange-600', bg: 'bg-orange-50', trend: 'Last 30 days' },
         ].map((stat, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 group hover:border-green-500 transition-colors">
-            <div className="flex items-center justify-between mb-4">
+          <div key={idx} className="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 group hover:border-green-500 transition-colors">
+            <div className="flex items-center justify-between mb-2">
               <div className={`p-3 ${stat.bg} rounded-xl group-hover:scale-110 transition-transform`}>
                 <stat.icon className={`h-6 w-6 ${stat.color}`} />
               </div>
@@ -94,7 +94,7 @@ export default function TechnicianRouting() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Live Map Representation */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-slate-900 rounded-3xl overflow-hidden aspect-video relative shadow-2xl border-4 border-white">
             {/* Mock Map Background */}
             <div className="absolute inset-0 opacity-40">
@@ -171,14 +171,14 @@ export default function TechnicianRouting() {
                 { id: 'JOB-995', title: 'Safety Audit', loc: 'Mayur Vihar', due: 'In 1h 20m', client: 'PVR Cinemas' },
               ].map((job, idx) => (
                 <div key={idx} className="p-4 flex items-center justify-between hover:bg-slate-50 transition-colors">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     <div className="p-2 bg-slate-100 rounded-lg"><Navigation className="h-4 w-4 text-slate-400" /></div>
                     <div>
                       <p className="text-sm font-bold text-slate-900">{job.title}</p>
                       <p className="text-xs text-slate-500">{job.loc} • {job.client}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <span className="text-xs font-medium text-slate-600 flex items-center gap-1">
                       <Clock className="h-3 w-3" /> {job.due}
                     </span>
@@ -193,16 +193,16 @@ export default function TechnicianRouting() {
         </div>
 
         {/* Technician Leaderboard / List */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
               <Users className="h-5 w-5 text-blue-600" />
               Technician Status
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {technicians.map((tech) => (
                 <div key={tech.id} className="group">
-                  <div className="flex items-center gap-4 mb-3">
+                  <div className="flex items-center gap-2 mb-3">
                     <img src={tech.avatar} alt={tech.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-slate-100 group-hover:ring-green-500 transition-all" />
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
@@ -241,14 +241,14 @@ export default function TechnicianRouting() {
           </div>
 
           {/* Efficiency Insights */}
-          <div className="bg-gradient-to-br from-indigo-900 to-slate-900 p-6 rounded-2xl text-white shadow-xl">
-            <div className="flex items-center gap-3 mb-4">
+          <div className="bg-gradient-to-br from-indigo-900 to-slate-900 p-3 rounded-2xl text-white shadow-xl">
+            <div className="flex items-center gap-3 mb-2">
               <div className="p-2 bg-indigo-500/20 rounded-lg">
                 <Zap className="h-5 w-5 text-indigo-300" />
               </div>
               <h3 className="font-bold">AI Route Insights</h3>
             </div>
-            <p className="text-indigo-100 text-sm mb-4 leading-relaxed">
+            <p className="text-indigo-100 text-sm mb-2 leading-relaxed">
               Merging Routes 4 & 12 could save <span className="text-green-400 font-bold">18kg CO2</span> and reduce travel time by 15% today.
             </p>
             <button className="w-full py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-xl font-bold transition-colors text-sm">

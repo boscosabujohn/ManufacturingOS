@@ -81,13 +81,13 @@ function InspectionByTypeContent() {
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                             <tr>
-                                <th className="px-6 py-3">Inspection ID</th>
-                                <th className="px-6 py-3">Item</th>
-                                <th className="px-6 py-3">Type</th>
-                                <th className="px-6 py-3">Inspector</th>
-                                <th className="px-6 py-3">Date</th>
-                                <th className="px-6 py-3 text-center">Result</th>
-                                <th className="px-6 py-3 text-center">Defects</th>
+                                <th className="px-3 py-2">Inspection ID</th>
+                                <th className="px-3 py-2">Item</th>
+                                <th className="px-3 py-2">Type</th>
+                                <th className="px-3 py-2">Inspector</th>
+                                <th className="px-3 py-2">Date</th>
+                                <th className="px-3 py-2 text-center">Result</th>
+                                <th className="px-3 py-2 text-center">Defects</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -97,12 +97,12 @@ function InspectionByTypeContent() {
                                     id={record.id}
                                     basePath="/quality/inspections/view"
                                 >
-                                    <td className="px-6 py-4 font-medium text-gray-900">{record.id}</td>
-                                    <td className="px-6 py-4">{record.item}</td>
-                                    <td className="px-6 py-4">{record.type}</td>
-                                    <td className="px-6 py-4">{record.inspector}</td>
-                                    <td className="px-6 py-4">{record.date}</td>
-                                    <td className="px-6 py-4 text-center">
+                                    <td className="px-3 py-2 font-medium text-gray-900">{record.id}</td>
+                                    <td className="px-3 py-2">{record.item}</td>
+                                    <td className="px-3 py-2">{record.type}</td>
+                                    <td className="px-3 py-2">{record.inspector}</td>
+                                    <td className="px-3 py-2">{record.date}</td>
+                                    <td className="px-3 py-2 text-center">
                                         <Badge className={record.result === 'Pass' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                                             {record.result === 'Pass' ? (
                                                 <div className="flex items-center gap-1">
@@ -115,7 +115,7 @@ function InspectionByTypeContent() {
                                             )}
                                         </Badge>
                                     </td>
-                                    <td className="px-6 py-4 text-center">
+                                    <td className="px-3 py-2 text-center">
                                         {record.defects > 0 ? (
                                             <span className="text-red-600 font-medium">{record.defects}</span>
                                         ) : (

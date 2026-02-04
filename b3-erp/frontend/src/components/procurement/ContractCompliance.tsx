@@ -1079,9 +1079,9 @@ DATA PRIVACY:
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Shield className="h-8 w-8" />
@@ -1117,31 +1117,31 @@ DATA PRIVACY:
       </div>
 
       {/* Action Buttons Row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <button
           onClick={handleMonitorCompliance}
-          className="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-lg transition flex items-center justify-center gap-2 shadow"
+          className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition flex items-center justify-center gap-2 shadow"
         >
           <FileCheck className="h-5 w-5" />
           <span className="font-medium">Monitor Compliance</span>
         </button>
         <button
           onClick={handleFlagViolations}
-          className="bg-red-500 hover:bg-red-600 text-white p-4 rounded-lg transition flex items-center justify-center gap-2 shadow"
+          className="bg-red-500 hover:bg-red-600 text-white p-3 rounded-lg transition flex items-center justify-center gap-2 shadow"
         >
           <Flag className="h-5 w-5" />
           <span className="font-medium">Flag Violations</span>
         </button>
         <button
           onClick={handleGenerateAuditTrail}
-          className="bg-purple-500 hover:bg-purple-600 text-white p-4 rounded-lg transition flex items-center justify-center gap-2 shadow"
+          className="bg-purple-500 hover:bg-purple-600 text-white p-3 rounded-lg transition flex items-center justify-center gap-2 shadow"
         >
           <FileText className="h-5 w-5" />
           <span className="font-medium">Generate Audit Trail</span>
         </button>
         <button
           onClick={handleSetAlerts}
-          className="bg-orange-500 hover:bg-orange-600 text-white p-4 rounded-lg transition flex items-center justify-center gap-2 shadow"
+          className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-lg transition flex items-center justify-center gap-2 shadow"
         >
           <Bell className="h-5 w-5" />
           <span className="font-medium">Set Alerts</span>
@@ -1149,8 +1149,8 @@ DATA PRIVACY:
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Contracts</p>
@@ -1162,7 +1162,7 @@ DATA PRIVACY:
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -1174,7 +1174,7 @@ DATA PRIVACY:
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Contract Value</p>
@@ -1186,7 +1186,7 @@ DATA PRIVACY:
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg. Utilization</p>
@@ -1207,7 +1207,7 @@ DATA PRIVACY:
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-4 text-sm font-medium ${
+                className={`px-3 py-2 text-sm font-medium ${
                   activeTab === tab
                     ? 'border-b-2 border-blue-500 text-blue-600'
                     : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -1225,46 +1225,46 @@ DATA PRIVACY:
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supplier</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compliance</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supplier</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compliance</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {contracts.map((contract) => (
                     <tr key={contract.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center">
                           <FileText className="h-5 w-5 text-gray-400 mr-2" />
                           <div className="text-sm font-medium text-gray-900">{contract.contractNumber}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{contract.supplier}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{contract.contractType}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{contract.supplier}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{contract.contractType}</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getContractStatusColor(contract.status)}`}>
                           {contract.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getComplianceStatusColor(contract.complianceStatus)}`}>
                           {contract.complianceStatus}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                         <div>{contract.startDate}</div>
                         <div className="text-xs">to {contract.endDate}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                         ${(contract.value / 1000000).toFixed(2)}M
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
                             <div
@@ -1278,7 +1278,7 @@ DATA PRIVACY:
                           <span className="text-sm text-gray-700">{contract.utilizationPercent}%</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleViewContract(contract)}
@@ -1312,21 +1312,21 @@ DATA PRIVACY:
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metric</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Impact</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Metric</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Impact</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {complianceMetrics.map((metric, idx) => (
                     <tr key={idx} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{metric.metric}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{metric.target}%</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{metric.actual}%</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{metric.metric}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{metric.target}%</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{metric.actual}%</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="w-24 bg-gray-200 rounded-full h-2 mr-2">
                             <div
@@ -1342,12 +1342,12 @@ DATA PRIVACY:
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getMetricStatusColor(metric.status)}`}>
                           {metric.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{metric.impact}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{metric.impact}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1360,38 +1360,38 @@ DATA PRIVACY:
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Obligation</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Obligation</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {obligations.map((obl) => (
                     <tr key={obl.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{obl.obligation}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{obl.obligation}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                         {contracts.find(c => c.id === obl.contractId)?.contractNumber}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center text-sm text-gray-900">
                           <Calendar className="h-4 w-4 mr-1 text-gray-400" />
                           {obl.dueDate}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getObligationStatusColor(obl.status)}`}>
                           {obl.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`text-sm font-medium ${getPriorityColor(obl.priority)}`}>
                           {obl.priority}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{obl.assignedTo}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{obl.assignedTo}</td>
                     </tr>
                   ))}
                 </tbody>

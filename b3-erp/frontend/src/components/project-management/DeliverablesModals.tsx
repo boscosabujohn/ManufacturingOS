@@ -67,10 +67,10 @@ export function CreateDeliverableModal({ isOpen, onClose, onCreate }: CreateDeli
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Plus className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Create Deliverable</h2>
@@ -81,9 +81,9 @@ export function CreateDeliverableModal({ isOpen, onClose, onCreate }: CreateDeli
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Basic Info */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Deliverable Number *
@@ -143,7 +143,7 @@ export function CreateDeliverableModal({ isOpen, onClose, onCreate }: CreateDeli
             />
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Quantity *
@@ -207,7 +207,7 @@ export function CreateDeliverableModal({ isOpen, onClose, onCreate }: CreateDeli
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -239,9 +239,9 @@ export function EditDeliverableModal({ isOpen, onClose, deliverable, onUpdate }:
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Edit className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Edit Deliverable</h2>
@@ -250,7 +250,7 @@ export function EditDeliverableModal({ isOpen, onClose, deliverable, onUpdate }:
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
             <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -267,7 +267,7 @@ export function EditDeliverableModal({ isOpen, onClose, deliverable, onUpdate }:
             <div className="text-center text-2xl font-bold text-green-600">{progress}%</div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onUpdate({ status, progress })} className="px-4 py-2 bg-green-600 text-white rounded-lg">Update</button>
         </div>
@@ -283,9 +283,9 @@ export function UploadDocumentModal({ isOpen, onClose, deliverable, onUpload }: 
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Upload className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Upload Document</h2>
@@ -294,7 +294,7 @@ export function UploadDocumentModal({ isOpen, onClose, deliverable, onUpload }: 
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Document Type</label>
             <select value={documentType} onChange={(e) => setDocumentType(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -309,12 +309,12 @@ export function UploadDocumentModal({ isOpen, onClose, deliverable, onUpload }: 
             <input type="text" value={version} onChange={(e) => setVersion(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
           </div>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="w-12 h-12 text-gray-400 mb-2" />
             <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
             <p className="text-xs text-gray-500 mt-2">PDF, DOC, DWG up to 50MB</p>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onUpload({ documentType, version })} className="px-4 py-2 bg-purple-600 text-white rounded-lg flex items-center gap-2">
             <Upload className="w-4 h-4" />
@@ -336,9 +336,9 @@ export function VersionHistoryModal({ isOpen, onClose, deliverable }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <History className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Version History</h2>
@@ -348,9 +348,9 @@ export function VersionHistoryModal({ isOpen, onClose, deliverable }: any) {
           </button>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {versions.map((v, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-4">
+              <div key={index} className="border border-gray-200 rounded-lg p-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="font-semibold text-gray-900">Version {v.version}</p>
@@ -365,7 +365,7 @@ export function VersionHistoryModal({ isOpen, onClose, deliverable }: any) {
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Close</button>
         </div>
       </div>
@@ -380,9 +380,9 @@ export function ReviewApprovalModal({ isOpen, onClose, deliverable, onSubmit }: 
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <CheckSquare className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Review & Approve</h2>
@@ -391,10 +391,10 @@ export function ReviewApprovalModal({ isOpen, onClose, deliverable, onSubmit }: 
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Action</label>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <label className="flex items-center gap-2">
                 <input type="radio" name="action" value="approve" checked={action === 'approve'} onChange={(e) => setAction(e.target.value)} />
                 <span className="text-sm">Approve</span>
@@ -414,7 +414,7 @@ export function ReviewApprovalModal({ isOpen, onClose, deliverable, onSubmit }: 
             <textarea value={comments} onChange={(e) => setComments(e.target.value)} rows={4} placeholder="Add your review comments..." className="w-full px-3 py-2 border rounded-lg" />
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onSubmit({ action, comments })} className="px-4 py-2 bg-orange-600 text-white rounded-lg">Submit Review</button>
         </div>
@@ -437,9 +437,9 @@ export function LinkToTasksModal({ isOpen, onClose, deliverable, onLink }: any) 
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link2 className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Link to Tasks</h2>
@@ -458,7 +458,7 @@ export function LinkToTasksModal({ isOpen, onClose, deliverable, onLink }: any) 
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onLink(selectedTasks)} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Link Tasks</button>
         </div>
@@ -471,9 +471,9 @@ export function LinkToTasksModal({ isOpen, onClose, deliverable, onLink }: any) 
 export function QualityChecklistModal({ isOpen, onClose, deliverable, onSave }: any) {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <ClipboardCheck className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Quality Checklist</h2>
@@ -483,7 +483,7 @@ export function QualityChecklistModal({ isOpen, onClose, deliverable, onSave }: 
           </button>
         </div>
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-4">Complete the quality checklist for this deliverable</p>
+          <p className="text-sm text-gray-600 mb-2">Complete the quality checklist for this deliverable</p>
           <div className="space-y-3">
             {['Specifications met', 'Documentation complete', 'Testing passed', 'Approval received'].map((item, index) => (
               <label key={index} className="flex items-center gap-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
@@ -493,7 +493,7 @@ export function QualityChecklistModal({ isOpen, onClose, deliverable, onSave }: 
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={onSave} className="px-4 py-2 bg-pink-600 text-white rounded-lg">Save Checklist</button>
         </div>
@@ -506,14 +506,14 @@ export function QualityChecklistModal({ isOpen, onClose, deliverable, onSave }: 
 export function DeliverableTimelineModal({ isOpen, onClose, deliverable }: any) {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Deliverable Timeline</h2>
           <button onClick={onClose} className="text-white hover:bg-yellow-700 p-2 rounded-lg"><X className="w-6 h-6" /></button>
         </div>
         <div className="p-6"><p className="text-gray-600">Timeline visualization for deliverable milestones</p></div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Close</button>
         </div>
       </div>
@@ -524,14 +524,14 @@ export function DeliverableTimelineModal({ isOpen, onClose, deliverable }: any) 
 export function StakeholderSignOffModal({ isOpen, onClose, deliverable, onSubmit }: any) {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Stakeholder Sign-off</h2>
           <button onClick={onClose} className="text-white hover:bg-red-700 p-2 rounded-lg"><X className="w-6 h-6" /></button>
         </div>
         <div className="p-6"><p className="text-gray-600">Request and track stakeholder sign-offs</p></div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={onSubmit} className="px-4 py-2 bg-red-600 text-white rounded-lg">Request Sign-off</button>
         </div>
@@ -549,21 +549,21 @@ export function DeliverableTemplatesModal({ isOpen, onClose, onSelect }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Deliverable Templates</h2>
           <button onClick={onClose} className="text-white hover:bg-cyan-700 p-2 rounded-lg"><X className="w-6 h-6" /></button>
         </div>
         <div className="p-6 space-y-3">
           {templates.map((t) => (
-            <div key={t.id} className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
+            <div key={t.id} className="border rounded-lg p-3 hover:bg-gray-50 cursor-pointer">
               <p className="font-semibold">{t.name}</p>
               <p className="text-sm text-gray-600">{t.items} checklist items</p>
             </div>
           ))}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Close</button>
         </div>
       </div>
@@ -576,16 +576,16 @@ export function ExportDeliverablesModal({ isOpen, onClose, onExport }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Export Deliverables</h2>
           </div>
           <button onClick={onClose} className="text-white hover:bg-gray-700 p-2 rounded-lg"><X className="w-6 h-6" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Format</label>
             <select value={format} onChange={(e) => setFormat(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -595,7 +595,7 @@ export function ExportDeliverablesModal({ isOpen, onClose, onExport }: any) {
             </select>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onExport(format)} className="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center gap-2">
             <Download className="w-4 h-4" />
@@ -610,9 +610,9 @@ export function ExportDeliverablesModal({ isOpen, onClose, onExport }: any) {
 export function DeliverableDependenciesModal({ isOpen, onClose, deliverable, onUpdate }: any) {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <GitBranch className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Deliverable Dependencies</h2>
@@ -620,7 +620,7 @@ export function DeliverableDependenciesModal({ isOpen, onClose, deliverable, onU
           <button onClick={onClose} className="text-white hover:bg-violet-700 p-2 rounded-lg"><X className="w-6 h-6" /></button>
         </div>
         <div className="p-6"><p className="text-gray-600">Manage dependencies between deliverables</p></div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={onUpdate} className="px-4 py-2 bg-violet-600 text-white rounded-lg">Save Dependencies</button>
         </div>

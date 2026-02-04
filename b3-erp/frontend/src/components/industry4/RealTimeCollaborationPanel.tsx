@@ -521,13 +521,13 @@ const RealTimeCollaborationPanel: React.FC<RealTimeCollaborationPanelProps> = ({
   }
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="flex justify-between items-center mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="flex justify-between items-center mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Real-Time Collaboration</h2>
           <p className="text-sm text-gray-600">See who&apos;s working on what right now</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <div className="flex items-center gap-3 text-sm">
             <div className="flex items-center gap-1">
               <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
@@ -542,7 +542,7 @@ const RealTimeCollaborationPanel: React.FC<RealTimeCollaborationPanelProps> = ({
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-2">
         {(['users', 'resources', 'activity'] as const).map(tab => (
           <button
             key={tab}
@@ -561,7 +561,7 @@ const RealTimeCollaborationPanel: React.FC<RealTimeCollaborationPanelProps> = ({
       </div>
 
       {/* Content */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 max-h-96 overflow-y-auto">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 max-h-96 overflow-y-auto">
         {activeTab === 'users' && renderUsers()}
         {activeTab === 'resources' && renderResources()}
         {activeTab === 'activity' && renderActivity()}

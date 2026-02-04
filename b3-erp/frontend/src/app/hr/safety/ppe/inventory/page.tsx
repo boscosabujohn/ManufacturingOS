@@ -37,9 +37,9 @@ export default function PPEInventoryPage() {
   const [filter, setFilter] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Boxes className="h-8 w-8 text-orange-600" />
@@ -54,8 +54,8 @@ export default function PPEInventoryPage() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Total Active SKUs</p>
           <p className="text-2xl font-bold text-gray-900 mt-2">{inventoryStats.totalSkus}</p>
           <div className="mt-4 flex items-center gap-2">
@@ -63,14 +63,14 @@ export default function PPEInventoryPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border-red-100 border-2 shadow-sm relative overflow-hidden">
+        <div className="bg-white p-3 rounded-xl border-red-100 border-2 shadow-sm relative overflow-hidden">
           <p className="text-[10px] font-bold text-red-400 uppercase tracking-widest">Reorder Alerts</p>
           <p className="text-2xl font-bold text-red-600 mt-2">{inventoryStats.lowStockItems}</p>
           <p className="text-[10px] text-red-500 mt-4 font-bold uppercase tracking-tighter">Immediate action required</p>
           <AlertOctagon className="absolute -bottom-2 -right-2 w-16 h-16 text-red-500 opacity-10" />
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Inventory Value</p>
           <div className="flex items-end gap-2 mt-2">
             <p className="text-2xl font-bold text-gray-900">{inventoryStats.stockValue}</p>
@@ -79,10 +79,10 @@ export default function PPEInventoryPage() {
           <p className="text-[10px] text-gray-400 mt-4 leading-tight italic">Estimated replacement cost</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Incoming Shipments</p>
           <p className="text-2xl font-bold text-blue-600 mt-2">{inventoryStats.pendingOrders}</p>
-          <div className="mt-4 flex items-center gap-4">
+          <div className="mt-4 flex items-center gap-2">
             <div className="flex -space-x-2">
               <div className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-blue-600 underline cursor-pointer">V1</div>
               <div className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-blue-600 underline cursor-pointer">V2</div>
@@ -92,12 +92,12 @@ export default function PPEInventoryPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Main Inventory Table */}
         <div className="lg:col-span-3">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden text-sm">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <h2 className="font-bold text-gray-900 uppercase tracking-widest text-xs">Stock Level Monitor</h2>
                 <div className="h-4 w-px bg-gray-200"></div>
                 <div className="flex items-center gap-2">
@@ -119,28 +119,28 @@ export default function PPEInventoryPage() {
               <table className="w-full text-left">
                 <thead className="bg-gray-50 text-[10px] uppercase font-bold text-gray-500 border-b border-gray-100">
                   <tr>
-                    <th className="px-6 py-4">Item & SKU</th>
-                    <th className="px-6 py-4 text-center">On Hand</th>
-                    <th className="px-6 py-4 text-center">Min Level</th>
-                    <th className="px-6 py-4">Status</th>
-                    <th className="px-6 py-4">Lead Time</th>
-                    <th className="px-6 py-4 text-right">Actions</th>
+                    <th className="px-3 py-2">Item & SKU</th>
+                    <th className="px-3 py-2 text-center">On Hand</th>
+                    <th className="px-3 py-2 text-center">Min Level</th>
+                    <th className="px-3 py-2">Status</th>
+                    <th className="px-3 py-2">Lead Time</th>
+                    <th className="px-3 py-2 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50 font-medium">
                   {stockLevels.map((lvl) => (
                     <tr key={lvl.id} className="hover:bg-gray-50 transition-colors group">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <p className="text-gray-900 font-bold group-hover:text-orange-600 transition-colors uppercase">{lvl.name}</p>
                           <p className="text-[10px] text-gray-400 mt-0.5 tracking-tighter">{lvl.id} · {lvl.category}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         <span className={`text-sm font-bold ${lvl.onHand <= lvl.min ? 'text-red-600' : 'text-gray-900'}`}>{lvl.onHand}</span>
                       </td>
-                      <td className="px-6 py-4 text-center text-gray-400 text-xs">{lvl.min}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2 text-center text-gray-400 text-xs">{lvl.min}</td>
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold ${lvl.status === 'Healthy' ? 'bg-green-50 text-green-700' :
                             lvl.status === 'Low Stock' ? 'bg-orange-50 text-orange-700' : 'bg-red-50 text-red-700'
                           }`}>
@@ -150,12 +150,12 @@ export default function PPEInventoryPage() {
                           {lvl.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-gray-500 text-xs">
+                      <td className="px-3 py-2 text-gray-500 text-xs">
                         <div className="flex items-center gap-2">
                           <Truck className="w-3.5 h-3.5 opacity-40" /> {lvl.leadTime}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <button className="text-[11px] font-bold text-orange-600 flex items-center gap-1 ml-auto hover:gap-2 transition-all">
                           Order <ArrowRight className="w-3 h-3" />
                         </button>
@@ -169,13 +169,13 @@ export default function PPEInventoryPage() {
         </div>
 
         {/* Sidebar / Quick Actions */}
-        <div className="space-y-6">
-          <div className="bg-gray-900 p-6 rounded-xl text-white shadow-xl">
-            <h3 className="font-bold text-sm mb-4 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-gray-900 p-3 rounded-xl text-white shadow-xl">
+            <h3 className="font-bold text-sm mb-2 flex items-center gap-2">
               <Inbox className="w-4 h-4 text-orange-400" />
               Quick Replenishment
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="p-3 bg-gray-800 rounded-lg border border-gray-700">
                 <p className="text-[10px] font-bold text-gray-500 uppercase">Suggested Order</p>
                 <p className="text-xs font-bold mt-1 uppercase text-gray-200">50x Safety Goggles</p>
@@ -185,12 +185,12 @@ export default function PPEInventoryPage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-6 text-sm flex items-center gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-3 text-sm flex items-center gap-2">
               <Building2 className="w-4 h-4 text-gray-400" />
               Wharehouse Allocations
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {[
                 { name: 'Main Depot', capacity: 85 },
                 { name: 'On-Site Storage', capacity: 42 },

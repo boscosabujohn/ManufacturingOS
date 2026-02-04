@@ -334,11 +334,11 @@ export default function AddPerformancePage() {
   const overallRating = calculateOverallRating();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -353,7 +353,7 @@ export default function AddPerformancePage() {
         </div>
 
         {/* Overall Rating Card */}
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg mb-6">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-3 text-white shadow-lg mb-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 mb-1">Overall Rating (Auto-calculated)</p>
@@ -363,15 +363,15 @@ export default function AddPerformancePage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Employee Selection */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <User className="w-5 h-5 text-blue-600" />
               Employee Selection
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Select Employee *
@@ -441,7 +441,7 @@ export default function AddPerformancePage() {
               </div>
 
               {selectedEmployee && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div>
                     <label className="text-xs text-blue-700 font-medium">Department</label>
                     <p className="text-sm font-semibold text-blue-900 flex items-center gap-1 mt-1">
@@ -462,9 +462,9 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Review Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Review Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Review Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Review Period *
@@ -572,18 +572,18 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Performance Ratings */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Star className="w-5 h-5 text-yellow-500" />
               Performance Ratings *
             </h3>
             {errors.ratings && (
-              <p className="mb-4 text-sm text-red-600 flex items-center gap-1">
+              <p className="mb-2 text-sm text-red-600 flex items-center gap-1">
                 <AlertCircle className="w-4 h-4" />
                 {errors.ratings}
               </p>
             )}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {[
                 { field: 'technicalSkills', label: 'Technical Skills', icon: TrendingUp },
                 { field: 'communication', label: 'Communication', icon: MessageSquare },
@@ -594,7 +594,7 @@ export default function AddPerformancePage() {
                 { field: 'attendance', label: 'Attendance', icon: User },
                 { field: 'punctuality', label: 'Punctuality', icon: User },
               ].map((item) => (
-                <div key={item.field} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={item.field} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <item.icon className="w-5 h-5 text-blue-600" />
                     <span className="font-medium text-gray-900">{item.label}</span>
@@ -606,8 +606,8 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Strengths */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Strengths *</h3>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Strengths *</h3>
             <textarea
               value={formData.strengths}
               onChange={(e) => handleInputChange('strengths', e.target.value)}
@@ -626,8 +626,8 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Areas for Improvement */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Areas for Improvement *</h3>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Areas for Improvement *</h3>
             <textarea
               value={formData.areasForImprovement}
               onChange={(e) => handleInputChange('areasForImprovement', e.target.value)}
@@ -646,8 +646,8 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Key Achievements */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Award className="w-5 h-5 text-blue-600" />
               Key Achievements *
             </h3>
@@ -692,8 +692,8 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Goals */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Target className="w-5 h-5 text-purple-600" />
               Goals for Next Period *
             </h3>
@@ -738,8 +738,8 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Training Needs */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-indigo-600" />
               Training Needs
             </h3>
@@ -783,8 +783,8 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Comments */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-blue-600" />
               Overall Comments *
             </h3>
@@ -806,7 +806,7 @@ export default function AddPerformancePage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-end">
+          <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => router.back()}

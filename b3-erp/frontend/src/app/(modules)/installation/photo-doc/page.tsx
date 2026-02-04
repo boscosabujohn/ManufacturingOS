@@ -54,7 +54,7 @@ export default function PhotoDocPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -78,16 +78,16 @@ export default function PhotoDocPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {/* Upload Area */}
                 <Card className="md:col-span-3">
                     <CardContent className="pt-6">
                         <div className="border-2 border-dashed rounded-lg p-12 text-center hover:bg-muted/50 transition-colors cursor-pointer" onClick={handleUpload}>
-                            <div className="h-12 w-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                            <div className="h-12 w-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2">
                                 <Upload className="h-6 w-6" />
                             </div>
                             <h3 className="font-semibold text-lg mb-1">Upload Project Photos</h3>
-                            <p className="text-sm text-muted-foreground mb-4">
+                            <p className="text-sm text-muted-foreground mb-2">
                                 Drag and drop or click to upload images
                             </p>
                             <Button>Select Files</Button>

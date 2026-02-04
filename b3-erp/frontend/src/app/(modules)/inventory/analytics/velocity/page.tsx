@@ -192,7 +192,7 @@ export default function InventoryVelocityPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -211,8 +211,8 @@ export default function InventoryVelocityPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <Zap className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{classACount}</span>
@@ -221,7 +221,7 @@ export default function InventoryVelocityPage() {
           <div className="text-xs text-green-600 mt-1">High Velocity Items</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Activity className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{classBCount}</span>
@@ -230,7 +230,7 @@ export default function InventoryVelocityPage() {
           <div className="text-xs text-blue-600 mt-1">Medium Velocity Items</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 text-yellow-600" />
             <span className="text-2xl font-bold text-yellow-900">{classCCount}</span>
@@ -239,7 +239,7 @@ export default function InventoryVelocityPage() {
           <div className="text-xs text-yellow-600 mt-1">Low Velocity Items</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <ArrowDownRight className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">{classDCount}</span>
@@ -250,8 +250,8 @@ export default function InventoryVelocityPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -279,47 +279,47 @@ export default function InventoryVelocityPage() {
 
       {/* Velocity Analysis Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Item-wise Velocity Analysis</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Stock</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Daily Usage</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly Usage</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Days on Hand</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocity Class</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Movement</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Stock</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Daily Usage</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly Usage</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Days on Hand</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocity Class</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Movement</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredData.map((item, index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-3 py-2 text-sm">
                     <div className="font-medium text-gray-900">{item.itemCode}</div>
                     <div className="text-xs text-gray-500">{item.itemName}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     {item.category}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-1">
                       <Package className="w-4 h-4 text-gray-400" />
                       <span className="font-medium text-gray-900">{item.currentStock.toLocaleString()}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">
                     {item.avgDailyUsage.toFixed(1)} units/day
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {item.avgMonthlyUsage.toLocaleString()} units/mo
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-1">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <span className={`font-medium ${item.daysOnHand > 90 ? 'text-red-600' : 'text-gray-900'}`}>
@@ -327,12 +327,12 @@ export default function InventoryVelocityPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getVelocityColor(item.velocityClass)}`}>
                       Class {item.velocityClass} - {getVelocityLabel(item.velocityClass)}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {item.trend === 'up' && (
                       <div className="flex items-center space-x-1 text-green-600">
                         <ArrowUpRight className="w-5 h-5" />
@@ -349,7 +349,7 @@ export default function InventoryVelocityPage() {
                       <span className="text-xs text-gray-500">Stable</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     {item.lastMovement}
                   </td>
                 </tr>
@@ -360,12 +360,12 @@ export default function InventoryVelocityPage() {
       </div>
 
       {/* Classification Reference */}
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
         <h3 className="text-lg font-semibold text-yellow-900 mb-3 flex items-center space-x-2">
           <BarChart3 className="w-5 h-5" />
           <span>Velocity Classification Guide</span>
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 text-sm">
           <div className="bg-white p-3 rounded border border-green-200">
             <div className="font-semibold text-green-700 mb-1">Class A - Very Fast</div>
             <div className="text-gray-600">High usage, frequent movement, &lt;30 days on hand</div>

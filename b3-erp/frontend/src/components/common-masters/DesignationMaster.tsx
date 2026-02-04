@@ -192,10 +192,10 @@ const DesignationMaster: React.FC = () => {
   const totalVacant = designations.reduce((sum, d) => sum + d.headcount.vacant, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Briefcase className="w-8 h-8 text-blue-600" />
@@ -209,7 +209,7 @@ const DesignationMaster: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -237,8 +237,8 @@ const DesignationMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Designations</p>
@@ -247,7 +247,7 @@ const DesignationMaster: React.FC = () => {
               <Briefcase className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Headcount</p>
@@ -256,7 +256,7 @@ const DesignationMaster: React.FC = () => {
               <Users className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Vacant Positions</p>
@@ -265,7 +265,7 @@ const DesignationMaster: React.FC = () => {
               <TrendingUp className="w-12 h-12 text-orange-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active</p>
@@ -279,10 +279,10 @@ const DesignationMaster: React.FC = () => {
         </div>
 
         {/* Designations List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredDesignations.map(designation => (
-            <div key={designation.id} className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={designation.id} className="bg-white rounded-lg shadow-sm p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{designation.designationName}</h3>
@@ -316,9 +316,9 @@ const DesignationMaster: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {/* Headcount */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Headcount</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
@@ -339,7 +339,7 @@ const DesignationMaster: React.FC = () => {
                 </div>
 
                 {/* Salary & Experience */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Compensation</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
@@ -365,7 +365,7 @@ const DesignationMaster: React.FC = () => {
                 </div>
 
                 {/* Reporting */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Reporting</h4>
                   <div className="space-y-1 text-sm">
                     {designation.reportingTo && (

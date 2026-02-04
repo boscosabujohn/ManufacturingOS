@@ -350,7 +350,7 @@ export function GoodsReceiptMatching({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -379,7 +379,7 @@ export function GoodsReceiptMatching({
         </div>
 
         {/* Document Cards */}
-        <div className="mt-4 grid grid-cols-3 gap-4">
+        <div className="mt-4 grid grid-cols-3 gap-2">
           {/* Purchase Order Card */}
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
             <div className="flex items-center gap-2 mb-2">
@@ -418,7 +418,7 @@ export function GoodsReceiptMatching({
         </div>
 
         {/* Summary Stats */}
-        <div className="mt-4 grid grid-cols-4 gap-4">
+        <div className="mt-4 grid grid-cols-4 gap-2">
           <div className="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
             <p className="text-2xl font-bold text-gray-900 dark:text-white">{match.matchingResults.length}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">Total Lines</p>
@@ -441,9 +441,9 @@ export function GoodsReceiptMatching({
       </div>
 
       {/* Toolbar */}
-      <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+      <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-500 dark:text-gray-400">Filter:</span>
               <select
@@ -651,9 +651,9 @@ export function GoodsReceiptMatching({
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+      <div className="px-3 py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="text-sm text-gray-600 dark:text-gray-400">
               <span className="font-medium">{Math.round(matchedPercentage)}%</span> match rate
               {' | '}

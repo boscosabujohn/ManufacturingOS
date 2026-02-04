@@ -56,7 +56,7 @@ export default function FinalAlignPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -80,15 +80,15 @@ export default function FinalAlignPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card>
                     <CardHeader>
                         <CardTitle>Alignment Checklist</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {checks.map((check) => (
-                                <div key={check.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50">
+                                <div key={check.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50">
                                     <span className="font-medium">{check.description}</span>
                                     <div className="flex items-center gap-2">
                                         {check.status === 'Pending' ? (
@@ -124,8 +124,8 @@ export default function FinalAlignPage() {
                     <CardHeader>
                         <CardTitle>Alignment Guide</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                    <CardContent className="space-y-2">
+                        <div className="bg-orange-50 p-3 rounded-lg border border-orange-100">
                             <h4 className="font-medium text-orange-800 mb-2 flex items-center gap-2">
                                 <Maximize className="h-4 w-4" />
                                 Critical Checkpoints
@@ -138,7 +138,7 @@ export default function FinalAlignPage() {
                                 <li>Test all soft-close mechanisms after alignment</li>
                             </ul>
                         </div>
-                        <div className="border-2 border-dashed rounded-lg p-6 text-center">
+                        <div className="border-2 border-dashed rounded-lg p-3 text-center">
                             <p className="text-sm text-muted-foreground mb-2">
                                 Use laser level for long horizontal lines
                             </p>

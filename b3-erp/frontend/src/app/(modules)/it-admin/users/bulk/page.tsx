@@ -121,10 +121,10 @@ export default function BulkUsersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-2 mb-8">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-slate-200 rounded-lg text-slate-600"
@@ -138,7 +138,7 @@ export default function BulkUsersPage() {
         </div>
 
         {/* Operation Tabs */}
-        <div className="flex gap-4 mb-6 bg-white rounded-lg p-1 border border-slate-200 w-fit">
+        <div className="flex gap-2 mb-3 bg-white rounded-lg p-1 border border-slate-200 w-fit">
           {(['import', 'export', 'permissions'] as const).map(op => (
             <button
               key={op}
@@ -156,12 +156,12 @@ export default function BulkUsersPage() {
 
         {/* Import Section */}
         {operation === 'import' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Upload Box */}
             <div className="bg-white rounded-lg border-2 border-dashed border-slate-300 p-8 text-center">
-              <Upload className="w-12 h-12 text-slate-400 mb-4" />
+              <Upload className="w-12 h-12 text-slate-400 mb-2" />
               <h3 className="text-xl font-semibold text-slate-900 mb-2">Upload CSV File</h3>
-              <p className="text-slate-600 mb-4">Drag and drop your file here or click to browse</p>
+              <p className="text-slate-600 mb-2">Drag and drop your file here or click to browse</p>
               
               <input
                 type="file"
@@ -173,20 +173,20 @@ export default function BulkUsersPage() {
               
               <label
                 htmlFor="file-upload"
-                className="inline-block px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 cursor-pointer font-medium"
+                className="inline-block px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 cursor-pointer font-medium"
               >
                 Choose File
               </label>
 
               <button
                 onClick={downloadTemplate}
-                className="ml-3 px-6 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium"
+                className="ml-3 px-3 py-2 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium"
               >
                 Download Template
               </button>
 
               {uploadedFile && (
-                <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-3">
+                <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-blue-600" />
                   <div className="text-left">
                     <p className="font-medium text-blue-900">{uploadedFile}</p>
@@ -198,8 +198,8 @@ export default function BulkUsersPage() {
 
             {/* Preview */}
             {uploadData.length > 0 && (
-              <div className="bg-white rounded-lg border border-slate-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-slate-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-semibold text-slate-900">Preview ({uploadData.length} users)</h3>
                   <button
                     onClick={() => setShowPreview(!showPreview)}
@@ -263,14 +263,14 @@ export default function BulkUsersPage() {
                 <div className="mt-6 flex gap-3 justify-end">
                   <button
                     onClick={() => setUploadData([])}
-                    className="px-6 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium"
+                    className="px-3 py-2 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium"
                   >
                     Clear
                   </button>
                   <button
                     onClick={handleImport}
                     disabled={isProcessing || selectedRows.size === 0}
-                    className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium disabled:opacity-50"
+                    className="px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium disabled:opacity-50"
                   >
                     {isProcessing ? 'Importing...' : `Import ${selectedRows.size} Users`}
                   </button>
@@ -283,10 +283,10 @@ export default function BulkUsersPage() {
         {/* Export Section */}
         {operation === 'export' && (
           <div className="bg-white rounded-lg border border-slate-200 p-8">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">Export Users</h3>
-            <p className="text-slate-600 mb-6">Export all active users to CSV format</p>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">Export Users</h3>
+            <p className="text-slate-600 mb-3">Export all active users to CSV format</p>
 
-            <div className="space-y-4 mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="space-y-2 mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
               <label className="flex items-center gap-3">
                 <input type="checkbox" defaultChecked className="rounded" />
                 <span className="text-sm text-slate-700">Include contact information</span>
@@ -315,10 +315,10 @@ export default function BulkUsersPage() {
         {/* Permissions Section */}
         {operation === 'permissions' && (
           <div className="bg-white rounded-lg border border-slate-200 p-8">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">Manage Bulk Permissions</h3>
-            <p className="text-slate-600 mb-6">Apply permissions to multiple users at once</p>
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">Manage Bulk Permissions</h3>
+            <p className="text-slate-600 mb-3">Apply permissions to multiple users at once</p>
 
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-slate-700 mb-3">Select User Group</label>
               <select className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 <option>All Users</option>
@@ -328,7 +328,7 @@ export default function BulkUsersPage() {
               </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               <div className="p-4 border border-slate-200 rounded-lg">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
@@ -375,7 +375,7 @@ export default function BulkUsersPage() {
               </div>
             </div>
 
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex gap-3 mb-6">
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex gap-3 mb-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-yellow-800">These permissions will be applied to <strong>456 selected users</strong></p>
             </div>

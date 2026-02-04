@@ -178,9 +178,9 @@ export default function CPQPricingVolumePage() {
     : 0
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsFilterModalOpen(true)}
@@ -212,7 +212,7 @@ export default function CPQPricingVolumePage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -261,7 +261,7 @@ export default function CPQPricingVolumePage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -385,7 +385,7 @@ export default function CPQPricingVolumePage() {
       </div>
 
       {/* Volume Pricing Info */}
-      <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-green-900 mb-2">Volume Pricing Benefits:</h3>
         <ul className="text-xs text-green-700 space-y-1">
           <li><strong>Incentivizes Bulk Orders:</strong> Encourages customers to purchase larger quantities</li>

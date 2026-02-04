@@ -330,7 +330,7 @@ export default function ServicePartsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -363,10 +363,10 @@ export default function ServicePartsPage() {
       </div>
 
       {/* Quick Action Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         <button
           onClick={() => router.push('/after-sales-service/parts/requisition')}
-          className="bg-white p-4 rounded-lg border hover:shadow-md transition-shadow text-left"
+          className="bg-white p-3 rounded-lg border hover:shadow-md transition-shadow text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -379,7 +379,7 @@ export default function ServicePartsPage() {
 
         <button
           onClick={() => router.push('/after-sales-service/parts/consumption')}
-          className="bg-white p-4 rounded-lg border hover:shadow-md transition-shadow text-left"
+          className="bg-white p-3 rounded-lg border hover:shadow-md transition-shadow text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -392,7 +392,7 @@ export default function ServicePartsPage() {
 
         <button
           onClick={() => router.push('/after-sales-service/parts/returns')}
-          className="bg-white p-4 rounded-lg border hover:shadow-md transition-shadow text-left"
+          className="bg-white p-3 rounded-lg border hover:shadow-md transition-shadow text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -405,7 +405,7 @@ export default function ServicePartsPage() {
 
         <button
           onClick={() => router.push('/reports/parts-analytics')}
-          className="bg-white p-4 rounded-lg border hover:shadow-md transition-shadow text-left"
+          className="bg-white p-3 rounded-lg border hover:shadow-md transition-shadow text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -418,8 +418,8 @@ export default function ServicePartsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-white p-4 rounded-lg border">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Parts</p>
@@ -429,7 +429,7 @@ export default function ServicePartsPage() {
           </div>
         </div>
         
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Value</p>
@@ -439,7 +439,7 @@ export default function ServicePartsPage() {
           </div>
         </div>
         
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Stock Items</p>
@@ -449,7 +449,7 @@ export default function ServicePartsPage() {
           </div>
         </div>
         
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Low Stock</p>
@@ -459,7 +459,7 @@ export default function ServicePartsPage() {
           </div>
         </div>
         
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Out of Stock</p>
@@ -469,7 +469,7 @@ export default function ServicePartsPage() {
           </div>
         </div>
         
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Avg Turnover</p>
@@ -481,8 +481,8 @@ export default function ServicePartsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="space-y-4">
-        <div className="flex gap-4">
+      <div className="space-y-2">
+        <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
             <input
@@ -513,7 +513,7 @@ export default function ServicePartsPage() {
         </div>
 
         {showFilters && (
-          <div className="bg-gray-50 p-4 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 p-3 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-2">
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedCategory}
@@ -561,22 +561,22 @@ export default function ServicePartsPage() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Part Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Stock Information
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Supplier & Cost
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Usage & Performance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status & Quality
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -588,7 +588,7 @@ export default function ServicePartsPage() {
                   className="hover:bg-gray-50 cursor-pointer"
                   onClick={() => handlePartClick(part)}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">{part.partNumber}</div>
                       <div className="text-sm text-gray-900">{part.partName}</div>
@@ -598,7 +598,7 @@ export default function ServicePartsPage() {
                       <div className="text-xs text-gray-500">{part.manufacturer} - {part.model}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Stock: {part.currentStock.toLocaleString()}
@@ -615,7 +615,7 @@ export default function ServicePartsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Cost: ₹{part.unitCost.toLocaleString()}
@@ -630,7 +630,7 @@ export default function ServicePartsPage() {
                       <div className="text-xs text-gray-500">Lead: {part.leadTime} days</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Monthly: {part.monthlyConsumption}
@@ -649,7 +649,7 @@ export default function ServicePartsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(part.stockStatus)}`}>
                         {part.stockStatus.replace('_', ' ').toUpperCase()}
@@ -666,7 +666,7 @@ export default function ServicePartsPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={(e) => {
@@ -709,9 +709,9 @@ export default function ServicePartsPage() {
 
       {/* Part Details Modal */}
       {showPartModal && selectedPart && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 w-full  max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg p-3 w-full  max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-bold text-gray-900">Part Details</h2>
               <button
                 onClick={() => setShowPartModal(false)}
@@ -721,11 +721,11 @@ export default function ServicePartsPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Basic Information */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Part Number:</span>
                     <span className="font-medium">{selectedPart.partNumber}</span>
@@ -752,9 +752,9 @@ export default function ServicePartsPage() {
               </div>
 
               {/* Stock Information */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Stock Information</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Current Stock:</span>
                     <span className="font-medium">{selectedPart.currentStock.toLocaleString()}</span>
@@ -781,9 +781,9 @@ export default function ServicePartsPage() {
               </div>
 
               {/* Financial Information */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Financial Information</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Unit Cost:</span>
                     <span className="font-medium">₹{selectedPart.unitCost.toLocaleString()}</span>
@@ -808,9 +808,9 @@ export default function ServicePartsPage() {
               </div>
 
               {/* Usage Information */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Usage Information</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Monthly Consumption:</span>
                     <span className="font-medium">{selectedPart.monthlyConsumption}</span>

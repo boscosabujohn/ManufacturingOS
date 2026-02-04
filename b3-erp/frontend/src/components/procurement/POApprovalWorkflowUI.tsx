@@ -311,7 +311,7 @@ export function POApprovalWorkflowUI({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -355,7 +355,7 @@ export function POApprovalWorkflowUI({
         </div>
 
         {/* Tabs */}
-        <div className="mt-4 flex gap-4 border-b border-gray-200 dark:border-gray-700 -mb-4">
+        <div className="mt-4 flex gap-2 border-b border-gray-200 dark:border-gray-700 -mb-2">
           {(['workflow', 'details', 'attachments'] as const).map(tab => (
             <button
               key={tab}
@@ -375,7 +375,7 @@ export function POApprovalWorkflowUI({
       {/* Content */}
       <div className="p-6">
         {activeTab === 'workflow' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Approval Chain Visualization */}
             <div className="relative">
               <div className="flex items-start justify-between">
@@ -427,7 +427,7 @@ export function POApprovalWorkflowUI({
 
             {/* Current Step Details */}
             {currentStep && (
-              <div className={`mt-8 p-4 rounded-lg ${getStepStatusConfig('current').lightBg} border ${getStepStatusConfig('current').borderColor}`}>
+              <div className={`mt-8 p-3 rounded-lg ${getStepStatusConfig('current').lightBg} border ${getStepStatusConfig('current').borderColor}`}>
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-medium text-gray-900 dark:text-white flex items-center gap-2">
@@ -517,7 +517,7 @@ export function POApprovalWorkflowUI({
                       step.status === 'current' ? config.borderColor : 'border-gray-200 dark:border-gray-700'
                     } ${config.lightBg}`}
                   >
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-2">
                       <div className={`w-8 h-8 rounded-full ${config.bgColor} flex items-center justify-center flex-shrink-0`}>
                         <Icon className="h-4 w-4 text-white" />
                       </div>
@@ -560,9 +560,9 @@ export function POApprovalWorkflowUI({
         )}
 
         {activeTab === 'details' && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-4">
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-2">
                 <h3 className="font-medium text-gray-900 dark:text-white">Purchase Order Details</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
@@ -599,7 +599,7 @@ export function POApprovalWorkflowUI({
                   </div>
                 </div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="font-medium text-gray-900 dark:text-white">Requester Information</h3>
                 <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
@@ -616,7 +616,7 @@ export function POApprovalWorkflowUI({
 
             <div>
               <h3 className="font-medium text-gray-900 dark:text-white mb-3">Description</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <p className="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                 {purchaseOrder.description}
               </p>
             </div>
@@ -624,7 +624,7 @@ export function POApprovalWorkflowUI({
         )}
 
         {activeTab === 'attachments' && (
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="font-medium text-gray-900 dark:text-white">Supporting Documents</h3>
             <div className="space-y-2">
               {purchaseOrder.attachments.map((attachment, index) => (
@@ -652,11 +652,11 @@ export function POApprovalWorkflowUI({
       {/* Reject Modal */}
       {showRejectModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-3 w-full max-w-md mx-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
               Reject Purchase Order
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
               Please provide a reason for rejecting this purchase order.
             </p>
             <textarea

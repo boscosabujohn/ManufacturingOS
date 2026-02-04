@@ -250,9 +250,9 @@ export default function IntegrationCatalog() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
-        <div className="flex items-center justify-between mb-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
               <Grid className="h-8 w-8 text-blue-600" />
@@ -263,7 +263,7 @@ export default function IntegrationCatalog() {
         </div>
 
         {/* Search */}
-        <div className="relative mb-6">
+        <div className="relative mb-3">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
@@ -298,7 +298,7 @@ export default function IntegrationCatalog() {
       </div>
 
       {/* Integrations Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredIntegrations.map((integration) => {
           const Icon = integration.icon;
           return (
@@ -398,7 +398,7 @@ export default function IntegrationCatalog() {
 
       {filteredIntegrations.length === 0 && (
         <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-12 text-center">
-          <Search className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <Search className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No integrations found matching your search.</p>
         </div>
       )}

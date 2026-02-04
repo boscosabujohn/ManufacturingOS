@@ -210,33 +210,33 @@ export const ESignatureIntegration: React.FC<ESignatureIntegrationProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats Bar */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Documents</p>
           <p className="text-3xl font-bold">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Draft</p>
           <p className="text-3xl font-bold">{stats.draft}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Awaiting</p>
           <p className="text-3xl font-bold">{stats.awaiting}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Signed</p>
           <p className="text-3xl font-bold">{stats.signed}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Declined</p>
           <p className="text-3xl font-bold">{stats.declined}</p>
         </div>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4 flex-1">
             {/* Search */}
@@ -278,7 +278,7 @@ export const ESignatureIntegration: React.FC<ESignatureIntegrationProps> = ({
       </div>
 
       {/* Documents List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredDocuments.map((doc) => {
           const statusConfig = getStatusConfig(doc.status);
           const StatusIcon = statusConfig.icon;
@@ -473,8 +473,8 @@ export const ESignatureIntegration: React.FC<ESignatureIntegrationProps> = ({
 
               {/* Expanded Details */}
               {isExpanded && (
-                <div className="border-t border-gray-200 p-4 bg-gray-50">
-                  <div className="grid grid-cols-2 gap-6">
+                <div className="border-t border-gray-200 p-3 bg-gray-50">
+                  <div className="grid grid-cols-2 gap-3">
                     {/* Signer Details */}
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 mb-3">Signer Details</h4>
@@ -559,7 +559,7 @@ export const ESignatureIntegration: React.FC<ESignatureIntegrationProps> = ({
                     {/* Security & Audit */}
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900 mb-3">Security Options</h4>
-                      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-4">
+                      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-2">
                         <div className="space-y-2 text-sm">
                           {doc.securityOptions.requireIdVerification && (
                             <div className="flex items-center text-purple-700">
@@ -623,7 +623,7 @@ export const ESignatureIntegration: React.FC<ESignatureIntegrationProps> = ({
 
       {filteredDocuments.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <PenTool className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <PenTool className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No signature documents found</p>
           {onUploadDocument && (
             <button

@@ -166,10 +166,10 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
   const capacityUtilization = ((warehouse.usedCapacity / warehouse.totalCapacity) * 100).toFixed(1);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -186,7 +186,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 {getTypeLabel(warehouse.warehouseType)}
               </span>
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
               <span className="flex items-center gap-1">
                 <WarehouseIcon className="w-4 h-4" />
                 <span className="font-mono font-semibold">{warehouse.warehouseCode}</span>
@@ -220,8 +220,8 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <BarChart3 className="w-8 h-8 opacity-80" />
           </div>
@@ -229,7 +229,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           <div className="text-blue-100 text-sm">Total Items</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 opacity-80" />
             <span className="text-sm text-green-100">{areaUtilization}%</span>
@@ -238,7 +238,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           <div className="text-green-100 text-sm">Used Area ({warehouse.areaUnit})</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 opacity-80" />
             <span className="text-sm text-purple-100">{capacityUtilization}%</span>
@@ -247,7 +247,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           <div className="text-purple-100 text-sm">Used Capacity ({warehouse.capacityUnit})</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <MapPin className="w-8 h-8 opacity-80" />
           </div>
@@ -255,7 +255,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           <div className="text-orange-100 text-sm">Storage Zones</div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 opacity-80" />
           </div>
@@ -266,7 +266,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('overview')}
             className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
@@ -322,11 +322,11 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Warehouse Information */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <WarehouseIcon className="w-5 h-5 text-blue-600" />
                 Warehouse Information
               </h3>
@@ -356,8 +356,8 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-green-600" />
                 Location & Contact
               </h3>
@@ -388,12 +388,12 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           {/* Capacity Information */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-purple-600" />
               Capacity & Utilization
             </h3>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="text-sm text-gray-600 block mb-2">Area Utilization</label>
                 <div className="flex items-center justify-between mb-2">
@@ -441,22 +441,22 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           {/* Storage Infrastructure */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Storage Infrastructure</h3>
-            <div className="grid grid-cols-4 gap-6">
-              <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Storage Infrastructure</h3>
+            <div className="grid grid-cols-4 gap-3">
+              <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="text-3xl font-bold text-blue-900 mb-1">{warehouse.zones}</div>
                 <div className="text-sm text-blue-600">Zones</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
                 <div className="text-3xl font-bold text-green-900 mb-1">{warehouse.aisles}</div>
                 <div className="text-sm text-green-600">Aisles</div>
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
                 <div className="text-3xl font-bold text-purple-900 mb-1">{warehouse.racks}</div>
                 <div className="text-sm text-purple-600">Racks</div>
               </div>
-              <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
+              <div className="text-center p-3 bg-orange-50 rounded-lg border border-orange-200">
                 <div className="text-3xl font-bold text-orange-900 mb-1">{warehouse.bins}</div>
                 <div className="text-sm text-orange-600">Storage Bins</div>
               </div>
@@ -464,10 +464,10 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           {/* Facilities */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Facilities & Features</h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className={`flex items-center gap-3 p-4 rounded-lg border-2 ${
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Facilities & Features</h3>
+            <div className="grid grid-cols-3 gap-2">
+              <div className={`flex items-center gap-3 p-3 rounded-lg border-2 ${
                 warehouse.temperatureControlled ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
               }`}>
                 {warehouse.temperatureControlled ? (
@@ -483,7 +483,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 </div>
               </div>
 
-              <div className={`flex items-center gap-3 p-4 rounded-lg border-2 ${
+              <div className={`flex items-center gap-3 p-3 rounded-lg border-2 ${
                 warehouse.securityEnabled ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
               }`}>
                 {warehouse.securityEnabled ? (
@@ -499,7 +499,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 </div>
               </div>
 
-              <div className={`flex items-center gap-3 p-4 rounded-lg border-2 ${
+              <div className={`flex items-center gap-3 p-3 rounded-lg border-2 ${
                 warehouse.fireSafety ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
               }`}>
                 {warehouse.fireSafety ? (
@@ -520,8 +520,8 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
       )}
 
       {activeTab === 'zones' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Zone Details & Utilization</h3>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Zone Details & Utilization</h3>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -582,9 +582,9 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
       )}
 
       {activeTab === 'stock' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Stock Summary by Category</h3>
-          <div className="space-y-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Stock Summary by Category</h3>
+          <div className="space-y-2">
             {stockSummary.map((stock, index) => (
               <div key={index} className="p-4 border border-gray-200 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
@@ -612,20 +612,20 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           <div className="mt-6 pt-6 border-t border-gray-200">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="text-center p-3 bg-blue-50 rounded-lg">
                 <div className="text-sm text-blue-600 mb-1">Total Items</div>
                 <div className="text-2xl font-bold text-blue-900">
                   {stockSummary.reduce((sum, s) => sum + s.itemCount, 0)}
                 </div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
+              <div className="text-center p-3 bg-green-50 rounded-lg">
                 <div className="text-sm text-green-600 mb-1">Total Quantity</div>
                 <div className="text-2xl font-bold text-green-900">
                   {stockSummary.reduce((sum, s) => sum + s.totalQuantity, 0).toLocaleString()}
                 </div>
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
+              <div className="text-center p-3 bg-purple-50 rounded-lg">
                 <div className="text-sm text-purple-600 mb-1">Total Value</div>
                 <div className="text-2xl font-bold text-purple-900">
                   ₹{(stockSummary.reduce((sum, s) => sum + s.totalValue, 0) / 10000000).toFixed(2)}Cr
@@ -637,11 +637,11 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
       )}
 
       {activeTab === 'activity' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Recent Activity</h3>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Recent Activity</h3>
           <div className="space-y-3">
             {activityLog.map((log) => (
-              <div key={log.id} className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
+              <div key={log.id} className="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                   log.type === 'success' ? 'bg-green-100 text-green-600' :
                   log.type === 'warning' ? 'bg-yellow-100 text-yellow-600' :
@@ -664,21 +664,21 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
       )}
 
       {activeTab === 'analytics' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Capacity & Utilization Analytics */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-blue-600" />
               Capacity & Space Utilization Analytics
             </h3>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                <div className="flex items-center justify-between mb-4">
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between mb-2">
                   <Layers className="w-8 h-8 text-blue-600" />
                   <span className="text-2xl font-bold text-blue-600">{areaUtilization}%</span>
                 </div>
                 <div className="text-sm text-gray-600 mb-2">Space Utilization</div>
-                <div className="text-xs text-gray-500 mb-4">{warehouse.usedArea.toLocaleString()} / {warehouse.totalArea.toLocaleString()} {warehouse.areaUnit}</div>
+                <div className="text-xs text-gray-500 mb-2">{warehouse.usedArea.toLocaleString()} / {warehouse.totalArea.toLocaleString()} {warehouse.areaUnit}</div>
                 <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
                   <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full" style={{ width: `${areaUtilization}%` }}></div>
                 </div>
@@ -690,13 +690,13 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-3 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between mb-2">
                   <Package className="w-8 h-8 text-purple-600" />
                   <span className="text-2xl font-bold text-purple-600">{capacityUtilization}%</span>
                 </div>
                 <div className="text-sm text-gray-600 mb-2">Pallet Capacity</div>
-                <div className="text-xs text-gray-500 mb-4">{warehouse.usedCapacity.toLocaleString()} / {warehouse.totalCapacity.toLocaleString()} {warehouse.capacityUnit}</div>
+                <div className="text-xs text-gray-500 mb-2">{warehouse.usedCapacity.toLocaleString()} / {warehouse.totalCapacity.toLocaleString()} {warehouse.capacityUnit}</div>
                 <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
                   <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full" style={{ width: `${capacityUtilization}%` }}></div>
                 </div>
@@ -708,14 +708,14 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-8 h-8 text-green-600" />
                   <span className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">Efficient</span>
                 </div>
                 <div className="text-sm text-gray-600 mb-2">Storage Efficiency</div>
                 <div className="text-3xl font-bold text-gray-900 mb-1">92.5%</div>
-                <div className="text-xs text-gray-500 mb-4">vs 88% industry average</div>
+                <div className="text-xs text-gray-500 mb-2">vs 88% industry average</div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-600">Picking efficiency:</span>
@@ -731,12 +731,12 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           {/* Zone-wise Performance Heatmap */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <Eye className="w-5 h-5 text-indigo-600" />
               Zone Performance Heatmap
             </h3>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               {zones.map((zone, index) => {
                 const utilization = zone.utilizationPercentage;
                 const getHeatColor = (util: number) => {
@@ -747,7 +747,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 };
                 
                 return (
-                  <div key={zone.zone} className={`bg-gradient-to-br ${getHeatColor(utilization)} p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow`}>
+                  <div key={zone.zone} className={`bg-gradient-to-br ${getHeatColor(utilization)} p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow`}>
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-lg font-bold">Zone {zone.zone}</span>
                       <span className="text-2xl font-bold">{utilization}%</span>
@@ -771,7 +771,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 );
               })}
             </div>
-            <div className="mt-6 flex items-center justify-center gap-6">
+            <div className="mt-6 flex items-center justify-center gap-3">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 bg-gradient-to-br from-green-400 to-green-600 rounded"></div>
                 <span className="text-xs text-gray-600">0-50% (Underutilized)</span>
@@ -792,19 +792,19 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           {/* Storage Optimization Recommendations */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <Target className="w-5 h-5 text-emerald-600" />
                 Storage Optimization Insights
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4 rounded-lg border border-emerald-100">
+              <div className="space-y-2">
+                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-3 rounded-lg border border-emerald-100">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-semibold text-gray-700">Space Optimization Score</span>
                     <span className="text-xs bg-emerald-600 text-white px-2 py-1 rounded-full">Excellent</span>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="text-4xl font-bold text-emerald-600">8.7/10</div>
                     <div className="flex-1">
                       <div className="text-xs text-gray-600 mb-1">Compared to industry benchmark</div>
@@ -846,18 +846,18 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <PieChart className="w-5 h-5 text-purple-600" />
                 Cost & Operational Metrics
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+              <div className="space-y-2">
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-3 rounded-lg border border-purple-100">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-semibold text-gray-700">Monthly Operating Cost</span>
                     <span className="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">-8% vs last month</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <div className="text-xs text-gray-600 mb-1">Total Cost</div>
                       <div className="text-2xl font-bold text-purple-600">₹12.5L</div>
@@ -917,7 +917,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-100">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-100">
                   <div className="flex items-center gap-3 mb-3">
                     <Zap className="w-5 h-5 text-green-600" />
                     <span className="text-sm font-semibold text-gray-700">Cost Savings Potential</span>
@@ -940,13 +940,13 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
           </div>
 
           {/* Predictive Analytics */}
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-3 rounded-lg border border-indigo-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <Zap className="w-5 h-5 text-indigo-600" />
               Predictive Analytics & Forecasts
             </h3>
-            <div className="grid grid-cols-4 gap-4">
-              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+            <div className="grid grid-cols-4 gap-2">
+              <div className="bg-white p-3 rounded-lg border border-indigo-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-blue-600" />
@@ -959,7 +959,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 <p className="text-xs text-gray-600">Expected to reach 85% utilization by Jan 15, 2026. Plan expansion or stock reduction</p>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+              <div className="bg-white p-3 rounded-lg border border-indigo-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                     <AlertTriangle className="w-5 h-5 text-orange-600" />
@@ -972,7 +972,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 <p className="text-xs text-gray-600">Demand surge expected. Reserve 2,000 additional pallet positions for seasonal inventory</p>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+              <div className="bg-white p-3 rounded-lg border border-indigo-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -985,7 +985,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 <p className="text-xs text-gray-600">Exceeds industry average of 11.5x. Efficient stock rotation and fast-moving inventory mix</p>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+              <div className="bg-white p-3 rounded-lg border border-indigo-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                     <DollarSign className="w-5 h-5 text-purple-600" />
@@ -1003,7 +1003,7 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
       )}
 
       {/* Metadata */}
-      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
         <div className="flex items-center justify-between text-sm">
           <div>
             <span className="text-gray-600">Created By: </span>

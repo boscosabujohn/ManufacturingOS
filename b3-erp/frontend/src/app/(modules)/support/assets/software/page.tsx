@@ -257,7 +257,7 @@ export default function SoftwareAssets() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -271,8 +271,8 @@ export default function SoftwareAssets() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Software</p>
@@ -282,7 +282,7 @@ export default function SoftwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Licenses</p>
@@ -292,7 +292,7 @@ export default function SoftwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Used Licenses</p>
@@ -302,7 +302,7 @@ export default function SoftwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Annual Cost</p>
@@ -312,7 +312,7 @@ export default function SoftwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Compliant</p>
@@ -322,7 +322,7 @@ export default function SoftwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Non-Compliant</p>
@@ -334,8 +334,8 @@ export default function SoftwareAssets() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -376,15 +376,15 @@ export default function SoftwareAssets() {
       </div>
 
       {/* Software Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredSoftware.map((software) => {
           const Icon = categoryIcons[software.category]
           const utilizationPercentage = Math.round((software.licenses.used / software.licenses.total) * 100)
           
           return (
-            <div key={software.id} className="bg-white rounded-lg shadow-sm border p-6">
+            <div key={software.id} className="bg-white rounded-lg shadow-sm border p-3">
               {/* Software Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
                     <Icon className="h-6 w-6 text-blue-600" />
@@ -400,7 +400,7 @@ export default function SoftwareAssets() {
               </div>
 
               {/* Version & Type */}
-              <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b">
+              <div className="grid grid-cols-2 gap-3 mb-2 pb-4 border-b">
                 <div>
                   <p className="text-xs text-gray-600">Version</p>
                   <p className="text-sm font-medium">{software.version}</p>
@@ -420,7 +420,7 @@ export default function SoftwareAssets() {
               </div>
 
               {/* License Usage */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-gray-600">License Usage</span>
                   <span className={`text-sm font-bold ${getUtilizationColor(utilizationPercentage)}`}>
@@ -443,7 +443,7 @@ export default function SoftwareAssets() {
               </div>
 
               {/* Cost & Contract */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div>
                   <p className="text-xs text-gray-600">Annual Cost</p>
                   <p className="text-lg font-bold">${software.cost.totalAnnual.toLocaleString()}</p>
@@ -505,7 +505,7 @@ export default function SoftwareAssets() {
       {showDetailModal && selectedSoftware && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 {(() => {
                   const Icon = categoryIcons[selectedSoftware.category]
@@ -528,11 +528,11 @@ export default function SoftwareAssets() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* License Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">License Information</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Total Licenses</p>
                     <p className="text-2xl font-bold">{selectedSoftware.licenses.total}</p>
@@ -551,7 +551,7 @@ export default function SoftwareAssets() {
               {/* Cost Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Cost Details</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Per License</p>
                     <p className="font-medium">${selectedSoftware.cost.perLicense}</p>
@@ -570,7 +570,7 @@ export default function SoftwareAssets() {
               {/* Contract Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Contract Information</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Start Date</p>
                     <p className="font-medium">{selectedSoftware.contract.startDate}</p>
@@ -593,7 +593,7 @@ export default function SoftwareAssets() {
               {/* Deployment Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Deployment Details</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Deployment Type</p>
                     <p className="font-medium">{selectedSoftware.deployment.type}</p>
@@ -612,7 +612,7 @@ export default function SoftwareAssets() {
               {/* Compliance Status */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Compliance Status</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Status</p>
                     <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getComplianceColor(selectedSoftware.compliance.status)}`}>
@@ -633,7 +633,7 @@ export default function SoftwareAssets() {
               {/* Support Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Support Information</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Support Level</p>
                     <p className="font-medium">{selectedSoftware.support.level}</p>

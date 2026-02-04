@@ -269,8 +269,8 @@ export default function MEPManagementPage() {
       <div className="px-3 py-2 space-y-3">
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
               <Link
                 href="/project-management"
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -300,8 +300,8 @@ export default function MEPManagementPage() {
                     Enter the details for the new MEP drawing. Click save when you're done.
                   </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
+                <div className="grid gap-2 py-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="project" className="text-right">
                       Project
                     </Label>
@@ -317,7 +317,7 @@ export default function MEPManagementPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="type" className="text-right">
                       Type
                     </Label>
@@ -336,7 +336,7 @@ export default function MEPManagementPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="name" className="text-right">
                       Name
                     </Label>
@@ -357,8 +357,8 @@ export default function MEPManagementPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600">Total</p>
@@ -367,7 +367,7 @@ export default function MEPManagementPage() {
               <FileText className="w-6 h-6 text-gray-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600">Draft</p>
@@ -376,7 +376,7 @@ export default function MEPManagementPage() {
               <Edit className="w-6 h-6 text-gray-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600">Review</p>
@@ -385,7 +385,7 @@ export default function MEPManagementPage() {
               <Clock className="w-6 h-6 text-yellow-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600">Approved</p>
@@ -394,7 +394,7 @@ export default function MEPManagementPage() {
               <CheckCircle className="w-6 h-6 text-blue-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600">At Site</p>
@@ -403,7 +403,7 @@ export default function MEPManagementPage() {
               <Share2 className="w-6 h-6 text-purple-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-600">Complete</p>
@@ -415,8 +415,8 @@ export default function MEPManagementPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Type:</label>
             <select
               value={typeFilter}
@@ -575,7 +575,7 @@ export default function MEPManagementPage() {
         </div>
 
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
             <div>

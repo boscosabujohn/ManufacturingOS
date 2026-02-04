@@ -316,7 +316,7 @@ export default function Troubleshooting() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -330,8 +330,8 @@ export default function Troubleshooting() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Total Articles</p>
@@ -341,7 +341,7 @@ export default function Troubleshooting() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-100 text-sm">Critical</p>
@@ -351,7 +351,7 @@ export default function Troubleshooting() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">Avg Resolution</p>
@@ -361,7 +361,7 @@ export default function Troubleshooting() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Avg Helpful</p>
@@ -371,7 +371,7 @@ export default function Troubleshooting() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-100 text-sm">Categories</p>
@@ -381,7 +381,7 @@ export default function Troubleshooting() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100 text-sm">Updated</p>
@@ -393,8 +393,8 @@ export default function Troubleshooting() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -433,7 +433,7 @@ export default function Troubleshooting() {
       </div>
 
       {/* Articles List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredArticles.map((article) => (
           <div key={article.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div
@@ -464,7 +464,7 @@ export default function Troubleshooting() {
                   <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded px-3 py-2">
                     <strong>Quick Solution:</strong> {article.solution}
                   </p>
-                  <div className="flex items-center gap-4 text-xs text-gray-500 mt-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mt-3">
                     <span className="flex items-center gap-1">
                       <Eye className="h-3 w-3" />
                       {article.views} views
@@ -488,7 +488,7 @@ export default function Troubleshooting() {
             </div>
 
             {expandedArticle === article.id && (
-              <div className="border-t border-gray-200 bg-gray-50 p-6 space-y-6">
+              <div className="border-t border-gray-200 bg-gray-50 p-3 space-y-3">
                 {/* Step-by-Step Solution */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
@@ -540,7 +540,7 @@ export default function Troubleshooting() {
                 </div>
 
                 {/* Tags and Related Articles */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <h4 className="text-sm font-semibold text-gray-900 mb-2">Tags</h4>
                     <div className="flex flex-wrap gap-2">
@@ -590,7 +590,7 @@ export default function Troubleshooting() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <BookOpen className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
           <div>
@@ -612,7 +612,7 @@ export default function Troubleshooting() {
 
       {filteredArticles.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <Wrench className="h-12 w-12 text-gray-400 mb-4" />
+          <Wrench className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No troubleshooting articles found matching your filters.</p>
         </div>
       )}

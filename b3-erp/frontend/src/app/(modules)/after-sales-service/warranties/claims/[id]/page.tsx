@@ -250,7 +250,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -301,8 +301,8 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
       </div>
 
       {/* Quick Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Claim Amount</span>
             <DollarSign className="w-4 h-4 text-purple-600" />
@@ -313,7 +313,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Assigned Engineer</span>
             <User className="w-4 h-4 text-blue-600" />
@@ -322,7 +322,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
           <div className="text-xs text-gray-500 mt-1">Assigned on {formatDate(claim.assignedDate)}</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Inspection</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -331,7 +331,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
           <div className="text-xs text-gray-500 mt-1">{formatDate(claim.inspectionDate)} by {claim.inspectedBy}</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Coverage Status</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -343,7 +343,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('details')}
             className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
@@ -379,11 +379,11 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
 
       {/* Details Tab */}
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Customer & Product Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
               <div className="space-y-3">
                 <div>
                   <div className="text-sm text-gray-500">Customer Name</div>
@@ -402,8 +402,8 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Information</h2>
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Product Information</h2>
               <div className="space-y-3">
                 <div>
                   <div className="text-sm text-gray-500">Product Name</div>
@@ -434,25 +434,25 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
           </div>
 
           {/* Issue Details */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Issue Details</h2>
-            <div className="space-y-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Issue Details</h2>
+            <div className="space-y-2">
               <div>
                 <div className="text-sm font-medium text-gray-700 mb-1">Issue Reported</div>
                 <div className="text-gray-900">{claim.issueReported}</div>
               </div>
               <div>
                 <div className="text-sm font-medium text-gray-700 mb-1">Detailed Description</div>
-                <div className="text-gray-700 bg-gray-50 p-4 rounded-md">{claim.detailedDescription}</div>
+                <div className="text-gray-700 bg-gray-50 p-3 rounded-md">{claim.detailedDescription}</div>
               </div>
             </div>
           </div>
 
           {/* Inspection Report */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Inspection Report</h2>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Inspection Report</h2>
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <div className="text-sm text-gray-500">Inspection Date</div>
                   <div className="font-medium text-gray-900">{formatDate(claim.inspectionDate)}</div>
@@ -464,14 +464,14 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
               </div>
               <div>
                 <div className="text-sm font-medium text-gray-700 mb-1">Inspection Notes</div>
-                <div className="text-gray-700 bg-gray-50 p-4 rounded-md">{claim.inspectionNotes}</div>
+                <div className="text-gray-700 bg-gray-50 p-3 rounded-md">{claim.inspectionNotes}</div>
               </div>
             </div>
           </div>
 
           {/* Cost Breakdown */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Cost Breakdown</h2>
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Cost Breakdown</h2>
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Parts Cost:</span>
@@ -499,8 +499,8 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
           </div>
 
           {/* Warranty Coverage */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Warranty Coverage Verification</h2>
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Warranty Coverage Verification</h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                 <div className="flex items-center gap-2">
@@ -525,11 +525,11 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
 
       {/* Timeline Tab */}
       {activeTab === 'timeline' && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Activity Timeline</h2>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Activity Timeline</h2>
+          <div className="space-y-2">
             {timeline.map((item, index) => (
-              <div key={item.id} className="flex gap-4">
+              <div key={item.id} className="flex gap-2">
                 <div className="flex flex-col items-center">
                   <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
                     <Clock className="w-5 h-5 text-blue-600" />
@@ -554,7 +554,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
 
       {/* Documents Tab */}
       {activeTab === 'documents' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-gray-900">Attached Documents</h2>
             <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700">
@@ -563,9 +563,9 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {documents.map((doc) => (
-              <div key={doc.id} className="bg-white p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+              <div key={doc.id} className="bg-white p-3 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start gap-3">
                   <div className="bg-blue-50 p-2 rounded-lg">
                     {doc.type === 'PDF' ? (
@@ -604,7 +604,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
               <p className="text-sm text-gray-500 mt-1">Review and approve this warranty claim</p>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Approved Amount (₹) <span className="text-red-500">*</span>
@@ -660,7 +660,7 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
               <p className="text-sm text-gray-500 mt-1">Provide reason for claim rejection</p>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Rejection Reason <span className="text-red-500">*</span>

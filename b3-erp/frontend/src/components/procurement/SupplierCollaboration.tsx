@@ -202,11 +202,11 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   ];
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Collaboration Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <Users className="h-8 w-8 text-blue-500" />
             <span className="text-sm text-green-600">+5 this month</span>
           </div>
@@ -214,8 +214,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           <p className="text-sm text-gray-600">Active Partners</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <Briefcase className="h-8 w-8 text-green-500" />
             <span className="text-sm text-blue-600">8 active</span>
           </div>
@@ -223,8 +223,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           <p className="text-sm text-gray-600">Joint Projects</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <MessageCircle className="h-8 w-8 text-purple-500" />
             <span className="text-sm text-orange-600">3 unread</span>
           </div>
@@ -232,8 +232,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           <p className="text-sm text-gray-600">Active Discussions</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <Target className="h-8 w-8 text-orange-500" />
             <span className="text-sm text-green-600">+12% YTD</span>
           </div>
@@ -243,11 +243,11 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Recent Activity & Performance */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Recent Activity */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Recent Activity</h3>
+          <div className="space-y-2">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                 <MessageCircle className="h-4 w-4 text-blue-600" />
@@ -291,9 +291,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
         </div>
 
         {/* Collaboration Performance */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Collaboration Performance</h3>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Collaboration Performance</h3>
+          <div className="space-y-2">
             {performanceMetrics.map((metric, index) => (
               <div key={index}>
                 <div className="flex justify-between items-center mb-1">
@@ -325,8 +325,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Active Projects */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Active Collaboration Projects</h3>
           <button
             onClick={() => setShowNewProject(true)}
@@ -337,9 +337,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
           {collaborationProjects.filter(p => p.status !== 'completed').map((project) => (
-            <div key={project.id} className="border rounded-lg p-4">
+            <div key={project.id} className="border rounded-lg p-3">
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <h4 className="font-semibold">{project.title}</h4>
@@ -405,11 +405,11 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   );
 
   const renderSuppliers = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Supplier Filter */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-white rounded-lg shadow p-3">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center border rounded-lg px-3 py-2">
               <Search className="h-4 w-4 text-gray-400 mr-2" />
               <input
@@ -438,10 +438,10 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Suppliers Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {suppliers.map((supplier) => (
-          <div key={supplier.id} className="bg-white rounded-lg shadow p-6">
-            <div className="flex justify-between items-start mb-4">
+          <div key={supplier.id} className="bg-white rounded-lg shadow p-3">
+            <div className="flex justify-between items-start mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                   <Users className="h-6 w-6 text-gray-400" />
@@ -460,7 +460,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               </span>
             </div>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-2">
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-gray-400" />
                 <span className="text-sm">{supplier.email}</span>
@@ -471,7 +471,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <p className="text-sm text-gray-600">Projects</p>
                 <p className="font-semibold">{supplier.projects}</p>
@@ -519,8 +519,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Supplier Performance Chart */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Supplier Collaboration Scores</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Supplier Collaboration Scores</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={suppliers.map(s => ({
             name: s.name.split(' ')[0],
@@ -542,9 +542,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   );
 
   const renderCommunication = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Communication Header */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-white rounded-lg shadow p-3">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold">Communication Center</h3>
           <div className="flex gap-2">
@@ -563,7 +563,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       {/* Communication Threads */}
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center border rounded-lg px-3 py-2 flex-1">
               <Search className="h-4 w-4 text-gray-400 mr-2" />
               <input
@@ -609,7 +609,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{thread.supplier}</p>
                   <p className="text-sm">{thread.lastMessage}</p>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
                     <span>{thread.timestamp}</span>
                     <span>Participants: {thread.participants.join(', ')}</span>
                   </div>
@@ -631,9 +631,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Communication Analytics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Response Time Trends</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Response Time Trends</h4>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={[
               { week: 'W1', avgResponse: 3.2, target: 4 },
@@ -654,8 +654,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Communication Volume</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Communication Volume</h4>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={[
               { month: 'Jul', messages: 45, meetings: 12 },
@@ -680,9 +680,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   );
 
   const renderDocuments = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Document Management Header */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-white rounded-lg shadow p-3">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold">Shared Documents</h3>
           <div className="flex gap-2">
@@ -699,8 +699,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Document Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex items-center gap-2">
           <div className="flex items-center border rounded-lg px-3 py-2 flex-1">
             <Search className="h-4 w-4 text-gray-400 mr-2" />
             <input
@@ -745,7 +745,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
                   <div>
                     <h4 className="font-semibold">{doc.name}</h4>
                     <p className="text-sm text-gray-600 mb-1">{doc.supplier}</p>
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
                       <span>Type: {doc.type}</span>
                       <span>Size: {doc.size}</span>
                       <span>Modified: {doc.lastModified}</span>
@@ -783,9 +783,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       </div>
 
       {/* Document Analytics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Document Types Distribution</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Document Types Distribution</h4>
           <ResponsiveContainer width="100%" height={250}>
             <RePieChart>
               <Pie
@@ -817,9 +817,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Document Activity</h4>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Document Activity</h4>
+          <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm">Documents Shared This Month</span>
               <span className="font-semibold">23</span>
@@ -854,7 +854,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold mb-2">Supplier Collaboration Portal</h2>
@@ -895,8 +895,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
 
       {/* Real-Time Collaboration Center */}
       {showRealTimeChat && (
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg shadow-lg p-6 mb-6 border border-blue-200">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg shadow-lg p-3 mb-3 border border-blue-200">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-blue-600 rounded-lg relative">
                 <MessageCircle className="w-6 h-6 text-white" />
@@ -927,8 +927,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-green-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Online Now</span>
                 <div className="flex items-center gap-1">
@@ -940,7 +940,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               <div className="text-xs text-green-600 mt-1">5 suppliers, 7 team members</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Active Chats</span>
                 <MessageCircle className="w-4 h-4 text-blue-600" />
@@ -949,7 +949,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               <div className="text-xs text-blue-600 mt-1">{unreadMessages} unread messages</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-purple-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Live Meetings</span>
                 <Video className="w-4 h-4 text-purple-600" />
@@ -958,7 +958,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               <div className="text-xs text-purple-600 mt-1">2 in progress, 1 scheduled</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-amber-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Shared Docs</span>
                 <FileText className="w-4 h-4 text-amber-600" />
@@ -969,8 +969,8 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           </div>
 
           {/* Recent Activity */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="bg-white rounded-lg p-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            <div className="bg-white rounded-lg p-3">
               <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-blue-600" />
                 Recent Messages
@@ -1026,7 +1026,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               </button>
             </div>
 
-            <div className="bg-white rounded-lg p-4">
+            <div className="bg-white rounded-lg p-3">
               <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <Activity className="w-4 h-4 text-green-600" />
                 Live Activity Feed
@@ -1086,7 +1086,7 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['dashboard', 'suppliers', 'communication', 'documents'].map((tab) => (
           <button
             key={tab}

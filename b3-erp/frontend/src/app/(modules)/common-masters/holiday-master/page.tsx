@@ -240,7 +240,7 @@ export default function HolidayMasterPage() {
       {/* Toast Notification */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 max-w-md animate-slide-in">
-          <div className={`rounded-lg shadow-lg p-4 ${
+          <div className={`rounded-lg shadow-lg p-3 ${
             toast.type === 'success' ? 'bg-green-50 border border-green-200' :
             toast.type === 'error' ? 'bg-red-50 border border-red-200' :
             'bg-blue-50 border border-blue-200'
@@ -260,7 +260,7 @@ export default function HolidayMasterPage() {
       )}
 
       {/* Header */}
-      <div className="flex-none p-6 pb-4 space-y-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -289,28 +289,28 @@ export default function HolidayMasterPage() {
 
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="text-sm text-gray-600 mb-1">Total Holidays</div>
             <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="text-sm text-gray-600 mb-1">Upcoming</div>
             <div className="text-2xl font-bold text-pink-600">{stats.upcoming}</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="text-sm text-gray-600 mb-1">National</div>
             <div className="text-2xl font-bold text-red-600">{stats.national}</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="text-sm text-gray-600 mb-1">Festivals</div>
             <div className="text-2xl font-bold text-purple-600">{stats.festival}</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="text-sm text-gray-600 mb-1">Mandatory</div>
             <div className="text-2xl font-bold text-green-600">{stats.mandatory}</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="text-sm text-gray-600 mb-1">Restricted</div>
             <div className="text-2xl font-bold text-yellow-600">{stats.restricted}</div>
           </div>
@@ -319,8 +319,8 @@ export default function HolidayMasterPage() {
 
       <div className="flex-1 overflow-hidden px-6">
         <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <div className="flex-none p-4 border-b border-gray-200">
-            <div className="flex items-center gap-4">
+          <div className="flex-none p-3 border-b border-gray-200">
+            <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -358,7 +358,7 @@ export default function HolidayMasterPage() {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Holiday Type

@@ -308,7 +308,7 @@ function EquipmentHealthCard({
       {/* Content */}
       <div className="p-4">
         {/* Health Score and Key Stats */}
-        <div className="flex items-center gap-6 mb-4">
+        <div className="flex items-center gap-3 mb-2">
           <HealthScoreGauge score={equipment.healthScore} size={100} />
           <div className="flex-1 space-y-2">
             <div className="flex items-center justify-between text-sm">
@@ -342,14 +342,14 @@ function EquipmentHealthCard({
         </div>
 
         {/* Metrics */}
-        <div className="space-y-3 mb-4">
+        <div className="space-y-3 mb-2">
           {equipment.metrics.slice(0, 4).map((metric, index) => (
             <MetricBar key={index} metric={metric} />
           ))}
         </div>
 
         {/* Maintenance Schedule */}
-        <div className="flex items-center justify-between text-sm mb-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+        <div className="flex items-center justify-between text-sm mb-2 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
           <div className="flex items-center gap-2">
             <Wrench className="w-4 h-4 text-gray-400" />
             <span className="text-gray-600 dark:text-gray-400">Next Maintenance</span>
@@ -487,10 +487,10 @@ export function EquipmentHealthCards({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div className="px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+        <div className="px-3 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -512,7 +512,7 @@ export function EquipmentHealthCards({
         </div>
 
         {/* Filter Bar */}
-        <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-700">
+        <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-700">
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setFilter('all')}
@@ -547,7 +547,7 @@ export function EquipmentHealthCards({
       </div>
 
       {/* Equipment Cards Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {filteredEquipment.map(equip => (
           <EquipmentHealthCard
             key={equip.id}
@@ -560,7 +560,7 @@ export function EquipmentHealthCards({
 
       {filteredEquipment.length === 0 && (
         <div className="text-center py-12 text-gray-500">
-          <Cpu className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+          <Cpu className="w-12 h-12 mb-3 text-gray-300" />
           <p>No equipment matches the selected filter</p>
         </div>
       )}

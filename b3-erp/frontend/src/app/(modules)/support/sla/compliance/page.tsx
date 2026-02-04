@@ -157,7 +157,7 @@ export default function SLACompliance() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -183,7 +183,7 @@ export default function SLACompliance() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -195,7 +195,7 @@ export default function SLACompliance() {
             gray: 'bg-gray-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -213,8 +213,8 @@ export default function SLACompliance() {
       </div>
 
       {/* Compliance Trend */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex justify-between items-center mb-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">Compliance Trend</h2>
             <p className="text-sm text-gray-600">Monthly SLA compliance percentage</p>
@@ -226,7 +226,7 @@ export default function SLACompliance() {
         </div>
 
         {/* Simple Chart Visualization */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {complianceData.map((data, index) => (
             <div key={index} className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -259,8 +259,8 @@ export default function SLACompliance() {
       </div>
 
       {/* Team Performance */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex justify-between items-center mb-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">Team Performance</h2>
             <p className="text-sm text-gray-600">Individual agent SLA compliance metrics</p>
@@ -271,22 +271,22 @@ export default function SLACompliance() {
           <table className="min-w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Team / Agent
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tickets
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Compliance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Avg Response
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Avg Resolution
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Breaches
                 </th>
               </tr>
@@ -294,27 +294,27 @@ export default function SLACompliance() {
             <tbody className="bg-white divide-y divide-gray-200">
               {teamPerformance.map((team, index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{team.agent}</div>
                       <div className="text-sm text-gray-500">{team.teamName}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{team.ticketsHandled}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getComplianceBadge(team.slaCompliance)}`}>
                       {team.slaCompliance}%
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{team.avgResponseTime}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{team.avgResolutionTime}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className={`text-sm font-semibold ${team.breaches === 0 ? 'text-green-600' : team.breaches < 5 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {team.breaches}
                     </div>
@@ -327,8 +327,8 @@ export default function SLACompliance() {
       </div>
 
       {/* Insights */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex gap-3">
             <TrendingUp className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div>
@@ -343,7 +343,7 @@ export default function SLACompliance() {
           </div>
         </div>
 
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
           <div className="flex gap-3">
             <AlertCircle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
             <div>

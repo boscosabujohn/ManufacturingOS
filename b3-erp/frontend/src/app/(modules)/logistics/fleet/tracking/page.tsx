@@ -199,7 +199,7 @@ export default function FleetTrackingPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -226,8 +226,8 @@ export default function FleetTrackingPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalVehicles}</span>
@@ -236,7 +236,7 @@ export default function FleetTrackingPage() {
           <div className="text-xs text-blue-600 mt-1">All Vehicles</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <Navigation className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{activeVehicles}</span>
@@ -245,7 +245,7 @@ export default function FleetTrackingPage() {
           <div className="text-xs text-green-600 mt-1">Currently Moving</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-yellow-600" />
             <span className="text-2xl font-bold text-yellow-900">{idleVehicles}</span>
@@ -254,7 +254,7 @@ export default function FleetTrackingPage() {
           <div className="text-xs text-yellow-600 mt-1">Available</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <Settings className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{maintenanceVehicles}</span>
@@ -265,8 +265,8 @@ export default function FleetTrackingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -313,15 +313,15 @@ export default function FleetTrackingPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Location</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trip Info</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Speed</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fuel</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">GPS Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Location</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trip Info</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Speed</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fuel</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">GPS Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -360,17 +360,17 @@ export default function FleetTrackingPage() {
                 </tr>
               ) : filteredVehicles.map((vehicle) => (
                 <tr key={vehicle.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{vehicle.vehicleNumber}</div>
                     <div className="text-sm text-gray-600">{vehicle.vehicleType}</div>
                     <div className="text-xs text-gray-500 mt-1">{vehicle.make} {vehicle.model} ({vehicle.year})</div>
                     <div className="text-xs text-gray-500">ODO: {vehicle.odometer.toLocaleString()} km</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{vehicle.driverName}</div>
                     <div className="text-xs text-gray-500">{vehicle.driverPhone}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2 text-sm text-gray-900">
                       <MapPin className="w-4 h-4 text-blue-500" />
                       <span>{vehicle.currentLocation}</span>
@@ -379,7 +379,7 @@ export default function FleetTrackingPage() {
                       Last Updated: {new Date(vehicle.lastUpdated).toLocaleTimeString()}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {vehicle.currentTrip ? (
                       <>
                         <div className="text-sm text-gray-900">Trip: {vehicle.currentTrip}</div>
@@ -398,11 +398,11 @@ export default function FleetTrackingPage() {
                       <span className="text-sm text-gray-500">No active trip</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className="text-lg font-bold text-gray-900">{vehicle.speed}</div>
                     <div className="text-xs text-gray-500">km/h</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       <Fuel className={`w-4 h-4 ${getFuelColor(vehicle.fuelLevel)}`} />
                       <div>
@@ -422,7 +422,7 @@ export default function FleetTrackingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className={`text-sm font-medium ${getGpsStatusColor(vehicle.gpsStatus)}`}>
                       {vehicle.gpsStatus.toUpperCase()}
                     </div>
@@ -433,7 +433,7 @@ export default function FleetTrackingPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       {getStatusIcon(vehicle.currentStatus)}
                       <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(vehicle.currentStatus)}`}>
@@ -441,7 +441,7 @@ export default function FleetTrackingPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
@@ -461,9 +461,9 @@ export default function FleetTrackingPage() {
       </div>
 
       {/* Fleet Tracking Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Navigation className="w-6 h-6 text-blue-600" />
             </div>
@@ -479,8 +479,8 @@ export default function FleetTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <Fuel className="w-6 h-6 text-green-600" />
             </div>
@@ -496,8 +496,8 @@ export default function FleetTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-orange-100 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-orange-600" />
             </div>

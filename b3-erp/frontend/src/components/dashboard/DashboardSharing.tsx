@@ -215,13 +215,13 @@ export function DashboardSharing({
       />
 
       {/* Dialog */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
         <div
           className="w-full max-w-lg bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                 <Share2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
@@ -272,7 +272,7 @@ export function DashboardSharing({
           {/* Content */}
           <div className="p-6 max-h-96 overflow-y-auto">
             {activeTab === 'people' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Add People */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -446,7 +446,7 @@ export function DashboardSharing({
             )}
 
             {activeTab === 'link' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Visibility */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -556,7 +556,7 @@ export function DashboardSharing({
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-end gap-3 px-3 py-2 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
             <button
               onClick={onClose}
               className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"

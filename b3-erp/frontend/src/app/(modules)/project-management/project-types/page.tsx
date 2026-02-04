@@ -468,7 +468,7 @@ export default function ProjectTypesPage() {
   <div className="p-6">
    {/* Header */}
    <div className="mb-3">
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex items-center justify-between mb-2">
      <div>
       <h1 className="text-3xl font-bold text-gray-900">Project Types & Categories</h1>
       <p className="text-gray-600 mt-1">Define and manage project types with custom workflows and fields</p>
@@ -483,8 +483,8 @@ export default function ProjectTypesPage() {
     </div>
 
     {/* Quick Stats */}
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Project Types</p>
@@ -497,7 +497,7 @@ export default function ProjectTypesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Categories</p>
@@ -510,7 +510,7 @@ export default function ProjectTypesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Projects</p>
@@ -527,7 +527,7 @@ export default function ProjectTypesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Revenue</p>
@@ -548,7 +548,7 @@ export default function ProjectTypesPage() {
    <div className="flex border-b border-gray-200 mb-3">
     <button
      onClick={() => setActiveTab('types')}
-     className={`px-6 py-3 font-medium ${
+     className={`px-3 py-2 font-medium ${
       activeTab === 'types'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -558,7 +558,7 @@ export default function ProjectTypesPage() {
     </button>
     <button
      onClick={() => setActiveTab('categories')}
-     className={`px-6 py-3 font-medium ${
+     className={`px-3 py-2 font-medium ${
       activeTab === 'categories'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -569,8 +569,8 @@ export default function ProjectTypesPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
-    <div className="flex flex-col md:flex-row gap-4">
+   <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+    <div className="flex flex-col md:flex-row gap-2">
      <div className="flex-1">
       <input
        type="text"
@@ -600,7 +600,7 @@ export default function ProjectTypesPage() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
      {filteredTypes.map((type) => (
       <div key={type.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
-       <div className="flex items-start justify-between mb-4">
+       <div className="flex items-start justify-between mb-2">
         <div className="flex-1">
          <div className="flex items-center gap-2 mb-2">
           <h3 className="text-lg font-semibold text-gray-900">{type.typeName}</h3>
@@ -612,9 +612,9 @@ export default function ProjectTypesPage() {
         </div>
        </div>
 
-       <p className="text-sm text-gray-600 mb-4 line-clamp-2">{type.description}</p>
+       <p className="text-sm text-gray-600 mb-2 line-clamp-2">{type.description}</p>
 
-       <div className="grid grid-cols-2 gap-4 mb-4">
+       <div className="grid grid-cols-2 gap-2 mb-2">
         <div className="bg-gray-50 rounded-lg p-3">
          <p className="text-xs text-gray-600 mb-1">Industry</p>
          <p className="text-sm font-medium text-gray-900">{type.industry}</p>
@@ -627,14 +627,14 @@ export default function ProjectTypesPage() {
         </div>
        </div>
 
-       <div className="bg-gray-50 rounded-lg p-3 mb-4">
+       <div className="bg-gray-50 rounded-lg p-3 mb-2">
         <p className="text-xs text-gray-600 mb-1">Budget Range</p>
         <p className="text-sm font-medium text-gray-900 flex items-center gap-1">
          <DollarSign className="w-3 h-3" /> {type.budgetRange}
         </p>
        </div>
 
-       <div className="grid grid-cols-3 gap-2 mb-4">
+       <div className="grid grid-cols-3 gap-2 mb-2">
         <div className="text-center">
          <p className="text-lg font-bold text-gray-900">{type.projectCount}</p>
          <p className="text-xs text-gray-600">Total Projects</p>
@@ -649,7 +649,7 @@ export default function ProjectTypesPage() {
         </div>
        </div>
 
-       <div className="border-t border-gray-200 pt-4 mb-4">
+       <div className="border-t border-gray-200 pt-4 mb-2">
         <div className="flex items-center justify-between text-sm mb-2">
          <span className="text-gray-600">Total Revenue:</span>
          <span className="font-medium text-gray-900">₹{(type.totalRevenue / 10000000).toFixed(1)}Cr</span>
@@ -712,7 +712,7 @@ export default function ProjectTypesPage() {
        className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow"
        style={{ borderTopColor: category.color, borderTopWidth: '4px' }}
       >
-       <div className="flex items-start justify-between mb-4">
+       <div className="flex items-start justify-between mb-2">
         <div className="flex-1">
          <h3 className="text-lg font-semibold text-gray-900 mb-1">{category.categoryName}</h3>
          <span className="text-xs font-mono text-gray-500">{category.categoryCode}</span>
@@ -728,16 +728,16 @@ export default function ProjectTypesPage() {
         </div>
        </div>
 
-       <p className="text-sm text-gray-600 mb-4">{category.description}</p>
+       <p className="text-sm text-gray-600 mb-2">{category.description}</p>
 
        {category.parentCategory && (
-        <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
+        <div className="flex items-center gap-2 mb-2 text-sm text-gray-600">
          <ChevronRight className="w-4 h-4" />
          <span>Parent: {category.parentCategory}</span>
         </div>
        )}
 
-       <div className="bg-gray-50 rounded-lg p-3 mb-4">
+       <div className="bg-gray-50 rounded-lg p-3 mb-2">
         <p className="text-xs text-gray-600 mb-2">Linked Project Types:</p>
         <div className="flex flex-wrap gap-1">
          {category.projectTypes.map((typeCode, idx) => (

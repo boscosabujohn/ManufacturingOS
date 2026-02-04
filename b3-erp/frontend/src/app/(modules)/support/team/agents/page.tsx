@@ -263,7 +263,7 @@ export default function TeamAgents() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -277,8 +277,8 @@ export default function TeamAgents() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Agents</p>
@@ -288,7 +288,7 @@ export default function TeamAgents() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Available</p>
@@ -298,7 +298,7 @@ export default function TeamAgents() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Busy</p>
@@ -308,7 +308,7 @@ export default function TeamAgents() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Tickets</p>
@@ -318,7 +318,7 @@ export default function TeamAgents() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Satisfaction</p>
@@ -328,7 +328,7 @@ export default function TeamAgents() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">SLA Compliance</p>
@@ -340,8 +340,8 @@ export default function TeamAgents() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -384,11 +384,11 @@ export default function TeamAgents() {
       </div>
 
       {/* Agents Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredAgents.map((agent) => (
-          <div key={agent.id} className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-start gap-4">
+          <div key={agent.id} className="bg-white rounded-lg shadow-sm border p-3 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between mb-2">
+              <div className="flex items-start gap-2">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
                   {agent.avatar}
                 </div>
@@ -412,7 +412,7 @@ export default function TeamAgents() {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-2 mb-4 pb-4 border-b">
+            <div className="space-y-2 mb-2 pb-4 border-b">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Mail className="h-4 w-4" />
                 <span>{agent.email}</span>
@@ -428,7 +428,7 @@ export default function TeamAgents() {
             </div>
 
             {/* Metrics */}
-            <div className="grid grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-3 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-600">Active</p>
                 <p className="text-xl font-bold">{agent.activeTickets}</p>
@@ -444,7 +444,7 @@ export default function TeamAgents() {
             </div>
 
             {/* Performance */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <p className="text-xs text-gray-600">CSAT</p>
                 <div className="flex items-center gap-1">
@@ -497,7 +497,7 @@ export default function TeamAgents() {
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto m-4">
             <div className="p-6 border-b">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
                     {selectedAgent.avatar}
                   </div>
@@ -521,9 +521,9 @@ export default function TeamAgents() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Contact & Work Info */}
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-3">
                   <h3 className="font-semibold">Contact Information</h3>
                   <div className="space-y-2">
@@ -564,37 +564,37 @@ export default function TeamAgents() {
               {/* Performance Metrics */}
               <div>
                 <h3 className="font-semibold mb-3">Performance Metrics</h3>
-                <div className="grid grid-cols-4 gap-4">
-                  <div className="border rounded-lg p-4">
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="border rounded-lg p-3">
                     <p className="text-sm text-gray-600">Active Tickets</p>
                     <p className="text-2xl font-bold mt-1">{selectedAgent.activeTickets}</p>
                   </div>
-                  <div className="border rounded-lg p-4">
+                  <div className="border rounded-lg p-3">
                     <p className="text-sm text-gray-600">Resolved This Month</p>
                     <p className="text-2xl font-bold mt-1">{selectedAgent.resolvedThisMonth}</p>
                   </div>
-                  <div className="border rounded-lg p-4">
+                  <div className="border rounded-lg p-3">
                     <p className="text-sm text-gray-600">Avg Resolution</p>
                     <p className="text-2xl font-bold mt-1">{selectedAgent.avgResolutionTime}</p>
                   </div>
-                  <div className="border rounded-lg p-4">
+                  <div className="border rounded-lg p-3">
                     <p className="text-sm text-gray-600">Response Time</p>
                     <p className="text-2xl font-bold mt-1">{selectedAgent.responseTime}</p>
                   </div>
-                  <div className="border rounded-lg p-4">
+                  <div className="border rounded-lg p-3">
                     <p className="text-sm text-gray-600">CSAT Score</p>
                     <div className="flex items-center gap-2 mt-1">
                       <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
                       <span className="text-2xl font-bold">{selectedAgent.satisfaction}</span>
                     </div>
                   </div>
-                  <div className="border rounded-lg p-4">
+                  <div className="border rounded-lg p-3">
                     <p className="text-sm text-gray-600">SLA Compliance</p>
                     <p className={`text-2xl font-bold mt-1 ${selectedAgent.slaCompliance >= 95 ? 'text-green-600' : 'text-yellow-600'}`}>
                       {selectedAgent.slaCompliance}%
                     </p>
                   </div>
-                  <div className="border rounded-lg p-4 col-span-2">
+                  <div className="border rounded-lg p-3 col-span-2">
                     <p className="text-sm text-gray-600">Month over Month</p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-2xl font-bold">{selectedAgent.performance.thisMonth}</span>
@@ -610,7 +610,7 @@ export default function TeamAgents() {
               </div>
 
               {/* Skills & Expertise */}
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <h3 className="font-semibold mb-3">Technical Skills</h3>
                   <div className="flex flex-wrap gap-2">

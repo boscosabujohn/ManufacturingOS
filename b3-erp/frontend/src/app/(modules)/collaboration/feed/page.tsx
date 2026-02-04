@@ -58,13 +58,13 @@ export default function ActivityFeedPage() {
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 <h1 className="text-2xl font-bold text-gray-900">Activity Feed</h1>
 
                 {/* Create Post */}
-                <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-                    <div className="flex gap-4">
+                <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+                    <div className="flex gap-2">
                         <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                             Y
                         </div>
@@ -104,10 +104,10 @@ export default function ActivityFeedPage() {
                 </div>
 
                 {/* Feed */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     {posts.map((post) => (
-                        <div key={post.id} className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                            <div className="flex justify-between items-start mb-4">
+                        <div key={post.id} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+                            <div className="flex justify-between items-start mb-2">
                                 <div className="flex gap-3">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${post.isSystem ? 'bg-gray-500' : 'bg-blue-600'
                                         }`}>
@@ -123,15 +123,15 @@ export default function ActivityFeedPage() {
                                 </button>
                             </div>
 
-                            <p className="text-gray-800 mb-4 whitespace-pre-wrap">{post.content}</p>
+                            <p className="text-gray-800 mb-2 whitespace-pre-wrap">{post.content}</p>
 
                             {post.hasImage && (
-                                <div className="mb-4 rounded-lg overflow-hidden bg-gray-100 h-64 flex items-center justify-center border border-gray-200">
+                                <div className="mb-2 rounded-lg overflow-hidden bg-gray-100 h-64 flex items-center justify-center border border-gray-200">
                                     <Image className="w-12 h-12 text-gray-400" />
                                 </div>
                             )}
 
-                            <div className="flex items-center gap-6 pt-4 border-t border-gray-100">
+                            <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                                 <button className="flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors">
                                     <ThumbsUp className="w-5 h-5" />
                                     <span className="text-sm font-medium">{post.likes} Likes</span>

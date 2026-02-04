@@ -584,12 +584,12 @@ export default function ProductionSchedulingViewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/production/scheduling')}
-          className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Schedules
@@ -608,7 +608,7 @@ export default function ProductionSchedulingViewPage() {
               </span>
             </div>
             <p className="text-gray-600 text-lg mb-1">{schedule.name}</p>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-2 text-sm text-gray-500">
               <span className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
                 {formatDate(schedule.startDate)} - {formatDate(schedule.endDate)}
@@ -667,8 +667,8 @@ export default function ProductionSchedulingViewPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-4 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="grid grid-cols-4 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-gray-600 text-sm">Total Work Orders</span>
             <Layers className="w-5 h-5 text-blue-600" />
@@ -677,7 +677,7 @@ export default function ProductionSchedulingViewPage() {
           <div className="text-sm text-gray-500 mt-1">Across {resourceAllocations.length} work centers</div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-gray-600 text-sm">Scheduled Hours</span>
             <Clock className="w-5 h-5 text-purple-600" />
@@ -686,7 +686,7 @@ export default function ProductionSchedulingViewPage() {
           <div className="text-sm text-gray-500 mt-1">Total production time</div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-gray-600 text-sm">Resource Utilization</span>
             <TrendingUp className="w-5 h-5 text-green-600" />
@@ -698,7 +698,7 @@ export default function ProductionSchedulingViewPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-gray-600 text-sm">Critical Path Duration</span>
             <Zap className="w-5 h-5 text-orange-600" />
@@ -714,7 +714,7 @@ export default function ProductionSchedulingViewPage() {
           <div className="flex gap-1 p-1">
             <button
               onClick={() => setActiveTab('details')}
-              className={`flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-colors ${
+              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                 activeTab === 'details'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -727,7 +727,7 @@ export default function ProductionSchedulingViewPage() {
             </button>
             <button
               onClick={() => setActiveTab('resources')}
-              className={`flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-colors ${
+              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                 activeTab === 'resources'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -740,7 +740,7 @@ export default function ProductionSchedulingViewPage() {
             </button>
             <button
               onClick={() => setActiveTab('timeline')}
-              className={`flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-colors ${
+              className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
                 activeTab === 'timeline'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -757,14 +757,14 @@ export default function ProductionSchedulingViewPage() {
         <div className="p-6">
           {/* Schedule Details Tab */}
           {activeTab === 'details' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Schedule Information */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Settings className="w-5 h-5 text-blue-600" />
                   Schedule Information
                 </h3>
-                <div className="grid grid-cols-3 gap-6 bg-gray-50 rounded-lg p-6">
+                <div className="grid grid-cols-3 gap-3 bg-gray-50 rounded-lg p-3">
                   <div>
                     <label className="text-sm text-gray-600">Schedule ID</label>
                     <p className="text-gray-900 font-medium mt-1">{schedule.scheduleNumber}</p>
@@ -809,7 +809,7 @@ export default function ProductionSchedulingViewPage() {
 
               {/* Work Orders Included */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Layers className="w-5 h-5 text-purple-600" />
                   Work Orders Included ({schedule.workOrders.length})
                 </h3>
@@ -909,11 +909,11 @@ export default function ProductionSchedulingViewPage() {
 
               {/* Constraints Applied */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Target className="w-5 h-5 text-orange-600" />
                   Constraints Applied
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   {schedule.constraints.map((constraint, idx) => (
                     <div
                       key={idx}
@@ -943,16 +943,16 @@ export default function ProductionSchedulingViewPage() {
 
           {/* Resource Allocation Tab */}
           {activeTab === 'resources' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Resource Allocation Summary */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Factory className="w-5 h-5 text-blue-600" />
                   Work Center Allocation
                 </h3>
 
                 {resourceAllocations.map((resource, idx) => (
-                  <div key={idx} className="mb-6 bg-white border border-gray-200 rounded-lg overflow-hidden">
+                  <div key={idx} className="mb-3 bg-white border border-gray-200 rounded-lg overflow-hidden">
                     {/* Work Center Header */}
                     <div
                       className={`p-4 ${
@@ -1101,7 +1101,7 @@ export default function ProductionSchedulingViewPage() {
                         <Clock className="w-4 h-4 text-gray-600" />
                         Shift Allocation
                       </h5>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-2">
                         <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                           <div className="flex items-center gap-2 mb-2">
                             <Sunrise className="w-4 h-4 text-yellow-600" />
@@ -1150,10 +1150,10 @@ export default function ProductionSchedulingViewPage() {
 
           {/* Timeline View Tab */}
           {activeTab === 'timeline' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Gantt Controls */}
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center gap-4">
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2">
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
@@ -1195,7 +1195,7 @@ export default function ProductionSchedulingViewPage() {
               </div>
 
               {/* Legend */}
-              <div className="flex items-center gap-6 p-4 bg-white border border-gray-200 rounded-lg">
+              <div className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-blue-500 rounded"></div>
                   <span className="text-sm text-gray-700">Critical Path</span>
@@ -1316,9 +1316,9 @@ export default function ProductionSchedulingViewPage() {
               </div>
 
               {/* Milestones & Bottlenecks */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Flag className="w-5 h-5 text-green-600" />
                     Key Milestones
                   </h4>
@@ -1350,8 +1350,8 @@ export default function ProductionSchedulingViewPage() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <AlertTriangle className="w-5 h-5 text-orange-600" />
                     Bottleneck Identification
                   </h4>

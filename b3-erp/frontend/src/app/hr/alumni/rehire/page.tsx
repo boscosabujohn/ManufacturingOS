@@ -228,16 +228,16 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Alumni Rehire Process</h1>
         <p className="text-sm text-gray-600 mt-1">Manage rehiring requests for former employees</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Requests</p>
@@ -247,7 +247,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -257,7 +257,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Approved</p>
@@ -267,7 +267,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Rejected</p>
@@ -277,7 +277,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Score</p>
@@ -289,7 +289,7 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex gap-2">
           {['all', 'pending', 'approved', 'on_hold', 'rejected'].map(status => (
             <button
@@ -313,22 +313,22 @@ export default function Page() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Candidate
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Previous Role
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Proposed Role
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Eligibility
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -336,21 +336,21 @@ export default function Page() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredCandidates.map(candidate => (
                 <tr key={candidate.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="font-semibold text-gray-900">{candidate.name}</div>
                       <div className="text-sm text-gray-600">{candidate.employeeCode}</div>
                       <div className="text-xs text-gray-500">Exit: {candidate.exitDate}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{candidate.previousDesignation}</div>
                       <div className="text-xs text-gray-600">{candidate.department}</div>
                       <div className="text-xs text-gray-500">Tenure: {candidate.tenure}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{candidate.proposedDesignation}</div>
                       <div className="text-xs text-gray-600">{candidate.proposedDepartment}</div>
@@ -359,7 +359,7 @@ export default function Page() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className={`text-2xl font-bold ${getEligibilityColor(candidate.eligibilityScore)}`}>
                         {candidate.eligibilityScore}
@@ -379,12 +379,12 @@ export default function Page() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[candidate.status]}`}>
                       {candidate.status.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleViewDetails(candidate)}
@@ -429,14 +429,14 @@ export default function Page() {
 
       {filteredCandidates.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200 mt-6">
-          <UserPlus className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <UserPlus className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No rehire requests found</h3>
           <p className="text-gray-600">No requests match the selected filter</p>
         </div>
       )}
 
       {/* Eligibility Criteria Info */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-6">
         <div className="flex items-start gap-3">
           <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
           <div>
@@ -455,10 +455,10 @@ export default function Page() {
 
       {/* View Details Modal */}
       {showDetailsModal && selectedCandidate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold">Rehire Request Details</h2>
                 <p className="text-sm text-blue-100 mt-1">{selectedCandidate.employeeCode}</p>
@@ -472,11 +472,11 @@ export default function Page() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Candidate Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="font-bold text-gray-900 mb-3">Candidate Information</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Name</p>
                     <p className="font-semibold text-gray-900">{selectedCandidate.name}</p>
@@ -505,8 +505,8 @@ export default function Page() {
               </div>
 
               {/* Previous vs Proposed Role */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h3 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                     <Briefcase className="h-5 w-5" />
                     Previous Role
@@ -523,7 +523,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <h3 className="font-bold text-green-900 mb-3 flex items-center gap-2">
                     <Briefcase className="h-5 w-5" />
                     Proposed Role
@@ -548,9 +548,9 @@ export default function Page() {
               </div>
 
               {/* Eligibility Assessment */}
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h3 className="font-bold text-purple-900 mb-3">Eligibility Assessment</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div className="text-center">
                     <p className="text-sm text-purple-600 mb-1">Eligibility Score</p>
                     <p className={`text-3xl font-bold ${getEligibilityColor(selectedCandidate.eligibilityScore)}`}>
@@ -583,9 +583,9 @@ export default function Page() {
               </div>
 
               {/* Request Details */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h3 className="font-bold text-orange-900 mb-3">Request Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-orange-600">Requested By</p>
                     <p className="font-semibold text-orange-900">{selectedCandidate.requestedBy}</p>
@@ -602,7 +602,7 @@ export default function Page() {
               </div>
 
               {/* Current Status */}
-              <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
+              <div className="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
                 <span className="text-gray-700 font-medium">Current Status:</span>
                 <span className={`px-4 py-2 text-sm font-semibold rounded-full ${statusColors[selectedCandidate.status]}`}>
                   {selectedCandidate.status.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
@@ -611,7 +611,7 @@ export default function Page() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               {selectedCandidate.status === 'pending' && (
                 <>
                   <button
@@ -659,10 +659,10 @@ export default function Page() {
 
       {/* Approve Modal */}
       {showApproveModal && selectedCandidate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold">Approve Rehire Request</h2>
                 <p className="text-sm text-green-100 mt-1">{selectedCandidate.name} - {selectedCandidate.employeeCode}</p>
@@ -676,11 +676,11 @@ export default function Page() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Proposed Position Summary */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <h3 className="font-bold text-green-900 mb-3">Proposed Position</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-green-600">Designation</p>
                     <p className="font-semibold text-green-900">{selectedCandidate.proposedDesignation}</p>
@@ -693,7 +693,7 @@ export default function Page() {
               </div>
 
               {/* Approval Form */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Expected Joining Date <span className="text-red-500">*</span>
@@ -739,7 +739,7 @@ export default function Page() {
               </div>
 
               {/* Info Box */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -756,7 +756,7 @@ export default function Page() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowApproveModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
@@ -777,10 +777,10 @@ export default function Page() {
 
       {/* Reject Modal */}
       {showRejectModal && selectedCandidate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-red-600 to-rose-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="sticky top-0 bg-gradient-to-r from-red-600 to-rose-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold">Reject Rehire Request</h2>
                 <p className="text-sm text-red-100 mt-1">{selectedCandidate.name} - {selectedCandidate.employeeCode}</p>
@@ -794,11 +794,11 @@ export default function Page() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Candidate Summary */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="font-bold text-gray-900 mb-3">Candidate Summary</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Previous Designation</p>
                     <p className="font-semibold text-gray-900">{selectedCandidate.previousDesignation}</p>
@@ -821,7 +821,7 @@ export default function Page() {
               </div>
 
               {/* Rejection Form */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Rejection Reason <span className="text-red-500">*</span>
@@ -860,7 +860,7 @@ export default function Page() {
               </div>
 
               {/* Warning Box */}
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -877,7 +877,7 @@ export default function Page() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowRejectModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
@@ -898,10 +898,10 @@ export default function Page() {
 
       {/* Hold Modal */}
       {showHoldModal && selectedCandidate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-amber-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-amber-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold">Put Rehire Request On Hold</h2>
                 <p className="text-sm text-orange-100 mt-1">{selectedCandidate.name} - {selectedCandidate.employeeCode}</p>
@@ -915,11 +915,11 @@ export default function Page() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Candidate Summary */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="font-bold text-gray-900 mb-3">Candidate Summary</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Name</p>
                     <p className="font-semibold text-gray-900">{selectedCandidate.name}</p>
@@ -940,7 +940,7 @@ export default function Page() {
               </div>
 
               {/* Hold Form */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Hold Reason <span className="text-red-500">*</span>
@@ -994,7 +994,7 @@ export default function Page() {
               </div>
 
               {/* Info Box */}
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -1011,7 +1011,7 @@ export default function Page() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowHoldModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"

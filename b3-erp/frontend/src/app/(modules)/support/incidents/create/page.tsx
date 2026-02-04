@@ -148,10 +148,10 @@ const CreateIncidentPage = () => {
   return (
     <div className="p-6 max-w-[1400px]">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Incidents
@@ -170,17 +170,17 @@ const CreateIncidentPage = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Form - Left Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Basic Information */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Incident Details
               </h2>
               
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Incident Title <span className="text-red-500">*</span>
@@ -213,7 +213,7 @@ const CreateIncidentPage = () => {
                   {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Category <span className="text-red-500">*</span>
@@ -272,8 +272,8 @@ const CreateIncidentPage = () => {
             </div>
 
             {/* Affected Services */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">
                 Affected Services <span className="text-red-500">*</span>
               </h2>
               {errors.services && <p className="text-red-500 text-sm mb-3">{errors.services}</p>}
@@ -301,13 +301,13 @@ const CreateIncidentPage = () => {
             </div>
 
             {/* Reporter Information */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Users className="w-5 h-5 text-blue-600" />
                 Reporter Information
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Reported By <span className="text-red-500">*</span>
@@ -357,12 +357,12 @@ const CreateIncidentPage = () => {
           </div>
 
           {/* Right Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Priority & Severity */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Classification</h2>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Classification</h2>
               
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Priority <span className="text-red-500">*</span>
@@ -405,7 +405,7 @@ const CreateIncidentPage = () => {
             </div>
 
             {/* Quick Info */}
-            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border border-red-200 p-6">
+            <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border border-red-200 p-3">
               <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <Clock className="w-5 h-5 text-red-600" />
                 Response Times
@@ -431,7 +431,7 @@ const CreateIncidentPage = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
               <div className="space-y-3">
                 <button
                   type="submit"

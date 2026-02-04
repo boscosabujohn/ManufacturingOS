@@ -34,10 +34,10 @@ function EquityDetailContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Code</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Name</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Balance</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Code</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Name</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Balance</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -46,10 +46,10 @@ function EquityDetailContent() {
                                     key={item.id}
                                     onClick={() => router.push(`/accounts/ledger/${item.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{item.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.type}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{item.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{item.type}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right font-medium">
                                         ₹{item.balance.toLocaleString()}
                                     </td>
                                 </ClickableTableRow>

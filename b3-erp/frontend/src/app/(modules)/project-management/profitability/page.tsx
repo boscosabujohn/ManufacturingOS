@@ -676,7 +676,7 @@ export default function ProfitabilityAnalysisPage() {
     <div className="p-6">
       {/* Header */}
       <div className="mb-3">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Profitability Analysis</h1>
             <p className="text-gray-600 mt-1">Project-wise financial performance and margin analysis</p>
@@ -732,8 +732,8 @@ export default function ProfitabilityAnalysisPage() {
         </div>
 
         {/* Overall Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Revenue</p>
@@ -751,7 +751,7 @@ export default function ProfitabilityAnalysisPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Profit</p>
@@ -768,7 +768,7 @@ export default function ProfitabilityAnalysisPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Gross Margin</p>
@@ -781,7 +781,7 @@ export default function ProfitabilityAnalysisPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Project Performance</p>
@@ -800,8 +800,8 @@ export default function ProfitabilityAnalysisPage() {
         </div>
 
         {/* Best & Worst Performers */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
                 <TrendingUp className="w-5 h-5 text-white" />
@@ -813,7 +813,7 @@ export default function ProfitabilityAnalysisPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-lg border border-yellow-200">
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-3 rounded-lg border border-yellow-200">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center">
                 <TrendingDown className="w-5 h-5 text-white" />
@@ -828,8 +828,8 @@ export default function ProfitabilityAnalysisPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <input
               type="text"
@@ -870,34 +870,34 @@ export default function ProfitabilityAnalysisPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Project Details
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Contract Value
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actual Cost
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Gross Profit
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Gross Margin
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Net Profit
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Net Margin
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Payment
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -905,7 +905,7 @@ export default function ProfitabilityAnalysisPage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {paginatedProjects.map((project) => (
                 <tr key={project.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{project.projectName}</div>
                       <div className="text-sm text-gray-500">{project.clientName}</div>
@@ -914,7 +914,7 @@ export default function ProfitabilityAnalysisPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className="text-sm font-medium text-gray-900">
                       ₹{(project.contractValue / 100000).toFixed(2)}L
                     </div>
@@ -922,7 +922,7 @@ export default function ProfitabilityAnalysisPage() {
                       Budget: ₹{(project.totalBudget / 100000).toFixed(2)}L
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className="text-sm text-gray-900">
                       ₹{(project.actualCost / 100000).toFixed(2)}L
                     </div>
@@ -930,27 +930,27 @@ export default function ProfitabilityAnalysisPage() {
                       + ₹{(project.indirectCosts.total / 100000).toFixed(2)}L indirect
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className={`text-sm font-medium ${project.grossProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       ₹{(project.grossProfit / 100000).toFixed(2)}L
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getMarginColor(project.grossMargin)}`}>
                       {project.grossMargin.toFixed(1)}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className={`text-sm font-medium ${project.netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       ₹{(project.netProfit / 100000).toFixed(2)}L
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getMarginColor(project.netMargin)}`}>
                       {project.netMargin.toFixed(1)}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getPaymentColor(project.paymentStatus)}`}>
                       {project.paymentStatus}
                     </span>
@@ -958,12 +958,12 @@ export default function ProfitabilityAnalysisPage() {
                       Outstanding: ₹{(project.outstandingAmount / 100000).toFixed(1)}L
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
                       {project.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() => handleViewDetails(project)}
@@ -1017,7 +1017,7 @@ export default function ProfitabilityAnalysisPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+          <div className="bg-gray-50 px-3 py-2 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
                 Showing {(currentPage - 1) * itemsPerPage + 1} to{' '}

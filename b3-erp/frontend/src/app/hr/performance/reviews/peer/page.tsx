@@ -169,7 +169,7 @@ export default function PeerReviewsPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -181,8 +181,8 @@ export default function PeerReviewsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Pending Reviews</p>
@@ -193,7 +193,7 @@ export default function PeerReviewsPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Completed</p>
@@ -204,7 +204,7 @@ export default function PeerReviewsPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Total Requests</p>
@@ -219,7 +219,7 @@ export default function PeerReviewsPage() {
 
       {/* Filters & Table */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row gap-4 justify-between items-center">
+        <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row gap-2 justify-between items-center">
           <div className="relative w-full sm:w-96">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -251,7 +251,7 @@ export default function PeerReviewsPage() {
 
       {/* Review Modal */}
       {showModal && selectedPeer && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
               <div>
@@ -266,8 +266,8 @@ export default function PeerReviewsPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
-              <div className="space-y-4">
+            <form onSubmit={handleSubmit} className="p-6 space-y-3">
+              <div className="space-y-2">
                 <h3 className="font-medium text-gray-900 border-b pb-2">Competency Assessment</h3>
 
                 {[

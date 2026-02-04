@@ -250,14 +250,14 @@ export default function FNFSalaryPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">FNF - Salary Settlement</h1>
         <p className="text-sm text-gray-600 mt-1">Final month salary calculation and settlement</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -267,7 +267,7 @@ export default function FNFSalaryPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Calculated</p>
@@ -277,7 +277,7 @@ export default function FNFSalaryPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Approved</p>
@@ -287,7 +287,7 @@ export default function FNFSalaryPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Processed</p>
@@ -298,7 +298,7 @@ export default function FNFSalaryPage() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-2 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
@@ -337,14 +337,14 @@ export default function FNFSalaryPage() {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredSettlements.map(settlement => {
           const totalDeductions = calculateTotalDeductions(settlement.deductions);
           const totalAdditions = calculateTotalAdditions(settlement.additions);
 
           return (
-            <div key={settlement.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={settlement.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{settlement.employeeName}</h3>
@@ -362,8 +362,8 @@ export default function FNFSalaryPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Salary Breakdown</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -389,7 +389,7 @@ export default function FNFSalaryPage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Working Days</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -412,9 +412,9 @@ export default function FNFSalaryPage() {
               </div>
 
               {(Object.keys(settlement.deductions).length > 0 || Object.keys(settlement.additions).length > 0) && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                   {Object.keys(settlement.additions).length > 0 && (
-                    <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                    <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                       <h4 className="font-semibold text-green-900 mb-3">Additions</h4>
                       <div className="space-y-2">
                         {settlement.additions.pendingReimbursements && (
@@ -450,7 +450,7 @@ export default function FNFSalaryPage() {
                   )}
 
                   {Object.keys(settlement.deductions).length > 0 && (
-                    <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                    <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                       <h4 className="font-semibold text-red-900 mb-3">Deductions</h4>
                       <div className="space-y-2">
                         {settlement.deductions.noticePeriodBuyout && (
@@ -495,7 +495,7 @@ export default function FNFSalaryPage() {
                 </div>
               )}
 
-              <div className={`rounded-lg p-4 border-2 ${settlement.netSalaryComponent >= 0
+              <div className={`rounded-lg p-3 border-2 ${settlement.netSalaryComponent >= 0
                   ? 'bg-green-50 border-green-300'
                   : 'bg-red-50 border-red-300'
                 }`}>
@@ -598,9 +598,9 @@ export default function FNFSalaryPage() {
 
       {/* Calculate Salary Modal */}
       {showCalculateModal && selectedSettlement && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-blue-50 border-b border-blue-200 px-6 py-4 flex items-center justify-between">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-blue-50 border-b border-blue-200 px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Calculator className="h-6 w-6 text-blue-600" />
                 <div>
@@ -613,11 +613,11 @@ export default function FNFSalaryPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitCalculation} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitCalculation} className="p-6 space-y-3">
               {/* Salary Details */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="font-semibold text-gray-900 mb-3">Monthly Salary Components</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div><span className="text-sm text-gray-600">Basic: </span><span className="font-semibold">{formatCurrency(selectedSettlement.basicSalary)}</span></div>
                   <div><span className="text-sm text-gray-600">HRA: </span><span className="font-semibold">{formatCurrency(selectedSettlement.hra)}</span></div>
                   <div><span className="text-sm text-gray-600">Special Allowance: </span><span className="font-semibold">{formatCurrency(selectedSettlement.specialAllowance)}</span></div>
@@ -626,7 +626,7 @@ export default function FNFSalaryPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Days Worked <span className="text-red-500">*</span></label>
                   <input type="number" value={calculateFormData.daysWorked} onChange={(e) => setCalculateFormData({ ...calculateFormData, daysWorked: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required min="0" max={selectedSettlement.workingDays} />
@@ -642,7 +642,7 @@ export default function FNFSalaryPage() {
                 <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <span className="text-red-600">Deductions</span>
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Notice Period Buyout</label>
                     <input type="number" value={calculateFormData.noticePeriodBuyout} onChange={(e) => setCalculateFormData({ ...calculateFormData, noticePeriodBuyout: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
@@ -666,7 +666,7 @@ export default function FNFSalaryPage() {
                 <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <span className="text-green-600">Additions</span>
                 </h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Pending Reimbursements</label>
                     <input type="number" value={calculateFormData.pendingReimbursements} onChange={(e) => setCalculateFormData({ ...calculateFormData, pendingReimbursements: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
@@ -683,7 +683,7 @@ export default function FNFSalaryPage() {
               </div>
 
               {/* Summary */}
-              <div className="bg-gray-100 rounded-lg p-4 border-2 border-gray-300">
+              <div className="bg-gray-100 rounded-lg p-3 border-2 border-gray-300">
                 <h3 className="font-bold text-gray-900 mb-3">Calculation Summary</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span>Prorated Salary:</span><span className="font-semibold">+{formatCurrency((selectedSettlement.grossSalary / selectedSettlement.workingDays) * calculateFormData.daysWorked)}</span></div>
@@ -712,9 +712,9 @@ export default function FNFSalaryPage() {
 
       {/* Approve Modal */}
       {showApproveModal && selectedSettlement && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-            <div className="bg-green-50 border-b border-green-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="bg-green-50 border-b border-green-200 px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6 text-green-600" />
                 <div>
@@ -727,8 +727,8 @@ export default function FNFSalaryPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitApproval} className="p-6 space-y-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <form onSubmit={handleSubmitApproval} className="p-6 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="font-semibold text-gray-900 mb-2">Calculated Amount</h3>
                 <p className={`text-3xl font-bold ${selectedSettlement.netSalaryComponent >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {selectedSettlement.netSalaryComponent >= 0 ? '+' : '-'}{formatCurrency(selectedSettlement.netSalaryComponent)}

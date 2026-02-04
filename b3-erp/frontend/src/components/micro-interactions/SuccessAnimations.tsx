@@ -658,7 +658,7 @@ export function SuccessFeedback({
   };
 
   return (
-    <div className={`success-feedback flex flex-col items-center gap-4 ${className}`}>
+    <div className={`success-feedback flex flex-col items-center gap-2 ${className}`}>
       <div className="relative">
         {renderAnimation()}
         {showConfetti && (

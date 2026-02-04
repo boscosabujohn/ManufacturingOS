@@ -204,7 +204,7 @@ export default function EncashmentRequestsPage() {
   const activeFilterCount = [filterStatus !== 'all', filterLeaveType !== 'ALL', searchTerm !== ''].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -219,33 +219,33 @@ export default function EncashmentRequestsPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Requests</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Approved</div>
           <div className="text-2xl font-bold text-green-600">{stats.approved}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Pending</div>
           <div className="text-2xl font-bold text-orange-600">{stats.pending}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> Total Requested
           </div>
           <div className="text-2xl font-bold text-blue-600">₹{(stats.totalRequested / 1000).toFixed(0)}K</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Processed</div>
           <div className="text-2xl font-bold text-purple-600">₹{(stats.processed / 1000).toFixed(0)}K</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input type="text" placeholder="Search by request ID or leave type..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -263,7 +263,7 @@ export default function EncashmentRequestsPage() {
           )}
         </div>
         {showFilters && (
-          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
               <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -290,7 +290,7 @@ export default function EncashmentRequestsPage() {
         <DataTable data={filteredData} columns={columns} pagination={{ enabled: true, pageSize: 10 }} sorting={{ enabled: true, defaultSort: { column: 'requestId', direction: 'desc' } }} emptyMessage="No encashment requests found" />
       </div>
 
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
         <h3 className="font-semibold text-yellow-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-5 h-5" />
           Encashment Eligibility & Rules
@@ -305,7 +305,7 @@ export default function EncashmentRequestsPage() {
         </ul>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <DollarSign className="w-5 h-5 inline mr-2" />
           Leave Encashment Process
@@ -404,10 +404,10 @@ function NewEncashmentRequestModal({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-6 rounded-t-lg flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-3 rounded-t-lg flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold">New Encashment Request</h2>
             <p className="text-green-100 mt-1">Submit a request to encash your leave balance</p>
@@ -421,10 +421,10 @@ function NewEncashmentRequestModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Modal Content */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Mode Toggle (Only show if user is HR) */}
           {currentUser.isHR && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-center justify-between mb-2">
                 <div>
                   <h3 className="text-sm font-semibold text-blue-900">Request Mode</h3>
@@ -457,7 +457,7 @@ function NewEncashmentRequestModal({ onClose }: { onClose: () => void }) {
 
             {!isHRMode ? (
               // Self-service mode: Show current user (read-only)
-              <div className="bg-gray-50 border-2 border-gray-300 rounded-lg p-4">
+              <div className="bg-gray-50 border-2 border-gray-300 rounded-lg p-3">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
                     {currentUser.name.split(' ').map(n => n[0]).join('')}
@@ -510,7 +510,7 @@ function NewEncashmentRequestModal({ onClose }: { onClose: () => void }) {
                 )}
 
                 {selectedEmployeeData && !searchEmployee && (
-                  <div className="bg-green-50 border-2 border-green-300 rounded-lg p-4">
+                  <div className="bg-green-50 border-2 border-green-300 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg">
@@ -653,7 +653,7 @@ function NewEncashmentRequestModal({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* Important Notice */}
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-amber-900 mb-2 flex items-center gap-2">
               <AlertCircle className="w-4 h-4" />
               Important Notice

@@ -302,16 +302,16 @@ export default function AdvancedPayroll() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50 p-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50 p-3">
       <div>
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Advanced Payroll Management</h1>
           <p className="text-gray-600">Automated payroll processing with statutory compliance and tax calculations</p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="flex overflow-x-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -319,7 +319,7 @@ export default function AdvancedPayroll() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-6 py-4 font-medium transition-colors whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3 py-2 font-medium transition-colors whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'text-purple-600 border-b-2 border-purple-600 bg-purple-50'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -334,9 +334,9 @@ export default function AdvancedPayroll() {
         </div>
 
         {/* Tab Content */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
           {activeTab === 'runs' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Payroll Runs</h2>
                 <button
@@ -349,8 +349,8 @@ export default function AdvancedPayroll() {
               </div>
 
               {/* Summary Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Users className="w-5 h-5 text-blue-600" />
                     <p className="text-sm font-medium text-gray-700">Total Employees</p>
@@ -358,7 +358,7 @@ export default function AdvancedPayroll() {
                   <p className="text-2xl font-bold text-blue-600">{payrollRuns[0].employeeCount}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center gap-3 mb-2">
                     <TrendingUp className="w-5 h-5 text-green-600" />
                     <p className="text-sm font-medium text-gray-700">Total Gross</p>
@@ -366,7 +366,7 @@ export default function AdvancedPayroll() {
                   <p className="text-2xl font-bold text-green-600">{formatCurrency(payrollRuns[0].totalGross)}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-4 border border-red-200">
+                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-3 border border-red-200">
                   <div className="flex items-center gap-3 mb-2">
                     <TrendingDown className="w-5 h-5 text-red-600" />
                     <p className="text-sm font-medium text-gray-700">Total Deductions</p>
@@ -374,7 +374,7 @@ export default function AdvancedPayroll() {
                   <p className="text-2xl font-bold text-red-600">{formatCurrency(payrollRuns[0].totalDeductions)}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-center gap-3 mb-2">
                     <DollarSign className="w-5 h-5 text-purple-600" />
                     <p className="text-sm font-medium text-gray-700">Total Net Pay</p>
@@ -386,9 +386,9 @@ export default function AdvancedPayroll() {
               {/* Payroll Runs List */}
               <div className="space-y-3">
                 {payrollRuns.map((run) => (
-                  <div key={run.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-purple-300 transition-colors">
+                  <div key={run.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200 hover:border-purple-300 transition-colors">
                     <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <Calendar className="w-6 h-6 text-purple-600" />
                         <div>
                           <h3 className="font-semibold text-gray-900">{run.payPeriod}</h3>
@@ -402,7 +402,7 @@ export default function AdvancedPayroll() {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 mb-3">
+                    <div className="grid grid-cols-3 gap-2 mb-3">
                       <div>
                         <p className="text-xs text-gray-600">Gross Pay</p>
                         <p className="text-lg font-bold text-gray-900">{formatCurrency(run.totalGross)}</p>
@@ -448,11 +448,11 @@ export default function AdvancedPayroll() {
           )}
 
           {activeTab === 'calculation' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Salary Calculation Engine</h2>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+                <div className="flex items-center justify-between mb-2">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{samplePayslip.employeeName}</h3>
                     <p className="text-sm text-gray-600">
@@ -464,7 +464,7 @@ export default function AdvancedPayroll() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-4 gap-2 mb-3">
                   <div className="bg-white rounded-lg p-3">
                     <p className="text-xs text-gray-600">Working Days</p>
                     <p className="text-lg font-bold text-gray-900">{samplePayslip.workingDays}</p>
@@ -483,9 +483,9 @@ export default function AdvancedPayroll() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   {/* Earnings */}
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-3">
                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-green-600" />
                       Earnings
@@ -508,7 +508,7 @@ export default function AdvancedPayroll() {
                   </div>
 
                   {/* Deductions */}
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-3">
                     <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                       <TrendingDown className="w-5 h-5 text-red-600" />
                       Deductions
@@ -531,7 +531,7 @@ export default function AdvancedPayroll() {
                   </div>
                 </div>
 
-                <div className="mt-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-4 text-white">
+                <div className="mt-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-3 text-white">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm opacity-90">Net Pay (Take Home)</p>
@@ -545,12 +545,12 @@ export default function AdvancedPayroll() {
           )}
 
           {activeTab === 'tax' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Tax Computation & TDS</h2>
 
               {taxCalculations.map((tax, index) => (
-                <div key={index} className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-6 border border-orange-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={index} className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-3 border border-orange-200">
+                  <div className="flex items-center justify-between mb-2">
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">Tax Calculation - FY {tax.financialYear}</h3>
                       <p className="text-sm text-gray-600">Employee: {tax.employeeId}</p>
@@ -560,35 +560,35 @@ export default function AdvancedPayroll() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div className="bg-white rounded-lg p-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
+                    <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Gross Income</p>
                       <p className="text-lg font-bold text-gray-900">{formatCurrency(tax.grossIncome)}</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Exemptions</p>
                       <p className="text-lg font-bold text-green-600">{formatCurrency(tax.exemptions)}</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Deductions</p>
                       <p className="text-lg font-bold text-blue-600">{formatCurrency(tax.deductions)}</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Taxable Income</p>
                       <p className="text-lg font-bold text-orange-600">{formatCurrency(tax.taxableIncome)}</p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-white rounded-lg p-4">
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Income Tax</p>
                       <p className="text-xl font-bold text-red-600">{formatCurrency(tax.incomeTax)}</p>
                     </div>
-                    <div className="bg-white rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Cess (4%)</p>
                       <p className="text-xl font-bold text-orange-600">{formatCurrency(tax.cess)}</p>
                     </div>
-                    <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-lg p-4 text-white">
+                    <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-lg p-3 text-white">
                       <p className="text-xs opacity-90 mb-1">Monthly TDS</p>
                       <p className="text-xl font-bold">{formatCurrency(tax.monthlyTDS)}</p>
                     </div>
@@ -599,12 +599,12 @@ export default function AdvancedPayroll() {
           )}
 
           {activeTab === 'compliance' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Statutory Compliance & Returns</h2>
 
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-2">
                 {complianceItems.map((item) => (
-                  <div key={item.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={item.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <Shield className="w-6 h-6 text-blue-600" />
@@ -644,12 +644,12 @@ export default function AdvancedPayroll() {
           )}
 
           {activeTab === 'audit' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Payroll Audit Trail</h2>
 
               <div className="space-y-3">
                 {auditLogs.map((log) => (
-                  <div key={log.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={log.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <Activity className="w-5 h-5 text-blue-600" />
@@ -660,7 +660,7 @@ export default function AdvancedPayroll() {
                       </div>
                       <span className="text-xs text-gray-500">{log.timestamp}</span>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span className="flex items-center gap-1">
                         <Users className="w-4 h-4" />
                         {log.performedBy}
@@ -674,10 +674,10 @@ export default function AdvancedPayroll() {
           )}
 
           {activeTab === 'reports' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Payroll Reports</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {[
                   { name: 'Monthly Payroll Summary', icon: FileText, color: 'blue' },
                   { name: 'Department-wise Analysis', icon: Building2, color: 'green' },
@@ -688,7 +688,7 @@ export default function AdvancedPayroll() {
                 ].map((report, index) => {
                   const Icon = report.icon;
                   return (
-                    <div key={index} className={`bg-gradient-to-br from-${report.color}-50 to-${report.color}-100 rounded-lg p-6 border border-${report.color}-200 hover:shadow-lg transition-shadow cursor-pointer`}>
+                    <div key={index} className={`bg-gradient-to-br from-${report.color}-50 to-${report.color}-100 rounded-lg p-3 border border-${report.color}-200 hover:shadow-lg transition-shadow cursor-pointer`}>
                       <Icon className={`w-8 h-8 text-${report.color}-600 mb-3`} />
                       <h3 className="font-semibold text-gray-900 mb-2">{report.name}</h3>
                       <button

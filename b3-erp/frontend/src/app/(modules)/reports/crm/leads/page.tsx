@@ -32,8 +32,8 @@ export default function LeadAnalysisReport() {
     return (
         <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
             {/* Header */}
-            <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                             <Zap className="w-5 h-5 text-white" />
@@ -57,9 +57,9 @@ export default function LeadAnalysisReport() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
                 {/* KPI Cards */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <Card
                         className="cursor-pointer hover:shadow-md transition-all border-l-4 border-l-blue-500 hover:-translate-y-1"
                         onClick={() => router.push('/reports/crm/leads/status?status=All')}
@@ -136,7 +136,7 @@ export default function LeadAnalysisReport() {
                 </div>
 
                 {/* Analytical Charts Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <Card className="overflow-hidden border-gray-100 shadow-sm">
                         <CardHeader className="bg-white border-b border-gray-100 py-4 flex flex-row items-center justify-between">
                             <CardTitle className="text-sm font-black uppercase tracking-widest text-gray-900">Source Attribution</CardTitle>
@@ -155,7 +155,7 @@ export default function LeadAnalysisReport() {
                                     <p className="text-xs text-blue-600 mt-1">Click to view multi-channel attribution</p>
                                 </div>
                             </div>
-                            <div className="mt-6 space-y-4">
+                            <div className="mt-6 space-y-2">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
                                         <div className="w-3 h-3 bg-blue-500 rounded-sm"></div>
@@ -215,7 +215,7 @@ export default function LeadAnalysisReport() {
                 </div>
 
                 {/* Insights Panel */}
-                <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex items-start gap-6 relative overflow-hidden">
+                <div className="bg-white border border-gray-100 rounded-2xl p-3 shadow-sm flex items-start gap-3 relative overflow-hidden">
                     <div className="w-1.5 bg-orange-600 absolute left-0 top-0 bottom-0"></div>
                     <div className="flex-1">
                         <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-3 flex items-center gap-2">

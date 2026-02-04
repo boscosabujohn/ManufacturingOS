@@ -199,7 +199,7 @@ export default function SLADashboardPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -215,8 +215,8 @@ export default function SLADashboardPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active Tickets</span>
             <Clock className="w-4 h-4 text-blue-600" />
@@ -227,7 +227,7 @@ export default function SLADashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Response Compliance</span>
             <TrendingUp className="w-4 h-4 text-green-600" />
@@ -239,7 +239,7 @@ export default function SLADashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Resolution Compliance</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -251,7 +251,7 @@ export default function SLADashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">At Risk</span>
             <AlertCircle className="w-4 h-4 text-orange-600" />
@@ -264,9 +264,9 @@ export default function SLADashboardPage() {
       </div>
 
       {/* SLA Distribution Chart */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Response SLA Status</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Response SLA Status</h2>
           <div className="space-y-3">
             <div>
               <div className="flex items-center justify-between text-sm mb-1">
@@ -315,8 +315,8 @@ export default function SLADashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Resolution SLA Status</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Resolution SLA Status</h2>
           <div className="space-y-3">
             <div>
               <div className="flex items-center justify-between text-sm mb-1">
@@ -367,8 +367,8 @@ export default function SLADashboardPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-gray-400" />
             <span className="text-sm font-medium text-gray-700">Filters:</span>
@@ -400,7 +400,7 @@ export default function SLADashboardPage() {
 
       {/* Tickets Table */}
       <div className="bg-white rounded-lg border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Active Tickets SLA Monitor</h2>
           <p className="text-sm text-gray-500 mt-1">Real-time SLA status for all active tickets</p>
         </div>
@@ -408,14 +408,14 @@ export default function SLADashboardPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ticket #</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Issue</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Response SLA</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Resolution SLA</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Ticket #</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Issue</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Response SLA</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Resolution SLA</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -427,32 +427,32 @@ export default function SLADashboardPage() {
 
                 return (
                   <tr key={ticket.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
+                    <td className="px-3 py-2 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
                       {ticket.ticketNumber}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(ticket.priority)}`}>
                         {ticket.priority}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{ticket.customerName}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">{ticket.issueTitle}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm text-gray-900">{ticket.customerName}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600 max-w-xs truncate">{ticket.issueTitle}</td>
+                    <td className="px-3 py-2">
                       <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${responseBadge.color}`}>
                         {responseBadge.icon}
                         {ticket.responseStatus}
                       </div>
                       <div className={`text-xs mt-1 ${responseTime.color}`}>{responseTime.text}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${resolutionBadge.color}`}>
                         {resolutionBadge.icon}
                         {ticket.resolutionStatus}
                       </div>
                       <div className={`text-xs mt-1 ${resolutionTime.color}`}>{resolutionTime.text}</div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{ticket.assignedTo}</td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-sm text-gray-900">{ticket.assignedTo}</td>
+                    <td className="px-3 py-2 text-right">
                       <button
                         onClick={() => router.push(`/after-sales-service/service-requests/view/${ticket.id}`)}
                         className="text-blue-600 hover:text-blue-700"

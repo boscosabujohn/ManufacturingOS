@@ -315,9 +315,9 @@ export default function CPQContractsApprovalsPage() {
   const approvalRate = totalRequests > 0 ? ((approvedRequests / totalRequests) * 100).toFixed(1) : '0.0'
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -331,7 +331,7 @@ export default function CPQContractsApprovalsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -384,7 +384,7 @@ export default function CPQContractsApprovalsPage() {
       </div>
 
       {/* Status Filters */}
-      <div className="mb-6 flex gap-3 overflow-x-auto pb-2">
+      <div className="mb-3 flex gap-3 overflow-x-auto pb-2">
         <button className="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-200 text-sm font-medium whitespace-nowrap">
           All Requests ({totalRequests})
         </button>
@@ -403,7 +403,7 @@ export default function CPQContractsApprovalsPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -415,14 +415,14 @@ export default function CPQContractsApprovalsPage() {
       </div>
 
       {/* Approval Requests */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {approvals.map((approval) => (
           <div
             key={approval.id}
             className="bg-white rounded-lg shadow-sm border border-gray-200 p-5"
           >
             {/* Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-base font-semibold text-gray-900">{approval.contractType}</h3>
@@ -442,7 +442,7 @@ export default function CPQContractsApprovalsPage() {
             </div>
 
             {/* Customer & Request Info */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-xs">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2 text-xs">
               <div>
                 <p className="text-gray-500">Customer</p>
                 <p className="font-semibold text-gray-900">{approval.customerName}</p>
@@ -462,13 +462,13 @@ export default function CPQContractsApprovalsPage() {
             </div>
 
             {/* Reason */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-xs text-gray-500 mb-1">Approval Reason:</p>
               <p className="text-sm text-gray-700">{approval.reason}</p>
             </div>
 
             {/* Approval Chain */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-xs font-semibold text-gray-700 mb-2">Approval Chain:</p>
               <div className="space-y-2">
                 {approval.approvalChain.map((step) => (
@@ -503,7 +503,7 @@ export default function CPQContractsApprovalsPage() {
 
             {/* Comments */}
             {approval.comments.length > 0 && (
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs font-semibold text-gray-700 mb-2">Comments:</p>
                 <div className="space-y-2">
                   {approval.comments.map((comment) => (
@@ -548,7 +548,7 @@ export default function CPQContractsApprovalsPage() {
       </div>
 
       {/* Approval Info */}
-      <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+      <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-orange-900 mb-2">Contract Approval Workflow:</h3>
         <ul className="text-xs text-orange-700 space-y-1">
           <li><strong>Multi-Level Approvals:</strong> High-value contracts require multiple approvals (Sales → Finance → Legal → VP)</li>

@@ -344,7 +344,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Select Project</h2>
             </div>
@@ -378,7 +378,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
                 Visit Type
                 <HelpIcon content={FIELD_HELP.visitType.content} title={FIELD_HELP.visitType.title} />
               </label>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 {[
                   { value: 'initial', label: 'Initial Survey', desc: 'First site assessment' },
                   { value: 'followup', label: 'Follow-up', desc: 'Verification visit' },
@@ -405,7 +405,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
       case 1:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Schedule Details</h2>
             </div>
@@ -466,7 +466,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
             </div>
 
             {formData.date && (
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-sm text-blue-700">
                   <span className="font-medium">Scheduled for:</span> {formatDate(formData.date)} at {formData.time || '--:--'}
                 </p>
@@ -478,7 +478,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
       case 2:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <MapPin className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Site Location</h2>
             </div>
@@ -545,15 +545,15 @@ export default function ScheduleSiteVisitEnhancedPage() {
       case 3:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Users className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Contact & Team</h2>
             </div>
 
             {/* Client Contact */}
             <div className="bg-gray-50 rounded-lg p-3">
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-4">Client Contact</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Client Contact</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Contact Name <span className="text-red-500">*</span>
@@ -619,7 +619,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
 
             {/* Team Members */}
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-semibold text-gray-700 uppercase">Site Visit Team</h3>
                 <button
                   type="button"
@@ -634,8 +634,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
 
               <div className="space-y-3">
                 {formData.teamMembers.map((member) => (
-                  <div key={member.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                    <div className="flex-1 grid grid-cols-3 gap-4">
+                  <div key={member.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1 grid grid-cols-3 gap-2">
                       <SearchableSelect
                         options={EMPLOYEES}
                         value={member.name}
@@ -684,7 +684,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
       case 4:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <ClipboardList className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Visit Objectives & Equipment</h2>
             </div>
@@ -779,7 +779,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
       case 5:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review & Confirm</h2>
             </div>
@@ -788,7 +788,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
               {/* Project & Schedule */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Schedule Details</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project:</span>
                     <p className="font-medium text-gray-900">{formData.projectName || formData.project}</p>
@@ -826,7 +826,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
               {/* Contact & Team */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Contact & Team</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Client Contact:</span>
                     <p className="font-medium text-gray-900">{formData.clientName}</p>
@@ -874,10 +874,10 @@ export default function ScheduleSiteVisitEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
@@ -885,7 +885,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
               <h1 className="text-2xl font-bold text-gray-900">Schedule Site Visit</h1>
               <p className="text-sm text-gray-600 mt-1">Phase 2: Design & Site Assessment - Step 2.4</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}

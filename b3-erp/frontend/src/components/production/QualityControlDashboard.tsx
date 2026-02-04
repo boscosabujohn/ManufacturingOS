@@ -348,8 +348,8 @@ export function QualityControlDashboard({
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-        <div className="flex items-center justify-between flex-wrap gap-4">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-3 py-2">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <ShieldCheck className="w-7 h-7 text-green-600" />
@@ -435,13 +435,13 @@ export function QualityControlDashboard({
       <div className="p-6">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Key Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
               {qualityMetrics.map(metric => (
                 <div
                   key={metric.id}
-                  className={`bg-white dark:bg-gray-800 rounded-xl p-4 border-l-4 ${
+                  className={`bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 ${
                     metric.status === 'good' ? 'border-green-500' :
                     metric.status === 'warning' ? 'border-yellow-500' :
                     'border-red-500'
@@ -461,10 +461,10 @@ export function QualityControlDashboard({
             </div>
 
             {/* Charts Row */}
-            <div className="grid lg:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-3">
               {/* Mini SPC Chart */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                     <Activity className="w-5 h-5 text-blue-500" />
                     Process Control (SPC)
@@ -508,8 +508,8 @@ export function QualityControlDashboard({
               </div>
 
               {/* Mini Pareto Chart */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                     <BarChart3 className="w-5 h-5 text-orange-500" />
                     Defect Pareto
@@ -539,8 +539,8 @@ export function QualityControlDashboard({
             </div>
 
             {/* Recent Inspections */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-              <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+              <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
                 <CheckCircle className="w-5 h-5 text-green-500" />
                 Recent Inspections
               </h3>
@@ -589,9 +589,9 @@ export function QualityControlDashboard({
 
         {/* SPC Tab */}
         {activeTab === 'spc' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* SPC Info Banner */}
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3 flex items-start gap-3">
               <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-medium text-blue-900 dark:text-blue-100">Statistical Process Control (SPC)</h4>
@@ -603,30 +603,30 @@ export function QualityControlDashboard({
             </div>
 
             {/* Control Limits Card */}
-            <div className="grid md:grid-cols-4 gap-4">
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center">
+            <div className="grid md:grid-cols-4 gap-2">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Upper Control Limit (UCL)</p>
                 <p className="text-2xl font-bold text-red-600">{controlLimits.ucl.toFixed(3)}</p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Process Mean</p>
                 <p className="text-2xl font-bold text-green-600">{controlLimits.mean.toFixed(3)}</p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Lower Control Limit (LCL)</p>
                 <p className="text-2xl font-bold text-red-600">{controlLimits.lcl.toFixed(3)}</p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 text-center">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Standard Deviation (σ)</p>
                 <p className="text-2xl font-bold text-blue-600">{controlLimits.sigma.toFixed(4)}</p>
               </div>
             </div>
 
             {/* Full SPC Chart */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-              <div className="flex items-center justify-between mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">X-bar Control Chart</h3>
-                <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-2 text-sm">
                   <span className="flex items-center gap-2">
                     <span className="w-3 h-3 bg-red-500 rounded-full" />
                     Out of Control ({outOfControlCount})
@@ -695,8 +695,8 @@ export function QualityControlDashboard({
 
             {/* Out of Control Points Table */}
             {outOfControlCount > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
                   <AlertTriangle className="w-5 h-5 text-red-500" />
                   Out of Control Points
                 </h3>
@@ -739,9 +739,9 @@ export function QualityControlDashboard({
 
         {/* Pareto Tab */}
         {activeTab === 'pareto' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Pareto Info Banner */}
-            <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-4 flex items-start gap-3">
+            <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-3 flex items-start gap-3">
               <Info className="w-5 h-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-medium text-orange-900 dark:text-orange-100">Pareto Principle (80/20 Rule)</h4>
@@ -753,14 +753,14 @@ export function QualityControlDashboard({
             </div>
 
             {/* Summary Cards */}
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+            <div className="grid md:grid-cols-3 gap-2">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Total Defects</p>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white">
                   {defectData.reduce((a, b) => a + b.count, 0)}
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Top 3 Categories</p>
                 <p className="text-3xl font-bold text-orange-600">
                   {defectData.slice(0, 3).reduce((a, b) => a + b.count, 0)}
@@ -769,7 +769,7 @@ export function QualityControlDashboard({
                   ({Math.round((defectData.slice(0, 3).reduce((a, b) => a + b.count, 0) / defectData.reduce((a, b) => a + b.count, 0)) * 100)}% of total)
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Categories</p>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white">
                   {defectData.length}
@@ -778,8 +778,8 @@ export function QualityControlDashboard({
             </div>
 
             {/* Full Pareto Chart */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">Defect Pareto Chart</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Defect Pareto Chart</h3>
               <div className="h-96">
                 <ResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={defectData} margin={{ top: 20, right: 60, left: 20, bottom: 80 }}>
@@ -830,8 +830,8 @@ export function QualityControlDashboard({
             </div>
 
             {/* Defect Details Table */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Defect Categories Breakdown</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Defect Categories Breakdown</h3>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -878,28 +878,28 @@ export function QualityControlDashboard({
 
         {/* Inspections Tab */}
         {activeTab === 'inspections' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Inspection Summary */}
-            <div className="grid md:grid-cols-4 gap-4">
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border-l-4 border-green-500">
+            <div className="grid md:grid-cols-4 gap-2">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-green-500">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Passed</p>
                 <p className="text-3xl font-bold text-green-600">
                   {inspectionResults.filter(r => r.status === 'pass').length}
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border-l-4 border-red-500">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-red-500">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Failed</p>
                 <p className="text-3xl font-bold text-red-600">
                   {inspectionResults.filter(r => r.status === 'fail').length}
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border-l-4 border-yellow-500">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-yellow-500">
                 <p className="text-sm text-gray-500 dark:text-gray-400">On Hold</p>
                 <p className="text-3xl font-bold text-yellow-600">
                   {inspectionResults.filter(r => r.status === 'hold').length}
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 border-l-4 border-blue-500">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-3 border-l-4 border-blue-500">
                 <p className="text-sm text-gray-500 dark:text-gray-400">Pass Rate</p>
                 <p className="text-3xl font-bold text-blue-600">
                   {Math.round((inspectionResults.filter(r => r.status === 'pass').length / inspectionResults.length) * 100)}%
@@ -908,8 +908,8 @@ export function QualityControlDashboard({
             </div>
 
             {/* Full Inspection Table */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-              <div className="flex items-center justify-between mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-3">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">All Inspections</h3>
                 <div className="flex items-center gap-2">
                   <button className="flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm">

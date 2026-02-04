@@ -11,39 +11,39 @@ export default function CarrierManagement() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Carrier Management System</h1>
           <p className="text-gray-600">Manage carrier partnerships and performance</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
             <p className="text-sm text-gray-600 mb-1">Active Carriers</p>
             <p className="text-3xl font-bold text-indigo-600">{carriers.length}</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-green-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-green-200">
             <p className="text-sm text-gray-600 mb-1">Avg On-Time %</p>
             <p className="text-3xl font-bold text-green-600">94.2%</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-purple-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-purple-200">
             <p className="text-sm text-gray-600 mb-1">Total Shipments</p>
             <p className="text-3xl font-bold text-purple-600">2,190</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-orange-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-orange-200">
             <p className="text-sm text-gray-600 mb-1">Avg Cost/Shipment</p>
             <p className="text-3xl font-bold text-orange-600">₹417</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Carrier Performance</h2>
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Carrier Performance</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {carriers.map((carrier) => (
-              <div key={carrier.id} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-200">
-                <div className="flex items-center justify-between mb-4">
+              <div key={carrier.id} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-3 border border-indigo-200">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <Truck className="w-6 h-6 text-indigo-600" />
                     <div>
@@ -57,7 +57,7 @@ export default function CarrierManagement() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <div className="bg-white rounded-lg p-3">
                     <p className="text-xs text-gray-600 mb-1 flex items-center gap-1">
                       <Clock className="w-4 h-4" />

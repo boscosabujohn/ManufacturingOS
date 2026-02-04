@@ -173,15 +173,15 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
     };
 
     if (loading && isEditMode) {
-        return <div className="w-full p-6">Loading template...</div>;
+        return <div className="w-full p-3">Loading template...</div>;
     }
 
     return (
-        <div className="w-full p-6 ">
+        <div className="w-full p-3 ">
             {/* Header */}
-            <div className="mb-6">
+            <div className="mb-3">
                 <Link href="/workflow/templates">
-                    <Button variant="ghost" size="sm" className="mb-4">
+                    <Button variant="ghost" size="sm" className="mb-2">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to Templates
                     </Button>
@@ -196,14 +196,14 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
 
             {/* Alerts */}
             {error && (
-                <Alert variant="destructive" className="mb-6">
+                <Alert variant="destructive" className="mb-3">
                     <AlertCircle className="h-4 w-4" />
                     <AlertDescription>{error}</AlertDescription>
                 </Alert>
             )}
 
             {success && (
-                <Alert className="mb-6 bg-green-50 border-green-200">
+                <Alert className="mb-3 bg-green-50 border-green-200">
                     <AlertDescription className="text-green-900">
                         Template saved successfully! Redirecting...
                     </AlertDescription>
@@ -211,11 +211,11 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
             )}
 
             {/* Basic Information */}
-            <Card className="mb-6">
+            <Card className="mb-3">
                 <CardHeader>
                     <CardTitle>Basic Information</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-2">
                     <div>
                         <Label htmlFor="name">Template Name *</Label>
                         <Input
@@ -237,7 +237,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                         <div>
                             <Label htmlFor="category">Category</Label>
                             <Select
@@ -280,7 +280,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
             </Card>
 
             {/* Workflow Steps */}
-            <Card className="mb-6">
+            <Card className="mb-3">
                 <CardHeader>
                     <div className="flex justify-between items-center">
                         <CardTitle>Workflow Steps</CardTitle>
@@ -300,11 +300,11 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                             </Button>
                         </div>
                     ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {template.steps.map((step, index) => (
                                 <Card key={index} className="border-2">
                                     <CardContent className="pt-6">
-                                        <div className="flex gap-4">
+                                        <div className="flex gap-2">
                                             {/* Drag Handle & Step Number */}
                                             <div className="flex flex-col items-center gap-2">
                                                 <GripVertical className="h-5 w-5 text-gray-400 cursor-move" />
@@ -410,7 +410,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
             </Card>
 
             {/* Actions */}
-            <div className="flex gap-4">
+            <div className="flex gap-2">
                 <Button onClick={saveTemplate} disabled={loading} className="flex-1">
                     <Save className="mr-2 h-4 w-4" />
                     {loading ? 'Saving...' : 'Save Template'}

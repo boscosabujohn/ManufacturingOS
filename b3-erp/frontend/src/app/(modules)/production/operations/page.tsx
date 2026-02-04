@@ -204,11 +204,11 @@ export default function ProductionOperationsPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
                             <Link
                                 href="/production/work-orders"
                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -226,8 +226,8 @@ export default function ProductionOperationsPage() {
                 </div>
 
                 {/* Statistics */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Operations</p>
@@ -236,7 +236,7 @@ export default function ProductionOperationsPage() {
                             <Package className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-blue-600">In Progress</p>
@@ -245,7 +245,7 @@ export default function ProductionOperationsPage() {
                             <Play className="w-8 h-8 text-blue-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">Completed</p>
@@ -254,7 +254,7 @@ export default function ProductionOperationsPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-yellow-600">Queued</p>
@@ -266,8 +266,8 @@ export default function ProductionOperationsPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white rounded-lg border border-gray-200 p-4">
-                    <div className="flex gap-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="flex gap-2">
                         <select
                             value={filterType}
                             onChange={(e) => setFilterType(e.target.value)}
@@ -296,15 +296,15 @@ export default function ProductionOperationsPage() {
                 </div>
 
                 {/* Operations List */}
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-2">
                     {filteredOps.map((op) => {
                         const Icon = getOperationIcon(op.operationType);
                         const StatusIcon = getStatusIcon(op.status);
                         const progress = (op.completedQuantity / op.targetQuantity) * 100;
 
                         return (
-                            <div key={op.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-                                <div className="flex items-start gap-4">
+                            <div key={op.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+                                <div className="flex items-start gap-2">
                                     {/* Icon */}
                                     <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${getOperationColor(op.operationType)} flex items-center justify-center flex-shrink-0`}>
                                         <Icon className="w-8 h-8 text-white" />
@@ -323,7 +323,7 @@ export default function ProductionOperationsPage() {
                                             </span>
                                         </div>
 
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3 text-sm">
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 text-sm">
                                             <div>
                                                 <p className="text-xs text-gray-500">Operator</p>
                                                 <p className="font-medium text-gray-900 flex items-center gap-1">
@@ -381,7 +381,7 @@ export default function ProductionOperationsPage() {
                 </div>
 
                 {/* Info Box */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                         <TrendingUp className="w-5 h-5 text-blue-600 mt-0.5" />
                         <div>

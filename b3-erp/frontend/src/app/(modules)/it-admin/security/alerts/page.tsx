@@ -323,7 +323,7 @@ const SecurityAlertsPage = () => {
   return (
     <div className="p-6 max-w-[1600px]">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-red-100 rounded-lg">
@@ -345,8 +345,8 @@ const SecurityAlertsPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Alerts</span>
             <Bell className="w-4 h-4 text-blue-600" />
@@ -354,7 +354,7 @@ const SecurityAlertsPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.totalAlerts}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Critical</span>
             <AlertTriangle className="w-4 h-4 text-red-600" />
@@ -362,7 +362,7 @@ const SecurityAlertsPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.criticalAlerts}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Open</span>
             <XCircle className="w-4 h-4 text-orange-600" />
@@ -370,7 +370,7 @@ const SecurityAlertsPage = () => {
           <div className="text-2xl font-bold text-orange-600">{stats.openAlerts}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Resolved Today</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -378,7 +378,7 @@ const SecurityAlertsPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.resolvedToday}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active Rules</span>
             <Settings className="w-4 h-4 text-purple-600" />
@@ -386,7 +386,7 @@ const SecurityAlertsPage = () => {
           <div className="text-2xl font-bold text-purple-600">{stats.activeRules}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Failed Logins</span>
             <Lock className="w-4 h-4 text-yellow-600" />
@@ -396,9 +396,9 @@ const SecurityAlertsPage = () => {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="border-b border-gray-200">
-          <div className="flex gap-4 px-6">
+          <div className="flex gap-2 px-6">
             <button
               onClick={() => setActiveTab('alerts')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
@@ -426,7 +426,7 @@ const SecurityAlertsPage = () => {
         {activeTab === 'alerts' && (
           <div className="p-6">
             {/* Filters */}
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-2 mb-3">
               <div className="flex-1 min-w-[300px]">
                 <input
                   type="text"
@@ -473,11 +473,11 @@ const SecurityAlertsPage = () => {
             </div>
 
             {/* Alerts List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {filteredAlerts.map((alert) => (
                 <div
                   key={alert.id}
-                  className={`border-2 rounded-lg p-4 ${getSeverityColor(alert.severity)}`}
+                  className={`border-2 rounded-lg p-3 ${getSeverityColor(alert.severity)}`}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-start gap-3 flex-1">
@@ -578,9 +578,9 @@ const SecurityAlertsPage = () => {
         {/* Alert Rules Tab */}
         {activeTab === 'rules' && (
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {alertRules.map((rule) => (
-                <div key={rule.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div key={rule.id} className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -592,7 +592,7 @@ const SecurityAlertsPage = () => {
                       </div>
                       <p className="text-sm text-gray-700 mb-3">{rule.description}</p>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                         <div>
                           <h4 className="font-medium text-gray-900 mb-2">Conditions:</h4>
                           <ul className="space-y-1">

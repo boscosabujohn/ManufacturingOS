@@ -327,8 +327,8 @@ export default function ZoneMaster() {
   const avgDeliverySuccess = zones.filter(z => z.metrics.deliverySuccess).reduce((sum, z) => sum + (z.metrics.deliverySuccess || 0), 0) / zones.filter(z => z.metrics.deliverySuccess).length;
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
           <Layers className="h-8 w-8 text-blue-600" />
           Zone Master
@@ -337,8 +337,8 @@ export default function ZoneMaster() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+        <div className="bg-white p-3 rounded-lg shadow border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Zones</p>
@@ -348,7 +348,7 @@ export default function ZoneMaster() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Revenue</p>
@@ -360,7 +360,7 @@ export default function ZoneMaster() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Customers</p>
@@ -372,7 +372,7 @@ export default function ZoneMaster() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Success Rate</p>
@@ -387,8 +387,8 @@ export default function ZoneMaster() {
 
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-1 gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+            <div className="flex flex-1 gap-2">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
@@ -450,25 +450,25 @@ export default function ZoneMaster() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Zone
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Manager & Coverage
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Settings
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Performance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Priority
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -476,7 +476,7 @@ export default function ZoneMaster() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredZones.map((zone) => (
                 <tr key={zone.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="flex items-center gap-2">
                         <Layers className="h-4 w-4 text-gray-400" />
@@ -488,7 +488,7 @@ export default function ZoneMaster() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">
                       {zone.operations.zoneManager && (
                         <div className="flex items-center gap-1 mb-1">
@@ -504,7 +504,7 @@ export default function ZoneMaster() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm space-y-1">
                       {zone.zoneType === 'Delivery' && (
                         <>
@@ -532,7 +532,7 @@ export default function ZoneMaster() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">
                       {zone.metrics.deliverySuccess && (
                         <div className="text-green-600 font-medium">
@@ -544,13 +544,13 @@ export default function ZoneMaster() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {getPriorityBadge(zone.priority)}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {getStatusBadge(zone.status)}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleEdit(zone)}
@@ -575,7 +575,7 @@ export default function ZoneMaster() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden">
             <div className="p-4 border-b border-gray-200">
               <h3 className="text-lg font-semibold">
                 {selectedZone ? 'Edit Zone' : 'Add New Zone'}
@@ -600,8 +600,8 @@ export default function ZoneMaster() {
 
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
               {currentTab === 'basic' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Zone Name *
@@ -626,7 +626,7 @@ export default function ZoneMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Zone Type *
@@ -667,8 +667,8 @@ export default function ZoneMaster() {
               )}
 
               {currentTab === 'settings' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Standard Delivery Days
@@ -691,7 +691,7 @@ export default function ZoneMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Shipping Charges
@@ -717,8 +717,8 @@ export default function ZoneMaster() {
               )}
 
               {currentTab === 'operations' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Zone Manager

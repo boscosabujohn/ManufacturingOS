@@ -492,7 +492,7 @@ const TeamChatIntegration: React.FC<TeamChatIntegrationProps> = ({ className = '
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50">
               {messages.map((message, idx) => {
                 const isCurrentUser = message.senderId === 'current-user';
                 const showAvatar = idx === 0 || messages[idx - 1].senderId !== message.senderId;
@@ -617,7 +617,7 @@ const TeamChatIntegration: React.FC<TeamChatIntegrationProps> = ({ className = '
         ) : (
           <div className="flex-1 flex items-center justify-center bg-gray-50">
             <div className="text-center">
-              <div className="text-4xl mb-4">💬</div>
+              <div className="text-4xl mb-2">💬</div>
               <h3 className="text-lg font-medium text-gray-800">Select a channel</h3>
               <p className="text-sm text-gray-500">Choose a channel to start messaging</p>
             </div>

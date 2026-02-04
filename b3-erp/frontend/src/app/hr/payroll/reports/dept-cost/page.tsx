@@ -142,14 +142,14 @@ export default function DepartmentCostReportPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Department Cost Report</h1>
         <p className="text-sm text-gray-600 mt-1">Department-wise payroll cost analysis</p>
       </div>
 
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg shadow-sm border border-indigo-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg shadow-sm border border-indigo-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">November 2025</h2>
             <p className="text-sm text-gray-600 mt-1">Department-wise Cost Breakdown</p>
@@ -167,8 +167,8 @@ export default function DepartmentCostReportPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -178,7 +178,7 @@ export default function DepartmentCostReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Gross Salary</p>
@@ -188,7 +188,7 @@ export default function DepartmentCostReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Net Payout</p>
@@ -198,7 +198,7 @@ export default function DepartmentCostReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Cost</p>
@@ -210,8 +210,8 @@ export default function DepartmentCostReportPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -240,10 +240,10 @@ export default function DepartmentCostReportPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredCosts.map(dept => (
-          <div key={dept.department} className={`rounded-lg shadow-sm border p-6 ${departmentColors[dept.department as keyof typeof departmentColors] || 'bg-gray-50 border-gray-200'}`}>
-            <div className="flex items-start justify-between mb-4">
+          <div key={dept.department} className={`rounded-lg shadow-sm border p-3 ${departmentColors[dept.department as keyof typeof departmentColors] || 'bg-gray-50 border-gray-200'}`}>
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{dept.department}</h3>
@@ -264,8 +264,8 @@ export default function DepartmentCostReportPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-white rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Salary Components</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -283,7 +283,7 @@ export default function DepartmentCostReportPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <div className="bg-white rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Employee Deductions</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -305,7 +305,7 @@ export default function DepartmentCostReportPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <div className="bg-white rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Employer Contributions</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -325,7 +325,7 @@ export default function DepartmentCostReportPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <div className="bg-white rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Cost Summary</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -351,7 +351,7 @@ export default function DepartmentCostReportPage() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-300">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
                 <div>
                   <p className="text-gray-600 mb-1">Employees</p>
                   <p className="text-lg font-bold text-gray-900">{dept.employeeCount}</p>
@@ -376,30 +376,30 @@ export default function DepartmentCostReportPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-sm font-semibold text-gray-900 mb-4">Overall Cost Summary</h3>
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-sm font-semibold text-gray-900 mb-2">Overall Cost Summary</h3>
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <p className="text-xs font-medium text-blue-700 mb-1">Total PF</p>
             <p className="text-lg font-bold text-blue-900">{formatCurrency(totalStats.totalPF)}</p>
           </div>
-          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+          <div className="bg-green-50 rounded-lg p-3 border border-green-200">
             <p className="text-xs font-medium text-green-700 mb-1">Total ESI</p>
             <p className="text-lg font-bold text-green-900">{formatCurrency(totalStats.totalESI)}</p>
           </div>
-          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+          <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
             <p className="text-xs font-medium text-orange-700 mb-1">Gross Salary</p>
             <p className="text-lg font-bold text-orange-900">{formatCurrency(totalStats.totalGross)}</p>
           </div>
-          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+          <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
             <p className="text-xs font-medium text-purple-700 mb-1">Net Payout</p>
             <p className="text-lg font-bold text-purple-900">{formatCurrency(totalStats.totalNet)}</p>
           </div>
-          <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+          <div className="bg-pink-50 rounded-lg p-3 border border-pink-200">
             <p className="text-xs font-medium text-pink-700 mb-1">Total Cost</p>
             <p className="text-lg font-bold text-pink-900">{formatCurrency(totalStats.totalCost)}</p>
           </div>
-          <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+          <div className="bg-indigo-50 rounded-lg p-3 border border-indigo-200">
             <p className="text-xs font-medium text-indigo-700 mb-1">Avg Cost/Emp</p>
             <p className="text-lg font-bold text-indigo-900">
               {formatCurrency(Math.round(totalStats.totalCost / totalStats.employees))}
@@ -408,7 +408,7 @@ export default function DepartmentCostReportPage() {
         </div>
       </div>
 
-      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-indigo-900 mb-2">Department Cost Analysis Guidelines</h3>
         <ul className="text-sm text-indigo-800 space-y-1">
           <li>• <strong>Total Cost:</strong> Includes gross salary + employer PF (12%) + employer ESI (3.0%)</li>

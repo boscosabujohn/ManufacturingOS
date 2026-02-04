@@ -229,7 +229,7 @@ export default function ProductionAnalyticsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -259,10 +259,10 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-500" />
-          <div className="flex-1 grid grid-cols-3 gap-4">
+          <div className="flex-1 grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
               <select
@@ -314,8 +314,8 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* OEE Metrics Cards */}
-      <div className="grid grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+      <div className="grid grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Target className="w-8 h-8 opacity-80" />
             <span className={`flex items-center gap-1 text-sm ${oeeMetrics.trend === 'up' ? 'text-green-200' : 'text-red-200'}`}>
@@ -329,7 +329,7 @@ export default function ProductionAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Zap className="w-8 h-8 opacity-80" />
             <span className="text-sm text-green-200">World Class: 85%+</span>
@@ -341,7 +341,7 @@ export default function ProductionAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Activity className="w-8 h-8 opacity-80" />
             <span className="text-sm text-purple-200">World Class: 95%+</span>
@@ -353,7 +353,7 @@ export default function ProductionAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Award className="w-8 h-8 opacity-80" />
             <span className="text-sm text-orange-200">World Class: 99%+</span>
@@ -367,8 +367,8 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Production Trend Chart */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-blue-600" />
@@ -376,7 +376,7 @@ export default function ProductionAnalyticsPage() {
             </h2>
             <p className="text-sm text-gray-600 mt-1">Planned vs Actual production with efficiency</p>
           </div>
-          <div className="flex gap-4 text-sm">
+          <div className="flex gap-2 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-blue-500 rounded"></div>
               <span>Planned</span>
@@ -436,8 +436,8 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Product-wise Production */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Package className="w-5 h-5 text-blue-600" />
             Product-wise Production (Current Month)
@@ -506,8 +506,8 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Work Center Utilization Heatmap */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <Settings className="w-5 h-5 text-blue-600" />
@@ -590,10 +590,10 @@ export default function ProductionAnalyticsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         {/* Defect Analysis - Pareto Chart */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-orange-600" />
@@ -603,7 +603,7 @@ export default function ProductionAnalyticsPage() {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {defectData.map((defect, index) => {
               const isTop80 = defect.cumulativePercentage <= 80;
               return (
@@ -649,8 +649,8 @@ export default function ProductionAnalyticsPage() {
         </div>
 
         {/* Downtime Analysis - Pie Chart */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Clock className="w-5 h-5 text-red-600" />
@@ -661,7 +661,7 @@ export default function ProductionAnalyticsPage() {
           </div>
 
           {/* Pie Chart Visualization */}
-          <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center mb-3">
             <div className="relative w-64 h-64">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 {(() => {
@@ -732,8 +732,8 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Shift Performance Comparison */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Clock className="w-5 h-5 text-blue-600" />
             Shift Performance Comparison
@@ -792,7 +792,7 @@ export default function ProductionAnalyticsPage() {
           </table>
         </div>
 
-        <div className="mt-4 grid grid-cols-3 gap-4">
+        <div className="mt-4 grid grid-cols-3 gap-2">
           <div className="p-4 bg-green-50 rounded-lg">
             <div className="text-sm text-green-700 mb-1">Best Performing Shift</div>
             <div className="text-lg font-bold text-green-900">Morning (6AM-2PM)</div>
@@ -816,8 +816,8 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Operator Productivity Rankings */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <Users className="w-5 h-5 text-blue-600" />
@@ -890,15 +890,15 @@ export default function ProductionAnalyticsPage() {
       </div>
 
       {/* Reports Section */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <PieChart className="w-5 h-5 text-blue-600" />
             Production Reports
           </h2>
         </div>
 
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           <button
             onClick={() => handleReportClick('Daily Production Report')}
             className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"

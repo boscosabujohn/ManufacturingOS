@@ -191,8 +191,8 @@ export default function DepartmentExpensesPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex justify-between items-start">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Building className="h-7 w-7 text-purple-600" />
@@ -210,8 +210,8 @@ export default function DepartmentExpensesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-purple-700">Total Expenses</p>
             <DollarSign className="h-8 w-8 text-purple-400" />
@@ -220,7 +220,7 @@ export default function DepartmentExpensesPage() {
           <p className="text-xs text-purple-600 mt-1">All departments</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-blue-700">Departments</p>
             <Building className="h-8 w-8 text-blue-400" />
@@ -229,7 +229,7 @@ export default function DepartmentExpensesPage() {
           <p className="text-xs text-blue-600 mt-1">Active departments</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-green-700">Total Employees</p>
             <Users className="h-8 w-8 text-green-400" />
@@ -238,7 +238,7 @@ export default function DepartmentExpensesPage() {
           <p className="text-xs text-green-600 mt-1">Across all departments</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-orange-700">Avg Per Employee</p>
             <TrendingUp className="h-8 w-8 text-orange-400" />
@@ -249,8 +249,8 @@ export default function DepartmentExpensesPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Year</label>
             <select
@@ -293,10 +293,10 @@ export default function DepartmentExpensesPage() {
       </div>
 
       {/* Department Cards */}
-      <div className="space-y-4 mb-6">
+      <div className="space-y-2 mb-3">
         {sortedData.map((dept) => (
-          <div key={dept.department} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div key={dept.department} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="bg-purple-100 p-3 rounded-lg">
                   <Building className="h-6 w-6 text-purple-600" />
@@ -355,12 +355,12 @@ export default function DepartmentExpensesPage() {
       </div>
 
       {/* Category Comparison */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <BarChart3 className="h-5 w-5 text-purple-600" />
           Expense Category Comparison
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div>
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm font-medium text-gray-700">Travel</span>

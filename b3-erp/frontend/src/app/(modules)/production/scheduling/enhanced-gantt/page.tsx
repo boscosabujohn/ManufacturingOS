@@ -67,8 +67,8 @@ export default function EnhancedGanttPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col h-screen">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4 flex-shrink-0">
-        <div className="flex items-center gap-4">
+      <div className="bg-white border-b border-gray-200 px-3 py-2 flex-shrink-0">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -85,7 +85,7 @@ export default function EnhancedGanttPage() {
       </div>
 
       {/* Gantt Chart Component */}
-      <div className="flex-1 p-6 overflow-hidden">
+      <div className="flex-1 p-3 overflow-hidden">
         <EnhancedGanttChart
           tasks={mockTasks as any}
           groups={mockGroups}

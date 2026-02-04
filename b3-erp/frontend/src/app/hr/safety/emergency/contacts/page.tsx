@@ -38,9 +38,9 @@ export default function EmergencyContactsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Phone className="h-8 w-8 text-orange-600" />
@@ -56,13 +56,13 @@ export default function EmergencyContactsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* External Rapid Contacts */}
-        <div className="lg:col-span-1 space-y-6">
+        <div className="lg:col-span-1 space-y-3">
           <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
             <Building className="w-3.5 h-3.5" /> External Services
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {externalServices.map((service, idx) => (
               <div key={idx} className="p-4 bg-white rounded-xl border border-gray-100 shadow-sm group hover:border-red-200 transition-all">
                 <div className="flex items-center justify-between mb-3">
@@ -80,7 +80,7 @@ export default function EmergencyContactsPage() {
             ))}
           </div>
 
-          <div className="bg-orange-600 p-6 rounded-xl text-white shadow-xl relative overflow-hidden">
+          <div className="bg-orange-600 p-3 rounded-xl text-white shadow-xl relative overflow-hidden">
             <div className="relative z-10">
               <h4 className="font-bold text-lg mb-2">Crisis Mode</h4>
               <p className="text-xs text-orange-50 text-opacity-80 leading-relaxed font-medium">
@@ -95,10 +95,10 @@ export default function EmergencyContactsPage() {
         </div>
 
         {/* Internal Response Team */}
-        <div className="lg:col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-3">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-            <div className="p-4 border-b border-gray-100 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+            <div className="p-4 border-b border-gray-100 flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
                 <h3 className="text-xs font-bold text-gray-900 uppercase tracking-widest">Internal Response Team (ERT)</h3>
                 <div className="h-4 w-px bg-gray-200"></div>
                 <div className="flex items-center gap-1.5 px-2 py-0.5 bg-green-50 rounded text-[10px] font-bold text-green-600">
@@ -120,9 +120,9 @@ export default function EmergencyContactsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-100">
               {internalContacts.map((contact) => (
-                <div key={contact.id} className="bg-white p-6 hover:bg-gray-50 transition-colors group">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex gap-4">
+                <div key={contact.id} className="bg-white p-3 hover:bg-gray-50 transition-colors group">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex gap-2">
                       <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center font-bold text-gray-400 border border-gray-100 group-hover:border-orange-200 transition-colors">
                         {contact.name.charAt(0)}
                       </div>
@@ -137,7 +137,7 @@ export default function EmergencyContactsPage() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mt-6">
+                  <div className="grid grid-cols-2 gap-2 mt-6">
                     <div className="space-y-1">
                       <p className="text-[9px] font-bold text-gray-400 uppercase">Department</p>
                       <p className="text-xs font-bold text-gray-700 flex items-center gap-2 italic">
@@ -172,8 +172,8 @@ export default function EmergencyContactsPage() {
           </div>
 
           {/* Response Guidelines Sidenote */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="p-6 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-2">
               <div className="p-2 bg-white rounded-lg text-blue-600 shadow-sm">
                 <Stethoscope className="w-5 h-5" />
               </div>
@@ -184,7 +184,7 @@ export default function EmergencyContactsPage() {
                 </p>
               </div>
             </div>
-            <div className="p-6 bg-red-50 border border-red-100 rounded-xl flex items-start gap-4">
+            <div className="p-6 bg-red-50 border border-red-100 rounded-xl flex items-start gap-2">
               <div className="p-2 bg-white rounded-lg text-red-600 shadow-sm">
                 <Flame className="w-5 h-5" />
               </div>

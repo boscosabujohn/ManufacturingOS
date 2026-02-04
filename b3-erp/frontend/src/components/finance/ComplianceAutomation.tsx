@@ -191,7 +191,7 @@ export default function ComplianceAutomation({
   const compliancePercentage = ((data?.stats.compliantCount || 0) / (data?.stats.totalRules || 1)) * 100;
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -221,7 +221,7 @@ export default function ComplianceAutomation({
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
         <div className="md:col-span-2 bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 rounded-lg p-5">
           <div className="flex items-center justify-between mb-3">
             <div>
@@ -260,7 +260,7 @@ export default function ComplianceAutomation({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-green-600 uppercase">Compliant</p>
@@ -270,7 +270,7 @@ export default function ComplianceAutomation({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-red-600 uppercase">Non-Compliant</p>
@@ -280,7 +280,7 @@ export default function ComplianceAutomation({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-yellow-600 uppercase">Pending</p>
@@ -290,7 +290,7 @@ export default function ComplianceAutomation({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-orange-600 uppercase">Overdue</p>
@@ -303,7 +303,7 @@ export default function ComplianceAutomation({
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <nav className="flex gap-4">
+        <nav className="flex gap-2">
           {[
             { id: 'overview', label: 'Overview', icon: Activity },
             { id: 'rules', label: 'Compliance Rules', icon: Shield },
@@ -331,14 +331,14 @@ export default function ComplianceAutomation({
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Compliance by Type */}
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <h3 className="text-lg font-semibold text-gray-900">Compliance by Type</h3>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {(['tax', 'regulatory', 'statutory', 'internal', 'audit'] as ComplianceType[]).map((type) => {
                   const typeRules = data?.rules.filter((r) => r.type === type) || [];
                   const total = typeRules.length;
@@ -414,33 +414,33 @@ export default function ComplianceAutomation({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Rule Code</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Authority</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Frequency</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Next Due</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Automation</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Rule Code</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Authority</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Frequency</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Next Due</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Automation</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.rules.map((rule) => (
                   <tr key={rule.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-mono text-sm text-gray-900">{rule.code}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 font-mono text-sm text-gray-900">{rule.code}</td>
+                    <td className="px-3 py-2">
                       <div>
                         <p className="text-sm font-medium text-gray-900">{rule.name}</p>
                         <p className="text-xs text-gray-500 mt-1 max-w-xs truncate">{rule.description}</p>
                       </div>
                     </td>
-                    <td className="px-6 py-4">{getTypeBadge(rule.type)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{rule.authority}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">{getTypeBadge(rule.type)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{rule.authority}</td>
+                    <td className="px-3 py-2">
                       <span className="text-sm text-gray-900 capitalize">{rule.frequency}</span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(rule.nextDue)}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(rule.nextDue)}</td>
+                    <td className="px-3 py-2 text-center">
                       {rule.automationEnabled ? (
                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                           <CheckCircle className="w-3 h-3" />
@@ -450,7 +450,7 @@ export default function ComplianceAutomation({
                         <span className="text-xs text-gray-500">Manual</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       {editable && (
                         <button
                           onClick={() => onRunCheck?.(rule.id)}
@@ -475,23 +475,23 @@ export default function ComplianceAutomation({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Rule</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Executed</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">By</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Score</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Findings</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Due Date</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Rule</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Executed</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">By</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Score</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Findings</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Due Date</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.checks.map((check) => (
                   <tr key={check.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900 max-w-xs truncate">{check.ruleName}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(check.executedAt)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{check.executedBy}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900 max-w-xs truncate">{check.ruleName}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(check.executedAt)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600">{check.executedBy}</td>
+                    <td className="px-3 py-2 text-center">
                       <div className="inline-flex items-center gap-2">
                         <span
                           className={`text-sm font-bold ${
@@ -508,7 +508,7 @@ export default function ComplianceAutomation({
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       {check.findings.length > 0 ? (
                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-700">
                           <AlertTriangle className="w-3 h-3" />
@@ -518,9 +518,9 @@ export default function ComplianceAutomation({
                         <span className="text-xs text-gray-500">None</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(check.dueDate)}</td>
-                    <td className="px-6 py-4 text-center">{getStatusBadge(check.status)}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(check.dueDate)}</td>
+                    <td className="px-3 py-2 text-center">{getStatusBadge(check.status)}</td>
+                    <td className="px-3 py-2 text-center">
                       <button
                         onClick={() => setSelectedCheck(check)}
                         className="p-1 hover:bg-gray-100 rounded transition-colors"
@@ -554,22 +554,22 @@ export default function ComplianceAutomation({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Period</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Generated</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Overall Score</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Compliant</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Non-Compliant</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Period</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Generated</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Overall Score</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Compliant</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Non-Compliant</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.reports.map((report) => (
                   <tr key={report.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{report.period}</td>
-                    <td className="px-6 py-4">{getTypeBadge(report.type)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(report.generatedAt)}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{report.period}</td>
+                    <td className="px-3 py-2">{getTypeBadge(report.type)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(report.generatedAt)}</td>
+                    <td className="px-3 py-2 text-center">
                       <span
                         className={`text-sm font-bold ${
                           report.overallScore >= 90
@@ -582,13 +582,13 @@ export default function ComplianceAutomation({
                         {report.overallScore}%
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-center text-sm text-green-600 font-medium">
+                    <td className="px-3 py-2 text-center text-sm text-green-600 font-medium">
                       {report.compliantRules}/{report.totalRules}
                     </td>
-                    <td className="px-6 py-4 text-center text-sm text-red-600 font-medium">
+                    <td className="px-3 py-2 text-center text-sm text-red-600 font-medium">
                       {report.nonCompliantRules}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <button className="p-1 hover:bg-gray-100 rounded transition-colors">
                         <Download className="w-4 h-4 text-indigo-600" />
                       </button>
@@ -604,7 +604,7 @@ export default function ComplianceAutomation({
       {/* Check Details Modal */}
       {selectedCheck && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl  w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-bold text-gray-900">Compliance Check Details</h3>
@@ -613,8 +613,8 @@ export default function ComplianceAutomation({
                 </button>
               </div>
             </div>
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Rule</p>
                   <p className="text-lg font-medium text-gray-900 mt-1">{selectedCheck.ruleName}</p>
@@ -641,7 +641,7 @@ export default function ComplianceAutomation({
                   <h4 className="text-sm font-semibold text-gray-900 mb-3">Findings ({selectedCheck.findings.length})</h4>
                   <div className="space-y-3">
                     {selectedCheck.findings.map((finding) => (
-                      <div key={finding.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                      <div key={finding.id} className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex items-center gap-2">
                             {getSeverityBadge(finding.severity)}

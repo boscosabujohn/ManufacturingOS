@@ -308,7 +308,7 @@ export function CriticalPathHighlight({
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
       <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
               <Zap className="w-5 h-5 text-red-600" />
@@ -334,7 +334,7 @@ export function CriticalPathHighlight({
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
           <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
             <div className="flex items-center gap-2 mb-1">
               <Zap className="w-4 h-4 text-red-500" />
@@ -380,7 +380,7 @@ export function CriticalPathHighlight({
       </div>
 
       {/* Critical Path Info Banner */}
-      <div className="px-6 py-3 bg-red-50 dark:bg-red-900/10 border-b border-red-100 dark:border-red-900/30">
+      <div className="px-3 py-2 bg-red-50 dark:bg-red-900/10 border-b border-red-100 dark:border-red-900/30">
         <div className="flex items-start gap-3">
           <Info className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
           <div>
@@ -588,7 +588,7 @@ export function CriticalPathHighlight({
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
                 <div>
                   <p className="text-xs text-gray-500">Duration</p>
                   <p className="text-sm font-medium text-gray-900 dark:text-white">{task.duration} days</p>
@@ -641,7 +641,7 @@ export function CriticalPathHighlight({
 
       {/* Legend */}
       <div className="px-6 pb-6">
-        <div className="flex flex-wrap gap-4 text-sm">
+        <div className="flex flex-wrap gap-2 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-red-500" />
             <span className="text-gray-600 dark:text-gray-400">Critical (0 slack)</span>

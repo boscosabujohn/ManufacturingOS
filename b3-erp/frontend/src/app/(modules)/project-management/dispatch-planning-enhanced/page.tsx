@@ -343,7 +343,7 @@ export default function DispatchPlanningEnhancedPage() {
   <div className="w-full py-2 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
      <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
       <ArrowLeft className="w-6 h-6 text-gray-600" />
      </Button>
@@ -352,7 +352,7 @@ export default function DispatchPlanningEnhancedPage() {
       <p className="text-sm text-gray-500">Phase 7: Logistics & Delivery - Plan shipment dispatch</p>
      </div>
     </div>
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
      <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
      <FormProgressIndicator
       fields={FORM_FIELDS}
@@ -611,7 +611,7 @@ export default function DispatchPlanningEnhancedPage() {
 
        {formData.items.length === 0 ? (
         <div className="text-center py-8 text-gray-500 border-2 border-dashed rounded-lg">
-         <Package className="h-12 w-12 mb-4 text-gray-300" />
+         <Package className="h-12 w-12 mb-2 text-gray-300" />
          <p>No items added yet</p>
          <Button onClick={addItem} variant="link" className="mt-2">
           Click to add items
@@ -621,11 +621,11 @@ export default function DispatchPlanningEnhancedPage() {
         <div className="space-y-2">
          {formData.items.map((item, index) => (
           <Card key={item.id} className="p-4">
-           <div className="flex items-start gap-4">
+           <div className="flex items-start gap-2">
             <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-medium">
              {index + 1}
             </div>
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-4 gap-2">
              <div className="space-y-2">
               <Label>Item Code</Label>
               <Select
@@ -688,7 +688,7 @@ export default function DispatchPlanningEnhancedPage() {
              <Trash2 className="h-4 w-4" />
             </Button>
            </div>
-           <div className="ml-12 mt-2 flex gap-4 text-sm text-gray-500">
+           <div className="ml-12 mt-2 flex gap-2 text-sm text-gray-500">
             <span>Weight: {item.weight * item.quantity} kg</span>
             <span>Volume: {(item.volume * item.quantity).toFixed(2)} m³</span>
            </div>

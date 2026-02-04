@@ -122,7 +122,7 @@ export default function TreasuryManagement({
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -153,7 +153,7 @@ export default function TreasuryManagement({
       </div>
 
       {/* Cash Position Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-5">
           <div className="flex items-center justify-between mb-3">
             <div>
@@ -224,7 +224,7 @@ export default function TreasuryManagement({
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <nav className="flex gap-4">
+        <nav className="flex gap-2">
           {[
             { id: 'overview', label: 'Overview', icon: Activity },
             { id: 'banking', label: 'Bank Accounts', icon: CreditCard },
@@ -252,13 +252,13 @@ export default function TreasuryManagement({
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Cash Distribution */}
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-green-50">
               <h3 className="text-lg font-semibold text-gray-900">Cash Distribution</h3>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-gray-600">Bank Balances</span>
@@ -297,8 +297,8 @@ export default function TreasuryManagement({
               <h3 className="text-lg font-semibold text-gray-900">Net Position Summary</h3>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <ArrowUpRight className="w-6 h-6 text-green-600" />
                     <div>
@@ -310,7 +310,7 @@ export default function TreasuryManagement({
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <ArrowDownRight className="w-6 h-6 text-red-600" />
                     <div>
@@ -339,27 +339,27 @@ export default function TreasuryManagement({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Bank</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Account Number</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Currency</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Balance</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Available</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Interest Rate</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Last Updated</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Bank</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Account Number</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Currency</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Balance</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Available</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Interest Rate</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Last Updated</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.bankAccounts.map((account) => (
                   <tr key={account.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{account.bankName}</td>
-                    <td className="px-6 py-4 text-sm font-mono text-gray-900">{account.accountNumber}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900 capitalize">{account.accountType.replace('_', ' ')}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{account.currency}</td>
-                    <td className="px-6 py-4 text-right text-sm font-bold text-gray-900">{formatCurrency(account.balance)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-green-600">{formatCurrency(account.availableBalance)}</td>
-                    <td className="px-6 py-4 text-right text-sm text-gray-900">{formatPercentage(account.interestRate)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{new Date(account.lastUpdated).toLocaleString('en-IN')}</td>
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{account.bankName}</td>
+                    <td className="px-3 py-2 text-sm font-mono text-gray-900">{account.accountNumber}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900 capitalize">{account.accountType.replace('_', ' ')}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{account.currency}</td>
+                    <td className="px-3 py-2 text-right text-sm font-bold text-gray-900">{formatCurrency(account.balance)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-green-600">{formatCurrency(account.availableBalance)}</td>
+                    <td className="px-3 py-2 text-right text-sm text-gray-900">{formatPercentage(account.interestRate)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600">{new Date(account.lastUpdated).toLocaleString('en-IN')}</td>
                   </tr>
                 ))}
               </tbody>
@@ -375,14 +375,14 @@ export default function TreasuryManagement({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Principal</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Current Value</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Return Rate</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Gain/Loss</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Maturity</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Risk</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Principal</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Current Value</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Return Rate</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Gain/Loss</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Maturity</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Risk</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -392,22 +392,22 @@ export default function TreasuryManagement({
 
                   return (
                     <tr key={investment.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900">{investment.name}</td>
-                      <td className="px-6 py-4 text-sm text-gray-900 capitalize">{investment.type.replace('_', ' ')}</td>
-                      <td className="px-6 py-4 text-right text-sm text-gray-900">{formatCurrency(investment.principal)}</td>
-                      <td className="px-6 py-4 text-right text-sm font-bold text-gray-900">{formatCurrency(investment.currentValue)}</td>
-                      <td className="px-6 py-4 text-right text-sm text-gray-900">{formatPercentage(investment.returnRate)}</td>
-                      <td className="px-6 py-4 text-right text-sm font-semibold">
+                      <td className="px-3 py-2 text-sm font-medium text-gray-900">{investment.name}</td>
+                      <td className="px-3 py-2 text-sm text-gray-900 capitalize">{investment.type.replace('_', ' ')}</td>
+                      <td className="px-3 py-2 text-right text-sm text-gray-900">{formatCurrency(investment.principal)}</td>
+                      <td className="px-3 py-2 text-right text-sm font-bold text-gray-900">{formatCurrency(investment.currentValue)}</td>
+                      <td className="px-3 py-2 text-right text-sm text-gray-900">{formatPercentage(investment.returnRate)}</td>
+                      <td className="px-3 py-2 text-right text-sm font-semibold">
                         <span className={gainLoss >= 0 ? 'text-green-600' : 'text-red-600'}>
                           {gainLoss >= 0 ? '+' : ''}
                           {formatCurrency(gainLoss)}
                           <span className="text-xs ml-1">({gainLossPercentage >= 0 ? '+' : ''}{gainLossPercentage.toFixed(2)}%)</span>
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-3 py-2 text-sm text-gray-900">
                         {investment.maturityDate ? new Date(investment.maturityDate).toLocaleDateString('en-IN') : '-'}
                       </td>
-                      <td className="px-6 py-4 text-center">{getRiskBadge(investment.riskLevel)}</td>
+                      <td className="px-3 py-2 text-center">{getRiskBadge(investment.riskLevel)}</td>
                     </tr>
                   );
                 })}
@@ -424,27 +424,27 @@ export default function TreasuryManagement({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Lender</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Principal</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Outstanding</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Interest Rate</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Monthly Payment</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Maturity Date</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Lender</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Principal</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Outstanding</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Interest Rate</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Monthly Payment</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Maturity Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.liabilities.map((liability) => (
                   <tr key={liability.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{liability.name}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900 capitalize">{liability.type.replace('_', ' ')}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{liability.lender}</td>
-                    <td className="px-6 py-4 text-right text-sm text-gray-900">{formatCurrency(liability.principal)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-bold text-red-600">{formatCurrency(liability.outstandingBalance)}</td>
-                    <td className="px-6 py-4 text-right text-sm text-gray-900">{formatPercentage(liability.interestRate)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">{formatCurrency(liability.monthlyPayment)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{new Date(liability.maturityDate).toLocaleDateString('en-IN')}</td>
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{liability.name}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900 capitalize">{liability.type.replace('_', ' ')}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{liability.lender}</td>
+                    <td className="px-3 py-2 text-right text-sm text-gray-900">{formatCurrency(liability.principal)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-bold text-red-600">{formatCurrency(liability.outstandingBalance)}</td>
+                    <td className="px-3 py-2 text-right text-sm text-gray-900">{formatPercentage(liability.interestRate)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-gray-900">{formatCurrency(liability.monthlyPayment)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{new Date(liability.maturityDate).toLocaleDateString('en-IN')}</td>
                   </tr>
                 ))}
               </tbody>

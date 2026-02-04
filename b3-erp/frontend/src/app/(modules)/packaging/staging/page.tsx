@@ -95,10 +95,10 @@ export default function DispatchStagingPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border p-6">
-                    <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border p-3">
+                    <div className="flex items-center gap-2">
                         <Link href="/packaging/operations" className="p-2 hover:bg-gray-100 rounded-lg">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
@@ -110,8 +110,8 @@ export default function DispatchStagingPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-white p-4 rounded-lg border">
+                <div className="grid grid-cols-3 gap-2">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Staged</p>
@@ -120,7 +120,7 @@ export default function DispatchStagingPage() {
                             <Package className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">Ready to Ship</p>
@@ -129,7 +129,7 @@ export default function DispatchStagingPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-purple-600">Shipped</p>
@@ -141,7 +141,7 @@ export default function DispatchStagingPage() {
                 </div>
 
                 {/* Filter */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-white rounded-lg border p-3">
                     <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="px-4 py-2 border rounded-lg">
                         <option value="all">All Status</option>
                         <option value="Staging">Staging</option>
@@ -151,10 +151,10 @@ export default function DispatchStagingPage() {
                 </div>
 
                 {/* Staged Items List */}
-                <div className="grid gap-4">
+                <div className="grid gap-2">
                     {filteredItems.map((item) => (
-                        <div key={item.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition">
-                            <div className="flex items-start gap-4">
+                        <div key={item.id} className="bg-white rounded-lg border p-3 hover:shadow-lg transition">
+                            <div className="flex items-start gap-2">
                                 <div className={`w-16 h-16 rounded-lg ${item.status === 'Shipped' ? 'bg-purple-500' : item.status === 'Ready to Ship' ? 'bg-green-500' : 'bg-yellow-500'} flex items-center justify-center`}>
                                     <Truck className="w-8 h-8 text-white" />
                                 </div>
@@ -168,7 +168,7 @@ export default function DispatchStagingPage() {
                                             {item.status}
                                         </span>
                                     </div>
-                                    <div className="grid grid-cols-4 gap-4 mb-3 text-sm">
+                                    <div className="grid grid-cols-4 gap-2 mb-3 text-sm">
                                         <div>
                                             <p className="text-xs text-gray-500">Customer</p>
                                             <p className="font-medium flex items-center gap-1">

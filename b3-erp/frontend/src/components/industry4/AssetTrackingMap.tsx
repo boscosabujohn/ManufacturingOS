@@ -381,7 +381,7 @@ function AssetDetailPanel({
         </div>
       </div>
 
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-2">
         {/* Tracking Info */}
         <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
           <div className="flex items-center gap-2">
@@ -612,7 +612,7 @@ export function AssetTrackingMap({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -635,7 +635,7 @@ export function AssetTrackingMap({
 
       {/* Toolbar */}
       <div className="px-4 py-3 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-2">
           {/* Search */}
           <div className="relative flex-1 min-w-[200px]">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -739,7 +739,7 @@ export function AssetTrackingMap({
             ))}
             {filteredAssets.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                <Package className="w-10 h-10 mx-auto mb-2 text-gray-300" />
+                <Package className="w-10 h-10 mb-2 text-gray-300" />
                 <p className="text-sm">No assets match your filter</p>
               </div>
             )}
@@ -748,8 +748,8 @@ export function AssetTrackingMap({
       </div>
 
       {/* Legend */}
-      <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-700">
-        <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+      <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
           {(Object.entries(assetTypeConfig) as [AssetType, typeof assetTypeConfig.material][]).map(([type, config]) => (
             <div key={type} className="flex items-center gap-2">
               <div className={`w-4 h-4 rounded-full ${config.bgColor}`} />

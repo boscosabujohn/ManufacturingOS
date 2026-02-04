@@ -95,7 +95,7 @@ export const AILeadScoreCard: React.FC<AILeadScoreCardProps> = ({
 
   if (compact) {
     return (
-      <div className={`bg-white rounded-lg border border-gray-200 p-4 ${className}`}>
+      <div className={`bg-white rounded-lg border border-gray-200 p-3 ${className}`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div
@@ -166,8 +166,8 @@ export const AILeadScoreCard: React.FC<AILeadScoreCardProps> = ({
 
       {/* Score Breakdown */}
       <div className="p-6 border-b border-gray-200">
-        <h4 className="text-sm font-semibold text-gray-700 mb-4">Score Breakdown</h4>
-        <div className="grid grid-cols-2 gap-4">
+        <h4 className="text-sm font-semibold text-gray-700 mb-2">Score Breakdown</h4>
+        <div className="grid grid-cols-2 gap-2">
           {Object.entries(score.factors).map(([key, value]) => {
             const maxScore = 20; // Assuming max 20 per factor
             const percentage = (value / maxScore) * 100;
@@ -196,7 +196,7 @@ export const AILeadScoreCard: React.FC<AILeadScoreCardProps> = ({
       {/* AI Predictions */}
       {showPredictions && (
         <div className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 border-b border-gray-200">
-          <div className="flex items-center space-x-2 mb-4">
+          <div className="flex items-center space-x-2 mb-2">
             <Zap className="h-5 w-5 text-purple-600" />
             <h4 className="text-sm font-semibold text-gray-700">AI Predictions</h4>
             <span className="ml-auto text-xs text-purple-700 font-medium">
@@ -204,7 +204,7 @@ export const AILeadScoreCard: React.FC<AILeadScoreCardProps> = ({
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center space-x-2 mb-1">
                 <Target className="h-4 w-4 text-purple-600" />

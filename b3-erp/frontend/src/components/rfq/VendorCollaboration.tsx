@@ -72,8 +72,8 @@ export default function VendorCollaboration() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <Users className="h-8 w-8 text-blue-600" />
           Vendor Collaboration Portal
@@ -87,10 +87,10 @@ export default function VendorCollaboration() {
         </div>
 
         <div className="p-6">
-          <div className="space-y-6">
+          <div className="space-y-3">
             {responses.map((response) => (
               <div key={response.vendorId} className="p-5 border border-gray-200 rounded-lg">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div>
                     <h4 className="text-lg font-bold text-gray-900">{response.vendorName}</h4>
                     <p className="text-sm text-gray-600 mt-1">{response.vendorId}</p>
@@ -100,7 +100,7 @@ export default function VendorCollaboration() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-2">
                   <div className="p-3 bg-blue-50 rounded-lg">
                     <p className="text-xs text-blue-600 font-medium">Response Completion</p>
                     <p className="text-2xl font-bold text-blue-900">{response.responseCompletion}%</p>
@@ -125,7 +125,7 @@ export default function VendorCollaboration() {
                 </div>
 
                 {response.documents.length > 0 && (
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <p className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                       <FileText className="h-4 w-4" />
                       Submitted Documents

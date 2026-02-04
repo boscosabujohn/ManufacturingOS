@@ -209,10 +209,10 @@ const ItemVariantsMaster: React.FC = () => {
   const avgSellingPrice = variants.reduce((sum, v) => sum + v.pricing.sellingPrice, 0) / variants.length;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Package className="w-8 h-8 text-purple-600" />
@@ -236,7 +236,7 @@ const ItemVariantsMaster: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -274,8 +274,8 @@ const ItemVariantsMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Variants</p>
@@ -284,7 +284,7 @@ const ItemVariantsMaster: React.FC = () => {
               <Package className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Variants</p>
@@ -295,7 +295,7 @@ const ItemVariantsMaster: React.FC = () => {
               <Tag className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Stock Value</p>
@@ -304,7 +304,7 @@ const ItemVariantsMaster: React.FC = () => {
               <Package className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Selling Price</p>
@@ -313,7 +313,7 @@ const ItemVariantsMaster: React.FC = () => {
               <Tag className="w-12 h-12 text-orange-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Low Stock</p>
@@ -328,17 +328,17 @@ const ItemVariantsMaster: React.FC = () => {
 
         {/* Variants Display */}
         {viewMode === 'list' ? (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {Object.entries(groupedVariants).map(([groupName, groupVariants]) => (
-              <div key={groupName} className="bg-white rounded-lg shadow-sm p-6">
+              <div key={groupName} className="bg-white rounded-lg shadow-sm p-3">
                 {groupBy !== 'none' && (
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     {groupVariants[0]?.baseItemName || groupName}
                   </h3>
                 )}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {groupVariants.map(variant => (
-                    <div key={variant.id} className="border border-gray-200 rounded-lg p-4">
+                    <div key={variant.id} className="border border-gray-200 rounded-lg p-3">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
@@ -370,7 +370,7 @@ const ItemVariantsMaster: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
                         {/* Attributes */}
                         <div>
                           <p className="text-xs text-gray-500 mb-1">Attributes</p>
@@ -461,9 +461,9 @@ const ItemVariantsMaster: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredVariants.map(variant => (
-              <div key={variant.id} className="bg-white rounded-lg shadow-sm p-6">
+              <div key={variant.id} className="bg-white rounded-lg shadow-sm p-3">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
                     <h4 className="font-semibold text-gray-900 mb-1">{variant.variantName}</h4>
@@ -472,7 +472,7 @@ const ItemVariantsMaster: React.FC = () => {
                   <Image className="w-8 h-8 text-gray-300" />
                 </div>
                 
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Stock:</span>
                     <span className="font-medium">{variant.inventory.currentStock} {variant.inventory.uom}</span>
@@ -483,7 +483,7 @@ const ItemVariantsMaster: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-1 mb-4">
+                <div className="flex flex-wrap gap-1 mb-2">
                   {variant.attributes.slice(0, 2).map((attr, index) => (
                     <span key={index} className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded">
                       {attr.attributeValue}

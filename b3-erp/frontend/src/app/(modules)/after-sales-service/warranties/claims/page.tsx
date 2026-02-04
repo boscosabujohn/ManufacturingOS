@@ -218,7 +218,7 @@ export default function WarrantyClaimsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -235,8 +235,8 @@ export default function WarrantyClaimsPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Claims</span>
             <FileText className="w-4 h-4 text-blue-600" />
@@ -245,7 +245,7 @@ export default function WarrantyClaimsPage() {
           <div className="text-xs text-gray-500 mt-1">{stats.pending} pending review</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Approved</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -256,7 +256,7 @@ export default function WarrantyClaimsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Claim Value</span>
             <DollarSign className="w-4 h-4 text-purple-600" />
@@ -267,7 +267,7 @@ export default function WarrantyClaimsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Rejected</span>
             <XCircle className="w-4 h-4 text-red-600" />
@@ -280,8 +280,8 @@ export default function WarrantyClaimsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
@@ -331,31 +331,31 @@ export default function WarrantyClaimsPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Claim #</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Warranty #</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date Raised</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Claim Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Claim #</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Warranty #</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date Raised</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Claim Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {paginatedClaims.map((claim) => (
                 <tr key={claim.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
+                  <td className="px-3 py-2 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
                     {claim.claimNumber}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{claim.warrantyNumber}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{claim.warrantyNumber}</td>
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{claim.customerName}</div>
                     <div className="text-xs text-gray-500">Assigned to: {claim.assignedTo}</div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">{claim.productName}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{formatDate(claim.dateRaised)}</td>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900 text-right">
+                  <td className="px-3 py-2 text-sm text-gray-600 max-w-xs truncate">{claim.productName}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{formatDate(claim.dateRaised)}</td>
+                  <td className="px-3 py-2 text-sm font-medium text-gray-900 text-right">
                     {formatCurrency(claim.claimAmount)}
                     {claim.approvedAmount && claim.approvedAmount !== claim.claimAmount && (
                       <div className="text-xs text-green-600">
@@ -363,17 +363,17 @@ export default function WarrantyClaimsPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(claim.status)}`}>
                       {claim.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(claim.priority)}`}>
                       {claim.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => router.push(`/after-sales-service/warranties/claims/${claim.id}`)}
@@ -398,7 +398,7 @@ export default function WarrantyClaimsPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
+          <div className="flex items-center justify-between px-3 py-2 border-t border-gray-200">
             <div className="text-sm text-gray-600">
               Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredClaims.length)} of {filteredClaims.length} claims
             </div>

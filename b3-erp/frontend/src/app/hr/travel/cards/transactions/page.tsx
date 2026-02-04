@@ -382,7 +382,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <CreditCard className="h-8 w-8 text-blue-600" />
           Card Transactions
@@ -391,8 +391,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Txns</p>
@@ -401,7 +401,7 @@ export default function Page() {
             <CreditCard className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Amount</p>
@@ -410,7 +410,7 @@ export default function Page() {
             <Calendar className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Linked</p>
@@ -419,7 +419,7 @@ export default function Page() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Unmatched</p>
@@ -428,7 +428,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Personal</p>
@@ -437,7 +437,7 @@ export default function Page() {
             <XCircle className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Disputed</p>
@@ -446,7 +446,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Linked Amt</p>
@@ -461,7 +461,7 @@ export default function Page() {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         {/* Toolbar & Tabs */}
         <div className="border-b border-gray-200">
-          <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-2">
             {/* Search */}
             <div className="relative w-full md:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -520,9 +520,9 @@ export default function Page() {
       </div>
 
       {/* Transaction Status Info */}
-      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Transaction Status Guide</h3>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Transaction Status Guide</h3>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div className="p-3 bg-blue-50 border-l-4 border-blue-600 rounded-lg">
             <h4 className="font-semibold text-blue-900 mb-1">Captured</h4>
             <p className="text-xs text-blue-800">Transaction synced from bank, pending action</p>
@@ -547,7 +547,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Auto-Capture System</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Transactions are automatically synced from bank within 24 hours</li>

@@ -310,8 +310,8 @@ export default function WorkflowTemplatesPage() {
   return (
     <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
       {/* Header */}
-      <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
               <FileText className="w-5 h-5 text-white" />
@@ -343,10 +343,10 @@ export default function WorkflowTemplatesPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-3 space-y-3">
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Templates</p>
@@ -358,7 +358,7 @@ export default function WorkflowTemplatesPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-green-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-green-600 uppercase tracking-widest">Active</p>
@@ -370,7 +370,7 @@ export default function WorkflowTemplatesPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-yellow-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-yellow-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Draft</p>
@@ -382,7 +382,7 @@ export default function WorkflowTemplatesPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-purple-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-purple-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Total Usage</p>
@@ -394,7 +394,7 @@ export default function WorkflowTemplatesPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900 p-4 rounded-xl text-white shadow-xl">
+          <div className="bg-gray-900 p-3 rounded-xl text-white shadow-xl">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Success Rate</p>
@@ -408,8 +408,8 @@ export default function WorkflowTemplatesPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2 flex-wrap">
               <div className="relative w-full sm:w-64">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -435,7 +435,7 @@ export default function WorkflowTemplatesPage() {
           </div>
 
           {showFilters && (
-            <div className="flex gap-4 mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex gap-2 mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
@@ -463,7 +463,7 @@ export default function WorkflowTemplatesPage() {
 
         {/* Bulk Actions */}
         {selectedTemplates.length > 0 && (
-          <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200 flex items-center justify-between">
+          <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200 flex items-center justify-between">
             <span className="text-sm font-medium text-blue-900">
               {selectedTemplates.length} template(s) selected
             </span>
@@ -492,15 +492,15 @@ export default function WorkflowTemplatesPage() {
         )}
 
         {/* Templates Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
           {paginatedTemplates.map((template) => (
             <div
               key={template.id}
-              className={`bg-white rounded-lg border-2 p-6 hover:shadow-lg transition-all ${selectedTemplates.includes(template.id) ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+              className={`bg-white rounded-lg border-2 p-3 hover:shadow-lg transition-all ${selectedTemplates.includes(template.id) ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
                 }`}
             >
               {/* Template Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-start space-x-3 flex-1">
                   <input
                     type="checkbox"
@@ -535,7 +535,7 @@ export default function WorkflowTemplatesPage() {
               </div>
 
               {/* Template Stats */}
-              <div className="grid grid-cols-4 gap-4 mb-4 p-3 bg-gray-50 rounded-lg">
+              <div className="grid grid-cols-4 gap-2 mb-2 p-3 bg-gray-50 rounded-lg">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Steps</p>
                   <div className="flex items-center space-x-1">
@@ -569,7 +569,7 @@ export default function WorkflowTemplatesPage() {
               </div>
 
               {/* Template Meta */}
-              <div className="flex items-center justify-between mb-4 text-xs text-gray-500">
+              <div className="flex items-center justify-between mb-2 text-xs text-gray-500">
                 <div className="flex items-center space-x-1">
                   <Users className="h-3 w-3" />
                   <span>Created by {template.createdBy}</span>
@@ -625,7 +625,7 @@ export default function WorkflowTemplatesPage() {
         </div>
 
         {/* Pagination */}
-        <div className="bg-white rounded-lg border border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="bg-white rounded-lg border border-gray-200 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <input
               type="checkbox"

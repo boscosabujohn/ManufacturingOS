@@ -223,7 +223,7 @@ export default function ScheduledChanges() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -251,8 +251,8 @@ export default function ScheduledChanges() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Scheduled</p>
@@ -262,7 +262,7 @@ export default function ScheduledChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">This Week</p>
@@ -272,7 +272,7 @@ export default function ScheduledChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -282,7 +282,7 @@ export default function ScheduledChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Requires Downtime</p>
@@ -295,9 +295,9 @@ export default function ScheduledChanges() {
 
       {/* Calendar View */}
       {selectedView === 'calendar' && (
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           {/* Calendar Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-semibold">
               {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
             </h2>
@@ -376,7 +376,7 @@ export default function ScheduledChanges() {
           {/* Selected Date Details */}
           {selectedDate && getChangesForDate(selectedDate).length > 0 && (
             <div className="mt-6 border-t pt-6">
-              <h3 className="font-semibold mb-4">
+              <h3 className="font-semibold mb-2">
                 Changes on {selectedDate.toLocaleDateString('en-US', { 
                   weekday: 'long', 
                   year: 'numeric', 
@@ -386,7 +386,7 @@ export default function ScheduledChanges() {
               </h3>
               <div className="space-y-3">
                 {getChangesForDate(selectedDate).map(change => (
-                  <div key={change.id} className="border rounded-lg p-4 hover:bg-gray-50">
+                  <div key={change.id} className="border rounded-lg p-3 hover:bg-gray-50">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
@@ -399,7 +399,7 @@ export default function ScheduledChanges() {
                           </span>
                         </div>
                         <p className="font-medium mb-1">{change.title}</p>
-                        <div className="text-sm text-gray-600 flex items-center gap-4">
+                        <div className="text-sm text-gray-600 flex items-center gap-2">
                           <span className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
                             {change.implementationTime} ({change.duration})
@@ -438,14 +438,14 @@ export default function ScheduledChanges() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b">
                 <tr>
-                  <th className="text-left p-4 font-medium text-gray-600">Ticket</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Title</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Date & Time</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Duration</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Implementer</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Status</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Downtime</th>
-                  <th className="text-left p-4 font-medium text-gray-600">Actions</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Ticket</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Title</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Date & Time</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Duration</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Implementer</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Status</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Downtime</th>
+                  <th className="text-left p-3 font-medium text-gray-600">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y">
@@ -528,8 +528,8 @@ export default function ScheduledChanges() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Implementation Date</p>
                   <p className="font-medium mt-1">
@@ -571,7 +571,7 @@ export default function ScheduledChanges() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+              <div className="grid grid-cols-3 gap-2 pt-4 border-t">
                 <div className="flex items-center gap-2">
                   {selectedChange.backupCompleted ? (
                     <CheckCircle className="h-5 w-5 text-green-600" />

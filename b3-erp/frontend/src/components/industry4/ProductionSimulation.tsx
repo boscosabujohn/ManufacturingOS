@@ -359,7 +359,7 @@ export function ProductionSimulation({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -400,9 +400,9 @@ export function ProductionSimulation({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 p-3">
         {/* Parameters Panel */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
               <Settings className="w-5 h-5 text-gray-400" />
@@ -521,11 +521,11 @@ export function ProductionSimulation({
         </div>
 
         {/* Results Panel */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {results && (
             <>
               {/* Key Metrics */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 <ResultCard
                   label="Total Output"
                   value={results.totalOutput}
@@ -559,12 +559,12 @@ export function ProductionSimulation({
 
               {/* Timeline Chart */}
               <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium text-gray-900 dark:text-white flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-gray-400" />
                     30-Day Production vs Demand
                   </h4>
-                  <div className="flex items-center gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-sm">
                     <div className="flex items-center gap-1.5">
                       <div className="w-3 h-3 bg-blue-500 rounded" />
                       <span className="text-gray-500">Production</span>
@@ -579,7 +579,7 @@ export function ProductionSimulation({
               </div>
 
               {/* Bottlenecks & Recommendations */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {/* Bottlenecks */}
                 <div className="p-4 border border-red-200 bg-red-50 rounded-xl">
                   <h4 className="font-medium text-red-800 mb-3 flex items-center gap-2">

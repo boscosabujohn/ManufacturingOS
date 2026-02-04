@@ -732,8 +732,8 @@ export default function DocumentsPage() {
     </div>
 
     {/* Statistics Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Documents</p>
@@ -742,7 +742,7 @@ export default function DocumentsPage() {
        <FileText className="h-8 w-8 text-blue-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Approved</p>
@@ -751,7 +751,7 @@ export default function DocumentsPage() {
        <FileText className="h-8 w-8 text-green-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Pending Review</p>
@@ -760,7 +760,7 @@ export default function DocumentsPage() {
        <FileText className="h-8 w-8 text-blue-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Draft</p>
@@ -769,7 +769,7 @@ export default function DocumentsPage() {
        <FileText className="h-8 w-8 text-yellow-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Size</p>
@@ -781,8 +781,8 @@ export default function DocumentsPage() {
     </div>
 
     {/* Filters */}
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
-     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
+     <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
       <div className="md:col-span-2">
        <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
        <div className="relative">
@@ -1049,9 +1049,9 @@ export default function DocumentsPage() {
     {/* Grid View */}
     {viewMode === 'grid' && (
      <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
        {paginatedDocuments.map((doc) => (
-        <div key={doc.id} className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-lg transition-shadow cursor-pointer">
+        <div key={doc.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer">
          <div className="flex flex-col items-center text-center">
           <span className="text-5xl mb-3">{getTypeIcon(doc.documentType)}</span>
           <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">{doc.documentName}</h3>

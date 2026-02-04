@@ -124,9 +124,9 @@ export function QuestionnaireModal({ isOpen, onClose, onSave, questionnaire }: Q
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             {questionnaire ? 'Edit Questionnaire' : 'Create New Questionnaire'}
           </h2>
@@ -135,9 +135,9 @@ export function QuestionnaireModal({ isOpen, onClose, onSave, questionnaire }: Q
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-medium text-gray-900">Basic Information</h3>
 
             <div>
@@ -158,7 +158,7 @@ export function QuestionnaireModal({ isOpen, onClose, onSave, questionnaire }: Q
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Category *
@@ -233,7 +233,7 @@ export function QuestionnaireModal({ isOpen, onClose, onSave, questionnaire }: Q
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Estimated Completion Time (minutes)
@@ -327,9 +327,9 @@ export function QuestionBuilderModal({ isOpen, onClose, questionnaire }: Questio
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Question Builder</h2>
             <p className="text-sm text-gray-600">{questionnaire.questionnaireName}</p>
@@ -339,13 +339,13 @@ export function QuestionBuilderModal({ isOpen, onClose, questionnaire }: Questio
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Existing Questions */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-medium text-gray-900">Questions ({questions.length})</h3>
 
             {questions.map((question, index) => (
-              <div key={question.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+              <div key={question.id} className="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition-colors">
                 <div className="flex items-start gap-3">
                   <GripVertical className="h-5 w-5 text-gray-400 mt-1 cursor-move" />
                   <div className="flex-1">
@@ -386,7 +386,7 @@ export function QuestionBuilderModal({ isOpen, onClose, questionnaire }: Questio
           </div>
 
           {/* Add New Question */}
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 space-y-4">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 space-y-2">
             <h3 className="text-lg font-medium text-gray-900">Add New Question</h3>
 
             <div>
@@ -400,7 +400,7 @@ export function QuestionBuilderModal({ isOpen, onClose, questionnaire }: Questio
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Question Type</label>
                 <select
@@ -478,43 +478,43 @@ export function ViewQuestionnaireModal({ isOpen, onClose, questionnaire }: ViewQ
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Questionnaire Details</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">{questionnaire.questionnaireName}</h3>
             <p className="text-gray-600">{questionnaire.description}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-blue-50 rounded-lg p-4">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-blue-50 rounded-lg p-3">
               <div className="text-sm text-blue-700 mb-1">Questionnaire Code</div>
               <div className="text-lg font-bold text-blue-900">{questionnaire.questionnaireCode}</div>
             </div>
-            <div className="bg-green-50 rounded-lg p-4">
+            <div className="bg-green-50 rounded-lg p-3">
               <div className="text-sm text-green-700 mb-1">Category</div>
               <div className="text-lg font-bold text-green-900">{questionnaire.category}</div>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-purple-50 rounded-lg p-3">
               <div className="text-sm text-purple-700 mb-1">Target Segment</div>
               <div className="text-lg font-bold text-purple-900">{questionnaire.targetSegment}</div>
             </div>
-            <div className="bg-orange-50 rounded-lg p-4">
+            <div className="bg-orange-50 rounded-lg p-3">
               <div className="text-sm text-orange-700 mb-1">Status</div>
               <div className="text-lg font-bold text-orange-900 capitalize">{questionnaire.status}</div>
             </div>
           </div>
 
           <div className="border-t border-gray-200 pt-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h4>
-            <div className="grid grid-cols-3 gap-4">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Performance Metrics</h4>
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <div className="text-sm text-gray-600 mb-1">Questions</div>
                 <div className="text-2xl font-bold text-gray-900">{questionnaire.questions}</div>
@@ -576,9 +576,9 @@ export function AnalyticsModal({ isOpen, onClose, questionnaire }: AnalyticsModa
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Analytics Dashboard</h2>
             <p className="text-sm text-gray-600">{questionnaire.questionnaireName}</p>
@@ -588,25 +588,25 @@ export function AnalyticsModal({ isOpen, onClose, questionnaire }: AnalyticsModa
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Key Metrics */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
               <div className="text-sm text-blue-700 mb-1">Total Usage</div>
               <div className="text-2xl font-bold text-blue-900">{questionnaire.usageCount}</div>
               <div className="text-xs text-blue-600 mt-1">+12% from last month</div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
               <div className="text-sm text-green-700 mb-1">Completion Rate</div>
               <div className="text-2xl font-bold text-green-900">{questionnaire.completionRate.toFixed(1)}%</div>
               <div className="text-xs text-green-600 mt-1">+5% from last month</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
               <div className="text-sm text-purple-700 mb-1">Qualification Rate</div>
               <div className="text-2xl font-bold text-purple-900">{questionnaire.qualificationRate.toFixed(1)}%</div>
               <div className="text-xs text-purple-600 mt-1">+3% from last month</div>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
               <div className="text-sm text-orange-700 mb-1">Avg Deal Size</div>
               <div className="text-2xl font-bold text-orange-900">₹{(questionnaire.avgDealSize / 100000).toFixed(1)}L</div>
               <div className="text-xs text-orange-600 mt-1">+8% from last month</div>
@@ -614,11 +614,11 @@ export function AnalyticsModal({ isOpen, onClose, questionnaire }: AnalyticsModa
           </div>
 
           {/* Usage Trend Chart */}
-          <div className="border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Usage Trend (Last 6 Months)</h3>
+          <div className="border border-gray-200 rounded-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Usage Trend (Last 6 Months)</h3>
             <div className="space-y-3">
               {chartData.map((data) => (
-                <div key={data.month} className="flex items-center gap-4">
+                <div key={data.month} className="flex items-center gap-2">
                   <div className="w-12 text-sm text-gray-600">{data.month}</div>
                   <div className="flex-1 flex gap-2">
                     <div className="flex-1">
@@ -652,8 +652,8 @@ export function AnalyticsModal({ isOpen, onClose, questionnaire }: AnalyticsModa
           </div>
 
           {/* Question Performance */}
-          <div className="border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Performing Questions</h3>
+          <div className="border border-gray-200 rounded-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Performing Questions</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                 <div className="flex-1">
@@ -708,9 +708,9 @@ export function PreviewModal({ isOpen, onClose, questionnaire }: PreviewModalPro
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Preview Questionnaire</h2>
             <p className="text-sm text-gray-600">{questionnaire.questionnaireName}</p>
@@ -720,8 +720,8 @@ export function PreviewModal({ isOpen, onClose, questionnaire }: PreviewModalPro
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="p-6 space-y-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-blue-900">{questionnaire.description}</p>
             <div className="text-xs text-blue-700 mt-2">
               Estimated time: {questionnaire.avgCompletionTime} minutes • {sampleQuestions.length} questions
@@ -729,7 +729,7 @@ export function PreviewModal({ isOpen, onClose, questionnaire }: PreviewModalPro
           </div>
 
           {sampleQuestions.map((question, index) => (
-            <div key={question.id} className="border border-gray-200 rounded-lg p-4">
+            <div key={question.id} className="border border-gray-200 rounded-lg p-3">
               <div className="flex items-start gap-3 mb-3">
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-900 font-semibold text-sm">
                   {index + 1}
@@ -751,7 +751,7 @@ export function PreviewModal({ isOpen, onClose, questionnaire }: PreviewModalPro
               )}
 
               {question.type === 'yes-no' && (
-                <div className="ml-11 flex gap-4">
+                <div className="ml-11 flex gap-2">
                   <label className="flex items-center gap-2">
                     <input type="radio" name={`q${question.id}`} className="h-4 w-4 text-blue-600" />
                     <span className="text-gray-700">Yes</span>

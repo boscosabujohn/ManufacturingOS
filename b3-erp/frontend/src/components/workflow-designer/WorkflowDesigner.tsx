@@ -200,8 +200,8 @@ export function WorkflowDesigner({
     <div className="flex h-[700px] bg-gray-100 rounded-lg overflow-hidden">
       {/* Node Palette */}
       {!readOnly && (
-        <div className="w-48 bg-white border-r p-4">
-          <h3 className="font-semibold text-gray-800 mb-4">Node Types</h3>
+        <div className="w-48 bg-white border-r p-3">
+          <h3 className="font-semibold text-gray-800 mb-2">Node Types</h3>
           <div className="space-y-2">
             {nodeTypes.map((node) => (
               <div
@@ -331,10 +331,10 @@ export function WorkflowDesigner({
 
       {/* Properties Panel */}
       {selectedNode && selectedNodeData && !readOnly && (
-        <div className="w-64 bg-white border-l p-4">
-          <h3 className="font-semibold text-gray-800 mb-4">Node Properties</h3>
+        <div className="w-64 bg-white border-l p-3">
+          <h3 className="font-semibold text-gray-800 mb-2">Node Properties</h3>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Label</label>
               <input

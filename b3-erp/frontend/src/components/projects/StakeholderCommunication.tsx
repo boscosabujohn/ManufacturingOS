@@ -347,9 +347,9 @@ export default function StakeholderCommunication() {
     : communications.filter(c => c.type === filterType);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -396,8 +396,8 @@ export default function StakeholderCommunication() {
       {viewMode === 'communications' && (
         <>
           {/* Filter */}
-          <div className="bg-white shadow-md p-4">
-            <div className="flex items-center gap-4">
+          <div className="bg-white shadow-md p-3">
+            <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-gray-700">Filter by Type:</label>
               <select
                 value={filterType}
@@ -423,7 +423,7 @@ export default function StakeholderCommunication() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {filteredCommunications.map((comm) => (
                   <div key={comm.id} className="p-5 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     {/* Communication Header */}
@@ -511,7 +511,7 @@ export default function StakeholderCommunication() {
           </div>
 
           <div className="p-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               {stakeholders.map((stakeholder) => (
                 <div key={stakeholder.id} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
@@ -577,11 +577,11 @@ export default function StakeholderCommunication() {
           </div>
 
           <div className="p-6">
-            <div className="space-y-6">
+            <div className="space-y-3">
               {meetingNotes.map((meeting) => (
                 <div key={meeting.id} className="p-5 border border-gray-200 rounded-lg">
                   {/* Meeting Header */}
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="text-lg font-bold text-gray-900">{meeting.projectName}</h4>
                       <p className="text-sm text-gray-600">{meeting.id}</p>
@@ -593,7 +593,7 @@ export default function StakeholderCommunication() {
                   </div>
 
                   {/* Attendees */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <p className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                       <Users className="h-4 w-4" />
                       Attendees:
@@ -608,7 +608,7 @@ export default function StakeholderCommunication() {
                   </div>
 
                   {/* Agenda */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <p className="text-sm font-semibold text-gray-700 mb-2">Agenda:</p>
                     <ul className="space-y-1">
                       {meeting.agenda.map((item, idx) => (
@@ -621,7 +621,7 @@ export default function StakeholderCommunication() {
                   </div>
 
                   {/* Discussions */}
-                  <div className="mb-4 p-3 bg-blue-50 rounded-lg">
+                  <div className="mb-2 p-3 bg-blue-50 rounded-lg">
                     <p className="text-sm font-semibold text-blue-700 mb-2">Key Discussions:</p>
                     <ul className="space-y-1">
                       {meeting.discussions.map((item, idx) => (
@@ -634,7 +634,7 @@ export default function StakeholderCommunication() {
                   </div>
 
                   {/* Decisions */}
-                  <div className="mb-4 p-3 bg-green-50 rounded-lg">
+                  <div className="mb-2 p-3 bg-green-50 rounded-lg">
                     <p className="text-sm font-semibold text-green-700 mb-2">Decisions Made:</p>
                     <ul className="space-y-1">
                       {meeting.decisions.map((item, idx) => (

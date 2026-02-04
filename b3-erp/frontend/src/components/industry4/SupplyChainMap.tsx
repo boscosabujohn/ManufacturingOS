@@ -653,7 +653,7 @@ function MapStats({ shipments }: { shipments: Shipment[] }) {
   const totalValue = shipments.reduce((sum, s) => sum + s.value, 0);
 
   return (
-    <div className="absolute bottom-4 left-4 right-4 flex gap-4 z-10">
+    <div className="absolute bottom-4 left-4 right-4 flex gap-2 z-10">
       <Card className="flex-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur">
         <CardContent className="py-2 px-4 flex items-center gap-3">
           <Truck className="w-5 h-5 text-blue-600" />
@@ -788,8 +788,8 @@ export function SupplyChainMap({
         </div>
 
         {/* Legend */}
-        <div className="mt-4 flex flex-wrap items-center gap-6 text-sm">
-          <div className="flex items-center gap-4">
+        <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
+          <div className="flex items-center gap-2">
             <span className="text-gray-500 font-medium">Transport:</span>
             <div className="flex items-center gap-1">
               <Ship className="w-4 h-4 text-blue-500" />
@@ -804,7 +804,7 @@ export function SupplyChainMap({
               <span>Ground</span>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <span className="text-gray-500 font-medium">Status:</span>
             <div className="flex items-center gap-1">
               <div className="w-3 h-3 rounded-full bg-blue-500" />

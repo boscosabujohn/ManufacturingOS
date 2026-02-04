@@ -118,9 +118,9 @@ const ReplenishmentSuggestionsPage = () => {
     const currentDateTime = new Date().toISOString().split('T')[0];
 
     return (
-        <div className="w-full h-full p-6 space-y-6">
+        <div className="w-full h-full p-3 space-y-3">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <div>
                     <button
                         onClick={() => router.back()}
@@ -145,7 +145,7 @@ const ReplenishmentSuggestionsPage = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row gap-2 items-center justify-between">
                 <div className="relative w-full md:w-96">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
@@ -185,22 +185,22 @@ const ReplenishmentSuggestionsPage = () => {
                     <table className="w-full">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Item Details
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Stock Status
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Suggested Qty
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Supplier info
                                 </th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Status
                                 </th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Action
                                 </th>
                             </tr>
@@ -208,13 +208,13 @@ const ReplenishmentSuggestionsPage = () => {
                         <tbody className="divide-y divide-gray-200">
                             {filteredSuggestions.map((item) => (
                                 <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="flex flex-col">
                                             <span className="font-medium text-gray-900">{item.itemName}</span>
                                             <span className="text-xs text-gray-500 text-nowrap">{item.itemCode}</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="space-y-1">
                                             <div className="flex justify-between text-xs">
                                                 <span className="text-gray-500">Current:</span>
@@ -232,7 +232,7 @@ const ReplenishmentSuggestionsPage = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="flex items-center gap-2">
                                             <span className="text-lg font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100">
                                                 {item.suggestedQty}
@@ -240,19 +240,19 @@ const ReplenishmentSuggestionsPage = () => {
                                             <span className="text-sm text-gray-500">{item.uom}</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="flex flex-col">
                                             <span className="text-sm font-medium text-gray-900">{item.supplier}</span>
                                             <span className="text-xs text-gray-500">Lead Time: {item.leadTime} days</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(item.status)}`}>
                                             {item.status === 'critical' && <AlertTriangle className="w-3 h-3 mr-1" />}
                                             {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-3 py-2 text-right">
                                         <button className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline">
                                             Create PO
                                         </button>

@@ -33,9 +33,9 @@ export function AddInstallationActivityModal({ isOpen, onClose, onAdd }: AddInst
   const isValid = formData.activityNumber && formData.projectId && formData.equipmentItem && formData.location && formData.plannedStartDate && formData.plannedEndDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
@@ -50,8 +50,8 @@ export function AddInstallationActivityModal({ isOpen, onClose, onAdd }: AddInst
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Activity Number *</label>
               <input
@@ -199,7 +199,7 @@ export function AddInstallationActivityModal({ isOpen, onClose, onAdd }: AddInst
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -240,9 +240,9 @@ export function EditInstallationActivityModal({ isOpen, onClose, onEdit, activit
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -257,8 +257,8 @@ export function EditInstallationActivityModal({ isOpen, onClose, onEdit, activit
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Equipment Item</label>
               <input
@@ -343,7 +343,7 @@ export function EditInstallationActivityModal({ isOpen, onClose, onEdit, activit
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -378,9 +378,9 @@ export function UpdateProgressModal({ isOpen, onClose, onUpdate, activity }: Upd
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -395,7 +395,7 @@ export function UpdateProgressModal({ isOpen, onClose, onUpdate, activity }: Upd
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Progress: {formData.progress}%
@@ -417,7 +417,7 @@ export function UpdateProgressModal({ isOpen, onClose, onUpdate, activity }: Upd
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Actual Start Date</label>
               <input
@@ -450,7 +450,7 @@ export function UpdateProgressModal({ isOpen, onClose, onUpdate, activity }: Upd
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -486,9 +486,9 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, activity }: Uploa
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Upload className="w-5 h-5 text-white" />
@@ -503,10 +503,10 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, activity }: Uploa
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-sm text-gray-600 mb-4">
+            <Upload className="w-12 h-12 text-gray-400 mb-2" />
+            <p className="text-sm text-gray-600 mb-2">
               Drag and drop photos here, or click to select files
             </p>
             <input
@@ -526,7 +526,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, activity }: Uploa
           </div>
 
           {selectedFiles && (
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <p className="text-sm font-semibold text-gray-900 mb-2">
                 Selected Files: {selectedFiles.length}
               </p>
@@ -538,14 +538,14 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, activity }: Uploa
             </div>
           )}
 
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+          <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
             <p className="text-sm text-blue-800">
               <strong>Note:</strong> Upload photos of installation progress, completed work, safety measures, and quality checkpoints.
             </p>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -590,9 +590,9 @@ export function MarkSafetyChecklistModal({ isOpen, onClose, onMark, activity }: 
   const allChecked = checklistItems.every(item => item.checked);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -607,7 +607,7 @@ export function MarkSafetyChecklistModal({ isOpen, onClose, onMark, activity }: 
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           <div className="space-y-3">
             {checklistItems.map((item, index) => (
               <label key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
@@ -649,7 +649,7 @@ export function MarkSafetyChecklistModal({ isOpen, onClose, onMark, activity }: 
           </div>
 
           {allChecked && (
-            <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+            <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
               <p className="text-sm font-semibold text-green-800">
                 ✓ All safety checklist items completed
               </p>
@@ -657,7 +657,7 @@ export function MarkSafetyChecklistModal({ isOpen, onClose, onMark, activity }: 
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -696,9 +696,9 @@ export function MarkQualityCheckpointModal({ isOpen, onClose, onMark, activity }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -713,7 +713,7 @@ export function MarkQualityCheckpointModal({ isOpen, onClose, onMark, activity }
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Quality Inspector</label>
             <input
@@ -797,7 +797,7 @@ export function MarkQualityCheckpointModal({ isOpen, onClose, onMark, activity }
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -835,9 +835,9 @@ export function ReportIssueModal({ isOpen, onClose, onReport, activity }: Report
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-white" />
@@ -852,8 +852,8 @@ export function ReportIssueModal({ isOpen, onClose, onReport, activity }: Report
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-3">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Issue Type</label>
               <select
@@ -929,7 +929,7 @@ export function ReportIssueModal({ isOpen, onClose, onReport, activity }: Report
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -964,9 +964,9 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, activity }: Updat
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-xl w-full">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-white" />
@@ -981,7 +981,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, activity }: Updat
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Current Status: {activity.status}</label>
             <select
@@ -1022,7 +1022,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, activity }: Updat
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1058,9 +1058,9 @@ export function AssignTeamModal({ isOpen, onClose, onAssign, activity }: AssignT
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Users className="w-5 h-5 text-white" />
@@ -1075,7 +1075,7 @@ export function AssignTeamModal({ isOpen, onClose, onAssign, activity }: AssignT
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Team Name</label>
             <input
@@ -1087,7 +1087,7 @@ export function AssignTeamModal({ isOpen, onClose, onAssign, activity }: AssignT
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Team Size</label>
               <input
@@ -1133,7 +1133,7 @@ export function AssignTeamModal({ isOpen, onClose, onAssign, activity }: AssignT
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1171,9 +1171,9 @@ export function ScheduleActivityModal({ isOpen, onClose, onSchedule, activity }:
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
@@ -1188,8 +1188,8 @@ export function ScheduleActivityModal({ isOpen, onClose, onSchedule, activity }:
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-3">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Planned Start Date</label>
               <input
@@ -1210,7 +1210,7 @@ export function ScheduleActivityModal({ isOpen, onClose, onSchedule, activity }:
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Estimated Duration (days)</label>
               <input
@@ -1262,7 +1262,7 @@ export function ScheduleActivityModal({ isOpen, onClose, onSchedule, activity }:
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1300,9 +1300,9 @@ export function UpdateMaterialsModal({ isOpen, onClose, onUpdate, activity }: Up
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Package className="w-5 h-5 text-white" />
@@ -1317,7 +1317,7 @@ export function UpdateMaterialsModal({ isOpen, onClose, onUpdate, activity }: Up
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Material Availability Status</label>
             <select
@@ -1355,7 +1355,7 @@ export function UpdateMaterialsModal({ isOpen, onClose, onUpdate, activity }: Up
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Expected Delivery Date</label>
                   <input
@@ -1391,7 +1391,7 @@ export function UpdateMaterialsModal({ isOpen, onClose, onUpdate, activity }: Up
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1439,9 +1439,9 @@ export function AddDependenciesModal({ isOpen, onClose, onAdd, activity }: AddDe
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-violet-500 to-violet-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-500 to-violet-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Link className="w-5 h-5 text-white" />
@@ -1456,7 +1456,7 @@ export function AddDependenciesModal({ isOpen, onClose, onAdd, activity }: AddDe
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Dependent Activities (Must be completed before this activity)
@@ -1479,7 +1479,7 @@ export function AddDependenciesModal({ isOpen, onClose, onAdd, activity }: AddDe
             </div>
           </div>
 
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <label className="flex items-center space-x-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -1505,7 +1505,7 @@ export function AddDependenciesModal({ isOpen, onClose, onAdd, activity }: AddDe
           </div>
 
           {selectedDependencies.length > 0 && (
-            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+            <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
               <p className="text-sm font-semibold text-blue-900 mb-2">
                 Selected Dependencies ({selectedDependencies.length}):
               </p>
@@ -1518,7 +1518,7 @@ export function AddDependenciesModal({ isOpen, onClose, onAdd, activity }: AddDe
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1556,9 +1556,9 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -1573,7 +1573,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
             <select
@@ -1589,7 +1589,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
               <input
@@ -1610,7 +1610,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Project</label>
               <select
@@ -1675,7 +1675,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1710,9 +1710,9 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-xl w-full">
-        <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Download className="w-5 h-5 text-white" />
@@ -1727,7 +1727,7 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Export Scope</label>
             <select
@@ -1789,7 +1789,7 @@ export function ExportDataModal({ isOpen, onClose, onExport }: ExportDataModalPr
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
             Cancel
           </button>
@@ -1816,9 +1816,9 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -1833,9 +1833,9 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Project & Location */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <p className="text-sm text-gray-600">Project</p>
               <p className="font-medium text-gray-900">{activity.projectName}</p>
@@ -1852,9 +1852,9 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
           </div>
 
           {/* Equipment Details */}
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+          <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Equipment Details</h4>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Equipment Code</p>
                 <p className="font-medium text-gray-900">{activity.equipmentCode}</p>
@@ -1867,9 +1867,9 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
           </div>
 
           {/* Timeline */}
-          <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+          <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Timeline</h4>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Planned: {activity.plannedStartDate} to {activity.plannedEndDate}</p>
               </div>
@@ -1884,9 +1884,9 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
           </div>
 
           {/* Team & Resources */}
-          <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
+          <div className="bg-purple-50 border border-purple-200 p-3 rounded-lg">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Team & Resources</h4>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Team</p>
                 <p className="font-medium text-gray-900">{activity.assignedTeam}</p>
@@ -1915,7 +1915,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
           </div>
 
           {/* Status Indicators */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div className={`p-4 rounded-lg ${activity.prerequisitesCompleted ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
               <p className="text-sm text-gray-600">Prerequisites</p>
               <p className={`font-semibold ${activity.prerequisitesCompleted ? 'text-green-600' : 'text-red-600'}`}>
@@ -1962,7 +1962,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
 
           {/* Issues */}
           {activity.issues.length > 0 && (
-            <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
+            <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-red-900 mb-2 flex items-center">
                 <AlertTriangle className="h-4 w-4 mr-2" />
                 Issues ({activity.issues.length})
@@ -1992,13 +1992,13 @@ export function ViewFullDetailsModal({ isOpen, onClose, activity }: ViewFullDeta
           </div>
 
           {/* Remarks */}
-          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+          <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
             <p className="text-sm font-semibold text-gray-900 mb-1">Remarks:</p>
             <p className="text-sm text-gray-700">{activity.remarks}</p>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end bg-gray-50">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700"

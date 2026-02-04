@@ -57,9 +57,9 @@ export default function IncidentInvestigationPage() {
   const [activeTab, setActiveTab] = useState('Active');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Search className="h-8 w-8 text-orange-600" />
@@ -75,9 +75,9 @@ export default function IncidentInvestigationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Column: Active Investigations */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('Active')}
@@ -93,7 +93,7 @@ export default function IncidentInvestigationPage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {investigations.map((inv) => (
               <div key={inv.id} className="bg-white rounded-xl border border-gray-200 shadow-sm p-5 hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-3">
@@ -110,7 +110,7 @@ export default function IncidentInvestigationPage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2 text-sm">
                   <div className="flex items-center gap-2 text-gray-600">
                     <Users className="w-4 h-4 text-gray-400" />
                     <span>Lead: {inv.leadInvestigator}</span>
@@ -150,10 +150,10 @@ export default function IncidentInvestigationPage() {
         </div>
 
         {/* Sidebar: Tools & Actions */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* RCA Tools */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Analysis Tools</h3>
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Analysis Tools</h3>
             <div className="space-y-3">
               {rcaMethods.map((method) => (
                 <div key={method.id} className={`p-3 rounded-lg border cursor-pointer hover:bg-gray-50 transition-colors flex items-start gap-3 ${method.active ? 'border-orange-200 bg-orange-50' : 'border-gray-200'}`}>
@@ -170,9 +170,9 @@ export default function IncidentInvestigationPage() {
           </div>
 
           {/* Corrective Actions Summary */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Corrective Actions</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Corrective Actions</h3>
+            <div className="space-y-2">
               <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
                 <CheckSquare className="w-4 h-4 text-green-500 mt-1" />
                 <div>

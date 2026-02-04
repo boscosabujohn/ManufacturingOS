@@ -365,7 +365,7 @@ export default function ContractsPage() {
   })
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -392,8 +392,8 @@ export default function ContractsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-8 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <FileText className="h-8 w-8 text-gray-400" />
           </div>
@@ -401,7 +401,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">Total Contracts</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="h-8 w-8 text-green-500" />
           </div>
@@ -409,7 +409,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">Active</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="h-8 w-8 text-yellow-500" />
             {stats.expiringSoon > 0 && (
@@ -422,7 +422,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">Expiring Soon</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <FileX className="h-8 w-8 text-red-500" />
           </div>
@@ -430,7 +430,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">Expired</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="h-8 w-8 text-purple-500" />
           </div>
@@ -438,7 +438,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">Total Value</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <Shield className="h-8 w-8 text-blue-500" />
           </div>
@@ -446,7 +446,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">Compliance</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <AlertCircle className="h-8 w-8 text-red-500" />
           </div>
@@ -454,7 +454,7 @@ export default function ContractsPage() {
           <p className="text-sm text-gray-500 mt-1">High Risk</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <RefreshCw className="h-8 w-8 text-orange-500" />
             {stats.pendingRenewal > 0 && (
@@ -469,8 +469,8 @@ export default function ContractsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex flex-col lg:flex-row gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex flex-col lg:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -525,7 +525,7 @@ export default function ContractsPage() {
       </div>
 
       {/* Contracts List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredContracts.map((contract) => {
           const daysUntilExpiry = calculateDaysUntilExpiry(contract.endDate)
           const isExpanded = expandedContract === contract.id
@@ -535,7 +535,7 @@ export default function ContractsPage() {
               {/* Contract Header */}
               <div className="p-4">
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4 flex-1">
+                  <div className="flex items-start gap-2 flex-1">
                     <div className="p-2 bg-gray-100 rounded-lg">
                       {getTypeIcon(contract.type)}
                     </div>
@@ -556,7 +556,7 @@ export default function ContractsPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                      <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                         <span className="flex items-center gap-1">
                           <Building2 className="h-3 w-3" />
                           {contract.vendorName}
@@ -577,7 +577,7 @@ export default function ContractsPage() {
                         )}
                       </div>
 
-                      <div className="grid grid-cols-4 gap-4 mb-3">
+                      <div className="grid grid-cols-4 gap-2 mb-3">
                         <div>
                           <p className="text-xs text-gray-500">Start Date</p>
                           <p className="text-sm font-medium text-gray-900">{contract.startDate}</p>
@@ -661,7 +661,7 @@ export default function ContractsPage() {
 
                 {/* Expanded Content */}
                 {isExpanded && (
-                  <div className="mt-4 pt-4 border-t space-y-4">
+                  <div className="mt-4 pt-4 border-t space-y-2">
                     {/* Documents Section */}
                     <div>
                       <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
@@ -781,8 +781,8 @@ export default function ContractsPage() {
       {/* Upload Modal */}
       {showUploadModal && selectedContract && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Upload Document</h3>
               <button
                 onClick={() => setShowUploadModal(false)}
@@ -792,7 +792,7 @@ export default function ContractsPage() {
               </button>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-sm text-gray-600 mb-2">
                 Contract: {selectedContract.contractNumber} - {selectedContract.title}
               </p>
@@ -800,9 +800,9 @@ export default function ContractsPage() {
 
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
               <div className="text-center">
-                <Upload className="h-12 w-12 text-gray-400 mb-4" />
+                <Upload className="h-12 w-12 text-gray-400 mb-2" />
                 <p className="text-gray-600 mb-2">Drop files here or click to upload</p>
-                <p className="text-sm text-gray-500 mb-4">
+                <p className="text-sm text-gray-500 mb-2">
                   Supported formats: PDF, DOC, DOCX, XLS, XLSX (Max 25MB)
                 </p>
                 <input

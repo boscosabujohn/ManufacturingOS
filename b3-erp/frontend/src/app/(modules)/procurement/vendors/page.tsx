@@ -101,11 +101,11 @@ export default function VendorManagementPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
-      <div className="w-full space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-3">
+      <div className="w-full space-y-3">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div>
             <h1 className="text-3xl font-bold text-white flex items-center gap-3">
               <Building2 className="w-8 h-8 text-orange-500" />
@@ -120,7 +120,7 @@ export default function VendorManagementPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700 flex flex-wrap gap-4 items-center">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700 flex flex-wrap gap-2 items-center">
           <div className="flex-1 min-w-[300px] relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -148,12 +148,12 @@ export default function VendorManagementPage() {
         </div>
 
         {/* Vendors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredVendors.map((vendor) => (
             <div key={vendor.id} className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden hover:border-orange-500/50 transition-all duration-300 group">
               <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex items-center gap-4">
+                <div className="flex justify-between items-start mb-2">
+                  <div className="flex items-center gap-2">
                     <div className="w-12 h-12 rounded-lg bg-gray-700 flex items-center justify-center text-white font-bold text-lg">
                       <Building2 className="w-6 h-6 text-orange-400" />
                     </div>
@@ -167,7 +167,7 @@ export default function VendorManagementPage() {
                   </button>
                 </div>
 
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3 mb-3">
                   <div className="flex items-center gap-3 text-sm text-gray-300">
                     <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                     {vendor.rating} / 5.0 Rating
@@ -192,7 +192,7 @@ export default function VendorManagementPage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-900/50 px-6 py-3 border-t border-gray-700 flex justify-between items-center">
+              <div className="bg-gray-900/50 px-3 py-2 border-t border-gray-700 flex justify-between items-center">
                 <button className="text-sm text-gray-400 hover:text-white flex items-center gap-2">
                   <FileText className="w-4 h-4" />
                   Orders

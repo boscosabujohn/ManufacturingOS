@@ -74,9 +74,9 @@ export default function EvacuationDrillsPage() {
   const [filter, setFilter] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Bell className="h-8 w-8 text-orange-600" />
@@ -91,8 +91,8 @@ export default function EvacuationDrillsPage() {
       </div>
 
       {/* Performance Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Avg Evacuation Time</p>
@@ -107,7 +107,7 @@ export default function EvacuationDrillsPage() {
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Participation Rate</p>
@@ -122,7 +122,7 @@ export default function EvacuationDrillsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Drills (YTD)</p>
@@ -135,7 +135,7 @@ export default function EvacuationDrillsPage() {
           <p className="text-[10px] text-gray-400 mt-4 uppercase tracking-tighter">Next scheduled: <span className="text-orange-600 font-bold">April 15</span></p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Regulatory Compliance</p>
@@ -149,12 +149,12 @@ export default function EvacuationDrillsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Drill History Table */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden text-sm">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => setFilter('All')}
                   className={`text-xs font-bold pb-2 border-b-2 transition-colors ${filter === 'All' ? 'border-orange-600 text-gray-900' : 'border-transparent text-gray-400'}`}
@@ -174,37 +174,37 @@ export default function EvacuationDrillsPage() {
               <table className="w-full text-left">
                 <thead className="bg-gray-50 text-[10px] uppercase font-bold text-gray-500 border-b border-gray-100">
                   <tr>
-                    <th className="px-6 py-4">Drill Type & ID</th>
-                    <th className="px-6 py-4">Date & Time</th>
-                    <th className="px-6 py-4 text-center">Duration</th>
-                    <th className="px-6 py-4">Performance Rating</th>
-                    <th className="px-6 py-4 text-right">Reference</th>
+                    <th className="px-3 py-2">Drill Type & ID</th>
+                    <th className="px-3 py-2">Date & Time</th>
+                    <th className="px-3 py-2 text-center">Duration</th>
+                    <th className="px-3 py-2">Performance Rating</th>
+                    <th className="px-3 py-2 text-right">Reference</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50 font-medium">
                   {drillHistory.map((drill) => (
                     <tr key={drill.id} className="hover:bg-gray-50 transition-colors group cursor-pointer">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors uppercase">{drill.type}</div>
                         <div className="text-[10px] text-gray-400 mt-0.5 tracking-tighter">{drill.id} · {drill.participants} Enrolled</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-gray-900">{drill.date}</div>
                         <div className="text-[10px] text-gray-400">{drill.startTime}</div>
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         <span className="text-xs text-gray-600 flex items-center justify-center gap-1.5 font-black italic">
                           <Timer className="w-3.5 h-3.5 text-blue-400" /> {drill.duration}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold ${drill.rating === 'Exceeds Expectations' ? 'bg-green-50 text-green-700' :
                             drill.rating === 'Satisfactory' ? 'bg-blue-50 text-blue-700' : 'bg-orange-50 text-orange-700'
                           }`}>
                           {drill.rating}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <button className="p-1 hover:bg-gray-100 rounded-lg transition-colors"><MoreVertical className="w-4 h-4 text-gray-400" /></button>
                       </td>
                     </tr>
@@ -219,18 +219,18 @@ export default function EvacuationDrillsPage() {
         </div>
 
         {/* Sidebar: Next Up & Observations */}
-        <div className="space-y-6">
-          <div className="bg-gray-900 p-6 rounded-xl text-white shadow-xl">
-            <div className="flex items-center gap-2 mb-4">
+        <div className="space-y-3">
+          <div className="bg-gray-900 p-3 rounded-xl text-white shadow-xl">
+            <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></div>
               <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Next Drill Session</span>
             </div>
             <h3 className="text-lg font-bold mb-1">Administrative Block A</h3>
-            <p className="text-xs text-gray-400 flex items-center gap-2 mb-6 italic">
+            <p className="text-xs text-gray-400 flex items-center gap-2 mb-3 italic">
               <MapPin className="w-3.5 h-3.5 text-orange-600" /> Primary Assembly Point: East Lawn
             </p>
 
-            <div className="space-y-4 mb-6">
+            <div className="space-y-2 mb-3">
               <div className="flex items-center justify-between text-xs py-2 border-b border-gray-800">
                 <span className="text-gray-400">Scheduled Date</span>
                 <span className="font-bold">April 15, 2024</span>
@@ -246,12 +246,12 @@ export default function EvacuationDrillsPage() {
             </button>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-4 text-sm flex items-center gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-2 text-sm flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-orange-400" />
               Key Observations
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {[
                 { text: 'Assembly Point B signage needs replacement.', priority: 'Medium' },
                 { text: 'Stairwell 4 lighting flickering during evacuation.', priority: 'High' }

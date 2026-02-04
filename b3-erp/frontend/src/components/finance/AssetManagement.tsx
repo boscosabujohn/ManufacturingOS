@@ -408,10 +408,10 @@ const AssetManagement: React.FC = () => {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <DollarSign className="h-8 w-8 text-blue-600" />
@@ -425,7 +425,7 @@ const AssetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <DocumentTextIcon className="h-8 w-8 text-green-600" />
@@ -437,7 +437,7 @@ const AssetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <TrendingDown className="h-8 w-8 text-orange-600" />
@@ -451,7 +451,7 @@ const AssetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <WrenchScrewdriverIcon className="h-8 w-8 text-red-600" />
@@ -468,9 +468,9 @@ const AssetManagement: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Asset Value Trends</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Asset Value Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={assetValueData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -484,8 +484,8 @@ const AssetManagement: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Asset Distribution by Category</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Asset Distribution by Category</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -508,9 +508,9 @@ const AssetManagement: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Depreciation Expense Forecast</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Depreciation Expense Forecast</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={depreciationTrendData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -522,9 +522,9 @@ const AssetManagement: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Asset Categories</h3>
-          <div className="space-y-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Asset Categories</h3>
+          <div className="space-y-2">
             {categoryDistribution.map((category) => (
               <div key={category.name} className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -546,7 +546,7 @@ const AssetManagement: React.FC = () => {
   );
 
   const renderAssets = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <h3 className="text-lg font-semibold text-gray-900">Asset Registry</h3>
@@ -575,22 +575,22 @@ const AssetManagement: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Asset
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Location
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Current Value
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -602,7 +602,7 @@ const AssetManagement: React.FC = () => {
                   const CategoryIcon = asset.category.icon;
                   return (
                     <tr key={asset.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-8 w-8">
                             <CategoryIcon className="h-8 w-8" style={{ color: asset.category.color }} />
@@ -613,22 +613,22 @@ const AssetManagement: React.FC = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
                               style={{ backgroundColor: asset.category.color + '20', color: asset.category.color }}>
                           {asset.category.name}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                         {asset.location}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                         {formatCurrency(asset.currentValue)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         {getStatusBadge(asset.status)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                         <div className="flex space-x-2">
                           <button
                             onClick={() => setSelectedAsset(asset)}
@@ -659,7 +659,7 @@ const AssetManagement: React.FC = () => {
     const schedule = calculateDepreciationSchedule(selectedAssetForDepreciation);
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-3">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold text-gray-900">Depreciation Analysis</h3>
           <select
@@ -676,9 +676,9 @@ const AssetManagement: React.FC = () => {
         {selectedAssetForDepreciation && (
           <>
             {/* Asset Summary */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h4 className="font-medium text-gray-900 mb-4">{selectedAssetForDepreciation.name}</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+              <h4 className="font-medium text-gray-900 mb-2">{selectedAssetForDepreciation.name}</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Acquisition Cost</p>
                   <p className="font-medium text-gray-900">{formatCurrency(selectedAssetForDepreciation.acquisitionCost)}</p>
@@ -700,7 +700,7 @@ const AssetManagement: React.FC = () => {
 
             {/* Depreciation Schedule */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-              <div className="px-6 py-4 border-b border-gray-200">
+              <div className="px-3 py-2 border-b border-gray-200">
                 <h4 className="font-medium text-gray-900">Depreciation Schedule</h4>
               </div>
               <div className="p-6">
@@ -708,19 +708,19 @@ const AssetManagement: React.FC = () => {
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Year
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Beginning Value
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Depreciation Expense
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Accumulated Depreciation
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Ending Value
                         </th>
                       </tr>
@@ -728,19 +728,19 @@ const AssetManagement: React.FC = () => {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {schedule.map((row) => (
                         <tr key={row.year}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                             {row.year}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             {formatCurrency(row.beginningValue)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-red-600">
                             {formatCurrency(row.depreciationExpense)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-red-600">
                             {formatCurrency(row.accumulatedDepreciation)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                             {formatCurrency(row.endingValue)}
                           </td>
                         </tr>
@@ -757,19 +757,19 @@ const AssetManagement: React.FC = () => {
   };
 
   const renderMaintenance = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Maintenance Management</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h4 className="font-medium text-gray-900">Maintenance Records</h4>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {maintenanceRecords.map((record) => {
               const asset = assets.find(a => a.id === record.assetId);
               return (
-                <div key={record.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={record.id} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900">{asset?.name}</h5>
@@ -807,24 +807,24 @@ const AssetManagement: React.FC = () => {
   );
 
   const renderMovements = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Asset Movements</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h4 className="font-medium text-gray-900">Movement History</h4>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {assetMovements.map((movement) => {
               const asset = assets.find(a => a.id === movement.assetId);
               return (
-                <div key={movement.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={movement.id} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <h5 className="font-medium text-gray-900">{asset?.name}</h5>
                       <p className="text-sm text-gray-600">{movement.reason}</p>
-                      <div className="mt-2 grid grid-cols-2 gap-4 text-sm">
+                      <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
                         <div>
                           <p className="text-gray-500">From:</p>
                           <p className="text-gray-900">{movement.fromLocation}</p>
@@ -852,14 +852,14 @@ const AssetManagement: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Asset Management</h1>
         <p className="text-gray-600 mt-2">Track and manage assets with depreciation calculation and maintenance scheduling</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: DollarSign },

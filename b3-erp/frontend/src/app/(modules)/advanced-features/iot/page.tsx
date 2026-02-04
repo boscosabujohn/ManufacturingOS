@@ -69,9 +69,9 @@ export default function IoTPage() {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
-            <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
+            <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
                     <Link href="/advanced-features" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                         <span className="text-gray-700">Back</span>
@@ -91,8 +91,8 @@ export default function IoTPage() {
             </div>
 
             {/* Network Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-8">
+                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-blue-100 rounded-lg">
                             <Wifi className="w-5 h-5 text-blue-600" />
@@ -101,7 +101,7 @@ export default function IoTPage() {
                     </div>
                     <p className="text-2xl font-bold text-gray-900">42</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-green-100 rounded-lg">
                             <CheckCircle className="w-5 h-5 text-green-600" />
@@ -110,7 +110,7 @@ export default function IoTPage() {
                     </div>
                     <p className="text-2xl font-bold text-gray-900">38</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-yellow-100 rounded-lg">
                             <AlertTriangle className="w-5 h-5 text-yellow-600" />
@@ -119,7 +119,7 @@ export default function IoTPage() {
                     </div>
                     <p className="text-2xl font-bold text-gray-900">3</p>
                 </div>
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-red-100 rounded-lg">
                             <Activity className="w-5 h-5 text-red-600" />
@@ -131,7 +131,7 @@ export default function IoTPage() {
             </div>
 
             {/* Device Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {devices.map((device) => (
                     <div key={device.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
                         <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
@@ -147,7 +147,7 @@ export default function IoTPage() {
                             </span>
                         </div>
 
-                        <div className="p-4 grid grid-cols-2 gap-4">
+                        <div className="p-4 grid grid-cols-2 gap-2">
                             <div className="flex items-center gap-2">
                                 <Thermometer className="w-4 h-4 text-gray-400" />
                                 <div>

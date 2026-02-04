@@ -186,7 +186,7 @@ export default function ProjectDashboardPage() {
  return (
   <div className="w-full min-h-screen px-3 py-2 space-y-3">
    {/* Header Actions */}
-   <div className="flex justify-between items-start gap-3 mb-4">
+   <div className="flex justify-between items-start gap-3 mb-2">
     <div className="flex items-center gap-3">
      <button
       onClick={() => setShowQuickActionsModal(true)}
@@ -251,7 +251,7 @@ export default function ProjectDashboardPage() {
    {/* Key Metrics */}
    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
        <FolderKanban className="w-6 h-6 text-blue-600" />
       </div>
@@ -263,7 +263,7 @@ export default function ProjectDashboardPage() {
     </div>
 
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
        <DollarSign className="w-6 h-6 text-green-600" />
       </div>
@@ -277,7 +277,7 @@ export default function ProjectDashboardPage() {
     </div>
 
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
        <TrendingUp className="w-6 h-6 text-purple-600" />
       </div>
@@ -289,7 +289,7 @@ export default function ProjectDashboardPage() {
     </div>
 
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
        <AlertTriangle className="w-6 h-6 text-orange-600" />
       </div>
@@ -305,8 +305,8 @@ export default function ProjectDashboardPage() {
    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Project Health Trend */}
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Health Trend</h3>
-     <div className="h-64 flex items-end justify-between gap-4">
+     <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Health Trend</h3>
+     <div className="h-64 flex items-end justify-between gap-2">
       {healthTrend.map((data, index) => (
        <div key={index} className="flex-1 flex flex-col items-center">
         <div className="w-full bg-gray-100 rounded-t relative group">
@@ -331,7 +331,7 @@ export default function ProjectDashboardPage() {
 
     {/* Resource Utilization */}
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <h3 className="text-lg font-semibold text-gray-900">Resource Utilization</h3>
       <div className="flex items-center gap-2">
        <Users className="w-5 h-5 text-gray-400" />
@@ -464,27 +464,27 @@ export default function ProjectDashboardPage() {
 
    {/* Quick Actions */}
    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-    <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-     <Link href="/project-management/create" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
+    <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Actions</h3>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+     <Link href="/project-management/create" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
        <FolderKanban className="w-6 h-6 text-blue-600" />
       </div>
       <span className="text-sm font-medium text-gray-900">Create Project</span>
      </Link>
-     <Link href="/project-management/tasks" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
+     <Link href="/project-management/tasks" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
        <CheckCircle className="w-6 h-6 text-purple-600" />
       </div>
       <span className="text-sm font-medium text-gray-900">View Tasks</span>
      </Link>
-     <Link href="/project-management/resources" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
+     <Link href="/project-management/resources" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
        <Users className="w-6 h-6 text-green-600" />
       </div>
       <span className="text-sm font-medium text-gray-900">Manage Resources</span>
      </Link>
-     <Link href="/project-management/analytics" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
+     <Link href="/project-management/analytics" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
       <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
        <BarChart3 className="w-6 h-6 text-orange-600" />
       </div>

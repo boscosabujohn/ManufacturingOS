@@ -224,11 +224,11 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleCancel}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -269,10 +269,10 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Basic Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                 <Truck className="w-5 h-5 text-blue-600" />
               </div>
@@ -282,7 +282,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Carrier Code <span className="text-red-500">*</span>
@@ -350,8 +350,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Contact Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                 <User className="w-5 h-5 text-purple-600" />
               </div>
@@ -361,7 +361,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Contact Person <span className="text-red-500">*</span>
@@ -429,8 +429,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Address Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-green-600" />
               </div>
@@ -440,7 +440,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Address <span className="text-red-500">*</span>
@@ -458,7 +458,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                 )}
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     City <span className="text-red-500">*</span>
@@ -531,8 +531,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Service Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
                 <Truck className="w-5 h-5 text-indigo-600" />
               </div>
@@ -542,7 +542,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   Service Types <span className="text-red-500">*</span>
@@ -607,8 +607,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Tax Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5 text-orange-600" />
               </div>
@@ -618,7 +618,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   GST Number
@@ -658,8 +658,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Bank Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                 <Building2 className="w-5 h-5 text-purple-600" />
               </div>
@@ -669,7 +669,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Bank Name
@@ -717,8 +717,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Features & Capabilities */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <CheckCircle2 className="w-5 h-5 text-green-600" />
               </div>
@@ -728,8 +728,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <input
                   type="checkbox"
                   id="insuranceCoverage"
@@ -743,7 +743,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                 </label>
               </div>
 
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <input
                   type="checkbox"
                   id="trackingEnabled"
@@ -757,7 +757,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                 </label>
               </div>
 
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <input
                   type="checkbox"
                   id="podEnabled"
@@ -774,8 +774,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Additional Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5 text-gray-600" />
               </div>

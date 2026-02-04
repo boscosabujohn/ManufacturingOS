@@ -230,14 +230,14 @@ export default function PayrollDisbursementPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Salary Disbursement</h1>
         <p className="text-sm text-gray-600 mt-1">Process and track salary payments to employee bank accounts</p>
       </div>
 
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">{mockBatch.monthYear}</h2>
             <p className="text-sm text-gray-600 mt-1">Pay Period: {mockBatch.payPeriod}</p>
@@ -253,8 +253,8 @@ export default function PayrollDisbursementPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -264,7 +264,7 @@ export default function PayrollDisbursementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Amount</p>
@@ -274,7 +274,7 @@ export default function PayrollDisbursementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Approved By</p>
@@ -284,7 +284,7 @@ export default function PayrollDisbursementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Processed On</p>
@@ -304,8 +304,8 @@ export default function PayrollDisbursementPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -315,7 +315,7 @@ export default function PayrollDisbursementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Processing</p>
@@ -325,7 +325,7 @@ export default function PayrollDisbursementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -335,7 +335,7 @@ export default function PayrollDisbursementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Failed</p>
@@ -346,8 +346,8 @@ export default function PayrollDisbursementPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 items-end">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 items-end">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Bank</label>
             <select
@@ -393,10 +393,10 @@ export default function PayrollDisbursementPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map(record => (
-          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{record.employeeName}</h3>
@@ -425,8 +425,8 @@ export default function PayrollDisbursementPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center gap-2 mb-3">
                   <Building2 className="h-5 w-5 text-blue-600" />
                   <h4 className="font-semibold text-blue-900 text-sm">Bank Details</h4>
@@ -447,7 +447,7 @@ export default function PayrollDisbursementPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <div className="flex items-center gap-2 mb-3">
                   <Send className="h-5 w-5 text-purple-600" />
                   <h4 className="font-semibold text-purple-900 text-sm">Transaction Details</h4>
@@ -484,7 +484,7 @@ export default function PayrollDisbursementPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center gap-2 mb-3">
                   <DollarSign className="h-5 w-5 text-green-600" />
                   <h4 className="font-semibold text-green-900 text-sm">Payment Summary</h4>
@@ -543,7 +543,7 @@ export default function PayrollDisbursementPage() {
       </div>
 
       {mockBatch.completedCount === mockBatch.employeeCount && (
-        <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-6">
+        <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold text-green-900">All disbursements completed!</h3>
@@ -557,7 +557,7 @@ export default function PayrollDisbursementPage() {
       )}
 
       {mockBatch.failedCount > 0 && (
-        <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-6">
+        <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold text-red-900">Action Required</h3>
@@ -565,14 +565,14 @@ export default function PayrollDisbursementPage() {
                 {mockBatch.failedCount} payment{mockBatch.failedCount > 1 ? 's' : ''} failed. Please review and retry.
               </p>
             </div>
-            <button className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium">
+            <button className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium">
               Review Failed Payments
             </button>
           </div>
         </div>
       )}
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Disbursement Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Verify all bank account details before processing payments</li>
@@ -648,9 +648,9 @@ interface ReceiptModalProps {
 
 function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Payment Receipt</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -659,14 +659,14 @@ function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
 
         <div className="p-6" id="receipt-content">
           {/* Company Header */}
-          <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
+          <div className="text-center mb-3 pb-4 border-b-2 border-gray-200">
             <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
             <p className="text-sm text-gray-600">Solution to manufacturers System</p>
             <p className="text-xs text-gray-500 mt-1">Salary Payment Receipt</p>
           </div>
 
           {/* Receipt Details */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <p className="text-xs text-gray-600">Transaction ID</p>
               <p className="font-semibold text-gray-900">{record.transactionId}</p>
@@ -688,7 +688,7 @@ function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
           </div>
 
           {/* Bank Details */}
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-blue-900 mb-3">Bank Details</h3>
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -711,7 +711,7 @@ function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
           </div>
 
           {/* Amount Details */}
-          <div className="bg-green-50 rounded-lg p-4 mb-6">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-sm text-green-700">Net Salary Paid</p>
@@ -728,7 +728,7 @@ function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={() => window.print()}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center gap-2"
@@ -757,9 +757,9 @@ interface BankFileModalProps {
 
 function BankFileModal({ batch, onClose }: BankFileModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Download Bank File</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -767,12 +767,12 @@ function BankFileModal({ batch, onClose }: BankFileModalProps) {
         </div>
 
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
+          <p className="text-sm text-gray-600 mb-3">
             Select the format for your bank's bulk payment processing system
           </p>
 
           <div className="space-y-3">
-            <button className="w-full p-4 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
+            <button className="w-full p-3 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-gray-900">NEFT Format (CSV)</p>
@@ -782,7 +782,7 @@ function BankFileModal({ batch, onClose }: BankFileModalProps) {
               </div>
             </button>
 
-            <button className="w-full p-4 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
+            <button className="w-full p-3 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-gray-900">RTGS Format (Excel)</p>
@@ -792,7 +792,7 @@ function BankFileModal({ batch, onClose }: BankFileModalProps) {
               </div>
             </button>
 
-            <button className="w-full p-4 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
+            <button className="w-full p-3 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-gray-900">Generic Format (TXT)</p>
@@ -810,7 +810,7 @@ function BankFileModal({ batch, onClose }: BankFileModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
@@ -832,9 +832,9 @@ interface PaymentReportModalProps {
 
 function PaymentReportModal({ batch, onClose, formatCurrency }: PaymentReportModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between sticky top-0">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-3 py-2 flex items-center justify-between sticky top-0">
           <h2 className="text-xl font-bold text-white">Payment Summary Report</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -843,14 +843,14 @@ function PaymentReportModal({ batch, onClose, formatCurrency }: PaymentReportMod
 
         <div className="p-6">
           {/* Report Header */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-3">
             <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
             <p className="text-sm text-gray-600">Salary Disbursement Report</p>
             <p className="text-xs text-gray-500 mt-1">{batch.monthYear}</p>
           </div>
 
           {/* Summary Stats */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-4 gap-2 mb-3">
             <div className="bg-blue-50 rounded-lg p-3 text-center">
               <p className="text-xs text-blue-700">Total Employees</p>
               <p className="text-2xl font-bold text-blue-900">{batch.employeeCount}</p>
@@ -915,7 +915,7 @@ function PaymentReportModal({ batch, onClose, formatCurrency }: PaymentReportMod
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={() => window.print()}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center gap-2"
@@ -945,9 +945,9 @@ interface ProcessPaymentModalProps {
 
 function ProcessPaymentModal({ record, onClose, formatCurrency }: ProcessPaymentModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Process Payment</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -955,12 +955,12 @@ function ProcessPaymentModal({ record, onClose, formatCurrency }: ProcessPayment
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
             <p className="text-sm text-gray-600">{record.designation} • {record.department}</p>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
             <h4 className="font-semibold text-blue-900 mb-3">Payment Details</h4>
             <div className="space-y-2">
               <div className="flex justify-between">
@@ -982,14 +982,14 @@ function ProcessPaymentModal({ record, onClose, formatCurrency }: ProcessPayment
             </div>
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-6">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-3">
             <p className="text-xs text-yellow-800">
               <strong>Confirm:</strong> Please verify all details before processing the payment. This action cannot be undone.
             </p>
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
@@ -1024,9 +1024,9 @@ function UpdateBankModal({ record, onClose }: UpdateBankModalProps) {
   const [ifscCode, setIfscCode] = useState(record.ifscCode);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Update Bank Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -1034,12 +1034,12 @@ function UpdateBankModal({ record, onClose }: UpdateBankModalProps) {
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
             <p className="text-sm text-gray-600">{record.employeeId}</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Bank Name</label>
               <input
@@ -1078,7 +1078,7 @@ function UpdateBankModal({ record, onClose }: UpdateBankModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"

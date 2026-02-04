@@ -365,10 +365,10 @@ export default function GuidedSellingPlaybooksPage() {
   const totalDeals = playbooks.reduce((sum, p) => sum + p.successfulDeals, 0);
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -392,8 +392,8 @@ export default function GuidedSellingPlaybooksPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Playbooks</span>
             <BookOpen className="h-5 w-5 text-blue-600" />
@@ -402,7 +402,7 @@ export default function GuidedSellingPlaybooksPage() {
           <div className="text-xs text-blue-700 mt-1">{activePlaybooks} active</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Avg Win Rate</span>
             <Target className="h-5 w-5 text-green-600" />
@@ -411,7 +411,7 @@ export default function GuidedSellingPlaybooksPage() {
           <div className="text-xs text-green-700 mt-1">Across all playbooks</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Successful Deals</span>
             <Award className="h-5 w-5 text-purple-600" />
@@ -420,7 +420,7 @@ export default function GuidedSellingPlaybooksPage() {
           <div className="text-xs text-purple-700 mt-1">Total wins</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-orange-900">Total Usage</span>
             <TrendingUp className="h-5 w-5 text-orange-600" />
@@ -433,8 +433,8 @@ export default function GuidedSellingPlaybooksPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -468,7 +468,7 @@ export default function GuidedSellingPlaybooksPage() {
       </div>
 
       {/* Playbooks Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredPlaybooks.map((playbook) => {
           const statusInfo = getStatusBadge(playbook.status);
           const StatusIcon = statusInfo.icon;
@@ -495,7 +495,7 @@ export default function GuidedSellingPlaybooksPage() {
 
               {/* Card Body */}
               <div className="p-5">
-                <div className="space-y-3 mb-4">
+                <div className="space-y-3 mb-2">
                   <div className="flex items-center gap-2 text-sm">
                     <Users className="h-4 w-4 text-gray-400" />
                     <span className="text-gray-700">{playbook.targetSegment}</span>
@@ -504,7 +504,7 @@ export default function GuidedSellingPlaybooksPage() {
                 </div>
 
                 {/* Metrics */}
-                <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="grid grid-cols-2 gap-3 mb-2">
                   <div className="bg-green-50 rounded-lg p-3">
                     <div className="text-xs text-green-700 mb-1">Win Rate</div>
                     <div className="text-lg font-bold text-green-900">{playbook.winRate.toFixed(1)}%</div>
@@ -524,7 +524,7 @@ export default function GuidedSellingPlaybooksPage() {
                 </div>
 
                 {/* Performance */}
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                <div className="bg-gray-50 rounded-lg p-3 mb-2">
                   <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
                     <span>Success Rate</span>
                     <span>{playbook.successfulDeals} of {playbook.usageCount} deals</span>

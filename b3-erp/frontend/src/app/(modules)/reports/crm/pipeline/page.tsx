@@ -32,8 +32,8 @@ export default function PipelineAnalysisReport() {
     return (
         <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
             {/* Header */}
-            <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                             <TrendingUp className="w-5 h-5 text-white" />
@@ -57,9 +57,9 @@ export default function PipelineAnalysisReport() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
                 {/* Visual KPI Row */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                     <Card
                         className="cursor-pointer hover:shadow-md transition-all border-l-4 border-l-blue-500 hover:-translate-y-1"
                         onClick={() => router.push('/reports/crm/pipeline/stage')}
@@ -132,7 +132,7 @@ export default function PipelineAnalysisReport() {
                 </div>
 
                 {/* Funnel & Distribution Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <Card className="overflow-hidden border-gray-100 shadow-sm">
                         <CardHeader className="bg-white border-b border-gray-100 py-4 flex flex-row items-center justify-between">
                             <CardTitle className="text-sm font-black uppercase tracking-widest text-gray-900">Pipeline by Stage</CardTitle>
@@ -146,12 +146,12 @@ export default function PipelineAnalysisReport() {
                                 onClick={() => router.push('/reports/crm/pipeline/stage')}
                             >
                                 <div className="text-center group-hover:scale-110 transition-transform">
-                                    <Layers className="w-16 h-16 text-blue-500 mb-4" />
+                                    <Layers className="w-16 h-16 text-blue-500 mb-2" />
                                     <p className="text-blue-900 font-bold">Funnel Visualization</p>
                                     <p className="text-xs text-blue-600 mt-1">Detailed conversion metrics by stage</p>
                                 </div>
                             </div>
-                            <div className="mt-8 space-y-4">
+                            <div className="mt-8 space-y-2">
                                 <div className="space-y-1.5">
                                     <div className="flex justify-between text-[10px] font-black uppercase tracking-tighter">
                                         <span className="text-gray-400">Negotiation</span>
@@ -187,12 +187,12 @@ export default function PipelineAnalysisReport() {
                                 onClick={() => router.push('/reports/crm/pipeline/owner')}
                             >
                                 <div className="text-center group-hover:scale-110 transition-transform">
-                                    <User className="w-16 h-16 text-green-500 mb-4" />
+                                    <User className="w-16 h-16 text-green-500 mb-2" />
                                     <p className="text-green-900 font-bold">Team Performance</p>
                                     <p className="text-xs text-green-600 mt-1">Inventory of deals per representative</p>
                                 </div>
                             </div>
-                            <div className="mt-8 grid grid-cols-2 gap-4">
+                            <div className="mt-8 grid grid-cols-2 gap-2">
                                 <div className="bg-gray-50 p-3 rounded-xl border border-gray-100">
                                     <p className="text-[9px] font-black text-gray-400 uppercase">Top Performer</p>
                                     <p className="text-sm font-bold text-gray-900 mt-1">Eleanor Shellstrop</p>
@@ -209,7 +209,7 @@ export default function PipelineAnalysisReport() {
                 </div>
 
                 {/* Velocity Insights Panel */}
-                <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-6 text-white flex items-center gap-8 shadow-xl">
+                <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-3 text-white flex items-center gap-8 shadow-xl">
                     <div className="p-4 bg-gray-800 rounded-2xl">
                         <TrendingUp className="w-10 h-10 text-orange-500" />
                     </div>

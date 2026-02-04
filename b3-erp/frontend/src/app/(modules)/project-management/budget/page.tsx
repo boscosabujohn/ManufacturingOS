@@ -163,7 +163,7 @@ export default function BudgetManagementPage() {
   return (
    <div className="flex items-center justify-center min-h-screen">
     <div className="text-center">
-     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-2"></div>
      <p className="text-gray-600">Loading budget data...</p>
     </div>
    </div>
@@ -202,7 +202,7 @@ export default function BudgetManagementPage() {
    </div>
 
    {/* Summary Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+   <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
     <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
@@ -286,7 +286,7 @@ export default function BudgetManagementPage() {
    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Budget Allocation Pie Chart */}
     <div className="bg-white p-3 rounded-lg border border-gray-200">
-     <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Allocation by Category</h3>
+     <h3 className="text-lg font-semibold text-gray-900 mb-2">Budget Allocation by Category</h3>
      <ResponsiveContainer width="100%" height={300}>
       <PieChart>
        <Pie
@@ -310,7 +310,7 @@ export default function BudgetManagementPage() {
 
     {/* Planned vs Actual Bar Chart */}
     <div className="bg-white p-3 rounded-lg border border-gray-200">
-     <h3 className="text-lg font-semibold text-gray-900 mb-4">Planned vs Actual by Category</h3>
+     <h3 className="text-lg font-semibold text-gray-900 mb-2">Planned vs Actual by Category</h3>
      <ResponsiveContainer width="100%" height={300}>
       <BarChart data={varianceData}>
        <CartesianGrid strokeDasharray="3 3" />
@@ -327,7 +327,7 @@ export default function BudgetManagementPage() {
 
    {/* Spending Trend */}
    <div className="bg-white p-3 rounded-lg border border-gray-200">
-    <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Burndown & Forecast</h3>
+    <h3 className="text-lg font-semibold text-gray-900 mb-2">Budget Burndown & Forecast</h3>
     <ResponsiveContainer width="100%" height={300}>
      <LineChart data={spendingTrend}>
       <CartesianGrid strokeDasharray="3 3" />
@@ -373,25 +373,25 @@ export default function BudgetManagementPage() {
      <table className="min-w-full">
       <thead className="bg-gray-50">
        <tr>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Category
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Budget Allocated
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Budget Spent
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Variance
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Variance %
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Forecast (EAC)
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Status
         </th>
        </tr>
@@ -399,7 +399,7 @@ export default function BudgetManagementPage() {
       <tbody className="bg-white divide-y divide-gray-200">
        {budgetData.map((cat, index) => (
         <tr key={index} className="hover:bg-gray-50">
-         <td className="px-6 py-4 whitespace-nowrap">
+         <td className="px-3 py-2 whitespace-nowrap">
           <div className="flex items-center gap-2">
            <div
             className="w-3 h-3 rounded"
@@ -408,13 +408,13 @@ export default function BudgetManagementPage() {
            <span className="text-sm font-medium text-gray-900">{cat.category}</span>
           </div>
          </td>
-         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+         <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
           ${cat.budgetAllocated.toLocaleString()}
          </td>
-         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+         <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
           ${cat.budgetSpent.toLocaleString()}
          </td>
-         <td className="px-6 py-4 whitespace-nowrap">
+         <td className="px-3 py-2 whitespace-nowrap">
           <span
            className={`text-sm font-medium ${cat.variance > 0 ? 'text-green-600' : cat.variance < 0 ? 'text-red-600' : 'text-gray-600'
             }`}
@@ -422,7 +422,7 @@ export default function BudgetManagementPage() {
            ${Math.abs(cat.variance).toLocaleString()}
           </span>
          </td>
-         <td className="px-6 py-4 whitespace-nowrap">
+         <td className="px-3 py-2 whitespace-nowrap">
           <div className="flex items-center gap-1">
            {getVarianceIcon(cat.variance)}
            <span
@@ -433,10 +433,10 @@ export default function BudgetManagementPage() {
            </span>
           </div>
          </td>
-         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+         <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
           ${cat.forecast.toLocaleString()}
          </td>
-         <td className="px-6 py-4 whitespace-nowrap">
+         <td className="px-3 py-2 whitespace-nowrap">
           <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getVarianceColor(cat.variance)}`}>
            {cat.variance > 0 ? 'Under Budget' : cat.variance < 0 ? 'Over Budget' : 'On Track'}
           </span>
@@ -445,14 +445,14 @@ export default function BudgetManagementPage() {
        ))}
        {/* Total Row */}
        <tr className="bg-gray-50 font-semibold">
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">TOTAL</td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">TOTAL</td>
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
          ${totalBudget.toLocaleString()}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
          ${totalSpent.toLocaleString()}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap">
+        <td className="px-3 py-2 whitespace-nowrap">
          <span
           className={`text-sm font-medium ${totalVariance > 0 ? 'text-green-600' : totalVariance < 0 ? 'text-red-600' : 'text-gray-600'
            }`}
@@ -460,7 +460,7 @@ export default function BudgetManagementPage() {
           ${Math.abs(totalVariance).toLocaleString()}
          </span>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap">
+        <td className="px-3 py-2 whitespace-nowrap">
          <span
           className={`text-sm font-medium ${totalVariance > 0 ? 'text-green-600' : totalVariance < 0 ? 'text-red-600' : 'text-gray-600'
            }`}
@@ -468,10 +468,10 @@ export default function BudgetManagementPage() {
           {totalBudget > 0 ? ((totalVariance / totalBudget) * 100).toFixed(1) : 0}%
          </span>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
          ${totalForecast.toLocaleString()}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap">
+        <td className="px-3 py-2 whitespace-nowrap">
          <span
           className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getVarianceColor(totalVariance)}`}
          >
@@ -486,12 +486,12 @@ export default function BudgetManagementPage() {
 
    {/* Insights */}
    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
-    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
      <DollarSign className="h-5 w-5 text-blue-600" />
      Budget Insights & Recommendations
     </h3>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-     <div className="bg-white p-4 rounded-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+     <div className="bg-white p-3 rounded-lg">
       <h4 className="font-medium text-gray-900 mb-2">✅ Performing Well</h4>
       <ul className="text-sm text-gray-600 space-y-1">
        <li>• Labor costs 10% under budget</li>
@@ -499,7 +499,7 @@ export default function BudgetManagementPage() {
        <li>• Overall utilization at 96%</li>
       </ul>
      </div>
-     <div className="bg-white p-4 rounded-lg">
+     <div className="bg-white p-3 rounded-lg">
       <h4 className="font-medium text-gray-900 mb-2">⚠️ Needs Attention</h4>
       <ul className="text-sm text-gray-600 space-y-1">
        <li>• Materials 6.7% over budget</li>

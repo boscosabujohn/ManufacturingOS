@@ -121,7 +121,7 @@ export default function AnalyticsDashboard() {
   const maxRevenue = Math.max(...serviceTypeData.map(d => d.revenue));
 
   return (
-    <div className="p-6 space-y-6 w-full">
+    <div className="p-6 space-y-3 w-full">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -155,8 +155,8 @@ export default function AnalyticsDashboard() {
       </div>
 
       {/* Key Metrics Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Response SLA</span>
             <Clock className="w-4 h-4 text-blue-600" />
@@ -176,7 +176,7 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Resolution SLA</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -196,7 +196,7 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">NPS Score</span>
             <Activity className="w-4 h-4 text-purple-600" />
@@ -216,7 +216,7 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Response Time</span>
             <Clock className="w-4 h-4 text-orange-600" />
@@ -231,8 +231,8 @@ export default function AnalyticsDashboard() {
       </div>
 
       {/* SLA Performance Trend */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">SLA Performance Trend</h2>
             <p className="text-sm text-gray-500 mt-1">Response and resolution time compliance over time</p>
@@ -240,7 +240,7 @@ export default function AnalyticsDashboard() {
           <BarChart3 className="w-5 h-5 text-gray-400" />
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Response Time SLA Chart */}
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -294,10 +294,10 @@ export default function AnalyticsDashboard() {
       </div>
 
       {/* Contract Renewal Pipeline & Service Type Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Contract Renewal Pipeline */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-lg font-semibold text-gray-900">Contract Renewal Pipeline</h2>
               <p className="text-sm text-gray-500 mt-1">Current renewal status overview</p>
@@ -305,7 +305,7 @@ export default function AnalyticsDashboard() {
             <Activity className="w-5 h-5 text-gray-400" />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {contractRenewalData.map((item, index) => {
               const totalContracts = contractRenewalData.reduce((sum, d) => sum + d.count, 0);
               const percentage = (item.count / totalContracts) * 100;
@@ -354,8 +354,8 @@ export default function AnalyticsDashboard() {
         </div>
 
         {/* Service Type Breakdown */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-lg font-semibold text-gray-900">Service Type Breakdown</h2>
               <p className="text-sm text-gray-500 mt-1">Distribution by service category</p>
@@ -364,7 +364,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           {/* Visual Pie Chart Representation */}
-          <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center mb-3">
             <div className="relative w-48 h-48">
               {serviceTypeData.map((item, index) => {
                 const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444'];
@@ -404,7 +404,7 @@ export default function AnalyticsDashboard() {
                     <div className={`w-3 h-3 rounded-full ${colors[index]}`} />
                     <span className="text-sm text-gray-700">{item.type}</span>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <span className="text-sm font-medium text-gray-900">{item.count} ({item.percentage}%)</span>
                     <span className="text-sm text-gray-600">{formatCurrency(item.revenue)}</span>
                   </div>
@@ -425,8 +425,8 @@ export default function AnalyticsDashboard() {
       </div>
 
       {/* Engineer Performance Leaderboard */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">Engineer Performance Leaderboard</h2>
             <p className="text-sm text-gray-500 mt-1">Top performers based on jobs completed and customer ratings</p>
@@ -498,8 +498,8 @@ export default function AnalyticsDashboard() {
       </div>
 
       {/* Customer Satisfaction Trends */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900">Customer Satisfaction Trends</h2>
             <p className="text-sm text-gray-500 mt-1">NPS and CSAT scores over time</p>
@@ -507,10 +507,10 @@ export default function AnalyticsDashboard() {
           <Activity className="w-5 h-5 text-gray-400" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* NPS Score Trend */}
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-4">Net Promoter Score (NPS)</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Net Promoter Score (NPS)</h3>
             <div className="h-48 flex items-end justify-between gap-2">
               {customerSatisfactionData.map((data, index) => {
                 const maxNPS = 100;
@@ -539,7 +539,7 @@ export default function AnalyticsDashboard() {
 
           {/* CSAT Score Trend */}
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-4">Customer Satisfaction (CSAT)</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Customer Satisfaction (CSAT)</h3>
             <div className="h-48 flex items-end justify-between gap-2">
               {customerSatisfactionData.map((data, index) => {
                 const maxCSAT = 5;
@@ -567,7 +567,7 @@ export default function AnalyticsDashboard() {
 
           {/* Response Rate Trend */}
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-4">Survey Response Rate</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Survey Response Rate</h3>
             <div className="h-48 flex items-end justify-between gap-2">
               {customerSatisfactionData.map((data, index) => {
                 const maxRate = 100;
@@ -595,8 +595,8 @@ export default function AnalyticsDashboard() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-200">
-          <div className="bg-purple-50 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-6 pt-6 border-t border-gray-200">
+          <div className="bg-purple-50 p-3 rounded-lg">
             <div className="text-sm text-gray-600 mb-1">Current NPS</div>
             <div className="text-2xl font-bold text-purple-600">
               {customerSatisfactionData[customerSatisfactionData.length - 1].npsScore}
@@ -607,7 +607,7 @@ export default function AnalyticsDashboard() {
                   customerSatisfactionData[customerSatisfactionData.length - 1].npsScore >= 0 ? 'Needs Improvement' : 'Critical'}
             </div>
           </div>
-          <div className="bg-indigo-50 p-4 rounded-lg">
+          <div className="bg-indigo-50 p-3 rounded-lg">
             <div className="text-sm text-gray-600 mb-1">Current CSAT</div>
             <div className="text-2xl font-bold text-indigo-600">
               {customerSatisfactionData[customerSatisfactionData.length - 1].csatScore.toFixed(1)} / 5.0
@@ -616,7 +616,7 @@ export default function AnalyticsDashboard() {
               {Math.round((customerSatisfactionData[customerSatisfactionData.length - 1].csatScore / 5) * 100)}% satisfaction
             </div>
           </div>
-          <div className="bg-teal-50 p-4 rounded-lg">
+          <div className="bg-teal-50 p-3 rounded-lg">
             <div className="text-sm text-gray-600 mb-1">Response Rate</div>
             <div className="text-2xl font-bold text-teal-600">
               {customerSatisfactionData[customerSatisfactionData.length - 1].responseRate}%
@@ -629,7 +629,7 @@ export default function AnalyticsDashboard() {
       </div>
 
       {/* Insights & Recommendations */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
         <div className="flex items-start gap-3">
           <div className="bg-blue-600 p-2 rounded-lg">
             <AlertCircle className="w-5 h-5 text-white" />

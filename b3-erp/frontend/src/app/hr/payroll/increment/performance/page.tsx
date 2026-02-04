@@ -210,14 +210,14 @@ export default function PerformanceIncrementPage() {
   }, [filteredIncrements]);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Performance Increment</h1>
         <p className="text-sm text-gray-600 mt-1">Quarterly performance-based salary increment</p>
       </div>
 
-      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg shadow-sm border border-purple-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg shadow-sm border border-purple-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">Q3 2025-26 (Oct-Dec 2025)</h2>
             <p className="text-sm text-gray-600 mt-1">Performance Increment for Q3</p>
@@ -225,8 +225,8 @@ export default function PerformanceIncrementPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -236,7 +236,7 @@ export default function PerformanceIncrementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Current CTC</p>
@@ -246,7 +246,7 @@ export default function PerformanceIncrementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Increment</p>
@@ -256,7 +256,7 @@ export default function PerformanceIncrementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Revised CTC</p>
@@ -266,7 +266,7 @@ export default function PerformanceIncrementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Avg Increment</p>
@@ -276,7 +276,7 @@ export default function PerformanceIncrementPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Approved</p>
@@ -288,8 +288,8 @@ export default function PerformanceIncrementPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -336,10 +336,10 @@ export default function PerformanceIncrementPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredIncrements.map(inc => (
-          <div key={inc.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={inc.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{inc.employeeName}</h3>
@@ -368,8 +368,8 @@ export default function PerformanceIncrementPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Current Salary</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -383,7 +383,7 @@ export default function PerformanceIncrementPage() {
                 </div>
               </div>
 
-              <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                 <h4 className="text-xs font-semibold text-yellow-900 mb-3">Performance</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -401,7 +401,7 @@ export default function PerformanceIncrementPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">Increment Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -419,7 +419,7 @@ export default function PerformanceIncrementPage() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">Revised Salary</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -454,9 +454,9 @@ export default function PerformanceIncrementPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Performance Increment Guidelines</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <h4 className="text-xs font-bold text-purple-800 mb-2">Increment Criteria (Performance-based):</h4>
             <ul className="text-sm text-purple-800 space-y-1">

@@ -102,7 +102,7 @@ export default function ConfirmationModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-3 border-b border-gray-200">
           <h2 className={`text-xl font-bold ${style.headerColor}`}>{title}</h2>
           <button
             onClick={handleClose}
@@ -116,14 +116,14 @@ export default function ConfirmationModal({
         {/* Body */}
         <div className="p-6">
           {/* Icon and Message */}
-          <div className={`flex items-start p-4 rounded-lg ${style.bgColor} border ${style.borderColor} mb-4`}>
+          <div className={`flex items-start p-3 rounded-lg ${style.bgColor} border ${style.borderColor} mb-2`}>
             <Icon className={`h-6 w-6 ${style.iconColor} mt-0.5 mr-3 flex-shrink-0`} />
             <p className="text-gray-900">{message}</p>
           </div>
 
           {/* Details Table */}
           {details.length > 0 && (
-            <div className="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+            <div className="mb-2 border border-gray-200 rounded-lg overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200">
                 <tbody className="bg-white divide-y divide-gray-200">
                   {details.map((detail, index) => (
@@ -165,7 +165,7 @@ export default function ConfirmationModal({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+        <div className="flex justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50">
           <button
             onClick={handleClose}
             disabled={isProcessing}

@@ -193,7 +193,7 @@ export default function CSATAnalytics() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -213,7 +213,7 @@ export default function CSATAnalytics() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -224,7 +224,7 @@ export default function CSATAnalytics() {
             purple: 'bg-purple-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -251,7 +251,7 @@ export default function CSATAnalytics() {
         onDownload={() => console.log('Download trends')}
         height="h-96"
       >
-        <div className="mb-4 flex justify-end">
+        <div className="mb-2 flex justify-end">
           <div className="flex gap-2">
             {(['week', 'month', 'quarter', 'year'] as const).map(period => (
               <button
@@ -269,8 +269,8 @@ export default function CSATAnalytics() {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="flex items-center gap-6 text-sm">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-yellow-500 rounded"></div>
               <span className="text-gray-600">CSAT Score (1-5)</span>
@@ -292,7 +292,7 @@ export default function CSATAnalytics() {
                 <div key={index} className="space-y-1">
                   <div className="flex items-center justify-between text-xs text-gray-600">
                     <span className="font-medium w-16">{trend.period}</span>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <span className="text-yellow-600 font-semibold">★ {trend.score.toFixed(1)}</span>
                       <span className="text-green-600 font-semibold">NPS {trend.nps}</span>
                       <span className="text-gray-500">{trend.responses} responses</span>
@@ -321,7 +321,7 @@ export default function CSATAnalytics() {
       </ChartWrapper>
 
       {/* Category Satisfaction and Rating Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Category Satisfaction */}
         <ChartWrapper
          
@@ -332,7 +332,7 @@ export default function CSATAnalytics() {
         >
           <div className="space-y-3">
             {categorySatisfaction.map((cat, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-4">
+              <div key={index} className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex-1">
                     <div className="font-semibold text-gray-900 flex items-center gap-2">
@@ -376,7 +376,7 @@ export default function CSATAnalytics() {
           onDownload={() => console.log('Download rating distribution')}
           height="h-auto"
         >
-          <div className="space-y-4">
+          <div className="space-y-2">
             {ratingDistribution.map((rating, index) => (
               <div key={index} className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
@@ -411,11 +411,11 @@ export default function CSATAnalytics() {
       </div>
 
       {/* Feedback Themes */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Common Feedback Themes</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Common Feedback Themes</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           {feedbackThemes.map((theme, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-4">
+            <div key={index} className="bg-gray-50 rounded-lg p-3">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
@@ -441,7 +441,7 @@ export default function CSATAnalytics() {
       </div>
 
       {/* Key Insights */}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+      <div className="bg-green-50 border border-green-200 rounded-lg p-3">
         <h3 className="font-semibold text-green-900 mb-3 flex items-center gap-2">
           <TrendingUp className="h-5 w-5" />
           Customer Satisfaction Insights

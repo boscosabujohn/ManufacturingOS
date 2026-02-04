@@ -345,7 +345,7 @@ export function SkeletonListItem({
   animation = 'shimmer',
 }: SkeletonListItemProps) {
   return (
-    <div className="flex items-center gap-4 p-4">
+    <div className="flex items-center gap-2 p-3">
       {showAvatar && <SkeletonAvatar size="md" animation={animation} />}
       <div className="flex-1 space-y-2">
         <Skeleton width="60%" height="1rem" animation={animation} />
@@ -441,7 +441,7 @@ export function SkeletonForm({
   className = '',
 }: SkeletonFormProps) {
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       {Array.from({ length: fields }).map((_, i) => (
         <SkeletonFormField key={i} animation={animation} />
       ))}
@@ -476,14 +476,14 @@ export function SkeletonDashboard({
   className = '',
 }: SkeletonDashboardProps) {
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats row */}
       {showStats && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           {Array.from({ length: statsCount }).map((_, i) => (
             <div
               key={i}
-              className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-4"
+              className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-3"
             >
               <Skeleton width="40%" height="0.875rem" animation={animation} className="mb-2" />
               <Skeleton width="60%" height="2rem" animation={animation} />
@@ -494,8 +494,8 @@ export function SkeletonDashboard({
 
       {/* Chart */}
       {showChart && (
-        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-          <Skeleton width="30%" height="1.5rem" animation={animation} className="mb-4" />
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-3">
+          <Skeleton width="30%" height="1.5rem" animation={animation} className="mb-2" />
           <Skeleton width="100%" height="300px" rounded="lg" animation={animation} />
         </div>
       )}
@@ -533,7 +533,7 @@ export function SkeletonPage({
       {showHeader && (
         <header className="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-4 flex items-center justify-between">
           <Skeleton width="150px" height="2rem" animation={animation} />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <Skeleton width="200px" height="2.5rem" rounded="lg" animation={animation} />
             <SkeletonAvatar size="md" animation={animation} />
           </div>
@@ -544,7 +544,7 @@ export function SkeletonPage({
         {/* Sidebar */}
         {showSidebar && (
           <aside
-            className="bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 p-4 space-y-4"
+            className="bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 p-3 space-y-2"
             style={{ width: sidebarWidth }}
           >
             {Array.from({ length: 6 }).map((_, i) => (
@@ -557,7 +557,7 @@ export function SkeletonPage({
         )}
 
         {/* Main content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-3">
           {children || <SkeletonDashboard animation={animation} />}
         </main>
       </div>

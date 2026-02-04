@@ -740,12 +740,12 @@ export default function BOMAddPage() {
   const suggestedPrice40 = grandTotal * 1.4;
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/production/bom')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to BOM List</span>
@@ -797,7 +797,7 @@ export default function BOMAddPage() {
 
       {/* Validation Errors */}
       {validationErrors.length > 0 && (
-        <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="mb-3 bg-red-50 border border-red-200 rounded-lg p-3">
           <div className="flex items-start space-x-2">
             <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -813,13 +813,13 @@ export default function BOMAddPage() {
       )}
 
       {/* BOM Details Form */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
           <Package className="h-5 w-5 text-blue-600" />
           <span>BOM Header Information</span>
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {/* Product Selection */}
           <div className="lg:col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -921,7 +921,7 @@ export default function BOMAddPage() {
 
         {/* Product Details (Auto-populated) */}
         {selectedProduct && (
-          <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+          <div className="mt-4 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
             <h4 className="text-sm font-semibold text-blue-900 mb-2 flex items-center space-x-2">
               <CheckCircle className="h-4 w-4" />
               <span>Product Details (Auto-populated)</span>
@@ -957,8 +957,8 @@ export default function BOMAddPage() {
       </div>
 
       {/* Component Entry Methods */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
           <Settings className="h-5 w-5 text-purple-600" />
           <span>Component Entry Methods</span>
         </h3>
@@ -1027,8 +1027,8 @@ export default function BOMAddPage() {
       </div>
 
       {/* Components Section */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-bold text-gray-900 flex items-center space-x-2">
             <ListTree className="h-5 w-5 text-green-600" />
             <span>Multi-Level Component Table</span>
@@ -1091,16 +1091,16 @@ export default function BOMAddPage() {
 
       {/* Cost Summary Section */}
       {components.length > 0 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
             <IndianRupee className="h-5 w-5 text-green-600" />
             <span>Cost Summary & Pricing</span>
           </h3>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Cost Breakdown */}
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-200">
-              <h4 className="text-md font-bold text-gray-900 mb-4">Cost Breakdown</h4>
+              <h4 className="text-md font-bold text-gray-900 mb-2">Cost Breakdown</h4>
               <div className="space-y-3">
                 <div className="flex justify-between items-center pb-2 border-b border-blue-200">
                   <span className="text-sm font-medium text-gray-700">Material Cost:</span>
@@ -1142,7 +1142,7 @@ export default function BOMAddPage() {
 
             {/* Suggested Pricing */}
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
-              <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+              <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                 <TrendingUp className="h-5 w-5 text-green-600" />
                 <span>Suggested Selling Price (with margin)</span>
               </h4>
@@ -1191,7 +1191,7 @@ export default function BOMAddPage() {
                 {mockExistingBOMs.map((item) => (
                   <label
                     key={item.bomNumber}
-                    className="flex items-center space-x-3 p-4 border border-gray-300 rounded-lg hover:bg-blue-50 cursor-pointer"
+                    className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg hover:bg-blue-50 cursor-pointer"
                   >
                     <input
                       type="radio"

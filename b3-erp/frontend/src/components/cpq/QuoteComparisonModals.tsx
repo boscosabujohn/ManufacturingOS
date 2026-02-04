@@ -56,10 +56,10 @@ export function AddQuoteModal({ isOpen, onClose, availableQuotes, selectedQuotes
   )
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Add Quote to Comparison</h2>
             <p className="text-sm opacity-90">Select a quote to add to your comparison</p>
@@ -71,7 +71,7 @@ export function AddQuoteModal({ isOpen, onClose, availableQuotes, selectedQuotes
 
         <div className="p-6">
           {/* Search */}
-          <div className="mb-4">
+          <div className="mb-2">
             <input
               type="text"
               placeholder="Search by quote number or version..."
@@ -85,7 +85,7 @@ export function AddQuoteModal({ isOpen, onClose, availableQuotes, selectedQuotes
           <div className="space-y-3 max-h-96 overflow-y-auto">
             {filteredQuotes.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
-                <Package className="h-12 w-12 mx-auto mb-3 text-gray-400" />
+                <Package className="h-12 w-12 mb-3 text-gray-400" />
                 <p>No available quotes to add</p>
               </div>
             ) : (
@@ -96,7 +96,7 @@ export function AddQuoteModal({ isOpen, onClose, availableQuotes, selectedQuotes
                     onAdd(quote.id)
                     onClose()
                   }}
-                  className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:bg-blue-50 hover:border-blue-300 cursor-pointer transition-colors"
+                  className="bg-gray-50 rounded-lg p-3 border border-gray-200 hover:bg-blue-50 hover:border-blue-300 cursor-pointer transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -106,7 +106,7 @@ export function AddQuoteModal({ isOpen, onClose, availableQuotes, selectedQuotes
                           {quote.version}
                         </span>
                       </div>
-                      <div className="flex items-center gap-4 mt-2 text-xs text-gray-600">
+                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-600">
                         <span>₹{(quote.value / 100000).toFixed(2)}L</span>
                         <span>•</span>
                         <span>{quote.discount}% discount</span>
@@ -124,7 +124,7 @@ export function AddQuoteModal({ isOpen, onClose, availableQuotes, selectedQuotes
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4">
+        <div className="border-t border-gray-200 px-3 py-2">
           <button
             onClick={onClose}
             className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
@@ -141,10 +141,10 @@ export function ViewQuoteDetailsModal({ isOpen, onClose, quote }: ViewQuoteDetai
   if (!isOpen || !quote) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Quote Details</h2>
             <p className="text-sm opacity-90">{quote.quoteNumber} {quote.version}</p>
@@ -154,10 +154,10 @@ export function ViewQuoteDetailsModal({ isOpen, onClose, quote }: ViewQuoteDetai
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Key Metrics */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-blue-600" />
                 <p className="text-xs font-semibold text-blue-900">Quote Value</p>
@@ -165,7 +165,7 @@ export function ViewQuoteDetailsModal({ isOpen, onClose, quote }: ViewQuoteDetai
               <p className="text-2xl font-bold text-blue-900">₹{(quote.value / 100000).toFixed(2)}L</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingDown className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-semibold text-orange-900">Discount</p>
@@ -173,7 +173,7 @@ export function ViewQuoteDetailsModal({ isOpen, onClose, quote }: ViewQuoteDetai
               <p className="text-2xl font-bold text-orange-900">{quote.discount}%</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center gap-2 mb-2">
                 <Package className="h-5 w-5 text-purple-600" />
                 <p className="text-xs font-semibold text-purple-900">Items</p>
@@ -227,7 +227,7 @@ export function ViewQuoteDetailsModal({ isOpen, onClose, quote }: ViewQuoteDetai
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4">
+        <div className="border-t border-gray-200 px-3 py-2">
           <button
             onClick={onClose}
             className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
@@ -253,10 +253,10 @@ export function ItemComparisonModal({ isOpen, onClose, quotes }: ItemComparisonM
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Item-Level Comparison</h2>
             <p className="text-sm opacity-90">Detailed comparison of items across quotes</p>
@@ -299,7 +299,7 @@ export function ItemComparisonModal({ isOpen, onClose, quotes }: ItemComparisonM
             </table>
           </div>
 
-          <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-xs text-blue-700">
               <strong>Note:</strong> This shows a detailed comparison of included items, specifications, and variations across the selected quotes.
               Items marked as "Not Included" indicate they were removed or not part of that version.
@@ -307,7 +307,7 @@ export function ItemComparisonModal({ isOpen, onClose, quotes }: ItemComparisonM
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4">
+        <div className="border-t border-gray-200 px-3 py-2">
           <button
             onClick={onClose}
             className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
@@ -331,10 +331,10 @@ export function ExportComparisonModal({ isOpen, onClose, quotes, onExport }: Exp
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Export Comparison</h2>
             <p className="text-sm opacity-90">Choose export format</p>
@@ -344,7 +344,7 @@ export function ExportComparisonModal({ isOpen, onClose, quotes, onExport }: Exp
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-3">Export Format</label>

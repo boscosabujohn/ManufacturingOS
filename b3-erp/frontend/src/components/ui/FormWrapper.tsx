@@ -78,7 +78,7 @@ export const FormWrapper: React.FC<FormWrapperProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`space-y-6 ${className}`}>
+    <form onSubmit={handleSubmit} className={`space-y-3 ${className}`}>
       {(title || description) && (
         <div className="pb-4 border-b border-gray-200">
           {title && (
@@ -96,7 +96,7 @@ export const FormWrapper: React.FC<FormWrapperProps> = ({
       )}
 
       {error && (
-        <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div className="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
           <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <p className="text-sm font-medium text-red-900">Error</p>
@@ -106,7 +106,7 @@ export const FormWrapper: React.FC<FormWrapperProps> = ({
       )}
 
       {success && (
-        <div className="flex items-start gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="flex items-start gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
           <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <p className="text-sm font-medium text-green-900">Success</p>
@@ -115,7 +115,7 @@ export const FormWrapper: React.FC<FormWrapperProps> = ({
         </div>
       )}
 
-      <div className={`space-y-4 ${layout === 'horizontal' ? 'md:space-y-0 md:grid md:grid-cols-2 md:gap-4' : ''}`}>
+      <div className={`space-y-2 ${layout === 'horizontal' ? 'md:space-y-0 md:grid md:grid-cols-2 md:gap-2' : ''}`}>
         {children}
       </div>
 

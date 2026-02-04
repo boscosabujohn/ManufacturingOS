@@ -34,8 +34,8 @@ export default function PettyCashReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Petty Cash Report</h1>
                     <p className="text-gray-600">Petty cash tracking and reconciliation</p>
@@ -49,7 +49,7 @@ export default function PettyCashReport() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Opening Balance"
                     value={`$${data.openingBalance.toLocaleString()}`}
@@ -76,7 +76,7 @@ export default function PettyCashReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Expenses by Category</CardTitle></CardHeader>
                     <CardContent>

@@ -228,8 +228,8 @@ export default function SystemPage() {
       )}
 
       {/* Header Section */}
-      <div className="flex-none p-6 pb-4 space-y-4">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">System Configuration</h1>
             <p className="text-gray-600 mt-1">Manage system settings and parameters</p>
@@ -249,8 +249,8 @@ export default function SystemPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl shadow-sm p-4 text-green-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl shadow-sm p-3 text-green-700">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">System Health</p>
@@ -265,7 +265,7 @@ export default function SystemPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm p-4 text-blue-700">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm p-3 text-blue-700">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Uptime</p>
@@ -280,7 +280,7 @@ export default function SystemPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-xl shadow-sm p-4 text-orange-700">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-xl shadow-sm p-3 text-orange-700">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-600 text-sm font-medium">Storage Used</p>
@@ -295,7 +295,7 @@ export default function SystemPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-xl shadow-sm p-4 text-purple-700">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-xl shadow-sm p-3 text-purple-700">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Active Sessions</p>
@@ -316,8 +316,8 @@ export default function SystemPage() {
       <div className="flex-1 overflow-hidden px-6">
         <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 overflow-hidden">
           {/* Filters Section */}
-          <div className="flex-none p-4 border-b border-gray-200">
-            <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex-none p-3 border-b border-gray-200">
+            <div className="flex flex-col lg:flex-row gap-2">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
@@ -362,31 +362,31 @@ export default function SystemPage() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50 sticky top-0">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Config ID
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Setting Name
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Current Value
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Default Value
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Last Modified
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Modified By
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -394,38 +394,38 @@ export default function SystemPage() {
               <tbody className="bg-white divide-y divide-gray-200">
               {currentConfigs.map((config) => (
                 <tr key={config.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {config.id}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     <div>
                       <div className="font-medium">{config.settingName}</div>
                       <div className="text-xs text-gray-500">{config.description}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getCategoryBadgeClass(config.category)}`}>
                       {config.category.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 font-medium">
                     {config.currentValue}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     {config.defaultValue}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     {config.lastModified}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     {config.modifiedBy}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getStatusBadgeClass(config.status)}`}>
                       {config.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleView(config.id)}
@@ -457,7 +457,7 @@ export default function SystemPage() {
         </div>
 
         {/* Pagination */}
-        <div className="bg-white px-6 py-4 border-t border-gray-200">
+        <div className="bg-white px-3 py-2 border-t border-gray-200">
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-700">
               Showing <span className="font-medium">{startIndex + 1}</span> to{' '}

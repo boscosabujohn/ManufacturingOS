@@ -85,9 +85,9 @@ export default function VendorFilters({
   ]
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
       {/* Main Search Bar */}
-      <div className="flex gap-4 items-center mb-4">
+      <div className="flex gap-2 items-center mb-2">
         <div className="flex-1 relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -134,7 +134,7 @@ export default function VendorFilters({
       </div>
 
       {/* Quick Filters */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-2">
         {quickFilters.map((filter) => {
           const Icon = filter.icon
           return (
@@ -152,7 +152,7 @@ export default function VendorFilters({
 
       {/* Advanced Filters Panel */}
       {isAdvancedOpen && (
-        <div className="border-t pt-4 mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="border-t pt-4 mt-4 grid grid-cols-2 md:grid-cols-4 gap-2">
           {/* Status Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>

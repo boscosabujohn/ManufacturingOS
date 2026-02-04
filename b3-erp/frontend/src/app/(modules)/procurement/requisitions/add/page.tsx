@@ -327,8 +327,8 @@ export default function AddRequisitionPage() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* PR Number */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -523,7 +523,7 @@ export default function AddRequisitionPage() {
 
       case 2:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Items Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -564,7 +564,7 @@ export default function AddRequisitionPage() {
             {form.items.length > 0 ? (
               <div className="space-y-3">
                 {form.items.map((item, index) => (
-                  <div key={item.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div key={item.id} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-start justify-between">
@@ -584,7 +584,7 @@ export default function AddRequisitionPage() {
                           </div>
                         </div>
 
-                        <div className="mt-3 flex items-center gap-6 text-sm">
+                        <div className="mt-3 flex items-center gap-3 text-sm">
                           <div>
                             <span className="text-gray-500">Category:</span>
                             <span className="ml-2 font-medium text-gray-900">{item.category}</span>
@@ -638,7 +638,7 @@ export default function AddRequisitionPage() {
                 ))}
 
                 {/* Total Summary */}
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Total Items: {form.items.length}</p>
@@ -655,9 +655,9 @@ export default function AddRequisitionPage() {
               </div>
             ) : (
               <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                <Package className="h-12 w-12 text-gray-400 mb-4" />
+                <Package className="h-12 w-12 text-gray-400 mb-2" />
                 <p className="text-gray-600 mb-2">No items added yet</p>
-                <p className="text-sm text-gray-500 mb-4">Add items to your requisition to proceed</p>
+                <p className="text-sm text-gray-500 mb-2">Add items to your requisition to proceed</p>
                 <button
                   type="button"
                   onClick={handleAddItem}
@@ -672,8 +672,8 @@ export default function AddRequisitionPage() {
 
       case 3:
         return (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* Delivery Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -788,7 +788,7 @@ export default function AddRequisitionPage() {
             </div>
 
             {/* Delivery Timeline Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start gap-3">
                 <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div>
@@ -812,8 +812,8 @@ export default function AddRequisitionPage() {
 
       case 4:
         return (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* Budget Code */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -941,8 +941,8 @@ export default function AddRequisitionPage() {
             </div>
 
             {/* Budget Summary */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
-              <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
+              <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
                 <Calculator className="h-5 w-5 text-gray-600" />
                 Budget Analysis
               </h4>
@@ -978,15 +978,15 @@ export default function AddRequisitionPage() {
 
       case 5:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Summary Card */}
             <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+              <div className="px-3 py-2 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900">Requisition Summary</h3>
                 <p className="text-sm text-gray-600 mt-1">Review all details before submission</p>
               </div>
 
-              <div className="p-6 space-y-6">
+              <div className="p-6 space-y-3">
                 {/* Basic Info */}
                 <div>
                   <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
@@ -1063,7 +1063,7 @@ export default function AddRequisitionPage() {
                 </div>
 
                 {/* Delivery & Approval */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* Delivery Info */}
                   <div>
                     <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
@@ -1120,7 +1120,7 @@ export default function AddRequisitionPage() {
             </div>
 
             {/* Terms and Conditions */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <div className="flex items-start gap-3">
                 <input
                   type="checkbox"
@@ -1149,7 +1149,7 @@ export default function AddRequisitionPage() {
                 <Paperclip className="h-4 w-4 text-gray-500" />
                 Supporting Documents
               </h4>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-gray-400 transition-colors">
                 <Upload className="h-10 w-10 text-gray-400 mb-3" />
                 <p className="text-sm text-gray-600 mb-2">Drag and drop files here, or click to browse</p>
                 <p className="text-xs text-gray-500 mb-3">Supported formats: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG (Max 10MB)</p>
@@ -1205,13 +1205,13 @@ export default function AddRequisitionPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <button
             onClick={() => router.push('/procurement/requisitions')}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Requisitions
@@ -1285,7 +1285,7 @@ export default function AddRequisitionPage() {
         </div>
 
         {/* Form Content */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 md:p-8">
           {renderStepContent()}
         </div>
 
@@ -1350,7 +1350,7 @@ export default function AddRequisitionPage() {
 
       {/* Item Modal */}
       {showItemModal && editingItem && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
             <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <h3 className="text-lg font-semibold text-gray-900">
@@ -1358,9 +1358,9 @@ export default function AddRequisitionPage() {
               </h3>
             </div>
 
-            <div className="p-6 space-y-4 overflow-y-auto flex-1">
+            <div className="p-6 space-y-2 overflow-y-auto flex-1">
               {searchingItems && (
-                <div className="mb-4 p-4 bg-blue-50 rounded-lg">
+                <div className="mb-2 p-3 bg-blue-50 rounded-lg">
                   <div className="flex items-center gap-3 mb-3">
                     <Search className="h-5 w-5 text-blue-600" />
                     <input
@@ -1409,7 +1409,7 @@ export default function AddRequisitionPage() {
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Item Code <span className="text-red-500">*</span>

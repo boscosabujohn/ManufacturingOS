@@ -177,8 +177,8 @@ export default function RejectedExpensesPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <XCircle className="h-7 w-7 text-red-600" />
           Rejected Expenses
@@ -187,8 +187,8 @@ export default function RejectedExpensesPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-red-700">Total Rejected</p>
@@ -198,7 +198,7 @@ export default function RejectedExpensesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-orange-700">Total Amount</p>
@@ -208,7 +208,7 @@ export default function RejectedExpensesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-blue-700">Can Resubmit</p>
@@ -218,7 +218,7 @@ export default function RejectedExpensesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-700">Avg. Amount</p>
@@ -230,8 +230,8 @@ export default function RejectedExpensesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
             <div className="relative">
@@ -266,7 +266,7 @@ export default function RejectedExpensesPage() {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         {filteredExpenses.length === 0 ? (
           <div className="p-12 text-center">
-            <XCircle className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+            <XCircle className="h-12 w-12 text-gray-300 mb-3" />
             <p className="text-gray-500">No rejected expenses found</p>
           </div>
         ) : (
@@ -274,50 +274,50 @@ export default function RejectedExpensesPage() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expense Details</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rejection Reason</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expense Details</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rejection Reason</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredExpenses.map((expense) => (
                   <tr key={expense.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{expense.title}</div>
                         <div className="text-xs text-gray-500">{expense.id}</div>
                         <div className="text-xs text-gray-500">{expense.itemCount} items</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{expense.employeeName}</div>
                         <div className="text-xs text-gray-500">{expense.employeeId}</div>
                         <div className="text-xs text-gray-500">{expense.department}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-xs text-gray-500">
                         <div>Submitted: {new Date(expense.submittedDate).toLocaleDateString('en-IN')}</div>
                         <div className="text-red-600 font-medium">Rejected: {new Date(expense.rejectedDate).toLocaleDateString('en-IN')}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm font-semibold text-gray-900">
                         ₹{expense.totalAmount.toLocaleString('en-IN')}
                       </div>
                     </td>
-                    <td className="px-6 py-4 max-w-xs">
+                    <td className="px-3 py-2 max-w-xs">
                       <div className="flex items-start gap-2">
                         <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
                         <div className="text-xs text-red-700 line-clamp-2">{expense.rejectionReason}</div>
                       </div>
                       <div className="text-xs text-gray-500 mt-1">By: {expense.rejectedBy}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleViewDetails(expense)}
@@ -347,9 +347,9 @@ export default function RejectedExpensesPage() {
 
       {/* Details Modal */}
       {showDetailsModal && selectedExpense && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900">Rejected Expense Details</h2>
               <button
                 onClick={() => setShowDetailsModal(false)}
@@ -359,9 +359,9 @@ export default function RejectedExpensesPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Rejection Alert */}
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
@@ -375,7 +375,7 @@ export default function RejectedExpensesPage() {
               </div>
 
               {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700">Expense ID</label>
                   <p className="text-sm text-gray-900 mt-1">{selectedExpense.id}</p>
@@ -487,7 +487,7 @@ export default function RejectedExpensesPage() {
       )}
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Resubmission Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Review the rejection reason carefully before resubmitting</li>

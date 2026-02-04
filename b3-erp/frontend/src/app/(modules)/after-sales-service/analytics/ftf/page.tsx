@@ -248,10 +248,10 @@ export default function FTFAnalyticsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <CheckCircle className="h-8 w-8 text-emerald-600" />
@@ -259,7 +259,7 @@ export default function FTFAnalyticsPage() {
             </h1>
             <p className="text-gray-600 mt-1">Track first-time fix success rate and performance metrics</p>
           </div>
-          <button onClick={handleExport} className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+          <button onClick={handleExport} className="bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
             <Download className="h-5 w-5" />
             Export Report
           </button>
@@ -267,7 +267,7 @@ export default function FTFAnalyticsPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
         <button onClick={() => setSelectedStatus('all')} className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:border-blue-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
@@ -324,7 +324,7 @@ export default function FTFAnalyticsPage() {
       </div>
 
       {/* Performance Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
         <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
           <p className="text-sm font-medium text-gray-600 mb-3">Best Performing Technician</p>
           <p className="text-lg font-bold text-gray-900">{stats.bestPerformer.technician}</p>
@@ -345,9 +345,9 @@ export default function FTFAnalyticsPage() {
       </div>
 
       {/* Regional Performance */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Regional FTF Performance</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Regional FTF Performance</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {regionStats.filter(r => r.total > 0).map((stat, idx) => (
             <button key={idx} onClick={() => handleViewRegion(stat)} className="flex items-center justify-between p-3 border-2 border-gray-200 rounded-lg hover:border-emerald-500 transition-all text-left">
               <div className="flex items-center gap-3">
@@ -367,8 +367,8 @@ export default function FTFAnalyticsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -380,7 +380,7 @@ export default function FTFAnalyticsPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">FTF Status</label>
               <select
@@ -445,7 +445,7 @@ export default function FTFAnalyticsPage() {
       </div>
 
       {/* Records List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map((record) => (
           <div key={record.id} className={`rounded-lg border p-5 shadow-sm hover:shadow-md transition-all ${record.ftfStatus ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
             <div className="flex items-start justify-between">
@@ -500,10 +500,10 @@ export default function FTFAnalyticsPage() {
 
       {/* Details Modal */}
       {showDetailsModal && selectedRecord && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">{selectedRecord.serviceId}</h2>
                 <p className="text-emerald-100 text-sm">FTF Service Record Details</p>
@@ -514,9 +514,9 @@ export default function FTFAnalyticsPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Service Status */}
-              <div className={`rounded-lg p-4 ${selectedRecord.ftfStatus ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
+              <div className={`rounded-lg p-3 ${selectedRecord.ftfStatus ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {selectedRecord.ftfStatus ? <CheckCircle className="h-8 w-8 text-green-600" /> : <AlertCircle className="h-8 w-8 text-red-600" />}
@@ -539,8 +539,8 @@ export default function FTFAnalyticsPage() {
               </div>
 
               {/* Customer & Equipment Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                     <User className="h-5 w-5" />
                     Customer Information
@@ -561,7 +561,7 @@ export default function FTFAnalyticsPage() {
                   </div>
                 </div>
 
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
                     <Wrench className="h-5 w-5" />
                     Equipment Details
@@ -584,14 +584,14 @@ export default function FTFAnalyticsPage() {
               </div>
 
               {/* Issue Description */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="font-bold text-orange-900 mb-2">Issue Description</h4>
                 <p className="text-sm text-gray-700">{selectedRecord.issueDescription}</p>
               </div>
 
               {/* Service Timeline */}
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4 border border-emerald-200">
-                <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-3 border border-emerald-200">
+                <h4 className="font-bold text-emerald-900 mb-2 flex items-center gap-2">
                   <Clock className="h-5 w-5" />
                   Service Timeline
                 </h4>
@@ -623,7 +623,7 @@ export default function FTFAnalyticsPage() {
               </div>
 
               {/* Parts Used */}
-              <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+              <div className="bg-indigo-50 rounded-lg p-3 border border-indigo-200">
                 <h4 className="font-bold text-indigo-900 mb-3">Parts Used in Service</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedRecord.partsUsed.map((part, idx) => (
@@ -635,12 +635,12 @@ export default function FTFAnalyticsPage() {
               </div>
 
               {/* Technician Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                   <User className="h-5 w-5" />
                   Assigned Technician
                 </h4>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="bg-emerald-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">
                     {selectedRecord.technician.split(' ').map(n => n[0]).join('')}
                   </div>
@@ -653,7 +653,7 @@ export default function FTFAnalyticsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+            <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
               <button onClick={() => setShowDetailsModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                 Close
               </button>
@@ -668,10 +668,10 @@ export default function FTFAnalyticsPage() {
 
       {/* Region Performance Modal */}
       {showRegionModal && selectedRegionData && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold flex items-center gap-2">
                   <MapPin className="h-6 w-6" />
@@ -685,18 +685,18 @@ export default function FTFAnalyticsPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Region Stats Overview */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-blue-50 rounded-lg p-4 border-2 border-blue-200 text-center">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-blue-50 rounded-lg p-3 border-2 border-blue-200 text-center">
                   <p className="text-sm font-medium text-blue-700 mb-1">Total Services</p>
                   <p className="text-3xl font-bold text-blue-900">{selectedRegionData.total}</p>
                 </div>
-                <div className="bg-green-50 rounded-lg p-4 border-2 border-green-200 text-center">
+                <div className="bg-green-50 rounded-lg p-3 border-2 border-green-200 text-center">
                   <p className="text-sm font-medium text-green-700 mb-1">First Time Fix</p>
                   <p className="text-3xl font-bold text-green-900">{selectedRegionData.ftf}</p>
                 </div>
-                <div className="bg-emerald-50 rounded-lg p-4 border-2 border-emerald-200 text-center">
+                <div className="bg-emerald-50 rounded-lg p-3 border-2 border-emerald-200 text-center">
                   <p className="text-sm font-medium text-emerald-700 mb-1">Success Rate</p>
                   <p className="text-3xl font-bold text-emerald-900">{selectedRegionData.rate}%</p>
                 </div>
@@ -707,7 +707,7 @@ export default function FTFAnalyticsPage() {
                 <h4 className="font-bold text-gray-900 mb-3">Services in {selectedRegionData.region}</h4>
                 <div className="space-y-3">
                   {mockFTFRecords.filter(r => r.region === selectedRegionData.region).map((record) => (
-                    <div key={record.id} className={`rounded-lg p-4 border-2 ${record.ftfStatus ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                    <div key={record.id} className={`rounded-lg p-3 border-2 ${record.ftfStatus ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
                           <span className="font-semibold text-gray-900">{record.serviceId}</span>
@@ -727,7 +727,7 @@ export default function FTFAnalyticsPage() {
               </div>
 
               {/* Regional Insights */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="font-bold text-blue-900 mb-3">Regional Insights</h4>
                 <div className="space-y-2 text-sm">
                   <p className="text-gray-700">
@@ -747,7 +747,7 @@ export default function FTFAnalyticsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+            <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
               <button onClick={() => setShowRegionModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                 Close
               </button>

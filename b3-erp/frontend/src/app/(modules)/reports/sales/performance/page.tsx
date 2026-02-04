@@ -27,8 +27,8 @@ export default function SalesPerformanceReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Sales Performance</h1>
                     <p className="text-gray-600">Revenue and order analysis - Click cards to drill down</p>
@@ -36,7 +36,7 @@ export default function SalesPerformanceReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Revenue"
                     value={`₹${(data.totalRevenue / 100000).toFixed(1)}L`}
@@ -60,7 +60,7 @@ export default function SalesPerformanceReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card>
                     <CardHeader><CardTitle>Top Products by Revenue</CardTitle></CardHeader>
                     <CardContent className="p-0">

@@ -330,7 +330,7 @@ export default function LowStockPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -363,8 +363,8 @@ export default function LowStockPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">{criticalCount}</span>
@@ -373,7 +373,7 @@ export default function LowStockPage() {
           <div className="text-xs text-red-600 mt-1">Below Safety Stock</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingDown className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{highCount}</span>
@@ -382,7 +382,7 @@ export default function LowStockPage() {
           <div className="text-xs text-orange-600 mt-1">Below Reorder Level</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-yellow-600" />
             <span className="text-2xl font-bold text-yellow-900">{pendingCount}</span>
@@ -391,7 +391,7 @@ export default function LowStockPage() {
           <div className="text-xs text-yellow-600 mt-1">Awaiting Order</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <ShoppingCart className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{orderedCount}</span>
@@ -402,8 +402,8 @@ export default function LowStockPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -445,16 +445,16 @@ export default function LowStockPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Code</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Stock</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reorder Level</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suggested Qty</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead Time</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preferred Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Code</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Stock</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reorder Level</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suggested Qty</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead Time</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preferred Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -464,38 +464,38 @@ export default function LowStockPage() {
                   className="hover:bg-gray-50 cursor-pointer"
                   onClick={() => handleViewItem(item)}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center space-x-1 w-fit ${getPriorityColor(item.priority)}`}>
                       <AlertTriangle className="w-3 h-3" />
                       <span className="capitalize">{item.priority}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.itemCode}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{item.itemCode}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">
                     <div>{item.itemName}</div>
                     <div className="text-xs text-gray-500">{item.category}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-semibold text-red-600">{item.currentStock} {item.uom}</div>
                     <div className="text-xs text-gray-500">Avg: {item.avgConsumption} {item.uom}/day</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{item.reorderLevel} {item.uom}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{item.reorderLevel} {item.uom}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-semibold text-green-600">{item.suggestedQty} {item.uom}</div>
                     <div className="text-xs text-gray-500">Safety: {item.safetyStock} {item.uom}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{item.leadTimeDays} days</td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{item.leadTimeDays} days</td>
+                  <td className="px-3 py-2 text-sm text-gray-600">
                     <div>{item.preferredSupplier}</div>
                     <div className="text-xs text-gray-500">Last: {item.lastOrderDate}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center space-x-1 w-fit ${getStatusColor(item.status)}`}>
                       {getStatusIcon(item.status)}
                       <span className="capitalize">{item.status}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     {item.status === 'pending' && (
                       <div className="flex items-center space-x-2" onClick={(e) => e.stopPropagation()}>
                         <button
@@ -537,19 +537,19 @@ export default function LowStockPage() {
 
         {filteredItems.length === 0 && (
           <div className="text-center py-12">
-            <Package className="w-12 h-12 text-gray-400 mb-4" />
+            <Package className="w-12 h-12 text-gray-400 mb-2" />
             <p className="text-gray-500">No low stock items found matching your filters</p>
           </div>
         )}
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Actions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <button
             onClick={handleManageAlerts}
-            className="px-6 py-4 border-2 border-blue-300 rounded-lg hover:bg-blue-50 flex items-center space-x-3 transition-colors"
+            className="px-3 py-2 border-2 border-blue-300 rounded-lg hover:bg-blue-50 flex items-center space-x-3 transition-colors"
           >
             <ShoppingCart className="w-6 h-6 text-blue-600" />
             <div className="text-left">
@@ -558,7 +558,7 @@ export default function LowStockPage() {
             </div>
           </button>
 
-          <button className="px-6 py-4 border-2 border-orange-300 rounded-lg hover:bg-orange-50 flex items-center space-x-3 transition-colors">
+          <button className="px-3 py-2 border-2 border-orange-300 rounded-lg hover:bg-orange-50 flex items-center space-x-3 transition-colors">
             <Send className="w-6 h-6 text-orange-600" />
             <div className="text-left">
               <div className="font-semibold text-gray-900">Send Email Alerts</div>
@@ -568,7 +568,7 @@ export default function LowStockPage() {
 
           <button
             onClick={handleExport}
-            className="px-6 py-4 border-2 border-green-300 rounded-lg hover:bg-green-50 flex items-center space-x-3 transition-colors"
+            className="px-3 py-2 border-2 border-green-300 rounded-lg hover:bg-green-50 flex items-center space-x-3 transition-colors"
           >
             <Download className="w-6 h-6 text-green-600" />
             <div className="text-left">

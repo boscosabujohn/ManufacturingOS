@@ -733,9 +733,9 @@ const GRNViewPage = () => {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <AlertCircle className="w-16 h-16 text-red-500 mb-4" />
+          <AlertCircle className="w-16 h-16 text-red-500 mb-2" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">GRN Not Found</h2>
-          <p className="text-gray-600 mb-4">The requested GRN could not be found.</p>
+          <p className="text-gray-600 mb-2">The requested GRN could not be found.</p>
           <button
             onClick={() => router.push('/procurement/grn')}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -750,11 +750,11 @@ const GRNViewPage = () => {
   const progressSteps = getProgressSteps();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <h1 className="text-3xl font-bold text-gray-900">{grnData.grn_number}</h1>
@@ -762,7 +762,7 @@ const GRNViewPage = () => {
                   {grnData.status.replace(/_/g, ' ').toUpperCase()}
                 </span>
               </div>
-              <div className="flex items-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   <span>GRN Date: {grnData.grn_date}</span>
@@ -887,8 +887,8 @@ const GRNViewPage = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-blue-700">Ordered Qty</span>
                 <Package className="w-5 h-5 text-blue-600" />
@@ -896,7 +896,7 @@ const GRNViewPage = () => {
               <p className="text-2xl font-bold text-blue-900">{grnData.total_ordered_qty.toLocaleString()}</p>
               <p className="text-xs text-blue-600 mt-1">As per PO</p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+            <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-purple-700">Received Qty</span>
                 <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -906,7 +906,7 @@ const GRNViewPage = () => {
                 {grnData.qty_variance >= 0 ? '+' : ''}{grnData.qty_variance} variance
               </p>
             </div>
-            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-green-700">Accepted Qty</span>
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -916,7 +916,7 @@ const GRNViewPage = () => {
                 {((grnData.total_accepted_qty / grnData.total_received_qty) * 100).toFixed(1)}% of received
               </p>
             </div>
-            <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+            <div className="bg-red-50 rounded-lg p-3 border border-red-200">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-red-700">Rejected Qty</span>
                 <XCircle className="w-5 h-5 text-red-600" />
@@ -929,8 +929,8 @@ const GRNViewPage = () => {
           </div>
 
           {/* Progress Tracker */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="text-sm font-semibold text-gray-700 mb-4">GRN Progress</h3>
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-semibold text-gray-700 mb-2">GRN Progress</h3>
             <div className="flex items-center justify-between">
               {progressSteps.map((step, index) => (
                 <React.Fragment key={index}>
@@ -1016,7 +1016,7 @@ const GRNViewPage = () => {
         {/* Tabs */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="border-b border-gray-200">
-            <div className="flex gap-6 px-6">
+            <div className="flex gap-3 px-6">
               <button
                 onClick={() => setActiveTab('overview')}
                 className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'overview'
@@ -1051,14 +1051,14 @@ const GRNViewPage = () => {
           <div className="p-6">
             {/* Overview Tab */}
             {activeTab === 'overview' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Vendor Details */}
-                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Building2 className="w-5 h-5 text-blue-600" />
                     Vendor Details
                   </h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="text-xs font-medium text-gray-500">Vendor Code</label>
                       <p className="text-sm font-semibold text-gray-900">{grnData.vendor.vendor_code}</p>
@@ -1118,9 +1118,9 @@ const GRNViewPage = () => {
                 </div>
 
                 {/* Receipt Details */}
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <Package className="w-5 h-5 text-green-600" />
                       Receipt Details
                     </h3>
@@ -1160,8 +1160,8 @@ const GRNViewPage = () => {
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <Receipt className="w-5 h-5 text-purple-600" />
                       Invoice Details
                     </h3>
@@ -1203,12 +1203,12 @@ const GRNViewPage = () => {
                 </div>
 
                 {/* Transporter Details */}
-                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Truck className="w-5 h-5 text-orange-600" />
                     Transporter Details
                   </h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="text-xs font-medium text-gray-500">Transporter Name</label>
                       <p className="text-sm font-semibold text-gray-900">{grnData.transporter.name}</p>
@@ -1253,12 +1253,12 @@ const GRNViewPage = () => {
                 </div>
 
                 {/* Inspection Details */}
-                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-blue-600" />
                     Inspection Summary
                   </h3>
-                  <div className="grid grid-cols-4 gap-4">
+                  <div className="grid grid-cols-4 gap-2">
                     <div>
                       <label className="text-xs font-medium text-gray-500">Total Items</label>
                       <p className="text-2xl font-bold text-gray-900">{grnData.line_items.length}</p>
@@ -1285,12 +1285,12 @@ const GRNViewPage = () => {
                 </div>
 
                 {/* Documents Section */}
-                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <FileImage className="w-5 h-5 text-indigo-600" />
                     Documents & Photos
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {grnData.documents.map((doc) => (
                       <div
                         key={doc.id}
@@ -1328,7 +1328,7 @@ const GRNViewPage = () => {
 
                 {/* Notes */}
                 {grnData.notes && (
-                  <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                  <div className="bg-amber-50 rounded-lg p-3 border border-amber-200">
                     <h4 className="text-sm font-semibold text-amber-900 mb-2 flex items-center gap-2">
                       <Info className="w-4 h-4" />
                       Notes
@@ -1341,7 +1341,7 @@ const GRNViewPage = () => {
 
             {/* Line Items Tab */}
             {activeTab === 'line_items' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
@@ -1491,7 +1491,7 @@ const GRNViewPage = () => {
 
                 {/* Rejection Reasons */}
                 {grnData.line_items.some(item => item.rejected_quantity > 0) && (
-                  <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                  <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                     <h4 className="text-sm font-semibold text-red-900 mb-3 flex items-center gap-2">
                       <AlertCircle className="w-4 h-4" />
                       Rejection Details
@@ -1512,12 +1512,12 @@ const GRNViewPage = () => {
                 )}
 
                 {/* Variance Analysis */}
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="text-sm font-semibold text-blue-900 mb-3 flex items-center gap-2">
                     <BarChart3 className="w-4 h-4" />
                     Variance Analysis
                   </h4>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="text-xs font-medium text-blue-700">Total Variance</label>
                       <p className={`text-lg font-bold ${grnData.qty_variance < 0 ? 'text-red-600' : 'text-green-600'
@@ -1545,13 +1545,13 @@ const GRNViewPage = () => {
 
             {/* Quality Inspection Tab */}
             {activeTab === 'quality_inspection' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {grnData.quality_inspections.map((inspection) => (
                   <div
                     key={inspection.id}
                     className="bg-white rounded-lg border border-gray-300 overflow-hidden"
                   >
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border-b border-gray-300">
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 border-b border-gray-300">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
@@ -1561,7 +1561,7 @@ const GRNViewPage = () => {
                             </span>
                           </div>
                           <p className="text-sm text-gray-600">Item Code: {inspection.item_code}</p>
-                          <div className="flex items-center gap-4 mt-2 text-xs text-gray-600">
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-600">
                             <span>Batch: {inspection.batch_number}</span>
                             <span>Lot: {inspection.lot_number}</span>
                             <span>Sample Size: {inspection.sample_size}</span>
@@ -1582,7 +1582,7 @@ const GRNViewPage = () => {
 
                     <div className="p-4">
                       {/* Quality Parameters */}
-                      <div className="mb-4">
+                      <div className="mb-2">
                         <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                           <Target className="w-4 h-4 text-blue-600" />
                           Test Parameters & Results
@@ -1615,7 +1615,7 @@ const GRNViewPage = () => {
                                     {param.status.toUpperCase()}
                                   </span>
                                 </div>
-                                <div className="grid grid-cols-3 gap-4 text-xs">
+                                <div className="grid grid-cols-3 gap-2 text-xs">
                                   <div>
                                     <span className="text-gray-500">Method:</span>
                                     <span className="ml-1 text-gray-700">{param.test_method}</span>
@@ -1645,13 +1645,13 @@ const GRNViewPage = () => {
 
                       {/* Defect Details */}
                       {inspection.defect_details && (
-                        <div className="mb-4 bg-orange-50 rounded-lg p-3 border border-orange-200">
+                        <div className="mb-2 bg-orange-50 rounded-lg p-3 border border-orange-200">
                           <h5 className="text-sm font-semibold text-orange-900 mb-2 flex items-center gap-2">
                             <AlertTriangle className="w-4 h-4" />
                             Defect Details
                           </h5>
                           <p className="text-sm text-orange-800 mb-2">{inspection.defect_details}</p>
-                          <div className="flex items-center gap-4 text-xs">
+                          <div className="flex items-center gap-2 text-xs">
                             <span className="text-orange-700">
                               Category: <span className="font-medium capitalize">{inspection.defect_category}</span>
                             </span>
@@ -1714,29 +1714,29 @@ const GRNViewPage = () => {
                 ))}
 
                 {/* Overall QC Summary */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Activity className="w-5 h-5 text-blue-600" />
                     Quality Inspection Summary
                   </h3>
-                  <div className="grid grid-cols-4 gap-4">
-                    <div className="bg-white rounded-lg p-4 border border-gray-200">
+                  <div className="grid grid-cols-4 gap-2">
+                    <div className="bg-white rounded-lg p-3 border border-gray-200">
                       <label className="text-xs font-medium text-gray-600">Total Inspections</label>
                       <p className="text-2xl font-bold text-gray-900">{grnData.quality_inspections.length}</p>
                     </div>
-                    <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                    <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                       <label className="text-xs font-medium text-green-700">Passed</label>
                       <p className="text-2xl font-bold text-green-600">
                         {grnData.quality_inspections.filter(q => q.overall_status === 'pass').length}
                       </p>
                     </div>
-                    <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                    <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                       <label className="text-xs font-medium text-red-700">Failed</label>
                       <p className="text-2xl font-bold text-red-600">
                         {grnData.quality_inspections.filter(q => q.overall_status === 'fail').length}
                       </p>
                     </div>
-                    <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                    <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                       <label className="text-xs font-medium text-yellow-700">Pending</label>
                       <p className="text-2xl font-bold text-yellow-600">
                         {grnData.quality_inspections.filter(q => q.overall_status === 'pending').length}

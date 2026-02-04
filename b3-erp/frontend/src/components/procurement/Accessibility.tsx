@@ -300,7 +300,7 @@ export const AccessibleButton: React.FC<AccessibleButtonProps> = ({
   const sizes = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg'
+    lg: 'px-3 py-2 text-lg'
   }
 
   return (
@@ -435,8 +435,8 @@ export const AccessibleModal: React.FC<AccessibleModalProps> = ({
   const sizes = {
     sm: 'max-w-md',
     md: 'max-w-2xl',
-    lg: 'max-w-4xl',
-    xl: 'max-w-6xl'
+    lg: '',
+    xl: ''
   }
 
   return (
@@ -446,7 +446,7 @@ export const AccessibleModal: React.FC<AccessibleModalProps> = ({
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="flex min-h-screen items-center justify-center p-3">
         <div
           className="fixed inset-0 bg-black bg-opacity-50"
           onClick={onClose}
@@ -456,7 +456,7 @@ export const AccessibleModal: React.FC<AccessibleModalProps> = ({
           ref={modalRef}
           className={`relative bg-white rounded-lg shadow-xl ${sizes[size]} w-full`}
         >
-          <div className="px-6 py-4 border-b">
+          <div className="px-3 py-2 border-b">
             <h2 id="modal-title" className="text-xl font-semibold text-gray-900">
               {title}
             </h2>
@@ -468,7 +468,7 @@ export const AccessibleModal: React.FC<AccessibleModalProps> = ({
               <XCircle className="h-5 w-5 text-gray-500" />
             </button>
           </div>
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {children}
           </div>
         </div>
@@ -486,8 +486,8 @@ export const AccessibilityPanel: React.FC<{ isOpen: boolean; onClose: () => void
 
   return (
     <AccessibleModal isOpen={isOpen} onClose={onClose} title="Accessibility Settings" size="md">
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 gap-4">
+      <div className="space-y-3">
+        <div className="grid grid-cols-1 gap-2">
           <label className="flex items-center justify-between">
             <span className="text-sm font-medium text-gray-700">High Contrast Mode</span>
             <input

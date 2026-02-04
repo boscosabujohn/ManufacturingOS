@@ -408,10 +408,10 @@ export default function AccountsPayableWorkflow() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Accounts Payable Workflow</h1>
             <p className="text-gray-600">
@@ -473,8 +473,8 @@ export default function AccountsPayableWorkflow() {
 
       {/* Real-Time AP Monitoring */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200 mb-8">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Activity className="w-6 h-6 text-indigo-600" />
@@ -506,8 +506,8 @@ export default function AccountsPayableWorkflow() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Processing Today</span>
                 <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
@@ -516,7 +516,7 @@ export default function AccountsPayableWorkflow() {
               <div className="text-xs text-gray-500 mt-1">18 invoices in progress</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Approval Queue</span>
                 <Clock className="w-4 h-4 text-yellow-500" />
@@ -525,7 +525,7 @@ export default function AccountsPayableWorkflow() {
               <div className="text-xs text-yellow-600 mt-1">8 urgent items</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Discounts Expiring</span>
                 <AlertTriangle className="w-4 h-4 text-orange-500" />
@@ -534,7 +534,7 @@ export default function AccountsPayableWorkflow() {
               <div className="text-xs text-gray-500 mt-1">Next 7 days</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Avg Processing Time</span>
                 <CheckCircle className="w-4 h-4 text-green-500" />
@@ -545,7 +545,7 @@ export default function AccountsPayableWorkflow() {
           </div>
 
           {/* Live Activity Feed */}
-          <div className="bg-white rounded-lg p-4 border border-indigo-100">
+          <div className="bg-white rounded-lg p-3 border border-indigo-100">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Bell className="w-4 h-4 text-indigo-600" />
               Recent Activity
@@ -573,8 +573,8 @@ export default function AccountsPayableWorkflow() {
 
       {/* AI-Powered Cash Flow Insights */}
       {showAIInsights && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200 mb-8">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Target className="w-6 h-6 text-purple-600" />
@@ -590,8 +590,8 @@ export default function AccountsPayableWorkflow() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="w-5 h-5 text-purple-600" />
                 <span className="font-semibold text-gray-900">Cash Flow Forecast</span>
@@ -603,7 +603,7 @@ export default function AccountsPayableWorkflow() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <ArrowDownRight className="w-5 h-5 text-green-600" />
                 <span className="font-semibold text-gray-900">Discount Opportunity</span>
@@ -615,7 +615,7 @@ export default function AccountsPayableWorkflow() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="w-5 h-5 text-orange-600" />
                 <span className="font-semibold text-gray-900">Risk Alert</span>
@@ -629,7 +629,7 @@ export default function AccountsPayableWorkflow() {
           </div>
 
           {/* Smart Recommendations */}
-          <div className="bg-white rounded-lg p-4 border border-purple-100">
+          <div className="bg-white rounded-lg p-3 border border-purple-100">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Star className="w-4 h-4 text-purple-600" />
               Smart Optimization Recommendations
@@ -665,9 +665,9 @@ export default function AccountsPayableWorkflow() {
       )}
 
       {/* KPI Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <CreditCard className="h-8 w-8 text-blue-200" />
             <ArrowDownRight className="h-6 w-6 text-blue-200" />
           </div>
@@ -678,8 +678,8 @@ export default function AccountsPayableWorkflow() {
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <Clock className="h-8 w-8 text-yellow-200" />
             <Bell className="h-6 w-6 text-yellow-200" />
           </div>
@@ -690,8 +690,8 @@ export default function AccountsPayableWorkflow() {
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <Target className="h-8 w-8 text-green-200" />
             <Star className="h-6 w-6 text-green-200" />
           </div>
@@ -702,8 +702,8 @@ export default function AccountsPayableWorkflow() {
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <Activity className="h-8 w-8 text-purple-200" />
             <ArrowUpRight className="h-6 w-6 text-purple-200" />
           </div>
@@ -717,10 +717,10 @@ export default function AccountsPayableWorkflow() {
 
       {/* Main Content Based on Selected View */}
       {selectedView === 'dashboard' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* AP Trends Chart */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-xl shadow-lg p-3">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-semibold text-gray-900">Accounts Payable Trends</h3>
               <select
                 value={selectedPeriod}
@@ -782,10 +782,10 @@ export default function AccountsPayableWorkflow() {
           </div>
 
           {/* Quick Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {/* Aging Breakdown */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Payables Aging</h4>
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Payables Aging</h4>
               <div className="space-y-3">
                 {apAgingBuckets.map((bucket, index) => (
                   <div key={index} className="flex items-center justify-between">
@@ -803,8 +803,8 @@ export default function AccountsPayableWorkflow() {
             </div>
 
             {/* Recent Activity */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h4>
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Recent Activity</h4>
               <div className="space-y-3">
                 <div className="border-l-4 border-green-200 pl-3">
                   <p className="text-sm font-medium text-gray-900">Invoice Approved</p>
@@ -825,8 +825,8 @@ export default function AccountsPayableWorkflow() {
             </div>
 
             {/* Approval Bottlenecks */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Approval Bottlenecks</h4>
+            <div className="bg-white rounded-xl shadow-lg p-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Approval Bottlenecks</h4>
               <div className="space-y-3">
                 <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-1">
@@ -856,10 +856,10 @@ export default function AccountsPayableWorkflow() {
       )}
 
       {selectedView === 'approvals' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Pending Approvals List */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+            <div className="px-3 py-2 border-b border-gray-200 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900">Pending Approvals</h3>
               <div className="flex items-center space-x-2">
                 <div className="relative">
@@ -884,25 +884,25 @@ export default function AccountsPayableWorkflow() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Approver</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approval Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Approver</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approval Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {pendingInvoices.map((invoice) => (
                     <tr key={invoice.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div>
                           <p className="text-sm font-medium text-gray-900">{invoice.invoiceNumber}</p>
                           <p className="text-xs text-gray-500">Due: {new Date(invoice.dueDate).toLocaleDateString()}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div>
                           <p className="text-sm font-medium text-gray-900">{invoice.vendorName}</p>
                           {invoice.purchaseOrder && (
@@ -910,18 +910,18 @@ export default function AccountsPayableWorkflow() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                         {formatCurrency(invoice.netAmount)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getPriorityColor(invoice.priority)}`}>
                           {invoice.priority}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                         {invoice.currentApprover}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           {invoice.approvalHistory.map((step, index) => (
                             <div key={step.id} className="flex items-center">
@@ -933,7 +933,7 @@ export default function AccountsPayableWorkflow() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                         <div className="flex items-center space-x-2">
                           <button
                             onClick={() => {
@@ -971,12 +971,12 @@ export default function AccountsPayableWorkflow() {
           </div>
 
           {/* Approval Workflow Visualization */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Approval Workflow Status</h3>
-            <div className="space-y-6">
+          <div className="bg-white rounded-xl shadow-lg p-3">
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Approval Workflow Status</h3>
+            <div className="space-y-3">
               {pendingInvoices.slice(0, 2).map((invoice) => (
-                <div key={invoice.id} className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={invoice.id} className="border border-gray-200 rounded-lg p-3">
+                  <div className="flex items-center justify-between mb-2">
                     <div>
                       <h4 className="text-lg font-medium text-gray-900">{invoice.invoiceNumber}</h4>
                       <p className="text-sm text-gray-600">{invoice.vendorName} - {formatCurrency(invoice.netAmount)}</p>
@@ -1019,10 +1019,10 @@ export default function AccountsPayableWorkflow() {
       {/* Approval Modal */}
       {showApprovalModal && selectedInvoice && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="flex min-h-screen items-center justify-center p-4">
+          <div className="flex min-h-screen items-center justify-center p-3">
             <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setShowApprovalModal(false)} />
             <div className="relative bg-white rounded-lg shadow-xl w-full max-w-2xl">
-              <div className="px-6 py-4 border-b border-gray-200">
+              <div className="px-3 py-2 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-gray-900">Invoice Approval</h2>
                   <button
@@ -1034,9 +1034,9 @@ export default function AccountsPayableWorkflow() {
                 </div>
               </div>
 
-              <div className="px-6 py-4">
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="px-3 py-2">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm font-medium text-gray-700">Invoice Number</p>
                       <p className="text-lg font-semibold text-gray-900">{selectedInvoice.invoiceNumber}</p>
@@ -1085,7 +1085,7 @@ export default function AccountsPayableWorkflow() {
                 </div>
               </div>
 
-              <div className="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
+              <div className="px-3 py-2 border-t border-gray-200 flex justify-end space-x-3">
                 <button
                   onClick={() => setShowApprovalModal(false)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"

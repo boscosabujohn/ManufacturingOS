@@ -354,7 +354,7 @@ export default function TechnicianTrackingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Toast Notification */}
       {toast && (
         <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
@@ -370,7 +370,7 @@ export default function TechnicianTrackingPage() {
       )}
 
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
             <Navigation className="h-8 w-8 text-emerald-600" />
@@ -380,7 +380,7 @@ export default function TechnicianTrackingPage() {
         </div>
         <button
           onClick={() => setShowAnalyticsModal(true)}
-          className="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-lg"
+          className="bg-emerald-600 text-white px-3 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-lg"
         >
           <BarChart3 className="w-5 h-5" />
           View Analytics
@@ -388,7 +388,7 @@ export default function TechnicianTrackingPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 mb-3">
         <button
           onClick={() => handleStatsCardClick('total')}
           className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-blue-500 transition-all text-left"
@@ -487,8 +487,8 @@ export default function TechnicianTrackingPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -520,11 +520,11 @@ export default function TechnicianTrackingPage() {
       </div>
 
       {/* Map Placeholder & Technicians List */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Map View */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-4 text-white">
+            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-3 text-white">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold flex items-center gap-2">
                   <MapPin className="h-5 w-5" />
@@ -539,10 +539,10 @@ export default function TechnicianTrackingPage() {
             <div className="relative h-[600px] bg-gradient-to-br from-blue-50 to-emerald-50 flex items-center justify-center">
               {/* Placeholder for actual map integration */}
               <div className="text-center">
-                <MapPin className="h-16 w-16 text-emerald-600 mb-4" />
+                <MapPin className="h-16 w-16 text-emerald-600 mb-2" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Interactive Map View</h3>
-                <p className="text-gray-600 mb-4">Integrate with Google Maps, Mapbox, or OpenStreetMap</p>
-                <div className="grid grid-cols-3 gap-4 max-w-md">
+                <p className="text-gray-600 mb-2">Integrate with Google Maps, Mapbox, or OpenStreetMap</p>
+                <div className="grid grid-cols-3 gap-2 max-w-md">
                   {mockTechnicians.slice(0, 6).map((tech) => (
                     <button
                       key={tech.id}
@@ -569,7 +569,7 @@ export default function TechnicianTrackingPage() {
         {/* Technicians List */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-            <div className="bg-gray-50 border-b border-gray-200 p-4">
+            <div className="bg-gray-50 border-b border-gray-200 p-3">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <User className="h-5 w-5 text-emerald-600" />
                 Technicians ({filteredTechnicians.length})
@@ -609,7 +609,7 @@ export default function TechnicianTrackingPage() {
                     )}
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="flex items-center gap-1">
                           <Battery className={`h-3 w-3 ${getBatteryColor(tech.batteryLevel)}`} />
                           <span className={getBatteryColor(tech.batteryLevel)}>{tech.batteryLevel}%</span>
@@ -646,9 +646,9 @@ export default function TechnicianTrackingPage() {
 
       {/* Detailed Technician Info Modal */}
       {selectedTechnician && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className={`sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between`}>
+            <div className={`sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-3 py-2 flex items-center justify-between`}>
               <div>
                 <h2 className="text-xl font-bold text-white">{selectedTechnician.technicianName}</h2>
                 <p className="text-sm text-emerald-100">{selectedTechnician.technicianId}</p>
@@ -663,13 +663,13 @@ export default function TechnicianTrackingPage() {
 
             <div className="p-6">
               {/* Status & Location */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium border ${getStatusColor(selectedTechnician.currentStatus)}`}>
                     {getStatusIcon(selectedTechnician.currentStatus)}
                     {selectedTechnician.currentStatus.replace('_', ' ').toUpperCase()}
                   </span>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="flex items-center gap-2">
                       <Battery className={`h-5 w-5 ${getBatteryColor(selectedTechnician.batteryLevel)}`} />
                       <span className={`font-medium ${getBatteryColor(selectedTechnician.batteryLevel)}`}>
@@ -685,7 +685,7 @@ export default function TechnicianTrackingPage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-emerald-600 mt-0.5" />
                     <div className="flex-1">
@@ -701,9 +701,9 @@ export default function TechnicianTrackingPage() {
 
               {/* Current Job */}
               {selectedTechnician.currentJob && (
-                <div className="mb-6">
+                <div className="mb-3">
                   <h3 className="text-sm font-semibold text-gray-700 mb-3">Current Job</h3>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-2">
                       <Wrench className="h-5 w-5 text-blue-600" />
                       <span className="font-medium text-blue-900">{selectedTechnician.currentJob}</span>
@@ -717,7 +717,7 @@ export default function TechnicianTrackingPage() {
               )}
 
               {/* Contact & Vehicle */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-2 mb-3">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-700 mb-3">Contact</h3>
                   <div className="space-y-2 text-sm">
@@ -742,9 +742,9 @@ export default function TechnicianTrackingPage() {
               </div>
 
               {/* Today's Stats */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <h3 className="text-sm font-semibold text-gray-700 mb-3">Today's Performance</h3>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2">
                   <div className="bg-gray-50 rounded-lg p-3 text-center">
                     <div className="text-2xl font-bold text-gray-900">{selectedTechnician.todayJobs}</div>
                     <div className="text-xs text-gray-600">Total Jobs</div>
@@ -765,7 +765,7 @@ export default function TechnicianTrackingPage() {
               </div>
 
               {/* Skills & Rating */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <h3 className="text-sm font-semibold text-gray-700 mb-3">Skills & Performance</h3>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {selectedTechnician.skillSet.map((skill, index) => (
@@ -774,7 +774,7 @@ export default function TechnicianTrackingPage() {
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="flex items-center gap-2">
                     <TrendingUp className="h-5 w-5 text-emerald-600" />
                     <span className="text-sm font-medium">Rating:</span>
@@ -817,9 +817,9 @@ export default function TechnicianTrackingPage() {
 
       {/* Analytics Modal */}
       {showAnalyticsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
                   <BarChart3 className="h-7 w-7" />
@@ -835,34 +835,34 @@ export default function TechnicianTrackingPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Overview Stats */}
-              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-6 border border-emerald-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-3 border border-emerald-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 text-emerald-600" />
                   Team Overview
                 </h3>
-                <div className="grid grid-cols-4 gap-4">
-                  <div className="bg-white rounded-lg p-4 border border-emerald-200">
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="bg-white rounded-lg p-3 border border-emerald-200">
                     <div className="text-sm text-gray-600 mb-1">Total Technicians</div>
                     <div className="text-3xl font-bold text-gray-900">{totalTechnicians}</div>
                     <div className="text-xs text-emerald-600 mt-1">Active team members</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-blue-200">
+                  <div className="bg-white rounded-lg p-3 border border-blue-200">
                     <div className="text-sm text-gray-600 mb-1">Total Distance</div>
                     <div className="text-3xl font-bold text-blue-600">
                       {mockTechnicians.reduce((sum, t) => sum + t.totalDistance, 0).toFixed(1)} km
                     </div>
                     <div className="text-xs text-blue-600 mt-1">Covered today</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-purple-200">
+                  <div className="bg-white rounded-lg p-3 border border-purple-200">
                     <div className="text-sm text-gray-600 mb-1">Working Hours</div>
                     <div className="text-3xl font-bold text-purple-600">
                       {mockTechnicians.reduce((sum, t) => sum + t.workingHours, 0).toFixed(1)}h
                     </div>
                     <div className="text-xs text-purple-600 mt-1">Total logged today</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-orange-200">
+                  <div className="bg-white rounded-lg p-3 border border-orange-200">
                     <div className="text-sm text-gray-600 mb-1">Avg Rating</div>
                     <div className="text-3xl font-bold text-orange-600">
                       {(mockTechnicians.reduce((sum, t) => sum + t.rating, 0) / totalTechnicians).toFixed(1)}
@@ -873,12 +873,12 @@ export default function TechnicianTrackingPage() {
               </div>
 
               {/* Status Distribution */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <User className="h-5 w-5 text-emerald-600" />
                   Status Distribution
                 </h3>
-                <div className="grid grid-cols-5 gap-4">
+                <div className="grid grid-cols-5 gap-2">
                   {[
                     { status: 'available', label: 'Available', count: mockTechnicians.filter(t => t.currentStatus === 'available').length, color: 'green' },
                     { status: 'on_job', label: 'On Job', count: mockTechnicians.filter(t => t.currentStatus === 'on_job').length, color: 'blue' },
@@ -886,7 +886,7 @@ export default function TechnicianTrackingPage() {
                     { status: 'on_break', label: 'On Break', count: mockTechnicians.filter(t => t.currentStatus === 'on_break').length, color: 'orange' },
                     { status: 'offline', label: 'Offline', count: mockTechnicians.filter(t => t.currentStatus === 'offline').length, color: 'gray' },
                   ].map((item) => (
-                    <div key={item.status} className="bg-gray-50 rounded-lg p-4 text-center">
+                    <div key={item.status} className="bg-gray-50 rounded-lg p-3 text-center">
                       <div className={`text-3xl font-bold text-${item.color}-600 mb-1`}>{item.count}</div>
                       <div className="text-sm text-gray-600">{item.label}</div>
                       <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
@@ -904,13 +904,13 @@ export default function TechnicianTrackingPage() {
               </div>
 
               {/* Performance Metrics */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Wrench className="h-5 w-5 text-emerald-600" />
                     Job Completion Analysis
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-gray-700">Completed Jobs</span>
@@ -942,7 +942,7 @@ export default function TechnicianTrackingPage() {
                       </div>
                     </div>
 
-                    <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-200 mt-4">
+                    <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-200 mt-4">
                       <div className="text-sm font-medium text-gray-700 mb-2">Top Performers Today</div>
                       {mockTechnicians
                         .sort((a, b) => b.completedJobs - a.completedJobs)
@@ -962,13 +962,13 @@ export default function TechnicianTrackingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Clock className="h-5 w-5 text-emerald-600" />
                     Response Time Analysis
                   </h3>
-                  <div className="space-y-4">
-                    <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <div className="space-y-2">
+                    <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                       <div className="text-sm text-gray-600 mb-1">Team Average</div>
                       <div className="text-3xl font-bold text-blue-600">{avgResponseTime} min</div>
                       <div className="text-xs text-blue-600 mt-1">Average response time</div>
@@ -996,7 +996,7 @@ export default function TechnicianTrackingPage() {
                       ))}
                     </div>
 
-                    <div className="bg-orange-50 rounded-lg p-4 border border-orange-200 mt-4">
+                    <div className="bg-orange-50 rounded-lg p-3 border border-orange-200 mt-4">
                       <div className="text-sm font-medium text-gray-700 mb-2">Fastest Responders</div>
                       {mockTechnicians
                         .sort((a, b) => a.responseTime - b.responseTime)
@@ -1016,9 +1016,9 @@ export default function TechnicianTrackingPage() {
               </div>
 
               {/* Distance & Skills Analysis */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Navigation className="h-5 w-5 text-emerald-600" />
                     Distance Traveled
                   </h3>
@@ -1042,8 +1042,8 @@ export default function TechnicianTrackingPage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Wrench className="h-5 w-5 text-emerald-600" />
                     Skills Distribution
                   </h3>
@@ -1070,16 +1070,16 @@ export default function TechnicianTrackingPage() {
               </div>
 
               {/* Technician Ratings */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 text-emerald-600" />
                   Technician Ratings
                 </h3>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2">
                   {mockTechnicians
                     .sort((a, b) => b.rating - a.rating)
                     .map((tech) => (
-                      <div key={tech.id} className="bg-gradient-to-br from-gray-50 to-emerald-50 rounded-lg p-4 border border-gray-200">
+                      <div key={tech.id} className="bg-gradient-to-br from-gray-50 to-emerald-50 rounded-lg p-3 border border-gray-200">
                         <div className="text-sm font-medium text-gray-900 mb-2 truncate">{tech.technicianName}</div>
                         <div className="flex items-center gap-2 mb-2">
                           <div className="text-2xl font-bold text-emerald-600">{tech.rating}</div>

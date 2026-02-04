@@ -148,7 +148,7 @@ export default function Phase2Dashboard() {
 
   return (
     <div className="w-full py-8 space-y-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Phase 2: Design & Site Assessment</h1>
           <p className="text-gray-600 mt-2">Execute and track all steps in the design verification and site assessment phase.</p>
@@ -162,7 +162,7 @@ export default function Phase2Dashboard() {
       {/* Workflow Visualization */}
       <div className="relative">
         <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 hidden lg:block z-0"></div>
-        <div className="flex overflow-x-auto pb-8 gap-4 relative z-10 no-scrollbar">
+        <div className="flex overflow-x-auto pb-8 gap-2 relative z-10 no-scrollbar">
           {workflowSteps.slice(0, 6).map((step, index) => (
             <div key={step.id} className="flex-shrink-0 w-48 flex flex-col items-center group cursor-pointer" onClick={() => router.push(step.href)}>
               <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 mb-3 transition-colors ${step.status === 'Completed' ? 'bg-green-600 border-green-600 text-white' :

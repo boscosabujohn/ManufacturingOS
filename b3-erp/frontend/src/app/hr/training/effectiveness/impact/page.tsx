@@ -60,9 +60,9 @@ export default function ImpactPage() {
   const [selectedDept, setSelectedDept] = useState('All Departments');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <TrendingUp className="h-8 w-8 text-purple-600" />
@@ -89,10 +89,10 @@ export default function ImpactPage() {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         {keyMetrics.map((metric, index) => (
-          <div key={index} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
-            <div className="flex items-center justify-between mb-4 relative z-10">
+          <div key={index} className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
+            <div className="flex items-center justify-between mb-2 relative z-10">
               <div className={`p-2 rounded-lg ${metric.bg}`}>
                 <metric.icon className={`w-6 h-6 ${metric.color}`} />
               </div>
@@ -107,10 +107,10 @@ export default function ImpactPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* ROI Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
             <DollarSign className="w-5 h-5 text-gray-400" />
             Value vs. Investment
           </h2>
@@ -139,8 +139,8 @@ export default function ImpactPage() {
         </div>
 
         {/* Correlation Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
             <Target className="w-5 h-5 text-gray-400" />
             Impact on Performance
           </h2>
@@ -180,8 +180,8 @@ export default function ImpactPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-bold text-gray-900">Department Breakdown</h2>
           <button className="text-sm text-purple-600 font-medium hover:text-purple-800 flex items-center">
             View Full Report <ArrowUpRight className="w-4 h-4 ml-1" />
@@ -191,34 +191,34 @@ export default function ImpactPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Department</th>
-                <th className="px-6 py-4">Total Training Hours</th>
-                <th className="px-6 py-4">Avg Performance Score</th>
-                <th className="px-6 py-4">Productivity Change</th>
-                <th className="px-6 py-4">Retention Rate</th>
+                <th className="px-3 py-2">Department</th>
+                <th className="px-3 py-2">Total Training Hours</th>
+                <th className="px-3 py-2">Avg Performance Score</th>
+                <th className="px-3 py-2">Productivity Change</th>
+                <th className="px-3 py-2">Retention Rate</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 font-semibold text-gray-900">Sales</td>
-                <td className="px-6 py-4">1,240 hrs</td>
-                <td className="px-6 py-4">88/100</td>
-                <td className="px-6 py-4 text-green-600 font-medium">+15%</td>
-                <td className="px-6 py-4">92%</td>
+                <td className="px-3 py-2 font-semibold text-gray-900">Sales</td>
+                <td className="px-3 py-2">1,240 hrs</td>
+                <td className="px-3 py-2">88/100</td>
+                <td className="px-3 py-2 text-green-600 font-medium">+15%</td>
+                <td className="px-3 py-2">92%</td>
               </tr>
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 font-semibold text-gray-900">Engineering</td>
-                <td className="px-6 py-4">2,100 hrs</td>
-                <td className="px-6 py-4">92/100</td>
-                <td className="px-6 py-4 text-green-600 font-medium">+8%</td>
-                <td className="px-6 py-4">96%</td>
+                <td className="px-3 py-2 font-semibold text-gray-900">Engineering</td>
+                <td className="px-3 py-2">2,100 hrs</td>
+                <td className="px-3 py-2">92/100</td>
+                <td className="px-3 py-2 text-green-600 font-medium">+8%</td>
+                <td className="px-3 py-2">96%</td>
               </tr>
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 font-semibold text-gray-900">Customer Support</td>
-                <td className="px-6 py-4">850 hrs</td>
-                <td className="px-6 py-4">85/100</td>
-                <td className="px-6 py-4 text-green-600 font-medium">+12%</td>
-                <td className="px-6 py-4">89%</td>
+                <td className="px-3 py-2 font-semibold text-gray-900">Customer Support</td>
+                <td className="px-3 py-2">850 hrs</td>
+                <td className="px-3 py-2">85/100</td>
+                <td className="px-3 py-2 text-green-600 font-medium">+12%</td>
+                <td className="px-3 py-2">89%</td>
               </tr>
             </tbody>
           </table>

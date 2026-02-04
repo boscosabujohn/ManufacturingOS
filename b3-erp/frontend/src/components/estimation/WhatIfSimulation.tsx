@@ -81,12 +81,12 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
   const impact = calculateImpact();
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Base Estimate */}
-      <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg p-6 text-white">
+      <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg p-3 text-white">
         <h3 className="text-xl font-bold mb-2">Base Estimate</h3>
         <p className="text-2xl font-bold mb-1">{baseEstimate.name}</p>
-        <div className="grid grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-3 gap-2 mt-4">
           <div>
             <p className="text-sm opacity-90">Total Cost</p>
             <p className="text-xl font-bold">${baseEstimate.totalCost.toLocaleString()}</p>
@@ -104,7 +104,7 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
 
       {/* Impact Summary */}
       {impact !== 0 && (
-        <div className={`rounded-lg p-4 ${impact > 0 ? 'bg-red-50 border-2 border-red-200' : 'bg-green-50 border-2 border-green-200'}`}>
+        <div className={`rounded-lg p-3 ${impact > 0 ? 'bg-red-50 border-2 border-red-200' : 'bg-green-50 border-2 border-green-200'}`}>
           <div className="flex items-center space-x-3">
             {impact > 0 ? (
               <TrendingUp className="h-8 w-8 text-red-600" />
@@ -126,7 +126,7 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
         <div className="flex border-b border-gray-200">
           <button
             onClick={() => setActiveTab('variables')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'variables' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'
             }`}
           >
@@ -134,7 +134,7 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('scenarios')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'scenarios' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'
             }`}
           >
@@ -145,7 +145,7 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
         {/* Variables Tab */}
         {activeTab === 'variables' && (
           <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-bold text-gray-900">Adjust Variables</h3>
               <div className="flex items-center space-x-2">
                 {onResetVariables && (
@@ -169,13 +169,13 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {variables.map((variable) => {
                 const isChanged = variable.currentValue !== variable.baseValue;
                 const changePercent = ((variable.currentValue - variable.baseValue) / variable.baseValue) * 100;
 
                 return (
-                  <div key={variable.id} className="border-2 border-gray-200 rounded-lg p-4">
+                  <div key={variable.id} className="border-2 border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h4 className="font-bold text-gray-900">{variable.name}</h4>
@@ -220,13 +220,13 @@ export const WhatIfSimulation: React.FC<WhatIfSimulationProps> = ({
         {/* Scenarios Tab */}
         {activeTab === 'scenarios' && (
           <div className="p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Saved Scenarios</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Saved Scenarios</h3>
             <div className="space-y-3">
               {scenarios.map((scenario) => (
-                <div key={scenario.id} className="border-2 border-gray-200 rounded-lg p-4">
+                <div key={scenario.id} className="border-2 border-gray-200 rounded-lg p-3">
                   <h4 className="font-bold text-gray-900 mb-1">{scenario.name}</h4>
                   <p className="text-sm text-gray-600 mb-3">{scenario.description}</p>
-                  <div className="grid grid-cols-4 gap-4">
+                  <div className="grid grid-cols-4 gap-2">
                     <div>
                       <p className="text-xs text-gray-500">Total Cost</p>
                       <p className="text-sm font-bold">${scenario.totalCost.toLocaleString()}</p>

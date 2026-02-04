@@ -209,16 +209,16 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Alumni Directory</h1>
         <p className="text-sm text-gray-600 mt-1">Connect with our former employees and industry experts</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Alumni</p>
@@ -228,7 +228,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Mentors</p>
@@ -238,7 +238,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Rehire Eligible</p>
@@ -248,7 +248,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Tenure</p>
@@ -260,8 +260,8 @@ export default function Page() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -289,7 +289,7 @@ export default function Page() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4 pt-4 border-t border-gray-200">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
               <select
@@ -331,12 +331,12 @@ export default function Page() {
       </div>
 
       {/* Alumni Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredAlumni.map(member => (
           <div key={member.id} className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header with Name and Status */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div>
                   <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
                   <p className="text-sm text-gray-600">{member.employeeCode} • Worked {member.tenure}</p>
@@ -356,14 +356,14 @@ export default function Page() {
               </div>
 
               {/* Previous Role */}
-              <div className="bg-gray-50 rounded-lg p-3 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3 mb-2">
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Previous Role</p>
                 <p className="text-sm font-semibold text-gray-900">{member.designation}</p>
                 <p className="text-xs text-gray-600">{member.department} • {member.joinDate} to {member.exitDate}</p>
               </div>
 
               {/* Current Role */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-start gap-2 mb-2">
                   <Building2 className="h-4 w-4 text-gray-400 mt-0.5" />
                   <div>
@@ -379,7 +379,7 @@ export default function Page() {
 
               {/* Expertise Tags */}
               {member.industryExpertise.length > 0 && (
-                <div className="mb-4">
+                <div className="mb-2">
                   <p className="text-xs text-gray-500 uppercase font-medium mb-2">Expertise</p>
                   <div className="flex flex-wrap gap-2">
                     {member.industryExpertise.map((skill, idx) => (
@@ -434,7 +434,7 @@ export default function Page() {
 
       {filteredAlumni.length === 0 && (
         <div className="text-center py-12">
-          <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Users className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No alumni found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
@@ -442,9 +442,9 @@ export default function Page() {
 
       {/* View Profile Modal */}
       {showProfileModal && selectedMember && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <UserCheck className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Alumni Profile</h2>
@@ -456,8 +456,8 @@ export default function Page() {
 
             <div className="p-6">
               {/* Profile Header */}
-              <div className="mb-6 flex items-start justify-between">
-                <div className="flex items-start gap-4">
+              <div className="mb-3 flex items-start justify-between">
+                <div className="flex items-start gap-2">
                   <div className="h-24 w-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
                     {selectedMember.name.split(' ').map(n => n[0]).join('')}
                   </div>
@@ -484,7 +484,7 @@ export default function Page() {
               </div>
 
               {/* Quick Contact */}
-              <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="mb-3 grid grid-cols-1 md:grid-cols-3 gap-3">
                 <a
                   href={`mailto:${selectedMember.email}`}
                   className="flex items-center gap-2 px-4 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
@@ -522,10 +522,10 @@ export default function Page() {
               </div>
 
               {/* Two Column Layout */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 {/* Previous Role at Company */}
                 <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Briefcase className="h-5 w-5 text-gray-600" />
                     Previous Role with Us
                   </h4>
@@ -573,7 +573,7 @@ export default function Page() {
 
                 {/* Current Role */}
                 <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
-                  <h4 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <Building2 className="h-5 w-5 text-blue-600" />
                     Current Role
                   </h4>
@@ -611,7 +611,7 @@ export default function Page() {
 
               {/* Achievements */}
               {selectedMember.achievements.length > 0 && (
-                <div className="mb-6 bg-green-50 rounded-lg p-5 border border-green-200">
+                <div className="mb-3 bg-green-50 rounded-lg p-5 border border-green-200">
                   <h4 className="font-semibold text-green-900 mb-3 flex items-center gap-2">
                     <Award className="h-5 w-5 text-green-600" />
                     Key Achievements
@@ -629,7 +629,7 @@ export default function Page() {
 
               {/* Industry Expertise */}
               {selectedMember.industryExpertise.length > 0 && (
-                <div className="mb-6">
+                <div className="mb-3">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <TrendingUp className="h-5 w-5 text-gray-600" />
                     Industry Expertise & Skills
@@ -664,7 +664,7 @@ export default function Page() {
                 </button>
                 <button
                   onClick={() => setShowProfileModal(false)}
-                  className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  className="px-3 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                 >
                   Close
                 </button>

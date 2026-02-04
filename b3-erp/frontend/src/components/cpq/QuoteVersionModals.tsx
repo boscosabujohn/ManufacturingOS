@@ -65,10 +65,10 @@ export function ViewVersionModal({ isOpen, onClose, version, onCompare, onCreate
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center gap-3">
             <GitBranch className="h-6 w-6" />
             <div>
@@ -81,9 +81,9 @@ export function ViewVersionModal({ isOpen, onClose, version, onCompare, onCreate
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Version Details */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-500 mb-1">Version ID</label>
               <p className="text-gray-900 font-mono">{version.id}</p>
@@ -116,7 +116,7 @@ export function ViewVersionModal({ isOpen, onClose, version, onCompare, onCreate
           </div>
 
           {/* Quote Value */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Quote Value</h3>
             <p className="text-4xl font-bold text-green-900">
               ₹{(version.value / 100000).toFixed(2)}L
@@ -127,7 +127,7 @@ export function ViewVersionModal({ isOpen, onClose, version, onCompare, onCreate
           </div>
 
           {/* Change Type */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Change Type</h3>
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${getChangeTypeColor(version.changeType)}`}>
               {getChangeTypeIcon(version.changeType)}
@@ -136,7 +136,7 @@ export function ViewVersionModal({ isOpen, onClose, version, onCompare, onCreate
           </div>
 
           {/* Changes Made */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Changes Made in This Version</h3>
             <ul className="space-y-2">
               {version.changes.map((change, idx) => (
@@ -192,10 +192,10 @@ export function CompareVersionsModal({ isOpen, onClose, version1, version2 }: Co
   const percentChange = ((valueDiff / version1.value) * 100).toFixed(2)
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-6xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center gap-3">
             <GitBranch className="h-6 w-6" />
             <div>
@@ -208,11 +208,11 @@ export function CompareVersionsModal({ isOpen, onClose, version1, version2 }: Co
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Value Comparison */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Value Comparison</h3>
-            <div className="grid grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+            <h3 className="text-sm font-semibold text-gray-900 mb-2">Value Comparison</h3>
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <p className="text-sm text-gray-600 mb-1">{version1.version}</p>
                 <p className="text-2xl font-bold text-gray-900">₹{(version1.value / 100000).toFixed(2)}L</p>
@@ -238,9 +238,9 @@ export function CompareVersionsModal({ isOpen, onClose, version1, version2 }: Co
           </div>
 
           {/* Side-by-Side Comparison */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Version 1 */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">{version1.version}</h3>
               <div className="space-y-3">
                 <div>
@@ -282,7 +282,7 @@ export function CompareVersionsModal({ isOpen, onClose, version1, version2 }: Co
             </div>
 
             {/* Version 2 */}
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
               <h3 className="text-sm font-semibold text-blue-900 mb-3">{version2.version}</h3>
               <div className="space-y-3">
                 <div>
@@ -347,10 +347,10 @@ export function VersionTimelineModal({ isOpen, onClose, quoteNumber, versions }:
   )
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center gap-3">
             <Clock className="h-6 w-6" />
             <div>
@@ -370,7 +370,7 @@ export function VersionTimelineModal({ isOpen, onClose, quoteNumber, versions }:
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
 
             {/* Timeline Items */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {sortedVersions.map((version, index) => (
                 <div key={version.id} className="relative pl-20">
                   {/* Timeline Dot */}
@@ -383,7 +383,7 @@ export function VersionTimelineModal({ isOpen, onClose, quoteNumber, versions }:
                   </div>
 
                   {/* Content Card */}
-                  <div className={`bg-white rounded-lg border-2 p-4 ${
+                  <div className={`bg-white rounded-lg border-2 p-3 ${
                     version.status === 'current' ? 'border-green-300 shadow-lg' : 'border-gray-200'
                   }`}>
                     <div className="flex items-start justify-between mb-2">
@@ -490,17 +490,17 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <h2 className="text-xl font-bold">Filter Versions</h2>
           <button onClick={onClose} className="text-white hover:bg-blue-700 rounded-lg p-1 transition-colors">
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Status */}
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-3">Status</label>

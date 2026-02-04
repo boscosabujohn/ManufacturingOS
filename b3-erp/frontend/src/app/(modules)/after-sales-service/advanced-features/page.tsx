@@ -31,9 +31,9 @@ export default function AfterSalesAdvancedFeaturesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 py-8 px-3">
       <div className="w-full space-y-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
           <div className="flex items-center gap-5">
             <div className="p-4 bg-blue-600 rounded-3xl shadow-xl shadow-blue-100">
               <Wrench className="h-8 w-8 text-white" />

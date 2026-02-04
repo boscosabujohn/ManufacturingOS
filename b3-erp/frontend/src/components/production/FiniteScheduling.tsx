@@ -336,9 +336,9 @@ const FiniteScheduling: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Calendar className="h-8 w-8" />
@@ -381,8 +381,8 @@ const FiniteScheduling: React.FC = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Scheduled Jobs</p>
@@ -394,7 +394,7 @@ const FiniteScheduling: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -406,7 +406,7 @@ const FiniteScheduling: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Delayed</p>
@@ -418,7 +418,7 @@ const FiniteScheduling: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Blocked</p>
@@ -430,7 +430,7 @@ const FiniteScheduling: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Utilization</p>
@@ -445,31 +445,31 @@ const FiniteScheduling: React.FC = () => {
 
       {/* Work Center Capacity */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Work Center Capacity & Utilization</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Work Center</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capacity (hrs)</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Load</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active Jobs</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Efficiency</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Availability</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Work Center</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capacity (hrs)</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Load</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active Jobs</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Efficiency</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Availability</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {workCenters.map((wc) => (
                 <tr key={wc.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{wc.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{wc.type}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{wc.capacity} hrs</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{wc.currentLoad} hrs</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{wc.name}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{wc.type}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{wc.capacity} hrs</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{wc.currentLoad} hrs</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-24 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -483,13 +483,13 @@ const FiniteScheduling: React.FC = () => {
                       <span className="text-sm font-medium text-gray-700">{wc.utilization}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{wc.activeJobs} / {wc.scheduledJobs}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{wc.activeJobs} / {wc.scheduledJobs}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${wc.efficiency >= 90 ? 'text-green-600' : wc.efficiency >= 80 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {wc.efficiency}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${wc.availability >= 95 ? 'text-green-600' : wc.availability >= 90 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {wc.availability}%
                     </span>
@@ -503,50 +503,50 @@ const FiniteScheduling: React.FC = () => {
 
       {/* Scheduled Jobs */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Production Schedule</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Job Number</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Work Center</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Schedule</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Duration</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Progress</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Constraints</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Job Number</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Work Center</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Schedule</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Duration</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Progress</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Constraints</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {jobs.map((job) => (
                 <tr key={job.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{job.jobNumber}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{job.productName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{job.workCenter}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{job.jobNumber}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{job.productName}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{job.workCenter}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(job.status)}`}>
                       {job.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${getPriorityColor(job.priority)}`}>
                       {job.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     <div>{job.scheduledStart}</div>
                     <div className="text-xs">to {job.scheduledEnd}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {job.duration} min
                     <div className="text-xs text-gray-500">Setup: {job.setupTime} min</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -557,7 +557,7 @@ const FiniteScheduling: React.FC = () => {
                       <span className="text-sm text-gray-700">{job.completedQty}/{job.quantity}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {job.constraints.length > 0 ? (
                       <div className="flex flex-wrap gap-1">
                         {job.constraints.map((c, idx) => (
@@ -570,7 +570,7 @@ const FiniteScheduling: React.FC = () => {
                       <CheckCircle className="h-5 w-5 text-green-500" />
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex space-x-2">
                       {job.status === 'in-progress' ? (
                         <button
@@ -606,7 +606,7 @@ const FiniteScheduling: React.FC = () => {
 
       {/* Active Constraints */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Active Schedule Constraints</h3>
         </div>
         <div className="divide-y divide-gray-200">

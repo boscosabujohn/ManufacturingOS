@@ -94,9 +94,9 @@ export function AddMaterialRateModal({ isOpen, onClose, onSave }: AddRateModalPr
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Package className="h-6 w-6 text-white" />
@@ -112,7 +112,7 @@ export function AddMaterialRateModal({ isOpen, onClose, onSave }: AddRateModalPr
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Material Code */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -294,7 +294,7 @@ export function AddMaterialRateModal({ isOpen, onClose, onSave }: AddRateModalPr
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -364,9 +364,9 @@ export function EditMaterialRateModal({ isOpen, onClose, onSave, rate }: EditRat
   if (!isOpen || !rate) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Package className="h-6 w-6 text-white" />
@@ -383,8 +383,8 @@ export function EditMaterialRateModal({ isOpen, onClose, onSave, rate }: EditRat
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Material Info */}
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Material Code</p>
                 <p className="font-semibold text-gray-900">{rate.materialCode}</p>
@@ -396,7 +396,7 @@ export function EditMaterialRateModal({ isOpen, onClose, onSave, rate }: EditRat
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Current Rate */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -496,7 +496,7 @@ export function EditMaterialRateModal({ isOpen, onClose, onSave, rate }: EditRat
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -570,9 +570,9 @@ export function ViewRateHistoryModal({ isOpen, onClose, material }: ViewHistoryM
   if (!isOpen || !material) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Clock className="h-6 w-6 text-white" />
@@ -589,8 +589,8 @@ export function ViewRateHistoryModal({ isOpen, onClose, material }: ViewHistoryM
 
         <div className="p-6">
           {/* Material Summary */}
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-4 gap-2">
               <div>
                 <p className="text-xs text-purple-600 mb-1">Material Code</p>
                 <p className="font-semibold text-gray-900">{material.materialCode}</p>
@@ -612,13 +612,13 @@ export function ViewRateHistoryModal({ isOpen, onClose, material }: ViewHistoryM
 
           {/* Rate History Timeline */}
           <div className="overflow-y-auto max-h-[calc(90vh-300px)]">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {rateHistory.map((history, index) => (
                 <div key={history.id} className="relative pl-8 pb-4 border-l-2 border-gray-200 last:border-l-0">
                   {/* Timeline dot */}
                   <div className="absolute left-0 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-purple-600 border-4 border-white"></div>
 
-                  <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
@@ -637,7 +637,7 @@ export function ViewRateHistoryModal({ isOpen, onClose, material }: ViewHistoryM
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 mb-3">
+                    <div className="grid grid-cols-3 gap-2 mb-3">
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4 text-gray-400" />
                         <div>
@@ -691,7 +691,7 @@ export function ViewRateHistoryModal({ isOpen, onClose, material }: ViewHistoryM
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -748,9 +748,9 @@ export function CompareSuppliersModal({ isOpen, onClose, material }: CompareSupp
   if (!isOpen || !material) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Package className="h-6 w-6 text-white" />
@@ -770,41 +770,41 @@ export function CompareSuppliersModal({ isOpen, onClose, material }: CompareSupp
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Supplier</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Lead Time</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Min Order</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Payment Terms</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Order</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Supplier</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Lead Time</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Min Order</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Payment Terms</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Last Order</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {supplierRates.map((supplier) => (
                   <tr key={supplier.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="font-medium text-gray-900">{supplier.supplier}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="font-bold text-gray-900">₹{supplier.rate.toLocaleString()}</p>
                       <p className="text-xs text-gray-600">per {material.unit}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="text-sm text-gray-900">{supplier.leadTime} days</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="text-sm text-gray-900">{supplier.minimumOrder} {material.unit}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="text-sm text-gray-900">{supplier.paymentTerms}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-1">
                         <span className="text-yellow-500">★</span>
                         <span className="text-sm font-medium text-gray-900">{supplier.rating}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="text-sm text-gray-900">{supplier.lastOrder}</p>
                     </td>
                   </tr>
@@ -814,7 +814,7 @@ export function CompareSuppliersModal({ isOpen, onClose, material }: CompareSupp
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

@@ -95,11 +95,11 @@ export default function OnboardingPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
-            <div className="w-full space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-3">
+            <div className="w-full space-y-3">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                     <div>
                         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
                             <UserPlus className="w-8 h-8 text-blue-500" />
@@ -114,8 +114,8 @@ export default function OnboardingPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">Active Onboarding</p>
@@ -126,7 +126,7 @@ export default function OnboardingPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">Pre-boarding</p>
@@ -137,7 +137,7 @@ export default function OnboardingPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">Completed (This Month)</p>
@@ -151,7 +151,7 @@ export default function OnboardingPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700 flex flex-wrap gap-4 items-center">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700 flex flex-wrap gap-2 items-center">
                     <div className="flex-1 min-w-[300px] relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                         <input
@@ -178,12 +178,12 @@ export default function OnboardingPage() {
                 </div>
 
                 {/* Employee List */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                     {filteredEmployees.map((employee) => (
-                        <div key={employee.id} className="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-blue-500/50 transition-all duration-300">
-                            <div className="flex flex-col md:flex-row justify-between gap-6">
+                        <div key={employee.id} className="bg-gray-800 rounded-xl border border-gray-700 p-3 hover:border-blue-500/50 transition-all duration-300">
+                            <div className="flex flex-col md:flex-row justify-between gap-3">
 
-                                <div className="flex items-start gap-4">
+                                <div className="flex items-start gap-2">
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
                                         {employee.name.charAt(0)}
                                     </div>
@@ -202,7 +202,7 @@ export default function OnboardingPage() {
                                         <span className="text-gray-400">Onboarding Progress</span>
                                         <span className="text-white font-medium">{employee.progress}%</span>
                                     </div>
-                                    <div className="w-full bg-gray-700 rounded-full h-2 mb-4">
+                                    <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
                                         <div
                                             className="bg-blue-500 h-2 rounded-full transition-all duration-500"
                                             style={{ width: `${employee.progress}%` }}

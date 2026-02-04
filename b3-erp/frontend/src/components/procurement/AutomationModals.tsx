@@ -138,10 +138,10 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Settings className="w-6 h-6" />
@@ -160,9 +160,9 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Info className="w-5 h-5 text-blue-600" />
               Basic Information
@@ -182,7 +182,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Rule Type *
@@ -246,7 +246,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
           </div>
 
           {/* Trigger Configuration */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Zap className="w-5 h-5 text-amber-600" />
               Trigger Configuration
@@ -266,7 +266,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
                       : 'border-gray-300 bg-white'
                   }`}
                 >
-                  <Activity className="w-5 h-5 mx-auto mb-1 text-blue-600" />
+                  <Activity className="w-5 h-5 mb-1 text-blue-600" />
                   <div className="text-sm font-medium">On Event</div>
                 </button>
                 <button
@@ -278,7 +278,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
                       : 'border-gray-300 bg-white'
                   }`}
                 >
-                  <Calendar className="w-5 h-5 mx-auto mb-1 text-green-600" />
+                  <Calendar className="w-5 h-5 mb-1 text-green-600" />
                   <div className="text-sm font-medium">Scheduled</div>
                 </button>
                 <button
@@ -290,7 +290,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
                       : 'border-gray-300 bg-white'
                   }`}
                 >
-                  <User className="w-5 h-5 mx-auto mb-1 text-purple-600" />
+                  <User className="w-5 h-5 mb-1 text-purple-600" />
                   <div className="text-sm font-medium">Manual</div>
                 </button>
               </div>
@@ -317,7 +317,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
           </div>
 
           {/* Conditions */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <Filter className="w-5 h-5 text-indigo-600" />
@@ -391,7 +391,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
           </div>
 
           {/* Actions */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <ArrowRight className="w-5 h-5 text-green-600" />
@@ -451,7 +451,7 @@ export function ConfigureRulesModal({ isOpen, onClose, automation, onSubmit, isN
           </div>
 
           {/* Notifications */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Bell className="w-5 h-5 text-orange-600" />
               Notification Settings
@@ -578,10 +578,10 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Play className="w-6 h-6" />
@@ -598,11 +598,11 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Automation Summary */}
           {automation && (
-            <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-4 rounded-lg border border-blue-200">
-              <div className="grid grid-cols-4 gap-4 text-center">
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-3 rounded-lg border border-blue-200">
+              <div className="grid grid-cols-4 gap-2 text-center">
                 <div>
                   <div className="text-xs text-gray-600 mb-1">Type</div>
                   <div className="font-semibold text-gray-900 capitalize">{automation.type}</div>
@@ -640,7 +640,7 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
           )}
 
           {/* Test Configuration */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Settings className="w-5 h-5 text-blue-600" />
               Test Configuration
@@ -660,7 +660,7 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
                       : 'border-gray-300 bg-white'
                   }`}
                 >
-                  <CheckCircle className="w-5 h-5 mx-auto mb-1 text-green-600" />
+                  <CheckCircle className="w-5 h-5 mb-1 text-green-600" />
                   <div className="text-sm font-medium">Standard</div>
                   <div className="text-xs text-gray-500">Normal cases</div>
                 </button>
@@ -673,7 +673,7 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
                       : 'border-gray-300 bg-white'
                   }`}
                 >
-                  <AlertTriangle className="w-5 h-5 mx-auto mb-1 text-amber-600" />
+                  <AlertTriangle className="w-5 h-5 mb-1 text-amber-600" />
                   <div className="text-sm font-medium">Edge Cases</div>
                   <div className="text-xs text-gray-500">Unusual scenarios</div>
                 </button>
@@ -686,7 +686,7 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
                       : 'border-gray-300 bg-white'
                   }`}
                 >
-                  <Activity className="w-5 h-5 mx-auto mb-1 text-red-600" />
+                  <Activity className="w-5 h-5 mb-1 text-red-600" />
                   <div className="text-sm font-medium">Stress Test</div>
                   <div className="text-xs text-gray-500">High volume</div>
                 </button>
@@ -727,12 +727,12 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
 
           {/* Run Test Button */}
           {!testResults && (
-            <div className="text-center py-6">
+            <div className="text-center py-2">
               <button
                 type="button"
                 onClick={handleRunTest}
                 disabled={isRunning}
-                className={`px-8 py-3 rounded-lg text-white font-medium transition flex items-center gap-3 mx-auto ${
+                className={`px-8 py-3 rounded-lg text-white font-medium transition flex items-center gap-3 ${
                   isRunning
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-green-600 hover:bg-green-700'
@@ -755,7 +755,7 @@ export function TestAutomationModal({ isOpen, onClose, automation, onSubmit }: T
 
           {/* Test Results */}
           {testResults && (
-            <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+            <div className="bg-gray-50 p-3 rounded-lg space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                   <BarChart3 className="w-5 h-5 text-green-600" />
@@ -978,10 +978,10 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FileSearch className="w-6 h-6" />
@@ -998,10 +998,10 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Filters */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Time Range
@@ -1051,8 +1051,8 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-green-600 text-sm font-medium">Success</span>
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -1063,7 +1063,7 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
               <div className="text-xs text-gray-600">executions</div>
             </div>
 
-            <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-amber-600 text-sm font-medium">Warnings</span>
                 <AlertTriangle className="w-5 h-5 text-amber-600" />
@@ -1074,7 +1074,7 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
               <div className="text-xs text-gray-600">warnings</div>
             </div>
 
-            <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-red-600 text-sm font-medium">Failures</span>
                 <XCircle className="w-5 h-5 text-red-600" />
@@ -1085,7 +1085,7 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
               <div className="text-xs text-gray-600">failures</div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-blue-600 text-sm font-medium">Avg Duration</span>
                 <Timer className="w-5 h-5 text-blue-600" />
@@ -1160,8 +1160,8 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
 
           {/* Log Detail Panel */}
           {selectedLog && (
-            <div className="bg-gray-50 p-4 rounded-lg border-2 border-indigo-200">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-gray-50 p-3 rounded-lg border-2 border-indigo-200">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="font-semibold text-gray-900">Log Details: {selectedLog.id}</h3>
                 <button
                   onClick={() => setSelectedLog(null)}
@@ -1170,7 +1170,7 @@ export function ViewLogsModal({ isOpen, onClose, automation, onExport }: ViewLog
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-2 text-sm">
                 <div>
                   <span className="text-gray-500">Timestamp:</span>
                   <span className="ml-2 font-medium">{selectedLog.timestamp}</span>
@@ -1296,10 +1296,10 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Shield className="w-6 h-6" />
@@ -1316,10 +1316,10 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Current Status */}
           {automation && (
-            <div className="bg-gradient-to-r from-gray-50 to-purple-50 p-4 rounded-lg border border-purple-200">
+            <div className="bg-gradient-to-r from-gray-50 to-purple-50 p-3 rounded-lg border border-purple-200">
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-sm text-gray-600 mb-1">Current Status</div>
@@ -1342,7 +1342,7 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
           )}
 
           {/* Change Status */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Settings className="w-5 h-5 text-purple-600" />
               Change Status
@@ -1374,7 +1374,7 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
           </div>
 
           {/* Reason */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <FileText className="w-5 h-5 text-indigo-600" />
               Change Reason
@@ -1390,7 +1390,7 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
           </div>
 
           {/* Schedule Change */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -1406,7 +1406,7 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
             </div>
 
             {scheduleChange && (
-              <div className="grid grid-cols-2 gap-4 ml-6">
+              <div className="grid grid-cols-2 gap-2 ml-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Date
@@ -1437,7 +1437,7 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
           </div>
 
           {/* Options */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <CheckSquare className="w-5 h-5 text-green-600" />
               Additional Options
@@ -1468,7 +1468,7 @@ export function ManageAutomationModal({ isOpen, onClose, automation, onSubmit }:
 
           {/* Impact Warning */}
           {(selectedStatus === 'disabled' || selectedStatus === 'paused') && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <div className="font-semibold text-amber-900 mb-1">Impact Warning</div>

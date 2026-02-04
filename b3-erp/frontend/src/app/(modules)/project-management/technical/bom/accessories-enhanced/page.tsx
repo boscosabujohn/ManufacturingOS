@@ -406,7 +406,7 @@ export default function AccessoriesBOMEnhancedPage() {
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Select Project</h2>
             </div>
@@ -447,7 +447,7 @@ export default function AccessoriesBOMEnhancedPage() {
             </div>
 
             {formData.project && (
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-sm text-blue-700">
                   <span className="font-medium">Selected Project:</span> {formData.projectName}
                 </p>
@@ -462,7 +462,7 @@ export default function AccessoriesBOMEnhancedPage() {
       case 1:
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Package className="w-5 h-5 text-blue-600" />
                 <h2 className="text-xl font-semibold text-gray-900">BOM Items</h2>
@@ -478,31 +478,31 @@ export default function AccessoriesBOMEnhancedPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-5 gap-4">
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
+            <div className="grid grid-cols-5 gap-2">
+              <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-gray-900">{totals.itemCount}</p>
                 <p className="text-xs text-gray-500">Items</p>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4 text-center">
+              <div className="bg-blue-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-blue-600">{totals.totalQuantity}</p>
                 <p className="text-xs text-blue-700">Total Qty</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4 text-center">
+              <div className="bg-green-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-green-600">{totals.inStock}</p>
                 <p className="text-xs text-green-700">In Stock</p>
               </div>
-              <div className="bg-yellow-50 rounded-lg p-4 text-center">
+              <div className="bg-yellow-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-yellow-600">{totals.lowStock}</p>
                 <p className="text-xs text-yellow-700">Low Stock</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4 text-center">
+              <div className="bg-purple-50 rounded-lg p-3 text-center">
                 <p className="text-lg font-bold text-purple-600">{formatCurrency(totals.totalValue)}</p>
                 <p className="text-xs text-purple-700">Total Value</p>
               </div>
             </div>
 
             {/* Search and Filter */}
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -624,7 +624,7 @@ export default function AccessoriesBOMEnhancedPage() {
             {showAddForm && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
                 <div className="bg-white rounded-lg shadow-xl p-3 w-full max-w-lg mx-4">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">Add New Item</h3>
                     <button onClick={() => setShowAddForm(false)} className="p-1 hover:bg-gray-100 rounded">
                       <X className="w-5 h-5 text-gray-500" />
@@ -632,7 +632,7 @@ export default function AccessoriesBOMEnhancedPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                           Category
@@ -668,7 +668,7 @@ export default function AccessoriesBOMEnhancedPage() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
                         <input
@@ -704,7 +704,7 @@ export default function AccessoriesBOMEnhancedPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                           Brand
@@ -771,7 +771,7 @@ export default function AccessoriesBOMEnhancedPage() {
       case 2:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review & Submit</h2>
             </div>
@@ -780,7 +780,7 @@ export default function AccessoriesBOMEnhancedPage() {
               {/* Project Info */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Project Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project:</span>
                     <p className="font-medium text-gray-900">{formData.projectName || formData.project}</p>
@@ -795,20 +795,20 @@ export default function AccessoriesBOMEnhancedPage() {
               {/* BOM Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">BOM Summary</h3>
-                <div className="grid grid-cols-4 gap-4">
-                  <div className="bg-white rounded-lg p-4 border">
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="bg-white rounded-lg p-3 border">
                     <p className="text-2xl font-bold text-gray-900">{totals.itemCount}</p>
                     <p className="text-sm text-gray-500">Line Items</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border">
+                  <div className="bg-white rounded-lg p-3 border">
                     <p className="text-2xl font-bold text-blue-600">{totals.totalQuantity}</p>
                     <p className="text-sm text-gray-500">Total Quantity</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border">
+                  <div className="bg-white rounded-lg p-3 border">
                     <p className="text-xl font-bold text-green-600">{formatCurrency(totals.totalValue)}</p>
                     <p className="text-sm text-gray-500">Total Value</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border">
+                  <div className="bg-white rounded-lg p-3 border">
                     <div className="flex gap-2">
                       <span className="text-green-600">{totals.inStock} ✓</span>
                       <span className="text-yellow-600">{totals.lowStock} !</span>
@@ -862,10 +862,10 @@ export default function AccessoriesBOMEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
@@ -873,7 +873,7 @@ export default function AccessoriesBOMEnhancedPage() {
               <h1 className="text-2xl font-bold text-gray-900">Accessories Bill of Materials</h1>
               <p className="text-sm text-gray-600 mt-1">Phase 3: Technical Design & BOM - Step 3.5</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}

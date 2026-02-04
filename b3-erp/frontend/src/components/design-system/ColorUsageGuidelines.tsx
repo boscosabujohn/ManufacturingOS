@@ -268,7 +268,7 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
         </p>
 
         {/* Controls */}
-        <div className="mt-4 flex items-center gap-4">
+        <div className="mt-4 flex items-center gap-2">
           <label className="flex items-center gap-2 text-sm">
             <input
               type="checkbox"
@@ -283,8 +283,8 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
 
       {/* Quick Reference */}
       <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">Quick Reference</h3>
-        <div className="grid grid-cols-5 gap-4">
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Quick Reference</h3>
+        <div className="grid grid-cols-5 gap-2">
           {colorGuidelines.map((guideline) => {
             const classes = getColorClasses(guideline.color);
             const isSelected = selectedColor === guideline.color;
@@ -299,7 +299,7 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
                     : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                 }`}
               >
-                <div className={`w-8 h-8 rounded-full ${classes.badge} mx-auto mb-2`} />
+                <div className={`w-8 h-8 rounded-full ${classes.badge} mb-2`} />
                 <div className="text-sm font-medium text-gray-900 dark:text-white">
                   {guideline.color.charAt(0).toUpperCase() + guideline.color.slice(1)}
                 </div>
@@ -322,8 +322,8 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
             return (
               <div key={guideline.color} className="p-6">
                 {/* Color Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-4">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2">
                     <div
                       className={`w-12 h-12 rounded-lg ${classes.badge} flex items-center justify-center`}
                     >
@@ -372,7 +372,7 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
                 </div>
 
                 {/* Usage Guidelines */}
-                <div className="grid grid-cols-2 gap-6 mb-6">
+                <div className="grid grid-cols-2 gap-3 mb-3">
                   <div>
                     <h4 className="text-sm font-medium text-green-700 dark:text-green-400 flex items-center gap-2 mb-2">
                       <CheckCircle className="w-4 h-4" />
@@ -404,7 +404,7 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
                 </div>
 
                 {/* Examples */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Examples</h4>
                   <div className="grid grid-cols-4 gap-3">
                     {guideline.examples.map((example, i) => (
@@ -447,10 +447,10 @@ export function ColorUsageGuidelines({ className = '' }: ColorUsageGuidelinesPro
 
       {/* Color Combinations */}
       <div className="p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Common Color Combinations
         </h3>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2">
           {/* Traffic Light Status */}
           <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
             <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3">

@@ -252,7 +252,7 @@ export default function PendingChanges() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -262,8 +262,8 @@ export default function PendingChanges() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Pending</p>
@@ -273,7 +273,7 @@ export default function PendingChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">CAB Review</p>
@@ -283,7 +283,7 @@ export default function PendingChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Awaiting Approval</p>
@@ -293,7 +293,7 @@ export default function PendingChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Wait Time</p>
@@ -303,7 +303,7 @@ export default function PendingChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">High Risk</p>
@@ -313,7 +313,7 @@ export default function PendingChanges() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Emergency</p>
@@ -325,8 +325,8 @@ export default function PendingChanges() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -371,16 +371,16 @@ export default function PendingChanges() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="text-left p-4 font-medium text-gray-600">Ticket</th>
-                <th className="text-left p-4 font-medium text-gray-600">Title</th>
-                <th className="text-left p-4 font-medium text-gray-600">Type</th>
-                <th className="text-left p-4 font-medium text-gray-600">Priority</th>
-                <th className="text-left p-4 font-medium text-gray-600">Requester</th>
-                <th className="text-left p-4 font-medium text-gray-600">Status</th>
-                <th className="text-left p-4 font-medium text-gray-600">Approvals</th>
-                <th className="text-left p-4 font-medium text-gray-600">Wait Time</th>
-                <th className="text-left p-4 font-medium text-gray-600">Risk</th>
-                <th className="text-left p-4 font-medium text-gray-600">Actions</th>
+                <th className="text-left p-3 font-medium text-gray-600">Ticket</th>
+                <th className="text-left p-3 font-medium text-gray-600">Title</th>
+                <th className="text-left p-3 font-medium text-gray-600">Type</th>
+                <th className="text-left p-3 font-medium text-gray-600">Priority</th>
+                <th className="text-left p-3 font-medium text-gray-600">Requester</th>
+                <th className="text-left p-3 font-medium text-gray-600">Status</th>
+                <th className="text-left p-3 font-medium text-gray-600">Approvals</th>
+                <th className="text-left p-3 font-medium text-gray-600">Wait Time</th>
+                <th className="text-left p-3 font-medium text-gray-600">Risk</th>
+                <th className="text-left p-3 font-medium text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -484,8 +484,8 @@ export default function PendingChanges() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Type</p>
                   <span className={`inline-block px-2 py-1 rounded text-xs font-medium mt-1 ${getTypeColor(selectedChange.type)}`}>

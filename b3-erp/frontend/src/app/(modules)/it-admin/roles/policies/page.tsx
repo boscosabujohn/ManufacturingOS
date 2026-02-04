@@ -239,8 +239,8 @@ export default function RolePoliciesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -254,10 +254,10 @@ export default function RolePoliciesPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Policy Categories */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Categories</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Categories</h2>
           <div className="space-y-2">
             {policyTypes.map((type) => {
               const IconComponent = type.icon;
@@ -292,7 +292,7 @@ export default function RolePoliciesPage() {
             })}
           </div>
 
-          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-2">
               <Shield className="w-5 h-5 text-blue-600" />
               <h3 className="text-sm font-bold text-blue-900">Policy Summary</h3>
@@ -319,8 +319,8 @@ export default function RolePoliciesPage() {
         </div>
 
         {/* Policies List */}
-        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
-          <div className="mb-4">
+        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3">
+          <div className="mb-2">
             <input
               type="text"
               placeholder="Search policies..."
@@ -330,7 +330,7 @@ export default function RolePoliciesPage() {
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredPolicies.map((policy) => (
               <div key={policy.id} className={`border-2 rounded-lg p-5 ${policy.enabled ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`}>
                 <div className="flex items-start justify-between mb-3">
@@ -367,7 +367,7 @@ export default function RolePoliciesPage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-3">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs font-semibold text-gray-600 mb-2">Applied to Roles:</p>
                       <div className="flex flex-wrap gap-1">
@@ -405,7 +405,7 @@ export default function RolePoliciesPage() {
             </div>
           )}
 
-          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div>

@@ -62,10 +62,10 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
     : 0;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Eye className="h-6 w-6" />
             <div>
@@ -78,11 +78,11 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Version Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Version Information</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Version Information</h3>
+            <div className="grid grid-cols-3 gap-2">
               <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
                 <p className="text-xs text-indigo-600 mb-1">Version Number</p>
                 <p className="text-xl font-bold text-indigo-900">{version.versionNumber}</p>
@@ -102,8 +102,8 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
 
           {/* Change Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Information</h3>
-            <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 space-y-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Change Information</h3>
+            <div className="bg-gray-50 rounded-lg border border-gray-200 p-3 space-y-3">
               <div className="flex items-start space-x-2">
                 <User className="h-5 w-5 text-gray-600 mt-0.5" />
                 <div className="flex-1">
@@ -127,8 +127,8 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
 
           {/* Cost Comparison */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Cost Comparison</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Cost Comparison</h3>
+            <div className="grid grid-cols-3 gap-2">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-600 mb-1">Current Total Cost</p>
                 <p className="text-xl font-bold text-blue-900">₹{version.totalCost.toLocaleString()}</p>
@@ -173,16 +173,16 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
 
           {/* Effective Dates */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Effective Dates</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg border border-green-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Effective Dates</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="flex items-start space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
                 <Calendar className="h-5 w-5 text-green-600 mt-0.5" />
                 <div>
                   <p className="text-xs text-green-600 mb-1">Effective From</p>
                   <p className="text-sm font-semibold text-green-900">{version.effectiveFrom}</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3 p-4 bg-orange-50 rounded-lg border border-orange-200">
+              <div className="flex items-start space-x-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
                 <Calendar className="h-5 w-5 text-orange-600 mt-0.5" />
                 <div>
                   <p className="text-xs text-orange-600 mb-1">Effective Until</p>
@@ -197,10 +197,10 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
           {/* Approval Information */}
           {version.approvedBy && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Information</h3>
-              <div className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg border border-green-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Information</h3>
+              <div className="flex items-start space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
                 <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                <div className="flex-1 grid grid-cols-2 gap-4">
+                <div className="flex-1 grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-green-600 mb-1">Approved By</p>
                     <p className="text-sm font-semibold text-green-900">{version.approvedBy}</p>
@@ -216,8 +216,8 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
 
           {/* Component Changes Summary */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Component Changes Summary</h3>
-            <div className="grid grid-cols-4 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Component Changes Summary</h3>
+            <div className="grid grid-cols-4 gap-2">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 text-center">
                 <p className="text-xs text-blue-600 mb-1">Total Components</p>
                 <p className="text-2xl font-bold text-blue-900">{version.componentCount}</p>
@@ -246,7 +246,7 @@ export const ViewVersionDetailsModal: React.FC<ViewVersionDetailsModalProps> = (
           {/* Notes */}
           {version.notes && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes</h3>
               <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                 <p className="text-sm text-gray-700 whitespace-pre-wrap">{version.notes}</p>
               </div>
@@ -363,10 +363,10 @@ export const EditVersionModal: React.FC<EditVersionModalProps> = ({
   if (!isOpen || !version) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Edit3 className="h-6 w-6" />
             <div>
@@ -379,7 +379,7 @@ export const EditVersionModal: React.FC<EditVersionModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Status Change */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -410,7 +410,7 @@ export const EditVersionModal: React.FC<EditVersionModalProps> = ({
           {/* Effective Dates */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Effective Dates</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Effective From
@@ -594,10 +594,10 @@ export const CreateVersionModal: React.FC<CreateVersionModalProps> = ({
   if (!isOpen || !sourceVersion) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Plus className="h-6 w-6" />
             <div>
@@ -610,7 +610,7 @@ export const CreateVersionModal: React.FC<CreateVersionModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Source Version Display */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Source Version</h3>
@@ -633,7 +633,7 @@ export const CreateVersionModal: React.FC<CreateVersionModalProps> = ({
           {/* New Version Details */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">New Version Details</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Version Number <span className="text-red-600">*</span>
@@ -706,7 +706,7 @@ export const CreateVersionModal: React.FC<CreateVersionModalProps> = ({
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Copy Options</h3>
             <div className="space-y-3">
-              <label className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg border-2 border-green-200 cursor-pointer hover:bg-green-100 transition-colors">
+              <label className="flex items-start space-x-3 p-3 bg-green-50 rounded-lg border-2 border-green-200 cursor-pointer hover:bg-green-100 transition-colors">
                 <input
                   type="radio"
                   name="copyOption"
@@ -724,7 +724,7 @@ export const CreateVersionModal: React.FC<CreateVersionModalProps> = ({
                   </p>
                 </div>
               </label>
-              <label className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg border-2 border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors">
+              <label className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg border-2 border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors">
                 <input
                   type="radio"
                   name="copyOption"

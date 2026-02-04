@@ -129,7 +129,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({
       )}
 
       {/* Node Card */}
-      <div className={`${level > 0 ? 'ml-8' : ''} mb-4`}>
+      <div className={`${level > 0 ? 'ml-8' : ''} mb-2`}>
         <div className="bg-white rounded-lg border-2 border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all">
           <div className="p-4">
             <div className="flex items-start gap-3">
@@ -315,7 +315,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({
           <div className="relative mt-4 ml-4">
             {/* Vertical connector line */}
             <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-gray-300" />
-            <div className="space-y-4">
+            <div className="space-y-2">
               {node.children!.map((child, index) => (
                 <div key={child.id} className="relative">
                   {/* Horizontal connector line */}
@@ -381,28 +381,28 @@ export const AccountHierarchyTree: React.FC<AccountHierarchyTreeProps> = ({
   return (
     <div className={`${className}`}>
       {/* Summary Stats */}
-      <div className="grid grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <Building2 className="w-6 h-6 mb-2 opacity-80" />
           <p className="text-2xl font-bold">{stats.entities}</p>
           <p className="text-sm text-purple-100">Total Entities</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <Users className="w-6 h-6 mb-2 opacity-80" />
           <p className="text-2xl font-bold">{(stats.employees / 1000).toFixed(0)}K</p>
           <p className="text-sm text-blue-100">Employees</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <DollarSign className="w-6 h-6 mb-2 opacity-80" />
           <p className="text-2xl font-bold">${(stats.revenue / 1000000000).toFixed(1)}B</p>
           <p className="text-sm text-green-100">Total Revenue</p>
         </div>
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
           <DollarSign className="w-6 h-6 mb-2 opacity-80" />
           <p className="text-2xl font-bold">${(stats.accountValue / 1000000).toFixed(1)}M</p>
           <p className="text-sm text-orange-100">Account Value</p>
         </div>
-        <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-3 text-white">
           <Package className="w-6 h-6 mb-2 opacity-80" />
           <p className="text-2xl font-bold">{stats.contracts}</p>
           <p className="text-sm text-pink-100">Active Contracts</p>
@@ -410,7 +410,7 @@ export const AccountHierarchyTree: React.FC<AccountHierarchyTreeProps> = ({
       </div>
 
       {/* Hierarchy Tree */}
-      <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+      <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
         <TreeNode
           node={rootAccount}
           level={0}

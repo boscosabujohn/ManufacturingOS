@@ -139,10 +139,10 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <h2 className="text-xl font-bold">{template ? 'Edit Template' : 'Create New Template'}</h2>
           <button onClick={onClose} className="text-white hover:bg-blue-700 rounded-lg p-1 transition-colors">
             <X className="h-6 w-6" />
@@ -150,9 +150,9 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
         </div>
 
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Left Column */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Template Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-900 mb-2">
@@ -202,7 +202,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
               </div>
 
               {/* Status and Favorite */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-900 mb-2">Status</label>
                   <select
@@ -230,7 +230,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
             </div>
 
             {/* Right Column - Template Sections */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-900 mb-2">
                   Template Sections <span className="text-red-600">*</span>
@@ -275,7 +275,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
               </div>
 
               {/* Preview */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <FileText className="h-4 w-4 text-blue-600" />
                   Template Preview
@@ -339,10 +339,10 @@ export function ViewTemplateModal({ isOpen, onClose, template, onEdit, onUse, on
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div className="flex items-center gap-3">
             <FileText className="h-6 w-6" />
             <div>
@@ -355,9 +355,9 @@ export function ViewTemplateModal({ isOpen, onClose, template, onEdit, onUse, on
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Template Details */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-500 mb-1">Template ID</label>
               <p className="text-gray-900 font-mono">{template.id}</p>
@@ -397,22 +397,22 @@ export function ViewTemplateModal({ isOpen, onClose, template, onEdit, onUse, on
           </div>
 
           {/* Description */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-2">Description</h3>
             <p className="text-sm text-gray-700">{template.description}</p>
           </div>
 
           {/* Usage Statistics */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-sm font-medium text-blue-600">Total Sections</p>
               <p className="text-3xl font-bold text-blue-900 mt-1">{template.sections}</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-sm font-medium text-green-600">Times Used</p>
               <p className="text-3xl font-bold text-green-900 mt-1">{template.usageCount}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-sm font-medium text-purple-600">Last Used</p>
               <p className="text-lg font-bold text-purple-900 mt-1">
                 {new Date(template.lastUsed).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
@@ -421,7 +421,7 @@ export function ViewTemplateModal({ isOpen, onClose, template, onEdit, onUse, on
           </div>
 
           {/* Template Structure */}
-          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-lg p-4 border border-indigo-200">
+          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-lg p-3 border border-indigo-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Template Structure</h3>
             <div className="space-y-3">
               {sampleSections.slice(0, template.sections).map((section, index) => (
@@ -516,10 +516,10 @@ export function UseTemplateModal({ isOpen, onClose, template, onConfirm }: UseTe
   if (!isOpen || !template) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-600 to-green-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Create Quote from Template</h2>
             <p className="text-sm opacity-90">Using: {template.name}</p>
@@ -529,9 +529,9 @@ export function UseTemplateModal({ isOpen, onClose, template, onConfirm }: UseTe
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Quick Setup */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900">Quick Setup</h3>
 
             <div>
@@ -574,7 +574,7 @@ export function UseTemplateModal({ isOpen, onClose, template, onConfirm }: UseTe
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex gap-3">
             <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-blue-700">
               <p className="font-medium mb-1">What happens next?</p>
@@ -638,17 +638,17 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <h2 className="text-xl font-bold">Filter Templates</h2>
           <button onClick={onClose} className="text-white hover:bg-blue-700 rounded-lg p-1 transition-colors">
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Category */}
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-3">Category</label>

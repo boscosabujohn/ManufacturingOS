@@ -213,7 +213,7 @@ export function MobileNavigation({
             </div>
 
             {/* Footer Actions */}
-            <div className="border-t border-gray-200 dark:border-gray-700 p-4 space-y-2">
+            <div className="border-t border-gray-200 dark:border-gray-700 p-3 space-y-2">
               <Link
                 href="/settings"
                 onClick={() => setIsOpen(false)}

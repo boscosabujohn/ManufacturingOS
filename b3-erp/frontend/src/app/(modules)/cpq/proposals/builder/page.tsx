@@ -244,9 +244,9 @@ export default function CPQProposalsBuilderPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header Actions */}
-      <div className="mb-6 flex justify-between items-center">
+      <div className="mb-3 flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">{proposalData.title}</h2>
           <p className="text-sm text-gray-600 mt-1">
@@ -286,20 +286,20 @@ export default function CPQProposalsBuilderPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Total Sections</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{sections.length}</p>
           <p className="text-xs text-blue-700 mt-1">{sections.filter(s => s.visible).length} visible</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <p className="text-sm font-medium text-green-600">Quote Value</p>
           <p className="text-2xl font-bold text-green-900 mt-1">₹28.50L</p>
           <p className="text-xs text-green-700 mt-1">From {proposalData.quoteNumber}</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <p className="text-sm font-medium text-orange-600">Valid Until</p>
           <p className="text-lg font-bold text-orange-900 mt-1">
             {new Date(proposalData.validUntil).toLocaleDateString('en-IN', { 
@@ -311,17 +311,17 @@ export default function CPQProposalsBuilderPage() {
           <p className="text-xs text-orange-700 mt-1">29 days remaining</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <p className="text-sm font-medium text-purple-600">Prepared By</p>
           <p className="text-base font-bold text-purple-900 mt-1">{proposalData.preparedBy}</p>
           <p className="text-xs text-purple-700 mt-1">Sales Executive</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Left Sidebar - Section Library */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Plus className="h-4 w-4" />
               Add Section
@@ -509,7 +509,7 @@ export default function CPQProposalsBuilderPage() {
           </div>
 
           {/* Builder Tips */}
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Proposal Builder Tips:</h3>
             <ul className="text-xs text-blue-700 space-y-1">
               <li><strong>Drag & Reorder:</strong> Use up/down arrows to arrange sections in your preferred order</li>

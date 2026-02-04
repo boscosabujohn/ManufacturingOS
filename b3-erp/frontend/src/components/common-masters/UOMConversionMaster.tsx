@@ -197,10 +197,10 @@ const UOMConversionMaster: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Repeat className="w-8 h-8 text-indigo-600" />
@@ -223,7 +223,7 @@ const UOMConversionMaster: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -249,12 +249,12 @@ const UOMConversionMaster: React.FC = () => {
 
         {/* Calculator Mode */}
         {calculatorMode && (
-          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg shadow-sm p-6 mb-6 border border-indigo-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg shadow-sm p-3 mb-3 border border-indigo-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calculator className="w-5 h-5 text-indigo-600" />
               UOM Conversion Calculator
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-2 items-end">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
                 <input
@@ -303,7 +303,7 @@ const UOMConversionMaster: React.FC = () => {
               </button>
             </div>
             {calcResult !== null && (
-              <div className="mt-4 p-4 bg-white rounded-lg border border-indigo-200">
+              <div className="mt-4 p-3 bg-white rounded-lg border border-indigo-200">
                 <p className="text-lg font-semibold text-gray-900">
                   {calcValue} {calcFromUOM} = <span className="text-indigo-600">{calcResult.toFixed(4)} {calcToUOM}</span>
                 </p>
@@ -313,8 +313,8 @@ const UOMConversionMaster: React.FC = () => {
         )}
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Conversions</p>
@@ -323,7 +323,7 @@ const UOMConversionMaster: React.FC = () => {
               <Repeat className="w-12 h-12 text-indigo-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active</p>
@@ -334,7 +334,7 @@ const UOMConversionMaster: React.FC = () => {
               <CheckCircle className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Reversible</p>
@@ -345,7 +345,7 @@ const UOMConversionMaster: React.FC = () => {
               <ArrowRightLeft className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Categories</p>
@@ -357,10 +357,10 @@ const UOMConversionMaster: React.FC = () => {
         </div>
 
         {/* Conversions List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredConversions.map(conversion => (
-            <div key={conversion.id} className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={conversion.id} className="bg-white rounded-lg shadow-sm p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">
@@ -399,9 +399,9 @@ const UOMConversionMaster: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {/* Conversion Details */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Conversion Factor</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
@@ -416,7 +416,7 @@ const UOMConversionMaster: React.FC = () => {
 
                 {/* Validation Rules */}
                 {conversion.validationRules && (
-                  <div className="border border-gray-200 rounded-lg p-4">
+                  <div className="border border-gray-200 rounded-lg p-3">
                     <h4 className="text-sm font-semibold text-gray-700 mb-2">Validation Rules</h4>
                     <div className="space-y-1 text-sm">
                       {conversion.validationRules.minQuantity !== undefined && (
@@ -443,7 +443,7 @@ const UOMConversionMaster: React.FC = () => {
 
                 {/* Usage Context */}
                 {conversion.usageContext && (
-                  <div className="border border-gray-200 rounded-lg p-4">
+                  <div className="border border-gray-200 rounded-lg p-3">
                     <h4 className="text-sm font-semibold text-gray-700 mb-2">Usage Context</h4>
                     <div className="space-y-1 text-sm">
                       <div className="flex justify-between">
@@ -475,7 +475,7 @@ const UOMConversionMaster: React.FC = () => {
               {/* Effective Date */}
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <span className="text-gray-600">
                       Effective From: <span className="font-medium">{new Date(conversion.effectiveFrom).toLocaleDateString()}</span>
                     </span>
@@ -496,7 +496,7 @@ const UOMConversionMaster: React.FC = () => {
 
         {filteredConversions.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-            <AlertTriangle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <AlertTriangle className="w-16 h-16 text-gray-300 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No conversions found</h3>
             <p className="text-gray-600">Try adjusting your search or filters</p>
           </div>

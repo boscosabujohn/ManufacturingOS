@@ -87,7 +87,7 @@ export const KPICard: React.FC<KPICardProps> = ({
   return (
     <div
       className={`
-        bg-white rounded-lg shadow-sm border border-gray-200 p-6
+        bg-white rounded-lg shadow-sm border border-gray-200 p-3
         transition-all duration-200
         ${isClickable ? `cursor-pointer ${colors.hover}` : ''}
         ${className}

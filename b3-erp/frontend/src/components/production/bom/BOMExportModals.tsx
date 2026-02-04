@@ -34,10 +34,10 @@ export const ExportComparisonModal: React.FC<ExportComparisonModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Export BOM Comparison</h2>
             <p className="text-sm text-blue-100 mt-1">Export comparison report in your preferred format</p>
@@ -47,10 +47,10 @@ export const ExportComparisonModal: React.FC<ExportComparisonModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Date Range Display */}
           {dateRange && (
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
               <h3 className="text-sm font-semibold text-blue-900 mb-2">Comparison Period</h3>
               <p className="text-sm text-blue-700">
                 From: <span className="font-medium">{dateRange.from}</span> to{' '}
@@ -72,7 +72,7 @@ export const ExportComparisonModal: React.FC<ExportComparisonModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <FileText className={`h-6 w-6 mx-auto mb-2 ${
+                <FileText className={`h-6 w-6 mb-2 ${
                   formData.format === 'pdf' ? 'text-blue-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -89,7 +89,7 @@ export const ExportComparisonModal: React.FC<ExportComparisonModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <FileSpreadsheet className={`h-6 w-6 mx-auto mb-2 ${
+                <FileSpreadsheet className={`h-6 w-6 mb-2 ${
                   formData.format === 'excel' ? 'text-blue-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -106,7 +106,7 @@ export const ExportComparisonModal: React.FC<ExportComparisonModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <Table className={`h-6 w-6 mx-auto mb-2 ${
+                <Table className={`h-6 w-6 mb-2 ${
                   formData.format === 'csv' ? 'text-blue-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -239,10 +239,10 @@ export const ExportCostingModal: React.FC<ExportCostingModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Export Costing Report</h2>
             <p className="text-sm text-green-100 mt-1">Generate detailed cost analysis report</p>
@@ -252,7 +252,7 @@ export const ExportCostingModal: React.FC<ExportCostingModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format *</label>
@@ -266,7 +266,7 @@ export const ExportCostingModal: React.FC<ExportCostingModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <FileText className={`h-6 w-6 mx-auto mb-2 ${
+                <FileText className={`h-6 w-6 mb-2 ${
                   formData.format === 'pdf' ? 'text-green-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -283,7 +283,7 @@ export const ExportCostingModal: React.FC<ExportCostingModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <FileSpreadsheet className={`h-6 w-6 mx-auto mb-2 ${
+                <FileSpreadsheet className={`h-6 w-6 mb-2 ${
                   formData.format === 'excel' ? 'text-green-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -300,7 +300,7 @@ export const ExportCostingModal: React.FC<ExportCostingModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <Table className={`h-6 w-6 mx-auto mb-2 ${
+                <Table className={`h-6 w-6 mb-2 ${
                   formData.format === 'csv' ? 'text-green-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -483,10 +483,10 @@ export const ExportMultiLevelModal: React.FC<ExportMultiLevelModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Export Multi-Level BOM</h2>
             <p className="text-sm text-purple-100 mt-1">Export complete BOM structure with all levels</p>
@@ -496,7 +496,7 @@ export const ExportMultiLevelModal: React.FC<ExportMultiLevelModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format *</label>
@@ -510,7 +510,7 @@ export const ExportMultiLevelModal: React.FC<ExportMultiLevelModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <FileText className={`h-6 w-6 mx-auto mb-2 ${
+                <FileText className={`h-6 w-6 mb-2 ${
                   formData.format === 'pdf' ? 'text-purple-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -527,7 +527,7 @@ export const ExportMultiLevelModal: React.FC<ExportMultiLevelModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <FileSpreadsheet className={`h-6 w-6 mx-auto mb-2 ${
+                <FileSpreadsheet className={`h-6 w-6 mb-2 ${
                   formData.format === 'excel' ? 'text-purple-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -544,7 +544,7 @@ export const ExportMultiLevelModal: React.FC<ExportMultiLevelModalProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 }`}
               >
-                <Table className={`h-6 w-6 mx-auto mb-2 ${
+                <Table className={`h-6 w-6 mb-2 ${
                   formData.format === 'csv' ? 'text-purple-600' : 'text-gray-600'
                 }`} />
                 <p className={`text-sm font-medium ${
@@ -753,10 +753,10 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Print Multi-Level BOM</h2>
             <p className="text-sm text-indigo-100 mt-1">Configure print settings and preview</p>
@@ -768,7 +768,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
 
         <div className="flex flex-1 overflow-hidden">
           {/* Settings Panel */}
-          <div className="w-1/2 border-r border-gray-200 overflow-y-auto p-6 space-y-6">
+          <div className="w-1/2 border-r border-gray-200 overflow-y-auto p-3 space-y-3">
             {/* Page Orientation */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Page Orientation *</label>
@@ -782,7 +782,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
                       : 'border-gray-300 hover:border-gray-400'
                   }`}
                 >
-                  <div className={`h-16 w-12 mx-auto mb-2 border-2 rounded ${
+                  <div className={`h-16 w-12 mb-2 border-2 rounded ${
                     formData.orientation === 'portrait' ? 'border-indigo-600' : 'border-gray-400'
                   }`} />
                   <p className={`text-sm font-medium ${
@@ -799,7 +799,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
                       : 'border-gray-300 hover:border-gray-400'
                   }`}
                 >
-                  <div className={`h-12 w-16 mx-auto mb-2 border-2 rounded ${
+                  <div className={`h-12 w-16 mb-2 border-2 rounded ${
                     formData.orientation === 'landscape' ? 'border-indigo-600' : 'border-gray-400'
                   }`} />
                   <p className={`text-sm font-medium ${
@@ -950,15 +950,15 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
           </div>
 
           {/* Preview Panel */}
-          <div className="w-1/2 bg-gray-100 overflow-y-auto p-6">
+          <div className="w-1/2 bg-gray-100 overflow-y-auto p-3">
             <div className="bg-white shadow-lg rounded-lg p-8 min-h-full">
               {/* Preview Placeholder */}
               <div className="text-center text-gray-500">
-                <Settings className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+                <Settings className="h-16 w-16 mb-2 text-gray-400" />
                 <p className="text-lg font-semibold text-gray-700">Print Preview</p>
                 <p className="text-sm mt-2">Preview will be displayed here</p>
 
-                <div className="mt-8 text-left space-y-4">
+                <div className="mt-8 text-left space-y-2">
                   <div className="border-b border-gray-200 pb-2">
                     <p className="text-xs text-gray-600">Orientation: <span className="font-medium text-gray-900">{formData.orientation}</span></p>
                   </div>
@@ -983,7 +983,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end space-x-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end space-x-3">
           <button
             type="button"
             onClick={onClose}

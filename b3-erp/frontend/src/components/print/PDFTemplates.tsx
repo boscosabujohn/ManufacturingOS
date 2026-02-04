@@ -58,7 +58,7 @@ export function PDFTemplate({
 
       {/* Header */}
       <header className="flex items-start justify-between mb-8 pb-4 border-b-2 border-gray-300">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {company.logo && (
             <img src={company.logo} alt={company.name} className="h-16 w-auto" />
           )}
@@ -84,7 +84,7 @@ export function PDFTemplate({
 
       {/* Confidential banner */}
       {confidential && (
-        <div className="bg-red-100 border border-red-300 text-red-700 px-4 py-2 rounded mb-6 text-center font-medium">
+        <div className="bg-red-100 border border-red-300 text-red-700 px-4 py-2 rounded mb-3 text-center font-medium">
           CONFIDENTIAL - For authorized recipients only
         </div>
       )}
@@ -195,12 +195,12 @@ export function QuoteTemplate({
           {customer.phone && <p className="text-gray-600">{customer.phone}</p>}
         </div>
         <div className="text-right">
-          <div className="mb-4">
+          <div className="mb-2">
             <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">Quote Date</h3>
             <p>{quoteDate.toLocaleDateString()}</p>
           </div>
           {validUntil && (
-            <div className="mb-4">
+            <div className="mb-2">
               <h3 className="text-sm font-semibold text-gray-500 uppercase mb-1">Valid Until</h3>
               <p>{validUntil.toLocaleDateString()}</p>
             </div>
@@ -280,7 +280,7 @@ export function QuoteTemplate({
 
       {/* Notes */}
       {notes && (
-        <div className="mb-6">
+        <div className="mb-3">
           <h3 className="font-semibold mb-2">Notes</h3>
           <p className="text-gray-600 whitespace-pre-line">{notes}</p>
         </div>
@@ -288,7 +288,7 @@ export function QuoteTemplate({
 
       {/* Terms */}
       {terms && terms.length > 0 && (
-        <div className="mb-6">
+        <div className="mb-3">
           <h3 className="font-semibold mb-2">Terms & Conditions</h3>
           <ul className="list-disc list-inside text-sm text-gray-600">
             {terms.map((term, i) => (
@@ -433,7 +433,7 @@ export function InvoiceTemplate({
 
       {/* Totals */}
       <div className="flex justify-end mb-8">
-        <div className="w-72 bg-gray-50 p-4 rounded-lg">
+        <div className="w-72 bg-gray-50 p-3 rounded-lg">
           <div className="flex justify-between py-2">
             <span>Subtotal:</span>
             <span>${subtotal.toFixed(2)}</span>
@@ -471,7 +471,7 @@ export function InvoiceTemplate({
 
       {/* Notes */}
       {notes && (
-        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+        <div className="mb-3 p-3 bg-gray-50 rounded-lg">
           <h3 className="font-semibold mb-2">Notes</h3>
           <p className="text-gray-600">{notes}</p>
         </div>
@@ -637,20 +637,20 @@ export function POTemplate({
       {/* Totals & Terms */}
       <div className="grid grid-cols-2 gap-8">
         <div>
-          <div className="mb-4">
+          <div className="mb-2">
             <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2">Delivery Details</h3>
             <p className="text-xs text-gray-700 font-medium">Expected: {expectedDelivery ? new Date(expectedDelivery).toLocaleDateString() : 'N/A'}</p>
             <p className="text-xs text-gray-600 mt-1">Address: {deliveryAddress}</p>
             <p className="text-xs text-gray-600">Terms: {deliveryTerms}</p>
           </div>
-          <div className="mb-4">
+          <div className="mb-2">
             <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2">Payment Info</h3>
             <p className="text-xs text-gray-600">Terms: {paymentTerms}</p>
             <p className="text-xs text-gray-600">Tax Type: {taxType}</p>
           </div>
         </div>
 
-        <div className="bg-gray-50 p-4 rounded-lg">
+        <div className="bg-gray-50 p-3 rounded-lg">
           <div className="space-y-2 text-sm">
             <div className="flex justify-between text-gray-500">
               <span>Subtotal:</span>
@@ -675,7 +675,7 @@ export function POTemplate({
       </div>
 
       {/* Notes & Terms */}
-      <div className="mt-8 grid grid-cols-1 gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-3">
         {notes && (
           <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
             <h3 className="text-xs font-semibold text-yellow-800 uppercase mb-1">Notes to Vendor</h3>
@@ -756,7 +756,7 @@ export function ReportTemplate({
     >
       {/* Title page */}
       <div className="text-center py-12 mb-8 border-b-2 border-gray-300 page-break-after">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">{title}</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">{title}</h1>
         {subtitle && <h2 className="text-xl text-gray-600 mb-8">{subtitle}</h2>}
 
         <div className="space-y-2 text-gray-600">
@@ -774,7 +774,7 @@ export function ReportTemplate({
       {/* Table of Contents */}
       {showTableOfContents && sections.length > 1 && (
         <div className="mb-8 page-break-after">
-          <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
+          <h2 className="text-2xl font-bold mb-2">Table of Contents</h2>
           <nav>
             <ol className="list-decimal list-inside space-y-2">
               {sections.map((section, index) => (
@@ -796,7 +796,7 @@ export function ReportTemplate({
           id={section.id}
           className={section.pageBreakBefore ? 'page-break-before' : ''}
         >
-          <h2 className="text-2xl font-bold mb-4 text-gray-900">
+          <h2 className="text-2xl font-bold mb-2 text-gray-900">
             {index + 1}. {section.title}
           </h2>
           <div className="mb-8">

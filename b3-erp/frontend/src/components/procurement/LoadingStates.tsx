@@ -38,8 +38,8 @@ export const SkeletonAvatar: React.FC<{
 }
 
 export const SkeletonCard: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <div className={`bg-white rounded-lg shadow-sm border p-6 ${className}`}>
-    <div className="animate-pulse space-y-4">
+  <div className={`bg-white rounded-lg shadow-sm border p-3 ${className}`}>
+    <div className="animate-pulse space-y-2">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gray-200 rounded-lg" />
@@ -114,11 +114,11 @@ export const PulseLoader: React.FC<{
 
 // ============= Page Loading States =============
 export const DashboardSkeleton: React.FC = () => (
-  <div className="min-h-screen bg-gray-50 p-6">
-    <div className="animate-pulse space-y-6">
+  <div className="min-h-screen bg-gray-50 p-3">
+    <div className="animate-pulse space-y-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow-sm p-3">
+        <div className="flex justify-between items-center mb-3">
           <div className="space-y-2">
             <div className="h-8 bg-gray-200 rounded w-64" />
             <div className="h-4 bg-gray-200 rounded w-96" />
@@ -128,7 +128,7 @@ export const DashboardSkeleton: React.FC = () => (
             <div className="h-10 w-32 bg-gray-200 rounded-lg" />
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="h-6 bg-gray-200 rounded" />
           ))}
@@ -136,10 +136,10 @@ export const DashboardSkeleton: React.FC = () => (
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between mb-4">
+          <div key={i} className="bg-white p-3 rounded-lg shadow-sm">
+            <div className="flex items-center justify-between mb-2">
               <div className="w-12 h-12 bg-gray-200 rounded-lg" />
               <div className="h-4 w-16 bg-gray-200 rounded" />
             </div>
@@ -150,13 +150,13 @@ export const DashboardSkeleton: React.FC = () => (
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="h-6 bg-gray-200 rounded w-48 mb-4" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <div className="h-6 bg-gray-200 rounded w-48 mb-2" />
           <div className="h-64 bg-gray-200 rounded" />
         </div>
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="h-6 bg-gray-200 rounded w-48 mb-4" />
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <div className="h-6 bg-gray-200 rounded w-48 mb-2" />
           <div className="h-64 bg-gray-200 rounded" />
         </div>
       </div>
@@ -171,7 +171,7 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
   <div className="bg-white rounded-lg shadow-sm border">
     <div className="p-4 border-b">
       <div className="animate-pulse flex justify-between items-center">
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <div className="h-10 w-64 bg-gray-200 rounded-lg" />
           <div className="h-10 w-10 bg-gray-200 rounded-lg" />
         </div>
@@ -210,10 +210,10 @@ export const TableSkeleton: React.FC<{ rows?: number; columns?: number }> = ({
 )
 
 export const FormSkeleton: React.FC = () => (
-  <div className="bg-white rounded-lg shadow-sm p-6">
-    <div className="animate-pulse space-y-6">
+  <div className="bg-white rounded-lg shadow-sm p-3">
+    <div className="animate-pulse space-y-3">
       <div className="h-8 bg-gray-200 rounded w-48" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="space-y-2">
             <div className="h-4 bg-gray-200 rounded w-24" />
@@ -221,7 +221,7 @@ export const FormSkeleton: React.FC = () => (
           </div>
         ))}
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-2">
         <div className="h-12 bg-gray-200 rounded flex-1" />
         <div className="h-12 bg-gray-200 rounded w-24" />
       </div>
@@ -231,10 +231,10 @@ export const FormSkeleton: React.FC = () => (
 
 // ============= Specialized Loading States =============
 export const VendorListSkeleton: React.FC = () => (
-  <div className="space-y-4">
+  <div className="space-y-2">
     {[1, 2, 3, 4, 5].map((i) => (
-      <div key={i} className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="animate-pulse flex items-start gap-4">
+      <div key={i} className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="animate-pulse flex items-start gap-2">
           <SkeletonAvatar size="lg" />
           <div className="flex-1 space-y-3">
             <div className="flex justify-between items-start">
@@ -244,7 +244,7 @@ export const VendorListSkeleton: React.FC = () => (
               </div>
               <div className="h-6 bg-gray-200 rounded w-20" />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div className="h-4 bg-gray-200 rounded" />
               <div className="h-4 bg-gray-200 rounded" />
               <div className="h-4 bg-gray-200 rounded" />
@@ -264,8 +264,8 @@ export const VendorListSkeleton: React.FC = () => (
 )
 
 export const OrderCardSkeleton: React.FC = () => (
-  <div className="bg-white rounded-lg shadow-sm border p-6">
-    <div className="animate-pulse space-y-4">
+  <div className="bg-white rounded-lg shadow-sm border p-3">
+    <div className="animate-pulse space-y-2">
       <div className="flex justify-between items-start">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gray-200 rounded-lg" />
@@ -276,7 +276,7 @@ export const OrderCardSkeleton: React.FC = () => (
         </div>
         <div className="h-6 bg-gray-200 rounded w-20" />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="space-y-1">
             <div className="h-3 bg-gray-200 rounded w-16" />
@@ -296,14 +296,14 @@ export const OrderCardSkeleton: React.FC = () => (
 )
 
 export const ChartSkeleton: React.FC<{ height?: string }> = ({ height = '300px' }) => (
-  <div className="bg-white rounded-lg shadow-sm border p-6">
+  <div className="bg-white rounded-lg shadow-sm border p-3">
     <div className="animate-pulse">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
         <div className="h-6 bg-gray-200 rounded w-48" />
         <div className="h-6 bg-gray-200 rounded w-24" />
       </div>
       <div className="bg-gray-200 rounded" style={{ height }} />
-      <div className="flex justify-center mt-4 gap-4">
+      <div className="flex justify-center mt-4 gap-2">
         {[1, 2, 3].map((i) => (
           <div key={i} className="flex items-center gap-2">
             <div className="w-3 h-3 bg-gray-200 rounded-full" />
@@ -317,12 +317,12 @@ export const ChartSkeleton: React.FC<{ height?: string }> = ({ height = '300px' 
 
 // ============= Page-Specific Loading States =============
 export const ProcurementDashboardLoading: React.FC = () => (
-  <div className="min-h-screen bg-gray-50 p-6">
-    <div className="space-y-6">
+  <div className="min-h-screen bg-gray-50 p-3">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6">
+      <div className="bg-white rounded-lg shadow-sm p-3">
         <div className="animate-pulse">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center mb-3">
             <div className="space-y-2">
               <div className="h-8 bg-gray-200 rounded w-80" />
               <div className="h-4 bg-gray-200 rounded w-96" />
@@ -332,7 +332,7 @@ export const ProcurementDashboardLoading: React.FC = () => (
               <div className="h-10 w-32 bg-gray-200 rounded-lg" />
             </div>
           </div>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-5 gap-2">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="h-10 bg-gray-200 rounded-lg" />
             ))}
@@ -341,11 +341,11 @@ export const ProcurementDashboardLoading: React.FC = () => (
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="bg-white p-6 rounded-lg shadow-sm">
+          <div key={i} className="bg-white p-3 rounded-lg shadow-sm">
             <div className="animate-pulse">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <div className="w-12 h-12 bg-gray-200 rounded-lg" />
                 <div className="h-4 w-8 bg-gray-200 rounded" />
               </div>
@@ -358,15 +358,15 @@ export const ProcurementDashboardLoading: React.FC = () => (
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="lg:col-span-2 space-y-3">
           <ChartSkeleton />
           <TableSkeleton rows={6} columns={7} />
         </div>
-        <div className="space-y-6">
-          <div className="bg-white rounded-lg shadow-sm p-6">
+        <div className="space-y-3">
+          <div className="bg-white rounded-lg shadow-sm p-3">
             <div className="animate-pulse">
-              <div className="h-6 bg-gray-200 rounded w-32 mb-4" />
+              <div className="h-6 bg-gray-200 rounded w-32 mb-2" />
               <div className="space-y-3">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
@@ -435,7 +435,7 @@ export const LoadingButton: React.FC<{
   const sizes = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg'
+    lg: 'px-3 py-2 text-lg'
   }
 
   return (
@@ -463,13 +463,13 @@ export const ContentPlaceholder: React.FC<{
   action?: React.ReactNode
 }> = ({ icon, title, description, action }) => (
   <div className="text-center py-12">
-    <div className="flex justify-center mb-4">
+    <div className="flex justify-center mb-2">
       <div className="p-3 bg-gray-100 rounded-full text-gray-400">
         {icon}
       </div>
     </div>
     <h3 className="text-lg font-medium text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600 mb-4">{description}</p>
+    <p className="text-gray-600 mb-2">{description}</p>
     {action}
   </div>
 )

@@ -398,7 +398,7 @@ function EnhancedToastItem({ toast, onRemove, onAcknowledge }: EnhancedToastItem
   return (
     <div
       className={`
-        pointer-events-auto flex items-start gap-3 p-4 rounded-xl border shadow-lg
+        pointer-events-auto flex items-start gap-3 p-3 rounded-xl border shadow-lg
         ${config.bgColor} ${config.borderColor}
         ${toast.variant === 'critical' && !toast.acknowledged ? 'animate-pulse ring-2 ring-red-400' : ''}
         ${isExiting ? 'animate-out slide-out-to-right-full duration-200' : 'animate-in slide-in-from-right-full duration-300'}

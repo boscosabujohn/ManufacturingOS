@@ -548,10 +548,10 @@ const GeneralLedger: React.FC = () => {
   });
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <FileText className="h-8 w-8 text-blue-600" />
@@ -563,7 +563,7 @@ const GeneralLedger: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Banknote className="h-8 w-8 text-green-600" />
@@ -578,7 +578,7 @@ const GeneralLedger: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <DollarSign className="h-8 w-8 text-purple-600" />
@@ -592,7 +592,7 @@ const GeneralLedger: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <CheckCircleIcon className="h-8 w-8 text-orange-600" />
@@ -607,9 +607,9 @@ const GeneralLedger: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Type Distribution</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Account Type Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -631,8 +631,8 @@ const GeneralLedger: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Journal Entry Trends</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Journal Entry Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={journalEntryTrends}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -650,13 +650,13 @@ const GeneralLedger: React.FC = () => {
 
       {/* Recent Activity */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Recent Journal Entries</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {journalEntries.slice(0, 5).map((entry) => (
-              <div key={entry.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div key={entry.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900">{entry.entryNumber}</h4>
                   <p className="text-sm text-gray-600">{entry.description}</p>
@@ -682,7 +682,7 @@ const GeneralLedger: React.FC = () => {
   );
 
   const renderChartOfAccounts = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Chart of Accounts</h3>
         <button
@@ -699,22 +699,22 @@ const GeneralLedger: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Account
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Type
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Balance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -722,7 +722,7 @@ const GeneralLedger: React.FC = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {chartOfAccounts.map((account) => (
                 <tr key={account.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">
                         {account.accountNumber} - {account.accountName}
@@ -732,25 +732,25 @@ const GeneralLedger: React.FC = () => {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getAccountTypeColor(account.accountType)}`}>
                       {account.accountType.charAt(0).toUpperCase() + account.accountType.slice(1)}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {account.category}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatCurrency(account.currentBalance)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       account.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
                       {account.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => setSelectedAccount(account)}
@@ -774,7 +774,7 @@ const GeneralLedger: React.FC = () => {
   );
 
   const renderJournalEntries = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Journal Entries</h3>
         <button
@@ -787,8 +787,8 @@ const GeneralLedger: React.FC = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <div className="relative">
@@ -842,25 +842,25 @@ const GeneralLedger: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Entry Number
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Description
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Reference
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Amount
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -868,26 +868,26 @@ const GeneralLedger: React.FC = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredJournalEntries.map((entry) => (
                 <tr key={entry.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">
                     {entry.entryNumber}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatDate(entry.date)}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                  <td className="px-3 py-2 text-sm text-gray-900">
                     <div className="max-w-xs truncate">{entry.description}</div>
                     <div className="text-xs text-gray-500">{entry.source}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {entry.reference}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatCurrency(entry.totalDebit)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {getStatusBadge(entry.status)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => setSelectedEntry(entry)}
@@ -922,7 +922,7 @@ const GeneralLedger: React.FC = () => {
     const totalCredits = trialBalance.reduce((sum, item) => sum + item.creditBalance, 0);
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-3">
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold text-gray-900">Trial Balance</h3>
           <div className="flex items-center space-x-2">
@@ -935,8 +935,8 @@ const GeneralLedger: React.FC = () => {
         </div>
 
         {/* Balance Check */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <div className="grid grid-cols-3 gap-6">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <div className="grid grid-cols-3 gap-3">
             <div className="text-center">
               <p className="text-sm text-gray-600">Total Debits</p>
               <p className="text-2xl font-semibold text-blue-600">{formatCurrency(totalDebits)}</p>
@@ -966,16 +966,16 @@ const GeneralLedger: React.FC = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Account
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Account Type
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Debit Balance
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Credit Balance
                   </th>
                 </tr>
@@ -983,32 +983,32 @@ const GeneralLedger: React.FC = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {trialBalance.map((item) => (
                   <tr key={item.accountId} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
                         {item.accountNumber} - {item.accountName}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getAccountTypeColor(item.accountType)}`}>
                         {item.accountType.charAt(0).toUpperCase() + item.accountType.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium text-gray-900">
                       {item.debitBalance > 0 ? formatCurrency(item.debitBalance) : '-'}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium text-gray-900">
                       {item.creditBalance > 0 ? formatCurrency(item.creditBalance) : '-'}
                     </td>
                   </tr>
                 ))}
                 <tr className="bg-gray-50 font-medium">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900" colSpan={2}>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900" colSpan={2}>
                     TOTALS
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-semibold text-gray-900">
                     {formatCurrency(totalDebits)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-semibold text-gray-900">
                     {formatCurrency(totalCredits)}
                   </td>
                 </tr>
@@ -1026,8 +1026,8 @@ const GeneralLedger: React.FC = () => {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center mb-6">
+        <div className="bg-white rounded-lg p-3 w-full  max-h-[90vh] overflow-y-auto">
+          <div className="flex justify-between items-center mb-3">
             <h3 className="text-lg font-semibold text-gray-900">
               Journal Entry: {selectedEntry.entryNumber}
             </h3>
@@ -1040,7 +1040,7 @@ const GeneralLedger: React.FC = () => {
           </div>
 
           {/* Entry Header */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
             <div>
               <p className="text-sm text-gray-600">Date</p>
               <p className="font-medium text-gray-900">{formatDate(selectedEntry.date)}</p>
@@ -1059,13 +1059,13 @@ const GeneralLedger: React.FC = () => {
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-sm text-gray-600">Description</p>
             <p className="font-medium text-gray-900">{selectedEntry.description}</p>
           </div>
 
           {/* Line Items */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="font-medium text-gray-900 mb-3">Line Items</h4>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
@@ -1104,7 +1104,7 @@ const GeneralLedger: React.FC = () => {
           </div>
 
           {/* Entry Details */}
-          <div className="grid grid-cols-2 gap-6 text-sm">
+          <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
               <p className="text-gray-600">Created by: {selectedEntry.createdBy}</p>
               <p className="text-gray-600">Created: {formatDate(selectedEntry.createdDate)}</p>
@@ -1130,14 +1130,14 @@ const GeneralLedger: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">General Ledger</h1>
         <p className="text-gray-600 mt-2">Manage chart of accounts, journal entries, and trial balance</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },

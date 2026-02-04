@@ -160,9 +160,9 @@ export default function CPQSettingsNumberingPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Numbering Configuration</h2>
           <p className="text-sm text-gray-600 mt-1">Configure automatic numbering for quotes, proposals, and contracts</p>
@@ -197,15 +197,15 @@ export default function CPQSettingsNumberingPage() {
 
       {/* Success Banner */}
       {saveStatus === 'success' && (
-        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
+        <div className="mb-3 bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3">
           <CheckCircle className="h-5 w-5 text-green-600" />
           <p className="text-sm text-green-800 font-medium">Numbering settings saved successfully!</p>
         </div>
       )}
 
       {/* Quote Numbering */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <FileText className="h-6 w-6 text-blue-600" />
@@ -226,7 +226,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Prefix</label>
             <input
@@ -272,7 +272,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           <div className="flex items-center gap-3">
             <input
               type="checkbox"
@@ -318,7 +318,7 @@ export default function CPQSettingsNumberingPage() {
         </div>
 
         {/* Sample Preview */}
-        <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-blue-700 mb-1">Sample Format:</p>
@@ -345,8 +345,8 @@ export default function CPQSettingsNumberingPage() {
       </div>
 
       {/* Proposal Numbering */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <File className="h-6 w-6 text-purple-600" />
@@ -367,7 +367,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Prefix</label>
             <input
@@ -411,7 +411,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-purple-700 mb-1">Sample Format:</p>
@@ -422,8 +422,8 @@ export default function CPQSettingsNumberingPage() {
       </div>
 
       {/* Contract Numbering */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-green-100 rounded-lg">
               <Award className="h-6 w-6 text-green-600" />
@@ -444,7 +444,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Prefix</label>
             <input
@@ -489,7 +489,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-green-700 mb-1">Sample Format:</p>
@@ -500,8 +500,8 @@ export default function CPQSettingsNumberingPage() {
       </div>
 
       {/* Advanced Options */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="p-2 bg-orange-100 rounded-lg">
             <Settings className="h-6 w-6 text-orange-600" />
           </div>
@@ -511,7 +511,7 @@ export default function CPQSettingsNumberingPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {Object.entries(advancedOptions).map(([key, value]) => (
             <div key={key} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
               <input
@@ -532,7 +532,7 @@ export default function CPQSettingsNumberingPage() {
       </div>
 
       {/* Info Banner */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start gap-3">
         <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
         <div>
           <p className="text-sm text-blue-900 font-medium">Numbering Sequence Warning</p>

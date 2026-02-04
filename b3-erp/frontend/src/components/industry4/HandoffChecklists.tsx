@@ -347,9 +347,9 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
   }, {} as Record<ItemCategory, ChecklistItem[]>);
 
   const renderChecklist = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Progress */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-gray-700">Handoff Progress</span>
           <span className="text-sm font-bold text-blue-600">{completedItems}/{totalItems} items</span>
@@ -467,7 +467,7 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
   );
 
   const renderIssues = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {handoff.activeIssues.length === 0 ? (
         <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
           <div className="text-4xl mb-2">✅</div>
@@ -478,7 +478,7 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
         handoff.activeIssues.map(issue => (
           <div
             key={issue.id}
-            className="bg-white border border-gray-200 rounded-lg p-4 border-l-4"
+            className="bg-white border border-gray-200 rounded-lg p-3 border-l-4"
             style={{ borderLeftColor: getSeverityColor(issue.severity) }}
           >
             <div className="flex justify-between items-start mb-2">
@@ -505,7 +505,7 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
 
             <p className="text-sm text-gray-600 mb-3">{issue.description}</p>
 
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-gray-500">Reported by:</span>
                 <span className="ml-2 font-medium">{issue.reportedBy}</span>
@@ -528,9 +528,9 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
   );
 
   const renderProduction = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {handoff.productionStatus.map(line => (
-        <div key={line.line} className="bg-white border border-gray-200 rounded-lg p-4">
+        <div key={line.line} className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="flex justify-between items-start mb-3">
             <div>
               <h4 className="font-semibold text-gray-800">{line.line}</h4>
@@ -577,10 +577,10 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
   );
 
   const renderNotes = () => (
-    <div className="space-y-4">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+    <div className="space-y-2">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
         <h4 className="font-semibold text-gray-800 mb-3">General Notes from Outgoing Shift</h4>
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-sm text-gray-700 whitespace-pre-wrap">{handoff.generalNotes}</p>
         </div>
         <p className="text-xs text-gray-400 mt-2">
@@ -588,7 +588,7 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
         </p>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
         <h4 className="font-semibold text-gray-800 mb-3">Add Notes for Incoming Shift</h4>
         <textarea
           className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -603,14 +603,14 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
   );
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex justify-between items-start mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Shift Handoff</h2>
           <p className="text-sm text-gray-600">Digital shift handover interface</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${
             handoff.status === 'completed' ? 'bg-green-100 text-green-700' :
             handoff.status === 'in_progress' ? 'bg-blue-100 text-blue-700' :
@@ -622,9 +622,9 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
       </div>
 
       {/* Shift Info */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="text-center">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-medium mb-1">
                 {handoff.outgoingOperator.avatar}
@@ -653,7 +653,7 @@ const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' })
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-2">
         {(['checklist', 'issues', 'production', 'notes'] as const).map(tab => (
           <button
             key={tab}

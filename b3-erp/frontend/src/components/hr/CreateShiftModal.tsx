@@ -127,10 +127,10 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -150,12 +150,12 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
               Basic Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Shift Name *
@@ -186,8 +186,8 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
           </div>
 
           {/* Shift Type */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">2</span>
               Shift Type
             </h3>
@@ -195,7 +195,7 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
               {(['day', 'night', 'morning', 'evening', 'flexible', 'rotational'] as const).map((type) => (
                 <label
                   key={type}
-                  className={`relative border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                  className={`relative border-2 rounded-lg p-3 cursor-pointer transition-all ${
                     formData.type === type
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -226,12 +226,12 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
           </div>
 
           {/* Timing */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">3</span>
               Timing & Duration
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Start Time *
@@ -271,7 +271,7 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Working Hours (calculated)
@@ -301,8 +301,8 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
           </div>
 
           {/* Applicable Days */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">4</span>
               Applicable Days
             </h3>
@@ -340,7 +340,7 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
                   />
                   <div className="text-sm font-medium text-gray-900">{day.slice(0, 3)}</div>
                   {formData.daysApplicable.includes(day) && (
-                    <CheckCircle className="w-4 h-4 text-blue-600 mx-auto mt-1" />
+                    <CheckCircle className="w-4 h-4 text-blue-600 mt-1" />
                   )}
                 </label>
               ))}
@@ -351,8 +351,8 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
           </div>
 
           {/* Benefits & Policies */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">5</span>
               Benefits & Policies
             </h3>
@@ -391,7 +391,7 @@ export function CreateShiftModal({ isOpen, onClose, onSubmit }: CreateShiftModal
 
           {/* Summary */}
           {formData.name && formData.startTime && formData.endTime && formData.daysApplicable.length > 0 && (
-            <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6">
+            <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">

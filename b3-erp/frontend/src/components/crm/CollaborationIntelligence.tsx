@@ -116,7 +116,7 @@ export default function CollaborationIntelligence() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900 flex items-center">
@@ -127,8 +127,8 @@ export default function CollaborationIntelligence() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Recommendations</p>
@@ -138,7 +138,7 @@ export default function CollaborationIntelligence() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">High Priority</p>
@@ -148,7 +148,7 @@ export default function CollaborationIntelligence() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Avg Confidence</p>
@@ -158,7 +158,7 @@ export default function CollaborationIntelligence() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Churn Risks</p>
@@ -168,7 +168,7 @@ export default function CollaborationIntelligence() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Upsell Opps</p>
@@ -178,7 +178,7 @@ export default function CollaborationIntelligence() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Competitive</p>
@@ -190,7 +190,7 @@ export default function CollaborationIntelligence() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center space-x-4">
           <select
             value={filterType}
@@ -220,12 +220,12 @@ export default function CollaborationIntelligence() {
       </div>
 
       {/* AI Recommendations */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecommendations.map((rec) => {
           const TypeIcon = typeIcons[rec.type];
           return (
-            <div key={rec.id} className="bg-white rounded-lg shadow-sm border-2 border-gray-200 p-6 hover:shadow-lg hover:border-purple-300 transition-all">
-              <div className="flex items-start justify-between mb-4">
+            <div key={rec.id} className="bg-white rounded-lg shadow-sm border-2 border-gray-200 p-3 hover:shadow-lg hover:border-purple-300 transition-all">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-start space-x-4 flex-1">
                   <div className={`h-12 w-12 rounded-lg flex items-center justify-center ${typeColors[rec.type]}`}>
                     <TypeIcon className="h-6 w-6" />
@@ -247,7 +247,7 @@ export default function CollaborationIntelligence() {
               </div>
 
               {/* Confidence Score */}
-              <div className="mb-4 pb-4 border-b border-gray-200">
+              <div className="mb-2 pb-4 border-b border-gray-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700">AI Confidence Level</span>
                   <span className="text-sm font-bold text-purple-900">{rec.confidence}%</span>
@@ -261,7 +261,7 @@ export default function CollaborationIntelligence() {
               </div>
 
               {/* Suggested Action */}
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 mb-4 border border-blue-200">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-3 mb-2 border border-blue-200">
                 <div className="flex items-start space-x-3">
                   <Lightbulb className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div className="flex-1">
@@ -272,7 +272,7 @@ export default function CollaborationIntelligence() {
               </div>
 
               {/* Impact */}
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
                 <div className="flex items-start space-x-3">
                   <TrendingUp className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                   <div className="flex-1">
@@ -297,18 +297,18 @@ export default function CollaborationIntelligence() {
       </div>
 
       {/* Sales Playbook */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
           <FileText className="h-5 w-5 text-indigo-600 mr-2" />
           Sales Playbooks by Opportunity Type
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {[
             { name: 'Enterprise Deal', steps: 8, avgWinRate: 65, avgDays: 90 },
             { name: 'SMB Quick Win', steps: 4, avgWinRate: 82, avgDays: 30 },
             { name: 'Competitive Displacement', steps: 10, avgWinRate: 48, avgDays: 120 }
           ].map((playbook, index) => (
-            <div key={index} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-4 border border-indigo-200">
+            <div key={index} className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-3 border border-indigo-200">
               <h4 className="font-bold text-indigo-900 mb-3">{playbook.name}</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-between">
@@ -333,8 +333,8 @@ export default function CollaborationIntelligence() {
       </div>
 
       {/* Team Collaboration */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
           <Users className="h-5 w-5 text-green-600 mr-2" />
           Team Collaboration & @Mentions
         </h3>
@@ -344,7 +344,7 @@ export default function CollaborationIntelligence() {
             { from: 'David Park', to: 'Emily Davis', message: '@Emily - Customer asked about integration with SAP. Do we have a pre-built connector?', time: '5 hours ago', deal: 'Manufacturing Suite Upgrade' },
             { from: 'Emily Davis', to: 'Sarah Johnson', message: '@Sarah - Quick win! Customer just signed. Moving to onboarding phase.', time: '1 day ago', deal: 'Cloud Infrastructure Setup' }
           ].map((mention, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="flex items-start space-x-3">
                 <div className="h-8 w-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                   <Users className="h-4 w-4 text-white" />

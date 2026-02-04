@@ -33,8 +33,8 @@ export default function ProjectPerformanceReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Project Performance Report</h1>
                     <p className="text-gray-600">Project tracking and performance metrics</p>
@@ -48,7 +48,7 @@ export default function ProjectPerformanceReport() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Projects"
                     value={data.totalProjects.toString()}
@@ -77,7 +77,7 @@ export default function ProjectPerformanceReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Projects by Status</CardTitle></CardHeader>
                     <CardContent>

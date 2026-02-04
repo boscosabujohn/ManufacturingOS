@@ -340,12 +340,12 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
   const overallHealth = processes.reduce((sum, p) => sum + p.healthScore, 0) / processes.length;
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Overall Health Gauge */}
-      <div className="grid grid-cols-3 gap-6">
-        <div className="col-span-1 bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4 text-center">Overall BCP Health</h3>
-          <div className="relative w-40 h-40 mx-auto">
+      <div className="grid grid-cols-3 gap-3">
+        <div className="col-span-1 bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2 text-center">Overall BCP Health</h3>
+          <div className="relative w-40 h-40">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
               <circle cx="50" cy="50" r="40" fill="none" stroke="#e5e7eb" strokeWidth="12" />
               <circle
@@ -368,13 +368,13 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
           </div>
         </div>
 
-        <div className="col-span-2 bg-white border border-gray-200 rounded-lg p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">Process Status Summary</h3>
+        <div className="col-span-2 bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Process Status Summary</h3>
           <div className="grid grid-cols-4 gap-3">
             {(['healthy', 'degraded', 'at_risk', 'critical'] as HealthStatus[]).map(status => (
               <div
                 key={status}
-                className="rounded-lg p-4 text-center"
+                className="rounded-lg p-3 text-center"
                 style={{ backgroundColor: `${getHealthColor(status)}15` }}
               >
                 <div className="text-3xl font-bold" style={{ color: getHealthColor(status) }}>
@@ -408,7 +408,7 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-6 gap-2">
         {metrics.map((metric, idx) => (
           <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="text-xs text-gray-500 mb-1">{metric.name}</div>
@@ -432,8 +432,8 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
       </div>
 
       {/* Critical Processes Quick View */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-sm font-semibold text-gray-700">Critical Process Status</h3>
           <button
             onClick={() => setActiveView('processes')}
@@ -456,7 +456,7 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
                   <div className="text-xs text-gray-500">{process.responsibleTeam}</div>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <div className="text-center">
                   <div className="text-lg font-bold" style={{ color: getHealthColor(process.status) }}>
                     {process.healthScore}%
@@ -484,8 +484,8 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
       </div>
 
       {/* Recent Incidents */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-sm font-semibold text-gray-700">Recent Incidents & Drills</h3>
           <button
             onClick={() => setActiveView('incidents')}
@@ -524,7 +524,7 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
   );
 
   const renderProcesses = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Category Filter */}
       <div className="flex gap-2 flex-wrap">
         {(['all', 'production', 'supply_chain', 'it_systems', 'workforce', 'facilities', 'logistics'] as const).map(cat => (
@@ -544,11 +544,11 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
       </div>
 
       {/* Process Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredProcesses.map(process => (
           <div
             key={process.id}
-            className="bg-white border border-gray-200 rounded-lg p-4"
+            className="bg-white border border-gray-200 rounded-lg p-3"
           >
             <div className="flex justify-between items-start mb-3">
               <div className="flex items-center gap-2">
@@ -628,7 +628,7 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
   );
 
   const renderIncidents = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
         <table className="w-full">
           <thead className="bg-gray-50">
@@ -683,27 +683,27 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
   );
 
   const renderDrills = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-3 gap-4">
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-3 gap-2">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Drills Completed (YTD)</div>
           <div className="text-3xl font-bold text-blue-600">12</div>
           <div className="text-xs text-gray-500 mt-1">Target: 16</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Avg Recovery Time</div>
           <div className="text-3xl font-bold text-green-600">2.1h</div>
           <div className="text-xs text-gray-500 mt-1">Target RTO: 4h</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Success Rate</div>
           <div className="text-3xl font-bold text-green-600">92%</div>
           <div className="text-xs text-gray-500 mt-1">Target: 95%</div>
         </div>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-gray-700 mb-4">Drill Schedule</h3>
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-sm font-semibold text-gray-700 mb-2">Drill Schedule</h3>
         <div className="space-y-3">
           {processes.slice(0, 4).map(process => {
             const nextDrill = new Date(process.lastTested);
@@ -722,7 +722,7 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="text-right">
                     <div className={`text-sm font-medium ${overdue ? 'text-red-600' : daysUntil < 14 ? 'text-amber-600' : 'text-gray-800'}`}>
                       {overdue ? `${Math.abs(daysUntil)} days overdue` : `${daysUntil} days until next`}
@@ -739,9 +739,9 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
         </div>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-gray-700 mb-4">Recovery Plan Templates</h3>
-        <div className="grid grid-cols-2 gap-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-sm font-semibold text-gray-700 mb-2">Recovery Plan Templates</h3>
+        <div className="grid grid-cols-2 gap-2">
           {['IT System Failover', 'Production Line Switch', 'Supplier Contingency', 'Facility Evacuation'].map((template, idx) => (
             <div key={idx} className="border border-gray-200 rounded-lg p-3 hover:border-blue-500 cursor-pointer transition-colors">
               <div className="flex justify-between items-center">
@@ -763,8 +763,8 @@ const BusinessContinuityStatus: React.FC<BusinessContinuityStatusProps> = ({ cla
   );
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="flex justify-between items-center mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="flex justify-between items-center mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Business Continuity Status</h2>
           <p className="text-sm text-gray-600">Visual health check of critical business processes</p>

@@ -151,9 +151,9 @@ const FinancialConsolidation = () => {
   ];
 
   const renderOverviewTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-blue-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Entities</p>
@@ -162,7 +162,7 @@ const FinancialConsolidation = () => {
             <Building2 className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className="bg-green-50 rounded-lg p-4">
+        <div className="bg-green-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Consolidated Revenue</p>
@@ -171,7 +171,7 @@ const FinancialConsolidation = () => {
             <TrendingUp className="h-8 w-8 text-green-500" />
           </div>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Eliminations</p>
@@ -180,7 +180,7 @@ const FinancialConsolidation = () => {
             <GitMerge className="h-8 w-8 text-purple-500" />
           </div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
+        <div className="bg-yellow-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Net Income</p>
@@ -191,9 +191,9 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Consolidation Impact Analysis</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Consolidation Impact Analysis</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={consolidatedData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -208,8 +208,8 @@ const FinancialConsolidation = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Entity Contribution</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Entity Contribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -235,8 +235,8 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Recent Consolidation Sessions</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Recent Consolidation Sessions</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
@@ -282,9 +282,9 @@ const FinancialConsolidation = () => {
   );
 
   const renderStructureTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Entity Structure</h3>
           <button
             onClick={() => setShowEntityModal(true)}
@@ -295,7 +295,7 @@ const FinancialConsolidation = () => {
           </button>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-2">
           <select
             value={consolidationView}
             onChange={(e) => setConsolidationView(e.target.value)}
@@ -308,7 +308,7 @@ const FinancialConsolidation = () => {
         </div>
 
         {consolidationView === 'structure' && (
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <ResponsiveContainer width="100%" height={400}>
               <Treemap
                 data={[entityHierarchy]}
@@ -370,9 +370,9 @@ const FinancialConsolidation = () => {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Reporting Standards</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Reporting Standards</h3>
           <div className="space-y-2">
             {['IFRS', 'US-GAAP', 'LOCAL-GAAP'].map(standard => {
               const count = entities.filter(e => e.reportingStandard === standard).length;
@@ -394,8 +394,8 @@ const FinancialConsolidation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Entity Types Distribution</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Entity Types Distribution</h3>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie dataKey="value"
@@ -423,9 +423,9 @@ const FinancialConsolidation = () => {
   );
 
   const renderEliminationsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Intercompany Transactions</h3>
           <div className="flex space-x-2">
             <button className="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">
@@ -505,9 +505,9 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Elimination Summary by Type</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Elimination Summary by Type</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={[
               { type: 'Sales', amount: 2500000 },
@@ -525,8 +525,8 @@ const FinancialConsolidation = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Intercompany Flow</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Intercompany Flow</h3>
           <div className="space-y-3">
             {intercompanyTransactions.slice(0, 4).map(transaction => {
               const fromEntity = entities.find(e => e.id === transaction.fromEntityId);
@@ -554,9 +554,9 @@ const FinancialConsolidation = () => {
   );
 
   const renderAdjustmentsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Consolidation Adjustments</h3>
           <button
             onClick={() => setShowAdjustmentModal(true)}
@@ -626,9 +626,9 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Adjustment Types</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Adjustment Types</h3>
           <div className="space-y-2">
             {['elimination', 'currency', 'goodwill', 'minority'].map(type => {
               const count = consolidationAdjustments.filter(a => a.type === type).length;
@@ -650,8 +650,8 @@ const FinancialConsolidation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Exchange Rates</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Exchange Rates</h3>
           <div className="space-y-2">
             {exchangeRates.map(rate => (
               <div key={rate.currency} className="p-3 bg-gray-50 rounded">
@@ -673,8 +673,8 @@ const FinancialConsolidation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Adjustment Status</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Adjustment Status</h3>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
@@ -703,9 +703,9 @@ const FinancialConsolidation = () => {
   );
 
   const renderReportsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Consolidated Financial Statements</h3>
           <div className="flex space-x-2">
             <select className="border rounded px-3 py-2" value={selectedPeriod} onChange={(e) => setSelectedPeriod(e.target.value)}>
@@ -721,8 +721,8 @@ const FinancialConsolidation = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="border rounded-lg p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="border rounded-lg p-3">
             <h4 className="font-semibold mb-3">Consolidated Income Statement</h4>
             <table className="w-full text-sm">
               <tbody>
@@ -762,7 +762,7 @@ const FinancialConsolidation = () => {
             </table>
           </div>
 
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <h4 className="font-semibold mb-3">Consolidated Balance Sheet</h4>
             <table className="w-full text-sm">
               <tbody>
@@ -808,8 +808,8 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Consolidation Reconciliation</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Consolidation Reconciliation</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
             <thead>
@@ -860,9 +860,9 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Available Reports</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Available Reports</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {[
             { name: 'Consolidated Financial Statements', type: 'PDF', size: '2.4 MB' },
             { name: 'Elimination Entries Report', type: 'XLSX', size: '450 KB' },
@@ -871,7 +871,7 @@ const FinancialConsolidation = () => {
             { name: 'Minority Interest Calculation', type: 'PDF', size: '890 KB' },
             { name: 'Audit Trail Report', type: 'CSV', size: '1.2 MB' }
           ].map((report, index) => (
-            <div key={index} className="border rounded-lg p-4 hover:bg-gray-50">
+            <div key={index} className="border rounded-lg p-3 hover:bg-gray-50">
               <div className="flex items-start justify-between">
                 <div>
                   <h4 className="font-medium">{report.name}</h4>
@@ -890,10 +890,10 @@ const FinancialConsolidation = () => {
   );
 
   const renderWorkflowTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Consolidation Process Workflow</h3>
-        <div className="flex items-center justify-between mb-6">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Consolidation Process Workflow</h3>
+        <div className="flex items-center justify-between mb-3">
           <div className="flex-1">
             <div className="flex items-center justify-between relative">
               <div className="absolute left-0 right-0 h-1 bg-gray-200 top-5"></div>
@@ -912,8 +912,8 @@ const FinancialConsolidation = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="border rounded-lg p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="border rounded-lg p-3">
             <h4 className="font-semibold mb-3">Current Tasks</h4>
             <div className="space-y-2">
               {[
@@ -939,7 +939,7 @@ const FinancialConsolidation = () => {
             </div>
           </div>
 
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <h4 className="font-semibold mb-3">Approval Queue</h4>
             <div className="space-y-2">
               {[
@@ -975,9 +975,9 @@ const FinancialConsolidation = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Process Controls</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Process Controls</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {[
             { control: 'Data Validation', status: 'active', lastRun: '2024-04-05 10:30', result: 'passed' },
             { control: 'Balance Check', status: 'active', lastRun: '2024-04-05 10:35', result: 'passed' },
@@ -986,7 +986,7 @@ const FinancialConsolidation = () => {
             { control: 'Minority Interest Calc', status: 'active', lastRun: '2024-04-05 10:50', result: 'passed' },
             { control: 'Final Reconciliation', status: 'scheduled', lastRun: '-', result: '-' }
           ].map((control, index) => (
-            <div key={index} className="border rounded-lg p-4">
+            <div key={index} className="border rounded-lg p-3">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium">{control.control}</h4>
                 {control.status === 'active' ?
@@ -1013,13 +1013,13 @@ const FinancialConsolidation = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Financial Consolidation</h2>
         <p className="text-gray-600">Multi-entity financial reporting and consolidation management</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['overview', 'structure', 'eliminations', 'adjustments', 'reports', 'workflow'].map((tab) => (
@@ -1050,14 +1050,14 @@ const FinancialConsolidation = () => {
 
       {showAdjustmentModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">New Consolidation Adjustment</h3>
               <button onClick={() => setShowAdjustmentModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium mb-1">Adjustment Type</label>
                 <select className="w-full border rounded px-3 py-2">
@@ -1072,7 +1072,7 @@ const FinancialConsolidation = () => {
                 <label className="block text-sm font-medium mb-1">Description</label>
                 <textarea className="w-full border rounded px-3 py-2" rows={3}></textarea>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Debit Account</label>
                   <input type="text" className="w-full border rounded px-3 py-2" />
@@ -1082,7 +1082,7 @@ const FinancialConsolidation = () => {
                   <input type="text" className="w-full border rounded px-3 py-2" />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Amount</label>
                   <input type="number" className="w-full border rounded px-3 py-2" />
@@ -1114,15 +1114,15 @@ const FinancialConsolidation = () => {
 
       {showEntityModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Add New Entity</h3>
               <button onClick={() => setShowEntityModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Entity Code</label>
                   <input type="text" className="w-full border rounded px-3 py-2" />
@@ -1132,7 +1132,7 @@ const FinancialConsolidation = () => {
                   <input type="text" className="w-full border rounded px-3 py-2" />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Entity Type</label>
                   <select className="w-full border rounded px-3 py-2">
@@ -1149,7 +1149,7 @@ const FinancialConsolidation = () => {
                   </select>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Country</label>
                   <input type="text" className="w-full border rounded px-3 py-2" />
@@ -1169,7 +1169,7 @@ const FinancialConsolidation = () => {
                   <input type="number" className="w-full border rounded px-3 py-2" min="0" max="100" />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Reporting Standard</label>
                   <select className="w-full border rounded px-3 py-2">

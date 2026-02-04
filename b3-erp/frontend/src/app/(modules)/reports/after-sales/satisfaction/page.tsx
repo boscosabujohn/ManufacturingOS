@@ -32,8 +32,8 @@ export default function CustomerSatisfactionReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Customer Satisfaction Report</h1>
                     <p className="text-gray-600">Customer feedback and NPS scores</p>
@@ -41,7 +41,7 @@ export default function CustomerSatisfactionReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Avg Rating"
                     value={`${data.avgRating} / 5.0`}
@@ -69,11 +69,11 @@ export default function CustomerSatisfactionReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Rating by Category</CardTitle></CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {data.byCategory.map((cat) => (
                                 <div key={cat.id} className="cursor-pointer hover:bg-gray-50 p-1 rounded" onClick={() => router.push(`/reports/after-sales/satisfaction/region?category=${cat.category}`)}>
                                     <div className="flex justify-between mb-2">

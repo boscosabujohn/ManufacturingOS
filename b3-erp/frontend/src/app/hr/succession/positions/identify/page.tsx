@@ -154,8 +154,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Target className="h-6 w-6 text-teal-600" />
           Identify Critical Positions
@@ -163,23 +163,23 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Identify and assess succession-critical roles</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Total Positions</p>
           <p className="text-2xl font-bold text-blue-900">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center gap-2 mb-1">
             <AlertCircle className="h-5 w-5 text-red-600" />
             <p className="text-sm font-medium text-red-600">Critical</p>
           </div>
           <p className="text-2xl font-bold text-red-900">{stats.critical}</p>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <p className="text-sm font-medium text-orange-600">High Priority</p>
           <p className="text-2xl font-bold text-orange-900">{stats.high}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center gap-2 mb-1">
             <TrendingUp className="h-5 w-5 text-yellow-600" />
             <p className="text-sm font-medium text-yellow-600">Retirement Risk</p>
@@ -188,8 +188,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Criticality</label>
             <select value={selectedCriticality} onChange={(e) => setSelectedCriticality(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
@@ -220,10 +220,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredPositions.map(position => (
-          <div key={position.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={position.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{position.title}</h3>
@@ -241,7 +241,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
               <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <p className="text-xs text-red-600 uppercase font-medium mb-1">Business Impact</p>
                 <p className="text-sm font-bold text-red-900">{position.businessImpact.charAt(0).toUpperCase() + position.businessImpact.slice(1)}</p>
@@ -268,7 +268,7 @@ export default function Page() {
             </div>
 
             {position.expectedVacancy && (
-              <div className="bg-yellow-50 rounded-lg p-3 mb-4 border border-yellow-200">
+              <div className="bg-yellow-50 rounded-lg p-3 mb-2 border border-yellow-200">
                 <div className="flex items-center gap-2 mb-1">
                   <AlertCircle className="h-4 w-4 text-yellow-600" />
                   <p className="text-xs text-yellow-700 uppercase font-medium">Expected Vacancy</p>
@@ -279,7 +279,7 @@ export default function Page() {
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div>
                 <h4 className="text-sm font-bold text-gray-900 mb-2">Key Responsibilities</h4>
                 <ul className="space-y-1">

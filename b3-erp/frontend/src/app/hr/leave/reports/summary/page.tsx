@@ -65,7 +65,7 @@ export default function LeaveSummaryPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -88,25 +88,25 @@ export default function LeaveSummaryPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Calendar className="w-4 h-4" /> Total Allocated
           </div>
           <div className="text-2xl font-bold text-gray-900">{overallStats.totalAllocated.toLocaleString()}</div>
           <div className="text-xs text-gray-500 mt-1">days</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Used</div>
           <div className="text-2xl font-bold text-blue-600">{overallStats.totalUsed.toLocaleString()}</div>
           <div className="text-xs text-gray-500 mt-1">{overallStats.utilizationRate.toFixed(1)}% utilized</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Balance</div>
           <div className="text-2xl font-bold text-green-600">{overallStats.totalBalance.toLocaleString()}</div>
           <div className="text-xs text-gray-500 mt-1">days remaining</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Users className="w-4 h-4" /> Employees
           </div>
@@ -115,9 +115,9 @@ export default function LeaveSummaryPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Leave Type-wise Breakdown</h2>
-        <div className="space-y-4">
+      <div className="bg-white rounded-lg border p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Leave Type-wise Breakdown</h2>
+        <div className="space-y-2">
           {mockLeaveSummary.map(leave => (
             <div key={leave.leaveTypeCode} className="border-b pb-4 last:border-b-0">
               <div className="flex items-center justify-between mb-2">
@@ -136,7 +136,7 @@ export default function LeaveSummaryPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-4 mb-2">
+              <div className="grid grid-cols-4 gap-2 mb-2">
                 <div>
                   <div className="text-xs text-gray-600">Allocated</div>
                   <div className="text-sm font-semibold text-gray-900">{leave.totalAllocated}</div>
@@ -163,9 +163,9 @@ export default function LeaveSummaryPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Monthly Leave Trends</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Monthly Leave Trends</h2>
           <div className="space-y-3">
             {mockMonthlyTrends.map(trend => (
               <div key={trend.month} className="flex items-center justify-between">
@@ -189,10 +189,10 @@ export default function LeaveSummaryPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Utilization Insights</h2>
-          <div className="space-y-4">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Utilization Insights</h2>
+          <div className="space-y-2">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="flex items-start gap-2">
                 <div className="text-red-600 font-semibold text-sm">High Utilization</div>
               </div>
@@ -205,7 +205,7 @@ export default function LeaveSummaryPage() {
               </div>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-start gap-2">
                 <div className="text-green-600 font-semibold text-sm">Low Utilization</div>
               </div>
@@ -218,7 +218,7 @@ export default function LeaveSummaryPage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="text-blue-600 font-semibold text-sm mb-2">Key Metrics</div>
               <div className="space-y-1 text-xs text-blue-800">
                 <div>• Average leaves per employee: 21.75 days/year</div>
@@ -231,7 +231,7 @@ export default function LeaveSummaryPage() {
         </div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <BarChart3 className="w-5 h-5 inline mr-2" />
           Leave Summary Insights

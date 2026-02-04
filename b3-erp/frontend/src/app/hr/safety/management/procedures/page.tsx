@@ -86,9 +86,9 @@ export default function SafetyProceduresPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <ClipboardList className="h-8 w-8 text-orange-600" />
@@ -110,9 +110,9 @@ export default function SafetyProceduresPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Content: Procedure List */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Tabs */}
           <div className="flex border-b border-gray-200">
             <button
@@ -135,11 +135,11 @@ export default function SafetyProceduresPage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredProcedures.map((proc) => (
-              <div key={proc.id} className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 hover:shadow-md transition-shadow cursor-pointer group">
+              <div key={proc.id} className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 hover:shadow-md transition-shadow cursor-pointer group">
                 <div className="flex items-start justify-between">
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div className={`p-3 rounded-lg flex-shrink-0 ${proc.importance === 'Critical' ? 'bg-red-50 text-red-600' : 'bg-blue-50 text-blue-600'}`}>
                       {proc.importance === 'Critical' ? <ShieldAlert className="w-6 h-6" /> : <FileCheck className="w-6 h-6" />}
                     </div>
@@ -152,7 +152,7 @@ export default function SafetyProceduresPage() {
                         )}
                       </div>
                       <p className="text-gray-600 text-sm mt-1">{proc.description}</p>
-                      <div className="flex items-center gap-4 mt-3 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 mt-3 text-xs text-gray-500">
                         <span className="flex items-center"><ClipboardList className="w-3 h-3 mr-1" /> {proc.steps} Steps</span>
                         <span className="flex items-center"><Clock className="w-3 h-3 mr-1" /> {proc.duration}</span>
                         <span className="flex items-center">Updated: {proc.lastReview}</span>
@@ -167,10 +167,10 @@ export default function SafetyProceduresPage() {
         </div>
 
         {/* Sidebar: Emergency & Quick Actions */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Emergency Contacts Card */}
-          <div className="bg-red-50 rounded-xl border border-red-100 p-6">
-            <h3 className="text-lg font-bold text-red-800 flex items-center mb-4">
+          <div className="bg-red-50 rounded-xl border border-red-100 p-3">
+            <h3 className="text-lg font-bold text-red-800 flex items-center mb-2">
               <AlertTriangle className="w-5 h-5 mr-2" />
               Emergency Contacts
             </h3>
@@ -196,8 +196,8 @@ export default function SafetyProceduresPage() {
           </div>
 
           {/* Quick Guides */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Guides</h3>
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Quick Guides</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer border border-transparent hover:border-gray-200 transition-all">
                 <PlayCircle className="w-8 h-8 text-purple-600 flex-shrink-0" />

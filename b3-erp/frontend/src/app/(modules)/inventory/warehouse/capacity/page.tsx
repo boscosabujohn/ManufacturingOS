@@ -182,10 +182,10 @@ export default function WarehouseCapacityPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -206,8 +206,8 @@ export default function WarehouseCapacityPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-400" />
           <select
             value={selectedPeriod}
@@ -233,8 +233,8 @@ export default function WarehouseCapacityPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Capacity</p>
@@ -247,7 +247,7 @@ export default function WarehouseCapacityPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Used Capacity</p>
@@ -260,7 +260,7 @@ export default function WarehouseCapacityPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Available</p>
@@ -273,7 +273,7 @@ export default function WarehouseCapacityPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Utilization</p>
@@ -288,9 +288,9 @@ export default function WarehouseCapacityPage() {
       </div>
 
       {/* Warehouse Capacity Overview */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Warehouse Capacity Overview</h3>
-        <div className="space-y-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Warehouse Capacity Overview</h3>
+        <div className="space-y-2">
           {filteredData.map((warehouse, idx) => (
             <div key={idx} className="p-4 bg-gray-50 rounded-lg">
               <div className="flex items-center justify-between mb-3">
@@ -378,8 +378,8 @@ export default function WarehouseCapacityPage() {
 
       {/* Zone-wise Capacity Breakdown */}
       {selectedWarehouse !== 'all' && zoneCapacityBreakdown[selectedWarehouse] && (
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Zone-wise Capacity Breakdown</h3>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Zone-wise Capacity Breakdown</h3>
           <div className="space-y-3">
             {zoneCapacityBreakdown[selectedWarehouse].map((zone, idx) => (
               <div key={idx} className="p-3 bg-gray-50 rounded-lg">

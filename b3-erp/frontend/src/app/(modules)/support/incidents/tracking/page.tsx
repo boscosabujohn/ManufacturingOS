@@ -318,8 +318,8 @@ const IncidentTrackingPage = () => {
   return (
     <div className="p-6 max-w-[1600px]">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-red-100 rounded-lg">
               <Activity className="w-6 h-6 text-red-600" />
@@ -333,8 +333,8 @@ const IncidentTrackingPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Incidents</span>
             <Activity className="w-4 h-4 text-gray-600" />
@@ -342,7 +342,7 @@ const IncidentTrackingPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.totalIncidents}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Critical</span>
             <AlertCircle className="w-4 h-4 text-red-600" />
@@ -350,7 +350,7 @@ const IncidentTrackingPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.critical}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">In Progress</span>
             <Activity className="w-4 h-4 text-blue-600" />
@@ -358,7 +358,7 @@ const IncidentTrackingPage = () => {
           <div className="text-2xl font-bold text-blue-600">{stats.inProgress}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Investigating</span>
             <Search className="w-4 h-4 text-yellow-600" />
@@ -366,7 +366,7 @@ const IncidentTrackingPage = () => {
           <div className="text-2xl font-bold text-yellow-600">{stats.investigating}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Monitoring</span>
             <TrendingUp className="w-4 h-4 text-purple-600" />
@@ -374,7 +374,7 @@ const IncidentTrackingPage = () => {
           <div className="text-2xl font-bold text-purple-600">{stats.monitoring}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Resolved</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -384,12 +384,12 @@ const IncidentTrackingPage = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Search & Filters</h3>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           <div className="flex-1 min-w-[300px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -447,13 +447,13 @@ const IncidentTrackingPage = () => {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left p-4 text-sm font-semibold text-gray-900">Incident</th>
-                <th className="text-left p-4 text-sm font-semibold text-gray-900">Priority</th>
-                <th className="text-left p-4 text-sm font-semibold text-gray-900">Status</th>
-                <th className="text-left p-4 text-sm font-semibold text-gray-900">Assigned To</th>
-                <th className="text-left p-4 text-sm font-semibold text-gray-900">Impacted Users</th>
-                <th className="text-left p-4 text-sm font-semibold text-gray-900">Last Update</th>
-                <th className="text-center p-4 text-sm font-semibold text-gray-900">Actions</th>
+                <th className="text-left p-3 text-sm font-semibold text-gray-900">Incident</th>
+                <th className="text-left p-3 text-sm font-semibold text-gray-900">Priority</th>
+                <th className="text-left p-3 text-sm font-semibold text-gray-900">Status</th>
+                <th className="text-left p-3 text-sm font-semibold text-gray-900">Assigned To</th>
+                <th className="text-left p-3 text-sm font-semibold text-gray-900">Impacted Users</th>
+                <th className="text-left p-3 text-sm font-semibold text-gray-900">Last Update</th>
+                <th className="text-center p-3 text-sm font-semibold text-gray-900">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -520,9 +520,9 @@ const IncidentTrackingPage = () => {
 
       {/* Detail Modal */}
       {selectedIncident && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200">
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{selectedIncident.incidentNumber}</h3>
                 <p className="text-gray-600">{selectedIncident.title}</p>
@@ -537,23 +537,23 @@ const IncidentTrackingPage = () => {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 gap-3">
                 {/* Left Column */}
-                <div className="col-span-2 space-y-6">
+                <div className="col-span-2 space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-2">Description</label>
-                    <div className="bg-gray-50 rounded-lg p-4 text-gray-900">{selectedIncident.description}</div>
+                    <div className="bg-gray-50 rounded-lg p-3 text-gray-900">{selectedIncident.description}</div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-2">Business Impact</label>
-                    <div className="bg-red-50 rounded-lg p-4 text-red-900">{selectedIncident.businessImpact}</div>
+                    <div className="bg-red-50 rounded-lg p-3 text-red-900">{selectedIncident.businessImpact}</div>
                   </div>
 
                   {selectedIncident.workaround && (
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-2">Workaround</label>
-                      <div className="bg-blue-50 rounded-lg p-4 text-blue-900">{selectedIncident.workaround}</div>
+                      <div className="bg-blue-50 rounded-lg p-3 text-blue-900">{selectedIncident.workaround}</div>
                     </div>
                   )}
 
@@ -584,7 +584,7 @@ const IncidentTrackingPage = () => {
                 </div>
 
                 {/* Right Column */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-2">Priority</label>
                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getPriorityColor(selectedIncident.priority)}`}>
@@ -651,7 +651,7 @@ const IncidentTrackingPage = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200">
               <button
                 onClick={handleCloseDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"

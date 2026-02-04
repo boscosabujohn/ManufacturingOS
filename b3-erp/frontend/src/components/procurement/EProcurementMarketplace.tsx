@@ -224,14 +224,14 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
   };
 
   const renderMarketplace = () => (
-    <div className="flex gap-6">
+    <div className="flex gap-3">
       {/* Filters Sidebar */}
       {showFilters && (
-        <div className="w-64 bg-white rounded-lg shadow p-6">
-          <h3 className="font-semibold mb-4">Filters</h3>
+        <div className="w-64 bg-white rounded-lg shadow p-3">
+          <h3 className="font-semibold mb-2">Filters</h3>
 
           {/* Categories */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="text-sm font-medium mb-3">Categories</h4>
             <div className="space-y-2">
               {categories.map((category) => (
@@ -251,7 +251,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </div>
 
           {/* Price Range */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="text-sm font-medium mb-3">Price Range</h4>
             <div className="space-y-2">
               <input type="range" min="0" max="5000" className="w-full" />
@@ -263,7 +263,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </div>
 
           {/* Availability */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="text-sm font-medium mb-3">Availability</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-2">
@@ -278,7 +278,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </div>
 
           {/* Rating */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="text-sm font-medium mb-3">Minimum Rating</h4>
             <div className="space-y-2">
               {[4, 3, 2, 1].map((rating) => (
@@ -301,7 +301,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </div>
 
           {/* Certifications */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="text-sm font-medium mb-3">Certifications</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-2">
@@ -324,9 +324,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       {/* Products Grid */}
       <div className="flex-1">
         {/* Search and View Controls */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
+        <div className="bg-white rounded-lg shadow p-3 mb-3">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
                 className="p-2 hover:bg-gray-100 rounded"
@@ -370,7 +370,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
               </button>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <select className="px-3 py-2 border rounded-lg text-sm">
                 <option>Sort by: Relevance</option>
                 <option>Price: Low to High</option>
@@ -400,13 +400,13 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
         </div>
 
         {/* Products Display */}
-        <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
+        <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3' : 'space-y-2'}>
           {marketplaceProducts.map((product) => (
             <div key={product.id} className={`bg-white rounded-lg shadow hover:shadow-lg transition-shadow ${
-              viewMode === 'list' ? 'flex gap-6 p-6' : 'p-6'
+              viewMode === 'list' ? 'flex gap-3 p-3' : 'p-6'
             }`}>
               {/* Product Image */}
-              <div className={viewMode === 'list' ? 'w-32 h-32' : 'w-full h-48 mb-4'}>
+              <div className={viewMode === 'list' ? 'w-32 h-32' : 'w-full h-48 mb-2'}>
                 <div className="bg-gray-200 rounded-lg w-full h-full flex items-center justify-center">
                   <Package className="h-12 w-12 text-gray-400" />
                 </div>
@@ -453,7 +453,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 mt-2 text-sm">
+                  <div className="flex items-center gap-2 mt-2 text-sm">
                     <span className={`flex items-center gap-1 ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
                       {product.inStock ? <CheckCircle className="h-4 w-4" /> : <XCircle className="h-4 w-4" />}
                       {product.inStock ? 'In Stock' : 'Out of Stock'}
@@ -464,7 +464,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                 </div>
 
                 {/* Certifications */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {product.certifications.map((cert, index) => (
                     <span key={index} className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
                       {cert}
@@ -522,14 +522,14 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
   );
 
   const renderSuppliers = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Featured Suppliers */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-3 text-white">
         <h3 className="text-xl font-semibold mb-2">Featured Suppliers</h3>
-        <p className="mb-4">Discover top-rated suppliers with excellent track records</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <p className="mb-2">Discover top-rated suppliers with excellent track records</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {supplierStores.slice(0, 3).map((store) => (
-            <div key={store.id} className="bg-white/10 backdrop-blur rounded-lg p-4">
+            <div key={store.id} className="bg-white/10 backdrop-blur rounded-lg p-3">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold">{store.name}</h4>
                 <Award className="h-5 w-5 text-yellow-300" />
@@ -553,8 +553,8 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Supplier Directory */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-semibold">Supplier Directory</h3>
           <div className="flex gap-2">
             <div className="flex items-center border rounded-lg px-3 py-2">
@@ -574,11 +574,11 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {supplierStores.map((store) => (
-            <div key={store.id} className="border rounded-lg p-6">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center gap-4">
+            <div key={store.id} className="border rounded-lg p-3">
+              <div className="flex justify-between items-start mb-2">
+                <div className="flex items-center gap-2">
                   <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
                     <Store className="h-8 w-8 text-gray-400" />
                   </div>
@@ -600,7 +600,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <p className="text-sm text-gray-600">Products</p>
                   <p className="font-semibold">{store.products}</p>
@@ -619,7 +619,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-2">
                 {store.certifications.map((cert, index) => (
                   <span key={index} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
                     {cert}
@@ -649,9 +649,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Supplier Performance Metrics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Top Suppliers by Category</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Top Suppliers by Category</h4>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={[
               { category: 'Electronics', suppliers: 45 },
@@ -669,8 +669,8 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Supplier Rating Distribution</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Supplier Rating Distribution</h4>
           <ResponsiveContainer width="100%" height={250}>
             <RePieChart>
               <Pie
@@ -706,10 +706,10 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
   );
 
   const renderOrders = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Order Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <ShoppingBag className="h-8 w-8 text-blue-500" />
             <span className="text-sm text-gray-500">This Month</span>
@@ -718,7 +718,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           <p className="text-sm text-gray-600">Total Orders</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <Truck className="h-8 w-8 text-green-500" />
             <span className="text-sm text-gray-500">Active</span>
@@ -727,7 +727,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           <p className="text-sm text-gray-600">In Transit</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="h-8 w-8 text-purple-500" />
             <span className="text-sm text-gray-500">Total</span>
@@ -736,7 +736,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           <p className="text-sm text-gray-600">Order Value</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="h-8 w-8 text-orange-500" />
             <span className="text-sm text-gray-500">Savings</span>
@@ -747,8 +747,8 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-semibold">Recent Orders</h3>
           <button className="text-blue-600 hover:text-blue-800">View All</button>
         </div>
@@ -822,9 +822,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Order Analytics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Order Trends</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Order Trends</h4>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={[
               { month: 'Jul', orders: 18, value: 85000 },
@@ -846,8 +846,8 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Category Distribution</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Category Distribution</h4>
           <ResponsiveContainer width="100%" height={250}>
             <RePieChart>
               <Pie
@@ -898,11 +898,11 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
   );
 
   const renderAnalytics = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Trending Products */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Trending Products</h3>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Trending Products</h3>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {trendingProducts.map((product, index) => (
             <div key={index} className="text-center">
               <div className="bg-gray-200 rounded-lg h-24 mb-2 flex items-center justify-center">
@@ -917,9 +917,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Marketplace Insights */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Price Trends</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Price Trends</h4>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={[
               { month: 'Jul', steel: 420, electronics: 1180, chemicals: 850 },
@@ -941,8 +941,8 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Supplier Performance</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Supplier Performance</h4>
           <ResponsiveContainer width="100%" height={250}>
             <RadarChart data={[
               { metric: 'Quality', value: 92 },
@@ -962,22 +962,22 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Savings Analysis */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Savings Opportunities</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border rounded-lg p-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Savings Opportunities</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="border rounded-lg p-3">
             <Tag className="h-8 w-8 text-green-500 mb-2" />
             <h4 className="font-semibold mb-2">Volume Discounts</h4>
             <p className="text-2xl font-bold text-green-600 mb-1">$12,450</p>
             <p className="text-sm text-gray-600">Potential savings by consolidating orders</p>
           </div>
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <Zap className="h-8 w-8 text-blue-500 mb-2" />
             <h4 className="font-semibold mb-2">Early Payment</h4>
             <p className="text-2xl font-bold text-blue-600 mb-1">$8,200</p>
             <p className="text-sm text-gray-600">Available discounts for early payment</p>
           </div>
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <Globe className="h-8 w-8 text-purple-500 mb-2" />
             <h4 className="font-semibold mb-2">Alternative Suppliers</h4>
             <p className="text-2xl font-bold text-purple-600 mb-1">$15,300</p>
@@ -1065,7 +1065,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-2xl font-bold mb-2">E-Procurement Marketplace</h2>
@@ -1133,7 +1133,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['marketplace', 'suppliers', 'orders', 'analytics'].map((tab) => (
           <button
             key={tab}

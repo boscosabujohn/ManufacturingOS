@@ -130,7 +130,7 @@ export default function SkillsMatrixPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Grid className="h-8 w-8 text-indigo-600" />
           Skills Matrix
@@ -139,8 +139,8 @@ export default function SkillsMatrixPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Employees</p>
@@ -149,7 +149,7 @@ export default function SkillsMatrixPage() {
             <Users className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Skills Tracked</p>
@@ -158,7 +158,7 @@ export default function SkillsMatrixPage() {
             <Target className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expert Level</p>
@@ -167,7 +167,7 @@ export default function SkillsMatrixPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Skill Gaps</p>
@@ -179,7 +179,7 @@ export default function SkillsMatrixPage() {
       </div>
 
       {/* Skill Level Legend */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <h3 className="font-semibold text-gray-900 mb-3">Skill Level Legend</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           {skillLevels.map(level => (
@@ -197,8 +197,8 @@ export default function SkillsMatrixPage() {
       </div>
 
       {/* Skills Matrix Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto mb-6">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto mb-3">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Employee Skills Matrix</h3>
         </div>
         <table className="w-full">
@@ -247,10 +247,10 @@ export default function SkillsMatrixPage() {
       </div>
 
       {/* Skill Analysis */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
         {/* Skill Distribution */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-indigo-600" />
             Skill Distribution Summary
           </h3>
@@ -263,7 +263,7 @@ export default function SkillsMatrixPage() {
                     <p className="font-medium text-gray-900">{skill.name}</p>
                     <span className="text-sm text-gray-600">Avg: {stats.avgLevel}</span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-sm">
                     <div className="flex items-center gap-1">
                       <CheckCircle className="h-4 w-4 text-green-600" />
                       <span className="text-gray-600">{stats.expertCount} Experts</span>
@@ -282,8 +282,8 @@ export default function SkillsMatrixPage() {
         </div>
 
         {/* Training Recommendations */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Target className="h-5 w-5 text-orange-600" />
             Training Recommendations
           </h3>
@@ -300,8 +300,8 @@ export default function SkillsMatrixPage() {
               </div>
             ))}
             {skills.every(skill => skillStats[skill.id].gapCount === 0) && (
-              <div className="text-center p-6 text-gray-500">
-                <CheckCircle className="h-12 w-12 text-green-400 mx-auto mb-2" />
+              <div className="text-center p-3 text-gray-500">
+                <CheckCircle className="h-12 w-12 text-green-400 mb-2" />
                 <p>All employees meet minimum skill requirements</p>
               </div>
             )}
@@ -310,7 +310,7 @@ export default function SkillsMatrixPage() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-indigo-900 mb-2">Skills Matrix Guidelines</h3>
         <ul className="text-sm text-indigo-800 space-y-1">
           <li>• Skills are assessed on a 0-4 scale from None to Expert level</li>

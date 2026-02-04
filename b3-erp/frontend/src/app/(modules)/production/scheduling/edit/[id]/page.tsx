@@ -496,7 +496,7 @@ const ProductionSchedulingEditPage = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <RefreshCw className="w-12 h-12 text-blue-600 animate-spin" />
           <p className="text-gray-600">Loading schedule...</p>
         </div>
@@ -508,7 +508,7 @@ const ProductionSchedulingEditPage = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <X className="w-16 h-16 text-red-500 mb-4" />
+          <X className="w-16 h-16 text-red-500 mb-2" />
           <p className="text-xl text-gray-800">Schedule not found</p>
         </div>
       </div>
@@ -516,15 +516,15 @@ const ProductionSchedulingEditPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="flex justify-between items-start mb-4">
+      <div className="bg-white rounded-lg shadow-md p-3 mb-3">
+        <div className="flex justify-between items-start mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2">
               Edit Schedule - {scheduleData.scheduleId}
             </h1>
-            <div className="flex items-center gap-6 text-gray-600">
+            <div className="flex items-center gap-3 text-gray-600">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
                 <span>{scheduleData.period}</span>
@@ -570,7 +570,7 @@ const ProductionSchedulingEditPage = () => {
 
         {/* Conflict Alert */}
         {conflictDetected && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mt-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
               <div className="flex-1">
@@ -590,11 +590,11 @@ const ProductionSchedulingEditPage = () => {
         )}
       </div>
 
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-12 gap-3">
         {/* Left Panel - Scheduling Controls */}
-        <div className="col-span-3 space-y-6">
+        <div className="col-span-3 space-y-3">
           {/* Date Range */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               Date Range
@@ -636,7 +636,7 @@ const ProductionSchedulingEditPage = () => {
           </div>
 
           {/* Scheduling Algorithm */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Target className="w-4 h-4" />
               Scheduling Method
@@ -693,7 +693,7 @@ const ProductionSchedulingEditPage = () => {
           </div>
 
           {/* Constraints */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <AlertCircle className="w-4 h-4" />
               Constraints
@@ -724,7 +724,7 @@ const ProductionSchedulingEditPage = () => {
           </div>
 
           {/* Work Center Capacity */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Settings className="w-4 h-4" />
               Work Center Capacity
@@ -763,10 +763,10 @@ const ProductionSchedulingEditPage = () => {
         </div>
 
         {/* Middle Panel - Work Orders */}
-        <div className="col-span-6 space-y-6">
+        <div className="col-span-6 space-y-3">
           {/* Add Work Orders */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
                 <Package className="w-4 h-4" />
                 Scheduled Work Orders ({scheduleData.workOrders.length})
@@ -782,7 +782,7 @@ const ProductionSchedulingEditPage = () => {
 
             {/* Available Work Orders Selector */}
             {showWOSelector && (
-              <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                 <h4 className="font-medium text-blue-900 mb-3">
                   Available Work Orders
                 </h4>
@@ -825,7 +825,7 @@ const ProductionSchedulingEditPage = () => {
                   key={wo.id}
                   draggable
                   onDragStart={() => handleDragStart(wo.id)}
-                  className="border border-gray-300 rounded-lg p-4 bg-white hover:shadow-md transition-shadow cursor-move"
+                  className="border border-gray-300 rounded-lg p-3 bg-white hover:shadow-md transition-shadow cursor-move"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-start gap-3">
@@ -981,9 +981,9 @@ const ProductionSchedulingEditPage = () => {
         </div>
 
         {/* Right Panel - Visual Schedule & Material Check */}
-        <div className="col-span-3 space-y-6">
+        <div className="col-span-3 space-y-3">
           {/* Visual Timeline */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Activity className="w-4 h-4" />
               Schedule Timeline
@@ -1020,7 +1020,7 @@ const ProductionSchedulingEditPage = () => {
           </div>
 
           {/* Material Availability */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Box className="w-4 h-4" />
               Material Availability
@@ -1060,7 +1060,7 @@ const ProductionSchedulingEditPage = () => {
           </div>
 
           {/* Statistics */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
               Schedule Statistics

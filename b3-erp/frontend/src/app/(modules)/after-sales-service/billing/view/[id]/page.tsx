@@ -133,10 +133,10 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
   return (
     <div className="p-6 max-w-[1200px]">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Invoices
@@ -183,7 +183,7 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
       </div>
 
       {/* Invoice Document */}
-      <div className="bg-white rounded-lg border-2 border-gray-200 p-8 mb-6">
+      <div className="bg-white rounded-lg border-2 border-gray-200 p-8 mb-3">
         {/* Company Header */}
         <div className="flex justify-between items-start mb-8 pb-6 border-b-2 border-gray-200">
           <div>
@@ -293,7 +293,7 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
 
         {/* Payment Status */}
         {invoice.paidAmount > 0 && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
@@ -317,14 +317,14 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
 
       {/* Payment History */}
       {invoice.paymentHistory.length > 0 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <DollarSign className="h-5 w-5 text-green-600" />
             Payment History
           </h2>
           <div className="space-y-3">
             {invoice.paymentHistory.map((payment) => (
-              <div key={payment.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div key={payment.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex-1">
                   <div className="flex items-center gap-3">
                     <span className="font-medium text-gray-900">{payment.paymentNumber}</span>
@@ -332,7 +332,7 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
                       {payment.paymentMethod}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 mt-1 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       {new Date(payment.paymentDate).toLocaleDateString('en-IN')}
@@ -357,10 +357,10 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
       {/* Payment Modal */}
       {showPaymentModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Record Payment</h2>
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Record Payment</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Payment Amount (₹) *

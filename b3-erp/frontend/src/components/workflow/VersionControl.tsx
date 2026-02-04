@@ -211,8 +211,8 @@ export default function VersionControl() {
   const activeVersion = versions.find(v => v.status === 'active');
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -234,7 +234,7 @@ export default function VersionControl() {
         </div>
 
         {activeVersion && (
-          <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-5 w-5 text-green-600" />
@@ -256,10 +256,10 @@ export default function VersionControl() {
       </div>
 
       {/* Version Timeline */}
-      <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Version History</h3>
+      <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Version History</h3>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {versions.map((version, idx) => (
             <div key={version.version} className="relative">
               {/* Timeline connector */}
@@ -288,7 +288,7 @@ export default function VersionControl() {
                   }
                 }}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                     version.status === 'active' ? 'bg-green-500' :
                     version.status === 'draft' ? 'bg-blue-500' :
@@ -395,13 +395,13 @@ export default function VersionControl() {
 
       {/* Compare View */}
       {compareMode && compareVersions.length === 2 && (
-        <div className="bg-white shadow-lg border border-blue-500 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white shadow-lg border border-blue-500 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <ArrowRight className="h-5 w-5 text-blue-600" />
             Comparing Versions
           </h3>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {compareVersions.map((versionId) => {
               const version = versions.find(v => v.version === versionId);
               if (!version) return null;
@@ -448,24 +448,24 @@ export default function VersionControl() {
       )}
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="text-2xl font-bold text-gray-900 mb-1">{versions.length}</div>
           <div className="text-sm text-gray-600">Total Versions</div>
         </div>
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="text-2xl font-bold text-green-600 mb-1">
             {versions.filter(v => v.status === 'active').length}
           </div>
           <div className="text-sm text-gray-600">Active</div>
         </div>
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="text-2xl font-bold text-blue-600 mb-1">
             {versions.filter(v => v.status === 'draft').length}
           </div>
           <div className="text-sm text-gray-600">In Development</div>
         </div>
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="text-2xl font-bold text-gray-900 mb-1">
             {versions.filter(v => v.rollbackAvailable).length}
           </div>

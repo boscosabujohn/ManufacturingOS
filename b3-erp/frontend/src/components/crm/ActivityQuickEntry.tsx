@@ -250,7 +250,7 @@ export function ActivityQuickEntry({
       {showSuccess && (
         <div className="absolute inset-0 bg-green-500/90 flex items-center justify-center z-20">
           <div className="text-center text-white">
-            <Check className="w-12 h-12 mx-auto mb-2" />
+            <Check className="w-12 h-12 mb-2" />
             <p className="font-medium">Activity Logged!</p>
           </div>
         </div>
@@ -290,7 +290,7 @@ export function ActivityQuickEntry({
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-2">
         {/* Contact Selection */}
         <div className="relative">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

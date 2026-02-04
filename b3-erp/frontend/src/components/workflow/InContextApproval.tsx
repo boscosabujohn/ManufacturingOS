@@ -152,7 +152,7 @@ export default function InContextApproval({
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-2">
             {/* Approval Header */}
             <Card className="border-purple-200 bg-purple-50">
                 <CardContent className="p-4">

@@ -597,10 +597,10 @@ export default function ProjectTemplatesPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-2">
+    <div className="px-3 py-2">
      {/* Action Bar */}
      <div className="mb-3">
-      <div className="flex items-center justify-end gap-3 mb-4">
+      <div className="flex items-center justify-end gap-3 mb-2">
        <button
         onClick={() => setShowImportModal(true)}
         className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
@@ -618,8 +618,8 @@ export default function ProjectTemplatesPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Templates</p>
@@ -632,7 +632,7 @@ export default function ProjectTemplatesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Most Used</p>
@@ -649,7 +649,7 @@ export default function ProjectTemplatesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Favorites</p>
@@ -664,7 +664,7 @@ export default function ProjectTemplatesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Usage</p>
@@ -682,8 +682,8 @@ export default function ProjectTemplatesPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
-    <div className="flex flex-col md:flex-row gap-4">
+   <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+    <div className="flex flex-col md:flex-row gap-2">
      <div className="flex-1">
       <input
        type="text"
@@ -723,7 +723,7 @@ export default function ProjectTemplatesPage() {
       key={template.id}
       className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow"
      >
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-2">
        <div className="flex-1">
         <div className="flex items-center gap-2 mb-2">
          <h3 className="text-lg font-semibold text-gray-900">{template.templateName}</h3>
@@ -733,9 +733,9 @@ export default function ProjectTemplatesPage() {
        </div>
       </div>
 
-      <p className="text-sm text-gray-600 mb-4 line-clamp-2">{template.description}</p>
+      <p className="text-sm text-gray-600 mb-2 line-clamp-2">{template.description}</p>
 
-      <div className="space-y-2 mb-4">
+      <div className="space-y-2 mb-2">
        <div className="flex items-center justify-between">
         <span className="text-xs text-gray-600">Category:</span>
         <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getCategoryColor(template.category)}`}>
@@ -762,7 +762,7 @@ export default function ProjectTemplatesPage() {
        </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+      <div className="grid grid-cols-3 gap-2 mb-2 text-center">
        <div className="bg-blue-50 rounded-lg p-2">
         <p className="text-lg font-bold text-blue-600">{template.phases.length}</p>
         <p className="text-xs text-gray-600">Phases</p>
@@ -777,7 +777,7 @@ export default function ProjectTemplatesPage() {
        </div>
       </div>
 
-      <div className="border-t border-gray-200 pt-4 mb-4">
+      <div className="border-t border-gray-200 pt-4 mb-2">
        <p className="text-xs text-gray-500 mb-2">
         Used {template.usageCount} times • Last used {new Date(template.lastUsed).toLocaleDateString('en-IN')}
        </p>
@@ -872,7 +872,7 @@ export default function ProjectTemplatesPage() {
 
    {/* Template Detail Modal */}
    {showDetailModal && selectedTemplate && (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
       <div className="p-6 border-b border-gray-200">
        <div className="flex items-start justify-between">
@@ -896,7 +896,7 @@ export default function ProjectTemplatesPage() {
        {/* Overview */}
        <div>
         <h3 className="text-lg font-semibold text-gray-900 mb-3">Overview</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
          <div>
           <p className="text-sm text-gray-600">Project Type</p>
           <p className="font-medium text-gray-900">{selectedTemplate.projectType}</p>
@@ -923,13 +923,13 @@ export default function ProjectTemplatesPage() {
         <h3 className="text-lg font-semibold text-gray-900 mb-3">Project Phases</h3>
         <div className="space-y-3">
          {selectedTemplate.phases.map((phase, idx) => (
-          <div key={idx} className="bg-gray-50 rounded-lg p-4">
+          <div key={idx} className="bg-gray-50 rounded-lg p-3">
            <div className="flex items-start justify-between mb-2">
             <h4 className="font-medium text-gray-900">{phase.phaseName}</h4>
             <span className="text-sm text-gray-600">{phase.duration}</span>
            </div>
            <p className="text-sm text-gray-600 mb-2">{phase.description}</p>
-           <div className="flex gap-4 text-xs text-gray-500">
+           <div className="flex gap-2 text-xs text-gray-500">
             <span>{phase.milestones} milestones</span>
             <span>{phase.tasks} tasks</span>
            </div>

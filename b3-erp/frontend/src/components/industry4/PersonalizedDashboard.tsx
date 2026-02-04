@@ -148,7 +148,7 @@ function WidgetContent({ type }: { type: string }) {
 
     case 'production-count':
       return (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-3xl font-bold text-green-600">1,247</p>
@@ -180,7 +180,7 @@ function WidgetContent({ type }: { type: string }) {
             { name: 'PKG-02', status: 'offline' },
           ].map(machine => (
             <div key={machine.name} className="text-center p-2 rounded bg-gray-50 dark:bg-gray-800">
-              <div className={`w-3 h-3 rounded-full mx-auto mb-1 ${machine.status === 'running' ? 'bg-green-500' :
+              <div className={`w-3 h-3 rounded-full mb-1 ${machine.status === 'running' ? 'bg-green-500' :
                   machine.status === 'idle' ? 'bg-blue-500' :
                     machine.status === 'warning' ? 'bg-amber-500' : 'bg-gray-400'
                 }`} />
@@ -238,7 +238,7 @@ function WidgetContent({ type }: { type: string }) {
 
     case 'kpi-summary':
       return (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           {[
             { label: 'OEE', value: '85%', color: 'text-green-600', icon: Gauge },
             { label: 'Quality', value: '98.5%', color: 'text-blue-600', icon: CheckCircle },
@@ -284,7 +284,7 @@ function WidgetContent({ type }: { type: string }) {
       return (
         <div className="flex items-center justify-center h-full text-gray-400">
           <div className="text-center">
-            <BarChart3 className="w-12 h-12 mx-auto mb-2 opacity-50" />
+            <BarChart3 className="w-12 h-12 mb-2 opacity-50" />
             <p className="text-sm">Widget: {type}</p>
           </div>
         </div>
@@ -585,7 +585,7 @@ export function PersonalizedDashboard({
   const existingWidgetTypes = widgets.map(w => w.type);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Header */}
       <Card>
         <CardContent className="py-4">
@@ -629,7 +629,7 @@ export function PersonalizedDashboard({
       </Card>
 
       {/* Main Content */}
-      <div className={`grid gap-4 ${isEditMode ? 'grid-cols-1 lg:grid-cols-4' : ''}`}>
+      <div className={`grid gap-2 ${isEditMode ? 'grid-cols-1 lg:grid-cols-4' : ''}`}>
         {/* Widget Palette (Edit Mode) */}
         {isEditMode && (
           <div className="lg:col-span-1">
@@ -642,7 +642,7 @@ export function PersonalizedDashboard({
 
         {/* Dashboard Grid */}
         <div className={isEditMode ? 'lg:col-span-3' : ''}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {widgets.map(widget => (
               <DraggableWidget
                 key={widget.id}
@@ -663,7 +663,7 @@ export function PersonalizedDashboard({
           {widgets.length === 0 && (
             <Card>
               <CardContent className="py-12 text-center text-gray-500">
-                <Layout className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <Layout className="w-12 h-12 mb-2 opacity-50" />
                 <p>No widgets added yet</p>
                 <p className="text-sm">Click "Customize" to add widgets to your dashboard</p>
               </CardContent>

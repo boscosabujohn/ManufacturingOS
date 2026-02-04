@@ -259,9 +259,9 @@ export function EquipmentAnalysisModal({
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose} />
 
       <div className="absolute inset-4 flex items-center justify-center">
-        <div className="relative bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-full overflow-hidden flex flex-col">
+        <div className="relative bg-white rounded-lg shadow-xl w-full  max-h-full overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Activity className="h-6 w-6 text-white" />
               <h2 className="text-xl font-semibold text-white">Equipment Analysis</h2>
@@ -275,9 +275,9 @@ export function EquipmentAnalysisModal({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-3">
             {/* Equipment Header */}
-            <div className="mb-6 pb-6 border-b border-gray-200">
+            <div className="mb-3 pb-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900">{data.equipmentName}</h3>
@@ -292,9 +292,9 @@ export function EquipmentAnalysisModal({
             </div>
 
             {/* Key Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
               {/* Total Downtime */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <Clock className="h-5 w-5 text-indigo-600" />
                   <div className="flex items-center gap-1 text-sm">
@@ -310,7 +310,7 @@ export function EquipmentAnalysisModal({
               </div>
 
               {/* Event Count */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <AlertTriangle className="h-5 w-5 text-orange-600" />
                   <div className="flex items-center gap-1 text-sm">
@@ -326,7 +326,7 @@ export function EquipmentAnalysisModal({
               </div>
 
               {/* MTBF */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <Activity className="h-5 w-5 text-blue-600" />
                   <span className={`text-xs px-2 py-1 rounded ${
@@ -344,7 +344,7 @@ export function EquipmentAnalysisModal({
               </div>
 
               {/* MTTR */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <Wrench className="h-5 w-5 text-purple-600" />
                   <span className={`text-xs px-2 py-1 rounded ${
@@ -363,16 +363,16 @@ export function EquipmentAnalysisModal({
             </div>
 
             {/* Performance Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
               {/* Monthly Downtime Trend Chart Placeholder */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <BarChart3 className="h-5 w-5 text-indigo-600" />
                   <h4 className="text-lg font-semibold text-gray-900">Monthly Downtime Trend</h4>
                 </div>
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 flex items-center justify-center h-64">
                   <div className="text-center">
-                    <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                    <BarChart3 className="h-12 w-12 text-gray-400 mb-2" />
                     <p className="text-sm text-gray-500">Bar Chart Placeholder</p>
                     <p className="text-xs text-gray-400 mt-1">
                       TODO: Integrate Chart.js or Recharts
@@ -382,14 +382,14 @@ export function EquipmentAnalysisModal({
               </div>
 
               {/* Downtime by Category Pie Chart Placeholder */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <PieChart className="h-5 w-5 text-purple-600" />
                   <h4 className="text-lg font-semibold text-gray-900">Downtime by Category</h4>
                 </div>
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 flex items-center justify-center h-64">
                   <div className="text-center">
-                    <PieChart className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                    <PieChart className="h-12 w-12 text-gray-400 mb-2" />
                     <p className="text-sm text-gray-500">Pie Chart Placeholder</p>
                     <p className="text-xs text-gray-400 mt-1">
                       TODO: Integrate Chart.js or Recharts
@@ -400,8 +400,8 @@ export function EquipmentAnalysisModal({
             </div>
 
             {/* Breakdown History Table */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="mb-3">
+              <div className="flex items-center justify-between mb-2">
                 <h4 className="text-lg font-semibold text-gray-900">Breakdown History</h4>
                 <button
                   onClick={onViewAllEvents}
@@ -419,7 +419,7 @@ export function EquipmentAnalysisModal({
                       <tr>
                         <th
                           onClick={() => handleSort('date')}
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                          className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                         >
                           <div className="flex items-center gap-2">
                             Date
@@ -430,7 +430,7 @@ export function EquipmentAnalysisModal({
                         </th>
                         <th
                           onClick={() => handleSort('duration')}
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                          className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                         >
                           <div className="flex items-center gap-2">
                             Duration
@@ -441,7 +441,7 @@ export function EquipmentAnalysisModal({
                         </th>
                         <th
                           onClick={() => handleSort('category')}
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                          className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                         >
                           <div className="flex items-center gap-2">
                             Category
@@ -450,16 +450,16 @@ export function EquipmentAnalysisModal({
                             )}
                           </div>
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Severity
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Cause
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Actions
                         </th>
                       </tr>
@@ -467,25 +467,25 @@ export function EquipmentAnalysisModal({
                     <tbody className="bg-white divide-y divide-gray-200">
                       {data.events.slice(0, 10).map((event) => (
                         <tr key={event.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             {event.date}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             {event.duration.toFixed(1)} hrs
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             {event.category}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="px-3 py-2 whitespace-nowrap">
                             {getSeverityBadge(event.severity)}
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">
+                          <td className="px-3 py-2 text-sm text-gray-900 max-w-xs truncate">
                             {event.cause}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="px-3 py-2 whitespace-nowrap">
                             {getStatusBadge(event.status)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm">
                             <button className="text-indigo-600 hover:text-indigo-900">
                               View Details
                             </button>
@@ -499,11 +499,11 @@ export function EquipmentAnalysisModal({
             </div>
 
             {/* Category Breakdown */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Category Breakdown</h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Category Breakdown</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {data.categoryBreakdown.map((category, index) => (
-                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-3">
                       <h5 className="font-medium text-gray-900">{category.category}</h5>
                       {category.trend === 'increasing' && (
@@ -546,10 +546,10 @@ export function EquipmentAnalysisModal({
             </div>
 
             {/* Cost Analysis */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Cost Analysis</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Cost Analysis</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="h-5 w-5 text-green-600" />
                     <span className="text-sm text-gray-500">Total Cost Impact</span>
@@ -558,7 +558,7 @@ export function EquipmentAnalysisModal({
                     ${data.costImpact.total.toLocaleString()}
                   </p>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="h-5 w-5 text-blue-600" />
                     <span className="text-sm text-gray-500">Average per Event</span>
@@ -567,7 +567,7 @@ export function EquipmentAnalysisModal({
                     ${data.costImpact.average.toLocaleString()}
                   </p>
                 </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp className="h-5 w-5 text-purple-600" />
                     <span className="text-sm text-gray-500">Cost Trend</span>
@@ -583,7 +583,7 @@ export function EquipmentAnalysisModal({
 
             {/* Recommendations Section */}
             {data.metrics.trend === 'worsening' && data.recommendations.length > 0 && (
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="h-6 w-6 text-orange-600 flex-shrink-0 mt-1" />
                   <div className="flex-1">
@@ -605,7 +605,7 @@ export function EquipmentAnalysisModal({
           </div>
 
           {/* Footer Actions */}
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
             <button
               onClick={onExportReport}
               className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
@@ -698,9 +698,9 @@ export function CategoryTrendModal({
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose} />
 
       <div className="absolute inset-4 flex items-center justify-center">
-        <div className="relative bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-full overflow-hidden flex flex-col">
+        <div className="relative bg-white rounded-lg shadow-xl w-full  max-h-full overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <PieChart className="h-6 w-6 text-white" />
               <h2 className="text-xl font-semibold text-white">Category Trend Analysis</h2>
@@ -714,13 +714,13 @@ export function CategoryTrendModal({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-3">
             {/* Category Header */}
-            <div className="mb-6 pb-6 border-b border-gray-200">
+            <div className="mb-3 pb-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900">{data.category}</h3>
-                  <div className="flex items-center gap-4 mt-2">
+                  <div className="flex items-center gap-2 mt-2">
                     <span className="text-sm text-gray-500">
                       Total Events: <span className="font-semibold text-gray-900">{data.totalEvents}</span>
                     </span>
@@ -736,8 +736,8 @@ export function CategoryTrendModal({
             </div>
 
             {/* Trend Overview Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="h-5 w-5 text-purple-600" />
                   <span className="text-sm text-gray-500">Average Duration</span>
@@ -747,7 +747,7 @@ export function CategoryTrendModal({
                 </p>
               </div>
 
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="h-5 w-5 text-green-600" />
                   <span className="text-sm text-gray-500">Total Cost Impact</span>
@@ -757,7 +757,7 @@ export function CategoryTrendModal({
                 </p>
               </div>
 
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Activity className="h-5 w-5 text-blue-600" />
                   <span className="text-sm text-gray-500">Trend Status</span>
@@ -769,15 +769,15 @@ export function CategoryTrendModal({
             </div>
 
             {/* Monthly Trend Chart Placeholder */}
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-4">
+            <div className="mb-3">
+              <div className="flex items-center gap-2 mb-2">
                 <BarChart3 className="h-5 w-5 text-purple-600" />
                 <h4 className="text-lg font-semibold text-gray-900">12-Month Trend</h4>
               </div>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
                 <div className="flex items-center justify-center h-64">
                   <div className="text-center">
-                    <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+                    <BarChart3 className="h-12 w-12 text-gray-400 mb-2" />
                     <p className="text-sm text-gray-500">Line Chart: Count & Hours Over Time</p>
                     <p className="text-xs text-gray-400 mt-1">
                       TODO: Integrate Chart.js or Recharts for dual-axis line chart
@@ -788,26 +788,26 @@ export function CategoryTrendModal({
             </div>
 
             {/* Top Contributing Equipment Table */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Top Contributing Equipment</h4>
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Top Contributing Equipment</h4>
               <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Equipment
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Event Count
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Total Hours
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Percentage
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Trend
                         </th>
                       </tr>
@@ -815,16 +815,16 @@ export function CategoryTrendModal({
                     <tbody className="bg-white divide-y divide-gray-200">
                       {data.topEquipment.map((equipment, index) => (
                         <tr key={index} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                             {equipment.equipment}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             {equipment.eventCount}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             {equipment.totalHours.toFixed(1)}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             <div className="flex items-center gap-2">
                               <div className="w-24 bg-gray-200 rounded-full h-2">
                                 <div
@@ -835,7 +835,7 @@ export function CategoryTrendModal({
                               <span>{equipment.percentage.toFixed(1)}%</span>
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="px-3 py-2 whitespace-nowrap">
                             {getEquipmentTrendIcon(equipment.trend)}
                           </td>
                         </tr>
@@ -847,26 +847,26 @@ export function CategoryTrendModal({
             </div>
 
             {/* Average Duration Trend */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Average Duration Trend</h4>
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Average Duration Trend</h4>
               <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Month
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Event Count
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Total Hours
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Avg Duration
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Trend
                         </th>
                       </tr>
@@ -884,19 +884,19 @@ export function CategoryTrendModal({
 
                         return (
                           <tr key={index} className="hover:bg-gray-50">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                               {month.month}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                               {month.count}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                               {month.hours.toFixed(1)}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                               {month.avgDuration.toFixed(0)} min
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td className="px-3 py-2 whitespace-nowrap">
                               {trendDirection === 'up' && (
                                 <ArrowUpRight className="h-4 w-4 text-red-600" />
                               )}
@@ -917,20 +917,20 @@ export function CategoryTrendModal({
             </div>
 
             {/* Cost Impact Over Time */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Cost Impact Over Time</h4>
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Cost Impact Over Time</h4>
               <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Month
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Total Cost
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Avg per Event
                         </th>
                       </tr>
@@ -938,13 +938,13 @@ export function CategoryTrendModal({
                     <tbody className="bg-white divide-y divide-gray-200">
                       {data.monthlyTrends.map((month, index) => (
                         <tr key={index} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                             {month.month}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             ${month.cost.toLocaleString()}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                             ${(month.cost / month.count).toLocaleString()}
                           </td>
                         </tr>
@@ -957,7 +957,7 @@ export function CategoryTrendModal({
           </div>
 
           {/* Footer Actions */}
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
             <button
               onClick={onExport}
               className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
@@ -1060,9 +1060,9 @@ export function PeriodComparisonModal({
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose} />
 
       <div className="absolute inset-4 flex items-center justify-center">
-        <div className="relative bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-full overflow-hidden flex flex-col">
+        <div className="relative bg-white rounded-lg shadow-xl w-full  max-h-full overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Calendar className="h-6 w-6 text-white" />
               <h2 className="text-xl font-semibold text-white">Period Comparison</h2>
@@ -1076,9 +1076,9 @@ export function PeriodComparisonModal({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-3">
             {/* Configuration Section */}
-            <div className="mb-6">
+            <div className="mb-3">
               <button
                 onClick={() => setIsConfigOpen(!isConfigOpen)}
                 className="flex items-center justify-between w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 hover:bg-gray-100"
@@ -1095,8 +1095,8 @@ export function PeriodComparisonModal({
               </button>
 
               {isConfigOpen && (
-                <div className="mt-4 bg-white border border-gray-200 rounded-lg p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="mt-4 bg-white border border-gray-200 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                     {/* Period 1 */}
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-3">Period 1</h4>
@@ -1145,7 +1145,7 @@ export function PeriodComparisonModal({
                   </div>
 
                   {/* Metrics to Compare */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <h4 className="font-semibold text-gray-900 mb-3">Metrics to Compare</h4>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {Object.entries(selectedMetrics).map(([key, value]) => (
@@ -1177,12 +1177,12 @@ export function PeriodComparisonModal({
             </div>
 
             {/* Comparison Display */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Total Downtime */}
               {selectedMetrics.totalDowntime && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Total Downtime (hours)</h4>
-                  <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Total Downtime (hours)</h4>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-2">Period 1</p>
                       <p className="text-3xl font-bold text-gray-900">
@@ -1210,9 +1210,9 @@ export function PeriodComparisonModal({
 
               {/* Event Count */}
               {selectedMetrics.eventCount && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Event Count</h4>
-                  <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Event Count</h4>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-2">Period 1</p>
                       <p className="text-3xl font-bold text-gray-900">
@@ -1234,9 +1234,9 @@ export function PeriodComparisonModal({
 
               {/* MTBF */}
               {selectedMetrics.mtbf && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">MTBF (hours)</h4>
-                  <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">MTBF (hours)</h4>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-2">Period 1</p>
                       <p className="text-3xl font-bold text-gray-900">
@@ -1258,9 +1258,9 @@ export function PeriodComparisonModal({
 
               {/* MTTR */}
               {selectedMetrics.mttr && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">MTTR (hours)</h4>
-                  <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">MTTR (hours)</h4>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-2">Period 1</p>
                       <p className="text-3xl font-bold text-gray-900">
@@ -1282,9 +1282,9 @@ export function PeriodComparisonModal({
 
               {/* Total Cost */}
               {selectedMetrics.cost && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Total Cost</h4>
-                  <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Total Cost</h4>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-2">Period 1</p>
                       <p className="text-3xl font-bold text-gray-900">
@@ -1306,9 +1306,9 @@ export function PeriodComparisonModal({
 
               {/* Availability */}
               {selectedMetrics.availability && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Availability</h4>
-                  <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Availability</h4>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-2">Period 1</p>
                       <p className="text-3xl font-bold text-gray-900">
@@ -1330,22 +1330,22 @@ export function PeriodComparisonModal({
 
               {/* Category Breakdown */}
               {selectedMetrics.categories && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Category Breakdown</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Category Breakdown</h4>
                   <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                       <thead className="bg-gray-50">
                         <tr>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Category
                           </th>
-                          <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Period 1 (hrs)
                           </th>
-                          <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Change
                           </th>
-                          <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Period 2 (hrs)
                           </th>
                         </tr>
@@ -1361,18 +1361,18 @@ export function PeriodComparisonModal({
 
                           return (
                             <tr key={index} className="hover:bg-gray-50">
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                              <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                                 {cat.category}
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 text-center">
                                 {cat.totalHours.toFixed(1)}
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+                              <td className="px-3 py-2 whitespace-nowrap text-sm text-center">
                                 <span className={getVarianceColor(variance, false)}>
                                   {variance > 0 ? '+' : ''}{variance.toFixed(1)}%
                                 </span>
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 text-center">
                                 {period2Cat?.totalHours.toFixed(1) || '0.0'}
                               </td>
                             </tr>
@@ -1386,7 +1386,7 @@ export function PeriodComparisonModal({
             </div>
 
             {/* Summary Section */}
-            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start gap-3">
                 <CheckCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
                 <div className="flex-1">
@@ -1405,7 +1405,7 @@ export function PeriodComparisonModal({
           </div>
 
           {/* Footer Actions */}
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
             <button
               onClick={onExport}
               className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
@@ -1515,7 +1515,7 @@ export function QuickAnalysisModal({
       <div className="absolute inset-4 flex items-center justify-center">
         <div className="relative bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-full overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Award className="h-6 w-6 text-white" />
               <h2 className="text-xl font-semibold text-white">Quick Analysis</h2>
@@ -1529,18 +1529,18 @@ export function QuickAnalysisModal({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-3">
             {/* Current Period Summary */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="mb-3">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-gray-900">Current Period Summary</h3>
                 <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
                   {data.period}
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="h-5 w-5 text-red-600" />
                     <span className="text-sm text-red-700">Total Downtime</span>
@@ -1550,7 +1550,7 @@ export function QuickAnalysisModal({
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <AlertTriangle className="h-5 w-5 text-orange-600" />
                     <span className="text-sm text-orange-700">Total Events</span>
@@ -1560,7 +1560,7 @@ export function QuickAnalysisModal({
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Target className="h-5 w-5 text-green-600" />
                     <span className="text-sm text-green-700">Availability</span>
@@ -1573,21 +1573,21 @@ export function QuickAnalysisModal({
             </div>
 
             {/* Top 5 Problem Equipment */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 5 Problem Equipment</h3>
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Top 5 Problem Equipment</h3>
               <div className="space-y-3">
                 {data.topEquipment.map((equipment) => (
                   <div
                     key={equipment.rank}
-                    className={`border rounded-lg p-4 ${getSeverityColor(equipment.severity)}`}
+                    className={`border rounded-lg p-3 ${getSeverityColor(equipment.severity)}`}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       {getRankBadge(equipment.rank)}
                       <div className="flex-1">
                         <h4 className={`font-semibold ${getSeverityTextColor(equipment.severity)}`}>
                           {equipment.equipment}
                         </h4>
-                        <div className="flex items-center gap-4 mt-1">
+                        <div className="flex items-center gap-2 mt-1">
                           <span className="text-sm text-gray-600">
                             <span className="font-medium">{equipment.downtimeHours.toFixed(1)}</span> hrs downtime
                           </span>
@@ -1612,11 +1612,11 @@ export function QuickAnalysisModal({
             </div>
 
             {/* Top 3 Categories */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 3 Categories</h3>
-              <div className="space-y-4">
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Top 3 Categories</h3>
+              <div className="space-y-2">
                 {data.topCategories.map((category, index) => (
-                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-gray-900">{category.category}</h4>
                       <span className="text-sm font-semibold text-gray-900">
@@ -1639,7 +1639,7 @@ export function QuickAnalysisModal({
             </div>
 
             {/* Key Recommendations */}
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-6 w-6 text-amber-600 flex-shrink-0 mt-1" />
                 <div className="flex-1">
@@ -1662,7 +1662,7 @@ export function QuickAnalysisModal({
           </div>
 
           {/* Footer Actions */}
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
             <button
               onClick={onExport}
               className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"

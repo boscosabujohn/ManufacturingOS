@@ -13,7 +13,7 @@ export default function TicketCategories() {
   ])
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Ticket Categories</h1>
@@ -25,17 +25,17 @@ export default function TicketCategories() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {categories.map((category) => (
-          <div key={category.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={category.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className={`p-3 rounded-lg bg-${category.color}-100`}>
                 <Tag className={`h-6 w-6 text-${category.color}-600`} />
               </div>
               <span className="text-2xl font-bold text-gray-900">{category.ticketCount}</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">{category.name}</h3>
-            <p className="text-sm text-gray-600 mb-4">{category.description}</p>
+            <p className="text-sm text-gray-600 mb-2">{category.description}</p>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Avg Resolution:</span>

@@ -63,9 +63,9 @@ export default function ResourceRequestsPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className=" px-4 sm:px-6 lg:px-8 py-4">
+        <div className=" px-3 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" onClick={() => router.back()}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -82,7 +82,7 @@ export default function ResourceRequestsPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-6 lg:p-8">
         <div className=" space-y-3">
           {/* Requests List */}
           <div className="space-y-2">
@@ -90,7 +90,7 @@ export default function ResourceRequestsPage() {
               <Card key={request.id} className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-2">
                       <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg">
                         {request.requester.split(' ').map(n => n[0]).join('')}
                       </div>
@@ -112,7 +112,7 @@ export default function ResourceRequestsPage() {
                         </div>
                         <p className="text-sm text-gray-500 mt-1">Requested by {request.requester} • {request.role}</p>
 
-                        <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-gray-600">
+                        <div className="flex flex-wrap items-center gap-2 mt-3 text-sm text-gray-600">
                           <div className="flex items-center gap-1">
                             <Briefcase className="h-4 w-4 text-gray-400" />
                             {request.project}

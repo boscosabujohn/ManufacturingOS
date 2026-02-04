@@ -199,7 +199,7 @@ export default function QualityInspectionEnhancedPage() {
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Package className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Inspection Details</h2>
             </div>
@@ -295,7 +295,7 @@ export default function QualityInspectionEnhancedPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Total Quantity</label>
                   <input
@@ -322,7 +322,7 @@ export default function QualityInspectionEnhancedPage() {
       case 1:
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <ClipboardCheck className="w-5 h-5 text-blue-600" />
                 <h2 className="text-xl font-semibold text-gray-900">Inspection Checklist</h2>
@@ -332,7 +332,7 @@ export default function QualityInspectionEnhancedPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-4 gap-2 mb-2">
               <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
                 <p className="text-xs text-gray-500">Total</p>
@@ -364,7 +364,7 @@ export default function QualityInspectionEnhancedPage() {
                     item.status === 'fail' ? 'bg-red-50 border-red-200' :
                       'bg-gray-50 border-gray-200'
                   }`}>
-                  <div className="grid grid-cols-12 gap-4 items-start">
+                  <div className="grid grid-cols-12 gap-2 items-start">
                     <div className="col-span-1 text-center">
                       <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 text-gray-700 font-medium">
                         {index + 1}
@@ -449,7 +449,7 @@ export default function QualityInspectionEnhancedPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Overall Result</label>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 {['Approved', 'Conditional', 'Rejected'].map((result) => (
                   <button
                     key={result}
@@ -498,13 +498,13 @@ export default function QualityInspectionEnhancedPage() {
       case 3:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review Inspection Report</h2>
             </div>
 
             <div className="bg-gray-50 rounded-lg p-3 space-y-3">
-              <div className="grid grid-cols-3 gap-4 text-sm">
+              <div className="grid grid-cols-3 gap-2 text-sm">
                 <div>
                   <span className="text-gray-500">Work Order:</span>
                   <p className="font-medium text-gray-900">{formData.workOrder}</p>
@@ -521,7 +521,7 @@ export default function QualityInspectionEnhancedPage() {
 
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Results Summary</h3>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2">
                   <div className="bg-white rounded-lg p-3 border text-center">
                     <p className="text-2xl font-bold text-green-600">{stats.passed}</p>
                     <p className="text-sm text-gray-500">Passed</p>
@@ -564,9 +564,9 @@ export default function QualityInspectionEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
@@ -574,7 +574,7 @@ export default function QualityInspectionEnhancedPage() {
               <h1 className="text-2xl font-bold text-gray-900">Quality Inspection</h1>
               <p className="text-sm text-gray-600 mt-1">Phase 6: Quality & Packaging</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator fields={formFields} values={formData as unknown as Record<string, unknown>} variant="circular" size="md" />
             </div>

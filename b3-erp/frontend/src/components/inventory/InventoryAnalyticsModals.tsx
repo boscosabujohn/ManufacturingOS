@@ -189,10 +189,10 @@ export const TurnoverAnalysisModal: React.FC<TurnoverAnalysisModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <TrendingUp className="w-6 h-6" />
             <div>
@@ -206,7 +206,7 @@ export const TurnoverAnalysisModal: React.FC<TurnoverAnalysisModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Period Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Analysis Period</label>
@@ -228,7 +228,7 @@ export const TurnoverAnalysisModal: React.FC<TurnoverAnalysisModalProps> = ({
           </div>
 
           {/* Date Range */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date *
@@ -260,7 +260,7 @@ export const TurnoverAnalysisModal: React.FC<TurnoverAnalysisModalProps> = ({
           </div>
 
           {/* Filters */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Warehouse</label>
               <select
@@ -303,7 +303,7 @@ export const TurnoverAnalysisModal: React.FC<TurnoverAnalysisModalProps> = ({
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -318,7 +318,7 @@ export const TurnoverAnalysisModal: React.FC<TurnoverAnalysisModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -367,10 +367,10 @@ export const ABCAnalysisModal: React.FC<ABCAnalysisModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <PieChart className="w-6 h-6" />
             <div>
@@ -384,7 +384,7 @@ export const ABCAnalysisModal: React.FC<ABCAnalysisModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Analysis Criteria */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Analysis Criteria</label>
@@ -428,7 +428,7 @@ export const ABCAnalysisModal: React.FC<ABCAnalysisModalProps> = ({
           {/* Classification Percentages */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Classification Thresholds</label>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium text-gray-700">Class A (High Value)</span>
@@ -475,7 +475,7 @@ export const ABCAnalysisModal: React.FC<ABCAnalysisModalProps> = ({
           </div>
 
           {/* Info Box */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -491,7 +491,7 @@ export const ABCAnalysisModal: React.FC<ABCAnalysisModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -540,10 +540,10 @@ export const ValuationReportModal: React.FC<ValuationReportModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <DollarSign className="w-6 h-6" />
             <div>
@@ -557,7 +557,7 @@ export const ValuationReportModal: React.FC<ValuationReportModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Date */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -649,7 +649,7 @@ export const ValuationReportModal: React.FC<ValuationReportModalProps> = ({
           </div>
 
           {/* Method Info */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <p className="text-sm font-medium text-green-900 mb-2">
               {config.valuationMethod === 'FIFO' && 'First-In, First-Out (FIFO)'}
               {config.valuationMethod === 'LIFO' && 'Last-In, First-Out (LIFO)'}
@@ -666,7 +666,7 @@ export const ValuationReportModal: React.FC<ValuationReportModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -714,10 +714,10 @@ export const StockAgingModal: React.FC<StockAgingModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <Calendar className="w-6 h-6" />
             <div>
@@ -731,7 +731,7 @@ export const StockAgingModal: React.FC<StockAgingModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Date */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -746,7 +746,7 @@ export const StockAgingModal: React.FC<StockAgingModalProps> = ({
           </div>
 
           {/* Filters */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Warehouse</label>
               <select
@@ -804,7 +804,7 @@ export const StockAgingModal: React.FC<StockAgingModalProps> = ({
           </div>
 
           {/* Aging Buckets Info */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <p className="text-sm font-medium text-orange-900 mb-3">Aging Buckets</p>
             <div className="space-y-2 text-sm text-orange-700">
               <div className="flex justify-between">
@@ -832,7 +832,7 @@ export const StockAgingModal: React.FC<StockAgingModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -880,10 +880,10 @@ export const ReorderAnalysisModal: React.FC<ReorderAnalysisModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6" />
             <div>
@@ -897,7 +897,7 @@ export const ReorderAnalysisModal: React.FC<ReorderAnalysisModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Analysis Date */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -912,7 +912,7 @@ export const ReorderAnalysisModal: React.FC<ReorderAnalysisModalProps> = ({
           </div>
 
           {/* Filters */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Warehouse</label>
               <select
@@ -955,7 +955,7 @@ export const ReorderAnalysisModal: React.FC<ReorderAnalysisModalProps> = ({
           </div>
 
           {/* Urgency Levels Info */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <p className="text-sm font-medium text-red-900 mb-3">Urgency Levels</p>
             <div className="space-y-2 text-sm text-red-700">
               <div className="flex items-center gap-2">
@@ -978,7 +978,7 @@ export const ReorderAnalysisModal: React.FC<ReorderAnalysisModalProps> = ({
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -993,7 +993,7 @@ export const ReorderAnalysisModal: React.FC<ReorderAnalysisModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

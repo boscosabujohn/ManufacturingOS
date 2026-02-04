@@ -380,10 +380,10 @@ export default function CustomReportsPage() {
 
   const renderReportBuilder = () => {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
         <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
           {/* Header */}
-          <div className="bg-blue-600 text-white p-6">
+          <div className="bg-blue-600 text-white p-3">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Create Custom Report</h2>
               <button
@@ -394,7 +394,7 @@ export default function CustomReportsPage() {
               </button>
             </div>
             {/* Steps */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-2 mt-6">
               {['Basic Info', 'Data Source', 'Columns', 'Filters', 'Preview'].map(
                 (step, index) => (
                   <div
@@ -426,7 +426,7 @@ export default function CustomReportsPage() {
           {/* Content */}
           <div className="p-6 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 200px)' }}>
             {currentStep === 1 && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Report Name
@@ -492,12 +492,12 @@ export default function CustomReportsPage() {
             )}
 
             {currentStep === 2 && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Select Data Source
                   </label>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {dataSources.map((source) => (
                       <button
                         key={source.id}
@@ -525,7 +525,7 @@ export default function CustomReportsPage() {
             )}
 
             {currentStep === 3 && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold">Configure Columns</h3>
                   <button
@@ -572,7 +572,7 @@ export default function CustomReportsPage() {
             )}
 
             {currentStep === 4 && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <h3 className="text-lg font-semibold">Apply Filters</h3>
                   <button
@@ -619,14 +619,14 @@ export default function CustomReportsPage() {
             )}
 
             {currentStep === 5 && (
-              <div className="space-y-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="space-y-2">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-green-800">
                     <Check className="w-5 h-5" />
                     <span className="font-semibold">Report Configuration Complete</span>
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                <div className="bg-gray-50 rounded-lg p-3 space-y-2">
                   <div>
                     <span className="font-semibold">Name:</span> {reportName}
                   </div>
@@ -651,7 +651,7 @@ export default function CustomReportsPage() {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-gray-200 p-6 flex justify-between">
+          <div className="border-t border-gray-200 p-3 flex justify-between">
             <button
               onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
               disabled={currentStep === 1}
@@ -684,11 +684,11 @@ export default function CustomReportsPage() {
   };
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex justify-end items-start gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <div className="flex justify-end items-start gap-2 mb-2">
             <button
               onClick={handleCreateReport}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
@@ -699,7 +699,7 @@ export default function CustomReportsPage() {
           </div>
 
           {/* Search and Filters */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -743,9 +743,9 @@ export default function CustomReportsPage() {
         </div>
 
         {/* Report Templates */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Start Templates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Quick Start Templates</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {reportTemplates.map((template) => (
               <button
                 key={template.id}
@@ -764,16 +764,16 @@ export default function CustomReportsPage() {
         </div>
 
         {/* Reports Grid/List */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">
             My Reports ({filteredReports.length})
           </h2>
           {viewMode === 'grid' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {filteredReports.map((report) => (
                 <div
                   key={report.id}
-                  className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                  className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow"
                 >
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
@@ -839,9 +839,9 @@ export default function CustomReportsPage() {
               {filteredReports.map((report) => (
                 <div
                   key={report.id}
-                  className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
+                  className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
                 >
-                  <div className="flex items-center gap-4 flex-1">
+                  <div className="flex items-center gap-2 flex-1">
                     <button
                       onClick={() => handleToggleFavorite(report.id)}
                       className="text-yellow-500"

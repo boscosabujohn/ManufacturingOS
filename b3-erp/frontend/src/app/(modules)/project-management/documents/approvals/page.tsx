@@ -174,8 +174,8 @@ export default function ClientApprovalsPage() {
       <div className="px-3 py-2 space-y-3">
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
               <Link
                 href="/project-management/documents"
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -199,8 +199,8 @@ export default function ClientApprovalsPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Requests</p>
@@ -209,7 +209,7 @@ export default function ClientApprovalsPage() {
               <FileText className="w-8 h-8 text-gray-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Pending</p>
@@ -218,7 +218,7 @@ export default function ClientApprovalsPage() {
               <Clock className="w-8 h-8 text-yellow-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Approved</p>
@@ -227,7 +227,7 @@ export default function ClientApprovalsPage() {
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Rejected</p>
@@ -236,7 +236,7 @@ export default function ClientApprovalsPage() {
               <XCircle className="w-8 h-8 text-red-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Expired</p>
@@ -248,8 +248,8 @@ export default function ClientApprovalsPage() {
         </div>
 
         {/* Filter */}
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
               value={statusFilter}
@@ -267,7 +267,7 @@ export default function ClientApprovalsPage() {
 
         {/* Approvals List */}
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+          <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
             <h2 className="text-lg font-semibold text-gray-900">Approval Requests</h2>
           </div>
           <div className="divide-y divide-gray-200">
@@ -287,7 +287,7 @@ export default function ClientApprovalsPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3 text-sm">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 text-sm">
                       <div>
                         <p className="text-xs text-gray-500">Sent To</p>
                         <p className="font-medium text-gray-900 flex items-center gap-1">
@@ -389,7 +389,7 @@ export default function ClientApprovalsPage() {
         {showSignatureModal && selectedApproval && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg p-3 max-w-2xl w-full mx-4">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-2xl font-bold text-gray-900">Client E-Signature</h2>
                 <button
                   onClick={() => setShowSignatureModal(false)}
@@ -400,7 +400,7 @@ export default function ClientApprovalsPage() {
               </div>
 
               <div className="space-y-2">
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-gray-600">Document:</p>
                     <p className="font-medium text-gray-900">{selectedApproval.documentName}</p>
@@ -421,7 +421,7 @@ export default function ClientApprovalsPage() {
 
                 <div className="border-2 border-gray-300 rounded-lg p-3 bg-gray-50">
                   <p className="text-xs text-gray-500 mb-2">Digital Signature:</p>
-                  <div className="bg-white border-2 border-blue-600 rounded-lg p-4 text-center">
+                  <div className="bg-white border-2 border-blue-600 rounded-lg p-3 text-center">
                     <p className="text-2xl font-signature text-blue-600">
                       {selectedApproval.approvedBy}
                     </p>
@@ -460,7 +460,7 @@ export default function ClientApprovalsPage() {
         )}
 
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
             <div>

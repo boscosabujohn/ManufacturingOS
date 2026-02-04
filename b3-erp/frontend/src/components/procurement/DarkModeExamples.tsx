@@ -70,7 +70,7 @@ export const DarkModeDashboard: React.FC = () => {
 
       {/* Header */}
       <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors">
-        <div className="px-6 py-4">
+        <div className="px-3 py-2">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -99,9 +99,9 @@ export const DarkModeDashboard: React.FC = () => {
         </div>
       </header>
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {kpiData.map((kpi, index) => {
             const Icon = kpi.icon
             return (
@@ -109,7 +109,7 @@ export const DarkModeDashboard: React.FC = () => {
                 key={index}
                 lightClass="bg-white border-gray-200"
                 darkClass="bg-gray-800 border-gray-700"
-                className="border rounded-lg p-6 transition-all hover:shadow-lg"
+                className="border rounded-lg p-3 transition-all hover:shadow-lg"
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -146,7 +146,7 @@ export const DarkModeDashboard: React.FC = () => {
           })}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Recent Activities */}
           <div className="lg:col-span-2">
             <ThemeAware
@@ -154,13 +154,13 @@ export const DarkModeDashboard: React.FC = () => {
               darkClass="bg-gray-800 border-gray-700"
               className="border rounded-lg"
             >
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   Recent Activities
                 </h3>
               </div>
               <div className="p-6">
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {recentActivities.map((activity) => {
                     const Icon = activity.icon
                     return (
@@ -201,7 +201,7 @@ export const DarkModeDashboard: React.FC = () => {
               darkClass="bg-gray-800 border-gray-700"
               className="border rounded-lg"
             >
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+              <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                   Quick Actions
                 </h3>
@@ -269,7 +269,7 @@ export const DarkModeDataTable: React.FC = () => {
         className="border rounded-lg overflow-hidden"
       >
         {/* Table Header */}
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
+        <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Vendor Management
@@ -301,7 +301,7 @@ export const DarkModeDataTable: React.FC = () => {
                 {['Name', 'Category', 'Status', 'Performance', 'Orders', 'Last Order', 'Actions'].map((header) => (
                   <th
                     key={header}
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                    className="px-3 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
                   >
                     {header}
                   </th>
@@ -314,24 +314,24 @@ export const DarkModeDataTable: React.FC = () => {
                   key={vendor.id}
                   className="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       {vendor.name}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-600 dark:text-gray-400">
                       {vendor.category}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <Badge
                       variant={vendor.status === 'Active' ? 'success' : 'warning'}
                     >
                       {vendor.status}
                     </Badge>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="text-sm font-medium text-gray-900 dark:text-white mr-2">
                         {vendor.performance}%
@@ -350,13 +350,13 @@ export const DarkModeDataTable: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
                     {vendor.orders}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
                     {vendor.lastOrder}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <div className="flex items-center space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-sm">
                         <Eye className="h-4 w-4 text-gray-600 dark:text-gray-400" />
@@ -396,13 +396,13 @@ export const DarkModeForm: React.FC = () => {
     <div className="p-6 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
       <ColorSchemeStyles />
 
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl">
         <ThemeAware
           lightClass="bg-white border-gray-200"
           darkClass="bg-gray-800 border-gray-700"
           className="border rounded-lg"
         >
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Create Purchase Order
             </h3>
@@ -411,8 +411,8 @@ export const DarkModeForm: React.FC = () => {
             </p>
           </div>
 
-          <div className="p-6 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Vendor

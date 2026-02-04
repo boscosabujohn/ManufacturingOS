@@ -167,9 +167,9 @@ export default function StockAddPage() {
   };
 
   return (
-    <div className="w-full h-full p-6">
+    <div className="w-full h-full p-3">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-2 mb-3">
         <button
           onClick={() => router.back()}
           className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -182,14 +182,14 @@ export default function StockAddPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Basic Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
             <Package className="w-5 h-5 text-blue-600" />
             Basic Information
           </h2>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Item Code <span className="text-red-500">*</span>
@@ -365,12 +365,12 @@ export default function StockAddPage() {
         </div>
 
         {/* Stock Planning Parameters */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-green-600" />
             Stock Planning Parameters
           </h2>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Safety Stock <span className="text-red-500">*</span>
@@ -450,7 +450,7 @@ export default function StockAddPage() {
 
           {/* Visual Stock Level Indicator */}
           {formData.safetyStock > 0 && formData.reorderLevel > 0 && formData.maxLevel > 0 && (
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mt-6 p-3 bg-blue-50 rounded-lg border border-blue-200">
               <div className="flex items-start gap-3">
                 <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">
@@ -492,12 +492,12 @@ export default function StockAddPage() {
         </div>
 
         {/* Costing */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
             <DollarSign className="w-5 h-5 text-purple-600" />
             Costing Information
           </h2>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Unit Cost (₹) <span className="text-red-500">*</span>
@@ -542,12 +542,12 @@ export default function StockAddPage() {
         </div>
 
         {/* Storage Location */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
             <Warehouse className="w-5 h-5 text-orange-600" />
             Storage Location
           </h2>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Warehouse <span className="text-red-500">*</span>
@@ -635,12 +635,12 @@ export default function StockAddPage() {
         </div>
 
         {/* Tracking Options */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
             <CheckCircle className="w-5 h-5 text-green-600" />
             Tracking Options
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-start gap-3">
               <input
                 type="checkbox"
@@ -691,8 +691,8 @@ export default function StockAddPage() {
         </div>
 
         {/* Additional Notes */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Additional Notes</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Additional Notes</h2>
           <textarea
             value={formData.notes}
             onChange={(e) => handleInputChange('notes', e.target.value)}
@@ -703,7 +703,7 @@ export default function StockAddPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
+        <div className="flex items-center justify-end gap-2 pt-6 border-t border-gray-200">
           <button
             type="button"
             onClick={handleCancel}

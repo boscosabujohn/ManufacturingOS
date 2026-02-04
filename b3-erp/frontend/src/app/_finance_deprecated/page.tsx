@@ -347,7 +347,7 @@ export default function FinanceDashboard() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between">
@@ -379,11 +379,11 @@ export default function FinanceDashboard() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
         {quickStats.map((stat, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+            className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow"
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
@@ -415,7 +415,7 @@ export default function FinanceDashboard() {
       {/* Alerts Section */}
       {alerts.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
             <AlertCircle className="h-6 w-6 text-orange-600" />
             Alerts & Notifications
           </h2>
@@ -423,7 +423,7 @@ export default function FinanceDashboard() {
             {alerts.map((alert) => (
               <div
                 key={alert.id}
-                className={`border rounded-lg p-4 flex items-start justify-between ${getAlertColor(alert.type)}`}
+                className={`border rounded-lg p-3 flex items-start justify-between ${getAlertColor(alert.type)}`}
               >
                 <div className="flex items-start gap-3 flex-1">
                   {getAlertIcon(alert.type)}
@@ -454,22 +454,22 @@ export default function FinanceDashboard() {
 
       {/* Finance Modules Grid */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <PieChart className="h-6 w-6 text-blue-600" />
           Finance Modules
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {financeModules.map((module, index) => (
             <button
               key={index}
               onClick={() => handleModuleClick(module)}
-              className={`bg-white rounded-xl shadow-sm border-2 p-6 text-left hover:shadow-lg transition-all ${
+              className={`bg-white rounded-xl shadow-sm border-2 p-3 text-left hover:shadow-lg transition-all ${
                 module.available
                   ? 'border-gray-200 hover:border-blue-400'
                   : 'border-gray-200 opacity-75 hover:opacity-100'
               }`}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className={`bg-gradient-to-br ${module.color} p-3 rounded-lg text-white`}>
                   {module.icon}
                 </div>
@@ -491,8 +491,8 @@ export default function FinanceDashboard() {
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Activity className="h-6 w-6 text-green-600" />
             Recent Activity
@@ -506,16 +506,16 @@ export default function FinanceDashboard() {
           {recentActivities.map((activity) => (
             <div
               key={activity.id}
-              className={`border rounded-lg p-4 flex items-center justify-between hover:shadow-sm transition-shadow ${getActivityColor(activity.type)}`}
+              className={`border rounded-lg p-3 flex items-center justify-between hover:shadow-sm transition-shadow ${getActivityColor(activity.type)}`}
             >
-              <div className="flex items-center gap-4 flex-1">
+              <div className="flex items-center gap-2 flex-1">
                 <div className="flex-shrink-0">{getActivityIcon(activity.type)}</div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-900 truncate">{activity.description}</p>
                   <p className="text-sm text-gray-600">{activity.timestamp}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <p className="text-lg font-bold text-gray-900">
                   ₹{activity.amount.toLocaleString('en-IN')}
                 </p>
@@ -527,23 +527,23 @@ export default function FinanceDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4 text-center transition-colors">
-            <FileText className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+      <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 p-3">
+        <h2 className="text-xl font-bold text-gray-900 mb-2">Quick Actions</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-3 text-center transition-colors">
+            <FileText className="h-8 w-8 text-blue-600 mb-2" />
             <span className="text-sm font-medium text-gray-900">New Invoice</span>
           </button>
-          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4 text-center transition-colors">
-            <Receipt className="h-8 w-8 text-green-600 mx-auto mb-2" />
+          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-3 text-center transition-colors">
+            <Receipt className="h-8 w-8 text-green-600 mb-2" />
             <span className="text-sm font-medium text-gray-900">Record Payment</span>
           </button>
-          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4 text-center transition-colors">
-            <BarChart3 className="h-8 w-8 text-purple-600 mx-auto mb-2" />
+          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-3 text-center transition-colors">
+            <BarChart3 className="h-8 w-8 text-purple-600 mb-2" />
             <span className="text-sm font-medium text-gray-900">View Reports</span>
           </button>
-          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4 text-center transition-colors">
-            <Calendar className="h-8 w-8 text-orange-600 mx-auto mb-2" />
+          <button className="bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-3 text-center transition-colors">
+            <Calendar className="h-8 w-8 text-orange-600 mb-2" />
             <span className="text-sm font-medium text-gray-900">Schedule</span>
           </button>
         </div>

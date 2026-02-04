@@ -160,7 +160,7 @@ export default function TeamCalendarPage() {
   }, [todaysLeaves, filteredLeaves, upcomingLeaves, currentDate]);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -171,25 +171,25 @@ export default function TeamCalendarPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Clock className="w-4 h-4" /> On Leave Today
           </div>
           <div className="text-2xl font-bold text-orange-600">{stats.totalOnLeave}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Leaves This Month</div>
           <div className="text-2xl font-bold text-blue-600">{stats.thisMonth}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Upcoming (Next 7 Days)</div>
           <div className="text-2xl font-bold text-purple-600">{stats.upcoming}</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg border p-3">
+        <div className="flex items-center justify-between mb-2">
           <button onClick={() => setShowFilters(!showFilters)} className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg ${showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'}`}>
             <Filter className="w-4 h-4" />
             Filters
@@ -203,7 +203,7 @@ export default function TeamCalendarPage() {
           )}
         </div>
         {showFilters && (
-          <div className="pt-4 border-t grid md:grid-cols-2 gap-4">
+          <div className="pt-4 border-t grid md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
               <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -221,7 +221,7 @@ export default function TeamCalendarPage() {
       </div>
 
       <div className="bg-white rounded-lg border overflow-hidden">
-        <div className="bg-gray-50 border-b px-6 py-4 flex items-center justify-between">
+        <div className="bg-gray-50 border-b px-3 py-2 flex items-center justify-between">
           <button onClick={previousMonth} className="p-2 hover:bg-gray-200 rounded-lg">
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -244,8 +244,8 @@ export default function TeamCalendarPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg border p-3">
           <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <Users className="w-5 h-5 text-orange-600" />
             Who's Out Today ({todaysLeaves.length})
@@ -272,7 +272,7 @@ export default function TeamCalendarPage() {
           )}
         </div>
 
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <Calendar className="w-5 h-5 text-purple-600" />
             Upcoming Leaves (Next 7 Days)
@@ -300,7 +300,7 @@ export default function TeamCalendarPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
+      <div className="bg-white rounded-lg border p-3">
         <h3 className="font-semibold text-gray-900 mb-3">Leave Type Legend</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {leaveTypes.filter(t => t.code !== 'ALL').map(type => (
@@ -315,7 +315,7 @@ export default function TeamCalendarPage() {
         </div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <CalendarDays className="w-5 h-5 inline mr-2" />
           Team Calendar Features

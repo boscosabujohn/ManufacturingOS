@@ -298,10 +298,10 @@ export default function ProcurementAutomation() {
   }
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Cpu className="w-8 h-8 text-blue-600" />
@@ -328,8 +328,8 @@ export default function ProcurementAutomation() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Automation Rate</span>
               <Bot className="w-5 h-5 text-blue-600" />
@@ -341,7 +341,7 @@ export default function ProcurementAutomation() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">AI Adoption</span>
               <Brain className="w-5 h-5 text-purple-600" />
@@ -350,7 +350,7 @@ export default function ProcurementAutomation() {
             <div className="text-sm text-gray-600">Of processes</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Time Saved</span>
               <Clock className="w-5 h-5 text-green-600" />
@@ -359,7 +359,7 @@ export default function ProcurementAutomation() {
             <div className="text-sm text-gray-600">Per day</div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Cost Savings</span>
               <Calculator className="w-5 h-5 text-amber-600" />
@@ -368,7 +368,7 @@ export default function ProcurementAutomation() {
             <div className="text-sm text-gray-600">Annual</div>
           </div>
 
-          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-rose-600 text-sm font-medium">Active Rules</span>
               <Zap className="w-5 h-5 text-rose-600" />
@@ -377,7 +377,7 @@ export default function ProcurementAutomation() {
             <div className="text-sm text-green-600">3 new this week</div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-indigo-600 text-sm font-medium">AI Accuracy</span>
               <Target className="w-5 h-5 text-indigo-600" />
@@ -411,10 +411,10 @@ export default function ProcurementAutomation() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Automation Trend */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Process Automation Evolution</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Process Automation Evolution</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={automationTrend}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -430,9 +430,9 @@ export default function ProcurementAutomation() {
               </div>
 
               {/* Process Metrics */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Process Automation Levels</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Process Automation Levels</h3>
                   <div className="space-y-3">
                     {processMetrics.map((metric) => (
                       <div key={metric.process}>
@@ -463,7 +463,7 @@ export default function ProcurementAutomation() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-center gap-4 mt-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-2 mt-4 text-xs text-gray-600">
                     <span className="flex items-center gap-1">
                       <div className="w-3 h-3 bg-red-400 rounded"></div>Manual
                     </span>
@@ -476,8 +476,8 @@ export default function ProcurementAutomation() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Prediction Accuracy</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Prediction Accuracy</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="100%" data={aiPredictions}>
                       <RadialBar background dataKey="accuracy">
@@ -498,9 +498,9 @@ export default function ProcurementAutomation() {
                   <h3 className="text-lg font-semibold text-gray-900">Automation Impact & Savings</h3>
                 </div>
                 <div className="p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                     {costSavings.map((item) => (
-                      <div key={item.area} className="text-center p-4 bg-gray-50 rounded-lg">
+                      <div key={item.area} className="text-center p-3 bg-gray-50 rounded-lg">
                         <div className="text-2xl font-bold text-green-600">
                           ${(item.savings / 1000).toFixed(0)}K
                         </div>
@@ -515,11 +515,11 @@ export default function ProcurementAutomation() {
           )}
 
           {activeTab === 'automation' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Automation Rules */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {automationRules.map((rule) => (
-                  <div key={rule.id} className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div key={rule.id} className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -537,7 +537,7 @@ export default function ProcurementAutomation() {
                           </div>
                           <div>
                             <h4 className="font-semibold text-gray-900">{rule.name}</h4>
-                            <div className="flex items-center gap-4 text-sm text-gray-600">
+                            <div className="flex items-center gap-2 text-sm text-gray-600">
                               <span className="capitalize">{rule.type}</span>
                               {rule.aiEnabled && (
                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
@@ -549,7 +549,7 @@ export default function ProcurementAutomation() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-4 gap-4 mt-3">
+                        <div className="grid grid-cols-4 gap-2 mt-3">
                           <div>
                             <div className="text-xs text-gray-500">Triggers/Day</div>
                             <div className="font-medium">{rule.triggersPerDay}</div>
@@ -618,9 +618,9 @@ export default function ProcurementAutomation() {
 
               {/* Add New Rule */}
               <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <Bot className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Bot className="w-12 h-12 text-gray-400 mb-3" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Create New Automation Rule</h3>
-                <p className="text-sm text-gray-600 mb-4">Set up intelligent automation for your procurement processes</p>
+                <p className="text-sm text-gray-600 mb-2">Set up intelligent automation for your procurement processes</p>
                 <button
                   onClick={() => handleConfigureRule()}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -632,10 +632,10 @@ export default function ProcurementAutomation() {
           )}
 
           {activeTab === 'ai-insights' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* AI Insights Dashboard */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-indigo-600 text-sm font-medium">Active Insights</span>
                     <Lightbulb className="w-5 h-5 text-indigo-600" />
@@ -644,7 +644,7 @@ export default function ProcurementAutomation() {
                   <div className="text-sm text-gray-600">8 high priority</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-green-600 text-sm font-medium">Implemented</span>
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -653,7 +653,7 @@ export default function ProcurementAutomation() {
                   <div className="text-sm text-gray-600">This quarter</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-amber-600 text-sm font-medium">Avg Confidence</span>
                     <Target className="w-5 h-5 text-amber-600" />
@@ -662,7 +662,7 @@ export default function ProcurementAutomation() {
                   <div className="text-sm text-green-600">+3% improvement</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-purple-600 text-sm font-medium">Total Savings</span>
                     <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -675,7 +675,7 @@ export default function ProcurementAutomation() {
               {/* AI Insights List */}
               <div className="space-y-3">
                 {aiInsights.map((insight) => (
-                  <div key={insight.id} className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div key={insight.id} className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -695,7 +695,7 @@ export default function ProcurementAutomation() {
                         <div className="ml-11">
                           <p className="text-sm text-gray-600 mb-3">{insight.recommendation}</p>
 
-                          <div className="flex items-center gap-6">
+                          <div className="flex items-center gap-3">
                             <div className="flex items-center gap-2">
                               <Gauge className="w-4 h-4 text-gray-400" />
                               <span className="text-sm text-gray-600">Confidence:</span>
@@ -733,10 +733,10 @@ export default function ProcurementAutomation() {
               </div>
 
               {/* AI Model Performance */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Model Performance</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white p-4 rounded-lg border border-gray-200">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">AI Model Performance</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-gray-600">Prediction Accuracy</span>
                       <Brain className="w-4 h-4 text-purple-600" />
@@ -747,7 +747,7 @@ export default function ProcurementAutomation() {
                     </div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-gray-600">False Positive Rate</span>
                       <AlertTriangle className="w-4 h-4 text-amber-600" />
@@ -758,7 +758,7 @@ export default function ProcurementAutomation() {
                     </div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm text-gray-600">Model Confidence</span>
                       <Shield className="w-4 h-4 text-green-600" />
@@ -774,13 +774,13 @@ export default function ProcurementAutomation() {
           )}
 
           {activeTab === 'workflows' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Workflow Automation Status */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Automated Workflow Performance</h3>
-                <div className="space-y-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Automated Workflow Performance</h3>
+                <div className="space-y-2">
                   {workflowStages.map((stage) => (
-                    <div key={stage.stage} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={stage.stage} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-medium text-gray-900">{stage.stage}</h4>
                         <span className="text-sm text-gray-600">{stage.automated}% automated</span>
@@ -804,13 +804,13 @@ export default function ProcurementAutomation() {
               </div>
 
               {/* Workflow Builder */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Visual Workflow Builder</h3>
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Visual Workflow Builder</h3>
                 <div className="bg-gray-50 rounded-lg p-8 flex items-center justify-center">
                   <div className="text-center">
-                    <Workflow className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                    <Workflow className="w-16 h-16 text-gray-400 mb-2" />
                     <h4 className="text-lg font-medium text-gray-900 mb-2">Drag & Drop Workflow Designer</h4>
-                    <p className="text-sm text-gray-600 mb-4">Create custom automated workflows with our visual builder</p>
+                    <p className="text-sm text-gray-600 mb-2">Create custom automated workflows with our visual builder</p>
                     <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                       Open Workflow Builder
                     </button>
@@ -821,11 +821,11 @@ export default function ProcurementAutomation() {
           )}
 
           {activeTab === 'performance' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Performance Metrics */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Automation ROI Analysis</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Automation ROI Analysis</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={[
                       { metric: 'Time Saved', value: 2400, unit: 'hours' },
@@ -847,9 +847,9 @@ export default function ProcurementAutomation() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">System Performance</h3>
-                  <div className="space-y-4">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">System Performance</h3>
+                  <div className="space-y-2">
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-gray-600">Processing Speed</span>
@@ -891,26 +891,26 @@ export default function ProcurementAutomation() {
               </div>
 
               {/* Impact Analysis */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Business Impact Analysis</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <Timer className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Impact Analysis</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
+                    <Timer className="w-8 h-8 text-blue-600 mb-2" />
                     <div className="text-2xl font-bold text-gray-900">65%</div>
                     <div className="text-sm text-gray-600">Cycle Time Reduction</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
+                    <TrendingUp className="w-8 h-8 text-green-600 mb-2" />
                     <div className="text-2xl font-bold text-gray-900">42%</div>
                     <div className="text-sm text-gray-600">Productivity Increase</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <Shield className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
+                    <Shield className="w-8 h-8 text-purple-600 mb-2" />
                     <div className="text-2xl font-bold text-gray-900">78%</div>
                     <div className="text-sm text-gray-600">Error Reduction</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <Calculator className="w-8 h-8 text-amber-600 mx-auto mb-2" />
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
+                    <Calculator className="w-8 h-8 text-amber-600 mb-2" />
                     <div className="text-2xl font-bold text-gray-900">3.2x</div>
                     <div className="text-sm text-gray-600">ROI Achievement</div>
                   </div>
@@ -920,14 +920,14 @@ export default function ProcurementAutomation() {
           )}
 
           {activeTab === 'configuration' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">AI & Automation Configuration</h3>
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI & Automation Configuration</h3>
 
               {/* Configuration Sections */}
-              <div className="space-y-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">AI Model Settings</h4>
-                  <div className="space-y-4">
+              <div className="space-y-2">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">AI Model Settings</h4>
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Prediction Confidence Threshold</label>
                       <input
@@ -960,8 +960,8 @@ export default function ProcurementAutomation() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Automation Rules</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Automation Rules</h4>
                   <div className="space-y-3">
                     <label className="flex items-center justify-between">
                       <span className="text-sm text-gray-700">Auto-approve orders under threshold</span>
@@ -982,9 +982,9 @@ export default function ProcurementAutomation() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Integration Settings</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Integration Settings</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">ERP Integration</label>
                       <div className="flex items-center gap-2">

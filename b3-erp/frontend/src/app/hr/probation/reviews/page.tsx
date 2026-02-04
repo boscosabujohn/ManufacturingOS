@@ -169,14 +169,14 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Probation Reviews</h1>
         <p className="text-sm text-gray-600 mt-1">Schedule and track probation review meetings</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Reviews</p>
@@ -186,7 +186,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Scheduled</p>
@@ -196,7 +196,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -206,7 +206,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Rating</p>
@@ -217,7 +217,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex gap-2">
           {['all', 'scheduled', 'completed', 'missed', 'rescheduled'].map(status => (
             <button
@@ -235,10 +235,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredReviews.map(review => (
-          <div key={review.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={review.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{review.employeeName}</h3>
@@ -254,7 +254,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Reviewer</p>
                 <p className="text-sm font-semibold text-gray-900">{review.reviewer}</p>
@@ -273,7 +273,7 @@ export default function Page() {
 
             {review.status === 'completed' && review.performanceRating && (
               <div className="border-t border-gray-200 pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <p className="text-sm font-semibold text-gray-900 mb-2">Performance Rating</p>
                     <div className="flex items-center gap-3">
@@ -345,9 +345,9 @@ export default function Page() {
 
       {/* Conduct Review Modal */}
       {showConductModal && selectedReview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">Conduct Performance Review</h2>
                 <p className="text-sm text-gray-600 mt-1">
@@ -362,10 +362,10 @@ export default function Page() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitReview} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitReview} className="p-6 space-y-3">
               {/* Review Information */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                <div className="grid grid-cols-3 gap-4">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-xs text-blue-600 font-medium">Review Number</p>
                     <p className="text-sm font-semibold text-blue-900">
@@ -487,9 +487,9 @@ export default function Page() {
 
       {/* Reschedule Modal */}
       {showRescheduleModal && selectedReview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-            <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">Reschedule Review</h2>
                 <p className="text-sm text-gray-600 mt-1">{selectedReview.employeeName}</p>
@@ -502,9 +502,9 @@ export default function Page() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitReschedule} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitReschedule} className="p-6 space-y-3">
               {/* Current Schedule */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600 mb-1">Current Scheduled Date</p>
                 <p className="text-sm font-semibold text-gray-900">{selectedReview.scheduledDate}</p>
               </div>

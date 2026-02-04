@@ -26,7 +26,7 @@ export default function DiesToolsManagerPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-6">
+        <div className="w-full py-2 space-y-3">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold">Dies & Tools Management</h1>
                 <Dialog>
@@ -37,7 +37,7 @@ export default function DiesToolsManagerPage() {
                         <DialogHeader>
                             <DialogTitle>Add New Tool/Die</DialogTitle>
                         </DialogHeader>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             <div className="space-y-2">
                                 <Label>Tool ID</Label>
                                 <Input placeholder="Enter tool ID" />

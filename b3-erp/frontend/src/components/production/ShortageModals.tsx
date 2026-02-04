@@ -48,9 +48,9 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
   if (!isOpen || !shortage) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <AlertTriangle className="h-6 w-6 text-white" />
@@ -67,12 +67,12 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Shortage Details */}
-          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="mb-3 bg-red-50 border border-red-200 rounded-lg p-3">
             <h3 className="text-lg font-semibold text-red-900 mb-3 flex items-center gap-2">
               <Package className="h-5 w-5" />
               Shortage Details
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-red-600 mb-1">Material</p>
                 <p className="font-bold text-red-900">{shortage.materialCode}</p>
@@ -100,7 +100,7 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
           </div>
 
           {/* Resolution Method */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Resolution Method <span className="text-red-500">*</span>
             </label>
@@ -118,7 +118,7 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
           </div>
 
           {/* Supplier Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Supplier Selection <span className="text-red-500">*</span>
             </label>
@@ -136,7 +136,7 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
           </div>
 
           {/* Target Resolution Date & Priority */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Target Resolution Date <span className="text-red-500">*</span>
@@ -166,7 +166,7 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
           </div>
 
           {/* Action Plan Notes */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Action Plan & Notes <span className="text-red-500">*</span>
             </label>
@@ -181,7 +181,7 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
           </div>
 
           {/* Warning Box */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -197,7 +197,7 @@ export function ResolveShortageModal({ isOpen, onClose, onResolve, shortage }: R
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -268,9 +268,9 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
   if (!isOpen || !shortage) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <ShoppingCart className="h-6 w-6 text-white" />
@@ -287,12 +287,12 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Material Summary */}
-          <div className="mb-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="mb-3 bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h3 className="text-lg font-semibold text-orange-900 mb-3 flex items-center gap-2">
               <Package className="h-5 w-5" />
               Material Summary
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-orange-600 mb-1">Material Code</p>
                 <p className="font-bold text-orange-900">{shortage.materialCode}</p>
@@ -309,7 +309,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Quantity Needed */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Quantity to Order <span className="text-red-500">*</span>
             </label>
@@ -331,7 +331,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Supplier Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Supplier <span className="text-red-500">*</span>
             </label>
@@ -372,8 +372,8 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Expedite Shipping */}
-          <div className="mb-6">
-            <label className="flex items-start gap-3 cursor-pointer p-4 rounded-lg border border-gray-300 hover:bg-gray-50">
+          <div className="mb-3">
+            <label className="flex items-start gap-3 cursor-pointer p-3 rounded-lg border border-gray-300 hover:bg-gray-50">
               <input
                 type="checkbox"
                 checked={po.expediteShipping}
@@ -398,7 +398,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Delivery Date */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Expected Delivery Date <span className="text-red-500">*</span>
             </label>
@@ -414,7 +414,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Approver Notification */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Approver Email Notification <span className="text-red-500">*</span>
             </label>
@@ -429,7 +429,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Additional Notes */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Additional Notes
             </label>
@@ -443,7 +443,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -459,7 +459,7 @@ export function CreateEmergencyPOModal({ isOpen, onClose, onCreate, shortage }: 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -518,9 +518,9 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
   const totalFinancialImpact = totalPenalties + additionalCosts
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <TrendingDown className="h-6 w-6 text-white" />
@@ -537,9 +537,9 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Material Overview */}
-          <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mb-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h3 className="text-lg font-semibold text-yellow-900 mb-3">Material Overview</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-yellow-600 mb-1">Material Code</p>
                 <p className="font-bold text-yellow-900">{shortage.materialCode}</p>
@@ -560,28 +560,28 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
           </div>
 
           {/* Financial Impact Breakdown */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-yellow-600" />
               Financial Impact Breakdown
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-sm text-blue-600 mb-1">At-Risk Revenue</p>
                 <p className="text-2xl font-bold text-blue-900">₹{(totalRevenue / 100000).toFixed(1)}L</p>
                 <p className="text-xs text-blue-600 mt-1">Total order value</p>
               </div>
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <p className="text-sm text-red-600 mb-1">Delay Penalties</p>
                 <p className="text-2xl font-bold text-red-900">₹{(totalPenalties / 100000).toFixed(1)}L</p>
                 <p className="text-xs text-red-600 mt-1">Contractual penalties</p>
               </div>
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <p className="text-sm text-orange-600 mb-1">Additional Costs</p>
                 <p className="text-2xl font-bold text-orange-900">₹{(additionalCosts / 1000).toFixed(0)}K</p>
                 <p className="text-xs text-orange-600 mt-1">Expediting, labor</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4 border-2 border-purple-300">
+              <div className="bg-purple-50 rounded-lg p-3 border-2 border-purple-300">
                 <p className="text-sm text-purple-600 mb-1">Total Impact</p>
                 <p className="text-2xl font-bold text-purple-900">₹{(totalFinancialImpact / 100000).toFixed(1)}L</p>
                 <p className="text-xs text-purple-600 mt-1">Total financial exposure</p>
@@ -590,12 +590,12 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
           </div>
 
           {/* Production Timeline Visualization */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-yellow-600" />
               Production Timeline Impact
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="w-32 text-sm font-medium text-gray-700">Current Status</div>
@@ -620,14 +620,14 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
           </div>
 
           {/* Affected Work Orders List */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="h-5 w-5 text-yellow-600" />
               Affected Work Orders
             </h3>
             <div className="space-y-3">
               {affectedWorkOrders.map((wo, idx) => (
-                <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <h4 className="font-bold text-gray-900">{wo.woNumber}</h4>
@@ -665,12 +665,12 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
           </div>
 
           {/* Customer Orders at Risk */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Users className="h-5 w-5 text-yellow-600" />
               Customer Orders at Risk
             </h3>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="space-y-2">
                 {affectedWorkOrders.map((wo, idx) => (
                   <div key={idx} className="flex items-center justify-between">
@@ -687,12 +687,12 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
 
           {/* Mitigation Strategies */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-yellow-600" />
               Recommended Mitigation Strategies
             </h3>
             <div className="space-y-3">
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-green-200 rounded-lg">
                     <CheckCircle className="h-5 w-5 text-green-700" />
@@ -703,7 +703,7 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
                   </div>
                 </div>
               </div>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-blue-200 rounded-lg">
                     <Clock className="h-5 w-5 text-blue-700" />
@@ -714,7 +714,7 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
                   </div>
                 </div>
               </div>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-purple-200 rounded-lg">
                     <AlertCircle className="h-5 w-5 text-purple-700" />
@@ -725,7 +725,7 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
                   </div>
                 </div>
               </div>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-yellow-200 rounded-lg">
                     <TrendingDown className="h-5 w-5 text-yellow-700" />
@@ -740,7 +740,7 @@ export function ViewImpactAnalysisModal({ isOpen, onClose, shortage }: ViewImpac
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

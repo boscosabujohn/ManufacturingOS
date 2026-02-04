@@ -149,7 +149,7 @@ export default function StockValuationPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -179,7 +179,7 @@ export default function StockValuationPage() {
       </div>
 
       {/* Valuation Method Selector */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="bg-white rounded-lg shadow p-3">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">Valuation Method</h3>
@@ -188,7 +188,7 @@ export default function StockValuationPage() {
           <div className="flex items-center space-x-3">
             <button
               onClick={() => setValuationMethod('FIFO')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 valuationMethod === 'FIFO'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -198,7 +198,7 @@ export default function StockValuationPage() {
             </button>
             <button
               onClick={() => setValuationMethod('LIFO')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 valuationMethod === 'LIFO'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -208,7 +208,7 @@ export default function StockValuationPage() {
             </button>
             <button
               onClick={() => setValuationMethod('WAVG')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 valuationMethod === 'WAVG'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -220,7 +220,7 @@ export default function StockValuationPage() {
         </div>
 
         {/* Method Description */}
-        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <div className="flex items-start space-x-2">
             <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
             <div>
@@ -254,8 +254,8 @@ export default function StockValuationPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">₹{(totalValuation / 100000).toFixed(1)}L</span>
@@ -264,7 +264,7 @@ export default function StockValuationPage() {
           <div className="text-xs text-green-600 mt-1">Using {valuationMethod} Method</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalItems}</span>
@@ -273,7 +273,7 @@ export default function StockValuationPage() {
           <div className="text-xs text-blue-600 mt-1">{totalQuantity.toLocaleString()} Units</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{varianceFromFIFO}%</span>
@@ -282,7 +282,7 @@ export default function StockValuationPage() {
           <div className="text-xs text-purple-600 mt-1">Method Comparison</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <BarChart3 className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">₹{(totalValuation / totalQuantity).toFixed(0)}</span>
@@ -294,7 +294,7 @@ export default function StockValuationPage() {
 
       {/* Category-wise Valuation Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Category-wise Valuation</h3>
           <p className="text-sm text-gray-600 mt-1">Inventory value breakdown by category</p>
         </div>
@@ -302,31 +302,31 @@ export default function StockValuationPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">FIFO Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">LIFO Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">WAVG Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">FIFO Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">LIFO Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">WAVG Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% of Total</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {categoryData.map((category, index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{category.category}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{category.items}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{category.quantity.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹{category.fifoValue.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹{category.lifoValue.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹{category.wavgValue.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{category.category}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{category.items}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{category.quantity.toLocaleString()}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">₹{category.fifoValue.toLocaleString()}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">₹{category.lifoValue.toLocaleString()}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">₹{category.wavgValue.toLocaleString()}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-semibold text-green-600">
                       ₹{getCurrentValue(category).toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-full bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -340,22 +340,22 @@ export default function StockValuationPage() {
                 </tr>
               ))}
               <tr className="bg-gray-50 font-semibold">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">TOTAL</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{totalItems}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{totalQuantity.toLocaleString()}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">TOTAL</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{totalItems}</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{totalQuantity.toLocaleString()}</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                   ₹{categoryData.reduce((sum, cat) => sum + cat.fifoValue, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                   ₹{categoryData.reduce((sum, cat) => sum + cat.lifoValue, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                   ₹{categoryData.reduce((sum, cat) => sum + cat.wavgValue, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-600">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-green-600">
                   ₹{totalValuation.toLocaleString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">100%</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">100%</td>
               </tr>
             </tbody>
           </table>
@@ -363,8 +363,8 @@ export default function StockValuationPage() {
       </div>
 
       {/* Valuation Trend */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">Valuation Trend</h3>
             <p className="text-sm text-gray-600 mt-1">Historical inventory valuation comparison</p>
@@ -420,9 +420,9 @@ export default function StockValuationPage() {
       </div>
 
       {/* Method Comparison Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <h4 className="font-semibold text-gray-900">FIFO Total</h4>
             <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">First In First Out</span>
           </div>
@@ -432,8 +432,8 @@ export default function StockValuationPage() {
           <div className="text-sm text-gray-600 mt-2">Highest valuation method</div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <h4 className="font-semibold text-gray-900">LIFO Total</h4>
             <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Last In First Out</span>
           </div>
@@ -443,8 +443,8 @@ export default function StockValuationPage() {
           <div className="text-sm text-gray-600 mt-2">Lowest valuation method</div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <h4 className="font-semibold text-gray-900">WAVG Total</h4>
             <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Weighted Average</span>
           </div>

@@ -109,7 +109,7 @@ export default function ApplyLeavePage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -121,7 +121,7 @@ export default function ApplyLeavePage() {
 
       {/* Success Message */}
       {showSuccessMessage && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-start gap-3">
           <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
           <div className="flex-1">
             <h3 className="font-semibold text-green-900">Leave Application Submitted Successfully!</h3>
@@ -134,8 +134,8 @@ export default function ApplyLeavePage() {
       )}
 
       {/* Employee Information Card */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Employee Information</h2>
             <div className="flex items-center gap-3">
@@ -154,7 +154,7 @@ export default function ApplyLeavePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-blue-600" />
@@ -204,7 +204,7 @@ export default function ApplyLeavePage() {
           {leaveBalances.filter(lb => lb.balance > 0 || lb.leaveTypeCode === 'WFH').map((balance) => (
             <div
               key={balance.id}
-              className={`rounded-lg p-4 border-2 transition-all cursor-pointer ${
+              className={`rounded-lg p-3 border-2 transition-all cursor-pointer ${
                 selectedLeaveType === balance.leaveTypeCode
                   ? 'border-blue-500 bg-blue-50'
                   : 'border-gray-200 bg-white hover:border-gray-300'
@@ -226,15 +226,15 @@ export default function ApplyLeavePage() {
       </div>
 
       {/* Leave Application Form */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
           <Calendar className="w-5 h-5 text-blue-600" />
           Leave Application Form
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Leave Type & Duration */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Leave Type <span className="text-red-500">*</span>
@@ -279,7 +279,7 @@ export default function ApplyLeavePage() {
           </div>
 
           {/* Date Range */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 From Date <span className="text-red-500">*</span>
@@ -397,7 +397,7 @@ export default function ApplyLeavePage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-4 pt-4 border-t border-gray-200">
+          <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
             <button
               type="submit"
               disabled={!canSubmit || exceedsBalance}
@@ -430,7 +430,7 @@ export default function ApplyLeavePage() {
       </div>
 
       {/* Information Panel */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+      <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
         <h3 className="font-semibold text-amber-900 mb-2 flex items-center gap-2">
           <Info className="w-5 h-5" />
           Leave Application Guidelines

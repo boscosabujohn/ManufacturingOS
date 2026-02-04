@@ -258,7 +258,7 @@ export function DashboardGrid({
 
   return (
     <DashboardContext.Provider value={contextValue}>
-      <div className={`space-y-4 ${className}`}>
+      <div className={`space-y-2 ${className}`}>
         {/* Toolbar */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -323,11 +323,11 @@ export function DashboardGrid({
         {/* Grid */}
         {config.widgets.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 bg-gray-50 dark:bg-gray-800 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600">
-            <Layout className="w-12 h-12 text-gray-400 mb-4" />
+            <Layout className="w-12 h-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
               No widgets yet
             </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
               Add widgets to customize your dashboard
             </p>
             {editable && (
@@ -345,7 +345,7 @@ export function DashboardGrid({
           </div>
         ) : (
           <div
-            className="grid gap-4"
+            className="grid gap-2"
             style={{
               gridTemplateColumns: `repeat(${columns}, 1fr)`,
               gridAutoRows: `${rowHeight}px`,
@@ -412,7 +412,7 @@ export function DashboardLayout({
 }: DashboardLayoutProps) {
   return (
     <div
-      className={`grid gap-4 ${className}`}
+      className={`grid gap-2 ${className}`}
       style={{
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gridAutoRows: `${rowHeight}px`,

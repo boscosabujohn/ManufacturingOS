@@ -195,16 +195,16 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Probation Tracking</h1>
         <p className="text-sm text-gray-600 mt-1">Monitor and manage employee probation periods</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total on Probation</p>
@@ -214,7 +214,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Ongoing</p>
@@ -224,7 +224,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Due Soon</p>
@@ -234,7 +234,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Overdue</p>
@@ -244,7 +244,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Performance</p>
@@ -256,8 +256,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
             <select
@@ -296,25 +296,25 @@ export default function Page() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Employee
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Probation Period
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Progress
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Reviews
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Performance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Action
                 </th>
               </tr>
@@ -322,14 +322,14 @@ export default function Page() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredEmployees.map(emp => (
                 <tr key={emp.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="font-semibold text-gray-900">{emp.name}</div>
                       <div className="text-sm text-gray-600">{emp.designation}</div>
                       <div className="text-xs text-gray-500">{emp.department} • {emp.employeeCode}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm text-gray-900">
                         {emp.probationPeriod} months
@@ -349,7 +349,7 @@ export default function Page() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-sm font-semibold text-gray-900">
@@ -368,7 +368,7 @@ export default function Page() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-semibold text-gray-900">
                         {emp.reviewsCompleted}/{emp.totalReviews} completed
@@ -385,7 +385,7 @@ export default function Page() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className={`text-2xl font-bold ${getPerformanceColor(emp.performanceScore)}`}>
                       {emp.performanceScore}
                     </div>
@@ -397,14 +397,14 @@ export default function Page() {
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[emp.status]}`}>
                       {emp.status === 'due_soon' ? 'Due Soon' :
                        emp.status === 'ongoing' ? 'Ongoing' :
                        emp.status.charAt(0).toUpperCase() + emp.status.slice(1)}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <button
                       onClick={() => handleViewDetails(emp)}
                       className="text-blue-600 hover:text-blue-800 font-medium text-sm inline-flex items-center gap-1"
@@ -422,7 +422,7 @@ export default function Page() {
 
       {filteredEmployees.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200 mt-6">
-          <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Users className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No employees found</h3>
           <p className="text-gray-600">No employees match the selected filters</p>
         </div>
@@ -430,10 +430,10 @@ export default function Page() {
 
       {/* Employee Details Modal */}
       {showDetailsModal && selectedEmployee && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <User className="h-6 w-6 text-blue-600" />
                 <div>
@@ -450,9 +450,9 @@ export default function Page() {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status Banner */}
-              <div className={`rounded-lg p-4 ${
+              <div className={`rounded-lg p-3 ${
                 selectedEmployee.status === 'overdue' ? 'bg-red-50 border border-red-200' :
                 selectedEmployee.status === 'due_soon' ? 'bg-yellow-50 border border-yellow-200' :
                 selectedEmployee.status === 'completed' ? 'bg-green-50 border border-green-200' :
@@ -506,7 +506,7 @@ export default function Page() {
                   <Briefcase className="h-4 w-4 text-gray-600" />
                   Employee Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4 bg-gray-50 rounded-lg p-4">
+                <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded-lg p-3">
                   <div>
                     <p className="text-xs text-gray-600">Employee Code</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedEmployee.employeeCode}</p>
@@ -532,7 +532,7 @@ export default function Page() {
                   <Calendar className="h-4 w-4 text-gray-600" />
                   Probation Timeline
                 </h3>
-                <div className="grid grid-cols-3 gap-4 bg-gray-50 rounded-lg p-4">
+                <div className="grid grid-cols-3 gap-2 bg-gray-50 rounded-lg p-3">
                   <div>
                     <p className="text-xs text-gray-600">Joining Date</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedEmployee.joiningDate}</p>
@@ -554,8 +554,8 @@ export default function Page() {
                   <TrendingUp className="h-4 w-4 text-gray-600" />
                   Performance Summary
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs text-gray-600">Reviews Completed</p>
                       <div className="flex items-center gap-2 mt-1">
@@ -583,7 +583,7 @@ export default function Page() {
                   </div>
 
                   {selectedEmployee.lastReviewDate && (
-                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                    <div className="grid grid-cols-2 gap-2 pt-4 border-t border-gray-200">
                       <div>
                         <p className="text-xs text-gray-600">Last Review Date</p>
                         <p className="text-sm font-semibold text-gray-900">{selectedEmployee.lastReviewDate}</p>

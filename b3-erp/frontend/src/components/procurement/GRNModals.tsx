@@ -247,10 +247,10 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Package className="w-6 h-6" />
             <div>
@@ -264,7 +264,7 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           <div className={`flex items-center gap-2 ${currentStep >= 1 ? 'text-green-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-green-600 text-white' : 'bg-gray-300'}`}>1</div>
             <span className="font-medium">Receipt Details</span>
@@ -277,11 +277,11 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: Receipt Details */}
           {currentStep === 1 && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">PO Number *</label>
                   <div className="flex gap-2">
@@ -375,9 +375,9 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
 
               {/* Vendor Info Display */}
               {formData.vendorName && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <h4 className="font-semibold text-blue-900 mb-2">Purchase Order Information</h4>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <p className="text-blue-700">Vendor:</p>
                       <p className="font-semibold text-blue-900">{formData.vendorName}</p>
@@ -398,7 +398,7 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
 
           {/* Step 2: Item Inspection */}
           {currentStep === 2 && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <h3 className="font-semibold text-gray-700 mb-3">Item-wise Inspection</h3>
                 {errors.items && <p className="text-red-500 text-sm mb-2">{errors.items}</p>}
@@ -503,9 +503,9 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
               </div>
 
               {/* Summary */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <h4 className="font-semibold text-green-900 mb-3">Receipt Summary</h4>
-                <div className="grid grid-cols-4 gap-4 text-sm">
+                <div className="grid grid-cols-4 gap-2 text-sm">
                   <div>
                     <p className="text-green-700">Total Ordered:</p>
                     <p className="text-2xl font-bold text-green-900">{formData.totalOrderedQty}</p>
@@ -541,7 +541,7 @@ export const CreateGRNModal: React.FC<CreateGRNModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -646,10 +646,10 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <ClipboardCheck className="w-6 h-6" />
             <div>
@@ -663,9 +663,9 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Inspection Details */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Inspection Type</label>
               <select
@@ -720,13 +720,13 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
           {/* Item-wise Quality Check */}
           <div>
             <h3 className="font-semibold text-gray-700 mb-3">Item-wise Quality Assessment</h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {grn.items.map((grnItem, index) => {
                 const qcItem = formData.items[index]
                 if (!qcItem) return null
 
                 return (
-                  <div key={index} className="border border-gray-300 rounded-lg p-4">
+                  <div key={index} className="border border-gray-300 rounded-lg p-3">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h4 className="font-semibold text-gray-900">{grnItem.itemName}</h4>
@@ -747,7 +747,7 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
                       </select>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div>
                         <label className="flex items-center gap-2 text-sm">
                           <input
@@ -778,9 +778,9 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
           </div>
 
           {/* Overall Assessment */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h3 className="font-semibold text-purple-900 mb-3">Overall Assessment</h3>
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-purple-700 mb-2">Overall Result</label>
                 <select
@@ -826,7 +826,7 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -884,10 +884,10 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className={`px-6 py-4 flex justify-between items-center rounded-t-lg ${
+        <div className={`px-3 py-2 flex justify-between items-center rounded-t-lg ${
           action === 'accept' ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-rose-500'
         } text-white`}>
           <div className="flex items-center gap-3">
@@ -903,9 +903,9 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {/* Warning/Confirmation Message */}
-          <div className={`border-l-4 p-4 rounded ${
+          <div className={`border-l-4 p-3 rounded ${
             action === 'accept' ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'
           }`}>
             <div className="flex items-start gap-3">
@@ -929,9 +929,9 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
           </div>
 
           {/* GRN Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-2">GRN Summary</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">PO Number:</p>
                 <p className="font-semibold">{grn.poNumber}</p>
@@ -1008,7 +1008,7 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1105,10 +1105,10 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Warehouse className="w-6 h-6" />
             <div>
@@ -1122,9 +1122,9 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Warehouse Selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Select Warehouse *</label>
               <select
@@ -1228,7 +1228,7 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
           </div>
 
           {/* Posting Options */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="font-semibold text-blue-900 mb-3">Posting Options</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-3">
@@ -1275,7 +1275,7 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1339,10 +1339,10 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <div>
@@ -1356,9 +1356,9 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status Badges */}
-          <div className="flex gap-3 mb-6">
+          <div className="flex gap-3 mb-3">
             <span className={`px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(grn.status)}`}>
               {grn.status.toUpperCase().replace('_', ' ')}
             </span>
@@ -1368,25 +1368,25 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
           </div>
 
           {/* GRN Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">PO Number</p>
               <p className="text-lg font-bold text-gray-900">{grn.poNumber}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Vendor</p>
               <p className="text-lg font-bold text-gray-900">{grn.vendorName}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Receipt Date</p>
               <p className="text-lg font-bold text-gray-900">{grn.receiptDate}</p>
             </div>
           </div>
 
           {/* Additional Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <p className="text-sm text-gray-600">Delivery Note</p>
               <p className="font-semibold text-gray-900">{grn.deliveryNote}</p>
@@ -1410,7 +1410,7 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
           </div>
 
           {/* Items Table */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -1453,7 +1453,7 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
 
           {/* Discrepancy Notes */}
           {grn.discrepancyNotes && (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <h4 className="font-semibold text-yellow-900 mb-2">Discrepancy Notes</h4>
               <p className="text-yellow-800">{grn.discrepancyNotes}</p>
             </div>
@@ -1461,7 +1461,7 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1579,10 +1579,10 @@ export const EditGRNModal: React.FC<EditGRNModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Edit className="w-6 h-6" />
             <div>
@@ -1596,9 +1596,9 @@ export const EditGRNModal: React.FC<EditGRNModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Basic Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Receipt Date</label>
               <input
@@ -1712,7 +1712,7 @@ export const EditGRNModal: React.FC<EditGRNModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1760,10 +1760,10 @@ export const PrintGRNModal: React.FC<PrintGRNModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-gray-700 to-gray-900 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-gray-700 to-gray-900 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Printer className="w-6 h-6" />
             <div>
@@ -1777,8 +1777,8 @@ export const PrintGRNModal: React.FC<PrintGRNModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-blue-900 font-medium">Print Options</p>
             <p className="text-sm text-blue-700 mt-1">Configure what to include in the printed document</p>
           </div>
@@ -1828,9 +1828,9 @@ export const PrintGRNModal: React.FC<PrintGRNModalProps> = ({
           </div>
 
           {/* Preview Info */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-2">Document Preview</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">GRN Number:</p>
                 <p className="font-semibold">{grn.grnNumber}</p>
@@ -1852,7 +1852,7 @@ export const PrintGRNModal: React.FC<PrintGRNModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1906,10 +1906,10 @@ export const ExportGRNsModal: React.FC<ExportGRNsModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <div>
@@ -1925,7 +1925,7 @@ export const ExportGRNsModal: React.FC<ExportGRNsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
@@ -1981,7 +1981,7 @@ export const ExportGRNsModal: React.FC<ExportGRNsModalProps> = ({
           </div>
 
           {formData.dateRange === 'custom' && (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
                 <input
@@ -2055,7 +2055,7 @@ export const ExportGRNsModal: React.FC<ExportGRNsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -2119,10 +2119,10 @@ export const GRNHistoryModal: React.FC<GRNHistoryModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-600 to-gray-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-slate-600 to-gray-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <History className="w-6 h-6" />
             <div>
@@ -2136,10 +2136,10 @@ export const GRNHistoryModal: React.FC<GRNHistoryModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* GRN Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">PO Number:</p>
                 <p className="font-semibold">{grn.poNumber}</p>
@@ -2156,13 +2156,13 @@ export const GRNHistoryModal: React.FC<GRNHistoryModalProps> = ({
           </div>
 
           {/* Timeline */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Activity Timeline</h3>
-            <div className="relative border-l-2 border-gray-300 pl-6 space-y-6">
+            <div className="relative border-l-2 border-gray-300 pl-6 space-y-3">
               {history.map((entry, index) => (
                 <div key={index} className="relative">
                   <div className="absolute -left-9 mt-1.5 w-5 h-5 rounded-full bg-gray-600 border-4 border-white"></div>
-                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="font-semibold text-gray-900">{entry.action}</h4>
                       <span className="text-xs text-gray-500">{entry.date}</span>
@@ -2177,7 +2177,7 @@ export const GRNHistoryModal: React.FC<GRNHistoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

@@ -58,7 +58,7 @@ export default function FinalInspectionPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -82,15 +82,15 @@ export default function FinalInspectionPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <Card className="md:col-span-2">
                     <CardHeader>
                         <CardTitle>Inspection Checklist</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {points.map((point) => (
-                                <div key={point.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50">
+                                <div key={point.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50">
                                     <div>
                                         <div className="font-medium">{point.item}</div>
                                         <div className="text-xs text-muted-foreground mt-1">{point.category}</div>
@@ -140,7 +140,7 @@ export default function FinalInspectionPage() {
                     <CardHeader>
                         <CardTitle>Summary</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6">
+                    <CardContent className="space-y-3">
                         <div className="text-center">
                             <div className="text-4xl font-bold text-green-600 mb-2">
                                 {Math.round((points.filter(p => p.status === 'Pass').length / points.length) * 100)}%

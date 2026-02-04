@@ -206,16 +206,16 @@ export default function HardwareMaster() {
   }, [hardware, searchTerm, filterCategory]);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold mb-2">Hardware Master</h2>
         <p className="text-gray-600">Manage kitchen cabinet fittings, accessories, and hardware components</p>
       </div>
 
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-1 gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+            <div className="flex flex-1 gap-2">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
@@ -258,25 +258,25 @@ export default function HardwareMaster() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Hardware Item
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Specifications
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Price Range
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Stock
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -284,14 +284,14 @@ export default function HardwareMaster() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredHardware.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{item.name}</div>
                       <div className="text-xs text-gray-500">{item.code}</div>
                       <div className="text-xs text-gray-400">{item.brand}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="flex items-center gap-1 text-sm">
                         <Wrench className="h-4 w-4 text-gray-400" />
@@ -300,7 +300,7 @@ export default function HardwareMaster() {
                       <div className="text-xs text-gray-500">{item.subcategory}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-xs space-y-1">
                       <div className="flex items-center gap-1">
                         <Box className="h-3 w-3 text-gray-400" />
@@ -318,7 +318,7 @@ export default function HardwareMaster() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">
                       <div className="flex items-center gap-1 text-green-600 font-medium">
                         <DollarSign className="h-3 w-3" />
@@ -327,16 +327,16 @@ export default function HardwareMaster() {
                       <div className="text-xs text-gray-500">Warranty: {item.warranty}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">
                       <div>{item.stock.toLocaleString()} units</div>
                       <div className="text-xs">{getStockStatus(item.stock, item.reorderLevel)}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {getStatusBadge(item.status)}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleEdit(item)}
@@ -372,8 +372,8 @@ export default function HardwareMaster() {
             </div>
 
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Code *
@@ -398,7 +398,7 @@ export default function HardwareMaster() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category *
@@ -429,7 +429,7 @@ export default function HardwareMaster() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Material *
@@ -454,7 +454,7 @@ export default function HardwareMaster() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Min Price (₹) *
@@ -488,7 +488,7 @@ export default function HardwareMaster() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Current Stock

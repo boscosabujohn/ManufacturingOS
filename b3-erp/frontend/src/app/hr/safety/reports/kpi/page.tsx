@@ -105,9 +105,9 @@ export default function SafetyKPIsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6 text-sm font-medium">
+    <div className="p-6 space-y-3 text-sm font-medium">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Target className="h-8 w-8 text-orange-600" />
@@ -135,10 +135,10 @@ export default function SafetyKPIsPage() {
       </div>
 
       {/* Primary KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {/* TRIR */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-          <div className="flex justify-between items-start mb-4">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex justify-between items-start mb-2">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">TRIR</p>
               <p className="text-[9px] text-gray-400 mt-0.5">Total Recordable Incident Rate</p>
@@ -158,8 +158,8 @@ export default function SafetyKPIsPage() {
         </div>
 
         {/* LTIR */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-          <div className="flex justify-between items-start mb-4">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex justify-between items-start mb-2">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">LTIR</p>
               <p className="text-[9px] text-gray-400 mt-0.5">Lost Time Incident Rate</p>
@@ -179,8 +179,8 @@ export default function SafetyKPIsPage() {
         </div>
 
         {/* DART */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-          <div className="flex justify-between items-start mb-4">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex justify-between items-start mb-2">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">DART</p>
               <p className="text-[9px] text-gray-400 mt-0.5">Days Away/Restricted/Transfer</p>
@@ -200,9 +200,9 @@ export default function SafetyKPIsPage() {
         </div>
 
         {/* Severity Rate */}
-        <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+        <div className="bg-gray-900 p-3 rounded-2xl text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10">
-            <div className="flex justify-between items-start mb-4">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Severity Rate</p>
                 <p className="text-[9px] text-gray-600 mt-0.5">Lost days per 200K hours</p>
@@ -222,8 +222,8 @@ export default function SafetyKPIsPage() {
       </div>
 
       {/* Secondary KPIs Row */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-2">
           <div className="p-3 bg-yellow-50 rounded-xl">
             <Eye className="w-6 h-6 text-yellow-600" />
           </div>
@@ -233,7 +233,7 @@ export default function SafetyKPIsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-2">
           <div className="p-3 bg-blue-50 rounded-xl">
             <Award className="w-6 h-6 text-blue-600" />
           </div>
@@ -243,7 +243,7 @@ export default function SafetyKPIsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-2">
           <div className="p-3 bg-purple-50 rounded-xl">
             <FileCheck className="w-6 h-6 text-purple-600" />
           </div>
@@ -253,7 +253,7 @@ export default function SafetyKPIsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-2">
           <div className="p-3 bg-green-50 rounded-xl">
             <CheckCircle2 className="w-6 h-6 text-green-600" />
           </div>
@@ -265,14 +265,14 @@ export default function SafetyKPIsPage() {
       </div>
 
       {/* Charts and Tables */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* KPI Trend Chart */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-orange-600" /> KPI Performance Trend
             </h3>
-            <div className="flex gap-4 text-[10px]">
+            <div className="flex gap-2 text-[10px]">
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-orange-500"></span> TRIR</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-blue-500"></span> LTIR</span>
               <span className="flex items-center gap-1 text-gray-400"><span className="w-3 h-0.5 bg-gray-400"></span> Target</span>
@@ -292,8 +292,8 @@ export default function SafetyKPIsPage() {
         </div>
 
         {/* Department Scores */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <HardHat className="w-4 h-4 text-orange-600" /> Department Safety Scores
           </h3>
           <ResponsiveContainer width="100%" height={220}>
@@ -309,7 +309,7 @@ export default function SafetyKPIsPage() {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-          <div className="mt-4 flex items-center justify-center gap-4 text-[10px]">
+          <div className="mt-4 flex items-center justify-center gap-2 text-[10px]">
             <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-green-500"></span> Meets Target</span>
             <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-orange-500"></span> Below Target</span>
           </div>
@@ -317,13 +317,13 @@ export default function SafetyKPIsPage() {
       </div>
 
       {/* Leading & Lagging Indicators */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Leading Indicators */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <Activity className="w-4 h-4 text-blue-600" /> Leading Indicators
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {leadingIndicators.map((indicator, i) => (
               <div key={i}>
                 <div className="flex justify-between items-center mb-1">
@@ -344,8 +344,8 @@ export default function SafetyKPIsPage() {
         </div>
 
         {/* Lagging Indicators */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <Flame className="w-4 h-4 text-red-600" /> Lagging Indicators
           </h3>
           <table className="w-full">
@@ -386,9 +386,9 @@ export default function SafetyKPIsPage() {
       </div>
 
       {/* Days Since Last Incident Banner */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-3 rounded-2xl text-white shadow-xl relative overflow-hidden">
         <div className="relative z-10 flex items-center justify-between">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
               <Shield className="w-10 h-10" />
             </div>

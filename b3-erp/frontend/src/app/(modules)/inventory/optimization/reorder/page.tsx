@@ -233,9 +233,9 @@ export default function ReorderOptimizationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -273,8 +273,8 @@ export default function ReorderOptimizationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Optimal</p>
@@ -287,7 +287,7 @@ export default function ReorderOptimizationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Too Low</p>
@@ -300,7 +300,7 @@ export default function ReorderOptimizationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Too High</p>
@@ -313,7 +313,7 @@ export default function ReorderOptimizationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Avg Service Level</p>
@@ -326,8 +326,8 @@ export default function ReorderOptimizationPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
@@ -435,7 +435,7 @@ export default function ReorderOptimizationPage() {
         )}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Reorder Point Calculation Formula:</h3>
         <div className="text-sm text-blue-700 space-y-2">
           <p className="font-mono bg-white px-3 py-2 rounded border border-blue-200">
@@ -456,8 +456,8 @@ export default function ReorderOptimizationPage() {
 
       {/* Critical Items View */}
       {reorderResult && reorderResult.summary.criticalItems > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="bg-red-50 border border-red-200 rounded-xl p-3">
+          <div className="flex items-center gap-3 mb-2">
             <AlertTriangle className="w-6 h-6 text-red-600" />
             <div>
               <h3 className="text-lg font-semibold text-red-900">Critical Items Requiring Immediate Attention</h3>

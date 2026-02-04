@@ -32,11 +32,11 @@ function FinancingActivitiesContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -45,11 +45,11 @@ function FinancingActivitiesContent() {
                                     key={trx.id}
                                     onClick={() => console.log(`Navigate to transaction ${trx.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{trx.date}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{trx.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{trx.description}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{trx.category}</td>
-                                    <td className={`px-6 py-4 whitespace-nowrap text-sm text-right font-medium ${trx.amount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{trx.date}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{trx.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{trx.description}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{trx.category}</td>
+                                    <td className={`px-3 py-2 whitespace-nowrap text-sm text-right font-medium ${trx.amount >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                         {trx.amount >= 0 ? '+' : ''}₹{Math.abs(trx.amount).toLocaleString()}
                                     </td>
                                 </ClickableTableRow>

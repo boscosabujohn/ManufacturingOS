@@ -231,7 +231,7 @@ export function ResponsiveDataTable<T extends Record<string, any>>({
     <div className={className}>
       {/* View Toggle & Selection Info */}
       {(allowViewToggle || (selectable && selectedRows.size > 0)) && (
-        <div className="flex items-center justify-between mb-4 px-2">
+        <div className="flex items-center justify-between mb-2 px-2">
           {selectable && selectedRows.size > 0 && (
             <span className="text-sm text-blue-600 font-medium">
               {selectedRows.size} item{selectedRows.size > 1 ? 's' : ''} selected
@@ -563,7 +563,7 @@ export function ResponsiveDataTable<T extends Record<string, any>>({
 
       {/* Pagination - Touch-friendly */}
       {pagination?.enabled && totalPages > 1 && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-4 py-4 border-t border-gray-200 bg-white mt-4 rounded-lg">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-4 py-4 border-t border-gray-200 bg-white mt-4 rounded-lg">
           <div className="text-sm text-gray-600 text-center sm:text-left">
             Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length}
           </div>

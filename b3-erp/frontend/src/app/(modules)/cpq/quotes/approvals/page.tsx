@@ -373,9 +373,9 @@ export default function CPQQuotesApprovalsPage() {
   const avgApprovalTime = 2.3 // days
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsFilterModalOpen(true)}
@@ -395,7 +395,7 @@ export default function CPQQuotesApprovalsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -453,7 +453,7 @@ export default function CPQQuotesApprovalsPage() {
       </div>
 
       {/* Status Filter */}
-      <div className="mb-6 flex gap-3">
+      <div className="mb-3 flex gap-3">
         <button
           onClick={() => handleStatusFilter(null)}
           className={`px-4 py-2 ${
@@ -507,7 +507,7 @@ export default function CPQQuotesApprovalsPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -521,7 +521,7 @@ export default function CPQQuotesApprovalsPage() {
       </div>
 
       {/* Approvals List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredApprovals.length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
             <AlertCircle className="h-12 w-12 text-gray-400 mb-3" />
@@ -534,7 +534,7 @@ export default function CPQQuotesApprovalsPage() {
               onClick={() => handleViewApproval(approval)}
               className="bg-white rounded-lg shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow cursor-pointer"
             >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
                 {getStatusIcon(approval.status)}
                 <div>
@@ -561,7 +561,7 @@ export default function CPQQuotesApprovalsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
                 <p className="text-xs text-blue-600 font-medium">Quote Value</p>
                 <p className="text-lg font-bold text-blue-900 mt-1">₹{(approval.value / 100000).toFixed(2)}L</p>
@@ -576,7 +576,7 @@ export default function CPQQuotesApprovalsPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-3 mb-4 border border-gray-100">
+            <div className="bg-gray-50 rounded-lg p-3 mb-2 border border-gray-100">
               <p className="text-xs font-medium text-gray-700 mb-1">Reason for Approval:</p>
               <p className="text-sm text-gray-900">{approval.reason}</p>
             </div>
@@ -676,7 +676,7 @@ export default function CPQQuotesApprovalsPage() {
       </div>
 
       {/* Approval Info */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Approval Workflow Rules:</h3>
         <ul className="text-xs text-blue-700 space-y-1">
           <li><strong>Standard Discount (up to 10%):</strong> Auto-approved, no manager review needed</li>

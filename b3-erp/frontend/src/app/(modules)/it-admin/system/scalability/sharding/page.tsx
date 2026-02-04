@@ -12,8 +12,8 @@ export default function ShardingPage() {
     ]);
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Database Sharding</h1>
@@ -26,8 +26,8 @@ export default function ShardingPage() {
                 </div>
 
                 {/* Shard Map Visualization (Mock) */}
-                <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">Global Distribution</h2>
+                <div className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+                    <h2 className="text-lg font-bold text-gray-900 mb-2">Global Distribution</h2>
                     <div className="h-64 bg-blue-50 rounded-lg flex items-center justify-center border border-blue-100 relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-cover bg-center"></div>
                         <div className="relative z-10 flex gap-12">
@@ -43,10 +43,10 @@ export default function ShardingPage() {
                 </div>
 
                 {/* Shards List */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {shards.map((shard) => (
-                        <div key={shard.id} className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex justify-between items-start mb-4">
+                        <div key={shard.id} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex justify-between items-start mb-2">
                                 <div className="flex items-center gap-3">
                                     <div className="p-3 bg-orange-50 rounded-lg">
                                         <Database className="w-6 h-6 text-orange-600" />
@@ -62,7 +62,7 @@ export default function ShardingPage() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4 mb-4">
+                            <div className="grid grid-cols-2 gap-2 mb-2">
                                 <div className="p-3 bg-gray-50 rounded-lg">
                                     <p className="text-xs text-gray-500 mb-1">Data Range</p>
                                     <p className="font-mono font-medium text-gray-900">{shard.range}</p>

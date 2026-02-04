@@ -284,7 +284,7 @@ export default function LeaveApprovalsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -309,8 +309,8 @@ export default function LeaveApprovalsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-yellow-700 font-medium">Pending Approval</div>
             <Clock className="w-5 h-5 text-yellow-600" />
@@ -319,7 +319,7 @@ export default function LeaveApprovalsPage() {
           <div className="text-xs text-yellow-600 mt-1">applications</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-red-700 font-medium">Urgent</div>
             <AlertCircle className="w-5 h-5 text-red-600" />
@@ -328,7 +328,7 @@ export default function LeaveApprovalsPage() {
           <div className="text-xs text-red-600 mt-1">starting ≤ 2 days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-blue-700 font-medium">Total Days</div>
             <Calendar className="w-5 h-5 text-blue-600" />
@@ -337,7 +337,7 @@ export default function LeaveApprovalsPage() {
           <div className="text-xs text-blue-600 mt-1">if all approved</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200 p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-purple-700 font-medium">Team Members</div>
             <User className="w-5 h-5 text-purple-600" />
@@ -350,8 +350,8 @@ export default function LeaveApprovalsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -429,7 +429,7 @@ export default function LeaveApprovalsPage() {
 
       {/* Approval Modal */}
       {showApprovalModal && selectedApplication && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -447,9 +447,9 @@ export default function LeaveApprovalsPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Employee Info */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center">
                     <User className="w-6 h-6 text-blue-700" />
@@ -462,7 +462,7 @@ export default function LeaveApprovalsPage() {
               </div>
 
               {/* Leave Details */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Leave Type</div>
                   <div className="flex items-center gap-2">
@@ -495,7 +495,7 @@ export default function LeaveApprovalsPage() {
               {/* Reason */}
               <div>
                 <div className="text-sm font-medium text-gray-700 mb-2">Reason</div>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{selectedApplication.reason}</p>
                 </div>
               </div>
@@ -583,7 +583,7 @@ export default function LeaveApprovalsPage() {
       )}
 
       {/* Information Panel */}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+      <div className="bg-green-50 border border-green-200 rounded-lg p-3">
         <h3 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-5 h-5" />
           Approval Guidelines

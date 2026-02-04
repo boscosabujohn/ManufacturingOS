@@ -67,10 +67,10 @@ export function AddWorkPackageModal({ isOpen, onClose, parentNode, onAdd }: AddW
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Plus className="w-6 h-6 text-white" />
             <div>
@@ -86,9 +86,9 @@ export function AddWorkPackageModal({ isOpen, onClose, parentNode, onAdd }: AddW
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Basic Info */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 WBS Code *
@@ -147,7 +147,7 @@ export function AddWorkPackageModal({ isOpen, onClose, parentNode, onAdd }: AddW
           </div>
 
           {/* Assignment & Schedule */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Assigned To *
@@ -180,7 +180,7 @@ export function AddWorkPackageModal({ isOpen, onClose, parentNode, onAdd }: AddW
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Start Date *
@@ -236,7 +236,7 @@ export function AddWorkPackageModal({ isOpen, onClose, parentNode, onAdd }: AddW
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -269,9 +269,9 @@ export function EditWBSItemModal({ isOpen, onClose, item, onUpdate }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Edit className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Edit Work Package</h2>
@@ -280,12 +280,12 @@ export function EditWBSItemModal({ isOpen, onClose, item, onUpdate }: any) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
               <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -301,7 +301,7 @@ export function EditWBSItemModal({ isOpen, onClose, item, onUpdate }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onUpdate({ name, status, progress })} className="px-4 py-2 bg-green-600 text-white rounded-lg">Update</button>
         </div>
@@ -316,9 +316,9 @@ export function MoveWBSItemModal({ isOpen, onClose, item, onMove }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Move className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Move Work Package</h2>
@@ -328,7 +328,7 @@ export function MoveWBSItemModal({ isOpen, onClose, item, onMove }: any) {
           </button>
         </div>
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-4">Moving: <span className="font-medium">{item?.name}</span></p>
+          <p className="text-sm text-gray-600 mb-2">Moving: <span className="font-medium">{item?.name}</span></p>
           <label className="block text-sm font-medium text-gray-700 mb-2">New Parent</label>
           <select value={targetParent} onChange={(e) => setTargetParent(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
             <option value="">Select parent...</option>
@@ -337,7 +337,7 @@ export function MoveWBSItemModal({ isOpen, onClose, item, onMove }: any) {
             <option value="1.3">1.3 - Civil Work</option>
           </select>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onMove(targetParent)} disabled={!targetParent} className="px-4 py-2 bg-purple-600 text-white rounded-lg disabled:opacity-50">Move</button>
         </div>
@@ -356,9 +356,9 @@ export function DecomposeTaskModal({ isOpen, onClose, task, onDecompose }: any) 
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <GitBranch className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Decompose into Subtasks</h2>
@@ -367,10 +367,10 @@ export function DecomposeTaskModal({ isOpen, onClose, task, onDecompose }: any) 
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <p className="text-sm text-gray-600">Breaking down: <span className="font-medium">{task?.name}</span></p>
           {subtasks.map((subtask, index) => (
-            <div key={index} className="grid grid-cols-3 gap-4">
+            <div key={index} className="grid grid-cols-3 gap-2">
               <div className="col-span-2">
                 <input type="text" placeholder="Subtask name" value={subtask.name} onChange={(e) => {
                   const newSubtasks = [...subtasks]
@@ -389,7 +389,7 @@ export function DecomposeTaskModal({ isOpen, onClose, task, onDecompose }: any) 
           ))}
           <button onClick={addSubtask} className="text-sm text-orange-600 hover:text-orange-700">+ Add Subtask</button>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onDecompose(subtasks)} className="px-4 py-2 bg-orange-600 text-white rounded-lg">Create Subtasks</button>
         </div>
@@ -402,9 +402,9 @@ export function DecomposeTaskModal({ isOpen, onClose, task, onDecompose }: any) 
 export function WBSDetailsModal({ isOpen, onClose, item }: any) {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-6 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Work Package Details</h2>
@@ -413,8 +413,8 @@ export function WBSDetailsModal({ isOpen, onClose, item }: any) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="grid grid-cols-2 gap-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <p className="text-sm text-gray-600">WBS Code</p>
               <p className="font-semibold text-gray-900">{item?.code}</p>
@@ -449,7 +449,7 @@ export function WBSDetailsModal({ isOpen, onClose, item }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Close</button>
         </div>
       </div>
@@ -473,9 +473,9 @@ export function AssignResourcesModal({ isOpen, onClose, item, onAssign }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Users className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Assign Resources</h2>
@@ -485,7 +485,7 @@ export function AssignResourcesModal({ isOpen, onClose, item, onAssign }: any) {
           </button>
         </div>
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-4">Assigning to: <span className="font-medium">{item?.name}</span></p>
+          <p className="text-sm text-gray-600 mb-2">Assigning to: <span className="font-medium">{item?.name}</span></p>
           <div className="space-y-2">
             {resources.map((resource) => (
               <label key={resource} className="flex items-center gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
@@ -495,7 +495,7 @@ export function AssignResourcesModal({ isOpen, onClose, item, onAssign }: any) {
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onAssign(selectedResources)} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Assign</button>
         </div>
@@ -512,9 +512,9 @@ export function TrackProgressModal({ isOpen, onClose, item, onUpdate }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <TrendingUp className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Track Progress</h2>
@@ -523,7 +523,7 @@ export function TrackProgressModal({ isOpen, onClose, item, onUpdate }: any) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Progress (%)</label>
             <input type="range" min="0" max="100" value={progress} onChange={(e) => setProgress(parseInt(e.target.value))} className="w-full" />
@@ -538,7 +538,7 @@ export function TrackProgressModal({ isOpen, onClose, item, onUpdate }: any) {
             <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className="w-full px-3 py-2 border rounded-lg" />
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onUpdate({ progress, actualHours, notes })} className="px-4 py-2 bg-yellow-600 text-white rounded-lg">Update Progress</button>
         </div>
@@ -553,9 +553,9 @@ export function WBSDependenciesModal({ isOpen, onClose, item, onUpdate }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <GitBranch className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Manage Dependencies</h2>
@@ -565,10 +565,10 @@ export function WBSDependenciesModal({ isOpen, onClose, item, onUpdate }: any) {
           </button>
         </div>
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-4">Setting dependencies for: <span className="font-medium">{item?.name}</span></p>
+          <p className="text-sm text-gray-600 mb-2">Setting dependencies for: <span className="font-medium">{item?.name}</span></p>
           <p className="text-sm text-gray-500">Dependency management interface would appear here</p>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onUpdate(dependencies)} className="px-4 py-2 bg-pink-600 text-white rounded-lg">Save Dependencies</button>
         </div>
@@ -585,9 +585,9 @@ export function ExportWBSModal({ isOpen, onClose, onExport }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Export WBS</h2>
@@ -596,7 +596,7 @@ export function ExportWBSModal({ isOpen, onClose, onExport }: any) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Format</label>
             <select value={format} onChange={(e) => setFormat(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -616,7 +616,7 @@ export function ExportWBSModal({ isOpen, onClose, onExport }: any) {
             </label>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onExport({ format, includeChildren, includeMetrics })} className="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center gap-2">
             <Download className="w-4 h-4" />
@@ -640,9 +640,9 @@ export function ImportWBSTemplateModal({ isOpen, onClose, onImport }: any) {
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Upload className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Import WBS Template</h2>
@@ -651,9 +651,9 @@ export function ImportWBSTemplateModal({ isOpen, onClose, onImport }: any) {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {templates.map((template) => (
-            <label key={template.id} className={`block p-4 border-2 rounded-lg cursor-pointer ${selectedTemplate === template.id ? 'border-red-500 bg-red-50' : 'border-gray-200'}`}>
+            <label key={template.id} className={`block p-3 border-2 rounded-lg cursor-pointer ${selectedTemplate === template.id ? 'border-red-500 bg-red-50' : 'border-gray-200'}`}>
               <input type="radio" name="template" value={template.id} checked={selectedTemplate === template.id} onChange={(e) => setSelectedTemplate(e.target.value)} className="sr-only" />
               <div className="flex justify-between">
                 <div>
@@ -665,7 +665,7 @@ export function ImportWBSTemplateModal({ isOpen, onClose, onImport }: any) {
             </label>
           ))}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onImport(selectedTemplate)} disabled={!selectedTemplate} className="px-4 py-2 bg-red-600 text-white rounded-lg disabled:opacity-50 flex items-center gap-2">
             <Upload className="w-4 h-4" />

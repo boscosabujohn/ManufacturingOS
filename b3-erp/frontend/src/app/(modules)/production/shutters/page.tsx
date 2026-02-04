@@ -171,11 +171,11 @@ export default function ShutterTrackerPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
                             <Link
                                 href="/production/work-orders"
                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -193,8 +193,8 @@ export default function ShutterTrackerPage() {
                 </div>
 
                 {/* Statistics */}
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Shutters</p>
@@ -203,7 +203,7 @@ export default function ShutterTrackerPage() {
                             <Package className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-gradient-to-br from-cyan-50 to-blue-100 p-4 rounded-lg border border-cyan-200">
+                    <div className="bg-gradient-to-br from-cyan-50 to-blue-100 p-3 rounded-lg border border-cyan-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-cyan-600">Glass</p>
@@ -212,7 +212,7 @@ export default function ShutterTrackerPage() {
                             <Square className="w-8 h-8 text-cyan-600" />
                         </div>
                     </div>
-                    <div className="bg-gradient-to-br from-amber-50 to-orange-100 p-4 rounded-lg border border-amber-200">
+                    <div className="bg-gradient-to-br from-amber-50 to-orange-100 p-3 rounded-lg border border-amber-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-amber-600">Wood</p>
@@ -221,7 +221,7 @@ export default function ShutterTrackerPage() {
                             <TreePine className="w-8 h-8 text-amber-600" />
                         </div>
                     </div>
-                    <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-4 rounded-lg border border-gray-300">
+                    <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-3 rounded-lg border border-gray-300">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Steel</p>
@@ -230,7 +230,7 @@ export default function ShutterTrackerPage() {
                             <HardHat className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-lg border border-green-200">
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg border border-green-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">Ready</p>
@@ -242,8 +242,8 @@ export default function ShutterTrackerPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white rounded-lg border border-gray-200 p-4">
-                    <div className="flex gap-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="flex gap-2">
                         <select
                             value={filterType}
                             onChange={(e) => setFilterType(e.target.value)}
@@ -269,15 +269,15 @@ export default function ShutterTrackerPage() {
                 </div>
 
                 {/* Shutters List */}
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-2">
                     {filteredShutters.map((shutter) => {
                         const Icon = getTypeIcon(shutter.shutterType);
                         const StatusIcon = getStatusIcon(shutter.status);
                         const progress = (shutter.completedQuantity / shutter.quantity) * 100;
 
                         return (
-                            <div key={shutter.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-                                <div className="flex items-start gap-4">
+                            <div key={shutter.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+                                <div className="flex items-start gap-2">
                                     {/* Icon */}
                                     <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${getTypeColor(shutter.shutterType)} flex items-center justify-center flex-shrink-0`}>
                                         <Icon className="w-8 h-8 text-white" />
@@ -301,7 +301,7 @@ export default function ShutterTrackerPage() {
                                             </span>
                                         </div>
 
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3 text-sm">
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 text-sm">
                                             <div>
                                                 <p className="text-xs text-gray-500">Team</p>
                                                 <p className="font-medium text-gray-900 flex items-center gap-1">
@@ -355,7 +355,7 @@ export default function ShutterTrackerPage() {
                 </div>
 
                 {/* Info Box */}
-                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                         <Package className="w-5 h-5 text-amber-600 mt-0.5" />
                         <div>

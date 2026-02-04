@@ -71,9 +71,9 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
   if (!isOpen || !discount) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -90,8 +90,8 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Discount Summary */}
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 mb-6">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 mb-3">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-green-700 mb-1">Original Value</p>
                 <p className="text-xl font-bold text-green-900">₹{(discount.originalValue / 100000).toFixed(2)}L</p>
@@ -123,8 +123,8 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
           </div>
 
           {/* Customer & Request Info */}
-          <div className="mb-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="mb-3">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Customer</p>
                 <p className="font-semibold text-gray-900">{discount.customerName}</p>
@@ -145,7 +145,7 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
           </div>
 
           {/* Justification */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Discount Justification</label>
             <div className="bg-yellow-50 border border-yellow-200 rounded p-3">
               <p className="text-sm text-gray-700"><strong>Reason:</strong> {discount.reason}</p>
@@ -155,12 +155,12 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
 
           {/* Competitor Price */}
           {discount.competitorPrice && (
-            <div className="mb-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="mb-3 bg-orange-50 border border-orange-200 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-5 w-5 text-orange-600" />
                 <p className="font-semibold text-orange-900">Competitive Analysis</p>
               </div>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-2 text-sm">
                 <div>
                   <p className="text-orange-700">Competitor Price</p>
                   <p className="font-bold text-orange-900">₹{(discount.competitorPrice / 100000).toFixed(2)}L</p>
@@ -176,7 +176,7 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
           )}
 
           {/* Approval Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Approval Comments <span className="text-red-500">*</span>
             </label>
@@ -190,7 +190,7 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
           </div>
 
           {/* Conditional Approval */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -213,7 +213,7 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
 
           {/* Margin Warning */}
           {discount.marginAfterDiscount < 20 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="flex items-start gap-2">
                 <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-red-800">
@@ -225,7 +225,7 @@ export function ApproveDiscountModal({ isOpen, onClose, onApprove, discount }: A
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -268,9 +268,9 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
   if (!isOpen || !discount) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <XCircle className="h-6 w-6 text-white" />
@@ -287,7 +287,7 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Discount Summary */}
-          <div className="bg-red-50 rounded-lg p-4 mb-6">
+          <div className="bg-red-50 rounded-lg p-3 mb-3">
             <div className="grid grid-cols-3 gap-3 text-sm">
               <div>
                 <p className="text-gray-600">Customer</p>
@@ -305,7 +305,7 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
           </div>
 
           {/* Rejection Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Rejection Reason <span className="text-red-500">*</span>
             </label>
@@ -328,7 +328,7 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
           </div>
 
           {/* Detailed Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Detailed Comments <span className="text-red-500">*</span>
             </label>
@@ -342,7 +342,7 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
           </div>
 
           {/* Alternative Suggestion */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
             <p className="text-sm font-semibold text-blue-900 mb-2">Suggested Alternatives:</p>
             <ul className="text-sm text-blue-800 space-y-1">
               <li>• Reduce discount to maintain minimum {((discount.originalValue * 0.20) / 100000).toFixed(2)}L margin</li>
@@ -353,7 +353,7 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
           </div>
 
           {/* Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-red-800">
@@ -364,7 +364,7 @@ export function RejectDiscountModal({ isOpen, onClose, onReject, discount }: Rej
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -405,9 +405,9 @@ export function AddDiscountCommentModal({ isOpen, onClose, onAddComment, discoun
   if (!isOpen || !discount) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <MessageSquare className="h-6 w-6 text-white" />
@@ -424,7 +424,7 @@ export function AddDiscountCommentModal({ isOpen, onClose, onAddComment, discoun
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Discount Info */}
-          <div className="bg-purple-50 rounded-lg p-4 mb-6">
+          <div className="bg-purple-50 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Customer</p>
@@ -438,7 +438,7 @@ export function AddDiscountCommentModal({ isOpen, onClose, onAddComment, discoun
           </div>
 
           {/* Comment */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Comment <span className="text-red-500">*</span>
             </label>
@@ -452,7 +452,7 @@ export function AddDiscountCommentModal({ isOpen, onClose, onAddComment, discoun
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -484,9 +484,9 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
   if (!isOpen || !discount) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -503,8 +503,8 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Quote Header */}
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 mb-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-purple-600 mb-1">Quote Number</p>
                 <p className="font-bold text-purple-900">{discount.quoteNumber}</p>
@@ -539,9 +539,9 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
           </div>
 
           {/* Customer Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4 text-sm">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h3>
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Customer Name</p>
                 <p className="font-semibold text-gray-900">{discount.customerName}</p>
@@ -562,19 +562,19 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
           </div>
 
           {/* Pricing Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Pricing Details</h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing Details</h3>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-1">Original Value</p>
                 <p className="text-2xl font-bold text-blue-900">₹{(discount.originalValue / 100000).toFixed(2)}L</p>
               </div>
-              <div className="bg-red-50 rounded-lg p-4">
+              <div className="bg-red-50 rounded-lg p-3">
                 <p className="text-sm text-red-600 mb-1">Discount</p>
                 <p className="text-2xl font-bold text-red-700">{discount.discountPercentage}%</p>
                 <p className="text-sm text-red-600 mt-1">₹{(discount.discountAmount / 100000).toFixed(2)}L</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4">
+              <div className="bg-green-50 rounded-lg p-3">
                 <p className="text-sm text-green-600 mb-1">Final Value</p>
                 <p className="text-2xl font-bold text-green-900">₹{(discount.finalValue / 100000).toFixed(2)}L</p>
                 <p className="text-sm text-green-600 mt-1">Margin: {discount.marginAfterDiscount}%</p>
@@ -583,17 +583,17 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
           </div>
 
           {/* Justification */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Discount Justification</h3>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Discount Justification</h3>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <p className="text-sm font-semibold text-gray-900 mb-2">Reason: {discount.reason}</p>
               <p className="text-sm text-gray-700">{discount.justification}</p>
             </div>
           </div>
 
           {/* Approval Chain */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Chain</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Chain</h3>
             <div className="space-y-2">
               {discount.approvalChain.map((step) => (
                 <div key={step.level} className="bg-white border border-gray-200 rounded-lg p-3">
@@ -621,7 +621,7 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
           {/* Comments Thread */}
           {discount.comments.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Discussion</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Discussion</h3>
               <div className="space-y-2">
                 {discount.comments.map((comment) => (
                   <div key={comment.id} className="bg-gray-50 rounded p-3">
@@ -637,7 +637,7 @@ export function ViewQuoteModal({ isOpen, onClose, discount }: ViewQuoteModalProp
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

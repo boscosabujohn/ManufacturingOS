@@ -85,7 +85,7 @@ export default function InstallationsPage() {
   if (loading) {
     return (
       <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading installation jobs...</p>
         </div>
@@ -97,7 +97,7 @@ export default function InstallationsPage() {
   if (error) {
     return (
       <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <AlertCircle className="h-12 w-12 text-red-500" />
           <p className="text-gray-900 font-medium">{error}</p>
           <button
@@ -122,14 +122,14 @@ export default function InstallationsPage() {
   return (
     <div className="p-6 w-full">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Installation Jobs</h1>
         <p className="text-gray-600">Schedule and track equipment installation jobs</p>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Jobs</p>
@@ -139,7 +139,7 @@ export default function InstallationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Scheduled</p>
@@ -149,7 +149,7 @@ export default function InstallationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -159,7 +159,7 @@ export default function InstallationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -169,7 +169,7 @@ export default function InstallationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">On-Time Rate</p>
@@ -181,9 +181,9 @@ export default function InstallationsPage() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-          <div className="flex-1 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col lg:flex-row gap-2 items-start lg:items-center justify-between">
+          <div className="flex-1 flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -240,28 +240,28 @@ export default function InstallationsPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Job Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status & Progress
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Schedule
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Equipment
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Team
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Site Survey
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Order Value
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -271,7 +271,7 @@ export default function InstallationsPage() {
                 const StatusIcon = statusIcons[job.status];
                 return (
                   <tr key={job.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{job.jobNumber}</span>
                         <span className="text-sm text-gray-600">{job.customerName}</span>
@@ -281,7 +281,7 @@ export default function InstallationsPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col gap-2">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit ${statusColors[job.status]}`}>
                           <StatusIcon className="h-3 w-3" />
@@ -300,7 +300,7 @@ export default function InstallationsPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-900">
                           {new Date(job.scheduledDate).toLocaleDateString('en-IN', {
@@ -315,7 +315,7 @@ export default function InstallationsPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{job.equipmentCount} items</span>
                         <span className="text-xs text-gray-500">{job.equipmentList[0]}</span>
@@ -324,7 +324,7 @@ export default function InstallationsPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <div className="flex items-center gap-1">
                           <Users className="h-3 w-3 text-gray-400" />
@@ -333,7 +333,7 @@ export default function InstallationsPage() {
                         <span className="text-xs text-gray-500">Team: {job.teamSize} members</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       {job.siteSurveyCompleted ? (
                         <span className="inline-flex items-center gap-1 text-xs text-green-600">
                           <CheckCircle className="h-3 w-3" />
@@ -346,10 +346,10 @@ export default function InstallationsPage() {
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="text-sm font-medium text-gray-900">{formatCurrency(job.orderValue)}</span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => router.push(`/after-sales-service/installations/view/${job.id}`)}
@@ -376,7 +376,7 @@ export default function InstallationsPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+          <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-700">
               Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredJobs.length)} of {filteredJobs.length} jobs
             </div>

@@ -111,8 +111,8 @@ export default function AddServiceRequestPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -140,9 +140,9 @@ export default function AddServiceRequestPage() {
         </div>
 
         {/* Basic Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Ticket Number
@@ -193,13 +193,13 @@ export default function AddServiceRequestPage() {
           </div>
 
           {/* Priority Info Banner */}
-          <div className={`mt-4 p-4 rounded-lg border-2 ${getPriorityInfo(priority).color}`}>
+          <div className={`mt-4 p-3 rounded-lg border-2 ${getPriorityInfo(priority).color}`}>
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 mt-0.5" />
               <div className="flex-1">
                 <div className="font-semibold mb-1">{getPriorityInfo(priority).label} Priority</div>
                 <div className="text-sm">{getPriorityInfo(priority).description}</div>
-                <div className="text-sm mt-2 flex items-center gap-4">
+                <div className="text-sm mt-2 flex items-center gap-2">
                   <span className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
                     Response SLA: {responseTimeSLA}h
@@ -215,10 +215,10 @@ export default function AddServiceRequestPage() {
         </div>
 
         {/* Customer Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Search Customer <span className="text-red-500">*</span>
             </label>
@@ -258,7 +258,7 @@ export default function AddServiceRequestPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Customer ID</label>
               <input
@@ -314,10 +314,10 @@ export default function AddServiceRequestPage() {
         </div>
 
         {/* Issue Details */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Issue Details</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Issue Details</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Issue Type <span className="text-red-500">*</span>
@@ -350,7 +350,7 @@ export default function AddServiceRequestPage() {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Issue Title <span className="text-red-500">*</span>
             </label>
@@ -380,10 +380,10 @@ export default function AddServiceRequestPage() {
         </div>
 
         {/* Service Location & Schedule */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Service Location & Schedule</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Service Location & Schedule</h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Service Address <span className="text-red-500">*</span>
             </label>
@@ -397,7 +397,7 @@ export default function AddServiceRequestPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Preferred Service Date
@@ -430,10 +430,10 @@ export default function AddServiceRequestPage() {
         </div>
 
         {/* Related Records */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Related Records (Optional)</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Related Records (Optional)</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Linked Service Contract
@@ -465,7 +465,7 @@ export default function AddServiceRequestPage() {
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-blue-600 mt-0.5" />
             <div className="text-sm text-blue-900">

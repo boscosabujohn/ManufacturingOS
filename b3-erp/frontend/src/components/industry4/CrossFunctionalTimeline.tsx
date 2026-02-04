@@ -258,7 +258,7 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
 
       {/* Milestones */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredMilestones.map((milestone, idx) => {
           const daysFromNow = getDaysFromNow(milestone.plannedDate);
           const isToday = daysFromNow === 0;
@@ -267,7 +267,7 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
           return (
             <div
               key={milestone.id}
-              className="relative flex gap-6 cursor-pointer"
+              className="relative flex gap-3 cursor-pointer"
               onClick={() => setSelectedMilestone(milestone)}
             >
               {/* Timeline Node */}
@@ -309,7 +309,7 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
               </div>
 
               {/* Content */}
-              <div className="flex-1 bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <div className="flex-1 bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <div className="flex items-center gap-2">
@@ -437,7 +437,7 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
                 </span>
               </td>
               <td className="p-3">
-                <div className="w-full max-w-[100px] mx-auto">
+                <div className="w-full max-w-[100px]">
                   <div className="flex justify-between text-xs text-gray-500 mb-1">
                     <span>{milestone.progress}%</span>
                   </div>
@@ -532,9 +532,9 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
   };
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex justify-between items-start mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Cross-Functional Timeline</h2>
           <p className="text-sm text-gray-600">Unified view of sales, production, and delivery milestones</p>
@@ -559,13 +559,13 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
       </div>
 
       {/* Project Summary */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
         <div className="flex justify-between items-center">
           <div>
             <h3 className="font-semibold text-gray-800">{project.name}</h3>
             <p className="text-sm text-gray-500">Customer: {project.customer}</p>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <div className="text-center">
               <div className="text-2xl font-bold text-blue-600">{project.overallProgress}%</div>
               <div className="text-xs text-gray-500">Overall Progress</div>
@@ -596,7 +596,7 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
       </div>
 
       {/* Filter by Type */}
-      <div className="flex gap-2 mb-4 flex-wrap">
+      <div className="flex gap-2 mb-2 flex-wrap">
         <button
           onClick={() => setFilterType('all')}
           className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
@@ -633,8 +633,8 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
       {/* Milestone Detail Modal */}
       {selectedMilestone && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setSelectedMilestone(null)}>
-          <div className="bg-white rounded-lg p-6 max-w-lg w-full mx-4" onClick={e => e.stopPropagation()}>
-            <div className="flex justify-between items-start mb-4">
+          <div className="bg-white rounded-lg p-3 max-w-lg w-full mx-4" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-start mb-2">
               <div className="flex items-center gap-3">
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center text-xl"
@@ -654,9 +654,9 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
               </button>
             </div>
 
-            <p className="text-sm text-gray-600 mb-4">{selectedMilestone.description}</p>
+            <p className="text-sm text-gray-600 mb-2">{selectedMilestone.description}</p>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <div className="text-xs text-gray-500">Planned Date</div>
                 <div className="font-medium">{formatDate(selectedMilestone.plannedDate)}</div>
@@ -683,7 +683,7 @@ const CrossFunctionalTimeline: React.FC<CrossFunctionalTimelineProps> = ({ class
             </div>
 
             {selectedMilestone.notes && (
-              <div className="p-3 bg-gray-50 rounded-lg mb-4">
+              <div className="p-3 bg-gray-50 rounded-lg mb-2">
                 <div className="text-xs text-gray-500 mb-1">Notes</div>
                 <p className="text-sm">{selectedMilestone.notes}</p>
               </div>

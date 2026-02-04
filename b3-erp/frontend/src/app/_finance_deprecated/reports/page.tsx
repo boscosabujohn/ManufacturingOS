@@ -312,7 +312,7 @@ export default function FinanceReportsPage() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between">
@@ -352,11 +352,11 @@ export default function FinanceReportsPage() {
 
       {/* Financial KPIs */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <Target className="h-6 w-6 text-purple-600" />
           Key Performance Indicators
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {kpis.map((kpi, index) => (
             <div
               key={index}
@@ -390,7 +390,7 @@ export default function FinanceReportsPage() {
       </div>
 
       {/* Report Categories Filter */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center gap-3 bg-white rounded-lg shadow-sm border border-gray-200 p-2">
           <Filter className="h-5 w-5 text-gray-600 ml-2" />
           <button
@@ -448,17 +448,17 @@ export default function FinanceReportsPage() {
 
       {/* Reports Grid */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <FileText className="h-6 w-6 text-purple-600" />
           Available Reports
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredReports.map((report) => (
             <div
               key={report.id}
-              className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all"
+              className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-all"
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className={`bg-gradient-to-br ${report.color} p-3 rounded-lg text-white`}>
                   {report.icon}
                 </div>
@@ -468,7 +468,7 @@ export default function FinanceReportsPage() {
               <h3 className="text-lg font-bold text-gray-900 mb-2">{report.name}</h3>
               <p className="text-sm text-gray-600 mb-3 line-clamp-2">{report.description}</p>
 
-              <div className="flex items-center justify-between text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200">
+              <div className="flex items-center justify-between text-xs text-gray-500 mb-2 pb-4 border-b border-gray-200">
                 <span className="flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
                   {report.frequency}
@@ -509,12 +509,12 @@ export default function FinanceReportsPage() {
       </div>
 
       {/* Quick Insights */}
-      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-200 p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-200 p-3">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <AlertCircle className="h-6 w-6 text-purple-600" />
           Quick Insights
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="bg-white rounded-lg p-5 border border-gray-200">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-green-600" />
@@ -571,7 +571,7 @@ export default function FinanceReportsPage() {
             <Target className="h-5 w-5 text-blue-600" />
             Recommended Actions
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div className="flex items-start gap-3">
               <div className="bg-blue-100 rounded-full p-2">
                 <ArrowRight className="h-4 w-4 text-blue-600" />

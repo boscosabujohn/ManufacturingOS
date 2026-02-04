@@ -535,10 +535,10 @@ const BankReconciliation: React.FC = () => {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Landmark className="h-8 w-8 text-blue-600" />
@@ -552,7 +552,7 @@ const BankReconciliation: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <DollarSign className="h-8 w-8 text-green-600" />
@@ -566,7 +566,7 @@ const BankReconciliation: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <CheckCircleIcon className="h-8 w-8 text-purple-600" />
@@ -579,7 +579,7 @@ const BankReconciliation: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <AlertTriangle className="h-8 w-8 text-orange-600" />
@@ -596,9 +596,9 @@ const BankReconciliation: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Balance Comparison Trend</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Balance Comparison Trend</h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={accountBalanceTrend}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -612,8 +612,8 @@ const BankReconciliation: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Reconciliation Status</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Reconciliation Status</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -636,8 +636,8 @@ const BankReconciliation: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Reconciliation Performance</h3>
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Monthly Reconciliation Performance</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={monthlyReconciliationTrend}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -654,15 +654,15 @@ const BankReconciliation: React.FC = () => {
 
       {/* Recent Activity */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Recent Reconciliation Sessions</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {reconciliationSessions.map((session) => {
               const account = bankAccounts.find(a => a.id === session.bankAccountId);
               return (
-                <div key={session.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={session.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex-1">
                     <h4 className="font-medium text-gray-900">{account?.accountName}</h4>
                     <p className="text-sm text-gray-600">
@@ -691,7 +691,7 @@ const BankReconciliation: React.FC = () => {
   );
 
   const renderAccounts = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Bank Accounts</h3>
         <button
@@ -703,10 +703,10 @@ const BankReconciliation: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {bankAccounts.map((account) => (
-          <div key={account.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={account.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900">{account.accountName}</h4>
                 <p className="text-sm text-gray-600 mt-1">{account.bankName}</p>
@@ -794,11 +794,11 @@ const BankReconciliation: React.FC = () => {
   );
 
   const renderReconciliation = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {!reconciliationMode ? (
         <>
           <h3 className="text-lg font-semibold text-gray-900">Select Account to Reconcile</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {bankAccounts.map((account) => (
               <button
                 key={account.id}
@@ -843,20 +843,20 @@ const BankReconciliation: React.FC = () => {
           </div>
 
           {/* Balance Summary */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <p className="text-sm text-gray-600">Statement Balance</p>
               <p className="text-xl font-semibold text-gray-900">
                 {formatCurrency(selectedAccount?.lastStatementBalance || 0)}
               </p>
             </div>
-            <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <p className="text-sm text-gray-600">GL Balance</p>
               <p className="text-xl font-semibold text-gray-900">
                 {formatCurrency(selectedAccount?.currentBalance || 0)}
               </p>
             </div>
-            <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <p className="text-sm text-gray-600">Difference</p>
               <p className={`text-xl font-semibold ${
                 Math.abs((selectedAccount?.lastStatementBalance || 0) - (selectedAccount?.currentBalance || 0)) < 0.01
@@ -865,7 +865,7 @@ const BankReconciliation: React.FC = () => {
                 {formatCurrency(Math.abs((selectedAccount?.lastStatementBalance || 0) - (selectedAccount?.currentBalance || 0)))}
               </p>
             </div>
-            <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <p className="text-sm text-gray-600">Match Progress</p>
               <div className="flex items-center mt-1">
                 <div className="flex-1 bg-gray-200 rounded-full h-2 mr-2">
@@ -877,10 +877,10 @@ const BankReconciliation: React.FC = () => {
           </div>
 
           {/* Transaction Matching */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Bank Transactions */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-              <div className="px-6 py-4 border-b border-gray-200">
+              <div className="px-3 py-2 border-b border-gray-200">
                 <h4 className="font-medium text-gray-900">Bank Transactions</h4>
               </div>
               <div className="p-6">
@@ -936,7 +936,7 @@ const BankReconciliation: React.FC = () => {
 
             {/* GL Transactions */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-              <div className="px-6 py-4 border-b border-gray-200">
+              <div className="px-3 py-2 border-b border-gray-200">
                 <h4 className="font-medium text-gray-900">General Ledger Transactions</h4>
               </div>
               <div className="p-6">
@@ -997,7 +997,7 @@ const BankReconciliation: React.FC = () => {
   );
 
   const renderStatements = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Bank Statements</h3>
         <button
@@ -1014,25 +1014,25 @@ const BankReconciliation: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Statement Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Account
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Opening Balance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Closing Balance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Transactions
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -1061,25 +1061,25 @@ const BankReconciliation: React.FC = () => {
                 }
               ].map((statement) => (
                 <tr key={statement.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatDate(statement.statementDate)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {statement.accountName}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatCurrency(statement.openingBalance)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatCurrency(statement.closingBalance)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {statement.matchedCount}/{statement.transactionCount} matched
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {getStatusBadge(statement.status)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button className="text-blue-600 hover:text-blue-800">
                         <EyeIcon className="w-4 h-4" />
@@ -1099,7 +1099,7 @@ const BankReconciliation: React.FC = () => {
   );
 
   const renderRules = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Matching Rules</h3>
         <button
@@ -1111,10 +1111,10 @@ const BankReconciliation: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {matchingRules.map((rule) => (
-          <div key={rule.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={rule.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900">{rule.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{rule.description}</p>
@@ -1187,7 +1187,7 @@ const BankReconciliation: React.FC = () => {
   );
 
   const renderHistory = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Reconciliation History</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -1195,25 +1195,25 @@ const BankReconciliation: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Account
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Reconciler
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Matched/Total
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Closing Balance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -1223,25 +1223,25 @@ const BankReconciliation: React.FC = () => {
                 const account = bankAccounts.find(a => a.id === session.bankAccountId);
                 return (
                   <tr key={session.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {formatDate(session.sessionDate)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       {account?.accountName}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {session.reconcilerName}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {session.totalMatched}/{session.totalMatched + session.totalUnmatched}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {formatCurrency(session.closingBankBalance)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {getStatusBadge(session.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button className="text-blue-600 hover:text-blue-800">
                           <EyeIcon className="w-4 h-4" />
@@ -1262,14 +1262,14 @@ const BankReconciliation: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Bank Reconciliation</h1>
         <p className="text-gray-600 mt-2">Reconcile bank statements with general ledger using automated matching</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },

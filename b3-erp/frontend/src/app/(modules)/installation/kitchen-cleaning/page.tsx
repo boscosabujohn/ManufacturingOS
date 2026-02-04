@@ -55,7 +55,7 @@ export default function KitchenCleaningPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -79,17 +79,17 @@ export default function KitchenCleaningPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card>
                     <CardHeader>
                         <CardTitle>Cleaning Checklist</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {tasks.map((task) => (
                                 <div
                                     key={task.id}
-                                    className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-muted/50 ${task.status === 'Cleaned' ? 'bg-green-50 border-green-200' : ''}`}
+                                    className={`flex items-center justify-between p-3 border rounded-lg cursor-pointer hover:bg-muted/50 ${task.status === 'Cleaned' ? 'bg-green-50 border-green-200' : ''}`}
                                     onClick={() => handleToggleStatus(task.id)}
                                 >
                                     <div className="flex items-center gap-3">
@@ -109,8 +109,8 @@ export default function KitchenCleaningPage() {
                     <CardHeader>
                         <CardTitle>Waste Disposal</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6">
-                        <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                    <CardContent className="space-y-3">
+                        <div className="bg-orange-50 p-3 rounded-lg border border-orange-100">
                             <h4 className="font-medium text-orange-800 mb-2 flex items-center gap-2">
                                 <Trash2 className="h-4 w-4" />
                                 Disposal Guidelines
@@ -122,12 +122,12 @@ export default function KitchenCleaningPage() {
                                 <li>Leave the site broom-clean and vacuumed</li>
                             </ul>
                         </div>
-                        <div className="text-center p-6 border rounded-lg bg-gray-50">
+                        <div className="text-center p-3 border rounded-lg bg-gray-50">
                             <h3 className="font-semibold mb-2">Ready for Handover?</h3>
-                            <p className="text-sm text-muted-foreground mb-4">
+                            <p className="text-sm text-muted-foreground mb-2">
                                 Ensure the kitchen is sparkling clean. First impressions matter!
                             </p>
-                            <div className="flex justify-center gap-4 text-sm">
+                            <div className="flex justify-center gap-2 text-sm">
                                 <div className="flex flex-col items-center">
                                     <span className="font-bold text-2xl">{tasks.filter(t => t.status === 'Cleaned').length}</span>
                                     <span className="text-muted-foreground">Cleaned</span>

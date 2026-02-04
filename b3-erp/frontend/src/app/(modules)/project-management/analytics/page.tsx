@@ -222,7 +222,7 @@ export default function ProjectAnalyticsPage() {
   return (
    <div className="flex items-center justify-center min-h-screen">
     <div className="text-center">
-     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-2"></div>
      <p className="text-gray-600">Loading analytics data...</p>
     </div>
    </div>
@@ -233,7 +233,7 @@ export default function ProjectAnalyticsPage() {
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
    <div className="px-3 py-2 space-y-3">
     {/* Page Header with Actions */}
-    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
      <div>
       <h1 className="text-2xl font-bold text-gray-900">Project Analytics</h1>
       <p className="text-sm text-gray-600 mt-1">Comprehensive insights into project performance</p>
@@ -306,7 +306,7 @@ export default function ProjectAnalyticsPage() {
     </div>
 
    {/* Time Range Filter */}
-   <div className="flex justify-end space-x-2 mb-4">
+   <div className="flex justify-end space-x-2 mb-2">
     <button
      onClick={() => setTimeRange('month')}
      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -341,7 +341,7 @@ export default function ProjectAnalyticsPage() {
    </div>
 
    {/* Key Metrics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
     <div
      onClick={() => handleDrillDown('Total Projects', { total: metrics.totalProjects, active: metrics.activeProjects, completed: metrics.completedProjects })}
      className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
@@ -558,7 +558,7 @@ export default function ProjectAnalyticsPage() {
    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Project Type Metrics */}
     <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-     <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Type Analysis</h3>
+     <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Type Analysis</h3>
      <div className="space-y-2">
       {projectTypeMetrics.map((type) => (
        <div key={type.type}>
@@ -596,7 +596,7 @@ export default function ProjectAnalyticsPage() {
 
     {/* Resource Utilization */}
     <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-     <h3 className="text-lg font-semibold text-gray-900 mb-4">Resource Utilization</h3>
+     <h3 className="text-lg font-semibold text-gray-900 mb-2">Resource Utilization</h3>
      <div className="space-y-2">
       {resourceUtilization.map((resource) => (
        <div key={resource.department}>
@@ -642,7 +642,7 @@ export default function ProjectAnalyticsPage() {
 
    {/* Top Projects by Revenue */}
    <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-    <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Projects by Revenue</h3>
+    <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Projects by Revenue</h3>
     <div className="overflow-x-auto">
      <table className="w-full">
       <thead className="bg-gray-50">
@@ -690,8 +690,8 @@ export default function ProjectAnalyticsPage() {
    </div>
 
    {/* Key Insights */}
-   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+   <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+    <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
      <div className="flex items-start space-x-3">
       <div className="p-2 bg-green-100 rounded-lg">
        <TrendingUp className="h-5 w-5 text-green-600" />
@@ -705,7 +705,7 @@ export default function ProjectAnalyticsPage() {
      </div>
     </div>
 
-    <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+    <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
      <div className="flex items-start space-x-3">
       <div className="p-2 bg-yellow-100 rounded-lg">
        <AlertTriangle className="h-5 w-5 text-yellow-600" />
@@ -719,7 +719,7 @@ export default function ProjectAnalyticsPage() {
      </div>
     </div>
 
-    <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+    <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
      <div className="flex items-start space-x-3">
       <div className="p-2 bg-blue-100 rounded-lg">
        <Users className="h-5 w-5 text-blue-600" />

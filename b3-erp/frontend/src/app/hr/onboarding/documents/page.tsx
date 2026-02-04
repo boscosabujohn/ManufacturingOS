@@ -211,7 +211,7 @@ export default function OnboardingDocumentsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-blue-600" />
           Onboarding Document Collection
@@ -220,8 +220,8 @@ export default function OnboardingDocumentsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-blue-700 font-medium">Total Candidates</p>
@@ -231,7 +231,7 @@ export default function OnboardingDocumentsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-700 font-medium">Pending</p>
@@ -241,7 +241,7 @@ export default function OnboardingDocumentsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-blue-700 font-medium">In Progress</p>
@@ -251,7 +251,7 @@ export default function OnboardingDocumentsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-green-700 font-medium">Completed</p>
@@ -261,7 +261,7 @@ export default function OnboardingDocumentsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-red-700 font-medium">Overdue</p>
@@ -271,7 +271,7 @@ export default function OnboardingDocumentsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-purple-700 font-medium">Avg Completion</p>
@@ -283,8 +283,8 @@ export default function OnboardingDocumentsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -311,7 +311,7 @@ export default function OnboardingDocumentsPage() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
               <select
@@ -388,7 +388,7 @@ export default function OnboardingDocumentsPage() {
       </div>
 
       {/* Document Categories Reference */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <h2 className="text-sm font-semibold text-gray-900 mb-3">Required Document Categories</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
           {documentCategories.map(category => (
@@ -412,12 +412,12 @@ export default function OnboardingDocumentsPage() {
       </div>
 
       {/* Guidelines */}
-      <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+      <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-blue-600" />
           Document Collection Guidelines
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700">
           <div>
             <h4 className="font-semibold text-gray-900 mb-2">Document Requirements:</h4>
             <ul className="space-y-1">

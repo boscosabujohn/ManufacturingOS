@@ -54,9 +54,9 @@ export default function PPEIssuancePage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Shield className="h-8 w-8 text-orange-600" />
@@ -66,9 +66,9 @@ export default function PPEIssuancePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Step 1: Employee Selection */}
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-6">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm space-y-3">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm italic">1</div>
             <h3 className="font-bold text-gray-900 uppercase tracking-wider text-sm">Select Employee</h3>
@@ -104,8 +104,8 @@ export default function PPEIssuancePage() {
         </div>
 
         {/* Step 2: Item Selection */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-6">
+        <div className="lg:col-span-2 space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm space-y-3">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm italic">2</div>
@@ -114,12 +114,12 @@ export default function PPEIssuancePage() {
               <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{selectedItems.length} items selected</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {ppeCatalog.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => toggleItem(item.id)}
-                  className={`p-4 rounded-xl border flex items-center gap-4 transition-all cursor-pointer ${selectedItems.includes(item.id)
+                  className={`p-4 rounded-xl border flex items-center gap-2 transition-all cursor-pointer ${selectedItems.includes(item.id)
                     ? 'bg-blue-50 border-blue-200 ring-1 ring-blue-100'
                     : 'bg-white border-gray-100 hover:border-blue-100'
                     }`}
@@ -140,7 +140,7 @@ export default function PPEIssuancePage() {
 
             {/* Step 3: Confirmation */}
             <div className="pt-6 border-t border-gray-100">
-              <div className="bg-gray-50 p-4 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="bg-gray-50 p-3 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <div className="flex items-start gap-3">
                   <Info className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
                   <p className="text-[11px] text-gray-500 leading-relaxed max-w-md">
@@ -163,8 +163,8 @@ export default function PPEIssuancePage() {
           </div>
 
           {/* Quick Recap / Recently Issued */}
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-4 text-sm flex items-center gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-2 text-sm flex items-center gap-2">
               <ClipboardCheck className="w-4 h-4 text-gray-400" />
               Recent Issuance Activity
             </h3>

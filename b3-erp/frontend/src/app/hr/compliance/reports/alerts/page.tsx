@@ -10,12 +10,12 @@ export default function Page() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-3">
         <Bell className="h-6 w-6 text-red-600" />
         Compliance Alerts
       </h1>
-      <div className="space-y-4">
+      <div className="space-y-2">
         {alerts.map(a => (
           <div key={a.id} className={`p-6 rounded-lg border-l-4 ${a.priority === 'high' ? 'bg-red-50 border-red-500' : a.priority === 'medium' ? 'bg-yellow-50 border-yellow-500' : 'bg-blue-50 border-blue-500'}`}>
             <div className="flex items-start justify-between">

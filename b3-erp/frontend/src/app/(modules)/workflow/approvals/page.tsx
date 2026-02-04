@@ -475,10 +475,10 @@ export default function ApprovalsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Requests</p>
@@ -488,7 +488,7 @@ export default function ApprovalsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -498,7 +498,7 @@ export default function ApprovalsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Approved</p>
@@ -508,7 +508,7 @@ export default function ApprovalsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Rejected</p>
@@ -518,7 +518,7 @@ export default function ApprovalsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Urgent</p>
@@ -528,7 +528,7 @@ export default function ApprovalsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Pending Value</p>
@@ -539,7 +539,7 @@ export default function ApprovalsPage() {
         </div>
       </div>
 
-      <div className="flex justify-end mb-6">
+      <div className="flex justify-end mb-3">
         <button
           onClick={() => setViewMode(viewMode === 'pending' ? 'all' : 'pending')}
           className={`px-4 py-2 rounded-lg transition-colors ${viewMode === 'pending'
@@ -552,8 +552,8 @@ export default function ApprovalsPage() {
       </div>
 
       {/* Filters and Search */}
-      <div className="mb-6 space-y-4">
-        <div className="flex gap-4">
+      <div className="mb-3 space-y-2">
+        <div className="flex gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -575,7 +575,7 @@ export default function ApprovalsPage() {
         </div>
 
         {showFilters && (
-          <div className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="flex gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -617,14 +617,14 @@ export default function ApprovalsPage() {
       </div>
 
       {/* Approval Requests Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {paginatedApprovals.map((approval) => (
           <div
             key={approval.id}
-            className="bg-white rounded-lg border-2 border-gray-200 p-6 hover:shadow-lg transition-all"
+            className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all"
           >
             {/* Approval Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-1">
                   <h3 className="text-lg font-semibold text-gray-900">{approval.title}</h3>
@@ -654,7 +654,7 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Request Details */}
-            <div className="grid grid-cols-2 gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
+            <div className="grid grid-cols-2 gap-3 mb-2 p-3 bg-gray-50 rounded-lg">
               <div>
                 <p className="text-xs text-gray-500 mb-1">Requested By</p>
                 <div className="flex items-center space-x-1">
@@ -685,7 +685,7 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Timeline and Status */}
-            <div className="grid grid-cols-3 gap-3 mb-4 p-3 bg-blue-50 rounded-lg">
+            <div className="grid grid-cols-3 gap-3 mb-2 p-3 bg-blue-50 rounded-lg">
               <div>
                 <p className="text-xs text-gray-500 mb-1">Requested</p>
                 <div className="flex items-center space-x-1">
@@ -712,7 +712,7 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Approval History Progress */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-xs font-medium text-gray-500">Approval Progress</p>
                 <span className="text-xs text-gray-500">{approval.history.length} / {approval.totalLevels}</span>
@@ -737,7 +737,7 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Metadata */}
-            <div className="flex items-center justify-between mb-4 text-xs text-gray-500">
+            <div className="flex items-center justify-between mb-2 text-xs text-gray-500">
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-1">
                   <MessageSquare className="h-3 w-3" />
@@ -786,10 +786,10 @@ export default function ApprovalsPage() {
 
             {/* Expanded Details Section */}
             {expandedCard === approval.id && (
-              <div className="mt-4 pt-4 border-t border-gray-200 space-y-4">
+              <div className="mt-4 pt-4 border-t border-gray-200 space-y-2">
                 {/* Previous Rejection Alert */}
                 {approval.history.some(h => h.action === 'rejected') && approval.status === 'pending' && (
-                  <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                  <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg">
                     <div className="flex items-start space-x-3">
                       <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
                       <div>
@@ -814,7 +814,7 @@ export default function ApprovalsPage() {
                 )}
 
                 {/* Document Link */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="font-semibold text-blue-900 mb-1 flex items-center space-x-2">
@@ -963,7 +963,7 @@ export default function ApprovalsPage() {
       </div>
 
       {/* Pagination */}
-      <div className="bg-white rounded-lg border border-gray-200 px-6 py-4 flex items-center justify-between">
+      <div className="bg-white rounded-lg border border-gray-200 px-3 py-2 flex items-center justify-between">
         <div className="text-sm text-gray-700">
           Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredApprovals.length)} of {filteredApprovals.length} approval requests
         </div>
@@ -1009,10 +1009,10 @@ export default function ApprovalsPage() {
 
       {/* Approval/Rejection Modal */}
       {showModal && selectedApproval && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className={`px-6 py-4 border-b ${modalAction === 'approve' ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
+            <div className={`px-3 py-2 border-b ${modalAction === 'approve' ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
               }`}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -1037,11 +1037,11 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="px-6 py-4">
+            <div className="px-3 py-2">
               {/* Request Details */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <h3 className="font-semibold text-gray-900 mb-2">Request Details</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                <div className="bg-gray-50 rounded-lg p-3 space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm text-gray-600">Title:</span>
                     <span className="text-sm font-medium text-gray-900">{selectedApproval.title}</span>
@@ -1070,7 +1070,7 @@ export default function ApprovalsPage() {
               </div>
 
               {/* Comment/Reason Input */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   {modalAction === 'approve'
                     ? 'Comment (Optional)'
@@ -1090,7 +1090,7 @@ export default function ApprovalsPage() {
               </div>
 
               {modalAction === 'reject' && !actionComment && (
-                <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start space-x-2">
+                <div className="mb-2 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start space-x-2">
                   <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
                   <p className="text-sm text-amber-800">
                     A reason is required when rejecting an approval request.
@@ -1100,7 +1100,7 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
+            <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
               <button
                 onClick={closeModal}
                 className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
@@ -1138,10 +1138,10 @@ export default function ApprovalsPage() {
 
       {/* Delegation Modal */}
       {showDelegationModal && delegationApproval && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b bg-purple-50 border-purple-200">
+            <div className="px-3 py-2 border-b bg-purple-50 border-purple-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Users className="h-6 w-6 text-purple-600" />
@@ -1157,8 +1157,8 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="px-6 py-4">
-              <div className="mb-4">
+            <div className="px-3 py-2">
+              <div className="mb-2">
                 <h3 className="font-semibold text-gray-900 mb-2">Task Details</h3>
                 <div className="bg-gray-50 rounded-lg p-3 space-y-1">
                   <p className="text-sm font-medium text-gray-900">{delegationApproval.title}</p>
@@ -1169,7 +1169,7 @@ export default function ApprovalsPage() {
                 </div>
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Delegate To <span className="text-red-500">*</span>
                 </label>
@@ -1196,7 +1196,7 @@ export default function ApprovalsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
+            <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
               <button
                 onClick={() => setShowDelegationModal(false)}
                 className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"

@@ -218,9 +218,9 @@ export default function ManualsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
             <BookOpen className="h-8 w-8 text-emerald-600" />
@@ -228,14 +228,14 @@ export default function ManualsPage() {
           </h1>
           <p className="text-gray-600 mt-1">Download and manage product documentation</p>
         </div>
-        <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+        <button className="bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
           <Plus className="h-5 w-5" />
           Upload Manual
         </button>
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
         <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -286,8 +286,8 @@ export default function ManualsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -299,7 +299,7 @@ export default function ManualsPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">Category</label>
               <select
@@ -378,10 +378,10 @@ export default function ManualsPage() {
 
       {/* Manuals Grid/List */}
       {viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredManuals.map((manual) => (
             <div key={manual.id} className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
-              <div className="bg-gradient-to-r from-emerald-100 to-teal-100 p-6 flex items-center justify-center h-32">
+              <div className="bg-gradient-to-r from-emerald-100 to-teal-100 p-3 flex items-center justify-center h-32">
                 <FileText className="h-16 w-16 text-emerald-600 opacity-50" />
               </div>
 
@@ -394,9 +394,9 @@ export default function ManualsPage() {
 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">{manual.title}</h3>
 
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{manual.description}</p>
+                <p className="text-sm text-gray-600 mb-2 line-clamp-2">{manual.description}</p>
 
-                <div className="space-y-3 mb-4 text-sm text-gray-600">
+                <div className="space-y-3 mb-2 text-sm text-gray-600">
                   <div className="flex items-center justify-between">
                     <span>Model:</span>
                     <span className="font-medium text-gray-900">{manual.productModel}</span>
@@ -417,7 +417,7 @@ export default function ManualsPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between mb-4 pt-4 border-t border-gray-100 text-sm">
+                <div className="flex items-center justify-between mb-2 pt-4 border-t border-gray-100 text-sm">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1">
                       <Download className="h-4 w-4 text-blue-600" />
@@ -441,9 +441,9 @@ export default function ManualsPage() {
       ) : (
         <div className="space-y-3">
           {filteredManuals.map((manual) => (
-            <div key={manual.id} className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all flex items-start justify-between">
-              <div className="flex items-start gap-6 flex-1">
-                <div className="bg-gradient-to-r from-emerald-100 to-teal-100 p-4 rounded-lg flex-shrink-0">
+            <div key={manual.id} className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:shadow-md transition-all flex items-start justify-between">
+              <div className="flex items-start gap-3 flex-1">
+                <div className="bg-gradient-to-r from-emerald-100 to-teal-100 p-3 rounded-lg flex-shrink-0">
                   <FileText className="h-10 w-10 text-emerald-600" />
                 </div>
 
@@ -457,7 +457,7 @@ export default function ManualsPage() {
 
                   <p className="text-sm text-gray-600 mb-3">{manual.description}</p>
 
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
                     <span className="font-medium text-gray-900">{manual.productModel}</span>
                     <span>{manual.pages} pages</span>
                     <span>{manual.fileSize}</span>
@@ -487,7 +487,7 @@ export default function ManualsPage() {
 
       {filteredManuals.length === 0 && (
         <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-          <BookOpen className="h-12 w-12 text-gray-300 mb-4" />
+          <BookOpen className="h-12 w-12 text-gray-300 mb-2" />
           <p className="text-gray-600 font-medium">No manuals found</p>
           <p className="text-gray-500 text-sm">Try adjusting your search or filters</p>
         </div>

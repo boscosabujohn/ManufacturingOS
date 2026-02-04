@@ -153,7 +153,7 @@ export default function ReconciliationPage() {
   const totalVarianceValue = reconciliationActions.reduce((sum, a) => sum + a.varianceValue, 0);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -176,8 +176,8 @@ export default function ReconciliationPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <FileText className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalActions}</span>
@@ -186,7 +186,7 @@ export default function ReconciliationPage() {
           <div className="text-xs text-blue-600 mt-1">To Complete</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{completedActions}</span>
@@ -195,7 +195,7 @@ export default function ReconciliationPage() {
           <div className="text-xs text-green-600 mt-1">{completionRate.toFixed(0)}% Done</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-yellow-600" />
             <span className="text-2xl font-bold text-yellow-900">{inProgressActions}</span>
@@ -204,7 +204,7 @@ export default function ReconciliationPage() {
           <div className="text-xs text-yellow-600 mt-1">Active Tasks</div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <AlertCircle className="w-8 h-8 text-gray-600" />
             <span className="text-2xl font-bold text-gray-900">{pendingActions}</span>
@@ -213,7 +213,7 @@ export default function ReconciliationPage() {
           <div className="text-xs text-gray-600 mt-1">Not Started</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">
@@ -228,31 +228,31 @@ export default function ReconciliationPage() {
       </div>
 
       {/* Action Type Distribution */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Reconciliation Actions</h3>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Reconciliation Actions</h3>
+        <div className="grid grid-cols-4 gap-2">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-blue-900">
               {reconciliationActions.filter(a => a.action === 'adjust-inventory').length}
             </div>
             <div className="text-sm text-blue-700 font-medium mt-1">Inventory Adjustments</div>
             <div className="text-xs text-blue-600 mt-1">Update system records</div>
           </div>
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-yellow-900">
               {reconciliationActions.filter(a => a.action === 'recount').length}
             </div>
             <div className="text-sm text-yellow-700 font-medium mt-1">Recount Required</div>
             <div className="text-xs text-yellow-600 mt-1">Verify physical count</div>
           </div>
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-orange-900">
               {reconciliationActions.filter(a => a.action === 'investigate').length}
             </div>
             <div className="text-sm text-orange-700 font-medium mt-1">Investigation</div>
             <div className="text-xs text-orange-600 mt-1">Root cause analysis</div>
           </div>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-red-900">
               {reconciliationActions.filter(a => a.action === 'write-off').length}
             </div>
@@ -264,32 +264,32 @@ export default function ReconciliationPage() {
 
       {/* Reconciliation Actions Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Action Items</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value Impact</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action Required</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value Impact</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action Required</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {reconciliationActions.map((action) => (
                 <tr key={action.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-3 py-2 text-sm">
                     <div className="font-medium text-gray-900">{action.itemCode}</div>
                     <div className="text-gray-600">{action.itemName}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-1">
                       {action.variance > 0 ? (
                         <TrendingUp className="w-4 h-4 text-green-600" />
@@ -301,39 +301,39 @@ export default function ReconciliationPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-semibold ${action.varianceValue >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       ₹{Math.abs(action.varianceValue).toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getActionColor(action.action)}`}>
                       {action.action.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     <div className="flex items-center space-x-2">
                       <User className="w-4 h-4 text-gray-400" />
                       <span>{action.assignedTo}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     <div className="flex items-center space-x-1">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <span>{action.dueDate}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getPriorityColor(action.priority)}`}>
                       <span className="capitalize">{action.priority}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(action.status)}`}>
                       <span className="capitalize">{action.status.replace('-', ' ')}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 max-w-xs truncate">
+                  <td className="px-3 py-2 text-sm text-gray-700 max-w-xs truncate">
                     {action.notes}
                   </td>
                 </tr>
@@ -344,9 +344,9 @@ export default function ReconciliationPage() {
       </div>
 
       {/* Approval Summary */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Reconciliation Summary</h3>
-        <div className="grid grid-cols-2 gap-6">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Reconciliation Summary</h3>
+        <div className="grid grid-cols-2 gap-3">
           <div className="space-y-3">
             <div className="flex justify-between py-2 border-b border-gray-200">
               <span className="text-gray-600">Cycle Count Number:</span>
@@ -387,7 +387,7 @@ export default function ReconciliationPage() {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <h4 className="font-semibold text-blue-900 mb-2">Next Steps:</h4>
           <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
             <li>Complete all pending investigation and recount actions</li>

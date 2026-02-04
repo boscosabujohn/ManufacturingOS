@@ -54,9 +54,9 @@ export default function PortalOrdersPage() {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
-            <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
+            <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
                     <Link href="/portal" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                         <span className="text-gray-700">Back</span>
@@ -69,7 +69,7 @@ export default function PortalOrdersPage() {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6 flex gap-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3 flex gap-2">
                 <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
@@ -85,11 +85,11 @@ export default function PortalOrdersPage() {
             </div>
 
             {/* Orders List */}
-            <div className="space-y-6">
+            <div className="space-y-3">
                 {orders.map((order) => (
                     <div key={order.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                        <div className="p-6 border-b border-gray-100 flex flex-wrap gap-4 justify-between items-start">
-                            <div className="flex gap-4">
+                        <div className="p-6 border-b border-gray-100 flex flex-wrap gap-2 justify-between items-start">
+                            <div className="flex gap-2">
                                 <div className="p-3 bg-blue-50 text-blue-600 rounded-lg h-fit">
                                     <Package className="w-6 h-6" />
                                 </div>
@@ -137,7 +137,7 @@ export default function PortalOrdersPage() {
                         </div>
 
                         {order.status === 'Shipped' && (
-                            <div className="px-6 py-3 bg-blue-50 border-t border-blue-100 flex items-center gap-2 text-sm text-blue-700">
+                            <div className="px-3 py-2 bg-blue-50 border-t border-blue-100 flex items-center gap-2 text-sm text-blue-700">
                                 <Truck className="w-4 h-4" />
                                 <span>Out for delivery - Arriving by 5:00 PM today</span>
                             </div>

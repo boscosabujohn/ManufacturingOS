@@ -453,7 +453,7 @@ export const CollaborativeTimeline: React.FC<CollaborativeTimelineProps> = ({
   return (
     <div className={className}>
       {/* Filter Bar */}
-      <div className="mb-6 flex items-center space-x-2 overflow-x-auto pb-2">
+      <div className="mb-3 flex items-center space-x-2 overflow-x-auto pb-2">
         {activityTypes.map((type) => (
           <button
             key={type.value}
@@ -489,7 +489,7 @@ export const CollaborativeTimeline: React.FC<CollaborativeTimelineProps> = ({
           ))
         ) : (
           <div className="text-center py-12 bg-gray-50 rounded-lg border border-gray-200">
-            <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <MessageSquare className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No activities found</p>
           </div>
         )}

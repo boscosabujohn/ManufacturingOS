@@ -391,10 +391,10 @@ export default function SupplierOnboarding() {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <UserPlus className="w-8 h-8 text-blue-600" />
@@ -444,8 +444,8 @@ export default function SupplierOnboarding() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total Applications</span>
               <FileText className="w-5 h-5 text-blue-600" />
@@ -454,7 +454,7 @@ export default function SupplierOnboarding() {
             <div className="text-sm text-gray-600">This quarter</div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">In Progress</span>
               <Clock className="w-5 h-5 text-amber-600" />
@@ -463,7 +463,7 @@ export default function SupplierOnboarding() {
             <div className="text-sm text-orange-600">5 urgent</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Completed</span>
               <CheckCircle className="w-5 h-5 text-green-600" />
@@ -472,7 +472,7 @@ export default function SupplierOnboarding() {
             <div className="text-sm text-gray-600">This month</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-red-600 text-sm font-medium">Rejected</span>
               <XCircle className="w-5 h-5 text-red-600" />
@@ -481,7 +481,7 @@ export default function SupplierOnboarding() {
             <div className="text-sm text-gray-600">11% rate</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Avg Time</span>
               <Calendar className="w-5 h-5 text-purple-600" />
@@ -490,7 +490,7 @@ export default function SupplierOnboarding() {
             <div className="text-sm text-green-600">↓ 2 days</div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-indigo-600 text-sm font-medium">Success Rate</span>
               <TrendingUp className="w-5 h-5 text-indigo-600" />
@@ -521,10 +521,10 @@ export default function SupplierOnboarding() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Onboarding Funnel */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Onboarding Funnel</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Onboarding Funnel</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <FunnelChart>
                     <Tooltip />
@@ -540,9 +540,9 @@ export default function SupplierOnboarding() {
               </div>
 
               {/* Trend Analysis */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Application Trend</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Application Trend</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <AreaChart data={onboardingTrend}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -557,8 +557,8 @@ export default function SupplierOnboarding() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Distribution</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Distribution</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <RePieChart>
                       <Pie
@@ -589,14 +589,14 @@ export default function SupplierOnboarding() {
                 <div className="p-4 space-y-3">
                   {applications.slice(0, 3).map((app) => (
                     <div key={app.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <Building2 className="w-5 h-5 text-gray-600" />
                         <div>
                           <div className="font-medium text-gray-900">{app.companyName}</div>
                           <div className="text-sm text-gray-600">{app.category} • {app.contactName}</div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="text-right">
                           <div className="text-sm text-gray-600">Progress</div>
                           <div className="font-medium">{app.progress}%</div>
@@ -613,9 +613,9 @@ export default function SupplierOnboarding() {
           )}
 
           {activeTab === 'applications' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Filters */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2 mb-2">
                 <div className="flex items-center gap-2 flex-1">
                   <Search className="w-5 h-5 text-gray-400" />
                   <input
@@ -773,10 +773,10 @@ export default function SupplierOnboarding() {
           )}
 
           {activeTab === 'process' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Onboarding Process Steps */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Onboarding Process</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Onboarding Process</h3>
                 <div className="relative">
                   {onboardingSteps.map((step, index) => (
                     <div key={step.id} className="relative flex items-start mb-8 last:mb-0">
@@ -826,9 +826,9 @@ export default function SupplierOnboarding() {
               </div>
 
               {/* Process Configuration */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Process Configuration</h3>
-                <div className="space-y-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Process Configuration</h3>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Auto-approval Threshold</label>
                     <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -865,13 +865,13 @@ export default function SupplierOnboarding() {
           )}
 
           {activeTab === 'documents' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Document Requirements */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Required Documents</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Required Documents</h3>
                 <div className="space-y-3">
                   {requiredDocuments.map((doc) => (
-                    <div key={doc.id} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={doc.id} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div className={`p-2 rounded-lg ${
@@ -921,9 +921,9 @@ export default function SupplierOnboarding() {
 
               {/* Document Upload Area */}
               <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                <Upload className="w-12 h-12 text-gray-400 mb-3" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Upload Documents</h3>
-                <p className="text-sm text-gray-600 mb-4">Drag and drop files here, or click to browse</p>
+                <p className="text-sm text-gray-600 mb-2">Drag and drop files here, or click to browse</p>
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                   Select Files
                 </button>
@@ -932,10 +932,10 @@ export default function SupplierOnboarding() {
           )}
 
           {activeTab === 'verification' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Verification Checklist */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Verification Checklist</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Verification Checklist</h3>
                 <div className="space-y-3">
                   {[
                     { item: 'Business Registration Verified', status: 'completed', verifiedBy: 'John Smith', date: '2024-02-12' },
@@ -982,21 +982,21 @@ export default function SupplierOnboarding() {
               </div>
 
               {/* Risk Assessment */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Assessment</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Assessment</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
                     <div className="text-3xl font-bold text-green-600">72</div>
                     <div className="text-sm text-gray-600 mt-1">Overall Score</div>
                     <div className="mt-2 bg-gray-200 rounded-full h-2">
                       <div className="bg-green-500 h-2 rounded-full" style={{ width: '72%' }} />
                     </div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
                     <div className="text-3xl font-bold text-yellow-600">Medium</div>
                     <div className="text-sm text-gray-600 mt-1">Risk Level</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  <div className="text-center p-3 bg-gray-50 rounded-lg">
                     <div className="text-3xl font-bold text-blue-600">B+</div>
                     <div className="text-sm text-gray-600 mt-1">Credit Rating</div>
                   </div>
@@ -1036,11 +1036,11 @@ export default function SupplierOnboarding() {
           )}
 
           {activeTab === 'analytics' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Performance Metrics */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Processing Time by Stage</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Processing Time by Stage</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <BarChart data={[
                       { stage: 'Application', days: 0.5 },
@@ -1058,8 +1058,8 @@ export default function SupplierOnboarding() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Success Rate by Category</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Rate by Category</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="100%" data={[
                       { name: 'IT Services', value: 92, fill: '#3B82F6' },
@@ -1076,9 +1076,9 @@ export default function SupplierOnboarding() {
               </div>
 
               {/* Key Insights */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Onboarding Insights</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Onboarding Insights</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {[
                     { metric: 'Average processing time reduced by 25%', impact: 'positive' },
                     { metric: '15% increase in first-time approval rate', impact: 'positive' },

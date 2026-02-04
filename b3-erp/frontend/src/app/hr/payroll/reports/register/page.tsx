@@ -214,14 +214,14 @@ export default function PayrollRegisterPage() {
   }, [filteredRecords]);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Payroll Register</h1>
         <p className="text-sm text-gray-600 mt-1">Comprehensive monthly salary register</p>
       </div>
 
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">November 2025</h2>
             <p className="text-sm text-gray-600 mt-1">Monthly Payroll Summary</p>
@@ -239,8 +239,8 @@ export default function PayrollRegisterPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -250,7 +250,7 @@ export default function PayrollRegisterPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Gross Salary</p>
@@ -260,7 +260,7 @@ export default function PayrollRegisterPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Deductions</p>
@@ -270,7 +270,7 @@ export default function PayrollRegisterPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Net Salary</p>
@@ -280,7 +280,7 @@ export default function PayrollRegisterPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employer Cost</p>
@@ -294,8 +294,8 @@ export default function PayrollRegisterPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -392,7 +392,7 @@ export default function PayrollRegisterPage() {
         </table>
       </div>
 
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Payroll Register Guidelines</h3>
         <ul className="text-sm text-purple-800 space-y-1">
           <li>• <strong>Purpose:</strong> Statutory register to be maintained as per labor laws (Payment of Wages Act, Factories Act)</li>

@@ -138,11 +138,11 @@ export function SustainabilityScorecard({
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* ESG Score Overview */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-1 bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-600 rounded-xl p-6 text-center">
-          <div className="relative w-32 h-32 mx-auto mb-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="col-span-1 bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-600 rounded-xl p-3 text-center">
+          <div className="relative w-32 h-32 mb-2">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
               <circle cx="50" cy="50" r="40" fill="none" stroke="#374151" strokeWidth="10" />
               <circle
@@ -165,9 +165,9 @@ export function SustainabilityScorecard({
           <p className="text-green-400 text-sm">+5 points vs last quarter</p>
         </div>
 
-        <div className="col-span-3 bg-gray-800 rounded-xl p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">ESG Pillar Scores</h3>
-          <div className="space-y-4">
+        <div className="col-span-3 bg-gray-800 rounded-xl p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">ESG Pillar Scores</h3>
+          <div className="space-y-2">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
@@ -218,9 +218,9 @@ export function SustainabilityScorecard({
       </div>
 
       {/* KPI Status Summary */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         {Object.entries(statusConfig).map(([status, config]) => (
-          <div key={status} className={`bg-gray-800 rounded-lg p-4 border-l-4 ${config.bgColor.replace('bg-', 'border-')}`}>
+          <div key={status} className={`bg-gray-800 rounded-lg p-3 border-l-4 ${config.bgColor.replace('bg-', 'border-')}`}>
             <div className="flex items-center justify-between">
               <span className={`text-3xl font-bold ${config.color}`}>
                 {kpisByStatus[status as KPIStatus]}
@@ -235,9 +235,9 @@ export function SustainabilityScorecard({
       </div>
 
       {/* Score Trend Chart */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">ESG Score Trend</h3>
-        <div className="h-48 flex items-end gap-4 px-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">ESG Score Trend</h3>
+        <div className="h-48 flex items-end gap-2 px-4">
           {historicalData.map((data, i) => {
             const scoreHeight = (data.score / 100) * 100;
             const targetHeight = (data.target / 100) * 100;
@@ -261,7 +261,7 @@ export function SustainabilityScorecard({
             );
           })}
         </div>
-        <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-gray-700">
+        <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-gray-700">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-green-600 rounded" />
             <span className="text-sm text-gray-400">Above Target</span>
@@ -280,7 +280,7 @@ export function SustainabilityScorecard({
   );
 
   const renderKPIs = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Category Filter */}
       <div className="flex gap-2 flex-wrap">
         <button
@@ -306,7 +306,7 @@ export function SustainabilityScorecard({
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredKPIs.map(kpi => {
           const catConfig = categoryConfig[kpi.category];
           const statConfig = statusConfig[kpi.status];
@@ -316,7 +316,7 @@ export function SustainabilityScorecard({
           return (
             <div
               key={kpi.id}
-              className={`bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
+              className={`bg-gray-800 rounded-lg p-3 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
               onClick={() => onKPIClick?.(kpi)}
             >
               <div className="flex items-start justify-between mb-3">
@@ -367,11 +367,11 @@ export function SustainabilityScorecard({
   );
 
   const renderTrends = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Category Comparison */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Performance by Category</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Performance by Category</h3>
+        <div className="space-y-2">
           {Object.entries(categoryConfig).map(([cat, config]) => {
             const categoryKPIs = kpis.filter(k => k.category === cat);
             const onTrack = categoryKPIs.filter(k => k.status === 'on_track' || k.status === 'exceeded').length;
@@ -397,8 +397,8 @@ export function SustainabilityScorecard({
       </div>
 
       {/* Improvement Opportunities */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Improvement Opportunities</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Improvement Opportunities</h3>
         <div className="space-y-3">
           {kpis.filter(k => k.status === 'at_risk' || k.status === 'behind').map(kpi => {
             const catConfig = categoryConfig[kpi.category];
@@ -429,10 +429,10 @@ export function SustainabilityScorecard({
   );
 
   const renderReport = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Report Summary */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h3 className="text-lg font-semibold text-white">Sustainability Report</h3>
             <p className="text-gray-400">Q2 2024 Summary</p>
@@ -442,16 +442,16 @@ export function SustainabilityScorecard({
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="bg-gray-700 rounded-lg p-4 text-center">
+        <div className="grid grid-cols-3 gap-2 mb-3">
+          <div className="bg-gray-700 rounded-lg p-3 text-center">
             <p className="text-3xl font-bold text-green-400">{esgScore.overall}</p>
             <p className="text-gray-400">ESG Score</p>
           </div>
-          <div className="bg-gray-700 rounded-lg p-4 text-center">
+          <div className="bg-gray-700 rounded-lg p-3 text-center">
             <p className="text-3xl font-bold text-white">{kpis.length}</p>
             <p className="text-gray-400">KPIs Tracked</p>
           </div>
-          <div className="bg-gray-700 rounded-lg p-4 text-center">
+          <div className="bg-gray-700 rounded-lg p-3 text-center">
             <p className="text-3xl font-bold text-blue-400">
               {Math.round((kpisByStatus.exceeded + kpisByStatus.on_track) / kpis.length * 100)}%
             </p>
@@ -460,7 +460,7 @@ export function SustainabilityScorecard({
         </div>
 
         <div className="border-t border-gray-700 pt-6">
-          <h4 className="text-white font-medium mb-4">Key Highlights</h4>
+          <h4 className="text-white font-medium mb-2">Key Highlights</h4>
           <ul className="space-y-3">
             <li className="flex items-start gap-3">
               <span className="text-green-400 mt-1">✓</span>
@@ -483,16 +483,16 @@ export function SustainabilityScorecard({
       </div>
 
       {/* Certifications */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Certifications & Standards</h3>
-        <div className="grid grid-cols-4 gap-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Certifications & Standards</h3>
+        <div className="grid grid-cols-4 gap-2">
           {[
             { name: 'ISO 14001', status: 'certified', expiry: '2025-06' },
             { name: 'ISO 50001', status: 'certified', expiry: '2024-12' },
             { name: 'B Corp', status: 'in_progress', expiry: null },
             { name: 'Science Based Targets', status: 'certified', expiry: '2025-03' },
           ].map(cert => (
-            <div key={cert.name} className="bg-gray-700 rounded-lg p-4 text-center">
+            <div key={cert.name} className="bg-gray-700 rounded-lg p-3 text-center">
               <span className="text-3xl mb-2 block">
                 {cert.status === 'certified' ? '🏆' : '⏳'}
               </span>
@@ -511,9 +511,9 @@ export function SustainabilityScorecard({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
             <span className="text-2xl">📊</span>
@@ -524,7 +524,7 @@ export function SustainabilityScorecard({
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {/* Period Selector */}
           <select
             value={period}

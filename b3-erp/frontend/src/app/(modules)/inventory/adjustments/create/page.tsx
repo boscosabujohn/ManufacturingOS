@@ -105,7 +105,7 @@ export default function CreateAdjustmentPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -134,8 +134,8 @@ export default function CreateAdjustmentPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalItems}</span>
@@ -144,7 +144,7 @@ export default function CreateAdjustmentPage() {
           <div className="text-xs text-blue-600 mt-1">In Adjustment</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{positiveAdjustments}</span>
@@ -153,7 +153,7 @@ export default function CreateAdjustmentPage() {
           <div className="text-xs text-green-600 mt-1">Positive Adjustments</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingDown className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">{negativeAdjustments}</span>
@@ -162,7 +162,7 @@ export default function CreateAdjustmentPage() {
           <div className="text-xs text-red-600 mt-1">Negative Adjustments</div>
         </div>
 
-        <div className={`bg-gradient-to-br ${totalValueImpact >= 0 ? 'from-purple-50 to-purple-100 border-purple-200' : 'from-orange-50 to-orange-100 border-orange-200'} rounded-lg p-6 border`}>
+        <div className={`bg-gradient-to-br ${totalValueImpact >= 0 ? 'from-purple-50 to-purple-100 border-purple-200' : 'from-orange-50 to-orange-100 border-orange-200'} rounded-lg p-3 border`}>
           <div className="flex items-center justify-between mb-2">
             {totalValueImpact >= 0 ? <TrendingUp className="w-8 h-8 text-purple-600" /> : <TrendingDown className="w-8 h-8 text-orange-600" />}
             <span className={`text-2xl font-bold ${totalValueImpact >= 0 ? 'text-purple-900' : 'text-orange-900'}`}>
@@ -177,10 +177,10 @@ export default function CreateAdjustmentPage() {
       </div>
 
       {/* Adjustment Form */}
-      <div className="bg-white rounded-lg shadow p-6 space-y-6">
+      <div className="bg-white rounded-lg shadow p-3 space-y-3">
         <h3 className="text-lg font-semibold">Adjustment Details</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Adjustment Date</label>
             <div className="relative">
@@ -223,7 +223,7 @@ export default function CreateAdjustmentPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Reason Code</label>
             <select
@@ -266,7 +266,7 @@ export default function CreateAdjustmentPage() {
       </div>
 
       {/* Adjustment Items */}
-      <div className="bg-white rounded-lg shadow p-6 space-y-4">
+      <div className="bg-white rounded-lg shadow p-3 space-y-2">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Adjustment Items</h3>
           <button
@@ -384,7 +384,7 @@ export default function CreateAdjustmentPage() {
 
       {/* Validation Warnings */}
       {totalValueImpact < -50000 && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start space-x-3">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start space-x-3">
           <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
           <div>
             <h4 className="text-sm font-medium text-yellow-900">High Value Adjustment Warning</h4>

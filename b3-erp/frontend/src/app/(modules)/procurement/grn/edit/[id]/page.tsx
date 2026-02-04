@@ -434,7 +434,7 @@ const GRNEditPage = () => {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <Loader className="w-12 h-12 text-blue-600 animate-spin mb-4" />
+          <Loader className="w-12 h-12 text-blue-600 animate-spin mb-2" />
           <p className="text-gray-600">Loading GRN data...</p>
         </div>
       </div>
@@ -442,12 +442,12 @@ const GRNEditPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => router.push(`/procurement/grn/view/${grnId}`)}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -488,7 +488,7 @@ const GRNEditPage = () => {
           </div>
 
           {/* Progress Indicator */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between text-sm">
               <span className="text-blue-900 font-medium">Editing Mode - Draft Status</span>
               <span className="text-blue-700">Last saved: {new Date().toLocaleTimeString()}</span>
@@ -497,13 +497,13 @@ const GRNEditPage = () => {
         </div>
 
         {/* PO and Vendor Details */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <FileText className="w-5 h-5 text-blue-600" />
             Purchase Order Details
           </h2>
 
-          <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-3 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 PO Number <span className="text-red-500">*</span>
@@ -539,13 +539,13 @@ const GRNEditPage = () => {
         </div>
 
         {/* Receipt Details */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Package className="w-5 h-5 text-green-600" />
             Receipt Details
           </h2>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Receipt Date <span className="text-red-500">*</span>
@@ -593,13 +593,13 @@ const GRNEditPage = () => {
         </div>
 
         {/* Invoice Details */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Receipt className="w-5 h-5 text-purple-600" />
             Invoice Details
           </h2>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Invoice Number <span className="text-red-500">*</span>
@@ -643,13 +643,13 @@ const GRNEditPage = () => {
         </div>
 
         {/* Transporter Details */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Truck className="w-5 h-5 text-orange-600" />
             Transporter Details
           </h2>
 
-          <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-3 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Transporter Name</label>
               <input
@@ -730,8 +730,8 @@ const GRNEditPage = () => {
         </div>
 
         {/* Line Items */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-indigo-600" />
             Line Items
           </h2>
@@ -838,13 +838,13 @@ const GRNEditPage = () => {
         </div>
 
         {/* Document Upload */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Upload className="w-5 h-5 text-gray-600" />
             Documents
           </h2>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Invoice</label>
               <input
@@ -905,8 +905,8 @@ const GRNEditPage = () => {
         </div>
 
         {/* Notes */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <FileCheck className="w-5 h-5 text-gray-600" />
             Notes
           </h2>
@@ -920,11 +920,11 @@ const GRNEditPage = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-3 mb-6">
+        <div className="flex items-center justify-end gap-3 mb-3">
           <button
             onClick={handleCancel}
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+            className="flex items-center gap-2 px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
           >
             <X className="w-5 h-5" />
             Cancel
@@ -932,7 +932,7 @@ const GRNEditPage = () => {
           <button
             onClick={() => handleSubmit('draft')}
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+            className="flex items-center gap-2 px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
           >
             <Save className="w-5 h-5" />
             Save Draft
@@ -940,7 +940,7 @@ const GRNEditPage = () => {
           <button
             onClick={() => handleSubmit('submit')}
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
           >
             {saving ? <Loader className="w-5 h-5 animate-spin" /> : <CheckCircle className="w-5 h-5" />}
             {saving ? 'Saving...' : 'Submit for QC'}

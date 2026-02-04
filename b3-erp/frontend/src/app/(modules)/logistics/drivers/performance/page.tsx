@@ -586,7 +586,7 @@ export default function DriverPerformancePage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -605,8 +605,8 @@ export default function DriverPerformancePage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <Target className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{avgPerformanceScore.toFixed(1)}</span>
@@ -615,7 +615,7 @@ export default function DriverPerformancePage() {
           <div className="text-xs text-green-600 mt-1">Out of 100</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Award className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{excellentDrivers}</span>
@@ -624,7 +624,7 @@ export default function DriverPerformancePage() {
           <div className="text-xs text-blue-600 mt-1">≥90% Score</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{totalDrivers}</span>
@@ -633,7 +633,7 @@ export default function DriverPerformancePage() {
           <div className="text-xs text-purple-600 mt-1">Under Evaluation</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{probationDrivers}</span>
@@ -644,8 +644,8 @@ export default function DriverPerformancePage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -699,27 +699,27 @@ export default function DriverPerformancePage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance Score</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trip Performance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Safety & Compliance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance Score</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trip Performance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Safety & Compliance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {sortedData.map((driver) => (
                 <tr key={driver.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{driver.driverName}</div>
                     <div className="text-sm text-gray-600">{driver.driverId}</div>
                     <div className="text-xs text-gray-500 mt-1">{driver.vehicleNumber}</div>
                     <div className="text-xs text-gray-500">{driver.totalExperience}y exp • {driver.period}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className={`text-3xl font-bold ${getScoreColor(driver.performanceScore)}`}>
                       {driver.performanceScore}
                     </div>
@@ -735,26 +735,26 @@ export default function DriverPerformancePage() {
                       />
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{driver.completedTrips}/{driver.totalTrips} trips</div>
                     <div className="text-xs text-green-600">{driver.onTimePercentage.toFixed(1)}% on-time</div>
                     <div className="text-xs text-gray-600">{driver.totalDistance.toLocaleString()} km</div>
                     <div className="text-xs text-gray-500">Avg delay: {driver.avgDelay}min</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">Safety: {driver.safetyScore}/100</div>
                     <div className="text-xs text-red-600">Accidents: {driver.accidentsCount}</div>
                     <div className="text-xs text-orange-600">Violations: {driver.violationsCount}</div>
                     <div className="text-xs text-yellow-600">Incidents: {driver.incidentsCount}</div>
                     <div className="text-xs text-blue-600">Rest: {driver.restCompliance}%</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-bold text-gray-900">₹{(driver.totalRevenue / 1000).toFixed(0)}K</div>
                     <div className="text-xs text-gray-600">₹{driver.revenuePerTrip.toLocaleString()}/trip</div>
                     <div className="text-xs text-gray-600">₹{driver.revenuePerKm}/km</div>
                     <div className="text-xs text-green-600">{driver.fuelEfficiency} km/L</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-1">
                       <Star className="w-4 h-4 text-yellow-500 fill-current" />
                       <span className="text-sm font-medium text-gray-900">{driver.customerRating.toFixed(1)}</span>
@@ -762,7 +762,7 @@ export default function DriverPerformancePage() {
                     <div className="text-xs text-green-600">👍 {driver.customerCompliments}</div>
                     <div className="text-xs text-red-600">👎 {driver.customerComplaints}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getRatingColor(driver.performanceRating)}`}>
                       {driver.performanceRating.toUpperCase()}
                     </span>
@@ -773,12 +773,12 @@ export default function DriverPerformancePage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(driver.status)}`}>
                       {driver.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button className="text-blue-600 hover:text-blue-800">
                         <Eye className="w-4 h-4" />
@@ -796,9 +796,9 @@ export default function DriverPerformancePage() {
       </div>
 
       {/* Performance Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <Target className="w-6 h-6 text-green-600" />
             </div>
@@ -815,8 +815,8 @@ export default function DriverPerformancePage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Award className="w-6 h-6 text-blue-600" />
             </div>
@@ -833,8 +833,8 @@ export default function DriverPerformancePage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-orange-100 rounded-lg">
               <TrendingUp className="w-6 h-6 text-orange-600" />
             </div>

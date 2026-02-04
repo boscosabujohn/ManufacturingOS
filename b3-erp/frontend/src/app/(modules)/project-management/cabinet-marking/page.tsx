@@ -214,8 +214,8 @@ export default function CabinetMarkingPage() {
       <div className="px-3 py-2 space-y-3">
         {/* Header */}
         <div className="bg-white rounded-lg border border-gray-200 p-3">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
               <Link
                 href="/project-management"
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -245,8 +245,8 @@ export default function CabinetMarkingPage() {
                     Create a new cabinet marking task.
                   </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
+                <div className="grid gap-2 py-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="project" className="text-right">
                       Project
                     </Label>
@@ -262,7 +262,7 @@ export default function CabinetMarkingPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="type" className="text-right">
                       Type
                     </Label>
@@ -274,7 +274,7 @@ export default function CabinetMarkingPage() {
                       placeholder="e.g., Wall Cabinets"
                     />
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="quantity" className="text-right">
                       Quantity
                     </Label>
@@ -286,7 +286,7 @@ export default function CabinetMarkingPage() {
                       className="col-span-3"
                     />
                   </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
+                  <div className="grid grid-cols-4 items-center gap-2">
                     <Label htmlFor="team" className="text-right">
                       Team
                     </Label>
@@ -308,8 +308,8 @@ export default function CabinetMarkingPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Tasks</p>
@@ -318,7 +318,7 @@ export default function CabinetMarkingPage() {
               <FileText className="w-8 h-8 text-gray-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">In Progress</p>
@@ -327,7 +327,7 @@ export default function CabinetMarkingPage() {
               <Clock className="w-8 h-8 text-yellow-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Completed</p>
@@ -336,7 +336,7 @@ export default function CabinetMarkingPage() {
               <CheckCircle className="w-8 h-8 text-green-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Cabinets Marked</p>
@@ -369,8 +369,8 @@ export default function CabinetMarkingPage() {
         </div>
 
         {/* Filter */}
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
               value={statusFilter}
@@ -388,7 +388,7 @@ export default function CabinetMarkingPage() {
 
         {/* Marking Tasks List */}
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+          <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
             <h2 className="text-lg font-semibold text-gray-900">Cabinet Marking Tasks</h2>
           </div>
           <div className="divide-y divide-gray-200">
@@ -406,7 +406,7 @@ export default function CabinetMarkingPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                       <div>
                         <p className="text-xs text-gray-500">Scheduled Date</p>
                         <p className="text-sm font-medium text-gray-900 flex items-center gap-1">
@@ -521,7 +521,7 @@ export default function CabinetMarkingPage() {
         </div>
 
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
             <div>

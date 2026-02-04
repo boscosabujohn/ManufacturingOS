@@ -415,8 +415,8 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -426,8 +426,8 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-4 shadow-sm">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-3">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.total}</span>
@@ -435,7 +435,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Total Docks</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.available}</span>
@@ -443,7 +443,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Available</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.loading}</span>
@@ -451,7 +451,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Loading</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.unloading}</span>
@@ -459,7 +459,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Unloading</p>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.occupied}</span>
@@ -467,7 +467,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Occupied</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.reserved}</span>
@@ -475,7 +475,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Reserved</p>
         </div>
 
-        <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.maintenance}</span>
@@ -483,7 +483,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
           <p className="text-xs font-medium opacity-90">Maintenance</p>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{dockStats.utilization}%</span>
@@ -492,8 +492,8 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -539,10 +539,10 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
         {filteredDocks.map((dock) => (
-          <div key={dock.id} className="bg-white rounded-xl border-2 border-gray-200 p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-start justify-between mb-4">
+          <div key={dock.id} className="bg-white rounded-xl border-2 border-gray-200 p-3 hover:shadow-lg transition-shadow">
+            <div className="flex items-start justify-between mb-2">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-xl font-bold text-gray-900">{dock.dockNo}</h3>
@@ -586,7 +586,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="grid grid-cols-2 gap-3 mb-2">
                   <div className="bg-blue-50 rounded-lg p-3">
                     <p className="text-xs text-blue-600 font-medium mb-1">Vehicle & Carrier</p>
                     <p className="text-sm font-bold text-blue-900">{dock.vehicleNo}</p>
@@ -600,7 +600,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                <div className="bg-gray-50 rounded-lg p-3 mb-2">
                   <div className="grid grid-cols-2 gap-3 text-xs">
                     <div>
                       <p className="text-gray-500">Scheduled</p>
@@ -623,7 +623,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3 mb-4">
+                <div className="grid grid-cols-3 gap-3 mb-2">
                   <div className="bg-green-50 rounded-lg p-2 text-center">
                     <p className="text-xs text-green-600 font-medium">Items</p>
                     <p className="text-lg font-bold text-green-900">{dock.itemsCount}</p>
@@ -639,7 +639,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
                 </div>
 
                 {(dock.status === 'loading' || dock.status === 'unloading') && (
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
                       <span>{dock.status === 'loading' ? 'Loading' : 'Unloading'} Progress</span>
                       <span>{dock.currentProgress}%</span>
@@ -653,7 +653,7 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
                   </div>
                 )}
 
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-2">
                   <p className="text-xs text-yellow-600 font-medium mb-1">Team Assignment</p>
                   <p className="text-sm text-yellow-900 font-semibold">{dock.workerAssigned}</p>
                 </div>
@@ -672,13 +672,13 @@ Note: Changes will be logged in audit trail and may trigger notifications to ass
 
       {filteredDocks.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <Truck className="w-16 h-16 text-gray-400 mb-4" />
+          <Truck className="w-16 h-16 text-gray-400 mb-2" />
           <p className="text-gray-500 text-lg mb-2">No dock doors found</p>
           <p className="text-sm text-gray-400">Try adjusting your search or filter criteria</p>
         </div>
       )}
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Dock Status Guide:</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
           <div><span className="font-medium">Available:</span> Dock ready for next shipment</div>

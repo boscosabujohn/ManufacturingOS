@@ -137,7 +137,7 @@ export default function MyGoalsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <User className="h-8 w-8 text-purple-600" />
           My Goals
@@ -146,8 +146,8 @@ export default function MyGoalsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Goals</p>
@@ -156,7 +156,7 @@ export default function MyGoalsPage() {
             <Target className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">On Track</p>
@@ -165,7 +165,7 @@ export default function MyGoalsPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">At Risk</p>
@@ -174,7 +174,7 @@ export default function MyGoalsPage() {
             <AlertCircle className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -183,7 +183,7 @@ export default function MyGoalsPage() {
             <CheckCircle className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Progress</p>
@@ -195,8 +195,8 @@ export default function MyGoalsPage() {
       </div>
 
       {/* Filter */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Filter by Status:</label>
           <select
             value={selectedStatus}

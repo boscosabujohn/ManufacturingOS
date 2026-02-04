@@ -190,7 +190,7 @@ export function OperatorExportModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -200,7 +200,7 @@ export function OperatorExportModal({
       {/* Modal */}
       <div className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 rounded-t-xl">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-white/20 rounded-lg">
@@ -222,7 +222,7 @@ export function OperatorExportModal({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div className="space-y-3">
             <label className="block text-sm font-medium text-gray-700">
@@ -239,7 +239,7 @@ export function OperatorExportModal({
                   type="button"
                   onClick={() => updateFormData({ format: value as 'excel' | 'pdf' | 'csv' })}
                   className={`
-                    flex items-center justify-center gap-2 p-4 rounded-lg border-2 transition-all
+                    flex items-center justify-center gap-2 p-3 rounded-lg border-2 transition-all
                     ${
                       formData.format === value
                         ? 'border-green-600 bg-green-50 text-green-700'
@@ -261,11 +261,11 @@ export function OperatorExportModal({
           </div>
 
           {/* Date Range */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">
               Date Range <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="space-y-2">
                 <label className="block text-xs text-gray-600">From Date</label>
                 <div className="relative">
@@ -319,7 +319,7 @@ export function OperatorExportModal({
             <label className="block text-sm font-medium text-gray-700">
               Include Data <span className="text-red-500">*</span>
             </label>
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+            <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
               <label className="flex items-start gap-3 cursor-pointer group">
                 <div className="relative flex items-center justify-center mt-0.5">
                   <input
@@ -427,7 +427,7 @@ export function OperatorExportModal({
           )}
 
           {/* Export Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex gap-3">
               <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -650,7 +650,7 @@ export function LogExportModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -660,7 +660,7 @@ export function LogExportModal({
       {/* Modal */}
       <div className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 rounded-t-xl">
+        <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-white/20 rounded-lg">
@@ -682,7 +682,7 @@ export function LogExportModal({
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div className="space-y-3">
             <label className="block text-sm font-medium text-gray-700">
@@ -699,7 +699,7 @@ export function LogExportModal({
                   type="button"
                   onClick={() => updateFormData({ format: value as 'excel' | 'pdf' | 'csv' })}
                   className={`
-                    flex items-center justify-center gap-2 p-4 rounded-lg border-2 transition-all
+                    flex items-center justify-center gap-2 p-3 rounded-lg border-2 transition-all
                     ${
                       formData.format === value
                         ? 'border-green-600 bg-green-50 text-green-700'
@@ -721,11 +721,11 @@ export function LogExportModal({
           </div>
 
           {/* Date Range */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-700">
               Date Range <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="space-y-2">
                 <label className="block text-xs text-gray-600">From Date</label>
                 <div className="relative">
@@ -785,7 +785,7 @@ export function LogExportModal({
               </span>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+              <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
                 <input
                   type="checkbox"
                   checked={formData.logTypes.production}
@@ -799,7 +799,7 @@ export function LogExportModal({
                 </div>
               </label>
 
-              <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+              <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
                 <input
                   type="checkbox"
                   checked={formData.logTypes.quality}
@@ -813,7 +813,7 @@ export function LogExportModal({
                 </div>
               </label>
 
-              <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+              <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
                 <input
                   type="checkbox"
                   checked={formData.logTypes.downtime}
@@ -827,7 +827,7 @@ export function LogExportModal({
                 </div>
               </label>
 
-              <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
+              <label className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg cursor-pointer border-2 border-transparent hover:border-green-300 transition-all">
                 <input
                   type="checkbox"
                   checked={formData.logTypes.materialRequest}
@@ -854,7 +854,7 @@ export function LogExportModal({
             <label className="block text-sm font-medium text-gray-700">
               Additional Options
             </label>
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+            <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
               <label className="flex items-start gap-3 cursor-pointer group">
                 <div className="relative flex items-center justify-center mt-0.5">
                   <input
@@ -934,7 +934,7 @@ export function LogExportModal({
           )}
 
           {/* Export Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex gap-3">
               <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">

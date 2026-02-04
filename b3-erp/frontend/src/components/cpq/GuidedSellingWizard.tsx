@@ -272,7 +272,7 @@ export const GuidedSellingWizard: React.FC<GuidedSellingWizardProps> = ({
     const error = validationErrors[question.id];
 
     return (
-      <div key={question.id} className="mb-6">
+      <div key={question.id} className="mb-3">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
             <label className="block text-sm font-semibold text-gray-900 mb-1">
@@ -325,7 +325,7 @@ export const GuidedSellingWizard: React.FC<GuidedSellingWizardProps> = ({
                     key={option.id}
                     onClick={() => !isDisabled && setAnswer(question.id, option.value)}
                     disabled={isDisabled}
-                    className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                    className={`w-full text-left p-3 rounded-lg border-2 transition-all ${
                       answer === option.value
                         ? 'border-blue-500 bg-blue-50'
                         : isDisabled
@@ -392,7 +392,7 @@ export const GuidedSellingWizard: React.FC<GuidedSellingWizardProps> = ({
                       setAnswer(question.id, newValues);
                     }}
                     disabled={isDisabled}
-                    className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                    className={`w-full text-left p-3 rounded-lg border-2 transition-all ${
                       isSelected
                         ? 'border-blue-500 bg-blue-50'
                         : isDisabled
@@ -513,7 +513,7 @@ export const GuidedSellingWizard: React.FC<GuidedSellingWizardProps> = ({
     <div className={`bg-white rounded-lg border border-gray-200 ${className}`}>
       {/* Progress Bar */}
       <div className="px-6 pt-6">
-        <div className="mb-4">
+        <div className="mb-2">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-semibold text-gray-700">
               Step {currentStepIndex + 1} of {steps.length}
@@ -529,7 +529,7 @@ export const GuidedSellingWizard: React.FC<GuidedSellingWizardProps> = ({
         </div>
 
         {/* Step Indicators */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isActive = index === currentStepIndex;
@@ -580,19 +580,19 @@ export const GuidedSellingWizard: React.FC<GuidedSellingWizardProps> = ({
       </div>
 
       {/* Step Content */}
-      <div className="px-6 py-6 border-t border-gray-200">
-        <div className="mb-6">
+      <div className="px-6 py-2 border-t border-gray-200">
+        <div className="mb-3">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">{currentStep.title}</h2>
           <p className="text-gray-600">{currentStep.description}</p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           {currentStep.questions.map((question) => renderQuestion(question))}
         </div>
       </div>
 
       {/* Navigation Buttons */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-between rounded-b-lg">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 flex items-center justify-between rounded-b-lg">
         <div className="flex items-center space-x-3">
           <button
             onClick={handleBack}

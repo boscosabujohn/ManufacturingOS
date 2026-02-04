@@ -12,7 +12,7 @@ export default function WorkflowPage() {
   <div className="w-full py-2 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
      <Link href="/project-management">
       <Button variant="ghost" className="p-0 hover:bg-transparent">
        <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -44,30 +44,30 @@ export default function WorkflowPage() {
 
    {/* Features Info */}
    <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-100 p-3">
-    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
      <Sparkles className="w-5 h-5 text-yellow-500" />
      Enhanced Form Features
     </h3>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-     <div className="bg-white rounded-lg p-4 border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+     <div className="bg-white rounded-lg p-3 border border-gray-200">
       <h4 className="font-medium text-gray-900 mb-2">Multi-Step Wizard</h4>
       <p className="text-sm text-gray-600">
        Break complex forms into manageable steps with visual progress indicators
       </p>
      </div>
-     <div className="bg-white rounded-lg p-4 border border-gray-200">
+     <div className="bg-white rounded-lg p-3 border border-gray-200">
       <h4 className="font-medium text-gray-900 mb-2">Auto-Save Draft</h4>
       <p className="text-sm text-gray-600">
        Automatically saves your progress every 2 seconds to prevent data loss
       </p>
      </div>
-     <div className="bg-white rounded-lg p-4 border border-gray-200">
+     <div className="bg-white rounded-lg p-3 border border-gray-200">
       <h4 className="font-medium text-gray-900 mb-2">Draft Recovery</h4>
       <p className="text-sm text-gray-600">
        Resume your work from where you left off with the draft recovery banner
       </p>
      </div>
-     <div className="bg-white rounded-lg p-4 border border-gray-200">
+     <div className="bg-white rounded-lg p-3 border border-gray-200">
       <h4 className="font-medium text-gray-900 mb-2">Field-Level Help</h4>
       <p className="text-sm text-gray-600">
        Contextual tooltips explain complex fields to guide users

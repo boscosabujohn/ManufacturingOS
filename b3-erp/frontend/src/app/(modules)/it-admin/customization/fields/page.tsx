@@ -263,8 +263,8 @@ export default function CustomFieldsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -282,8 +282,8 @@ export default function CustomFieldsPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <CheckSquare className="w-6 h-6 text-blue-600" />
@@ -295,7 +295,7 @@ export default function CustomFieldsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-50 rounded-lg">
               <ToggleLeft className="w-6 h-6 text-green-600" />
@@ -307,7 +307,7 @@ export default function CustomFieldsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-purple-50 rounded-lg">
               <List className="w-6 h-6 text-purple-600" />
@@ -319,7 +319,7 @@ export default function CustomFieldsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-red-50 rounded-lg">
               <CheckSquare className="w-6 h-6 text-red-600" />
@@ -332,10 +332,10 @@ export default function CustomFieldsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Module Filter */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Filter by Module</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Filter by Module</h2>
 
           <div className="space-y-2">
             {modules.map((module) => {
@@ -370,7 +370,7 @@ export default function CustomFieldsPage() {
             })}
           </div>
 
-          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-bold text-blue-900 mb-3">Field Types</h3>
             <div className="space-y-2">
               {fieldTypes.slice(0, 5).map((type) => {
@@ -387,8 +387,8 @@ export default function CustomFieldsPage() {
         </div>
 
         {/* Custom Fields List */}
-        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
-          <div className="mb-4">
+        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3">
+          <div className="mb-2">
             <h2 className="text-lg font-bold text-gray-900">
               {selectedModule === 'all' ? 'All Custom Fields' : `${selectedModule} Fields`}
             </h2>
@@ -397,7 +397,7 @@ export default function CustomFieldsPage() {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredFields.map((field) => {
               const IconComponent = getFieldTypeIcon(field.fieldType);
 
@@ -425,7 +425,7 @@ export default function CustomFieldsPage() {
                         )}
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
                         <div>
                           <p className="text-xs font-semibold text-gray-600 mb-2">Details:</p>
                           <div className="space-y-1 text-sm">
@@ -511,7 +511,7 @@ export default function CustomFieldsPage() {
             </div>
           )}
 
-          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-yellow-900 mb-2">Custom Field Guidelines:</h3>
             <ul className="text-sm text-yellow-700 space-y-1">
               <li>• Field names must be unique within each module</li>

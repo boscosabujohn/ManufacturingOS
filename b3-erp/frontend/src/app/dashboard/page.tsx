@@ -200,7 +200,7 @@ export default function DashboardPage() {
       <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'}`}>
         {/* Header */}
         <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
-          <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-3">
             <div className="flex justify-between items-center h-16">
               {/* Logo and Mobile Menu Toggle */}
               <div className="flex items-center space-x-4">
@@ -267,8 +267,8 @@ export default function DashboardPage() {
 
         {/* Search Bar Section */}
         <div className="bg-white border-b border-gray-200 py-4 flex-shrink-0">
-          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="relative max-w-2xl mx-auto">
+          <div className="w-full px-3">
+            <div className="relative max-w-2xl">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
@@ -283,10 +283,10 @@ export default function DashboardPage() {
 
         {/* Main Content - Scrollable */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-6 max-w-[1920px] mx-auto">
+          <div className="w-full px-3 py-2 max-w-[1920px]">
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-blue-600 mb-1">Total Orders</p>
@@ -299,7 +299,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-green-600 mb-1">Revenue</p>
@@ -312,7 +312,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-orange-600 mb-1">Production</p>
@@ -325,7 +325,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-purple-600 mb-1">Inventory Items</p>
@@ -340,7 +340,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Filter Tabs */}
-            <div className="mb-6">
+            <div className="mb-3">
               <div className="border-b border-gray-200">
                 <nav className="-mb-px flex space-x-8">
                   {categories.map((category) => (
@@ -360,7 +360,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Module Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
               {filteredModules.map((module) => {
                 const Icon = module.icon;
                 return (
@@ -371,7 +371,7 @@ export default function DashboardPage() {
                   >
                     <div className="p-6">
                       {/* Icon */}
-                      <div className={`${module.color} w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
+                      <div className={`${module.color} w-14 h-14 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
                         <Icon className="h-7 w-7 text-white" />
                       </div>
 
@@ -381,7 +381,7 @@ export default function DashboardPage() {
                       </h3>
 
                       {/* Description */}
-                      <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                      <p className="text-sm text-gray-600 mb-2 leading-relaxed">
                         {module.description}
                       </p>
 
@@ -415,11 +415,11 @@ export default function DashboardPage() {
             {/* Empty State */}
             {filteredModules.length === 0 && (
               <div className="text-center py-16 bg-white rounded-xl border-2 border-dashed border-gray-300">
-                <div className="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mb-2">
                   <Search className="h-10 w-10 text-gray-400" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No modules found</h3>
-                <p className="text-gray-600 max-w-md mx-auto">We couldn't find any modules matching your search. Try adjusting your search query or explore all available modules.</p>
+                <p className="text-gray-600 max-w-md">We couldn't find any modules matching your search. Try adjusting your search query or explore all available modules.</p>
               </div>
             )}
           </div>
@@ -427,8 +427,8 @@ export default function DashboardPage() {
 
         {/* Footer */}
         <footer className="bg-white border-t border-gray-200 flex-shrink-0">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="w-full px-3 py-2">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
               <div className="text-center md:text-left">
                 <p className="text-sm font-semibold text-gray-700 mb-1">
                   OptiForge - Solution to manufacturers

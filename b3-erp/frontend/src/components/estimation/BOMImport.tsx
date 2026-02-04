@@ -121,13 +121,13 @@ export const BOMImport: React.FC<BOMImportProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Upload Area */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Import Bill of Materials</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Import Bill of Materials</h3>
 
         {/* Source Selection */}
-        <div className="grid grid-cols-5 gap-3 mb-6">
+        <div className="grid grid-cols-5 gap-3 mb-3">
           {(['excel', 'csv', 'erp', 'cad', 'plm'] as ImportSource[]).map((source) => {
             const config = getSourceConfig(source);
             const SourceIcon = config.icon;
@@ -141,7 +141,7 @@ export const BOMImport: React.FC<BOMImportProps> = ({
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <SourceIcon className={`h-8 w-8 mx-auto mb-2 ${selectedSource === source ? config.color : 'text-gray-400'}`} />
+                <SourceIcon className={`h-8 w-8 mb-2 ${selectedSource === source ? config.color : 'text-gray-400'}`} />
                 <p className={`text-sm font-semibold text-center ${selectedSource === source ? config.color : 'text-gray-700'}`}>
                   {config.label}
                 </p>
@@ -163,9 +163,9 @@ export const BOMImport: React.FC<BOMImportProps> = ({
                 dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400'
               }`}
             >
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+              <Upload className="h-12 w-12 text-gray-400 mb-3" />
               <p className="text-lg font-semibold text-gray-900 mb-1">Drop your file here</p>
-              <p className="text-sm text-gray-600 mb-4">or click to browse</p>
+              <p className="text-sm text-gray-600 mb-2">or click to browse</p>
               <input
                 type="file"
                 accept={selectedSource === 'excel' ? '.xlsx,.xls' : '.csv'}
@@ -175,7 +175,7 @@ export const BOMImport: React.FC<BOMImportProps> = ({
               />
               <label
                 htmlFor="file-upload"
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer inline-block"
+                className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer inline-block"
               >
                 Select File
               </label>
@@ -197,12 +197,12 @@ export const BOMImport: React.FC<BOMImportProps> = ({
         {/* ERP/CAD/PLM Connection */}
         {selectedSource !== 'excel' && selectedSource !== 'csv' && (
           <div className="text-center py-8">
-            <Database className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <Database className="h-16 w-16 text-gray-400 mb-2" />
             <h4 className="text-xl font-bold text-gray-900 mb-2">Connect to {getSourceConfig(selectedSource).label}</h4>
-            <p className="text-gray-600 mb-6">Integrate with your existing system to import BOMs automatically</p>
+            <p className="text-gray-600 mb-3">Integrate with your existing system to import BOMs automatically</p>
             <button
               onClick={selectedSource === 'erp' ? onConnectERP : onConnectCAD}
-              className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors inline-flex items-center space-x-2"
+              className="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors inline-flex items-center space-x-2"
             >
               <LinkIcon className="h-5 w-5" />
               <span>Configure Connection</span>
@@ -212,8 +212,8 @@ export const BOMImport: React.FC<BOMImportProps> = ({
       </div>
 
       {/* Import History */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Import History</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Import History</h3>
 
         <div className="space-y-3">
           {sessions.map((session) => {
@@ -223,7 +223,7 @@ export const BOMImport: React.FC<BOMImportProps> = ({
             const StatusIcon = statusConfig.icon;
 
             return (
-              <div key={session.id} className="border-2 border-gray-200 rounded-lg p-4 hover:shadow-md transition-all">
+              <div key={session.id} className="border-2 border-gray-200 rounded-lg p-3 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-4 flex-1">
                     <div className={`p-3 rounded-lg ${sourceConfig.bg}`}>
@@ -238,7 +238,7 @@ export const BOMImport: React.FC<BOMImportProps> = ({
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-4 gap-4 mb-2">
+                      <div className="grid grid-cols-4 gap-2 mb-2">
                         <div>
                           <p className="text-xs text-gray-500">Total Items</p>
                           <p className="text-sm font-bold text-gray-900">{session.totalItems}</p>
@@ -289,7 +289,7 @@ export const BOMImport: React.FC<BOMImportProps> = ({
 
         {sessions.length === 0 && (
           <div className="text-center py-12">
-            <FileText className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <FileText className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No import history yet</p>
           </div>
         )}

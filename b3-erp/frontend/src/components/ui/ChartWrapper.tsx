@@ -51,7 +51,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   return (
     <div className={`bg-white rounded-lg shadow-sm border border-gray-200 ${className}`}>
       {/* Header */}
-      <div className="flex items-start justify-between p-6 border-b border-gray-200">
+      <div className="flex items-start justify-between p-3 border-b border-gray-200">
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           {description && (
@@ -148,7 +148,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
         ) : error ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl">⚠️</span>
               </div>
               <h4 className="text-lg font-semibold text-gray-900 mb-1">Error loading chart</h4>

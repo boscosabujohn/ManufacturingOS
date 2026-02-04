@@ -356,7 +356,7 @@ export default function LogisticsShippingPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -383,8 +383,8 @@ export default function LogisticsShippingPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg shadow p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Pending Shipments</p>
@@ -397,7 +397,7 @@ export default function LogisticsShippingPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
+        <div className="bg-white rounded-lg shadow p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">In Transit</p>
@@ -410,7 +410,7 @@ export default function LogisticsShippingPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
+        <div className="bg-white rounded-lg shadow p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Delivered Today</p>
@@ -423,7 +423,7 @@ export default function LogisticsShippingPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border border-gray-200">
+        <div className="bg-white rounded-lg shadow p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Delayed</p>
@@ -438,8 +438,8 @@ export default function LogisticsShippingPage() {
       </div>
 
       {/* Additional Info Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Shipments</p>
@@ -448,7 +448,7 @@ export default function LogisticsShippingPage() {
             <Archive className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Shipping Value</p>
@@ -457,7 +457,7 @@ export default function LogisticsShippingPage() {
             <DollarSign className="w-8 h-8 text-green-600" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Weight</p>
@@ -471,7 +471,7 @@ export default function LogisticsShippingPage() {
       {/* Filters and Search */}
       <div className="bg-white rounded-lg shadow border border-gray-200">
         <div className="p-4 border-b border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
             {/* Search */}
             <div className="lg:col-span-2 relative">
               <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -534,34 +534,34 @@ export default function LogisticsShippingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Shipment Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Customer
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Route
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Carrier
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Dates
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Weight & Dimensions
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Priority
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Cost
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -602,7 +602,7 @@ export default function LogisticsShippingPage() {
                 </tr>
               ) : paginatedShipments.map((shipment) => (
                 <tr key={shipment.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <Package className="w-4 h-4 text-gray-400" />
                       <div>
@@ -612,7 +612,7 @@ export default function LogisticsShippingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4 text-gray-400" />
                       <div>
@@ -621,7 +621,7 @@ export default function LogisticsShippingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-start gap-2">
                       <Navigation className="w-4 h-4 text-gray-400 mt-0.5" />
                       <div>
@@ -630,7 +630,7 @@ export default function LogisticsShippingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <Truck className="w-4 h-4 text-gray-400" />
                       <div>
@@ -639,7 +639,7 @@ export default function LogisticsShippingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="flex items-center gap-1 text-xs text-gray-600">
                         <Calendar className="w-3 h-3" />
@@ -657,7 +657,7 @@ export default function LogisticsShippingPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <Weight className="w-4 h-4 text-gray-400" />
                       <div>
@@ -666,13 +666,13 @@ export default function LogisticsShippingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <PriorityBadge priority={shipment.priority} />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <StatusBadge status={shipment.status} />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <DollarSign className="w-4 h-4 text-gray-400" />
                       <div>
@@ -681,7 +681,7 @@ export default function LogisticsShippingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleViewDetails(shipment)}
@@ -720,7 +720,7 @@ export default function LogisticsShippingPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-500">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredShipments.length)} of {filteredShipments.length} shipments
           </div>
@@ -760,9 +760,9 @@ export default function LogisticsShippingPage() {
 
       {/* View Details Modal */}
       {showDetailsModal && selectedShipment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Package className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Shipment Details</h2>
@@ -774,7 +774,7 @@ export default function LogisticsShippingPage() {
 
             <div className="p-6">
               {/* Header */}
-              <div className="mb-6 flex items-start justify-between">
+              <div className="mb-3 flex items-start justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedShipment.shipment_id}</h3>
                   <p className="text-gray-600">Order: {selectedShipment.order_number}</p>
@@ -789,9 +789,9 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Customer & Carrier Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                 <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
-                  <h4 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <User className="h-5 w-5 text-blue-600" />
                     Customer Information
                   </h4>
@@ -818,7 +818,7 @@ export default function LogisticsShippingPage() {
                 </div>
 
                 <div className="bg-purple-50 rounded-lg p-5 border border-purple-200">
-                  <h4 className="font-semibold text-purple-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
                     <Truck className="h-5 w-5 text-purple-600" />
                     Carrier Information
                   </h4>
@@ -839,12 +839,12 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Route Information */}
-              <div className="mb-6 bg-green-50 rounded-lg p-5 border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
+              <div className="mb-3 bg-green-50 rounded-lg p-5 border border-green-200">
+                <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                   <Navigation className="h-5 w-5 text-green-600" />
                   Shipping Route
                 </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-green-600">Origin</p>
                     <p className="font-medium text-green-900 flex items-center gap-2">
@@ -863,12 +863,12 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Timeline */}
-              <div className="mb-6 bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="mb-3 bg-gray-50 rounded-lg p-5 border border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-gray-600" />
                   Timeline
                 </h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <p className="text-xs text-gray-500">Shipped Date</p>
                     <p className="font-medium text-gray-900">{selectedShipment.shipped_date}</p>
@@ -887,8 +887,8 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Shipment Details */}
-              <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="mb-3 grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                   <div className="flex items-center gap-3">
                     <Weight className="h-8 w-8 text-orange-600" />
                     <div>
@@ -897,7 +897,7 @@ export default function LogisticsShippingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                <div className="bg-indigo-50 rounded-lg p-3 border border-indigo-200">
                   <div className="flex items-center gap-3">
                     <BoxSelect className="h-8 w-8 text-indigo-600" />
                     <div>
@@ -906,7 +906,7 @@ export default function LogisticsShippingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center gap-3">
                     <DollarSign className="h-8 w-8 text-green-600" />
                     <div>
@@ -918,12 +918,12 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Insurance & Payment */}
-              <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <div className="mb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                   <p className="text-sm text-yellow-700 mb-2">Insurance Value</p>
                   <p className="text-2xl font-bold text-yellow-900">Rs.{selectedShipment.insurance_value.toLocaleString()}</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <p className="text-sm text-gray-700 mb-2">Payment Method</p>
                   <p className="text-2xl font-bold text-gray-900">{selectedShipment.payment_method}</p>
                 </div>
@@ -931,7 +931,7 @@ export default function LogisticsShippingPage() {
 
               {/* Notes */}
               {selectedShipment.notes && (
-                <div className="mb-6 bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="mb-3 bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <FileText className="h-5 w-5 text-blue-600" />
                     Notes
@@ -941,7 +941,7 @@ export default function LogisticsShippingPage() {
               )}
 
               {/* Created By */}
-              <div className="mb-6 text-sm text-gray-600">
+              <div className="mb-3 text-sm text-gray-600">
                 Created by: <span className="font-medium text-gray-900">{selectedShipment.created_by}</span>
               </div>
 
@@ -955,7 +955,7 @@ export default function LogisticsShippingPage() {
                 </button>
                 <button
                   onClick={() => setShowDetailsModal(false)}
-                  className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  className="px-3 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                 >
                   Close
                 </button>
@@ -967,9 +967,9 @@ export default function LogisticsShippingPage() {
 
       {/* Track Shipment Modal */}
       {showTrackModal && selectedShipment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Navigation className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Track Shipment</h2>
@@ -981,7 +981,7 @@ export default function LogisticsShippingPage() {
 
             <div className="p-6">
               {/* Shipment Info */}
-              <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <div className="mb-3 p-3 bg-purple-50 rounded-lg border border-purple-200">
                 <h3 className="font-bold text-purple-900 mb-2">{selectedShipment.shipment_id}</h3>
                 <p className="text-sm text-purple-700">Tracking: {selectedShipment.tracking_number}</p>
                 <p className="text-sm text-purple-700 mt-1">
@@ -990,7 +990,7 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Current Status */}
-              <div className="mb-6 p-5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border-2 border-blue-300">
+              <div className="mb-3 p-5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border-2 border-blue-300">
                 <p className="text-sm font-medium text-gray-700 mb-3">Current Status</p>
                 <div className="flex items-center gap-3">
                   <StatusBadge status={selectedShipment.status} />
@@ -1006,11 +1006,11 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Tracking Timeline */}
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-4">Tracking Timeline</h4>
-                <div className="space-y-4">
+              <div className="mb-3">
+                <h4 className="font-semibold text-gray-900 mb-2">Tracking Timeline</h4>
+                <div className="space-y-2">
                   {/* Timeline items - simulated based on status */}
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div className="flex flex-col items-center">
                       <div className={`w-4 h-4 rounded-full ${selectedShipment.status !== 'pending' ? 'bg-green-500' : 'bg-gray-300'}`} />
                       <div className="w-0.5 h-12 bg-gray-300" />
@@ -1022,7 +1022,7 @@ export default function LogisticsShippingPage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div className="flex flex-col items-center">
                       <div className={`w-4 h-4 rounded-full ${selectedShipment.status === 'picked' || selectedShipment.status === 'in_transit' || selectedShipment.status === 'delivered' ? 'bg-green-500' : 'bg-gray-300'}`} />
                       <div className="w-0.5 h-12 bg-gray-300" />
@@ -1034,7 +1034,7 @@ export default function LogisticsShippingPage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div className="flex flex-col items-center">
                       <div className={`w-4 h-4 rounded-full ${selectedShipment.status === 'in_transit' || selectedShipment.status === 'delivered' ? 'bg-green-500' : 'bg-gray-300'}`} />
                       <div className="w-0.5 h-12 bg-gray-300" />
@@ -1046,7 +1046,7 @@ export default function LogisticsShippingPage() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div className="flex flex-col items-center">
                       <div className={`w-4 h-4 rounded-full ${selectedShipment.status === 'delivered' ? 'bg-green-500' : 'bg-gray-300'}`} />
                     </div>
@@ -1062,7 +1062,7 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Carrier Info */}
-              <div className="mb-6 bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="mb-3 bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Truck className="h-5 w-5 text-gray-600" />
                   Carrier Details
@@ -1091,7 +1091,7 @@ export default function LogisticsShippingPage() {
                 </button>
                 <button
                   onClick={() => setShowTrackModal(false)}
-                  className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  className="px-3 py-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                 >
                   Close
                 </button>
@@ -1103,9 +1103,9 @@ export default function LogisticsShippingPage() {
 
       {/* Update Status Modal */}
       {showUpdateModal && selectedShipment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Edit2 className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Update Shipment Status</h2>
@@ -1116,18 +1116,18 @@ export default function LogisticsShippingPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="mb-3 p-3 bg-green-50 rounded-lg border border-green-200">
                 <h3 className="font-bold text-green-900 mb-2">{selectedShipment.shipment_id}</h3>
                 <p className="text-sm text-green-700">Order: {selectedShipment.order_number}</p>
                 <p className="text-sm text-green-700">Customer: {selectedShipment.customer_name}</p>
               </div>
 
-              <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-sm text-blue-700 mb-2">Current Status</p>
                 <StatusBadge status={selectedShipment.status} />
               </div>
 
-              <form onSubmit={handleSubmitUpdate} className="space-y-4">
+              <form onSubmit={handleSubmitUpdate} className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     New Status <span className="text-red-500">*</span>
@@ -1184,7 +1184,7 @@ export default function LogisticsShippingPage() {
                   <button
                     type="button"
                     onClick={() => setShowUpdateModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -1197,10 +1197,10 @@ export default function LogisticsShippingPage() {
 
       {/* Create Shipment Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg z-10">
               <div>
                 <h2 className="text-xl font-bold">Create New Shipment</h2>
                 <p className="text-sm text-blue-100 mt-1">Enter shipment details to create a new order</p>
@@ -1214,14 +1214,14 @@ export default function LogisticsShippingPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Customer Information */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
                   <User className="h-5 w-5" />
                   Customer Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Order Number <span className="text-red-500">*</span>
@@ -1278,12 +1278,12 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Shipment Details */}
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                <h3 className="font-bold text-purple-900 mb-4 flex items-center gap-2">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
+                <h3 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
                   <Package className="h-5 w-5" />
                   Shipment Details
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Origin <span className="text-red-500">*</span>
@@ -1372,12 +1372,12 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Carrier Information */}
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                <h3 className="font-bold text-green-900 mb-4 flex items-center gap-2">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
+                <h3 className="font-bold text-green-900 mb-2 flex items-center gap-2">
                   <Truck className="h-5 w-5" />
                   Carrier Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Carrier Name <span className="text-red-500">*</span>
@@ -1408,12 +1408,12 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Dates and Financial */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-                <h3 className="font-bold text-orange-900 mb-4 flex items-center gap-2">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
+                <h3 className="font-bold text-orange-900 mb-2 flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
                   Dates & Financial Details
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Shipped Date <span className="text-red-500">*</span>
@@ -1484,7 +1484,7 @@ export default function LogisticsShippingPage() {
               </div>
 
               {/* Info Box */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -1501,7 +1501,7 @@ export default function LogisticsShippingPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowCreateModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"

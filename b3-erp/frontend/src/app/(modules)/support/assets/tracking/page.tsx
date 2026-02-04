@@ -368,7 +368,7 @@ export default function AssetTracking() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -382,8 +382,8 @@ export default function AssetTracking() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Movements</p>
@@ -393,7 +393,7 @@ export default function AssetTracking() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Transit</p>
@@ -403,7 +403,7 @@ export default function AssetTracking() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending</p>
@@ -413,7 +413,7 @@ export default function AssetTracking() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -423,7 +423,7 @@ export default function AssetTracking() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">This Month</p>
@@ -435,8 +435,8 @@ export default function AssetTracking() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -479,14 +479,14 @@ export default function AssetTracking() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="text-left p-4 font-medium text-gray-600">Asset</th>
-                <th className="text-left p-4 font-medium text-gray-600">Movement Type</th>
-                <th className="text-left p-4 font-medium text-gray-600">Status</th>
-                <th className="text-left p-4 font-medium text-gray-600">From</th>
-                <th className="text-left p-4 font-medium text-gray-600">To</th>
-                <th className="text-left p-4 font-medium text-gray-600">Requested</th>
-                <th className="text-left p-4 font-medium text-gray-600">Scheduled</th>
-                <th className="text-left p-4 font-medium text-gray-600">Actions</th>
+                <th className="text-left p-3 font-medium text-gray-600">Asset</th>
+                <th className="text-left p-3 font-medium text-gray-600">Movement Type</th>
+                <th className="text-left p-3 font-medium text-gray-600">Status</th>
+                <th className="text-left p-3 font-medium text-gray-600">From</th>
+                <th className="text-left p-3 font-medium text-gray-600">To</th>
+                <th className="text-left p-3 font-medium text-gray-600">Requested</th>
+                <th className="text-left p-3 font-medium text-gray-600">Scheduled</th>
+                <th className="text-left p-3 font-medium text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -576,7 +576,7 @@ export default function AssetTracking() {
       {showDetailModal && selectedMovement && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-semibold">Movement Details</h2>
                 <p className="text-sm text-gray-600">{selectedMovement.assetTag}</p>
@@ -589,11 +589,11 @@ export default function AssetTracking() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Asset Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Asset Information</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Asset Name</p>
                     <p className="font-medium">{selectedMovement.assetName}</p>
@@ -634,7 +634,7 @@ export default function AssetTracking() {
               {/* Location Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Location Details</h3>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-gray-600">From:</p>
                     <div className="bg-gray-50 p-3 rounded-lg">
@@ -697,7 +697,7 @@ export default function AssetTracking() {
               {/* Request Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Request Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Requested By</p>
                     <p className="font-medium">{selectedMovement.requestedBy.name}</p>

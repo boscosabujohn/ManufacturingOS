@@ -276,9 +276,9 @@ export default function ResourceLeveling() {
     : resourceAllocations.filter(r => r.status === filterStatus);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -325,8 +325,8 @@ export default function ResourceLeveling() {
       {viewMode === 'allocations' && (
         <>
           {/* Filter */}
-          <div className="bg-white shadow-md p-4">
-            <div className="flex items-center gap-4">
+          <div className="bg-white shadow-md p-3">
+            <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-gray-700">Filter by Status:</label>
               <select
                 value={filterStatus}
@@ -351,11 +351,11 @@ export default function ResourceLeveling() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {filteredResources.map((resource) => (
                   <div key={resource.resourceId} className="p-5 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     {/* Resource Header */}
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <div className="p-3 bg-indigo-100 rounded-full">
                           <UserCheck className="h-6 w-6 text-indigo-600" />
@@ -378,7 +378,7 @@ export default function ResourceLeveling() {
                     </div>
 
                     {/* Utilization Metrics */}
-                    <div className="grid grid-cols-4 gap-4 mb-4">
+                    <div className="grid grid-cols-4 gap-2 mb-2">
                       <div className="text-center p-3 bg-blue-50 rounded-lg">
                         <p className="text-xs text-blue-600 font-medium">Capacity</p>
                         <p className="text-lg font-bold text-blue-900">{resource.totalCapacity}h</p>
@@ -406,7 +406,7 @@ export default function ResourceLeveling() {
                     </div>
 
                     {/* Utilization Bar */}
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-gray-600">Capacity Utilization</span>
                         {resource.utilizationPercent > 100 && (
@@ -466,7 +466,7 @@ export default function ResourceLeveling() {
           </div>
 
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {resourceConflicts.map((conflict) => (
                 <div key={conflict.id} className="p-5 border-2 border-red-200 rounded-lg bg-red-50">
                   <div className="flex items-start justify-between mb-3">
@@ -517,10 +517,10 @@ export default function ResourceLeveling() {
           </div>
 
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {resourceDemand.map((demand) => (
                 <div key={demand.projectId} className="p-5 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="font-bold text-gray-900">{demand.projectName}</h4>
                       <p className="text-sm text-gray-600">{demand.projectId}</p>
@@ -532,7 +532,7 @@ export default function ResourceLeveling() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-2 gap-2 mb-2">
                     <div className="p-3 bg-blue-50 rounded-lg">
                       <p className="text-xs text-blue-600 font-medium">Required Hours/Week</p>
                       <p className="text-xl font-bold text-blue-900">{demand.requiredHours}h</p>

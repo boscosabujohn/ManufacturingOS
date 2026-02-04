@@ -33,10 +33,10 @@ export default function FilesPage() {
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">File Manager</h1>
                         <p className="text-sm text-gray-500 mt-1">Manage and share your documents</p>
@@ -58,7 +58,7 @@ export default function FilesPage() {
                 </div>
 
                 {/* Quick Access */}
-                <div className="flex gap-4 overflow-x-auto pb-2">
+                <div className="flex gap-2 overflow-x-auto pb-2">
                     <button className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 whitespace-nowrap flex items-center gap-2">
                         <Clock className="w-4 h-4" /> Recent
                     </button>
@@ -75,10 +75,10 @@ export default function FilesPage() {
 
                 {/* Folders */}
                 <div>
-                    <h2 className="text-lg font-bold text-gray-900 mb-4">Folders</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <h2 className="text-lg font-bold text-gray-900 mb-2">Folders</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
                         {folders.map((folder) => (
-                            <div key={folder.id} className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow cursor-pointer">
+                            <div key={folder.id} className="bg-white p-3 rounded-xl border border-gray-200 hover:shadow-md transition-shadow cursor-pointer">
                                 <div className="flex justify-between items-start mb-3">
                                     <Folder className="w-10 h-10 text-blue-500 fill-blue-100" />
                                     <button className="p-1 hover:bg-gray-100 rounded-full">
@@ -97,7 +97,7 @@ export default function FilesPage() {
 
                 {/* Files */}
                 <div>
-                    <div className="flex justify-between items-center mb-4">
+                    <div className="flex justify-between items-center mb-2">
                         <h2 className="text-lg font-bold text-gray-900">Recent Files</h2>
                         <div className="flex bg-gray-100 rounded-lg p-1">
                             <button
@@ -116,9 +116,9 @@ export default function FilesPage() {
                     </div>
 
                     {viewMode === 'grid' ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
                             {files.map((file) => (
-                                <div key={file.id} className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow cursor-pointer group">
+                                <div key={file.id} className="bg-white p-3 rounded-xl border border-gray-200 hover:shadow-md transition-shadow cursor-pointer group">
                                     <div className="flex justify-between items-start mb-3">
                                         {getFileIcon(file.type)}
                                         <button className="p-1 hover:bg-gray-100 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
@@ -141,24 +141,24 @@ export default function FilesPage() {
                             <table className="w-full text-left">
                                 <thead className="bg-gray-50 border-b border-gray-200">
                                     <tr>
-                                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Name</th>
-                                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Size</th>
-                                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Modified</th>
-                                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Owner</th>
-                                        <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase"></th>
+                                        <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Name</th>
+                                        <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Size</th>
+                                        <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Modified</th>
+                                        <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Owner</th>
+                                        <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase"></th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
                                     {files.map((file) => (
                                         <tr key={file.id} className="hover:bg-gray-50">
-                                            <td className="px-6 py-4 flex items-center gap-3">
+                                            <td className="px-3 py-2 flex items-center gap-3">
                                                 {getFileIcon(file.type)}
                                                 <span className="font-medium text-gray-900">{file.name}</span>
                                             </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">{file.size}</td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">{file.modified}</td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">{file.owner}</td>
-                                            <td className="px-6 py-4 text-right">
+                                            <td className="px-3 py-2 text-sm text-gray-600">{file.size}</td>
+                                            <td className="px-3 py-2 text-sm text-gray-600">{file.modified}</td>
+                                            <td className="px-3 py-2 text-sm text-gray-600">{file.owner}</td>
+                                            <td className="px-3 py-2 text-right">
                                                 <button className="p-2 hover:bg-gray-100 rounded-full">
                                                     <MoreVertical className="w-4 h-4 text-gray-400" />
                                                 </button>

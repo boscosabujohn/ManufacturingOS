@@ -180,8 +180,8 @@ export default function EmployeesPage() {
   // Show loading state
   if (loading) {
     return (
-      <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+      <div className="w-full h-full px-3 py-2 w-full max-w-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading employees...</p>
         </div>
@@ -192,8 +192,8 @@ export default function EmployeesPage() {
   // Show error state
   if (error) {
     return (
-      <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4 text-center">
+      <div className="w-full h-full px-3 py-2 w-full max-w-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <div className="text-red-500 text-lg font-medium">{error}</div>
           <button
             onClick={() => window.location.reload()}
@@ -207,11 +207,11 @@ export default function EmployeesPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+    <div className="w-full h-full px-3 py-2 w-full max-w-full">
       {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Employees</p>
@@ -221,7 +221,7 @@ export default function EmployeesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Active</p>
@@ -231,7 +231,7 @@ export default function EmployeesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">On Leave</p>
@@ -241,7 +241,7 @@ export default function EmployeesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">New This Month</p>
@@ -262,7 +262,7 @@ export default function EmployeesPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -311,20 +311,20 @@ export default function EmployeesPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Leave Balance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Leave Balance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {paginatedEmployees.map((emp) => (
                 <tr key={emp.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-start space-x-3">
                       <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <User className="h-5 w-5 text-white" />
@@ -341,7 +341,7 @@ export default function EmployeesPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-xs text-gray-500 flex items-center">
                       <Mail className="h-3 w-3 mr-1" />
                       {emp.email}
@@ -354,19 +354,19 @@ export default function EmployeesPage() {
                       Joined: {emp.joinDate}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{emp.position}</div>
                     <div className="text-sm text-gray-600">{emp.department}</div>
                     <div className="text-xs text-gray-500 mt-1">
                       Reports to: {emp.manager}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${employmentTypeColors[emp.employmentType]}`}>
                       {employmentTypeLabels[emp.employmentType]}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <Award className={`h-5 w-5 ${getRatingColor(emp.performanceRating)} fill-current`} />
                       <span className={`text-lg font-bold ${getRatingColor(emp.performanceRating)}`}>
@@ -377,18 +377,18 @@ export default function EmployeesPage() {
                       Salary: ${(emp.salary / 1000).toFixed(0)}K
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <Clock className="h-4 w-4 text-blue-500" />
                       <span className="font-semibold text-blue-900">{emp.leaveBalance} days</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[emp.status]}`}>
                       {statusLabels[emp.status]}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <button
                         onClick={() => router.push(`/hr/employees/view/${emp.id}`)}
@@ -423,7 +423,7 @@ export default function EmployeesPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredEmployees.length)} of{' '}
             {filteredEmployees.length} items

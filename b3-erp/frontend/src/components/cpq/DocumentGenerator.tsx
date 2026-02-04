@@ -219,24 +219,24 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats Bar */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         {activeTab === 'templates' ? (
           <>
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Total Templates</p>
               <p className="text-3xl font-bold">{templateStats.total}</p>
             </div>
-            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Active</p>
               <p className="text-3xl font-bold">{templateStats.active}</p>
             </div>
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Draft</p>
               <p className="text-3xl font-bold">{templateStats.draft}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Most Used</p>
               <p className="text-3xl font-bold">
                 {templates.length > 0 ? Math.max(...templates.map((t) => t.usageCount)) : 0}
@@ -245,19 +245,19 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
           </>
         ) : (
           <>
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Total Documents</p>
               <p className="text-3xl font-bold">{documentStats.total}</p>
             </div>
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Draft</p>
               <p className="text-3xl font-bold">{documentStats.draft}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Sent</p>
               <p className="text-3xl font-bold">{documentStats.sent}</p>
             </div>
-            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
               <p className="text-sm opacity-90">Signed</p>
               <p className="text-3xl font-bold">{documentStats.signed}</p>
             </div>
@@ -270,7 +270,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
         <div className="flex border-b border-gray-200">
           <button
             onClick={() => setActiveTab('templates')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'templates'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -280,7 +280,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('documents')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'documents'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -362,7 +362,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
         {/* Templates Tab */}
         {activeTab === 'templates' && (
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {filteredTemplates.map((template) => {
                 const typeConfig = getDocTypeConfig(template.type);
                 const statusConfig = getStatusConfig(template.status);
@@ -459,7 +459,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
 
             {filteredTemplates.length === 0 && (
               <div className="text-center py-12">
-                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <FileText className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No templates found</p>
                 {onCreateTemplate && (
                   <button
@@ -578,7 +578,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
                       {/* Expanded Details */}
                       {isExpanded && (
                         <div className="mt-4 pt-4 border-t border-gray-200">
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-2 gap-2">
                             <div>
                               <h4 className="text-sm font-semibold text-gray-900 mb-2">Timeline</h4>
                               <div className="space-y-2 text-sm text-gray-600">
@@ -603,7 +603,7 @@ export const DocumentGenerator: React.FC<DocumentGeneratorProps> = ({
 
             {filteredDocuments.length === 0 && (
               <div className="text-center py-12">
-                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <FileText className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No documents found</p>
               </div>
             )}

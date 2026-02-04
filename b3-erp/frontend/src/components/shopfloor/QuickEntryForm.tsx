@@ -122,7 +122,7 @@ export function QuickEntryField({
   // Quantity input with large +/- buttons
   if (type === 'quantity') {
     return (
-      <div className="mb-4" ref={containerRef}>
+      <div className="mb-2" ref={containerRef}>
         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
@@ -184,7 +184,7 @@ export function QuickEntryField({
   // Select or Autocomplete dropdown
   if (type === 'select' || type === 'autocomplete') {
     return (
-      <div className="mb-4" ref={containerRef}>
+      <div className="mb-2" ref={containerRef}>
         <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
@@ -318,7 +318,7 @@ export function QuickEntryField({
 
   // Standard text/number input
   return (
-    <div className="mb-4" ref={containerRef}>
+    <div className="mb-2" ref={containerRef}>
       <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
@@ -408,15 +408,15 @@ export function QuickEntryForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-2">
       {title && (
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
           {title}
         </h2>
       )}
 
       {hasDraft && (
-        <div className="flex items-center gap-3 p-4 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-xl mb-4">
+        <div className="flex items-center gap-3 p-3 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-xl mb-2">
           <Clock className="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
@@ -445,7 +445,7 @@ export function QuickEntryForm({
             type="button"
             onClick={onCancel}
             disabled={isLoading}
-            className="flex-1 min-h-[56px] px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-xl transition-colors disabled:opacity-50"
+            className="flex-1 min-h-[56px] px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-xl transition-colors disabled:opacity-50"
           >
             {cancelLabel}
           </button>
@@ -453,7 +453,7 @@ export function QuickEntryForm({
         <button
           type="submit"
           disabled={isLoading}
-          className="flex-1 min-h-[56px] px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+          className="flex-1 min-h-[56px] px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
         >
           {isLoading ? (
             <>

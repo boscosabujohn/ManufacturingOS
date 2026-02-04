@@ -193,8 +193,8 @@ export default function BudgetReportPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex justify-between items-start">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <PieChart className="h-7 w-7 text-purple-600" />
@@ -212,8 +212,8 @@ export default function BudgetReportPage() {
       </div>
 
       {/* Overall Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-purple-700">Total Budget</p>
             <PieChart className="h-8 w-8 text-purple-400" />
@@ -222,7 +222,7 @@ export default function BudgetReportPage() {
           <p className="text-xs text-purple-600 mt-1">{filteredData.length} departments</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-blue-700">Total Spent</p>
             <TrendingDown className="h-8 w-8 text-blue-400" />
@@ -231,7 +231,7 @@ export default function BudgetReportPage() {
           <p className="text-xs text-blue-600 mt-1">{Math.round((totals.spent / totals.budget) * 100)}% of budget</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-orange-700">Pending</p>
             <AlertCircle className="h-8 w-8 text-orange-400" />
@@ -240,7 +240,7 @@ export default function BudgetReportPage() {
           <p className="text-xs text-orange-600 mt-1">{Math.round((totals.pending / totals.budget) * 100)}% of budget</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-green-700">Available</p>
             <TrendingUp className="h-8 w-8 text-green-400" />
@@ -249,7 +249,7 @@ export default function BudgetReportPage() {
           <p className="text-xs text-green-600 mt-1">{Math.round((totals.available / totals.budget) * 100)}% remaining</p>
         </div>
 
-        <div className={`bg-gradient-to-br rounded-lg shadow-sm border p-4 ${getUtilizationBgColor(overallUtilization)}`}>
+        <div className={`bg-gradient-to-br rounded-lg shadow-sm border p-3 ${getUtilizationBgColor(overallUtilization)}`}>
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium">Utilization</p>
             <Calendar className="h-8 w-8 opacity-40" />
@@ -260,8 +260,8 @@ export default function BudgetReportPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Financial Year</label>
             <select
@@ -307,10 +307,10 @@ export default function BudgetReportPage() {
       </div>
 
       {/* Department Budget Cards */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredData.map((dept) => (
-          <div key={dept.department} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div key={dept.department} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">{dept.department}</h3>
                 <p className="text-sm text-gray-500">Budget Utilization</p>
@@ -323,7 +323,7 @@ export default function BudgetReportPage() {
             </div>
 
             {/* Progress Bar */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
                 <span>Spent: ₹{dept.spentAmount.toLocaleString('en-IN')}</span>
                 <span>Budget: ₹{dept.budgetAmount.toLocaleString('en-IN')}</span>
@@ -396,7 +396,7 @@ export default function BudgetReportPage() {
       </div>
 
       {/* Legend */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Budget Utilization Guidelines</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           <div className="flex items-center gap-2">

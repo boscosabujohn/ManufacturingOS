@@ -128,8 +128,8 @@ export default function ServiceRequestsPage() {
   // Loading state
   if (loading) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-3 py-2 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading service requests...</p>
         </div>
@@ -140,8 +140,8 @@ export default function ServiceRequestsPage() {
   // Error state
   if (error) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4 text-center">
+      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-3 py-2 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <AlertCircle className="h-12 w-12 text-red-500" />
           <p className="text-gray-900 font-medium">{error}</p>
           <button
@@ -218,11 +218,11 @@ export default function ServiceRequestsPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Requests</p>
@@ -232,7 +232,7 @@ export default function ServiceRequestsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Open Tickets</p>
@@ -242,7 +242,7 @@ export default function ServiceRequestsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">SLA Breached</p>
@@ -252,7 +252,7 @@ export default function ServiceRequestsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">P1 Critical</p>
@@ -262,7 +262,7 @@ export default function ServiceRequestsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Response</p>
@@ -274,9 +274,9 @@ export default function ServiceRequestsPage() {
         </div>
 
         {/* Filters and Actions */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-            <div className="flex-1 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex flex-col lg:flex-row gap-2 items-start lg:items-center justify-between">
+            <div className="flex-1 flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
               {/* Search */}
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -336,28 +336,28 @@ export default function ServiceRequestsPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Ticket Details
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Priority
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Issue & Equipment
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Channel
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Assigned To
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     SLA Status
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -367,7 +367,7 @@ export default function ServiceRequestsPage() {
                   const StatusIcon = statusIcons[request.status];
                   return (
                     <tr key={request.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-col">
                           <span className="text-sm font-medium text-gray-900">{request.ticketNumber}</span>
                           <span className="text-sm text-gray-600">{request.customerName}</span>
@@ -381,7 +381,7 @@ export default function ServiceRequestsPage() {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${priorityColors[request.priority]}`}>
                           {request.priority}
                         </span>
@@ -393,7 +393,7 @@ export default function ServiceRequestsPage() {
                           </div>
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-col max-w-xs">
                           <span className="text-sm text-gray-900 truncate">{request.issueDescription}</span>
                           {request.equipmentModel && (
@@ -401,18 +401,18 @@ export default function ServiceRequestsPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${statusColors[request.status]}`}>
                           <StatusIcon className="h-3 w-3" />
                           {request.status.replace('_', ' ').charAt(0).toUpperCase() + request.status.slice(1).replace('_', ' ')}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${channelColors[request.channel]}`}>
                           {request.channel}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         {request.assignedToName ? (
                           <div className="flex items-center gap-2">
                             <User className="h-4 w-4 text-gray-400" />
@@ -422,7 +422,7 @@ export default function ServiceRequestsPage() {
                           <span className="text-sm text-gray-400">Unassigned</span>
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-col">
                           <span className={`text-xs font-medium ${slaStatusColors[request.slaStatus]}`}>
                             {request.slaStatus.replace('_', ' ').toUpperCase()}
@@ -439,7 +439,7 @@ export default function ServiceRequestsPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-3 py-2 text-right">
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleViewDetails(request)}
@@ -475,7 +475,7 @@ export default function ServiceRequestsPage() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+            <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
               <div className="text-sm text-gray-700">
                 Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredRequests.length)} of {filteredRequests.length} requests
               </div>
@@ -500,10 +500,10 @@ export default function ServiceRequestsPage() {
 
           {/* View Details Modal */}
           {showDetailsModal && selectedRequest && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
               <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
                 {/* Modal Header */}
-                <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg z-10">
+                <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg z-10">
                   <div>
                     <h2 className="text-xl font-bold">{selectedRequest.ticketNumber}</h2>
                     <p className="text-sm text-blue-100 mt-1">Service Request Details</p>
@@ -517,14 +517,14 @@ export default function ServiceRequestsPage() {
                 </div>
 
                 {/* Modal Body */}
-                <div className="p-6 space-y-6">
+                <div className="p-6 space-y-3">
                   {/* Customer Information */}
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                    <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                    <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
                       <User className="h-5 w-5" />
                       Customer Information
                     </h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <p className="text-sm text-blue-600">Customer Name</p>
                         <p className="font-semibold text-blue-900">{selectedRequest.customerName}</p>
@@ -537,8 +537,8 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* Issue Details */}
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                    <h3 className="font-bold text-purple-900 mb-4 flex items-center gap-2">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
+                    <h3 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
                       <Package className="h-5 w-5" />
                       Issue Details
                     </h3>
@@ -553,7 +553,7 @@ export default function ServiceRequestsPage() {
                           <p className="font-semibold text-purple-900">{selectedRequest.equipmentModel}</p>
                         </div>
                       )}
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-2">
                         <div>
                           <p className="text-sm text-purple-600">Priority</p>
                           <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${priorityColors[selectedRequest.priority]}`}>
@@ -577,8 +577,8 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* Assignment & Timeline */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                       <h3 className="font-bold text-green-900 mb-3 flex items-center gap-2">
                         <UserCheck className="h-5 w-5" />
                         Assignment
@@ -602,7 +602,7 @@ export default function ServiceRequestsPage() {
                       </div>
                     </div>
 
-                    <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                    <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                       <h3 className="font-bold text-orange-900 mb-3 flex items-center gap-2">
                         <Clock className="h-5 w-5" />
                         Timeline
@@ -631,9 +631,9 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* SLA Status */}
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <h3 className="font-bold text-gray-900 mb-3">SLA Performance</h3>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-2">
                       <div>
                         <p className="text-sm text-gray-600">SLA Status</p>
                         <span className={`inline-flex text-xs font-medium ${slaStatusColors[selectedRequest.slaStatus]}`}>
@@ -657,7 +657,7 @@ export default function ServiceRequestsPage() {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+                <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
                   {!selectedRequest.assignedTo && (
                     <button
                       onClick={() => {
@@ -695,10 +695,10 @@ export default function ServiceRequestsPage() {
 
           {/* Assign Engineer Modal */}
           {showAssignModal && selectedRequest && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
               <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 {/* Modal Header */}
-                <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg z-10">
+                <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg z-10">
                   <div>
                     <h2 className="text-xl font-bold">Assign Service Engineer</h2>
                     <p className="text-sm text-green-100 mt-1">{selectedRequest.ticketNumber}</p>
@@ -712,9 +712,9 @@ export default function ServiceRequestsPage() {
                 </div>
 
                 {/* Modal Body */}
-                <div className="p-6 space-y-6">
+                <div className="p-6 space-y-3">
                   {/* Issue Summary */}
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <h3 className="font-bold text-gray-900 mb-3">Request Summary</h3>
                     <div className="space-y-2">
                       <div>
@@ -725,7 +725,7 @@ export default function ServiceRequestsPage() {
                         <p className="text-sm text-gray-600">Issue</p>
                         <p className="font-semibold text-gray-900">{selectedRequest.issueDescription}</p>
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-2">
                         <div>
                           <p className="text-sm text-gray-600">Priority</p>
                           <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${priorityColors[selectedRequest.priority]}`}>
@@ -741,7 +741,7 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* Assignment Form */}
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Select Engineer <span className="text-red-500">*</span>
@@ -796,7 +796,7 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* Info Box */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                       <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <div>
@@ -812,7 +812,7 @@ export default function ServiceRequestsPage() {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+                <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
                   <button
                     onClick={() => setShowAssignModal(false)}
                     className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
@@ -834,10 +834,10 @@ export default function ServiceRequestsPage() {
 
           {/* Update Status Modal */}
           {showStatusModal && selectedRequest && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
               <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 {/* Modal Header */}
-                <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg z-10">
+                <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg z-10">
                   <div>
                     <h2 className="text-xl font-bold">Update Request Status</h2>
                     <p className="text-sm text-purple-100 mt-1">{selectedRequest.ticketNumber}</p>
@@ -851,9 +851,9 @@ export default function ServiceRequestsPage() {
                 </div>
 
                 {/* Modal Body */}
-                <div className="p-6 space-y-6">
+                <div className="p-6 space-y-3">
                   {/* Current Status */}
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <h3 className="font-bold text-gray-900 mb-3">Current Status</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Status:</span>
@@ -864,7 +864,7 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* Status Update Form */}
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         New Status <span className="text-red-500">*</span>
@@ -915,7 +915,7 @@ export default function ServiceRequestsPage() {
                   </div>
 
                   {/* Info Box */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                       <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <div>
@@ -931,7 +931,7 @@ export default function ServiceRequestsPage() {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+                <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
                   <button
                     onClick={() => setShowStatusModal(false)}
                     className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"

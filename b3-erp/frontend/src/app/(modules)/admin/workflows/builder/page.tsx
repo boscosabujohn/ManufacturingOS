@@ -243,7 +243,7 @@ export default function WorkflowBuilderPage() {
 
     if (error) {
         return (
-            <div className="min-h-screen bg-gray-50 p-6">
+            <div className="min-h-screen bg-gray-50 p-3">
                 <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                     <p className="font-medium">Error loading workflow</p>
                     <p className="text-sm">{error}</p>
@@ -256,9 +256,9 @@ export default function WorkflowBuilderPage() {
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
             <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-                <div className="px-6 py-4">
+                <div className="px-3 py-2">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                             <button
                                 onClick={() => router.push('/admin/workflows')}
                                 className="p-2 hover:bg-gray-100 rounded-lg"
@@ -295,13 +295,13 @@ export default function WorkflowBuilderPage() {
                 </div>
             </div>
 
-            <div className="p-6 w-full space-y-6">
+            <div className="p-6 w-full space-y-3">
                 {/* Basic Info */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <h2 className="text-lg font-semibold text-gray-900 mb-2">
                         Workflow Information
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Workflow Name <span className="text-red-500">*</span>
@@ -353,8 +353,8 @@ export default function WorkflowBuilderPage() {
                 </div>
 
                 {/* Approval Levels */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="flex items-center justify-between mb-2">
                         <h2 className="text-lg font-semibold text-gray-900">Approval Levels</h2>
                         <button
                             onClick={addLevel}
@@ -382,7 +382,7 @@ export default function WorkflowBuilderPage() {
                             </button>
                         </div>
                     ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {workflow.levels.map((level, index) => (
                                 <div
                                     key={level.id}
@@ -390,7 +390,7 @@ export default function WorkflowBuilderPage() {
                                 >
                                     {/* Level Header */}
                                     <div
-                                        className={`flex items-center justify-between p-4 cursor-pointer transition-colors ${expandedLevel === level.id ? 'bg-blue-50' : 'bg-gray-50 hover:bg-gray-100'
+                                        className={`flex items-center justify-between p-3 cursor-pointer transition-colors ${expandedLevel === level.id ? 'bg-blue-50' : 'bg-gray-50 hover:bg-gray-100'
                                             }`}
                                         onClick={() =>
                                             setExpandedLevel(expandedLevel === level.id ? null : level.id)
@@ -450,7 +450,7 @@ export default function WorkflowBuilderPage() {
 
                                     {/* Level Content */}
                                     {expandedLevel === level.id && (
-                                        <div className="p-6 bg-white border-t space-y-6">
+                                        <div className="p-6 bg-white border-t space-y-3">
                                             {/* Approver Type */}
                                             <div>
                                                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -499,7 +499,7 @@ export default function WorkflowBuilderPage() {
                                             </div>
 
                                             {/* Required Count & SLA */}
-                                            <div className="grid grid-cols-2 gap-4">
+                                            <div className="grid grid-cols-2 gap-2">
                                                 <div>
                                                     <label className="block text-sm font-medium text-gray-700 mb-2">
                                                         Required Approvals
@@ -571,13 +571,13 @@ export default function WorkflowBuilderPage() {
 
                 {/* Preview */}
                 {showPreview && workflow.levels.length > 0 && (
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
-                        <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white rounded-lg border border-gray-200 p-3">
+                        <h2 className="text-lg font-semibold text-gray-900 mb-2">
                             Workflow Preview
                         </h2>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {workflow.levels.map((level, index) => (
-                                <div key={level.id} className="flex items-start gap-4">
+                                <div key={level.id} className="flex items-start gap-2">
                                     <div className="flex flex-col items-center">
                                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-medium">
                                             {level.sequence}

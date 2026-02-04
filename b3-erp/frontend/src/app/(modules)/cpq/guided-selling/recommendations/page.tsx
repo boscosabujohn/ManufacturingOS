@@ -348,10 +348,10 @@ export default function RecommendationsPage() {
   const aiGenerated = recommendations.filter(r => r.aiGenerated).length;
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -377,8 +377,8 @@ export default function RecommendationsPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Recommendations</span>
             <Sparkles className="h-5 w-5 text-blue-600" />
@@ -387,7 +387,7 @@ export default function RecommendationsPage() {
           <div className="text-xs text-blue-700 mt-1">{aiGenerated} AI-generated</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Avg Confidence</span>
             <Target className="h-5 w-5 text-green-600" />
@@ -396,7 +396,7 @@ export default function RecommendationsPage() {
           <div className="text-xs text-green-700 mt-1">Prediction accuracy</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-red-900">High Priority</span>
             <TrendingUp className="h-5 w-5 text-red-600" />
@@ -405,7 +405,7 @@ export default function RecommendationsPage() {
           <div className="text-xs text-red-700 mt-1">Immediate action</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Potential Value</span>
             <BarChart3 className="h-5 w-5 text-purple-600" />
@@ -418,8 +418,8 @@ export default function RecommendationsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -455,14 +455,14 @@ export default function RecommendationsPage() {
       </div>
 
       {/* Recommendations List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecommendations.map((rec) => {
           const typeInfo = getTypeBadge(rec.recommendationType);
           const TypeIcon = typeInfo.icon;
           return (
             <div key={rec.id} className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
               <div className="p-5">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <Users className="h-5 w-5 text-gray-400" />
@@ -486,14 +486,14 @@ export default function RecommendationsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {/* Product Info */}
                   <div className="md:col-span-2 space-y-3">
-                    <div className="flex items-start gap-3 bg-blue-50 rounded-lg p-4">
+                    <div className="flex items-start gap-3 bg-blue-50 rounded-lg p-3">
                       <Package className="h-6 w-6 text-blue-600 mt-1" />
                       <div className="flex-1">
                         <h4 className="font-semibold text-gray-900 mb-1">{rec.productName}</h4>
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
                           <span>{rec.productCode}</span>
                           <span>•</span>
                           <span>{rec.category}</span>

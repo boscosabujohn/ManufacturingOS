@@ -90,7 +90,7 @@ export default function KPITrackingPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -101,15 +101,15 @@ export default function KPITrackingPage() {
         </div>
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-3">
         {kpis.map((kpi) => {
           const progress = calculateProgress(kpi.currentValue, kpi.targetValue);
           return (
             <div
               key={kpi.id}
-              className="bg-white p-6 rounded-xl shadow-sm border border-gray-200"
+              className="bg-white p-3 rounded-xl shadow-sm border border-gray-200"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                 <div>
                   <div className="flex items-center gap-3">
                     <h3 className="text-lg font-semibold text-gray-900">{kpi.title}</h3>
@@ -161,7 +161,7 @@ export default function KPITrackingPage() {
 
       {/* Update Modal */}
       {selectedKPI && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-md w-full">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Update Progress</h2>
@@ -173,7 +173,7 @@ export default function KPITrackingPage() {
               </button>
             </div>
 
-            <form onSubmit={handleUpdate} className="p-6 space-y-4">
+            <form onSubmit={handleUpdate} className="p-6 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Current Value ({selectedKPI.unit})

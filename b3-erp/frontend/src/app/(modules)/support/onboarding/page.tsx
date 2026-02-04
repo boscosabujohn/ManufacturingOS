@@ -79,9 +79,9 @@ export default function OnboardingPage() {
     const progress = Math.round((completedCount / tasks.length) * 100);
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
             <div className="mb-8 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                     <Link href="/support" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                         <span className="text-gray-700">Back</span>
@@ -91,7 +91,7 @@ export default function OnboardingPage() {
                         <p className="text-gray-600 mt-1">Track your setup progress and get started quickly</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-4 bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm">
+                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg border border-gray-200 shadow-sm">
                     <div className="text-right">
                         <p className="text-sm font-medium text-gray-900">{progress}% Complete</p>
                         <p className="text-xs text-gray-500">{completedCount} of {tasks.length} tasks</p>
@@ -125,16 +125,16 @@ export default function OnboardingPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Task List */}
-                <div className="lg:col-span-2 space-y-4">
+                <div className="lg:col-span-2 space-y-2">
                     {tasks.map((task) => (
                         <div
                             key={task.id}
-                            className={`bg-white rounded-xl p-6 border transition-all duration-200 ${task.status === 'completed' ? 'border-green-200 bg-green-50/30' :
+                            className={`bg-white rounded-xl p-3 border transition-all duration-200 ${task.status === 'completed' ? 'border-green-200 bg-green-50/30' :
                                     task.status === 'in_progress' ? 'border-blue-200 shadow-md transform scale-[1.01]' :
                                         'border-gray-200 hover:border-blue-300'
                                 }`}
                         >
-                            <div className="flex items-start gap-4">
+                            <div className="flex items-start gap-2">
                                 <button
                                     onClick={() => toggleStatus(task.id)}
                                     className={`mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${task.status === 'completed' ? 'bg-green-500 border-green-500 text-white' :
@@ -157,7 +157,7 @@ export default function OnboardingPage() {
                                         </span>
                                     </div>
                                     <p className="text-gray-600 mb-3">{task.description}</p>
-                                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                                    <div className="flex items-center gap-2 text-sm text-gray-500">
                                         <span className="flex items-center gap-1">
                                             <Play className="w-3 h-3" />
                                             {task.estimatedTime}
@@ -176,10 +176,10 @@ export default function OnboardingPage() {
                 </div>
 
                 {/* Resources Sidebar */}
-                <div className="space-y-6">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                        <h3 className="font-bold text-gray-900 mb-4">Helpful Resources</h3>
-                        <div className="space-y-4">
+                <div className="space-y-3">
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                        <h3 className="font-bold text-gray-900 mb-2">Helpful Resources</h3>
+                        <div className="space-y-2">
                             <Link href="/support/knowledge" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group">
                                 <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-200">
                                     <FileText className="w-5 h-5" />
@@ -210,9 +210,9 @@ export default function OnboardingPage() {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 text-white">
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-3 text-white">
                         <h3 className="font-bold text-lg mb-2">Need Assistance?</h3>
-                        <p className="text-blue-100 text-sm mb-4">
+                        <p className="text-blue-100 text-sm mb-2">
                             Our onboarding specialists are available to help you set up your account.
                         </p>
                         <button className="w-full py-2 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors">

@@ -172,14 +172,14 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats Dashboard */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Quotes</p>
           <p className="text-3xl font-bold">{stats.totalQuotes}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Avg Margin</p>
           <p className="text-3xl font-bold">{stats.avgMargin.toFixed(1)}%</p>
           <div className="flex items-center mt-1">
@@ -191,15 +191,15 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
             <span className="text-xs">Target: {targetMargin}%</span>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Revenue</p>
           <p className="text-3xl font-bold">${(stats.totalRevenue / 1000).toFixed(0)}K</p>
         </div>
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Margin</p>
           <p className="text-3xl font-bold">${(stats.totalMargin / 1000).toFixed(0)}K</p>
         </div>
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Healthy/Critical</p>
           <p className="text-3xl font-bold">
             {stats.healthyQuotes}/{stats.criticalQuotes}
@@ -212,7 +212,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
         <div className="flex border-b border-gray-200">
           <button
             onClick={() => setActiveTab('analysis')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'analysis'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -222,7 +222,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('guardrails')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'guardrails'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -236,7 +236,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
         {activeTab === 'analysis' && (
           <div className="p-6">
             {/* Toolbar */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
                 {['all', 'excellent', 'healthy', 'warning', 'critical'].map((f) => (
                   <button
@@ -263,7 +263,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
             </div>
 
             {/* Quotes List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {filteredQuotes.map((quote) => {
                 const statusConfig = getMarginStatusConfig(quote.status);
                 const trend = getMarginTrend(quote.marginPercent, targetMargin);
@@ -302,7 +302,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
                             <p className="text-sm text-gray-600 mb-3">{quote.customer}</p>
 
                             {/* Margin Metrics */}
-                            <div className="grid grid-cols-4 gap-4 mb-3">
+                            <div className="grid grid-cols-4 gap-2 mb-3">
                               <div className="bg-blue-50 rounded-lg p-3">
                                 <p className="text-xs text-blue-600 mb-1">Revenue</p>
                                 <p className="text-lg font-bold text-blue-900">${quote.totalRevenue.toLocaleString()}</p>
@@ -386,7 +386,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
 
                     {/* Expanded Product Details */}
                     {isExpanded && (
-                      <div className="border-t border-gray-200 p-4 bg-gray-50">
+                      <div className="border-t border-gray-200 p-3 bg-gray-50">
                         <h4 className="text-sm font-semibold text-gray-900 mb-3">Product-Level Margin Analysis</h4>
                         <div className="space-y-2">
                           {quote.products.map((product) => {
@@ -483,7 +483,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
 
             {filteredQuotes.length === 0 && (
               <div className="text-center py-12">
-                <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <BarChart3 className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No quotes found matching your filter</p>
               </div>
             )}
@@ -493,7 +493,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
         {/* Guardrails Tab */}
         {activeTab === 'guardrails' && (
           <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-bold text-gray-900">Margin Protection Rules</h3>
               {onCreateGuardrail && (
                 <button
@@ -514,7 +514,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
                 return (
                   <div
                     key={guardrail.id}
-                    className="bg-white border-2 border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all"
+                    className="bg-white border-2 border-gray-200 rounded-lg p-3 hover:border-blue-400 hover:shadow-md transition-all"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex items-start space-x-4 flex-1">
@@ -610,7 +610,7 @@ export const MarginAnalysis: React.FC<MarginAnalysisProps> = ({
 
             {guardrails.length === 0 && (
               <div className="text-center py-12">
-                <Shield className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <Shield className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No margin guardrails configured</p>
                 {onCreateGuardrail && (
                   <button

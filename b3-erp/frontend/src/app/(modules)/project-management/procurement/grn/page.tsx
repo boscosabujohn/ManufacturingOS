@@ -65,7 +65,7 @@ export default function GRNEntryPage() {
   return (
     <div className="w-full py-2 space-y-3">
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </Button>

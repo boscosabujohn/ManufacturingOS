@@ -193,9 +193,9 @@ export default function ExpiryTrackingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -206,8 +206,8 @@ export default function ExpiryTrackingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Expired</p>
@@ -219,7 +219,7 @@ export default function ExpiryTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Critical</p>
@@ -232,7 +232,7 @@ export default function ExpiryTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Warning</p>
@@ -245,7 +245,7 @@ export default function ExpiryTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Good</p>
@@ -259,8 +259,8 @@ export default function ExpiryTrackingPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
@@ -359,7 +359,7 @@ export default function ExpiryTrackingPage() {
         )}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Expiry Management Guidelines:</h3>
         <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
           <li>Items marked as <strong>Expired</strong> should be quarantined and disposed per regulations</li>

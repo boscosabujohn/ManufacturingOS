@@ -118,11 +118,11 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button onClick={handleBack} className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
               <span className="text-gray-700">Back</span>
@@ -177,23 +177,23 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+        <div className="grid grid-cols-4 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <Calendar className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{leaveRequest.totalDays}</div>
             <div className="text-blue-100 text-sm">Days Requested</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
             <FileText className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{leaveRequest.leaveType}</div>
             <div className="text-purple-100 text-sm">Leave Type</div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <User className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-2xl font-bold mb-1">{leaveRequest.department}</div>
             <div className="text-green-100 text-sm">Department</div>
           </div>
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
             <Clock className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-2xl font-bold mb-1">
               {new Date(leaveRequest.appliedDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
@@ -203,7 +203,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -252,14 +252,14 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
           <div className="p-6">
             {/* Details Tab */}
             {activeTab === 'details' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Employee Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-blue-600" />
                     Employee Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Employee Name</div>
                       <div className="font-semibold text-gray-900">{leaveRequest.employeeName}</div>
@@ -281,11 +281,11 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Leave Details */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-purple-600" />
                     Leave Details
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Leave Type</div>
                       <div className="font-semibold text-gray-900">{leaveRequest.leaveType}</div>
@@ -314,7 +314,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                         })}
                       </div>
                     </div>
-                    <div className="col-span-2 p-4 bg-gray-50 rounded-lg">
+                    <div className="col-span-2 p-3 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-2">Reason</div>
                       <div className="text-gray-900">{leaveRequest.reason}</div>
                     </div>
@@ -323,11 +323,11 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Contact Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <MessageSquare className="w-5 h-5 text-green-600" />
                     Contact Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Contact During Leave</div>
                       <div className="font-semibold text-gray-900">{leaveRequest.contactDuringLeave}</div>
@@ -341,11 +341,11 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Handover Details */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-orange-600" />
                     Handover Details
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Handover To</div>
                       <div className="font-semibold text-gray-900">{leaveRequest.handoverTo}</div>
@@ -360,7 +360,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                 {/* Approval Information */}
                 {leaveRequest.status !== 'pending' && (
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       {leaveRequest.status === 'approved' ? (
                         <CheckCircle2 className="w-5 h-5 text-green-600" />
                       ) : (
@@ -373,7 +373,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                         ? 'bg-green-50 border-green-300'
                         : 'bg-red-50 border-red-300'
                     }`}>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-2">
                         <div>
                           <div className="text-sm text-gray-600 mb-1">
                             {leaveRequest.status === 'approved' ? 'Approved By' : 'Rejected By'}
@@ -400,10 +400,10 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
             {/* History Tab */}
             {activeTab === 'history' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Leave Request History</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Leave Request History</h3>
+                <div className="space-y-2">
                   {leaveHistory.map((item, index) => (
-                    <div key={index} className="flex gap-4">
+                    <div key={index} className="flex gap-2">
                       <div className="flex flex-col items-center">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                           item.type === 'success' ? 'bg-green-100' : 'bg-blue-100'
@@ -432,7 +432,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
             {/* Documents Tab */}
             {activeTab === 'documents' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Attached Documents</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Attached Documents</h3>
                 {leaveRequest.attachments.length > 0 ? (
                   <div className="space-y-3">
                     {leaveRequest.attachments.map((doc, index) => (
@@ -458,29 +458,29 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
             {/* Insights & Analytics Tab */}
             {activeTab === 'insights' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Leave Insights & Analytics</h3>
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Leave Insights & Analytics</h3>
 
                 {/* Leave Balance Forecast */}
                 <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-blue-600" />
                     Leave Balance Forecast
                   </h4>
-                  <div className="grid grid-cols-4 gap-4 mb-6">
-                    <div className="text-center p-4 bg-white rounded-lg">
+                  <div className="grid grid-cols-4 gap-2 mb-3">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-blue-600 mb-1">24</div>
                       <div className="text-sm text-gray-600">Total Annual</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-red-600 mb-1">7</div>
                       <div className="text-sm text-gray-600">Used YTD</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-green-600 mb-1">17</div>
                       <div className="text-sm text-gray-600">Remaining</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-purple-600 mb-1">2</div>
                       <div className="text-sm text-gray-600">Pending</div>
                     </div>
@@ -518,11 +518,11 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Team Availability Heatmap */}
                 <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-green-600" />
                     Team Availability During Leave Period
                   </h4>
-                  <div className="grid grid-cols-7 gap-2 mb-4">
+                  <div className="grid grid-cols-7 gap-2 mb-2">
                     {['22 Jan', '23 Jan', '24 Jan', '25 Jan', '26 Jan', '27 Jan', '28 Jan'].map((date, idx) => (
                       <div key={date} className="text-center">
                         <div className="text-xs text-gray-600 mb-2">{date}</div>
@@ -558,18 +558,18 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Approval Workflow Visualizer */}
                 <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-purple-600" />
                     Approval Workflow Status
                   </h4>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
                       { stage: 'Employee Submission', status: 'completed', user: 'Rajesh Kumar', date: 'Jan 20, 10:15 AM', time: '0h' },
                       { stage: 'Manager Review', status: 'completed', user: 'Sarah Johnson', date: 'Jan 20, 2:30 PM', time: '4h 15m' },
                       { stage: 'HR Verification', status: 'completed', user: 'Priya Patel', date: 'Jan 20, 3:45 PM', time: '1h 15m' },
                       { stage: 'Final Approval', status: 'completed', user: 'Sarah Johnson', date: 'Jan 20, 4:00 PM', time: '15m' },
                     ].map((step, idx) => (
-                      <div key={idx} className="flex gap-4">
+                      <div key={idx} className="flex gap-2">
                         <div className="flex flex-col items-center">
                           <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                             step.status === 'completed' ? 'bg-green-100' :
@@ -596,7 +596,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 p-4 bg-white rounded-lg border border-green-200">
+                  <div className="mt-4 p-3 bg-white rounded-lg border border-green-200">
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="font-semibold text-gray-900">Total Approval Time</div>
@@ -609,7 +609,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Policy Compliance Check */}
                 <div className="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-orange-600" />
                     Policy Compliance Check
                   </h4>
@@ -663,11 +663,11 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
 
                 {/* Calendar Integration Preview */}
                 <div className="p-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Calendar className="w-5 h-5 text-indigo-600" />
                     Calendar Integration
                   </h4>
-                  <div className="grid grid-cols-7 gap-2 mb-4">
+                  <div className="grid grid-cols-7 gap-2 mb-2">
                     <div className="text-center font-semibold text-gray-700 text-xs">Sun</div>
                     <div className="text-center font-semibold text-gray-700 text-xs">Mon</div>
                     <div className="text-center font-semibold text-gray-700 text-xs">Tue</div>
@@ -692,7 +692,7 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                       );
                     })}
                   </div>
-                  <div className="flex items-center justify-center gap-6 text-sm">
+                  <div className="flex items-center justify-center gap-3 text-sm">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 bg-red-500 rounded"></div>
                       <span className="text-gray-700">Leave Days</span>

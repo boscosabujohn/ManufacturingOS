@@ -64,7 +64,7 @@ export default function EnrollmentPage() {
   );
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -75,11 +75,11 @@ export default function EnrollmentPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Program Selection */}
-        <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="lg:col-span-1 space-y-3">
+          <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-400" />
               Select Session
             </h3>
@@ -117,9 +117,9 @@ export default function EnrollmentPage() {
         </div>
 
         {/* Employee Selection */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 h-full flex flex-col">
-            <div className="flex justify-between items-center mb-6">
+        <div className="lg:col-span-2 space-y-3">
+          <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 h-full flex flex-col">
+            <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <Users className="h-5 w-5 text-gray-400" />
                 Select Employees
@@ -136,7 +136,7 @@ export default function EnrollmentPage() {
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto mb-6">
+            <div className="flex-1 overflow-y-auto mb-3">
               <table className="w-full">
                 <thead className="sticky top-0 bg-white">
                   <tr className="border-b border-gray-100 text-left text-sm text-gray-500">

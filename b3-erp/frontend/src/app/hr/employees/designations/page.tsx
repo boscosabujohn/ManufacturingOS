@@ -170,32 +170,32 @@ export default function DesignationsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2"><Briefcase className="h-8 w-8 text-purple-600" />Designations</h1>
         <p className="text-gray-600 mt-2">Manage job positions, roles, and hierarchy</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Total Designations</p><p className="text-2xl font-bold text-purple-600">{stats.total}</p></div>
           <Briefcase className="w-8 h-8 text-purple-400" /></div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Total Employees</p><p className="text-2xl font-bold text-indigo-600">{stats.totalEmployees}</p></div>
           <Users className="w-8 h-8 text-indigo-400" /></div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Avg Salary</p><p className="text-xl font-bold text-green-600">₹{(stats.avgSalaryOverall/100000).toFixed(1)}L</p></div>
           <DollarSign className="w-8 h-8 text-green-400" /></div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Active Roles</p><p className="text-2xl font-bold text-blue-600">{mockDesignations.filter(d => d.status === 'active').length}</p></div>
           <Award className="w-8 h-8 text-blue-400" /></div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-semibold text-gray-700">All Designations</h2>
             <span className="text-sm text-gray-500">({filteredData.length} designations)</span>
@@ -210,8 +210,8 @@ export default function DesignationsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative"><Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input type="text" placeholder="Search by title or code..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
@@ -223,7 +223,7 @@ export default function DesignationsPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4 pt-4 border-t">
             <div><label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
               <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
                 {departments.map(dept => <option key={dept} value={dept}>{dept === 'all' ? 'All Departments' : dept}</option>)}

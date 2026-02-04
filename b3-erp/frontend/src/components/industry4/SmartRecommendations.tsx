@@ -194,10 +194,10 @@ function RecommendationCard({
 
       {/* Content */}
       <div className="p-4">
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{recommendation.description}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{recommendation.description}</p>
 
         {/* Rationale */}
-        <div className="mb-4 p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
+        <div className="mb-2 p-3 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
           <div className="flex items-center gap-2 mb-1">
             <Lightbulb className="w-4 h-4 text-indigo-600" />
             <span className="text-sm font-medium text-indigo-600">AI Rationale</span>
@@ -206,7 +206,7 @@ function RecommendationCard({
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-3 gap-3 mb-4">
+        <div className="grid grid-cols-3 gap-3 mb-2">
           {recommendation.estimatedSavings && (
             <div className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg text-center">
               <p className="text-lg font-bold text-green-600">${recommendation.estimatedSavings.toLocaleString()}</p>
@@ -227,7 +227,7 @@ function RecommendationCard({
 
         {/* Affected Items */}
         {recommendation.affectedItems.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-2">
             <p className="text-xs text-gray-500 mb-2">Affected Items:</p>
             <div className="flex flex-wrap gap-1">
               {recommendation.affectedItems.map((item, index) => (
@@ -313,7 +313,7 @@ function SummaryStats({ recommendations }: { recommendations: Recommendation[] }
   );
 
   return (
-    <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-4 gap-2 mb-3">
       <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl">
         <p className="text-2xl font-bold text-indigo-600">{recommendations.length}</p>
         <p className="text-sm text-gray-600">Total Suggestions</p>
@@ -497,7 +497,7 @@ export function SmartRecommendations({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -520,7 +520,7 @@ export function SmartRecommendations({
         <SummaryStats recommendations={recommendations} />
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center gap-2 mb-6">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
           <Filter className="w-4 h-4 text-gray-400" />
           <button
             onClick={() => setFilter('all')}
@@ -551,7 +551,7 @@ export function SmartRecommendations({
         </div>
 
         {/* Recommendations List */}
-        <div className="space-y-4 max-h-[600px] overflow-y-auto">
+        <div className="space-y-2 max-h-[600px] overflow-y-auto">
           {filteredRecommendations.map(recommendation => (
             <RecommendationCard
               key={recommendation.id}
@@ -563,7 +563,7 @@ export function SmartRecommendations({
 
           {filteredRecommendations.length === 0 && (
             <div className="text-center py-12 text-gray-500">
-              <Lightbulb className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+              <Lightbulb className="w-12 h-12 mb-3 text-gray-300" />
               <p>No recommendations for this category</p>
             </div>
           )}

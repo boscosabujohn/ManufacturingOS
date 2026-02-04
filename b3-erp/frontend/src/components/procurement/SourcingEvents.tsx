@@ -404,10 +404,10 @@ const SourcingEvents: React.FC = () => {
   };
 
   const renderEvents = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Events</p>
@@ -419,7 +419,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Value</p>
@@ -431,7 +431,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Participants</p>
@@ -443,7 +443,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Est. Savings</p>
@@ -462,23 +462,23 @@ const SourcingEvents: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Event</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Timeline</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Estimated Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Responses</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Best Bid</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Savings</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Owner</th>
-                <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Event</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Timeline</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Estimated Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Responses</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Best Bid</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Savings</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Owner</th>
+                <th className="px-3 py-2 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {events.map((event) => (
                 <tr key={event.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <FileSearch className="h-5 w-5 text-gray-400 mr-2" />
                       <div>
@@ -487,18 +487,18 @@ const SourcingEvents: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="px-2 py-1 text-xs font-semibold rounded bg-blue-100 text-blue-800 uppercase">
                       {event.type}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{event.category}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{event.category}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getEventStatusColor(event.status)}`}>
                       {event.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-1" />
                       <div>
@@ -507,20 +507,20 @@ const SourcingEvents: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(event.estimatedValue / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {event.responsesReceived} / {event.participantsInvited}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-green-600">
                     {event.currentBestBid ? `$${(event.currentBestBid / 1000000).toFixed(2)}M` : '-'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-green-600">
                     {event.savingsEstimate ? `$${(event.savingsEstimate / 1000).toFixed(0)}K` : '-'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{event.owner}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{event.owner}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex items-center justify-end space-x-2">
                       <button
                         onClick={() => handleViewEventDetails(event)}
@@ -591,10 +591,10 @@ const SourcingEvents: React.FC = () => {
   );
 
   const renderBids = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Bid Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Bids</p>
@@ -604,7 +604,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Shortlisted</p>
@@ -616,7 +616,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Awarded</p>
@@ -628,7 +628,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg. Score</p>
@@ -647,17 +647,17 @@ const SourcingEvents: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Event</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Bid Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Submitted</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Technical</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Commercial</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Overall</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Lead Time</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Terms</th>
-                <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Event</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Bid Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Submitted</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Technical</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Commercial</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Overall</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Lead Time</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Terms</th>
+                <th className="px-3 py-2 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -665,20 +665,20 @@ const SourcingEvents: React.FC = () => {
                 const eventData = events.find(e => e.id === bid.eventId);
                 return (
                 <tr key={bid.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {events.find(e => e.id === bid.eventId)?.eventNumber}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{bid.supplier}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{bid.supplier}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     ${(bid.bidAmount / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{bid.submittedDate}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{bid.submittedDate}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getBidStatusColor(bid.status)}`}>
                       {bid.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -689,7 +689,7 @@ const SourcingEvents: React.FC = () => {
                       <span className="text-sm text-gray-700">{bid.technicalScore}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -700,14 +700,14 @@ const SourcingEvents: React.FC = () => {
                       <span className="text-sm text-gray-700">{bid.commercialScore}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${bid.overallScore >= 90 ? 'text-green-600' : bid.overallScore >= 75 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {bid.overallScore}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{bid.leadTime} days</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{bid.paymentTerms}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{bid.leadTime} days</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{bid.paymentTerms}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <button
                       onClick={() => handleViewBid(bid, eventData)}
                       className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors text-xs"
@@ -728,10 +728,10 @@ const SourcingEvents: React.FC = () => {
   );
 
   const renderAuctions = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Auction Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Live Auctions</p>
@@ -743,7 +743,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Bids</p>
@@ -755,7 +755,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Participants</p>
@@ -767,7 +767,7 @@ const SourcingEvents: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Savings</p>
@@ -781,7 +781,7 @@ const SourcingEvents: React.FC = () => {
       </div>
 
       {/* Auctions List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {auctions.map((auction) => (
           <div key={auction.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className={`p-4 ${auction.status === 'live' ? 'bg-gradient-to-r from-green-600 to-emerald-600' : auction.status === 'upcoming' ? 'bg-gradient-to-r from-blue-600 to-cyan-600' : 'bg-gradient-to-r from-gray-600 to-slate-600'} text-white`}>
@@ -867,9 +867,9 @@ const SourcingEvents: React.FC = () => {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Gavel className="h-8 w-8" />

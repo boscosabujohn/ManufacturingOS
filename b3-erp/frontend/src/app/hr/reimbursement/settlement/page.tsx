@@ -279,7 +279,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <DollarSign className="h-8 w-8 text-indigo-600" />
           Reimbursement Settlement
@@ -288,8 +288,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Claims</p>
@@ -298,7 +298,7 @@ export default function Page() {
             <User className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Claimed</p>
@@ -307,7 +307,7 @@ export default function Page() {
             <Calculator className="h-10 w-10 text-gray-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Approved</p>
@@ -316,7 +316,7 @@ export default function Page() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Rejected</p>
@@ -325,7 +325,7 @@ export default function Page() {
             <XCircle className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Net Payable</p>
@@ -334,7 +334,7 @@ export default function Page() {
             <Wallet className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Approval Rate</p>
@@ -343,7 +343,7 @@ export default function Page() {
             <TrendingDown className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Partial</p>
@@ -355,7 +355,7 @@ export default function Page() {
       </div>
 
       {/* Export Actions */}
-      <div className="mb-6 flex justify-end gap-3">
+      <div className="mb-3 flex justify-end gap-3">
         <button
           onClick={handleExportToExcel}
           className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
@@ -373,8 +373,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Type:</label>
             <select
@@ -414,9 +414,9 @@ export default function Page() {
       <DataTable data={filteredReimbursements} columns={columns} />
 
       {/* Settlement Analysis */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Settlement Type Distribution</h3>
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Settlement Type Distribution</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
               <div>
@@ -457,8 +457,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Rejection Reasons</h3>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Rejection Reasons</h3>
           <div className="space-y-3">
             <div className="p-3 bg-red-50 rounded-lg">
               <div className="flex items-start gap-2">
@@ -505,7 +505,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-indigo-900 mb-2">Settlement Process</h3>
         <ul className="text-sm text-indigo-800 space-y-1">
           <li>• All settlements are reviewed and finalized by finance team before payment</li>
@@ -520,8 +520,8 @@ export default function Page() {
       {/* Details Modal */}
       {showDetailsModal && selectedClaim && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-bold text-gray-900">Settlement Details</h2>
               <button
                 onClick={() => setShowDetailsModal(false)}
@@ -531,9 +531,9 @@ export default function Page() {
               </button>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Claim Number</p>
                   <p className="font-semibold text-gray-900">{selectedClaim.claimNumber}</p>
@@ -560,7 +560,7 @@ export default function Page() {
               </div>
 
               {/* Settlement Breakdown */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-indigo-200">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-indigo-200">
                 <h3 className="font-semibold text-gray-900 mb-3">Settlement Breakdown</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
@@ -592,7 +592,7 @@ export default function Page() {
 
               {/* Rejection Reason */}
               {selectedClaim.rejectionReason && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-start gap-2">
                     <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                     <div>
@@ -604,7 +604,7 @@ export default function Page() {
               )}
 
               {/* Review Info */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Submitted Date</p>
                   <p className="font-semibold text-gray-900">{new Date(selectedClaim.submittedDate).toLocaleDateString('en-IN')}</p>

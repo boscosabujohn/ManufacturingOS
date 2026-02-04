@@ -45,9 +45,9 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
   const [format, setFormat] = useState<'text' | 'excel'>('text');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <div>
             <h3 className="text-xl font-bold text-gray-900">Download ECR File</h3>
             <p className="text-sm text-gray-600 mt-1">Electronic Challan cum Return - {pfMonth.monthYear}</p>
@@ -60,14 +60,14 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* ECR Summary */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h4 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
               <FileText className="h-5 w-5" />
               ECR File Details
             </h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-blue-700 mb-1">Wage Month</p>
                 <p className="font-semibold text-blue-900">{pfMonth.monthYear}</p>
@@ -99,7 +99,7 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Select ECR Format</label>
             <div className="space-y-3">
-              <label className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
+              <label className="flex items-start gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
                 <input
                   type="radio"
                   value="text"
@@ -116,7 +116,7 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
                 </div>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
+              <label className="flex items-start gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
                 <input
                   type="radio"
                   value="excel"
@@ -138,7 +138,7 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
           {/* ECR Contents Preview */}
           <div>
             <h4 className="font-semibold text-gray-900 mb-3">ECR File Contents</h4>
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="space-y-3 text-sm">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
@@ -166,7 +166,7 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
           </div>
 
           {/* Important Notes */}
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-start gap-3">
               <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -210,9 +210,9 @@ function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFCon
 
 function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContributionMonth; onClose: () => void; formatCurrency: (amount: number) => string }) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50 overflow-y-auto">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <div>
             <h3 className="text-xl font-bold text-gray-900">PF Challan</h3>
             <p className="text-sm text-gray-600 mt-1">Payment Details for {pfMonth.monthYear}</p>
@@ -225,7 +225,7 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Company Header */}
           <div className="text-center border-b border-gray-200 pb-6">
             <div className="flex items-center justify-center gap-3 mb-3">
@@ -243,9 +243,9 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
           </div>
 
           {/* Challan Details */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h4 className="font-semibold text-blue-900 mb-3">Challan Details</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-blue-700">Wage Month</p>
                 <p className="font-semibold text-blue-900">{pfMonth.monthYear}</p>
@@ -267,7 +267,7 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
 
           {/* Contribution Breakdown */}
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Contribution Breakdown</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Contribution Breakdown</h4>
             <div className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
               <table className="w-full">
                 <thead className="bg-gray-100">
@@ -321,9 +321,9 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
           {/* Bank Details */}
           <div>
             <h4 className="font-semibold text-gray-900 mb-3">Payment Instructions</h4>
-            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
               <div className="space-y-3 text-sm text-green-900">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-green-700 font-medium">Payable To</p>
                     <p className="font-semibold">EPFO - Regional PF Commissioner</p>
@@ -347,7 +347,7 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
           </div>
 
           {/* Important Notes */}
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-start gap-3">
               <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -365,7 +365,7 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
 
           {/* Declaration */}
           <div className="border-t border-gray-200 pt-4">
-            <div className="space-y-4 text-sm text-gray-700">
+            <div className="space-y-2 text-sm text-gray-700">
               <p>
                 <strong>Declaration:</strong> I hereby declare that the particulars given above are true and correct to the best of my knowledge and belief.
               </p>
@@ -572,14 +572,14 @@ export default function PFContributionPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">PF Contribution</h1>
         <p className="text-sm text-gray-600 mt-1">Monthly Provident Fund contribution calculations</p>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">{mockPFMonth.monthYear}</h2>
             <p className="text-sm text-gray-600 mt-1">Pay Period: {mockPFMonth.payPeriod}</p>
@@ -595,8 +595,8 @@ export default function PFContributionPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employees</p>
@@ -606,7 +606,7 @@ export default function PFContributionPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employee Share</p>
@@ -616,7 +616,7 @@ export default function PFContributionPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employer Share</p>
@@ -626,7 +626,7 @@ export default function PFContributionPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Payable</p>
@@ -638,32 +638,32 @@ export default function PFContributionPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-xs font-medium text-blue-600 mb-1">Pension Fund (EPS)</p>
           <p className="text-xl font-bold text-blue-900">{formatCurrency(mockPFMonth.totalPensionFund)}</p>
           <p className="text-xs text-blue-700 mt-1">8.33% of Basic</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <p className="text-xs font-medium text-green-600 mb-1">EPF Balance</p>
           <p className="text-xl font-bold text-green-900">{formatCurrency(mockPFMonth.totalEPF)}</p>
           <p className="text-xs text-green-700 mt-1">3.67% of Basic</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <p className="text-xs font-medium text-purple-600 mb-1">EDLI Charges</p>
           <p className="text-xl font-bold text-purple-900">{formatCurrency(mockPFMonth.totalEDLI)}</p>
           <p className="text-xs text-purple-700 mt-1">0.5% of Basic</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <p className="text-xs font-medium text-orange-600 mb-1">Admin Charges</p>
           <p className="text-xl font-bold text-orange-900">{formatCurrency(mockPFMonth.totalAdminCharges)}</p>
           <p className="text-xs text-orange-700 mt-1">0.5% of Basic</p>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <p className="text-xs font-medium text-indigo-600 mb-1">Due Date</p>
           <p className="text-sm font-bold text-indigo-900 mt-1">
             {new Date(mockPFMonth.dueDate).toLocaleDateString('en-IN', {
@@ -676,8 +676,8 @@ export default function PFContributionPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -716,10 +716,10 @@ export default function PFContributionPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map(record => (
-          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{record.employeeName}</h3>
@@ -740,8 +740,8 @@ export default function PFContributionPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Salary Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -755,7 +755,7 @@ export default function PFContributionPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">Employee Share</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -771,7 +771,7 @@ export default function PFContributionPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h4 className="text-xs font-semibold text-purple-900 mb-3">Employer Share</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -791,7 +791,7 @@ export default function PFContributionPage() {
                 </div>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="text-xs font-semibold text-orange-900 mb-3">Other Charges</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -815,7 +815,7 @@ export default function PFContributionPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">PF Contribution Guidelines (India)</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>Employee Contribution:</strong> 12% of Basic + DA (deducted from salary)</li>

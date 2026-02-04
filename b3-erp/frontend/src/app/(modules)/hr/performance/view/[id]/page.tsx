@@ -182,11 +182,11 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -217,8 +217,8 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Star className="w-8 h-8 opacity-80" />
             </div>
@@ -226,7 +226,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
             <div className="text-yellow-100 text-sm mt-1">Overall Rating</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Award className="w-8 h-8 opacity-80" />
             </div>
@@ -234,7 +234,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
             <div className="text-green-100 text-sm mt-1">Key Achievements</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
             </div>
@@ -242,7 +242,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
             <div className="text-blue-100 text-sm mt-1">Goals Set</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Calendar className="w-8 h-8 opacity-80" />
             </div>
@@ -254,7 +254,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
         </div>
 
         {/* Status Banner */}
-        <div className={`px-4 py-3 rounded-lg border mb-6 ${getStatusColor(review.status)}`}>
+        <div className={`px-4 py-3 rounded-lg border mb-3 ${getStatusColor(review.status)}`}>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-5 h-5" />
             <span className="font-semibold">
@@ -269,7 +269,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -318,14 +318,14 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
           <div className="p-6">
             {/* Overview Tab */}
             {activeTab === 'overview' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Employee Information */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-blue-600" />
                     Employee Information
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="text-sm text-gray-600">Employee ID</label>
                       <p className="font-semibold text-gray-900">{review.employeeId}</p>
@@ -353,11 +353,11 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
 
                 {/* Review Details */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-blue-600" />
                     Review Details
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="text-sm text-gray-600">Review Period</label>
                       <p className="font-semibold text-gray-900">{review.reviewPeriod}</p>
@@ -395,11 +395,11 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
 
                 {/* Overall Rating */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Star className="w-5 h-5 text-yellow-500" />
                     Overall Rating
                   </h3>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     {renderStars(review.overallRating)}
                     <span className="text-2xl font-bold text-gray-900">{review.overallRating.toFixed(1)}</span>
                     <span className="text-gray-500">/ 5.0</span>
@@ -407,7 +407,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
                 </div>
 
                 {/* Quick Stats */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <p className="text-sm text-blue-700 mb-1">Technical Skills</p>
                     <p className="text-2xl font-bold text-blue-900">{review.technicalSkills.toFixed(1)}</p>
@@ -430,7 +430,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
 
             {/* Detailed Ratings Tab */}
             {activeTab === 'ratings' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {[
                   { label: 'Technical Skills', value: review.technicalSkills, icon: TrendingUp },
                   { label: 'Communication', value: review.communication, icon: MessageSquare },
@@ -465,7 +465,7 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
 
             {/* Feedback & Goals Tab */}
             {activeTab === 'feedback' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Strengths */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
@@ -566,11 +566,11 @@ export default function ViewPerformancePage({ params }: { params: { id: string }
 
             {/* Activity Tab */}
             {activeTab === 'activity' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {activities.map((activity, index) => (
                   <div
                     key={activity.id}
-                    className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200"
+                    className="flex gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200"
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">

@@ -143,7 +143,7 @@ export default function MyTrainingsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <User className="h-8 w-8 text-purple-600" />
           My Trainings
@@ -152,8 +152,8 @@ export default function MyTrainingsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Trainings</p>
@@ -162,7 +162,7 @@ export default function MyTrainingsPage() {
             <BookOpen className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -171,7 +171,7 @@ export default function MyTrainingsPage() {
             <TrendingUp className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -180,7 +180,7 @@ export default function MyTrainingsPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Upcoming</p>
@@ -189,7 +189,7 @@ export default function MyTrainingsPage() {
             <Calendar className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Training Hours</p>
@@ -198,7 +198,7 @@ export default function MyTrainingsPage() {
             <Clock className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Certifications</p>
@@ -211,7 +211,7 @@ export default function MyTrainingsPage() {
 
       {/* Alert for ongoing trainings */}
       {stats.ongoing > 0 && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-yellow-600" />
             <div>
@@ -225,8 +225,8 @@ export default function MyTrainingsPage() {
       )}
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Filter by Status:</label>
           <select
             value={selectedStatus}
@@ -244,7 +244,7 @@ export default function MyTrainingsPage() {
 
       {/* Trainings Table */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Enrolled Programs</h3>
         </div>
         <DataTable data={filteredTrainings} columns={columns} />
@@ -252,16 +252,16 @@ export default function MyTrainingsPage() {
 
       {/* Completed Certifications */}
       {stats.certifications > 0 && (
-        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Award className="h-5 w-5 text-purple-600" />
             Earned Certifications
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {mockTrainings
               .filter(t => t.status === 'completed' && t.certification)
               .map(training => (
-                <div key={training.id} className="border-2 border-purple-200 rounded-lg p-4 bg-purple-50">
+                <div key={training.id} className="border-2 border-purple-200 rounded-lg p-3 bg-purple-50">
                   <div className="flex items-start gap-3">
                     <Award className="h-8 w-8 text-purple-600 flex-shrink-0" />
                     <div>
@@ -282,7 +282,7 @@ export default function MyTrainingsPage() {
       )}
 
       {/* Info Box */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Training Participation Guidelines</h3>
         <ul className="text-sm text-purple-800 space-y-1">
           <li>• Maintain at least 80% attendance to be eligible for certification</li>

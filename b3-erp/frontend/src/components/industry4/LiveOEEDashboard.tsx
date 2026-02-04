@@ -287,7 +287,7 @@ export function LiveOEEDashboard({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -321,7 +321,7 @@ export function LiveOEEDashboard({
 
       {/* Gauges */}
       <div className="p-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <CircularGauge
             value={oeeData.availability}
             target={95}
@@ -359,7 +359,7 @@ export function LiveOEEDashboard({
         {/* Details Section */}
         {showDetails && (
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
                 <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-1">
                   <Activity className="w-4 h-4" />

@@ -64,8 +64,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <TrendingUp className="h-6 w-6 text-teal-600" />
           Talent Analytics
@@ -73,8 +73,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Succession planning insights and metrics</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Critical Positions</p>
@@ -85,7 +85,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-4">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">Coverage Rate</p>
@@ -96,7 +96,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">High Potential</p>
@@ -108,8 +108,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Avg. Readiness</p>
@@ -120,7 +120,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">Dev. Plans</p>
@@ -131,7 +131,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-red-600 uppercase tracking-wide">At Risk</p>
@@ -143,7 +143,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Department</label>
         <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} className="w-full md:w-96 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
           <option value="all">All Departments</option>
@@ -153,8 +153,8 @@ export default function Page() {
         </select>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Coverage by Department</h3>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Coverage by Department</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -183,9 +183,9 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Readiness Distribution</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Readiness Distribution</h3>
           <div className="space-y-3">
             {analyticsData.readinessDistribution.map((item, idx) => (
               <div key={idx}>
@@ -201,8 +201,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Risk Levels</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Risk Levels</h3>
           <div className="space-y-3">
             {analyticsData.riskLevels.map((item, idx) => {
               const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500'];
@@ -222,11 +222,11 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Talent Pipeline by Level</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Talent Pipeline by Level</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {Object.entries(analyticsData.pipeline).map(([level, data]) => (
-            <div key={level} className="border border-gray-200 rounded-lg p-4">
+            <div key={level} className="border border-gray-200 rounded-lg p-3">
               <h4 className="text-sm font-bold text-gray-900 uppercase mb-3">{level.replace(/([A-Z])/g, ' $1').trim()}</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">

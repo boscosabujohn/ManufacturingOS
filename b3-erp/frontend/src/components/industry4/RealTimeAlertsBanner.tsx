@@ -205,7 +205,7 @@ function AlertItem({
   return (
     <div
       className={`
-        relative p-4 rounded-lg border-2 ${config.borderColor}
+        relative p-3 rounded-lg border-2 ${config.borderColor}
         ${alert.acknowledged ? 'opacity-60' : ''} ${config.bgColor} ${config.textColor}
         transition-all duration-300 hover:shadow-lg
       `}
@@ -469,7 +469,7 @@ export function RealTimeAlertsBanner({
             <div className="p-3 text-center">
               <button
                 onClick={() => setShowAll(!showAll)}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 mx-auto"
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1"
               >
                 <RefreshCw className="w-4 h-4" />
                 {showAll ? 'Show Less' : `Show ${alerts.length - maxVisibleAlerts} More`}

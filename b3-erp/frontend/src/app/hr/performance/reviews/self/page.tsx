@@ -170,7 +170,7 @@ export default function SelfReviewPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <User className="h-8 w-8 text-purple-600" />
           Self Appraisal
@@ -179,8 +179,8 @@ export default function SelfReviewPage() {
       </div>
 
       {/* Header Info */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
             <p className="text-sm text-gray-600">Employee</p>
             <p className="text-lg font-semibold text-gray-900">Rahul Sharma</p>
@@ -206,8 +206,8 @@ export default function SelfReviewPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overall Rating</p>
@@ -216,7 +216,7 @@ export default function SelfReviewPage() {
             <TrendingUp className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Goals Achieved</p>
@@ -225,7 +225,7 @@ export default function SelfReviewPage() {
             <Target className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Exceeded Goals</p>
@@ -234,7 +234,7 @@ export default function SelfReviewPage() {
             <Award className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completion</p>
@@ -247,7 +247,7 @@ export default function SelfReviewPage() {
 
       {/* Alert */}
       {isDraft && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-yellow-600" />
             <div>
@@ -261,18 +261,18 @@ export default function SelfReviewPage() {
       )}
 
       {/* Goal Achievement */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <Target className="h-6 w-6 text-purple-600" />
           Goal Achievement Summary
         </h2>
         <div className="space-y-3">
           {goals.map(goal => (
-            <div key={goal.id} className="border border-gray-200 rounded-lg p-4">
+            <div key={goal.id} className="border border-gray-200 rounded-lg p-3">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900">{goal.title}</h3>
-                  <div className="grid grid-cols-2 gap-4 mt-2">
+                  <div className="grid grid-cols-2 gap-2 mt-2">
                     <div>
                       <p className="text-xs text-gray-600">Target</p>
                       <p className="text-sm text-gray-900">{goal.targetValue}</p>
@@ -293,12 +293,12 @@ export default function SelfReviewPage() {
       </div>
 
       {/* Competency Ratings */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <TrendingUp className="h-6 w-6 text-purple-600" />
           Competency Self-Assessment
         </h2>
-        <div className="space-y-6">
+        <div className="space-y-3">
           {reviewSections.map(section => (
             <div key={section.id} className="border-b border-gray-200 pb-6 last:border-0">
               <div className="flex items-start justify-between mb-3">
@@ -334,8 +334,8 @@ export default function SelfReviewPage() {
       </div>
 
       {/* Key Achievements */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <Award className="h-6 w-6 text-purple-600" />
           Key Achievements & Contributions
         </h2>
@@ -350,8 +350,8 @@ export default function SelfReviewPage() {
       </div>
 
       {/* Areas for Development */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Areas for Development</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Areas for Development</h2>
         <textarea
           value={developmentAreas}
           onChange={(e) => isDraft && setDevelopmentAreas(e.target.value)}
@@ -363,8 +363,8 @@ export default function SelfReviewPage() {
       </div>
 
       {/* Training Needs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Training & Development Needs</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">Training & Development Needs</h2>
         <textarea
           value={trainingNeeds}
           onChange={(e) => isDraft && setTrainingNeeds(e.target.value)}
@@ -380,14 +380,14 @@ export default function SelfReviewPage() {
         <div className="flex gap-3">
           <button
             onClick={handleSaveDraft}
-            className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700 font-medium"
+            className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700 font-medium"
           >
             <Save className="h-4 w-4" />
             Save Draft
           </button>
           <button
             onClick={handleSubmit}
-            className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
+            className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
           >
             <Send className="h-4 w-4" />
             Submit Self-Review
@@ -396,7 +396,7 @@ export default function SelfReviewPage() {
       )}
 
       {/* Help Text */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Self-Review Guidelines</h3>
         <ul className="text-sm text-purple-800 space-y-1">
           <li>• Be honest and objective in your self-assessment</li>

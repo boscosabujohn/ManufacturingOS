@@ -11,8 +11,8 @@ export default function GDPRPage() {
     ]);
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">GDPR Controls</h1>
@@ -31,20 +31,20 @@ export default function GDPRPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                         <p className="text-sm text-gray-500 mb-1">Total Requests</p>
                         <p className="text-3xl font-bold text-gray-900">142</p>
                     </div>
-                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                         <p className="text-sm text-gray-500 mb-1">Pending</p>
                         <p className="text-3xl font-bold text-yellow-600">5</p>
                     </div>
-                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                         <p className="text-sm text-gray-500 mb-1">Completed</p>
                         <p className="text-3xl font-bold text-green-600">135</p>
                     </div>
-                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                    <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                         <p className="text-sm text-gray-500 mb-1">Avg. Response Time</p>
                         <p className="text-3xl font-bold text-blue-600">4 Days</p>
                     </div>
@@ -71,27 +71,27 @@ export default function GDPRPage() {
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Request ID</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">User</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Type</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Date Received</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Deadline</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Request ID</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">User</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Type</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Status</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Date Received</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Deadline</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {requests.map((req) => (
                                 <tr key={req.id} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 font-medium text-gray-900">{req.id}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-600 flex items-center gap-2">
+                                    <td className="px-3 py-2 font-medium text-gray-900">{req.id}</td>
+                                    <td className="px-3 py-2 text-sm text-gray-600 flex items-center gap-2">
                                         <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-xs font-bold text-gray-600">
                                             {req.user[0]}
                                         </div>
                                         {req.user}
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-600">{req.type}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 text-sm text-gray-600">{req.type}</td>
+                                    <td className="px-3 py-2">
                                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${req.status === 'completed' ? 'bg-green-100 text-green-800' :
                                                 req.status === 'processing' ? 'bg-blue-100 text-blue-800' :
                                                     'bg-yellow-100 text-yellow-800'
@@ -99,9 +99,9 @@ export default function GDPRPage() {
                                             {req.status.charAt(0).toUpperCase() + req.status.slice(1)}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-600">{req.date}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-600">{req.deadline}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 text-sm text-gray-600">{req.date}</td>
+                                    <td className="px-3 py-2 text-sm text-gray-600">{req.deadline}</td>
+                                    <td className="px-3 py-2">
                                         <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View Details</button>
                                     </td>
                                 </tr>

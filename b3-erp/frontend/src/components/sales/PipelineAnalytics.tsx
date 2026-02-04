@@ -72,8 +72,8 @@ export default function PipelineAnalytics() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -128,22 +128,22 @@ export default function PipelineAnalytics() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-600">Total Pipeline Value</p>
             <DollarSign className="h-5 w-5 text-blue-600" />
           </div>
           <p className="text-3xl font-bold text-blue-900">{formatCurrency(totalPipelineValue)}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-600">Weighted Pipeline</p>
             <Target className="h-5 w-5 text-green-600" />
           </div>
           <p className="text-3xl font-bold text-green-900">{formatCurrency(weightedValue)}</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-gray-600">Total Opportunities</p>
             <Filter className="h-5 w-5 text-purple-600" />
@@ -159,7 +159,7 @@ export default function PipelineAnalytics() {
         </div>
 
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {stages.map((stage, idx) => (
               <div key={idx} className="p-5 border border-gray-200 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
@@ -169,7 +169,7 @@ export default function PipelineAnalytics() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 mb-3">
+                <div className="grid grid-cols-3 gap-2 mb-3">
                   <div className="p-3 bg-blue-50 rounded-lg">
                     <p className="text-xs text-blue-600 font-medium">Opportunities</p>
                     <p className="text-2xl font-bold text-blue-900">{stage.opportunities}</p>

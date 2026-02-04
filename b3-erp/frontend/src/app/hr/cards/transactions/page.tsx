@@ -218,15 +218,15 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Card Transactions</h1>
         <p className="text-sm text-gray-600 mt-1">View and manage corporate card transactions</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Spent</p>
@@ -236,7 +236,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Transactions</p>
@@ -246,7 +246,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -256,7 +256,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Flagged</p>
@@ -268,8 +268,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
             <select
@@ -323,10 +323,10 @@ export default function Page() {
       </div>
 
       {/* Transactions List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredTransactions.map(transaction => (
-          <div key={transaction.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={transaction.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-12 w-12 bg-blue-50 rounded-lg flex items-center justify-center">
@@ -354,7 +354,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 py-4 border-y border-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2 py-4 border-y border-gray-200">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Card</p>
                 <p className="text-sm font-semibold text-gray-900">{transaction.cardNumber}</p>
@@ -392,7 +392,7 @@ export default function Page() {
             </div>
 
             {transaction.notes && (
-              <div className="bg-gray-50 rounded-lg p-3 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3 mb-2">
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Notes</p>
                 <p className="text-sm text-gray-700">{transaction.notes}</p>
               </div>

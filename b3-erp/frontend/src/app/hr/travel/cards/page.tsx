@@ -322,7 +322,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <CreditCard className="h-8 w-8 text-blue-600" />
           Corporate Credit Cards
@@ -331,8 +331,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Cards</p>
@@ -341,7 +341,7 @@ export default function Page() {
             <CreditCard className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active</p>
@@ -350,7 +350,7 @@ export default function Page() {
             <User className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Blocked</p>
@@ -359,7 +359,7 @@ export default function Page() {
             <Lock className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Limit</p>
@@ -368,7 +368,7 @@ export default function Page() {
             <DollarSign className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Outstanding</p>
@@ -377,7 +377,7 @@ export default function Page() {
             <AlertCircle className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Available</p>
@@ -386,7 +386,7 @@ export default function Page() {
             <DollarSign className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Monthly Spend</p>
@@ -398,8 +398,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status:</label>
             <select
@@ -443,9 +443,9 @@ export default function Page() {
       <DataTable data={filteredCards} columns={columns} />
 
       {/* Card Levels Info */}
-      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Card Levels & Limits</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Card Levels & Limits</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="p-4 bg-gray-50 border-l-4 border-gray-600 rounded-lg">
             <h4 className="font-semibold text-gray-900 mb-2">Silver Card</h4>
             <p className="text-sm text-gray-700">Credit Limit: ₹1,00,000 - ₹1,50,000</p>
@@ -468,7 +468,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Corporate Card Management</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• All transactions are automatically captured and synced with expense system</li>
@@ -483,7 +483,7 @@ export default function Page() {
 
       {/* Card Details Modal */}
       {showDetailsModal && selectedCard && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -500,9 +500,9 @@ export default function Page() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Card Visual */}
-              <div className={`relative p-6 rounded-xl text-white h-48 ${
+              <div className={`relative p-3 rounded-xl text-white h-48 ${
                 selectedCard.cardType === 'visa' ? 'bg-gradient-to-br from-blue-500 to-blue-700' :
                 selectedCard.cardType === 'mastercard' ? 'bg-gradient-to-br from-orange-500 to-orange-700' :
                 'bg-gradient-to-br from-green-500 to-green-700'
@@ -533,9 +533,9 @@ export default function Page() {
               </div>
 
               {/* Cardholder Information */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Cardholder Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-gray-600">Employee Code</p>
                     <p className="font-semibold text-gray-900">{selectedCard.employeeCode}</p>
@@ -558,9 +558,9 @@ export default function Page() {
               </div>
 
               {/* Credit Information */}
-              <div className="bg-blue-50 rounded-lg p-4">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Credit Information</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-xs text-gray-600 mb-1">Credit Limit</p>
                     <p className="text-xl font-bold text-blue-600">₹{selectedCard.creditLimit.toLocaleString('en-IN')}</p>
@@ -593,9 +593,9 @@ export default function Page() {
               </div>
 
               {/* Transaction Information */}
-              <div className="bg-purple-50 rounded-lg p-4">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Transaction Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-gray-600">Monthly Spend</p>
                     <p className="text-lg font-bold text-purple-600">₹{selectedCard.monthlySpend.toLocaleString('en-IN')}</p>
@@ -618,9 +618,9 @@ export default function Page() {
               </div>
 
               {/* Card Dates */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Important Dates</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-gray-600">Issue Date</p>
                     <p className="font-semibold text-gray-900">
@@ -677,7 +677,7 @@ export default function Page() {
 
       {/* Request New Card Modal */}
       {showRequestModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -703,11 +703,11 @@ export default function Page() {
                 });
                 setShowRequestModal(false);
               }}>
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {/* Employee Information */}
-                  <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="bg-gray-50 rounded-lg p-3">
                     <h3 className="text-sm font-semibold text-gray-900 mb-3">Employee Information</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Employee Name *</label>
                         <input
@@ -756,9 +756,9 @@ export default function Page() {
                   </div>
 
                   {/* Card Details */}
-                  <div className="bg-blue-50 rounded-lg p-4">
+                  <div className="bg-blue-50 rounded-lg p-3">
                     <h3 className="text-sm font-semibold text-gray-900 mb-3">Card Details</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Card Type *</label>
                         <select
@@ -800,9 +800,9 @@ export default function Page() {
                   </div>
 
                   {/* Justification */}
-                  <div className="bg-yellow-50 rounded-lg p-4">
+                  <div className="bg-yellow-50 rounded-lg p-3">
                     <h3 className="text-sm font-semibold text-gray-900 mb-3">Request Justification</h3>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Purpose *</label>
                         <select
@@ -853,7 +853,7 @@ export default function Page() {
                   </div>
 
                   {/* Terms & Conditions */}
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                     <h3 className="text-sm font-semibold text-red-900 mb-2">Terms & Conditions</h3>
                     <div className="space-y-2 text-xs text-red-800">
                       <label className="flex items-start gap-2">

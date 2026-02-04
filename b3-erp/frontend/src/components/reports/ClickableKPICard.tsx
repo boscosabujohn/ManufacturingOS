@@ -37,7 +37,7 @@ export function ClickableKPICard({
 
     return (
         <div
-            className={`bg-white rounded-lg border border-gray-200 shadow-sm p-6 ${hoverClasses} ${className}`}
+            className={`bg-white rounded-lg border border-gray-200 shadow-sm p-3 ${hoverClasses} ${className}`}
             onClick={onClick}
             role={onClick ? 'button' : undefined}
             tabIndex={onClick ? 0 : undefined}

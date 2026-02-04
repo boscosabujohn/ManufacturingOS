@@ -31,17 +31,17 @@ function ContactInfoStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           Contact Information
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
           Please provide your basic contact details.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             First Name
@@ -114,12 +114,12 @@ function CompanyInfoStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           Company Information
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
           Tell us about your company for B2B services.
         </p>
       </div>
@@ -201,12 +201,12 @@ function BillingInfoStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           Billing Information
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
           Set up your billing preferences. This step is optional.
         </p>
       </div>
@@ -262,17 +262,17 @@ function ReviewStep() {
   const { formData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
           Review & Submit
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
           Please review your information before submitting.
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
           <h4 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
             Contact Information
@@ -422,9 +422,9 @@ export default function FormUXDemoPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
@@ -445,7 +445,7 @@ export default function FormUXDemoPage() {
       </div>
 
       {/* Content */}
-      <div className="w-full p-6 space-y-6">
+      <div className="w-full p-3 space-y-3">
         {/* Draft Recovery Banner */}
         <DraftRecoveryBanner
           hasDraft={showDraftBanner}
@@ -454,11 +454,11 @@ export default function FormUXDemoPage() {
         />
 
         {/* Form Progress */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
           <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
             Form Completion Progress
           </h3>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <FormProgressIndicator
               fields={formFields}
               values={formData}
@@ -483,7 +483,7 @@ export default function FormUXDemoPage() {
         </div>
 
         {/* Multi-Step Form */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
           <MultiStepForm
             steps={wizardSteps}
             onComplete={(data) => {
@@ -514,11 +514,11 @@ export default function FormUXDemoPage() {
         </div>
 
         {/* Feature Documentation */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
             Form UX Features Demonstrated
           </h3>
-          <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="grid grid-cols-2 gap-2 text-sm">
             <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
               <p className="font-medium text-gray-900 dark:text-white">Multi-Step Wizard</p>
               <p className="text-gray-600 dark:text-gray-400">Step-by-step form with validation and navigation</p>

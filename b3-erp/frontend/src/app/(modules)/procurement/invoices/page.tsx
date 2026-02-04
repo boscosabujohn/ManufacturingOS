@@ -135,8 +135,8 @@ export default function InvoiceManagement() {
 
         <div className="p-6">
           {/* Matching Summary */}
-          <div className="grid grid-cols-3 gap-6 mb-6">
-            <div className="bg-blue-50 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-3 mb-3">
+            <div className="bg-blue-50 rounded-lg p-3">
               <div className="flex items-center gap-3 mb-3">
                 <ShoppingCart className="h-6 w-6 text-blue-600" />
                 <h3 className="font-semibold">Purchase Order</h3>
@@ -157,7 +157,7 @@ export default function InvoiceManagement() {
               </div>
             </div>
 
-            <div className="bg-green-50 rounded-lg p-4">
+            <div className="bg-green-50 rounded-lg p-3">
               <div className="flex items-center gap-3 mb-3">
                 <Package className="h-6 w-6 text-green-600" />
                 <h3 className="font-semibold">Goods Receipt</h3>
@@ -178,7 +178,7 @@ export default function InvoiceManagement() {
               </div>
             </div>
 
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-purple-50 rounded-lg p-3">
               <div className="flex items-center gap-3 mb-3">
                 <FileText className="h-6 w-6 text-purple-600" />
                 <h3 className="font-semibold">Invoice</h3>
@@ -201,8 +201,8 @@ export default function InvoiceManagement() {
           </div>
 
           {/* Line Item Comparison */}
-          <div className="mb-6">
-            <h3 className="font-semibold mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="font-semibold mb-2 flex items-center gap-2">
               <FileCheck className="h-5 w-5 text-gray-600" />
               Line Item Comparison
             </h3>
@@ -291,12 +291,12 @@ export default function InvoiceManagement() {
 
           {/* Discrepancies */}
           {selectedInvoice?.discrepancies && selectedInvoice.discrepancies.length > 0 && (
-            <div className="mb-6">
-              <h3 className="font-semibold mb-4 flex items-center gap-2">
+            <div className="mb-3">
+              <h3 className="font-semibold mb-2 flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
                 Discrepancies Found
               </h3>
-              <div className="bg-amber-50 rounded-lg p-4">
+              <div className="bg-amber-50 rounded-lg p-3">
                 <ul className="space-y-2">
                   {selectedInvoice.discrepancies.map((disc: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-2">
@@ -349,10 +349,10 @@ export default function InvoiceManagement() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+        <div className="flex justify-between items-center mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Invoice Management</h1>
             <p className="text-gray-600 mt-1">Three-way matching and invoice processing</p>
@@ -370,8 +370,8 @@ export default function InvoiceManagement() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gray-50 rounded-lg p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="bg-gray-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-3">
               <FileText className="h-8 w-8 text-blue-600" />
               <span className="text-2xl font-bold text-gray-900">{stats.total}</span>
@@ -380,7 +380,7 @@ export default function InvoiceManagement() {
             <div className="text-xs text-gray-500 mt-1">This month</div>
           </div>
 
-          <div className="bg-amber-50 rounded-lg p-4">
+          <div className="bg-amber-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-3">
               <Clock className="h-8 w-8 text-amber-600" />
               <span className="text-2xl font-bold text-gray-900">{stats.pending}</span>
@@ -389,7 +389,7 @@ export default function InvoiceManagement() {
             <div className="text-xs text-amber-600 mt-1">Requires action</div>
           </div>
 
-          <div className="bg-green-50 rounded-lg p-4">
+          <div className="bg-green-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-3">
               <DollarSign className="h-8 w-8 text-green-600" />
               <span className="text-2xl font-bold text-gray-900">
@@ -403,7 +403,7 @@ export default function InvoiceManagement() {
             </div>
           </div>
 
-          <div className="bg-purple-50 rounded-lg p-4">
+          <div className="bg-purple-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-3">
               <Link className="h-8 w-8 text-purple-600" />
               <span className="text-2xl font-bold text-gray-900">{stats.matchingRate}%</span>
@@ -415,9 +415,9 @@ export default function InvoiceManagement() {
       </div>
 
       {/* Filters and Tabs */}
-      <div className="bg-white rounded-lg shadow-sm mb-6">
+      <div className="bg-white rounded-lg shadow-sm mb-3">
         <div className="border-b">
-          <div className="flex items-center justify-between p-4">
+          <div className="flex items-center justify-between p-3">
             <div className="flex gap-2">
               {['all', 'pending', 'approved', 'disputed', 'paid'].map((tab) => (
                 <button
@@ -456,7 +456,7 @@ export default function InvoiceManagement() {
 
         {/* Invoice List */}
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {invoices.map((invoice) => (
               <div key={invoice.id} className="border rounded-lg hover:shadow-md transition-shadow">
                 <div
@@ -464,7 +464,7 @@ export default function InvoiceManagement() {
                   onClick={() => setExpandedInvoice(expandedInvoice === invoice.id ? null : invoice.id)}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div>
                         <div className="flex items-center gap-3">
                           <h3 className="font-semibold text-gray-900">{invoice.id}</h3>
@@ -472,7 +472,7 @@ export default function InvoiceManagement() {
                             {invoice.status}
                           </span>
                         </div>
-                        <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
                           <span>{invoice.vendor}</span>
                           <span>•</span>
                           <span>PO: {invoice.poNumber}</span>
@@ -481,7 +481,7 @@ export default function InvoiceManagement() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                       <div className="text-right">
                         <div className="font-semibold text-gray-900">${invoice.amount.toLocaleString()}</div>
                         <div className="text-sm text-gray-500">Due: {invoice.dueDate}</div>
@@ -500,8 +500,8 @@ export default function InvoiceManagement() {
                 </div>
 
                 {expandedInvoice === invoice.id && (
-                  <div className="border-t p-4 bg-gray-50">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="border-t p-3 bg-gray-50">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                       <div>
                         <h4 className="font-medium text-gray-900 mb-3">Invoice Items</h4>
                         <div className="space-y-2">

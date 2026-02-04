@@ -15,17 +15,17 @@ export default function OtherPoliciesPage() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Other Policies</h1>
         <p className="text-sm text-gray-600 mt-1">Additional company policies and guidelines</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Available Policies</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Available Policies</h2>
         <div className="space-y-3">
           {policies.map((policy) => (
-            <div key={policy.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+            <div key={policy.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900">{policy.title}</h3>
                 <p className="text-sm text-gray-600 mt-1">

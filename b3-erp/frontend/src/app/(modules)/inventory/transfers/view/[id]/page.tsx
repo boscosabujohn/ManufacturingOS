@@ -30,9 +30,9 @@ export default function StockTransferDetailPage() {
     };
 
     return (
-        <div className="w-full p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -64,7 +64,7 @@ export default function StockTransferDetailPage() {
             </div>
 
             {/* Transfer Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Main Details */}
                 <div className="lg:col-span-2">
                     <Card>
@@ -73,7 +73,7 @@ export default function StockTransferDetailPage() {
                         </CardHeader>
                         <CardContent>
                             {/* Route Info */}
-                            <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg mb-6">
+                            <div className="flex items-center justify-between bg-gray-50 p-3 rounded-lg mb-3">
                                 <div>
                                     <p className="text-sm text-gray-500">From Location</p>
                                     <p className="font-semibold text-lg">{transfer.fromLocation}</p>
@@ -86,7 +86,7 @@ export default function StockTransferDetailPage() {
                             </div>
 
                             {/* Line Items */}
-                            <table className="w-full mb-6">
+                            <table className="w-full mb-3">
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Item Code</th>
@@ -115,13 +115,13 @@ export default function StockTransferDetailPage() {
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     <Card>
                         <CardHeader>
                             <CardTitle>Workflow</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="space-y-4">
+                            <div className="space-y-2">
                                 <div className="flex items-center gap-3">
                                     <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                                         <CheckCircle className="w-5 h-5" />

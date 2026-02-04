@@ -148,7 +148,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
   <div className="p-6 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
      <Link
       href="/project-management"
       className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors text-sm"
@@ -245,7 +245,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
        <button
         key={tab}
         onClick={() => setActiveTab(tab)}
-        className={`px-6 py-4 text-sm font-medium capitalize ${
+        className={`px-3 py-2 text-sm font-medium capitalize ${
          activeTab === tab
           ? 'border-b-2 border-blue-500 text-blue-600'
           : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -264,7 +264,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
        {/* Project Details */}
        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
-         <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Information</h3>
+         <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Information</h3>
          <div className="space-y-3">
           <div>
            <p className="text-sm text-gray-500">Sales Order</p>
@@ -295,7 +295,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
         </div>
 
         <div>
-         <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Manager</h3>
+         <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Manager</h3>
          <div className="space-y-3">
           <div>
            <p className="text-sm text-gray-500">Name</p>
@@ -326,13 +326,13 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
 
        {/* Description */}
        <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Description</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Description</h3>
         <p className="text-sm text-gray-700 leading-relaxed">{project.description}</p>
        </div>
 
        {/* Health Metrics */}
-       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+       <div className="grid grid-cols-3 gap-2">
+        <div className="bg-blue-50 rounded-lg p-3">
          <div className="flex items-center gap-2 mb-2">
           <CheckCircle className="w-5 h-5 text-blue-600" />
           <p className="text-sm font-medium text-blue-900">Tasks</p>
@@ -345,7 +345,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
          </p>
         </div>
 
-        <div className="bg-green-50 rounded-lg p-4">
+        <div className="bg-green-50 rounded-lg p-3">
          <div className="flex items-center gap-2 mb-2">
           <Package className="w-5 h-5 text-green-600" />
           <p className="text-sm font-medium text-green-900">Deliverables</p>
@@ -358,7 +358,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
          </p>
         </div>
 
-        <div className="bg-orange-50 rounded-lg p-4">
+        <div className="bg-orange-50 rounded-lg p-3">
          <div className="flex items-center gap-2 mb-2">
           <AlertTriangle className="w-5 h-5 text-orange-600" />
           <p className="text-sm font-medium text-orange-900">Issues</p>
@@ -376,8 +376,8 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      {activeTab === 'team' && (
       <div className="space-y-2">
        {teamMembers.map((member) => (
-        <div key={member.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-         <div className="flex items-center gap-4">
+        <div key={member.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+         <div className="flex items-center gap-2">
           <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
            {member.name.split(' ').map(n => n[0]).join('')}
           </div>
@@ -402,7 +402,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      {activeTab === 'deliverables' && (
       <div className="space-y-3">
        {deliverables.map((deliverable) => (
-        <div key={deliverable.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+        <div key={deliverable.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
          <div className="flex-1">
           <div className="flex items-center gap-3">
            <p className="font-semibold text-gray-900">{deliverable.name}</p>
@@ -431,7 +431,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
        <div className="space-y-3">
         {milestones.map((milestone, index) => (
-         <div key={milestone.id} className="flex items-start gap-4 relative">
+         <div key={milestone.id} className="flex items-start gap-2 relative">
           <div className={`w-12 h-12 rounded-full flex items-center justify-center z-10 ${
            milestone.status === 'Completed' ? 'bg-green-500' :
            milestone.status === 'In Progress' ? 'bg-blue-500' :
@@ -460,36 +460,36 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      {activeTab === 'financials' && (
       <div className="space-y-3">
        <div className="grid grid-cols-2 gap-3">
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg p-3">
          <p className="text-sm text-gray-600 mb-1">Contract Value</p>
          <p className="text-2xl font-bold text-gray-900">{formatCurrency(project.contractValue)}</p>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg p-3">
          <p className="text-sm text-gray-600 mb-1">Estimated Budget</p>
          <p className="text-2xl font-bold text-gray-900">{formatCurrency(project.budget)}</p>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg p-3">
          <p className="text-sm text-gray-600 mb-1">Actual Cost</p>
          <p className="text-2xl font-bold text-gray-900">{formatCurrency(project.actualCost)}</p>
          <p className="text-sm text-gray-500 mt-1">
           {Math.round((project.actualCost / project.budget) * 100)}% of budget
          </p>
         </div>
-        <div className="bg-green-50 rounded-lg p-4">
+        <div className="bg-green-50 rounded-lg p-3">
          <p className="text-sm text-green-700 mb-1">Profit Margin</p>
          <p className="text-2xl font-bold text-green-900">{profitMargin.toFixed(1)}%</p>
          <p className="text-sm text-green-700 mt-1">
           {formatCurrency(project.contractValue - project.budget)}
          </p>
         </div>
-        <div className="bg-blue-50 rounded-lg p-4">
+        <div className="bg-blue-50 rounded-lg p-3">
          <p className="text-sm text-blue-700 mb-1">Invoiced Amount</p>
          <p className="text-2xl font-bold text-blue-900">{formatCurrency(project.invoicedAmount)}</p>
          <p className="text-sm text-blue-700 mt-1">
           {Math.round((project.invoicedAmount / project.contractValue) * 100)}% of contract
          </p>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-3">
          <p className="text-sm text-purple-700 mb-1">Received Amount</p>
          <p className="text-2xl font-bold text-purple-900">{formatCurrency(project.receivedAmount)}</p>
          <p className="text-sm text-purple-700 mt-1">
@@ -504,7 +504,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      {activeTab === 'activity' && (
       <div className="space-y-2">
        {activities.map((activity) => (
-        <div key={activity.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+        <div key={activity.id} className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg">
          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
           <FileText className="w-5 h-5 text-blue-600" />
          </div>

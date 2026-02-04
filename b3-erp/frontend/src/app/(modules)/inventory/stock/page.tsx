@@ -211,11 +211,11 @@ export default function StockPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Items</p>
@@ -225,7 +225,7 @@ export default function StockPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Total Value</p>
@@ -237,7 +237,7 @@ export default function StockPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Low Stock</p>
@@ -247,7 +247,7 @@ export default function StockPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-600">Out of Stock</p>
@@ -268,7 +268,7 @@ export default function StockPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -316,15 +316,15 @@ export default function StockPage() {
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item Code</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Levels</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Item Code</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Item Name</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Levels</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -334,30 +334,30 @@ export default function StockPage() {
                 className="hover:bg-gray-50 cursor-pointer"
                 onClick={() => handleViewItem(item)}
               >
-                <td className="px-6 py-4 font-medium text-gray-900">{item.itemCode}</td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2 font-medium text-gray-900">{item.itemCode}</td>
+                <td className="px-3 py-2">
                   <div className="font-medium text-gray-900">{item.itemName}</div>
                   <div className="text-sm text-gray-500">Updated: {item.lastUpdated}</div>
                 </td>
-                <td className="px-6 py-4 text-sm">{item.category}</td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2 text-sm">{item.category}</td>
+                <td className="px-3 py-2">
                   <div className="font-bold text-blue-900">
                     {item.currentStock} {item.unit}
                   </div>
                   <div className="text-xs text-gray-500">${item.unitCost.toFixed(2)}/{item.unit}</div>
                 </td>
-                <td className="px-6 py-4 text-sm">
+                <td className="px-3 py-2 text-sm">
                   <div className="text-gray-700">Min: {item.reorderLevel}</div>
                   <div className="text-gray-700">Max: {item.maxLevel}</div>
                 </td>
-                <td className="px-6 py-4 text-sm font-mono text-gray-600">{item.location}</td>
-                <td className="px-6 py-4 font-semibold text-green-700">${item.totalValue.toLocaleString()}</td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2 text-sm font-mono text-gray-600">{item.location}</td>
+                <td className="px-3 py-2 font-semibold text-green-700">${item.totalValue.toLocaleString()}</td>
+                <td className="px-3 py-2">
                   <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[item.status]}`}>
                     {statusLabels[item.status]}
                   </span>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-1">
                     <button
                       onClick={(e) => {
@@ -387,7 +387,7 @@ export default function StockPage() {
         </table>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredItems.length)} of{' '}
             {filteredItems.length} items

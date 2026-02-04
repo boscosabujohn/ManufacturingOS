@@ -150,7 +150,7 @@ export default function EncashmentHistoryPage() {
   const leaveTypes = ['all', 'EL', 'PL', 'CO'];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -165,37 +165,37 @@ export default function EncashmentHistoryPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Transactions</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Days Encashed</div>
           <div className="text-2xl font-bold text-blue-600">{stats.totalEncashed}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Gross Amount</div>
           <div className="text-2xl font-bold text-green-600">₹{(stats.totalGross / 1000).toFixed(0)}K</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">TDS Deducted</div>
           <div className="text-2xl font-bold text-red-600">₹{(stats.totalTDS / 1000).toFixed(0)}K</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> Net Received
           </div>
           <div className="text-2xl font-bold text-purple-600">₹{(stats.totalNet / 1000).toFixed(0)}K</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Current FY</div>
           <div className="text-2xl font-bold text-orange-600">₹{(stats.currentFY / 1000).toFixed(0)}K</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input type="text" placeholder="Search by request ID or leave type..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -213,7 +213,7 @@ export default function EncashmentHistoryPage() {
           )}
         </div>
         {showFilters && (
-          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Financial Year</label>
               <select value={filterFY} onChange={(e) => setFilterFY(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -236,7 +236,7 @@ export default function EncashmentHistoryPage() {
         <DataTable data={filteredData} columns={columns} pagination={{ enabled: true, pageSize: 10 }} sorting={{ enabled: true, defaultSort: { column: 'requestId', direction: 'desc' } }} emptyMessage="No encashment history found" />
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <History className="w-5 h-5 inline mr-2" />
           Encashment History Records

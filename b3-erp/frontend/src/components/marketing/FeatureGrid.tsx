@@ -78,10 +78,10 @@ const iconMap: Record<string, JSX.Element> = {
 export function FeatureGrid({ title, subtitle, features }: FeatureGridProps) {
   return (
     <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" px-3">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">{title}</h2>
-          {subtitle && <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>}
+          {subtitle && <p className="mt-4 text-xl text-gray-600 max-w-3xl">{subtitle}</p>}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -90,7 +90,7 @@ export function FeatureGrid({ title, subtitle, features }: FeatureGridProps) {
               key={index}
               className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-3">
                 {iconMap[feature.icon] || iconMap.inventory}
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>

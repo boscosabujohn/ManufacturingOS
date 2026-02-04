@@ -147,14 +147,14 @@ export default function CommentModal({ isOpen, onClose, onSave, comment, mode = 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div
         className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between z-10">
           <h2 className="text-xl font-bold text-gray-900">
             {mode === 'edit' ? 'Edit Comment' : 'Add Comment'}
           </h2>
@@ -170,7 +170,7 @@ export default function CommentModal({ isOpen, onClose, onSave, comment, mode = 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Mode Toggle */}
-          <div className="flex gap-2 mb-4">
+          <div className="flex gap-2 mb-2">
             <button
               type="button"
               onClick={() => setShowPreview(false)}

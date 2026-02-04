@@ -93,7 +93,7 @@ const TaskCard: React.FC<{
   const isOverdue = task.dueDate && new Date(task.dueDate) < new Date();
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer group">
+    <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-md transition-shadow cursor-pointer group">
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-start space-x-2 flex-1">
@@ -315,35 +315,35 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({
   return (
     <div className={className}>
       {/* Stats Bar */}
-      <div className="grid grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total</p>
           <p className="text-2xl font-bold">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">To Do</p>
           <p className="text-2xl font-bold">{stats.todo}</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">In Progress</p>
           <p className="text-2xl font-bold">{stats.inProgress}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Review</p>
           <p className="text-2xl font-bold">{stats.review}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Completed</p>
           <p className="text-2xl font-bold">{stats.completed}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Overdue</p>
           <p className="text-2xl font-bold">{stats.overdue}</p>
         </div>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4 flex-1">
             {/* Search */}
@@ -402,13 +402,13 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({
 
       {/* Board View */}
       {viewMode === 'board' && (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           {columns.map((column) => {
             const columnTasks = filteredTasks.filter((task) => task.status === column.status);
 
             return (
-              <div key={column.status} className={`rounded-lg ${column.color} p-4`}>
-                <div className="flex items-center justify-between mb-4">
+              <div key={column.status} className={`rounded-lg ${column.color} p-3`}>
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="font-bold text-gray-900">{column.label}</h3>
                   <span className="px-2 py-0.5 bg-white rounded-full text-sm font-semibold">
                     {columnTasks.length}
@@ -456,7 +456,7 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({
 
           {filteredTasks.length === 0 && (
             <div className="text-center py-12 text-gray-500">
-              <CheckCircle className="h-12 w-12 mx-auto mb-3 text-gray-400" />
+              <CheckCircle className="h-12 w-12 mb-3 text-gray-400" />
               <p>No tasks found</p>
             </div>
           )}

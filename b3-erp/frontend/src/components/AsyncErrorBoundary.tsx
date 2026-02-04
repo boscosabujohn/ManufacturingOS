@@ -86,7 +86,7 @@ export class AsyncErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="text-center">
-            <Loader2 className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
+            <Loader2 className="w-12 h-12 text-blue-500 animate-spin mb-2" />
             <p className="text-gray-600">Loading...</p>
           </div>
         </div>
@@ -101,10 +101,10 @@ export class AsyncErrorBoundary extends Component<Props, State> {
 
       return (
         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 my-4">
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-2xl">
             <div className="bg-white rounded-xl shadow-lg p-8 text-center">
               {/* Error Icon */}
-              <div className="mb-6 relative">
+              <div className="mb-3 relative">
                 <div className="inline-block relative">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-20 h-20 bg-blue-100 rounded-full animate-ping opacity-20"></div>
@@ -116,7 +116,7 @@ export class AsyncErrorBoundary extends Component<Props, State> {
               </div>
 
               {/* Error Message */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   Async Operation Failed
                 </h3>
@@ -131,7 +131,7 @@ export class AsyncErrorBoundary extends Component<Props, State> {
               {/* Retry Button */}
               <button
                 onClick={this.handleRetry}
-                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-6"
+                className="inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-3"
               >
                 <RefreshCw className="w-5 h-5 mr-2" />
                 Retry Operation
@@ -153,7 +153,7 @@ export class AsyncErrorBoundary extends Component<Props, State> {
                 </button>
 
                 {showDetails && (
-                  <div className="mt-4 bg-gray-50 rounded-lg p-4 text-left border border-gray-200 animate-fadeIn">
+                  <div className="mt-4 bg-gray-50 rounded-lg p-3 text-left border border-gray-200 animate-fadeIn">
                     <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
                       <AlertCircle className="w-4 h-4 mr-2 text-blue-600" />
                       Async Exception Details

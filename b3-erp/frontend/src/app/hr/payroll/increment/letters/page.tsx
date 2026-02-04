@@ -375,14 +375,14 @@ export default function IncrementLettersPage() {
 
   return (
     <div className="p-6 w-full">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Increment Letters</h1>
         <p className="text-gray-600">Generate, approve, and distribute increment letters to employees</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600 mb-1">Total Letters</p>
@@ -394,7 +394,7 @@ export default function IncrementLettersPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow p-6 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Draft</p>
@@ -406,7 +406,7 @@ export default function IncrementLettersPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600 mb-1">Approved</p>
@@ -418,7 +418,7 @@ export default function IncrementLettersPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600 mb-1">Sent</p>
@@ -430,7 +430,7 @@ export default function IncrementLettersPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600 mb-1">Acknowledged</p>
@@ -442,7 +442,7 @@ export default function IncrementLettersPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600 mb-1">Avg Increment</p>
@@ -456,8 +456,8 @@ export default function IncrementLettersPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow mb-6 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow mb-3 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <input
@@ -517,12 +517,12 @@ export default function IncrementLettersPage() {
       </div>
 
       {/* Letters List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredLetters.map((letter) => (
           <div key={letter.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{letter.employeeName}</h3>
@@ -533,7 +533,7 @@ export default function IncrementLettersPage() {
                       {letter.incrementType.charAt(0).toUpperCase() + letter.incrementType.slice(1)}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
                       {letter.employeeId}
@@ -594,9 +594,9 @@ export default function IncrementLettersPage() {
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                 {/* Salary Change */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <h4 className="text-xs font-semibold text-blue-900 mb-3 flex items-center gap-1">
                     <TrendingUp className="h-3 w-3" />
                     Salary Change
@@ -620,7 +620,7 @@ export default function IncrementLettersPage() {
                 </div>
 
                 {/* Letter Details */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <h4 className="text-xs font-semibold text-purple-900 mb-3 flex items-center gap-1">
                     <FileText className="h-3 w-3" />
                     Letter Details
@@ -646,7 +646,7 @@ export default function IncrementLettersPage() {
                 </div>
 
                 {/* Approval Info */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <h4 className="text-xs font-semibold text-green-900 mb-3 flex items-center gap-1">
                     <CheckCircle className="h-3 w-3" />
                     Approval Info
@@ -676,7 +676,7 @@ export default function IncrementLettersPage() {
                 </div>
 
                 {/* Distribution */}
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
                   <h4 className="text-xs font-semibold text-yellow-900 mb-3 flex items-center gap-1">
                     <Mail className="h-3 w-3" />
                     Distribution
@@ -704,7 +704,7 @@ export default function IncrementLettersPage() {
                 </div>
 
                 {/* Acknowledgment */}
-                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
                   <h4 className="text-xs font-semibold text-indigo-900 mb-3 flex items-center gap-1">
                     <CheckCircle className="h-3 w-3" />
                     Acknowledgment
@@ -738,9 +738,9 @@ export default function IncrementLettersPage() {
 
       {/* Letter Preview Modal */}
       {selectedLetter && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-3 flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900">Letter Preview</h2>
               <button
                 onClick={() => setSelectedLetter(null)}
@@ -752,7 +752,7 @@ export default function IncrementLettersPage() {
 
             <div className="p-8">
               {/* Letter Content */}
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Company Header */}
                 <div className="text-center border-b-2 border-gray-300 pb-4">
                   <h1 className="text-2xl font-bold text-gray-900">Manufacturing Company Pvt Ltd</h1>
@@ -785,7 +785,7 @@ export default function IncrementLettersPage() {
                 </div>
 
                 {/* Body */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <p>Dear {selectedLetter.employeeName.split(' ')[0]},</p>
 
                   <p>
@@ -875,8 +875,8 @@ export default function IncrementLettersPage() {
 
                 {/* Acknowledgment */}
                 <div className="border-t-2 border-gray-300 pt-6 mt-8">
-                  <p className="font-semibold mb-4">Employee Acknowledgment</p>
-                  <p className="text-sm mb-6">
+                  <p className="font-semibold mb-2">Employee Acknowledgment</p>
+                  <p className="text-sm mb-3">
                     I, {selectedLetter.employeeName}, acknowledge receipt of this increment letter and accept the revised salary structure
                     effective from {new Date(selectedLetter.effectiveDate).toLocaleDateString('en-IN')}.
                   </p>
@@ -892,7 +892,7 @@ export default function IncrementLettersPage() {
               </div>
             </div>
 
-            <div className="sticky bottom-0 bg-gray-50 border-t border-gray-200 p-4 flex justify-end gap-2">
+            <div className="sticky bottom-0 bg-gray-50 border-t border-gray-200 p-3 flex justify-end gap-2">
               <button
                 onClick={() => setSelectedLetter(null)}
                 className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
@@ -913,12 +913,12 @@ export default function IncrementLettersPage() {
       )}
 
       {/* Policy Guidelines */}
-      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 border border-blue-200">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-3 border border-blue-200">
+        <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <FileText className="h-5 w-5 text-blue-600" />
           Increment Letter Guidelines
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Letter Generation Process</h3>
             <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">

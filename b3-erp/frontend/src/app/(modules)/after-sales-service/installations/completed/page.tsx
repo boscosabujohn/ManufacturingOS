@@ -479,7 +479,7 @@ const CompletedInstallationsPage = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -504,8 +504,8 @@ const CompletedInstallationsPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Completed</p>
@@ -515,7 +515,7 @@ const CompletedInstallationsPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Satisfaction</p>
@@ -530,7 +530,7 @@ const CompletedInstallationsPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">On-Time Rate</p>
@@ -540,7 +540,7 @@ const CompletedInstallationsPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Quality Score</p>
@@ -557,8 +557,8 @@ const CompletedInstallationsPage = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -581,7 +581,7 @@ const CompletedInstallationsPage = () => {
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pt-4 border-t border-gray-200">
             <select
               value={filterPeriod}
               onChange={(e) => setFilterPeriod(e.target.value)}
@@ -635,7 +635,7 @@ const CompletedInstallationsPage = () => {
 
       {/* Installations List/Grid */}
       <div className="bg-white rounded-lg border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             Completed Installations ({filteredInstallations.length})
           </h2>
@@ -646,19 +646,19 @@ const CompletedInstallationsPage = () => {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Installation</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Completed</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Installation</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Completed</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredInstallations.map((installation) => (
                   <tr key={installation.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-medium text-gray-900">{installation.installationNumber}</span>
@@ -676,7 +676,7 @@ const CompletedInstallationsPage = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{installation.customer.name}</div>
                         <div className="text-sm text-gray-500">{installation.customer.company}</div>
@@ -686,14 +686,14 @@ const CompletedInstallationsPage = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{installation.product.name}</div>
                         <div className="text-sm text-gray-500">{installation.product.model}</div>
                         <div className="text-xs text-gray-500 mt-1">${installation.product.value.toLocaleString()}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="flex items-center gap-1 text-sm text-gray-900">
                           <Calendar className="h-3 w-3" />
@@ -708,7 +708,7 @@ const CompletedInstallationsPage = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="flex items-center gap-1 text-sm text-gray-900">
                           <User className="h-3 w-3" />
@@ -721,7 +721,7 @@ const CompletedInstallationsPage = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="space-y-2">
                         <div className="flex items-center gap-1">
                           <span className="text-xs text-gray-500">Quality:</span>
@@ -740,7 +740,7 @@ const CompletedInstallationsPage = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setSelectedInstallation(installation)}
@@ -769,10 +769,10 @@ const CompletedInstallationsPage = () => {
             </table>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-3">
             {filteredInstallations.map((installation) => (
-              <div key={installation.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div className="flex items-start justify-between mb-4">
+              <div key={installation.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
+                <div className="flex items-start justify-between mb-2">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">{installation.installationNumber}</h3>
                     <p className="text-sm text-gray-500">{installation.customer.company}</p>
@@ -782,7 +782,7 @@ const CompletedInstallationsPage = () => {
                   )}
                 </div>
 
-                <div className="space-y-3 mb-4">
+                <div className="space-y-3 mb-2">
                   <div className="flex items-center gap-2">
                     <Package className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-700">{installation.product.name}</span>
@@ -797,7 +797,7 @@ const CompletedInstallationsPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex">
                     {renderStars(installation.completion.customerSatisfaction)}
                   </div>
@@ -826,9 +826,9 @@ const CompletedInstallationsPage = () => {
 
       {/* Installation Details Modal */}
       {selectedInstallation && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Installation Details</h2>
               <button
                 onClick={() => setSelectedInstallation(null)}
@@ -838,9 +838,9 @@ const CompletedInstallationsPage = () => {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Header Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Installation Information</h3>
                   <div className="space-y-2">
@@ -880,7 +880,7 @@ const CompletedInstallationsPage = () => {
               {/* Customer Information */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Customer Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <div><strong>Name:</strong> {selectedInstallation.customer.name}</div>
                     <div><strong>Company:</strong> {selectedInstallation.customer.company}</div>
@@ -900,7 +900,7 @@ const CompletedInstallationsPage = () => {
               {/* Product Information */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Product Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <div><strong>Product:</strong> {selectedInstallation.product.name}</div>
                     <div><strong>Model:</strong> {selectedInstallation.product.model}</div>
@@ -915,7 +915,7 @@ const CompletedInstallationsPage = () => {
               </div>
 
               {/* Ratings and Quality */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Quality Assessment</h3>
                   <div className="space-y-3">
@@ -978,7 +978,7 @@ const CompletedInstallationsPage = () => {
               {/* Team Information */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Installation Team</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <h4 className="font-medium text-gray-800 mb-2">Team Lead</h4>
                     <div className="space-y-1">
@@ -1006,7 +1006,7 @@ const CompletedInstallationsPage = () => {
               {selectedInstallation.customerFeedback && (
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Customer Feedback</h3>
-                  <div className="bg-blue-50 p-4 rounded-lg">
+                  <div className="bg-blue-50 p-3 rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex">
                         {renderStars(selectedInstallation.customerFeedback.rating)}
@@ -1050,7 +1050,7 @@ const CompletedInstallationsPage = () => {
               {/* Follow-up Information */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Follow-up & Warranty</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <strong>Warranty Start:</strong>
                     <div className="text-sm text-gray-600">{selectedInstallation.followUp.warrantyStartDate}</div>
@@ -1069,7 +1069,7 @@ const CompletedInstallationsPage = () => {
               {selectedInstallation.notes && (
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Notes</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <p className="text-gray-700">{selectedInstallation.notes}</p>
                   </div>
                 </div>

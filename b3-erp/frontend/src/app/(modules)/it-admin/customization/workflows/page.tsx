@@ -291,8 +291,8 @@ export default function WorkflowsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -310,8 +310,8 @@ export default function WorkflowsPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <GitBranch className="w-6 h-6 text-blue-600" />
@@ -323,7 +323,7 @@ export default function WorkflowsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-50 rounded-lg">
               <CheckCircle className="w-6 h-6 text-green-600" />
@@ -335,7 +335,7 @@ export default function WorkflowsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-purple-50 rounded-lg">
               <Play className="w-6 h-6 text-purple-600" />
@@ -347,7 +347,7 @@ export default function WorkflowsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-red-50 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-red-600" />
@@ -360,11 +360,11 @@ export default function WorkflowsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Module Filter & Info */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Filter by Module</h2>
+        <div className="space-y-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Filter by Module</h2>
 
             <div className="space-y-2">
               {modules.map((module) => {
@@ -400,7 +400,7 @@ export default function WorkflowsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-xl p-6">
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-xl p-3">
             <h3 className="text-sm font-bold text-purple-900 mb-3">Available Actions</h3>
             <div className="space-y-2">
               {actionTypes.map((action) => {
@@ -417,8 +417,8 @@ export default function WorkflowsPage() {
         </div>
 
         {/* Workflows List */}
-        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
-          <div className="mb-4">
+        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3">
+          <div className="mb-2">
             <h2 className="text-lg font-bold text-gray-900">
               {selectedModule === 'all' ? 'All Workflows' : `${selectedModule} Workflows`}
             </h2>
@@ -427,7 +427,7 @@ export default function WorkflowsPage() {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredWorkflows.map((workflow) => (
               <div key={workflow.id} className={`border-2 rounded-lg p-5 ${workflow.active ? 'border-gray-200' : 'border-gray-200 bg-gray-50 opacity-70'}`}>
                 <div className="flex items-start justify-between mb-3">
@@ -457,7 +457,7 @@ export default function WorkflowsPage() {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
                       <div>
                         <p className="text-xs font-semibold text-gray-600 mb-2">Conditions:</p>
                         {workflow.conditions.length > 0 ? (
@@ -492,7 +492,7 @@ export default function WorkflowsPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 text-xs text-gray-600 pt-3 border-t border-gray-200">
+                    <div className="flex items-center gap-2 text-xs text-gray-600 pt-3 border-t border-gray-200">
                       <div>
                         <span className="font-semibold">Executions:</span> {workflow.executionCount.toLocaleString()}
                       </div>
@@ -542,7 +542,7 @@ export default function WorkflowsPage() {
             </div>
           )}
 
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Workflow Best Practices:</h3>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Test workflows thoroughly before activating in production</li>

@@ -87,7 +87,7 @@ export default function PIPReviewPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -104,7 +104,7 @@ export default function PIPReviewPage() {
 
       {/* Review Modal */}
       {selectedReview && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
               <div>
@@ -119,11 +119,11 @@ export default function PIPReviewPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Summary Section (Mock Data) */}
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-2">Plan Summary</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500 block">Start Date</span>
                     <span className="font-medium text-gray-900">{new Date(selectedReview.startDate).toLocaleDateString()}</span>
@@ -136,7 +136,7 @@ export default function PIPReviewPage() {
               </div>
 
               {selectedReview.status === 'pending_review' ? (
-                <form onSubmit={handleSubmitReview} className="space-y-6">
+                <form onSubmit={handleSubmitReview} className="space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Final Decision</label>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -148,7 +148,7 @@ export default function PIPReviewPage() {
                             : 'border-gray-200 hover:border-green-200'
                           }`}
                       >
-                        <CheckCircle className="h-6 w-6 mx-auto mb-2" />
+                        <CheckCircle className="h-6 w-6 mb-2" />
                         <span className="font-medium block">Pass</span>
                         <span className="text-xs opacity-75">Objectives Met</span>
                       </button>
@@ -160,7 +160,7 @@ export default function PIPReviewPage() {
                             : 'border-gray-200 hover:border-orange-200'
                           }`}
                       >
-                        <Clock className="h-6 w-6 mx-auto mb-2" />
+                        <Clock className="h-6 w-6 mb-2" />
                         <span className="font-medium block">Extend</span>
                         <span className="text-xs opacity-75">More Time Needed</span>
                       </button>
@@ -172,7 +172,7 @@ export default function PIPReviewPage() {
                             : 'border-gray-200 hover:border-red-200'
                           }`}
                       >
-                        <XCircle className="h-6 w-6 mx-auto mb-2" />
+                        <XCircle className="h-6 w-6 mb-2" />
                         <span className="font-medium block">Fail</span>
                         <span className="text-xs opacity-75">Objectives Not Met</span>
                       </button>
@@ -208,7 +208,7 @@ export default function PIPReviewPage() {
                   </div>
                 </form>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className={`p-4 rounded-lg border ${selectedReview.status === 'passed' ? 'bg-green-50 border-green-200 text-green-800' :
                       selectedReview.status === 'failed' ? 'bg-red-50 border-red-200 text-red-800' :
                         'bg-orange-50 border-orange-200 text-orange-800'

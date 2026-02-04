@@ -169,9 +169,9 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Plus className="h-6 w-6 text-white" />
@@ -188,7 +188,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Product Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Product <span className="text-red-500">*</span>
             </label>
@@ -208,7 +208,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
           </div>
 
           {/* BOM Code and Version */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 BOM Code <span className="text-red-500">*</span>
@@ -243,7 +243,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
           </div>
 
           {/* Revision and Status */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Revision Number <span className="text-red-500">*</span>
@@ -272,7 +272,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
           </div>
 
           {/* Effective Dates */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Effective Date From <span className="text-red-500">*</span>
@@ -302,7 +302,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
           </div>
 
           {/* Notes */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Notes
             </label>
@@ -316,7 +316,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
           </div>
 
           {/* Add Components Button */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-semibold text-green-900">Components</p>
@@ -333,7 +333,7 @@ export function CreateBOMModal({ isOpen, onClose, onCreate }: CreateBOMModalProp
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -410,9 +410,9 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
   if (!isOpen || !currentBOM) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Edit className="h-6 w-6 text-white" />
@@ -429,9 +429,9 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Current BOM Summary */}
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-blue-900 mb-4">Current BOM Summary</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 mb-3">
+            <h3 className="text-lg font-semibold text-blue-900 mb-2">Current BOM Summary</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-blue-600 mb-1">BOM Code</p>
                 <p className="font-bold text-blue-900">{currentBOM.bomCode}</p>
@@ -459,11 +459,11 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
           </div>
 
           {/* Editable Fields */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">BOM Information</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">BOM Information</h3>
 
             {/* Version and Revision */}
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Version <span className="text-red-500">*</span>
@@ -493,7 +493,7 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
             </div>
 
             {/* Effective Dates */}
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Effective Date From <span className="text-red-500">*</span>
@@ -522,7 +522,7 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
             </div>
 
             {/* Status */}
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Status <span className="text-red-500">*</span>
               </label>
@@ -553,8 +553,8 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
           </div>
 
           {/* Component List Display */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Components</h3>
               <button
                 onClick={handleManageComponents}
@@ -596,7 +596,7 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
               </div>
             ) : (
               <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 text-center">
-                <Package className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <Package className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No components added yet</p>
                 <p className="text-sm text-gray-500 mt-1">Click "Manage Components" to add items</p>
               </div>
@@ -604,7 +604,7 @@ export function EditBOMModal({ isOpen, onClose, onUpdate, currentBOM }: EditBOMM
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -664,9 +664,9 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
   if (!isOpen || !sourceBOM) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Copy className="h-6 w-6 text-white" />
@@ -683,9 +683,9 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Source BOM Summary */}
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-purple-900 mb-4">Source BOM</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 mb-3">
+            <h3 className="text-lg font-semibold text-purple-900 mb-2">Source BOM</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-purple-600 mb-1">BOM Code</p>
                 <p className="font-bold text-purple-900">{sourceBOM.bomCode}</p>
@@ -706,7 +706,7 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
           </div>
 
           {/* Target Product Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Target Product <span className="text-red-500">*</span>
             </label>
@@ -726,7 +726,7 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
           </div>
 
           {/* New BOM Code and Version */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 New BOM Code <span className="text-red-500">*</span>
@@ -760,7 +760,7 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
           </div>
 
           {/* Copy Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Copy Options
             </label>
@@ -807,7 +807,7 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
           </div>
 
           {/* Info Box */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-purple-800">
@@ -821,7 +821,7 @@ export function CopyBOMModal({ isOpen, onClose, onCopy, sourceBOM }: CopyBOMModa
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -849,9 +849,9 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
   if (!isOpen || !bom) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -868,8 +868,8 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Summary Header */}
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 mb-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-indigo-600 mb-1">BOM Code</p>
                 <p className="font-bold text-indigo-900">{bom.bomCode}</p>
@@ -897,12 +897,12 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
           </div>
 
           {/* BOM Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-indigo-600" />
               BOM Information
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600">BOM Code</p>
                 <p className="font-semibold text-gray-900">{bom.bomCode}</p>
@@ -931,12 +931,12 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
           </div>
 
           {/* Status & Dates */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-indigo-600" />
               Status & Dates
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Status</p>
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
@@ -976,25 +976,25 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
           </div>
 
           {/* Cost Summary */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-indigo-600" />
               Cost Summary
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-1">Material Cost</p>
                 <p className="text-2xl font-bold text-blue-900">₹{bom.costs.material.toLocaleString()}</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4">
+              <div className="bg-green-50 rounded-lg p-3">
                 <p className="text-sm text-green-600 mb-1">Labor Cost</p>
                 <p className="text-2xl font-bold text-green-900">₹{bom.costs.labor.toLocaleString()}</p>
               </div>
-              <div className="bg-yellow-50 rounded-lg p-4">
+              <div className="bg-yellow-50 rounded-lg p-3">
                 <p className="text-sm text-yellow-600 mb-1">Overhead Cost</p>
                 <p className="text-2xl font-bold text-yellow-900">₹{bom.costs.overhead.toLocaleString()}</p>
               </div>
-              <div className="bg-indigo-50 rounded-lg p-4 border-2 border-indigo-200">
+              <div className="bg-indigo-50 rounded-lg p-3 border-2 border-indigo-200">
                 <p className="text-sm text-indigo-600 mb-1">Total Cost</p>
                 <p className="text-2xl font-bold text-indigo-900">₹{bom.costs.total.toLocaleString()}</p>
               </div>
@@ -1002,17 +1002,17 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
           </div>
 
           {/* Components Count and Levels */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Layers className="h-5 w-5 text-indigo-600" />
               Component Structure
             </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-purple-50 rounded-lg p-4">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <p className="text-sm text-purple-600 mb-1">Total Components</p>
                 <p className="text-3xl font-bold text-purple-900">{bom.componentCount}</p>
               </div>
-              <div className="bg-pink-50 rounded-lg p-4">
+              <div className="bg-pink-50 rounded-lg p-3">
                 <p className="text-sm text-pink-600 mb-1">BOM Levels</p>
                 <p className="text-3xl font-bold text-pink-900">{bom.bomLevels}</p>
               </div>
@@ -1021,8 +1021,8 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
 
           {/* Components List */}
           {bom.components && bom.components.length > 0 && (
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Package className="h-5 w-5 text-indigo-600" />
                 Components
               </h3>
@@ -1064,12 +1064,12 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
           )}
 
           {/* Created/Modified By Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Users className="h-5 w-5 text-indigo-600" />
               Audit Information
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Created By</p>
                 <p className="font-semibold text-gray-900">{bom.createdBy}</p>
@@ -1104,15 +1104,15 @@ export function ViewBOMDetailsModal({ isOpen, onClose, bom }: ViewBOMDetailsModa
           {/* Notes */}
           {bom.notes && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes</h3>
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-700 whitespace-pre-wrap">{bom.notes}</p>
               </div>
             </div>
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

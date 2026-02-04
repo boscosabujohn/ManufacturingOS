@@ -394,8 +394,8 @@ export function AccessibleDataTable<T extends Record<string, any>>({
 
   if (loading) {
     return (
-      <div className="space-y-4" role="status" aria-label="Loading table data">
-        <div className="animate-pulse space-y-4">
+      <div className="space-y-2" role="status" aria-label="Loading table data">
+        <div className="animate-pulse space-y-2">
           <div className="h-10 bg-gray-200 rounded w-1/3"></div>
           <div className="space-y-2">
             {Array.from({ length: pageSize }).map((_, i) => (
@@ -409,11 +409,11 @@ export function AccessibleDataTable<T extends Record<string, any>>({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <AnnouncementRegion />
 
       {/* Table Header with Search and Actions */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         {searchable && (
           <div className="relative flex-1 max-w-md">
             <label htmlFor="table-search" className="sr-only">
@@ -464,7 +464,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
 
       {/* Column Settings Panel */}
       {showColumnSettings && (
-        <div className="bg-white border border-gray-200 rounded-lg p-4" role="dialog" aria-label="Column settings">
+        <div className="bg-white border border-gray-200 rounded-lg p-3" role="dialog" aria-label="Column settings">
           <h3 className="text-sm font-medium text-gray-900 mb-3">Visible Columns</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
             {columns.map((column) => (
@@ -506,7 +506,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
           <thead className="bg-gray-50">
             <tr role="row">
               {selectable && (
-                <th scope="col" className="w-12 px-6 py-3">
+                <th scope="col" className="w-12 px-3 py-2">
                   <input
                     type="checkbox"
                     checked={selectedRows.length === paginatedData.length && paginatedData.length > 0}
@@ -521,7 +521,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
                 <th
                   key={column.key}
                   scope="col"
-                  className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
+                  className={`px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
                     column.sortable ? 'cursor-pointer hover:bg-gray-100' : ''
                   } ${column.align === 'center' ? 'text-center' : column.align === 'right' ? 'text-right' : ''}`}
                   style={{ width: column.width }}
@@ -573,7 +573,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
                   role="cell"
                 >
                   <div className="flex flex-col items-center">
-                    <Search className="h-12 w-12 text-gray-300 mb-4" />
+                    <Search className="h-12 w-12 text-gray-300 mb-2" />
                     <p className="text-lg font-medium">{emptyMessage}</p>
                     {searchTerm && (
                       <p className="text-sm mt-1">
@@ -601,7 +601,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
                     tabIndex={isFocused ? 0 : -1}
                   >
                     {selectable && (
-                      <td className="w-12 px-6 py-4" role="cell">
+                      <td className="w-12 px-3 py-2" role="cell">
                         <input
                           type="checkbox"
                           checked={isSelected}
@@ -621,7 +621,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
                         <td
                           key={column.key}
                           role="cell"
-                          className={`px-6 py-4 whitespace-nowrap text-sm ${
+                          className={`px-3 py-2 whitespace-nowrap text-sm ${
                             column.align === 'center' ? 'text-center' :
                             column.align === 'right' ? 'text-right' : 'text-left'
                           } ${isCellFocused ? 'ring-1 ring-blue-500' : ''}`}
@@ -697,7 +697,7 @@ export function AccessibleDataTable<T extends Record<string, any>>({
       {/* Keyboard Navigation Help */}
       {keyboardNavigation && (
         <div className="text-xs text-gray-500 p-3 bg-gray-50 rounded-lg">
-          <div className="flex items-center gap-4 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="flex items-center gap-1">
               <Keyboard className="h-3 w-3" />
               Keyboard navigation enabled

@@ -97,9 +97,9 @@ export default function ComplianceReportsPage() {
   const [selectedFramework, setSelectedFramework] = useState('all');
 
   return (
-    <div className="p-6 space-y-6 text-sm font-medium">
+    <div className="p-6 space-y-3 text-sm font-medium">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <FileCheck className="h-8 w-8 text-orange-600" />
@@ -120,10 +120,10 @@ export default function ComplianceReportsPage() {
       </div>
 
       {/* Compliance Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
         {/* Compliance Score Gauge */}
-        <div className="md:col-span-2 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="md:col-span-2 bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Overall Compliance Score</p>
               <p className="text-4xl font-black text-green-600 mt-2 italic tracking-tighter leading-none">{complianceStats.overallScore}%</p>
@@ -142,7 +142,7 @@ export default function ComplianceReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Compliant</p>
@@ -155,7 +155,7 @@ export default function ComplianceReportsPage() {
           <p className="text-[10px] text-gray-400 mt-4 font-bold">of {complianceStats.totalRequirements} requirements</p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-red-100 shadow-sm">
+        <div className="bg-white p-3 rounded-2xl border border-red-100 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-red-400 uppercase tracking-widest">Non-Compliant</p>
@@ -168,7 +168,7 @@ export default function ComplianceReportsPage() {
           <p className="text-[10px] text-red-600 mt-4 font-black uppercase tracking-widest">Action Required</p>
         </div>
 
-        <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+        <div className="bg-gray-900 p-3 rounded-2xl text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Upcoming Deadlines</p>
@@ -184,7 +184,7 @@ export default function ComplianceReportsPage() {
       </div>
 
       {/* Regulatory Frameworks & Category Compliance */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Regulatory Frameworks */}
         <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="p-4 border-b border-gray-50 flex items-center justify-between">
@@ -199,17 +199,17 @@ export default function ComplianceReportsPage() {
             <table className="w-full text-left">
               <thead className="bg-gray-50 text-[10px] uppercase font-black text-gray-400 border-b border-gray-100">
                 <tr>
-                  <th className="px-6 py-4">Framework</th>
-                  <th className="px-6 py-4 text-center">Requirements</th>
-                  <th className="px-6 py-4 text-center">Compliant</th>
-                  <th className="px-6 py-4 text-center">Score</th>
-                  <th className="px-6 py-4 text-right">Status</th>
+                  <th className="px-3 py-2">Framework</th>
+                  <th className="px-3 py-2 text-center">Requirements</th>
+                  <th className="px-3 py-2 text-center">Compliant</th>
+                  <th className="px-3 py-2 text-center">Score</th>
+                  <th className="px-3 py-2 text-right">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {regulatoryFrameworks.map((framework) => (
                   <tr key={framework.name} className="hover:bg-gray-50 transition-colors group cursor-pointer">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-blue-50 rounded-lg text-blue-600 group-hover:bg-blue-100 transition-colors">
                           <BookOpen className="w-4 h-4" />
@@ -217,9 +217,9 @@ export default function ComplianceReportsPage() {
                         <span className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors">{framework.name}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-center text-gray-600 font-bold">{framework.total}</td>
-                    <td className="px-6 py-4 text-center text-green-600 font-black">{framework.compliant}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center text-gray-600 font-bold">{framework.total}</td>
+                    <td className="px-3 py-2 text-center text-green-600 font-black">{framework.compliant}</td>
+                    <td className="px-3 py-2 text-center">
                       <div className="flex items-center justify-center gap-2">
                         <div className="w-16 bg-gray-100 h-1.5 rounded-full overflow-hidden">
                           <div
@@ -230,7 +230,7 @@ export default function ComplianceReportsPage() {
                         <span className="text-[10px] font-black text-gray-600">{framework.score}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${framework.status === 'Compliant' ? 'bg-green-50 text-green-600' :
                           framework.status === 'Minor Issues' ? 'bg-yellow-50 text-yellow-600' : 'bg-red-50 text-red-600'
                         }`}>
@@ -245,11 +245,11 @@ export default function ComplianceReportsPage() {
         </div>
 
         {/* Compliance by Category */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <ClipboardCheck className="w-4 h-4 text-orange-600" /> By Safety Category
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {complianceByCategory.map((cat, i) => (
               <div key={i}>
                 <div className="flex justify-between items-center mb-1">
@@ -271,7 +271,7 @@ export default function ComplianceReportsPage() {
       </div>
 
       {/* Upcoming Deadlines & Non-Compliance Issues */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Upcoming Deadlines */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="p-4 border-b border-gray-50 flex items-center justify-between">
@@ -362,31 +362,31 @@ export default function ComplianceReportsPage() {
           <table className="w-full text-left">
             <thead className="bg-gray-50 text-[10px] uppercase font-black text-gray-400 border-b border-gray-100">
               <tr>
-                <th className="px-6 py-4">Date</th>
-                <th className="px-6 py-4">Audit Type</th>
-                <th className="px-6 py-4">Scope</th>
-                <th className="px-6 py-4 text-center">Score</th>
-                <th className="px-6 py-4 text-center">Findings</th>
-                <th className="px-6 py-4 text-right">Status</th>
+                <th className="px-3 py-2">Date</th>
+                <th className="px-3 py-2">Audit Type</th>
+                <th className="px-3 py-2">Scope</th>
+                <th className="px-3 py-2 text-center">Score</th>
+                <th className="px-3 py-2 text-center">Findings</th>
+                <th className="px-3 py-2 text-right">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {auditHistory.map((audit, i) => (
                 <tr key={i} className="hover:bg-gray-50 transition-colors group cursor-pointer">
-                  <td className="px-6 py-4 text-[11px] text-gray-600 font-bold">{audit.date}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-[11px] text-gray-600 font-bold">{audit.date}</td>
+                  <td className="px-3 py-2">
                     <span className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors">{audit.type}</span>
                   </td>
-                  <td className="px-6 py-4 text-[11px] text-gray-600">{audit.scope}</td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-[11px] text-gray-600">{audit.scope}</td>
+                  <td className="px-3 py-2 text-center">
                     <span className={`text-sm font-black ${audit.score >= 95 ? 'text-green-600' : audit.score >= 90 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {audit.score}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className="text-[11px] font-bold text-gray-600">{audit.findings}</span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <span className="inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest bg-green-50 text-green-600">
                       {audit.status}
                     </span>
@@ -399,7 +399,7 @@ export default function ComplianceReportsPage() {
       </div>
 
       {/* Compliance Notice */}
-      <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 flex items-start gap-4">
+      <div className="bg-blue-50 p-3 rounded-2xl border border-blue-100 flex items-start gap-2">
         <div className="p-2 bg-blue-100 rounded-xl text-blue-600">
           <Info className="w-5 h-5" />
         </div>

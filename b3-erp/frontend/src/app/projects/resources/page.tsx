@@ -126,7 +126,7 @@ export default function ResourceAllocationPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Users className="h-8 w-8 text-teal-600" />
           Resource Allocation
@@ -135,9 +135,9 @@ export default function ResourceAllocationPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col md:flex-row gap-2 justify-between">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
@@ -218,8 +218,8 @@ export default function ResourceAllocationPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-sm font-medium">Total Resources</p>
@@ -228,7 +228,7 @@ export default function ResourceAllocationPage() {
             <Users className="h-12 w-12 text-teal-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Allocated</p>
@@ -237,7 +237,7 @@ export default function ResourceAllocationPage() {
             <Users className="h-12 w-12 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Available</p>
@@ -246,7 +246,7 @@ export default function ResourceAllocationPage() {
             <Users className="h-12 w-12 text-green-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-600 text-sm font-medium">Over-allocated</p>
@@ -258,8 +258,8 @@ export default function ResourceAllocationPage() {
       </div>
 
       {/* Overview cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-        <a href="/projects/resources/utilization" className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow transition-shadow">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+        <a href="/projects/resources/utilization" className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow transition-shadow">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Utilization</p>
@@ -269,7 +269,7 @@ export default function ResourceAllocationPage() {
           </div>
           <p className="text-xs text-gray-500 mt-1">Avg. across active resources</p>
         </a>
-        <a href="/projects/resources/team" className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow transition-shadow">
+        <a href="/projects/resources/team" className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow transition-shadow">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Team Members</p>
@@ -279,7 +279,7 @@ export default function ResourceAllocationPage() {
           </div>
           <p className="text-xs text-gray-500 mt-1">Across 12 departments</p>
         </a>
-        <a href="/projects/resources/calendar" className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow transition-shadow">
+        <a href="/projects/resources/calendar" className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow transition-shadow">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Bookings This Week</p>

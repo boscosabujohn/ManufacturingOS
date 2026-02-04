@@ -329,7 +329,7 @@ export function TouchListItem({
       onClick={onClick}
       disabled={disabled}
       className={`
-        w-full flex items-center gap-4 px-4 py-3
+        w-full flex items-center gap-2 px-4 py-3
         transition-colors duration-150
         disabled:opacity-50 disabled:cursor-not-allowed
         ${active

@@ -177,9 +177,9 @@ const FinancialPeriodManagement = () => {
   ];
 
   const renderOverviewTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-green-50 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-green-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Open Periods</p>
@@ -189,7 +189,7 @@ const FinancialPeriodManagement = () => {
             <Unlock className="h-8 w-8 text-green-500" />
           </div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
+        <div className="bg-yellow-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Soft Close</p>
@@ -199,7 +199,7 @@ const FinancialPeriodManagement = () => {
             <Clock className="h-8 w-8 text-yellow-600" />
           </div>
         </div>
-        <div className="bg-blue-50 rounded-lg p-4">
+        <div className="bg-blue-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Hard Closed</p>
@@ -209,7 +209,7 @@ const FinancialPeriodManagement = () => {
             <Lock className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Close Time</p>
@@ -221,9 +221,9 @@ const FinancialPeriodManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Period Status Timeline</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Period Status Timeline</h3>
           <div className="space-y-3">
             {financialPeriods.slice(0, 6).map((period, index) => (
               <div key={period.id} className="flex items-center">
@@ -271,8 +271,8 @@ const FinancialPeriodManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Closing Performance</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Closing Performance</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={closingTrend}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -287,8 +287,8 @@ const FinancialPeriodManagement = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Current Period Tasks</h3>
           <button
             onClick={() => setShowClosingWizard(true)}
@@ -298,7 +298,7 @@ const FinancialPeriodManagement = () => {
             Start Closing
           </button>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           <div>
             <h4 className="font-medium mb-3">Task Progress by Category</h4>
             <div className="space-y-2">
@@ -348,9 +348,9 @@ const FinancialPeriodManagement = () => {
   );
 
   const renderPeriodsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Financial Periods</h3>
           <div className="flex space-x-2">
             <select
@@ -445,15 +445,15 @@ const FinancialPeriodManagement = () => {
       </div>
 
       {selectedPeriod && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">Period Details - {selectedPeriod.periodName}</h3>
             <button onClick={() => setSelectedPeriod(null)}>
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <h4 className="font-medium mb-3">Period Information</h4>
               <div className="space-y-2 text-sm">
@@ -516,9 +516,9 @@ const FinancialPeriodManagement = () => {
   );
 
   const renderTasksTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Closing Tasks</h3>
           <div className="flex space-x-2">
             <select className="border rounded px-3 py-2">
@@ -604,9 +604,9 @@ const FinancialPeriodManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Task Dependencies</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Task Dependencies</h3>
           <div className="space-y-3">
             {closingTasks.filter(t => t.dependencies.length > 0).map(task => (
               <div key={task.id} className="p-3 bg-gray-50 rounded">
@@ -627,8 +627,8 @@ const FinancialPeriodManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Task Performance</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Task Performance</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={closingTasks.filter(t => t.actualHours)}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -645,9 +645,9 @@ const FinancialPeriodManagement = () => {
   );
 
   const renderChecklistTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Closing Checklist</h3>
           <div className="flex items-center space-x-4">
             <span className="text-sm text-gray-600">
@@ -659,13 +659,13 @@ const FinancialPeriodManagement = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {['Revenue', 'Expenses', 'Cash', 'Assets', 'Tax', 'Consolidation'].map(category => {
             const items = closingChecklist.filter(c => c.category === category);
             const completedItems = items.filter(c => c.isCompleted).length;
 
             return (
-              <div key={category} className="border rounded-lg p-4">
+              <div key={category} className="border rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-medium">{category}</h4>
                   <span className="text-sm text-gray-500">{completedItems}/{items.length} completed</span>
@@ -705,9 +705,9 @@ const FinancialPeriodManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Checklist Progress</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Checklist Progress</h3>
           <ResponsiveContainer width="100%" height={200}>
             <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={[
               { name: 'Completed', value: (closingChecklist.filter(c => c.isCompleted).length / closingChecklist.length) * 100, fill: '#10B981' }
@@ -720,8 +720,8 @@ const FinancialPeriodManagement = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Mandatory Items</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Mandatory Items</h3>
           <div className="space-y-2">
             {closingChecklist.filter(c => c.isMandatory && !c.isCompleted).map(item => (
               <div key={item.id} className="p-2 bg-red-50 rounded">
@@ -731,15 +731,15 @@ const FinancialPeriodManagement = () => {
             ))}
             {closingChecklist.filter(c => c.isMandatory && !c.isCompleted).length === 0 && (
               <div className="text-center py-4 text-green-600">
-                <CheckCircle className="h-8 w-8 mx-auto mb-2" />
+                <CheckCircle className="h-8 w-8 mb-2" />
                 <p className="text-sm">All mandatory items completed!</p>
               </div>
             )}
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Pending Verifications</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Pending Verifications</h3>
           <div className="space-y-2">
             {closingChecklist.filter(c => c.isCompleted && c.verificationRequired && !c.verifiedBy).map(item => (
               <div key={item.id} className="p-2 bg-yellow-50 rounded">
@@ -757,9 +757,9 @@ const FinancialPeriodManagement = () => {
   );
 
   const renderJournalEntriesTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Period Journal Entries</h3>
           <div className="flex space-x-2">
             <select className="border rounded px-3 py-2">
@@ -843,9 +843,9 @@ const FinancialPeriodManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Entry Summary</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Entry Summary</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">Total Entries</span>
@@ -872,8 +872,8 @@ const FinancialPeriodManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Entry Types</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Entry Types</h3>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie dataKey="value"
@@ -899,8 +899,8 @@ const FinancialPeriodManagement = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Balance Check</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Balance Check</h3>
           <div className="space-y-3">
             <div className="p-3 bg-green-50 rounded">
               <div className="flex items-center justify-between">
@@ -937,13 +937,13 @@ const FinancialPeriodManagement = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Financial Period Management</h2>
         <p className="text-gray-600">Manage financial periods, closing procedures, and compliance</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['overview', 'periods', 'tasks', 'checklist', 'journal-entries'].map((tab) => (
@@ -973,15 +973,15 @@ const FinancialPeriodManagement = () => {
 
       {showClosingWizard && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-semibold">Period Closing Wizard</h3>
               <button onClick={() => setShowClosingWizard(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex-1">
                 <div className="flex items-center justify-between relative">
                   <div className="absolute left-0 right-0 h-1 bg-gray-200 top-5"></div>
@@ -1003,7 +1003,7 @@ const FinancialPeriodManagement = () => {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {closingStep === 1 && (
                 <div>
                   <h4 className="font-semibold mb-3">Pre-Closing Checks</h4>
@@ -1063,7 +1063,7 @@ const FinancialPeriodManagement = () => {
               {closingStep === 5 && (
                 <div>
                   <h4 className="font-semibold mb-3">Closing Summary</h4>
-                  <div className="bg-green-50 p-4 rounded mb-4">
+                  <div className="bg-green-50 p-3 rounded mb-2">
                     <div className="flex items-center">
                       <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
                       <div>
@@ -1121,14 +1121,14 @@ const FinancialPeriodManagement = () => {
 
       {showReopenModal && selectedPeriod && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Reopen Period</h3>
               <button onClick={() => setShowReopenModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="bg-yellow-50 p-3 rounded">
                 <div className="flex items-start">
                   <AlertTriangle className="h-5 w-5 text-yellow-600 mr-2 mt-0.5" />

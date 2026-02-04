@@ -125,7 +125,7 @@ export default function SalesAutomation() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900 flex items-center">
@@ -136,8 +136,8 @@ export default function SalesAutomation() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Total Rules</p>
@@ -147,7 +147,7 @@ export default function SalesAutomation() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Rules</p>
@@ -157,7 +157,7 @@ export default function SalesAutomation() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Executions</p>
@@ -167,7 +167,7 @@ export default function SalesAutomation() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Success Rate</p>
@@ -177,7 +177,7 @@ export default function SalesAutomation() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Time Saved</p>
@@ -187,7 +187,7 @@ export default function SalesAutomation() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Auto-Assigned</p>
@@ -199,7 +199,7 @@ export default function SalesAutomation() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center justify-between">
           <button className="flex items-center space-x-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
             <Zap className="h-4 w-4" />
@@ -222,10 +222,10 @@ export default function SalesAutomation() {
       </div>
 
       {/* Automation Rules */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRules.map((rule) => (
-          <div key={rule.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
+          <div key={rule.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{rule.name}</h3>
@@ -265,7 +265,7 @@ export default function SalesAutomation() {
             </div>
 
             {/* Trigger */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex items-center space-x-2 mb-2">
                 <Bot className="h-5 w-5 text-blue-600" />
                 <span className="text-sm font-semibold text-gray-700">TRIGGER:</span>
@@ -316,8 +316,8 @@ export default function SalesAutomation() {
       </div>
 
       {/* Email Sequence Builder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
           <Mail className="h-5 w-5 text-purple-600 mr-2" />
           Email Sequence Template Example
         </h3>
@@ -354,8 +354,8 @@ export default function SalesAutomation() {
       </div>
 
       {/* Approval Workflow Example */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
           <FileText className="h-5 w-5 text-red-600 mr-2" />
           Discount Approval Workflow
         </h3>
@@ -366,7 +366,7 @@ export default function SalesAutomation() {
             { role: 'VP Sales', discount: '25%+', auto: false }
           ].map((step, index, arr) => (
             <React.Fragment key={index}>
-              <div className="flex-1 bg-gradient-to-br from-red-50 to-orange-50 border border-red-200 rounded-lg p-4 text-center">
+              <div className="flex-1 bg-gradient-to-br from-red-50 to-orange-50 border border-red-200 rounded-lg p-3 text-center">
                 <p className="text-sm font-semibold text-red-900">{step.role}</p>
                 <p className="text-xs text-red-600 mt-1">{step.discount}</p>
                 {step.auto && (

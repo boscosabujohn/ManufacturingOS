@@ -153,7 +153,7 @@ export default function DepartmentReportPage() {
   }, []);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -176,27 +176,27 @@ export default function DepartmentReportPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Users className="w-4 h-4" /> Total Employees
           </div>
           <div className="text-2xl font-bold text-gray-900">{overallStats.totalEmployees}</div>
           <div className="text-xs text-gray-500 mt-1">across {mockDepartmentData.length} departments</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Calendar className="w-4 h-4" /> Total Leaves
           </div>
           <div className="text-2xl font-bold text-blue-600">{overallStats.totalLeaves.toLocaleString()}</div>
           <div className="text-xs text-gray-500 mt-1">days taken</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Avg Utilization</div>
           <div className="text-2xl font-bold text-orange-600">{overallStats.avgUtilization.toFixed(1)}%</div>
           <div className="text-xs text-gray-500 mt-1">across all depts</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <AlertCircle className="w-4 h-4" /> Pending
           </div>
@@ -212,8 +212,8 @@ export default function DepartmentReportPage() {
         <DataTable data={mockDepartmentData} columns={columns} pagination={{ enabled: false }} sorting={{ enabled: true, defaultSort: { column: 'department', direction: 'asc' } }} emptyMessage="No department data found" />
       </div>
 
-      <div className="bg-white rounded-lg border p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Leave Type Distribution by Department</h2>
+      <div className="bg-white rounded-lg border p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Leave Type Distribution by Department</h2>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -262,9 +262,9 @@ export default function DepartmentReportPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">High Utilization Departments</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">High Utilization Departments</h2>
           <div className="space-y-3">
             {mockDepartmentData.filter(d => d.utilizationRate >= 70).sort((a, b) => b.utilizationRate - a.utilizationRate).map(dept => (
               <div key={dept.departmentId} className="bg-red-50 border border-red-200 rounded-lg p-3">
@@ -283,8 +283,8 @@ export default function DepartmentReportPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Departments Requiring Attention</h2>
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Departments Requiring Attention</h2>
           <div className="space-y-3">
             {mockDepartmentData.filter(d => d.pendingApplications > 3 || d.teamAvailability < 90).map(dept => (
               <div key={dept.departmentId} className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
@@ -304,7 +304,7 @@ export default function DepartmentReportPage() {
         </div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <Building className="w-5 h-5 inline mr-2" />
           Department Report Insights

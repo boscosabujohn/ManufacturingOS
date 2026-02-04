@@ -289,7 +289,7 @@ export default function CreatePurchaseOrderPage() {
   return (
     <div className="p-6 w-full">
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex justify-between items-start mb-3">
         <div>
           <div className="flex items-center gap-3 mb-2">
             <Link
@@ -323,7 +323,7 @@ export default function CreatePurchaseOrderPage() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab('details')}
@@ -378,18 +378,18 @@ export default function CreatePurchaseOrderPage() {
 
       {/* Tab Content */}
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Vendor Selection */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Building2 className="h-5 w-5 text-gray-400" />
               Vendor Information
             </h3>
 
             {vendor ? (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex justify-between items-start">
-                  <div className="grid grid-cols-2 gap-4 flex-1">
+                  <div className="grid grid-cols-2 gap-2 flex-1">
                     <div>
                       <p className="text-sm text-gray-600">Vendor Name</p>
                       <p className="font-medium text-gray-900">{vendor.name}</p>
@@ -422,7 +422,7 @@ export default function CreatePurchaseOrderPage() {
             ) : (
               <button
                 onClick={() => setShowVendorSearch(true)}
-                className="w-full p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                className="w-full p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors"
               >
                 <div className="flex flex-col items-center gap-2">
                   <Search className="h-8 w-8 text-gray-400" />
@@ -434,13 +434,13 @@ export default function CreatePurchaseOrderPage() {
           </div>
 
           {/* Order Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-gray-400" />
               Order Information
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   PO Type <span className="text-red-500">*</span>
@@ -542,7 +542,7 @@ export default function CreatePurchaseOrderPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-3 gap-2 mt-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Buyer Name
@@ -580,7 +580,7 @@ export default function CreatePurchaseOrderPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-2 gap-2 mt-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Vendor Notes
@@ -612,7 +612,7 @@ export default function CreatePurchaseOrderPage() {
       )}
 
       {activeTab === 'items' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Add Item Button */}
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold text-gray-900">Order Items</h3>
@@ -731,7 +731,7 @@ export default function CreatePurchaseOrderPage() {
               </table>
 
               {/* Totals */}
-              <div className="bg-gray-50 px-6 py-4">
+              <div className="bg-gray-50 px-3 py-2">
                 <div className="flex justify-end">
                   <div className="w-64 space-y-2">
                     <div className="flex justify-between text-sm">
@@ -753,9 +753,9 @@ export default function CreatePurchaseOrderPage() {
           ) : (
             <div className="bg-white rounded-lg border border-gray-200 p-12">
               <div className="text-center">
-                <Package className="h-12 w-12 text-gray-400 mb-4" />
+                <Package className="h-12 w-12 text-gray-400 mb-2" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No items added</h3>
-                <p className="text-gray-500 mb-4">Add items to this purchase order</p>
+                <p className="text-gray-500 mb-2">Add items to this purchase order</p>
                 <button
                   onClick={() => setShowItemCatalog(true)}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 inline-flex items-center gap-2"
@@ -770,15 +770,15 @@ export default function CreatePurchaseOrderPage() {
       )}
 
       {activeTab === 'terms' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Delivery Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Truck className="h-5 w-5 text-gray-400" />
               Delivery Details
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Expected Delivery Date <span className="text-red-500">*</span>
@@ -895,13 +895,13 @@ export default function CreatePurchaseOrderPage() {
           </div>
 
           {/* Payment Terms */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <CreditCard className="h-5 w-5 text-gray-400" />
               Payment Terms
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Payment Term <span className="text-red-500">*</span>
@@ -1000,14 +1000,14 @@ export default function CreatePurchaseOrderPage() {
       )}
 
       {activeTab === 'attachments' && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Attachments</h3>
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Attachments</h3>
 
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
             <div className="text-center">
-              <Upload className="h-12 w-12 text-gray-400 mb-4" />
+              <Upload className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-gray-600 mb-2">Drop files here or click to upload</p>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 mb-2">
                 Supported formats: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG (Max 10MB)
               </p>
               <input
@@ -1060,8 +1060,8 @@ export default function CreatePurchaseOrderPage() {
       {/* Vendor Search Modal */}
       {showVendorSearch && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Select Vendor</h3>
               <button
                 onClick={() => setShowVendorSearch(false)}
@@ -1071,7 +1071,7 @@ export default function CreatePurchaseOrderPage() {
               </button>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <input
                 type="text"
                 placeholder="Search vendor..."
@@ -1084,7 +1084,7 @@ export default function CreatePurchaseOrderPage() {
                 <button
                   key={v.id}
                   onClick={() => handleVendorSelect(v)}
-                  className="w-full p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-left"
+                  className="w-full p-3 border border-gray-200 rounded-lg hover:bg-gray-50 text-left"
                 >
                   <div className="flex justify-between items-start">
                     <div>
@@ -1107,8 +1107,8 @@ export default function CreatePurchaseOrderPage() {
       {/* Item Catalog Modal */}
       {showItemCatalog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Add Item from Catalog</h3>
               <button
                 onClick={() => setShowItemCatalog(false)}
@@ -1118,7 +1118,7 @@ export default function CreatePurchaseOrderPage() {
               </button>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <input
                 type="text"
                 placeholder="Search items..."

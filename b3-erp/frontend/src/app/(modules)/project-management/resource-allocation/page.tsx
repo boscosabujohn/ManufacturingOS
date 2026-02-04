@@ -261,7 +261,7 @@ export default function ResourceAllocationPage() {
    </div>
 
    {/* Header Actions */}
-   <div className="flex justify-between items-center mb-4">
+   <div className="flex justify-between items-center mb-2">
     <div className="flex gap-3">
      <button
       onClick={() => setShowFilterModal(true)}
@@ -366,25 +366,25 @@ export default function ResourceAllocationPage() {
      <table className="w-full">
       <thead className="bg-gray-50 border-b border-gray-200">
        <tr>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Resource
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Role
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Skills
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Current Allocation
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Availability
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Cost Rate
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Actions
         </th>
        </tr>
@@ -392,7 +392,7 @@ export default function ResourceAllocationPage() {
       <tbody className="bg-white divide-y divide-gray-200">
        {filteredResources.map((resource) => (
         <tr key={resource.id} className="hover:bg-gray-50">
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <div className="flex items-center gap-3">
            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
             {resource.name.split(' ').map(n => n[0]).join('')}
@@ -400,10 +400,10 @@ export default function ResourceAllocationPage() {
            <p className="font-medium text-gray-900">{resource.name}</p>
           </div>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className="text-sm text-gray-900">{resource.role}</p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <div className="flex flex-wrap gap-1">
            {resource.skills.map((skill, idx) => (
             <span key={idx} className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
@@ -412,7 +412,7 @@ export default function ResourceAllocationPage() {
            ))}
           </div>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <div>
            <div className="flex items-center gap-2 mb-1">
             <div className="flex-1 w-24">
@@ -431,15 +431,15 @@ export default function ResourceAllocationPage() {
            </div>
           </div>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className={`text-sm font-semibold ${getAvailabilityColor(resource.availability)}`}>
            {resource.availability}%
           </p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className="text-sm text-gray-900">{formatCurrency(resource.costRate)}/day</p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <div className="flex items-center gap-2">
            <button
             onClick={() => openWorkloadModal(resource)}
@@ -489,7 +489,7 @@ export default function ResourceAllocationPage() {
            </span>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 mt-3">
+          <div className="grid grid-cols-4 gap-2 mt-3">
            <div>
             <p className="text-xs text-gray-500">Project Phase</p>
             <p className="text-sm font-medium text-gray-900">{allocation.projectPhase}</p>
@@ -588,7 +588,7 @@ export default function ResourceAllocationPage() {
         />
        </div>
 
-       <div className="grid grid-cols-2 gap-4">
+       <div className="grid grid-cols-2 gap-2">
         <div>
          <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
          <input
@@ -609,7 +609,7 @@ export default function ResourceAllocationPage() {
         </div>
        </div>
 
-       <div className="grid grid-cols-2 gap-4">
+       <div className="grid grid-cols-2 gap-2">
         <div>
          <label className="block text-sm font-medium text-gray-700 mb-2">Allocated Hours</label>
          <input

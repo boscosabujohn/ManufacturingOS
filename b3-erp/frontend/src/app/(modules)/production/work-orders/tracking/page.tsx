@@ -443,10 +443,10 @@ export default function WorkOrderTrackingPage() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -471,7 +471,7 @@ export default function WorkOrderTrackingPage() {
       </div>
 
       {/* Search */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input
@@ -485,7 +485,7 @@ export default function WorkOrderTrackingPage() {
       </div>
 
       {/* Work Orders List */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredOrders.map((order) => {
           const statusInfo = getStatusBadge(order.currentStatus);
           const StatusIcon = statusInfo.icon;
@@ -501,7 +501,7 @@ export default function WorkOrderTrackingPage() {
             >
               <div className="p-5">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <h3 className="text-lg font-semibold text-gray-900">{order.workOrderNumber}</h3>
@@ -527,7 +527,7 @@ export default function WorkOrderTrackingPage() {
                 </div>
 
                 {/* Product Info */}
-                <div className="bg-blue-50 rounded-lg p-3 mb-4">
+                <div className="bg-blue-50 rounded-lg p-3 mb-2">
                   <div className="flex items-start gap-2">
                     <Package className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div className="flex-1">
@@ -538,7 +538,7 @@ export default function WorkOrderTrackingPage() {
                 </div>
 
                 {/* Progress */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Overall Progress</span>
                     <span className="text-lg font-bold text-blue-900">{order.completionPercentage}%</span>
@@ -552,7 +552,7 @@ export default function WorkOrderTrackingPage() {
                 </div>
 
                 {/* Current Station */}
-                <div className="bg-purple-50 rounded-lg p-3 mb-4">
+                <div className="bg-purple-50 rounded-lg p-3 mb-2">
                   <div className="flex items-center gap-2 mb-1">
                     <MapPin className="h-4 w-4 text-purple-600" />
                     <span className="text-xs font-medium text-purple-900">Current Station</span>
@@ -561,7 +561,7 @@ export default function WorkOrderTrackingPage() {
                 </div>
 
                 {/* Timeline Preview */}
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-2">
                   {order.timeline.slice(0, 6).map((event, idx) => (
                     <div
                       key={event.id}
@@ -598,9 +598,9 @@ export default function WorkOrderTrackingPage() {
 
       {/* Detailed Timeline Modal/Panel */}
       {selectedOrder && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-3 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{selectedOrder.workOrderNumber}</h2>
                 <p className="text-sm text-gray-600">{selectedOrder.productName}</p>
@@ -617,9 +617,9 @@ export default function WorkOrderTrackingPage() {
 
             <div className="p-6">
               {/* Timeline */}
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {selectedOrder.timeline.map((event, idx) => (
-                  <div key={event.id} className="flex gap-4">
+                  <div key={event.id} className="flex gap-2">
                     {/* Status Indicator */}
                     <div className="flex flex-col items-center">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
@@ -644,7 +644,7 @@ export default function WorkOrderTrackingPage() {
 
                     {/* Event Details */}
                     <div className="flex-1 pb-8">
-                      <div className={`rounded-lg border-2 p-4 ${
+                      <div className={`rounded-lg border-2 p-3 ${
                         event.status === 'completed' ? 'border-green-200 bg-green-50' :
                         event.status === 'in-progress' ? 'border-blue-200 bg-blue-50' :
                         'border-gray-200 bg-gray-50'

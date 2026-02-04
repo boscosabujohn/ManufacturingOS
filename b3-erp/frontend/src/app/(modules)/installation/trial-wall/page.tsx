@@ -55,7 +55,7 @@ export default function TrialWallPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -79,15 +79,15 @@ export default function TrialWallPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card>
                     <CardHeader>
                         <CardTitle>Trial Assembly Checklist</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {checks.map((check) => (
-                                <div key={check.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50">
+                                <div key={check.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50">
                                     <div className="flex items-center gap-3">
                                         <div className={`h-8 w-8 rounded-full flex items-center justify-center ${check.status === 'Verified' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'}`}>
                                             <CheckCircle2 className="h-5 w-5" />
@@ -126,7 +126,7 @@ export default function TrialWallPage() {
                     <CardHeader>
                         <CardTitle>Visual Documentation</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-2">
                         <div className="border-2 border-dashed rounded-lg p-8 text-center space-y-2">
                             <Camera className="h-8 w-8 text-muted-foreground" />
                             <p className="text-sm text-muted-foreground">Upload photos of trial assembly</p>
@@ -134,7 +134,7 @@ export default function TrialWallPage() {
                                 Capture / Upload
                             </Button>
                         </div>
-                        <div className="bg-blue-50 p-4 rounded-lg">
+                        <div className="bg-blue-50 p-3 rounded-lg">
                             <h4 className="font-medium text-blue-800 mb-2 flex items-center gap-2">
                                 <Ruler className="h-4 w-4" />
                                 Tolerance Guidelines

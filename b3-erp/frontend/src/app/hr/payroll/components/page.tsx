@@ -233,7 +233,7 @@ export default function ComponentsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <DollarSign className="h-8 w-8 text-yellow-600" />
           Salary Components Master
@@ -242,8 +242,8 @@ export default function ComponentsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Components</p>
@@ -252,7 +252,7 @@ export default function ComponentsPage() {
             <DollarSign className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Earnings</p>
@@ -261,7 +261,7 @@ export default function ComponentsPage() {
             <DollarSign className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Deductions</p>
@@ -270,7 +270,7 @@ export default function ComponentsPage() {
             <DollarSign className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Statutory</p>
@@ -282,8 +282,8 @@ export default function ComponentsPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -313,7 +313,7 @@ export default function ComponentsPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4 pt-4 border-t">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
               <select
@@ -345,14 +345,14 @@ export default function ComponentsPage() {
 
       {/* Components Table */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Salary Components</h3>
         </div>
         <DataTable data={filteredData} columns={columns} />
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Component Types</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>Fixed:</strong> Standard components with consistent values (Basic, HRA, DA)</li>
@@ -413,10 +413,10 @@ function ComponentModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-t-lg">
           <h2 className="text-2xl font-bold">
             {component ? 'Edit' : 'Add New'} Salary Component
           </h2>
@@ -426,9 +426,9 @@ function ComponentModal({
         </div>
 
         {/* Modal Content */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Component Code and Name */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Component Code <span className="text-red-500">*</span>
@@ -459,7 +459,7 @@ function ComponentModal({
           </div>
 
           {/* Type, Category, Calculation Type */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Type <span className="text-red-500">*</span>
@@ -507,7 +507,7 @@ function ComponentModal({
           </div>
 
           {/* Checkboxes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="space-y-3">
               <label className="flex items-center space-x-2 cursor-pointer">
                 <input
@@ -542,7 +542,7 @@ function ComponentModal({
           </div>
 
           {/* Display Order and Status */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Display Order <span className="text-red-500">*</span>

@@ -468,7 +468,7 @@ export function KPIGrid({ children, columns = 4, className = '' }: KPIGridProps)
   };
 
   return (
-    <div className={`grid ${gridCols[columns]} gap-4 ${className}`}>
+    <div className={`grid ${gridCols[columns]} gap-2 ${className}`}>
       {children}
     </div>
   );

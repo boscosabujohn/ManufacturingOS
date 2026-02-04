@@ -238,7 +238,7 @@ export default function DailyPunchPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Clock className="h-8 w-8 text-blue-600" />
           Daily Punch In/Out
@@ -247,8 +247,8 @@ export default function DailyPunchPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Total Employees</p>
@@ -258,7 +258,7 @@ export default function DailyPunchPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Currently Working</p>
@@ -268,7 +268,7 @@ export default function DailyPunchPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">On Break</p>
@@ -278,7 +278,7 @@ export default function DailyPunchPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Completed Today</p>
@@ -290,8 +290,8 @@ export default function DailyPunchPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Calendar className="w-4 h-4 inline mr-1" />
@@ -356,7 +356,7 @@ export default function DailyPunchPage() {
 
       {/* Alert for employees not punched in */}
       {filteredRecords.filter(r => !r.punchIn && r.date === selectedDate).length > 0 && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-yellow-600" />
             <div>
@@ -383,7 +383,7 @@ export default function DailyPunchPage() {
       </div>
 
       {/* Help Text */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-4 h-4" />
           Punch In/Out Guidelines

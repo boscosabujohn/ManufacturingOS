@@ -261,7 +261,7 @@ function AnomalyCard({
   return (
     <div
       className={`
-        relative p-4 rounded-xl border-2 ${severity.borderColor} ${severity.bgColor}
+        relative p-3 rounded-xl border-2 ${severity.borderColor} ${severity.bgColor}
         transition-all duration-300 hover:shadow-lg
         ${anomaly.acknowledged ? 'opacity-60' : ''}
         ${anomaly.autoResolved ? 'border-green-500 bg-green-50' : ''}
@@ -297,7 +297,7 @@ function AnomalyCard({
           <p className="text-sm text-gray-500">{anomaly.source}</p>
 
           {/* Values */}
-          <div className="mt-2 flex items-center gap-4">
+          <div className="mt-2 flex items-center gap-2">
             <div>
               <p className="text-xs text-gray-500">Current</p>
               <p className="text-lg font-bold text-gray-900">{anomaly.value.toFixed(1)}{anomaly.unit}</p>
@@ -382,7 +382,7 @@ function SummaryStats({ anomalies }: { anomalies: Anomaly[] }) {
   const total = anomalies.length;
 
   return (
-    <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-4 gap-2 mb-3">
       <div className="text-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
         <p className="text-2xl font-bold text-gray-900 dark:text-white">{total}</p>
         <p className="text-xs text-gray-500">Total Detected</p>
@@ -527,7 +527,7 @@ export function AnomalyDetection({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-red-600 to-orange-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -564,7 +564,7 @@ export function AnomalyDetection({
         <SummaryStats anomalies={anomalies} />
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className="flex flex-wrap items-center gap-2 mb-2">
           <button
             onClick={() => setFilter('all')}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
@@ -594,7 +594,7 @@ export function AnomalyDetection({
         </div>
 
         {/* Anomaly List */}
-        <div className="space-y-4 max-h-[500px] overflow-y-auto">
+        <div className="space-y-2 max-h-[500px] overflow-y-auto">
           {filteredAnomalies.map(anomaly => (
             <AnomalyCard
               key={anomaly.id}
@@ -606,7 +606,7 @@ export function AnomalyDetection({
 
           {filteredAnomalies.length === 0 && (
             <div className="text-center py-12 text-gray-500">
-              <CheckCircle className="w-12 h-12 mx-auto mb-3 text-green-400" />
+              <CheckCircle className="w-12 h-12 mb-3 text-green-400" />
               <p className="font-medium">All Clear!</p>
               <p className="text-sm">No anomalies detected</p>
             </div>

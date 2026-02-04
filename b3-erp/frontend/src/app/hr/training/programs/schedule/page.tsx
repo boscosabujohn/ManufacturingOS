@@ -56,8 +56,8 @@ export default function ProgramSchedulePage() {
   const calendarDays = Array.from({ length: 30 }, (_, i) => i + 1);
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="p-6 space-y-3">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Calendar className="h-8 w-8 text-purple-600" />
@@ -128,8 +128,8 @@ export default function ProgramSchedulePage() {
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="divide-y divide-gray-100">
             {sessions.map(session => (
-              <div key={session.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-gray-50 transition-colors">
-                <div className="flex items-start gap-4">
+              <div key={session.id} className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-2 hover:bg-gray-50 transition-colors">
+                <div className="flex items-start gap-2">
                   <div className={`p-3 rounded-lg ${session.conflict ? 'bg-red-50' : 'bg-purple-50'}`}>
                     {session.conflict ? (
                       <AlertCircle className="h-6 w-6 text-red-600" />
@@ -145,7 +145,7 @@ export default function ProgramSchedulePage() {
                       )}
                     </h3>
                     <p className="text-sm text-gray-500 mt-0.5">Trainer: {session.trainer}</p>
-                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                    <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
                       <span className="flex items-center gap-1">
                         <Clock className="h-4 w-4" />
                         {session.date} • {session.time}
@@ -158,7 +158,7 @@ export default function ProgramSchedulePage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
                   <div className="text-center">
                     <div className="flex items-center gap-1 text-gray-900 font-medium justify-center">
                       <Users className="h-4 w-4 text-gray-400" />

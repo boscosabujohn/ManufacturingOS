@@ -418,7 +418,7 @@ export default function CategoryMaster() {
               <div className="text-sm text-gray-500 truncate">{category.description}</div>
             </div>
 
-            <div className="flex items-center gap-4 ml-4">
+            <div className="flex items-center gap-2 ml-4">
               <div className="text-sm text-gray-600">
                 {category.statistics.itemCount} items
               </div>
@@ -461,8 +461,8 @@ export default function CategoryMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <FolderTree className="w-8 h-8 text-blue-600" />
@@ -489,7 +489,7 @@ export default function CategoryMaster() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -548,7 +548,7 @@ export default function CategoryMaster() {
 
       {viewMode === 'tree' ? (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="border-b border-gray-200 px-6 py-3 bg-gray-50">
+          <div className="border-b border-gray-200 px-3 py-2 bg-gray-50">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-medium text-gray-900">Category Hierarchy</h3>
               <div className="flex gap-2">
@@ -577,25 +577,25 @@ export default function CategoryMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type & Level</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Business Rules</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statistics</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type & Level</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Business Rules</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statistics</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredCategories.map((category) => (
                   <tr key={category.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{category.categoryName}</div>
                         <div className="text-sm text-gray-500">{category.categoryCode}</div>
                         <div className="text-sm text-gray-500 truncate max-w-xs">{category.description}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="space-y-1">
                         <span className={getTypeBadge(category.categoryType)}>
                           {category.categoryType}
@@ -608,7 +608,7 @@ export default function CategoryMaster() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         Min Margin: {category.businessRules.minMargin}%
                       </div>
@@ -619,17 +619,17 @@ export default function CategoryMaster() {
                         Tax: {category.businessRules.taxCategory}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{category.statistics.itemCount} items</div>
                       <div className="text-sm text-gray-500">${category.statistics.totalValue.toLocaleString()}</div>
                       <div className="text-sm text-gray-500">Avg: ${category.statistics.averagePrice}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(category.status)}>
                         {category.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleAddCategory(category.id)}
@@ -737,7 +737,7 @@ function CategoryModal({ category, categories, onSave, onClose, activeTab, setAc
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {category?.id ? 'Edit Category' : 'Add New Category'}
           </h2>
@@ -766,9 +766,9 @@ function CategoryModal({ category, categories, onSave, onClose, activeTab, setAc
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category Code</label>
                   <input
@@ -872,7 +872,7 @@ function CategoryModal({ category, categories, onSave, onClose, activeTab, setAc
             )}
 
             {activeTab === 'rules' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Minimum Margin (%)</label>
                   <input
@@ -920,7 +920,7 @@ function CategoryModal({ category, categories, onSave, onClose, activeTab, setAc
             )}
 
             {activeTab === 'display' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Display Color</label>
                   <input
@@ -956,7 +956,7 @@ function CategoryModal({ category, categories, onSave, onClose, activeTab, setAc
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

@@ -135,37 +135,37 @@ export default function LiveTelematicsTracking() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Live Telematics & GPS Tracking</h1>
           <p className="text-gray-600">Real-time vehicle and shipment monitoring</p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-blue-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-blue-200">
             <div className="flex items-center gap-3 mb-2">
               <Truck className="w-5 h-5 text-blue-600" />
               <p className="text-sm text-gray-600">Active Shipments</p>
             </div>
             <p className="text-3xl font-bold text-blue-600">{liveShipments.filter(s => s.status === 'in-transit').length}</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-green-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-green-200">
             <div className="flex items-center gap-3 mb-2">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <p className="text-sm text-gray-600">On-Time Delivery</p>
             </div>
             <p className="text-3xl font-bold text-green-600">94.5%</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-red-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-red-200">
             <div className="flex items-center gap-3 mb-2">
               <AlertTriangle className="w-5 h-5 text-red-600" />
               <p className="text-sm text-gray-600">Delayed</p>
             </div>
             <p className="text-3xl font-bold text-red-600">{liveShipments.filter(s => s.status === 'delayed').length}</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-purple-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-purple-200">
             <div className="flex items-center gap-3 mb-2">
               <Activity className="w-5 h-5 text-purple-600" />
               <p className="text-sm text-gray-600">Active Vehicles</p>
@@ -175,13 +175,13 @@ export default function LiveTelematicsTracking() {
         </div>
 
         {/* View Toggle */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="flex">
             {['list', 'map', 'metrics'].map((view) => (
               <button
                 key={view}
                 onClick={() => setActiveView(view as any)}
-                className={`flex-1 px-6 py-4 font-medium transition-colors ${
+                className={`flex-1 px-3 py-2 font-medium transition-colors ${
                   activeView === view
                     ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -194,13 +194,13 @@ export default function LiveTelematicsTracking() {
         </div>
 
         {/* Content */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
           {activeView === 'list' && (
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Live Shipments</h2>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Live Shipments</h2>
               {liveShipments.map((shipment) => (
-                <div key={shipment.id} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={shipment.id} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-3 border border-blue-200">
+                  <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <Truck className="w-6 h-6 text-blue-600" />
                       <div>
@@ -213,7 +213,7 @@ export default function LiveTelematicsTracking() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                     <div>
                       <p className="text-xs text-gray-600">Current Location</p>
                       <p className="font-semibold text-gray-900 flex items-center gap-1">
@@ -242,7 +242,7 @@ export default function LiveTelematicsTracking() {
                   </div>
 
                   {shipment.temperature !== undefined && shipment.fuel !== undefined && (
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-2 gap-2 mb-2">
                       <div className="bg-white rounded-lg p-3">
                         <p className="text-xs text-gray-600 mb-1 flex items-center gap-1">
                           <Thermometer className="w-4 h-4" />
@@ -287,9 +287,9 @@ export default function LiveTelematicsTracking() {
 
           {activeView === 'map' && (
             <div className="text-center py-12">
-              <MapPin className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+              <MapPin className="w-16 h-16 text-blue-600 mb-2" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Live Map View</h3>
-              <p className="text-gray-600 mb-4">Integrate with Google Maps / Mapbox for real-time vehicle tracking</p>
+              <p className="text-gray-600 mb-2">Integrate with Google Maps / Mapbox for real-time vehicle tracking</p>
               <div className="bg-gray-100 rounded-lg p-8 border-2 border-dashed border-gray-300">
                 <p className="text-gray-500">Map Integration Placeholder</p>
                 <p className="text-sm text-gray-400 mt-2">GPS coordinates: {liveShipments[0].currentLocation.lat}, {liveShipments[0].currentLocation.lng}</p>
@@ -298,11 +298,11 @@ export default function LiveTelematicsTracking() {
           )}
 
           {activeView === 'metrics' && (
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Vehicle Telemetry</h2>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Vehicle Telemetry</h2>
               {vehicleTelemetry.map((vehicle) => (
-                <div key={vehicle.vehicleId} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={vehicle.vehicleId} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
+                  <div className="flex items-center justify-between mb-2">
                     <div>
                       <h3 className="font-semibold text-gray-900">{vehicle.vehicleNumber}</h3>
                       <p className="text-sm text-gray-600">Last updated: {vehicle.lastUpdate}</p>
@@ -312,7 +312,7 @@ export default function LiveTelematicsTracking() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                     <div className="bg-white rounded-lg p-3">
                       <p className="text-xs text-gray-600 mb-1">Speed</p>
                       <p className="text-lg font-bold text-gray-900">{vehicle.speed} km/h</p>

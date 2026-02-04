@@ -88,14 +88,14 @@ export default function AfterSalesDashboard() {
   };
 
   return (
-    <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen px-3 py-2">
       <div className="w-full">
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           {/* Contracts */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => router.push('/after-sales-service/service-contracts')}>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <FileText className="h-8 w-8 text-blue-600" />
               <span className="text-sm text-green-600 font-medium flex items-center gap-1">
                 <TrendingUp className="h-4 w-4" />
@@ -113,9 +113,9 @@ export default function AfterSalesDashboard() {
           </div>
 
           {/* Warranties */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => router.push('/after-sales-service/warranties')}>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <Shield className="h-8 w-8 text-green-600" />
               <span className="text-sm text-blue-600 font-medium">Active</span>
             </div>
@@ -125,9 +125,9 @@ export default function AfterSalesDashboard() {
           </div>
 
           {/* Service Requests */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => router.push('/after-sales-service/service-requests')}>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <AlertCircle className="h-8 w-8 text-orange-600" />
               <span className="text-sm text-green-600 font-medium flex items-center gap-1">
                 <TrendingUp className="h-4 w-4" />
@@ -145,9 +145,9 @@ export default function AfterSalesDashboard() {
           </div>
 
           {/* Revenue */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => router.push('/after-sales-service/billing')}>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <DollarSign className="h-8 w-8 text-purple-600" />
               <span className="text-sm text-green-600 font-medium flex items-center gap-1">
                 <TrendingUp className="h-4 w-4" />
@@ -166,10 +166,10 @@ export default function AfterSalesDashboard() {
         </div>
 
         {/* Secondary Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           <button
             onClick={() => router.push('/after-sales-service/installations')}
-            className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+            className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-blue-500 hover:shadow-lg transition-all text-left"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -183,7 +183,7 @@ export default function AfterSalesDashboard() {
 
           <button
             onClick={() => router.push('/after-sales-service/installations')}
-            className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+            className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-purple-500 hover:shadow-lg transition-all text-left"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -197,7 +197,7 @@ export default function AfterSalesDashboard() {
 
           <button
             onClick={() => router.push('/after-sales-service/field-service')}
-            className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-cyan-500 hover:shadow-lg transition-all text-left"
+            className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-cyan-500 hover:shadow-lg transition-all text-left"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -211,7 +211,7 @@ export default function AfterSalesDashboard() {
 
           <button
             onClick={() => router.push('/after-sales-service/field-service')}
-            className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+            className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-green-500 hover:shadow-lg transition-all text-left"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -225,10 +225,10 @@ export default function AfterSalesDashboard() {
         </div>
 
         {/* Charts and Lists Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
           {/* Revenue Trend Chart */}
-          <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold text-gray-900">Revenue Trend (Last 7 Months)</h2>
               <button
                 onClick={() => router.push('/after-sales-service/dashboard/analytics')}
@@ -258,9 +258,9 @@ export default function AfterSalesDashboard() {
           </div>
 
           {/* SLA Compliance Gauge */}
-          <div className="bg-white rounded-lg border-2 border-gray-200 p-6 hover:border-orange-500 hover:shadow-lg transition-all cursor-pointer"
+          <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-orange-500 hover:shadow-lg transition-all cursor-pointer"
             onClick={() => setShowSLAModal(true)}>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold text-gray-900">SLA Compliance</h2>
               <Eye className="h-5 w-5 text-gray-400 hover:text-blue-600" />
             </div>
@@ -311,10 +311,10 @@ export default function AfterSalesDashboard() {
         </div>
 
         {/* Recent Activity Tables */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Recent Tickets */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <AlertCircle className="h-5 w-5 text-orange-600" />
                 Recent Service Requests
@@ -359,8 +359,8 @@ export default function AfterSalesDashboard() {
           </div>
 
           {/* Upcoming Installations */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <Wrench className="h-5 w-5 text-blue-600" />
                 Upcoming Installations
@@ -411,10 +411,10 @@ export default function AfterSalesDashboard() {
 
         {/* Ticket Details Modal */}
         {showTicketModal && selectedTicket && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
             <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               {/* Modal Header */}
-              <div className={`sticky top-0 px-6 py-4 flex items-center justify-between ${selectedTicket.priority === 'P1' ? 'bg-gradient-to-r from-red-600 to-orange-600' :
+              <div className={`sticky top-0 px-3 py-2 flex items-center justify-between ${selectedTicket.priority === 'P1' ? 'bg-gradient-to-r from-red-600 to-orange-600' :
                   selectedTicket.priority === 'P2' ? 'bg-gradient-to-r from-orange-600 to-yellow-600' :
                     'bg-gradient-to-r from-blue-600 to-indigo-600'
                 } text-white`}>
@@ -428,9 +428,9 @@ export default function AfterSalesDashboard() {
               </div>
 
               {/* Modal Body */}
-              <div className="p-6 space-y-6">
+              <div className="p-6 space-y-3">
                 {/* Priority Banner */}
-                <div className={`rounded-lg p-4 border-2 ${selectedTicket.priority === 'P1' ? 'bg-red-50 border-red-200' :
+                <div className={`rounded-lg p-3 border-2 ${selectedTicket.priority === 'P1' ? 'bg-red-50 border-red-200' :
                     selectedTicket.priority === 'P2' ? 'bg-orange-50 border-orange-200' :
                       'bg-yellow-50 border-yellow-200'
                   }`}>
@@ -464,7 +464,7 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Customer Info */}
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                     <Users className="h-5 w-5" />
                     Customer Information
@@ -482,7 +482,7 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Issue Details */}
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                   <h4 className="font-bold text-orange-900 mb-2 flex items-center gap-2">
                     <AlertCircle className="h-5 w-5" />
                     Issue Description
@@ -491,7 +491,7 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Status Info */}
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h4 className="font-bold text-purple-900 mb-3">Current Status</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
@@ -508,7 +508,7 @@ export default function AfterSalesDashboard() {
               </div>
 
               {/* Modal Footer */}
-              <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+              <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
                 <button onClick={() => setShowTicketModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                   Close
                 </button>
@@ -526,10 +526,10 @@ export default function AfterSalesDashboard() {
 
         {/* Installation Details Modal */}
         {showInstallationModal && selectedInstallation && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
             <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 flex items-center justify-between">
+              <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 py-2 flex items-center justify-between">
                 <div>
                   <h2 className="text-xl font-bold">{selectedInstallation.id}</h2>
                   <p className="text-emerald-100 text-sm">Installation Details</p>
@@ -540,9 +540,9 @@ export default function AfterSalesDashboard() {
               </div>
 
               {/* Modal Body */}
-              <div className="p-6 space-y-6">
+              <div className="p-6 space-y-3">
                 {/* Date Banner */}
-                <div className="bg-blue-50 rounded-lg p-4 border-2 border-blue-200">
+                <div className="bg-blue-50 rounded-lg p-3 border-2 border-blue-200">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Calendar className="h-8 w-8 text-blue-600" />
@@ -563,7 +563,7 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Customer Info */}
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
                     <Users className="h-5 w-5" />
                     Customer Information
@@ -581,7 +581,7 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Team Info */}
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <h4 className="font-bold text-green-900 mb-3 flex items-center gap-2">
                     <Users className="h-5 w-5" />
                     Team Assignment
@@ -599,7 +599,7 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Installation Items */}
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                   <h4 className="font-bold text-orange-900 mb-3 flex items-center gap-2">
                     <Package className="h-5 w-5" />
                     Installation Scope
@@ -627,7 +627,7 @@ export default function AfterSalesDashboard() {
               </div>
 
               {/* Modal Footer */}
-              <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+              <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
                 <button onClick={() => setShowInstallationModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                   Close
                 </button>
@@ -645,10 +645,10 @@ export default function AfterSalesDashboard() {
 
         {/* SLA Compliance Details Modal */}
         {showSLAModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
             <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
               {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-amber-600 text-white px-6 py-4 flex items-center justify-between">
+              <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-amber-600 text-white px-3 py-2 flex items-center justify-between">
                 <div>
                   <h2 className="text-xl font-bold">SLA Compliance Report</h2>
                   <p className="text-orange-100 text-sm">Service Level Agreement Performance</p>
@@ -659,14 +659,14 @@ export default function AfterSalesDashboard() {
               </div>
 
               {/* Modal Body */}
-              <div className="p-6 space-y-6">
+              <div className="p-6 space-y-3">
                 {/* Overall SLA Status */}
                 <div className={`rounded-lg p-5 border-2 ${stats.slaCompliance >= 90 ? 'bg-green-50 border-green-200' :
                     stats.slaCompliance >= 75 ? 'bg-yellow-50 border-yellow-200' :
                       'bg-red-50 border-red-200'
                   }`}>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div className="relative w-24 h-24">
                         <svg className="w-full h-full transform -rotate-90">
                           <circle cx="48" cy="48" r="40" fill="none" stroke="#E5E7EB" strokeWidth="8" />
@@ -714,11 +714,11 @@ export default function AfterSalesDashboard() {
 
                 {/* SLA Breakdown by Priority */}
                 <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
-                  <h4 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
                     <AlertCircle className="h-5 w-5" />
                     SLA Performance by Priority
                   </h4>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {/* P1 Critical */}
                     <div>
                       <div className="flex justify-between items-center mb-2">
@@ -782,18 +782,18 @@ export default function AfterSalesDashboard() {
                 </div>
 
                 {/* Key Metrics */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                     <p className="text-sm text-purple-700 font-medium mb-1">Average Response Time</p>
                     <p className="text-2xl font-bold text-purple-900">2.3 hrs</p>
                     <p className="text-xs text-purple-600 mt-1">Target: 2.0 hrs</p>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                     <p className="text-sm text-green-700 font-medium mb-1">Tickets Met SLA</p>
                     <p className="text-2xl font-bold text-green-900">126 / 135</p>
                     <p className="text-xs text-green-600 mt-1">93.3% compliance</p>
                   </div>
-                  <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                  <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                     <p className="text-sm text-red-700 font-medium mb-1">Tickets Breached SLA</p>
                     <p className="text-2xl font-bold text-red-900">9</p>
                     <p className="text-xs text-red-600 mt-1">6.7% breach rate</p>
@@ -828,7 +828,7 @@ export default function AfterSalesDashboard() {
               </div>
 
               {/* Modal Footer */}
-              <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+              <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
                 <button onClick={() => setShowSLAModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                   Close
                 </button>

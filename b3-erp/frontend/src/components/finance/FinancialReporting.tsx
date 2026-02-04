@@ -270,10 +270,10 @@ const FinancialReporting: React.FC = () => {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <FileText className="h-8 w-8 text-blue-600" />
@@ -285,7 +285,7 @@ const FinancialReporting: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <BarChart3 className="h-8 w-8 text-green-600" />
@@ -298,7 +298,7 @@ const FinancialReporting: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <ClockIcon className="h-8 w-8 text-yellow-600" />
@@ -312,7 +312,7 @@ const FinancialReporting: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Download className="h-8 w-8 text-purple-600" />
@@ -327,9 +327,9 @@ const FinancialReporting: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Report Generation Trends</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Report Generation Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={reportUsageData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -345,8 +345,8 @@ const FinancialReporting: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Template Distribution</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Template Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -371,13 +371,13 @@ const FinancialReporting: React.FC = () => {
 
       {/* Recent Reports */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Recent Reports</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {generatedReports.slice(0, 5).map((report) => (
-              <div key={report.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div key={report.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900">{report.templateName}</h4>
                   <p className="text-sm text-gray-600">
@@ -402,7 +402,7 @@ const FinancialReporting: React.FC = () => {
   );
 
   const renderTemplates = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Report Templates</h3>
         <button
@@ -418,10 +418,10 @@ const FinancialReporting: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {templates.map((template) => (
-          <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex justify-between items-start mb-4">
+          <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex justify-between items-start mb-2">
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900">{template.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{template.description}</p>
@@ -500,12 +500,12 @@ const FinancialReporting: React.FC = () => {
   );
 
   const renderGenerate = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Generate Report</h3>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h4 className="font-medium text-gray-900 mb-4">Quick Generate</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h4 className="font-medium text-gray-900 mb-2">Quick Generate</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {templates.filter(t => t.status === 'active').map((template) => (
             <button
               key={template.id}
@@ -528,14 +528,14 @@ const FinancialReporting: React.FC = () => {
   );
 
   const renderReports = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Generated Reports</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {generatedReports.map((report) => (
-              <div key={report.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+              <div key={report.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900">{report.templateName}</h4>
                   <p className="text-sm text-gray-600">
@@ -578,14 +578,14 @@ const FinancialReporting: React.FC = () => {
   );
 
   const renderSchedule = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Scheduled Reports</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {templates.filter(t => t.isScheduled).map((template) => (
-              <div key={template.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+              <div key={template.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900">{template.name}</h4>
                   <p className="text-sm text-gray-600">
@@ -625,12 +625,12 @@ const FinancialReporting: React.FC = () => {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-6 w-full max-w-md">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-white rounded-lg p-3 w-full max-w-md">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">
             Generate Report: {selectedTemplate.name}
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {selectedTemplate.parameters.map((param) => (
               <div key={param.id}>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -684,14 +684,14 @@ const FinancialReporting: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Financial Reporting</h1>
         <p className="text-gray-600 mt-2">Create and manage financial reports with customizable templates</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },

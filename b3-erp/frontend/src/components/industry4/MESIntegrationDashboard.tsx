@@ -383,7 +383,7 @@ function SyncOverview({ entities }: { entities: DataEntity[] }) {
   }, [entities]);
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-2">
       <Card>
         <CardContent className="pt-4">
           <div className="flex items-center gap-3">
@@ -513,7 +513,7 @@ function EntitySyncCard({
         </div>
 
         {/* Record Counts */}
-        <div className="mt-4 grid grid-cols-2 gap-4">
+        <div className="mt-4 grid grid-cols-2 gap-2">
           <div className="bg-blue-50 dark:bg-blue-900/20 p-2 rounded">
             <p className="text-xs text-blue-600">ERP Records</p>
             <p className="text-lg font-bold">{entity.erpCount.toLocaleString()}</p>
@@ -692,7 +692,7 @@ export function MESIntegrationDashboard({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <Card>
         <CardHeader className="pb-2">
@@ -719,10 +719,10 @@ export function MESIntegrationDashboard({
       </Card>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
         {/* Entity Cards */}
         <div className="xl:col-span-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {entities.map(entity => (
               <EntitySyncCard
                 key={entity.id}
@@ -735,7 +735,7 @@ export function MESIntegrationDashboard({
         </div>
 
         {/* Right Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           <ConnectionStatus connections={connections} />
           <SyncEventsLog events={events} onEventClick={onEventClick} />
         </div>

@@ -117,9 +117,9 @@ export default function CPQProductsConfiguratorPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={handleSaveConfiguration}
@@ -138,11 +138,11 @@ export default function CPQProductsConfiguratorPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Steps Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Configuration Steps</h2>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Configuration Steps</h2>
             <div className="space-y-2">
               {steps.map((step, index) => (
                 <div
@@ -178,8 +178,8 @@ export default function CPQProductsConfiguratorPage() {
           </div>
 
           {/* Price Summary */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Price Summary</h2>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mt-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Price Summary</h2>
             <div className="space-y-3">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Base Price</span>
@@ -199,8 +199,8 @@ export default function CPQProductsConfiguratorPage() {
 
         {/* Main Configuration Area */}
         <div className="lg:col-span-3">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+            <div className="flex items-center justify-between mb-3">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Cabinet Materials</h1>
                 <p className="text-sm text-gray-600 mt-1">Choose the material for your kitchen cabinets</p>
@@ -212,7 +212,7 @@ export default function CPQProductsConfiguratorPage() {
             </div>
 
             {/* Cabinet Options */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               {cabinetOptions.map((option) => (
                 <div
                   key={option.id}
@@ -222,7 +222,7 @@ export default function CPQProductsConfiguratorPage() {
                       : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     <div className="flex-shrink-0 w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center text-3xl">
                       {option.image}
                     </div>
@@ -253,7 +253,7 @@ export default function CPQProductsConfiguratorPage() {
             </div>
 
             {/* Additional Information */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
               <h3 className="text-sm font-semibold text-blue-900 mb-2">💡 Expert Recommendation</h3>
               <p className="text-sm text-blue-800">
                 For humid climates like coastal areas, we recommend Premium Plywood with marine-grade protection.
@@ -263,8 +263,8 @@ export default function CPQProductsConfiguratorPage() {
           </div>
 
           {/* Next Configuration Section Preview */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Next: Countertop Selection</h2>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Next: Countertop Selection</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {countertopOptions.map((option) => (
                 <div
@@ -281,11 +281,11 @@ export default function CPQProductsConfiguratorPage() {
 
           {/* Navigation Buttons */}
           <div className="flex items-center justify-between mt-6">
-            <button className="px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+            <button className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
               <ChevronRight className="h-4 w-4 rotate-180" />
               Previous Step
             </button>
-            <button className="px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+            <button className="px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
               Next Step
               <ChevronRight className="h-4 w-4" />
             </button>

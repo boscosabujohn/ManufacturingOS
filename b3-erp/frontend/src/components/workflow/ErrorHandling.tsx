@@ -220,8 +220,8 @@ export default function ErrorHandling() {
   const unresolvedCount = errorEvents.filter(e => !e.resolved).length;
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -238,9 +238,9 @@ export default function ErrorHandling() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Error Rules */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900">Error Handling Rules</h3>
             <button className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -273,7 +273,7 @@ export default function ErrorHandling() {
                     <code className="bg-gray-100 px-2 py-1 rounded font-mono">{rule.errorPattern}</code>
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs text-gray-700">
+                  <div className="flex items-center gap-2 text-xs text-gray-700">
                     <div className="flex items-center gap-1">
                       <RotateCcw className="h-3 w-3" />
                       <span>Max retries: {rule.maxRetries}</span>
@@ -320,7 +320,7 @@ export default function ErrorHandling() {
         </div>
 
         {/* Recent Error Events */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           <h3 className="text-lg font-semibold text-gray-900">Recent Error Events</h3>
 
           {errorEvents.map((event) => (
@@ -351,7 +351,7 @@ export default function ErrorHandling() {
                     <div className="text-xs text-red-600">{event.errorMessage}</div>
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs text-gray-700">
+                  <div className="flex items-center gap-2 text-xs text-gray-700">
                     <div className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       <span>{event.timestamp}</span>
@@ -401,8 +401,8 @@ export default function ErrorHandling() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center">
               <AlertTriangle className="h-5 w-5 text-red-600" />
@@ -412,7 +412,7 @@ export default function ErrorHandling() {
           <div className="text-sm text-gray-600">Total Errors (24h)</div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="h-5 w-5 text-green-600" />
@@ -424,7 +424,7 @@ export default function ErrorHandling() {
           <div className="text-sm text-gray-600">Auto-Resolved</div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-yellow-500/20 rounded-lg flex items-center justify-center">
               <RotateCcw className="h-5 w-5 text-yellow-600" />
@@ -436,7 +436,7 @@ export default function ErrorHandling() {
           <div className="text-sm text-gray-600">Total Retries</div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
               <Settings className="h-5 w-5 text-purple-600" />

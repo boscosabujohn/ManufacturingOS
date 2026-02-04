@@ -58,9 +58,9 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
   if (!isOpen || !approval) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Crown className="h-6 w-6 text-white" />
@@ -77,8 +77,8 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Deal Overview */}
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 mb-6">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 mb-3">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-purple-700 mb-1">Deal Value</p>
                 <p className="text-2xl font-bold text-purple-900">₹{(approval.dealValue / 10000000).toFixed(2)}Cr</p>
@@ -95,13 +95,13 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
           </div>
 
           {/* Business Justification */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Business Justification</label>
             <p className="text-sm text-gray-700 bg-blue-50 border border-blue-200 rounded p-3">{approval.businessJustification}</p>
           </div>
 
           {/* Key Highlights */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Strategic Value</label>
             <ul className="space-y-2">
               {approval.keyHighlights.map((highlight, idx) => (
@@ -114,7 +114,7 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
           </div>
 
           {/* Risk Assessment */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Risk Assessment & Mitigation</label>
             <div className="space-y-2">
               {approval.risks.map((risk, idx) => (
@@ -137,7 +137,7 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
           </div>
 
           {/* Executive Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Executive Decision Comments <span className="text-red-500">*</span>
             </label>
@@ -151,7 +151,7 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
           </div>
 
           {/* Conditions */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -173,7 +173,7 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
           </div>
 
           {/* Confirmation */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <Crown className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-purple-800">
@@ -184,7 +184,7 @@ export function ApproveExecutiveDealModal({ isOpen, onClose, onApprove, approval
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -224,9 +224,9 @@ export function RejectExecutiveDealModal({ isOpen, onClose, onReject, approval }
   if (!isOpen || !approval) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <XCircle className="h-6 w-6 text-white" />
@@ -242,12 +242,12 @@ export function RejectExecutiveDealModal({ isOpen, onClose, onReject, approval }
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="bg-red-50 rounded-lg p-4 mb-6">
+          <div className="bg-red-50 rounded-lg p-3 mb-3">
             <p className="font-semibold text-gray-900">{approval.customerName}</p>
             <p className="text-sm text-gray-600">Deal Value: ₹{(approval.dealValue / 10000000).toFixed(2)}Cr</p>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Rejection Reason <span className="text-red-500">*</span>
             </label>
@@ -268,7 +268,7 @@ export function RejectExecutiveDealModal({ isOpen, onClose, onReject, approval }
             </select>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Executive Decision <span className="text-red-500">*</span>
             </label>
@@ -281,7 +281,7 @@ export function RejectExecutiveDealModal({ isOpen, onClose, onReject, approval }
             />
           </div>
 
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-red-800">
@@ -292,7 +292,7 @@ export function RejectExecutiveDealModal({ isOpen, onClose, onReject, approval }
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -332,9 +332,9 @@ export function PutOnHoldModal({ isOpen, onClose, onHold, approval }: PutOnHoldM
   if (!isOpen || !approval) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Clock className="h-6 w-6 text-white" />
             <h2 className="text-xl font-bold text-white">Put Deal on Hold</h2>
@@ -345,7 +345,7 @@ export function PutOnHoldModal({ isOpen, onClose, onHold, approval }: PutOnHoldM
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Reason for Hold <span className="text-red-500">*</span>
             </label>
@@ -358,7 +358,7 @@ export function PutOnHoldModal({ isOpen, onClose, onHold, approval }: PutOnHoldM
             />
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Review Date <span className="text-red-500">*</span>
             </label>
@@ -371,7 +371,7 @@ export function PutOnHoldModal({ isOpen, onClose, onHold, approval }: PutOnHoldM
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -400,9 +400,9 @@ export function ViewExecutiveDetailsModal({ isOpen, onClose, approval }: ViewExe
   if (!isOpen || !approval) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Eye className="h-6 w-6 text-white" />
             <div>
@@ -417,9 +417,9 @@ export function ViewExecutiveDetailsModal({ isOpen, onClose, approval }: ViewExe
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Full details would be rendered here - simplified for space */}
-          <div className="bg-indigo-50 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-bold text-indigo-900 mb-4">{approval.customerName}</h3>
-            <div className="grid grid-cols-4 gap-4">
+          <div className="bg-indigo-50 rounded-lg p-3 mb-3">
+            <h3 className="text-lg font-bold text-indigo-900 mb-2">{approval.customerName}</h3>
+            <div className="grid grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-indigo-700">Deal Value</p>
                 <p className="text-xl font-bold text-indigo-900">₹{(approval.dealValue / 10000000).toFixed(2)}Cr</p>
@@ -439,7 +439,7 @@ export function ViewExecutiveDetailsModal({ isOpen, onClose, approval }: ViewExe
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">Business Justification</h3>
             <p className="text-sm text-gray-700">{approval.businessJustification}</p>
           </div>
@@ -457,7 +457,7 @@ export function ViewExecutiveDetailsModal({ isOpen, onClose, approval }: ViewExe
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -480,9 +480,9 @@ export function AddExecutiveCommentModal({ isOpen, onClose, onAddComment, approv
   if (!isOpen || !approval) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <MessageSquare className="h-6 w-6 text-white" />
             <h2 className="text-xl font-bold text-white">Add Executive Comment</h2>
@@ -493,7 +493,7 @@ export function AddExecutiveCommentModal({ isOpen, onClose, onAddComment, approv
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
@@ -504,7 +504,7 @@ export function AddExecutiveCommentModal({ isOpen, onClose, onAddComment, approv
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>

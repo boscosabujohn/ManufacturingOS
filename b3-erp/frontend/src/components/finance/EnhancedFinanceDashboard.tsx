@@ -283,10 +283,10 @@ export default function EnhancedFinanceDashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header Section */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Finance Dashboard</h1>
             <p className="text-gray-600">
@@ -336,7 +336,7 @@ export default function EnhancedFinanceDashboard() {
 
         {/* Alerts */}
         {alerts.length > 0 && (
-          <div className="bg-white rounded-xl shadow-lg p-4 mb-6">
+          <div className="bg-white rounded-xl shadow-lg p-3 mb-3">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center">
                 <Bell className="h-5 w-5 mr-2 text-blue-600" />
@@ -385,10 +385,10 @@ export default function EnhancedFinanceDashboard() {
       </div>
 
       {/* Key Metrics Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
         {/* Total Cash */}
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
               <Wallet className="w-6 h-6" />
             </div>
@@ -409,8 +409,8 @@ export default function EnhancedFinanceDashboard() {
         </div>
 
         {/* Accounts Receivable */}
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-6 h-6" />
             </div>
@@ -428,8 +428,8 @@ export default function EnhancedFinanceDashboard() {
         </div>
 
         {/* Accounts Payable */}
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
               <CreditCard className="w-6 h-6" />
             </div>
@@ -447,8 +447,8 @@ export default function EnhancedFinanceDashboard() {
         </div>
 
         {/* Net Profit */}
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
               <Target className="w-6 h-6" />
             </div>
@@ -467,8 +467,8 @@ export default function EnhancedFinanceDashboard() {
       </div>
 
       {/* Secondary KPIs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-8">
-        <div className="bg-white rounded-lg shadow p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-8">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600 uppercase tracking-wide">Current Ratio</p>
@@ -477,7 +477,7 @@ export default function EnhancedFinanceDashboard() {
             <Activity className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600 uppercase tracking-wide">Quick Ratio</p>
@@ -486,7 +486,7 @@ export default function EnhancedFinanceDashboard() {
             <Zap className="h-8 w-8 text-green-500" />
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600 uppercase tracking-wide">Debt/Equity</p>
@@ -495,7 +495,7 @@ export default function EnhancedFinanceDashboard() {
             <BarChart3 className="h-8 w-8 text-orange-500" />
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600 uppercase tracking-wide">ROA</p>
@@ -504,7 +504,7 @@ export default function EnhancedFinanceDashboard() {
             <Target className="h-8 w-8 text-purple-500" />
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600 uppercase tracking-wide">ROE</p>
@@ -513,7 +513,7 @@ export default function EnhancedFinanceDashboard() {
             <Award className="h-8 w-8 text-indigo-500" />
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600 uppercase tracking-wide">Working Capital</p>
@@ -525,10 +525,10 @@ export default function EnhancedFinanceDashboard() {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
         {/* Cash Flow Trend */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-3">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-semibold text-gray-900">Cash Flow Trend</h3>
             <button
               onClick={() => toggleSection('cashFlow')}
@@ -560,8 +560,8 @@ export default function EnhancedFinanceDashboard() {
         </div>
 
         {/* Revenue vs Expense Breakdown */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-3">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-semibold text-gray-900">Revenue vs Expense</h3>
             <button
               onClick={() => toggleSection('profitability')}
@@ -571,7 +571,7 @@ export default function EnhancedFinanceDashboard() {
             </button>
           </div>
           {expandedSections.profitability && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <h4 className="text-sm font-medium text-gray-600 mb-3">Revenue Breakdown</h4>
                 <div className="h-48">
@@ -624,33 +624,33 @@ export default function EnhancedFinanceDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-        <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+      <div className="bg-white rounded-xl shadow-lg p-3 mb-8">
+        <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
           <Zap className="h-6 w-6 mr-2 text-blue-600" />
           Quick Actions
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
           <button
             onClick={() => openModal('quickJournal')}
-            className="group p-4 rounded-lg border-2 border-transparent hover:border-blue-200 bg-blue-50 hover:bg-blue-100 transition-all duration-200 text-center"
+            className="group p-3 rounded-lg border-2 border-transparent hover:border-blue-200 bg-blue-50 hover:bg-blue-100 transition-all duration-200 text-center"
           >
-            <FileText className="h-8 w-8 mx-auto mb-2 text-blue-600 group-hover:text-blue-700" />
+            <FileText className="h-8 w-8 mb-2 text-blue-600 group-hover:text-blue-700" />
             <p className="font-medium text-blue-900 text-sm mb-1">Journal Entry</p>
             <p className="text-xs text-blue-600">Create accounting entries</p>
           </button>
           <button
             onClick={() => openModal('quickPayment')}
-            className="group p-4 rounded-lg border-2 border-transparent hover:border-green-200 bg-green-50 hover:bg-green-100 transition-all duration-200 text-center"
+            className="group p-3 rounded-lg border-2 border-transparent hover:border-green-200 bg-green-50 hover:bg-green-100 transition-all duration-200 text-center"
           >
-            <Receipt className="h-8 w-8 mx-auto mb-2 text-green-600 group-hover:text-green-700" />
+            <Receipt className="h-8 w-8 mb-2 text-green-600 group-hover:text-green-700" />
             <p className="font-medium text-green-900 text-sm mb-1">Record Payment</p>
             <p className="text-xs text-green-600">Process receipts</p>
           </button>
           <button
             onClick={() => openModal('quickReceipt')}
-            className="group p-4 rounded-lg border-2 border-transparent hover:border-purple-200 bg-purple-50 hover:bg-purple-100 transition-all duration-200 text-center"
+            className="group p-3 rounded-lg border-2 border-transparent hover:border-purple-200 bg-purple-50 hover:bg-purple-100 transition-all duration-200 text-center"
           >
-            <Banknote className="h-8 w-8 mx-auto mb-2 text-purple-600 group-hover:text-purple-700" />
+            <Banknote className="h-8 w-8 mb-2 text-purple-600 group-hover:text-purple-700" />
             <p className="font-medium text-purple-900 text-sm mb-1">Create Invoice</p>
             <p className="text-xs text-purple-600">Generate customer invoices</p>
           </button>
@@ -658,9 +658,9 @@ export default function EnhancedFinanceDashboard() {
             <Link
               key={action.label}
               href={action.href}
-              className="group p-4 rounded-lg border-2 border-transparent hover:border-gray-200 bg-gray-50 hover:bg-gray-100 transition-all duration-200 text-center"
+              className="group p-3 rounded-lg border-2 border-transparent hover:border-gray-200 bg-gray-50 hover:bg-gray-100 transition-all duration-200 text-center"
             >
-              <action.icon className="h-8 w-8 mx-auto mb-2 text-gray-600 group-hover:text-gray-700" />
+              <action.icon className="h-8 w-8 mb-2 text-gray-600 group-hover:text-gray-700" />
               <p className="font-medium text-gray-900 text-sm mb-1">{action.label}</p>
               <p className="text-xs text-gray-600">{action.description}</p>
             </Link>
@@ -669,8 +669,8 @@ export default function EnhancedFinanceDashboard() {
       </div>
 
       {/* Performance Trends */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-lg p-3 mb-8">
+        <div className="flex items-center justify-between mb-3">
           <h3 className="text-xl font-semibold text-gray-900">Key Performance Trends</h3>
           <div className="flex space-x-2">
             <button className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg">Revenue</button>
@@ -722,10 +722,10 @@ export default function EnhancedFinanceDashboard() {
       </div>
 
       {/* Bottom Grid - Receivables and Payables Details */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Accounts Receivable Details */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-3">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-semibold text-gray-900">Accounts Receivable Aging</h3>
             <button
               onClick={() => toggleSection('receivables')}
@@ -735,7 +735,7 @@ export default function EnhancedFinanceDashboard() {
             </button>
           </div>
           {expandedSections.receivables && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {dashboardData.accountsReceivable.aging.map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-600">{item.period}</span>
@@ -770,8 +770,8 @@ export default function EnhancedFinanceDashboard() {
         </div>
 
         {/* Accounts Payable Details */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-xl shadow-lg p-3">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-semibold text-gray-900">Accounts Payable Aging</h3>
             <button
               onClick={() => toggleSection('payables')}
@@ -781,7 +781,7 @@ export default function EnhancedFinanceDashboard() {
             </button>
           </div>
           {expandedSections.payables && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {dashboardData.accountsPayable.aging.map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-600">{item.period}</span>

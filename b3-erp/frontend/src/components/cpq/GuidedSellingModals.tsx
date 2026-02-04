@@ -38,9 +38,9 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
   const sortedRecommendations = [...recommendations].sort((a, b) => b.matchScore - a.matchScore)
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-6 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Sparkles className="h-8 w-8" />
             <div>
@@ -53,11 +53,11 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Configuration Summary</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <span className="text-blue-700">Questions Answered:</span>
                 <span className="font-bold text-blue-900 ml-2">{answers.length}</span>
@@ -76,7 +76,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
           </div>
 
           {/* Recommendations */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {sortedRecommendations.map((recommendation, index) => {
               const isSelected = selectedId === recommendation.id
               const isBestMatch = index === 0
@@ -94,7 +94,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
                   }`}
                 >
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="text-xl font-bold text-gray-900">{recommendation.name}</h3>
@@ -108,7 +108,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
                         <p className="text-gray-600 mb-3">{recommendation.description}</p>
 
                         {/* Match Score */}
-                        <div className="mb-4">
+                        <div className="mb-2">
                           <div className="flex items-center justify-between mb-1">
                             <span className="text-sm font-medium text-gray-700">Match Score</span>
                             <span className="text-sm font-bold text-blue-600">
@@ -132,7 +132,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
 
                       {/* Pricing */}
                       <div className="ml-6 text-right">
-                        <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                           <p className="text-xs text-gray-500 mb-1">Base Price</p>
                           <p className="text-lg text-gray-400 line-through">
                             ₹{recommendation.basePrice.toLocaleString()}
@@ -151,7 +151,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
                     </div>
 
                     {/* Features */}
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                         <Package className="h-4 w-4" />
                         Key Features
@@ -170,7 +170,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
                     </div>
 
                     {/* Why Recommended */}
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                         <Zap className="h-4 w-4" />
                         Why We Recommend This
@@ -221,7 +221,7 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
           {/* No Recommendations Message */}
           {recommendations.length === 0 && (
             <div className="text-center py-12">
-              <Package className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <Package className="h-16 w-16 text-gray-400 mb-2" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No Recommendations Found</h3>
               <p className="text-gray-600">
                 We couldn't find any packages matching your requirements. Please try adjusting your preferences.

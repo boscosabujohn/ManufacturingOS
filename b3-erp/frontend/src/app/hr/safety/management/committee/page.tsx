@@ -37,9 +37,9 @@ const meetings = [
 
 export default function SafetyCommitteePage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Users className="h-8 w-8 text-orange-600" />
@@ -53,9 +53,9 @@ export default function SafetyCommitteePage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Column */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Committee Members */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
@@ -66,23 +66,23 @@ export default function SafetyCommitteePage() {
               <table className="w-full text-left text-sm text-gray-600">
                 <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
                   <tr>
-                    <th className="px-6 py-4">Name</th>
-                    <th className="px-6 py-4">Role</th>
-                    <th className="px-6 py-4">Department</th>
-                    <th className="px-6 py-4">Term Ends</th>
+                    <th className="px-3 py-2">Name</th>
+                    <th className="px-3 py-2">Role</th>
+                    <th className="px-3 py-2">Department</th>
+                    <th className="px-3 py-2">Term Ends</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {committeeMembers.map((member) => (
                     <tr key={member.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-medium text-gray-900">{member.name}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2 font-medium text-gray-900">{member.name}</td>
+                      <td className="px-3 py-2">
                         <span className="inline-flex items-center px-2 py-1 rounded bg-orange-50 text-orange-700 text-xs font-medium">
                           {member.role}
                         </span>
                       </td>
-                      <td className="px-6 py-4">{member.department}</td>
-                      <td className="px-6 py-4 text-gray-500">{member.termEnds}</td>
+                      <td className="px-3 py-2">{member.department}</td>
+                      <td className="px-3 py-2 text-gray-500">{member.termEnds}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -98,9 +98,9 @@ export default function SafetyCommitteePage() {
                 <Plus className="w-4 h-4 mr-1" /> Add Action Item
               </button>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               {actionItems.map((item) => (
-                <div key={item.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                <div key={item.id} className="flex items-center justify-between p-3 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
                   <div className="flex items-start gap-3">
                     <div className={`mt-1 p-1.5 rounded-full ${item.status === 'Completed' ? 'bg-green-100 text-green-600' :
                         item.priority === 'High' ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-500'
@@ -131,7 +131,7 @@ export default function SafetyCommitteePage() {
               ))}
             </div>
             <div className="p-4 border-t border-gray-100 text-center">
-              <button className="text-sm text-gray-500 hover:text-gray-900 font-medium flex items-center justify-center mx-auto">
+              <button className="text-sm text-gray-500 hover:text-gray-900 font-medium flex items-center justify-center">
                 View All Action Items <ArrowRight className="w-3 h-3 ml-1" />
               </button>
             </div>
@@ -139,11 +139,11 @@ export default function SafetyCommitteePage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Meetings Card */}
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Meetings</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Meetings</h3>
+            <div className="space-y-2">
               {meetings.map((meeting) => (
                 <div key={meeting.id} className={`p-4 rounded-lg border ${meeting.type === 'Upcoming' ? 'border-l-4 border-l-orange-500 bg-orange-50 border-gray-200' : 'border-gray-100 bg-gray-50'}`}>
                   <div className="flex justify-between items-start mb-2">
@@ -164,12 +164,12 @@ export default function SafetyCommitteePage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="bg-gradient-to-br from-orange-600 to-red-600 rounded-xl shadow-lg p-6 text-white">
-            <h3 className="text-lg font-bold mb-4 flex items-center">
+          <div className="bg-gradient-to-br from-orange-600 to-red-600 rounded-xl shadow-lg p-3 text-white">
+            <h3 className="text-lg font-bold mb-2 flex items-center">
               <MessageSquare className="w-5 h-5 mr-2" />
               Safety Observations
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-orange-100 text-sm">Open Observations</p>
                 <p className="text-3xl font-bold">8</p>

@@ -264,10 +264,10 @@ export default function AggregatePlanningPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -305,9 +305,9 @@ export default function AggregatePlanningPage() {
       </div>
 
       {/* Plan Selector */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div className="flex items-center gap-4 flex-1">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
+          <div className="flex items-center gap-2 flex-1">
             <Calendar className="w-5 h-5 text-gray-400" />
             <select
               value={selectedPlan}
@@ -327,7 +327,7 @@ export default function AggregatePlanningPage() {
             </span>
           </div>
         </div>
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
           <div>
             <p className="text-gray-500">Planning Period</p>
             <p className="font-semibold text-gray-900">{currentPlan.planningPeriod}</p>
@@ -348,8 +348,8 @@ export default function AggregatePlanningPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Demand</p>
@@ -362,7 +362,7 @@ export default function AggregatePlanningPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Production</p>
@@ -375,7 +375,7 @@ export default function AggregatePlanningPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Cost</p>
@@ -388,7 +388,7 @@ export default function AggregatePlanningPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Capacity Used</p>
@@ -403,89 +403,89 @@ export default function AggregatePlanningPage() {
       </div>
 
       {/* Monthly Production Plan Table */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-6">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden mb-3">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-bold text-gray-900">Monthly Production Plan</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Demand</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Production</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Begin Inv.</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">End Inv.</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Regular</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Overtime</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Subcontract</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Workers</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Total Cost</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Demand</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Production</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Begin Inv.</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">End Inv.</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Regular</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Overtime</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Subcontract</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Workers</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Total Cost</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {currentPlan.months.map((month, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-medium text-gray-900">{month.month}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm text-gray-900">{month.forecastedDemand.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm font-medium text-blue-600">{month.productionPlan.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm text-gray-700">{month.beginningInventory.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm text-gray-700">{month.endingInventory.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className="text-sm text-gray-900">{month.regularTimeProduction.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">
                       {((month.regularTimeProduction / month.regularTimeCapacity) * 100).toFixed(0)}% used
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className={`text-sm ${month.overtimeProduction > 0 ? 'text-orange-600 font-medium' : 'text-gray-400'}`}>
                       {month.overtimeProduction.toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className={`text-sm ${month.subcontractingProduction > 0 ? 'text-purple-600 font-medium' : 'text-gray-400'}`}>
                       {month.subcontractingProduction.toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className="text-sm font-medium text-gray-900">{month.requiredWorkers}</div>
                     <div className="text-xs text-gray-500">
                       {month.hiredWorkers > 0 && <span className="text-green-600">+{month.hiredWorkers}</span>}
                       {month.laidOffWorkers > 0 && <span className="text-red-600">-{month.laidOffWorkers}</span>}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm font-medium text-gray-900">₹{(month.totalCost / 100000).toFixed(1)}L</span>
                   </td>
                 </tr>
               ))}
               <tr className="bg-gray-50 font-bold">
-                <td className="px-6 py-4 text-sm text-gray-900">TOTAL</td>
-                <td className="px-6 py-4 text-sm text-gray-900 text-right">{totalDemand.toLocaleString()}</td>
-                <td className="px-6 py-4 text-sm text-blue-600 text-right">{totalProduction.toLocaleString()}</td>
-                <td className="px-6 py-4"></td>
-                <td className="px-6 py-4"></td>
-                <td className="px-6 py-4 text-sm text-gray-900 text-right">
+                <td className="px-3 py-2 text-sm text-gray-900">TOTAL</td>
+                <td className="px-3 py-2 text-sm text-gray-900 text-right">{totalDemand.toLocaleString()}</td>
+                <td className="px-3 py-2 text-sm text-blue-600 text-right">{totalProduction.toLocaleString()}</td>
+                <td className="px-3 py-2"></td>
+                <td className="px-3 py-2"></td>
+                <td className="px-3 py-2 text-sm text-gray-900 text-right">
                   {currentPlan.months.reduce((sum, m) => sum + m.regularTimeProduction, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 text-sm text-orange-600 text-right">
+                <td className="px-3 py-2 text-sm text-orange-600 text-right">
                   {currentPlan.months.reduce((sum, m) => sum + m.overtimeProduction, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 text-sm text-purple-600 text-right">
+                <td className="px-3 py-2 text-sm text-purple-600 text-right">
                   {currentPlan.months.reduce((sum, m) => sum + m.subcontractingProduction, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4"></td>
-                <td className="px-6 py-4 text-sm text-gray-900 text-right">₹{(totalCost / 10000000).toFixed(2)}Cr</td>
+                <td className="px-3 py-2"></td>
+                <td className="px-3 py-2 text-sm text-gray-900 text-right">₹{(totalCost / 10000000).toFixed(2)}Cr</td>
               </tr>
             </tbody>
           </table>
@@ -494,81 +494,81 @@ export default function AggregatePlanningPage() {
 
       {/* Cost Breakdown */}
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-bold text-gray-900">Cost Breakdown by Month</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Production</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Inventory</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Overtime</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Subcontract</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Hiring</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Layoff</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Production</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Inventory</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Overtime</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Subcontract</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Hiring</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Layoff</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {currentPlan.months.map((month, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-medium text-gray-900">{month.month}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm text-gray-700">₹{(month.productionCost / 100000).toFixed(1)}L</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm text-gray-700">₹{(month.inventoryCost / 100000).toFixed(1)}L</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className={`text-sm ${month.overtimeCost > 0 ? 'text-orange-600' : 'text-gray-400'}`}>
                       ₹{(month.overtimeCost / 100000).toFixed(1)}L
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className={`text-sm ${month.subcontractingCost > 0 ? 'text-purple-600' : 'text-gray-400'}`}>
                       ₹{(month.subcontractingCost / 100000).toFixed(1)}L
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className={`text-sm ${month.hiringCost > 0 ? 'text-green-600' : 'text-gray-400'}`}>
                       ₹{(month.hiringCost / 100000).toFixed(1)}L
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className={`text-sm ${month.layoffCost > 0 ? 'text-red-600' : 'text-gray-400'}`}>
                       ₹{(month.layoffCost / 100000).toFixed(1)}L
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm font-medium text-gray-900">₹{(month.totalCost / 100000).toFixed(1)}L</span>
                   </td>
                 </tr>
               ))}
               <tr className="bg-gray-50 font-bold">
-                <td className="px-6 py-4 text-sm text-gray-900">TOTAL</td>
-                <td className="px-6 py-4 text-sm text-gray-900 text-right">
+                <td className="px-3 py-2 text-sm text-gray-900">TOTAL</td>
+                <td className="px-3 py-2 text-sm text-gray-900 text-right">
                   ₹{(currentPlan.months.reduce((sum, m) => sum + m.productionCost, 0) / 10000000).toFixed(2)}Cr
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900 text-right">
+                <td className="px-3 py-2 text-sm text-gray-900 text-right">
                   ₹{(currentPlan.months.reduce((sum, m) => sum + m.inventoryCost, 0) / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 text-sm text-orange-600 text-right">
+                <td className="px-3 py-2 text-sm text-orange-600 text-right">
                   ₹{(currentPlan.months.reduce((sum, m) => sum + m.overtimeCost, 0) / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 text-sm text-purple-600 text-right">
+                <td className="px-3 py-2 text-sm text-purple-600 text-right">
                   ₹{(currentPlan.months.reduce((sum, m) => sum + m.subcontractingCost, 0) / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 text-sm text-green-600 text-right">
+                <td className="px-3 py-2 text-sm text-green-600 text-right">
                   ₹{(currentPlan.months.reduce((sum, m) => sum + m.hiringCost, 0) / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 text-sm text-red-600 text-right">
+                <td className="px-3 py-2 text-sm text-red-600 text-right">
                   ₹{(currentPlan.months.reduce((sum, m) => sum + m.layoffCost, 0) / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900 text-right">
+                <td className="px-3 py-2 text-sm text-gray-900 text-right">
                   ₹{(totalCost / 10000000).toFixed(2)}Cr
                 </td>
               </tr>

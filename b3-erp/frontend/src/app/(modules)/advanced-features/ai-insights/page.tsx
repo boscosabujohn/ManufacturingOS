@@ -6,9 +6,9 @@ import Link from 'next/link';
 
 export default function AIInsightsPage() {
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
-            <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
+            <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
                     <Link href="/advanced-features" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                         <span className="text-gray-700">Back</span>
@@ -27,15 +27,15 @@ export default function AIInsightsPage() {
             </div>
 
             {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
                 {[
                     { label: 'Forecast Accuracy', value: '98.2%', change: '+2.4%', icon: TrendingUp, color: 'text-green-600', bg: 'bg-green-100' },
                     { label: 'Risk Score', value: 'Low', sub: '12 Potential Risks', icon: AlertTriangle, color: 'text-yellow-600', bg: 'bg-yellow-100' },
                     { label: 'Inventory Optimization', value: '$45k', sub: 'Potential Savings', icon: Package, color: 'text-blue-600', bg: 'bg-blue-100' },
                     { label: 'Workforce Efficiency', value: '94%', change: '+1.2%', icon: Users, color: 'text-purple-600', bg: 'bg-purple-100' },
                 ].map((stat, i) => (
-                    <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <div className="flex items-center justify-between mb-4">
+                    <div key={i} className="bg-white rounded-xl p-3 shadow-sm border border-gray-200">
+                        <div className="flex items-center justify-between mb-2">
                             <div className={`p-3 rounded-lg ${stat.bg}`}>
                                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
                             </div>
@@ -52,10 +52,10 @@ export default function AIInsightsPage() {
             </div>
 
             {/* Insights Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {/* Demand Forecasting */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-6">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                    <div className="flex items-center justify-between mb-3">
                         <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                             <TrendingUp className="w-5 h-5 text-blue-600" />
                             Demand Forecasting
@@ -87,15 +87,15 @@ export default function AIInsightsPage() {
                 </div>
 
                 {/* Predictive Maintenance */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-6">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                    <div className="flex items-center justify-between mb-3">
                         <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                             <Zap className="w-5 h-5 text-yellow-600" />
                             Predictive Maintenance
                         </h2>
                         <button className="text-sm text-blue-600 hover:underline">View All Machines</button>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {[
                             { machine: 'CNC Milling Machine 01', health: 92, status: 'Healthy', prediction: 'Maintenance recommended in 14 days' },
                             { machine: 'Hydraulic Press B2', health: 78, status: 'Warning', prediction: 'High vibration detected. Check bearings immediately.', alert: true },

@@ -72,10 +72,10 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <UserPlus className="w-5 h-5" />
@@ -93,9 +93,9 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Customer Code
@@ -186,9 +186,9 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
           </div>
 
           {/* Address Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Address Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Address Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Billing Address <span className="text-red-500">*</span>
@@ -234,9 +234,9 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
           </div>
 
           {/* Tax & Compliance */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Tax & Compliance</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Tax & Compliance</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   GST Number
@@ -278,9 +278,9 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
           </div>
 
           {/* Payment Terms */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Payment Terms</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Payment Terms</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Credit Limit (₹)
@@ -375,10 +375,10 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
   const creditUtilization = (customerData.creditUsed / customerData.creditLimit) * 100;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Eye className="w-5 h-5" />
@@ -396,26 +396,26 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
         {/* Content */}
         <div className="p-6">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
               <div className="text-blue-700 text-sm font-medium mb-1">Total Revenue</div>
               <div className="text-2xl font-bold text-blue-900">₹{(customerData.totalRevenue / 100000).toFixed(1)}L</div>
               <div className="text-xs text-blue-600 mt-1">{customerData.totalInvoices} invoices</div>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
               <div className="text-green-700 text-sm font-medium mb-1">Credit Available</div>
               <div className="text-2xl font-bold text-green-900">₹{(creditAvailable / 1000).toFixed(0)}K</div>
               <div className="text-xs text-green-600 mt-1">of ₹{(customerData.creditLimit / 1000).toFixed(0)}K limit</div>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-3 border border-orange-200">
               <div className="text-orange-700 text-sm font-medium mb-1">Credit Used</div>
               <div className="text-2xl font-bold text-orange-900">{creditUtilization.toFixed(0)}%</div>
               <div className="text-xs text-orange-600 mt-1">₹{(customerData.creditUsed / 1000).toFixed(0)}K utilized</div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
               <div className="text-purple-700 text-sm font-medium mb-1">Avg Payment Days</div>
               <div className="text-2xl font-bold text-purple-900">{customerData.averagePaymentDays}</div>
               <div className="text-xs text-purple-600 mt-1">Good payment record</div>
@@ -423,9 +423,9 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
           </div>
 
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <span className="text-sm text-gray-600">Customer Code:</span>
                 <p className="font-medium text-gray-900">{customerData.code}</p>
@@ -460,9 +460,9 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
           </div>
 
           {/* Address Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Address Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Address Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <span className="text-sm text-gray-600">Billing Address:</span>
                 <p className="font-medium text-gray-900">{customerData.billingAddress}</p>
@@ -475,9 +475,9 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
           </div>
 
           {/* Tax & Compliance */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Tax & Compliance</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Tax & Compliance</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <span className="text-sm text-gray-600">GST Number:</span>
                 <p className="font-medium text-gray-900">{customerData.gstNumber}</p>
@@ -490,9 +490,9 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
           </div>
 
           {/* Payment Terms */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Payment Terms & Credit</h3>
-            <div className="grid grid-cols-3 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Payment Terms & Credit</h3>
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <span className="text-sm text-gray-600">Payment Terms:</span>
                 <p className="font-medium text-gray-900">{customerData.paymentTerms}</p>
@@ -525,9 +525,9 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
           </div>
 
           {/* Account History */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Account History</h3>
-            <div className="grid grid-cols-3 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Account History</h3>
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <span className="text-sm text-gray-600">Customer Since:</span>
                 <p className="font-medium text-gray-900">{customerData.createdDate}</p>
@@ -597,10 +597,10 @@ export const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ isOpen, on
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Edit2 className="w-5 h-5" />
@@ -617,7 +617,7 @@ export const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ isOpen, on
 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Customer Type
@@ -801,10 +801,10 @@ export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Trash2 className="w-5 h-5" />
@@ -821,7 +821,7 @@ export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen
 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
             <div className="flex gap-3">
               <Trash2 className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -838,7 +838,7 @@ export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="flex items-center gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <input
                 type="checkbox"
@@ -854,7 +854,7 @@ export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen
           </div>
 
           {!archiveInstead && (
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Type "DELETE" to confirm <span className="text-red-500">*</span>
               </label>
@@ -926,10 +926,10 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <CreditCard className="w-5 h-5" />
@@ -947,8 +947,8 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Current vs New Comparison */}
-          <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-lg p-4 mb-4 border border-teal-200">
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-lg p-3 mb-2 border border-teal-200">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <div className="text-teal-700 font-medium mb-1">Current Limit</div>
                 <div className="text-lg font-bold text-teal-900">₹{(currentLimit / 1000).toFixed(0)}K</div>
@@ -967,7 +967,7 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               New Credit Limit (₹) <span className="text-red-500">*</span>
             </label>
@@ -981,7 +981,7 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Effective Date <span className="text-red-500">*</span>
             </label>
@@ -994,7 +994,7 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reason for Change <span className="text-red-500">*</span>
             </label>
@@ -1009,7 +1009,7 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
           </div>
 
           {/* Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6 space-y-3">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3 space-y-3">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -1093,10 +1093,10 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-purple-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-purple-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Mail className="w-5 h-5" />
@@ -1113,7 +1113,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Statement Period
             </label>
@@ -1132,7 +1132,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
           </div>
 
           {statementPeriod === 'custom' && (
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Start Date
@@ -1158,7 +1158,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
             </div>
           )}
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Recipient Email <span className="text-red-500">*</span>
             </label>
@@ -1171,7 +1171,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               CC (comma separated)
             </label>
@@ -1184,7 +1184,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Subject
             </label>
@@ -1196,7 +1196,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Message
             </label>
@@ -1209,7 +1209,7 @@ export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProp
           </div>
 
           {/* Include Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">Include in Statement</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-2">

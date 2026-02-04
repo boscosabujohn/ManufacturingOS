@@ -99,14 +99,14 @@ function PayrollByDepartmentContent() {
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                             <tr>
-                                <th className="px-6 py-3">Employee ID</th>
-                                <th className="px-6 py-3">Name</th>
-                                <th className="px-6 py-3">Department</th>
-                                <th className="px-6 py-3">Position</th>
-                                <th className="px-6 py-3 text-right">Gross Salary</th>
-                                <th className="px-6 py-3 text-right">Deductions</th>
-                                <th className="px-6 py-3 text-right">Net Salary</th>
-                                <th className="px-6 py-3">Status</th>
+                                <th className="px-3 py-2">Employee ID</th>
+                                <th className="px-3 py-2">Name</th>
+                                <th className="px-3 py-2">Department</th>
+                                <th className="px-3 py-2">Position</th>
+                                <th className="px-3 py-2 text-right">Gross Salary</th>
+                                <th className="px-3 py-2 text-right">Deductions</th>
+                                <th className="px-3 py-2 text-right">Net Salary</th>
+                                <th className="px-3 py-2">Status</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -116,14 +116,14 @@ function PayrollByDepartmentContent() {
                                     id={record.id}
                                     basePath="/hr/payroll/view"
                                 >
-                                    <td className="px-6 py-4 font-medium text-gray-900">{record.employeeId}</td>
-                                    <td className="px-6 py-4">{record.name}</td>
-                                    <td className="px-6 py-4">{record.department}</td>
-                                    <td className="px-6 py-4">{record.position}</td>
-                                    <td className="px-6 py-4 text-right">${record.gross.toLocaleString()}</td>
-                                    <td className="px-6 py-4 text-right text-red-600">${record.deductions.toLocaleString()}</td>
-                                    <td className="px-6 py-4 text-right font-medium text-green-600">${record.net.toLocaleString()}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 font-medium text-gray-900">{record.employeeId}</td>
+                                    <td className="px-3 py-2">{record.name}</td>
+                                    <td className="px-3 py-2">{record.department}</td>
+                                    <td className="px-3 py-2">{record.position}</td>
+                                    <td className="px-3 py-2 text-right">${record.gross.toLocaleString()}</td>
+                                    <td className="px-3 py-2 text-right text-red-600">${record.deductions.toLocaleString()}</td>
+                                    <td className="px-3 py-2 text-right font-medium text-green-600">${record.net.toLocaleString()}</td>
+                                    <td className="px-3 py-2">
                                         <Badge className={getStatusColor(record.status)}>
                                             {record.status}
                                         </Badge>

@@ -174,7 +174,7 @@ export default function KnownErrors() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -188,8 +188,8 @@ export default function KnownErrors() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Total Errors</p>
@@ -199,7 +199,7 @@ export default function KnownErrors() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Active</p>
@@ -209,7 +209,7 @@ export default function KnownErrors() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-100 text-sm">Resolved</p>
@@ -219,7 +219,7 @@ export default function KnownErrors() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">Under Review</p>
@@ -229,7 +229,7 @@ export default function KnownErrors() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-100 text-sm">Avg Resolution</p>
@@ -239,7 +239,7 @@ export default function KnownErrors() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100 text-sm">Most Common</p>
@@ -251,8 +251,8 @@ export default function KnownErrors() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -292,10 +292,10 @@ export default function KnownErrors() {
       </div>
 
       {/* Known Errors List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredErrors.map((error) => (
-          <div key={error.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
+          <div key={error.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-start gap-3">
                 <div className={`p-2 rounded-lg ${getSeverityColor(error.severity)}`}>
                   {getCategoryIcon(error.category)}
@@ -332,7 +332,7 @@ export default function KnownErrors() {
                 <p className="text-sm text-green-800">{error.workaround}</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <p className="text-xs font-medium text-gray-500 mb-2">Affected Systems:</p>
                   <div className="flex flex-wrap gap-1">
@@ -357,7 +357,7 @@ export default function KnownErrors() {
               </div>
 
               <div className="flex items-center justify-between pt-3 border-t border-gray-200 text-xs text-gray-500">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <span className="flex items-center gap-1">
                     <Users className="h-3 w-3" />
                     {error.affectedUsers} users affected
@@ -365,7 +365,7 @@ export default function KnownErrors() {
                   <span>Documented by {error.documentedBy}</span>
                   <span>Category: {error.category}</span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <span>Created: {error.documentedDate}</span>
                   <span>Updated: {error.lastUpdated}</span>
                 </div>
@@ -376,7 +376,7 @@ export default function KnownErrors() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <FileText className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
           <div>
@@ -394,7 +394,7 @@ export default function KnownErrors() {
 
       {filteredErrors.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <AlertCircle className="h-12 w-12 text-gray-400 mb-4" />
+          <AlertCircle className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No known errors found matching your filters.</p>
         </div>
       )}

@@ -24,8 +24,8 @@ export default function ProductionPerformanceReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Production Performance</h1>
                     <p className="text-gray-600">OEE and efficiency metrics - Click cards to drill down</p>
@@ -33,7 +33,7 @@ export default function ProductionPerformanceReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Overall OEE"
                     value={`${data.oee}%`}
@@ -58,7 +58,7 @@ export default function ProductionPerformanceReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => router.push('/reports/production/performance/workcenter')}>
                     <CardHeader><CardTitle>Work Center Performance</CardTitle></CardHeader>
                     <CardContent>

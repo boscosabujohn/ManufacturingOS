@@ -592,12 +592,12 @@ export default function AddPurchaseOrderPage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6">
+          <div className="mb-3">
             <button
               onClick={() => router.push('/procurement/orders')}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
             >
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Back to Purchase Orders</span>
@@ -625,17 +625,17 @@ export default function AddPurchaseOrderPage() {
           </div>
 
           {!showPreview ? (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Quick Create Options */}
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border border-blue-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border border-blue-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <LinkIcon className="h-5 w-5 mr-2 text-blue-600" />
                   Quick Create Options
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <button
                     onClick={handleLoadFromRequisition}
-                    className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all"
+                    className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all"
                   >
                     <div className="h-10 w-10 bg-blue-100 rounded-lg flex items-center justify-center">
                       <FileText className="h-5 w-5 text-blue-600" />
@@ -648,7 +648,7 @@ export default function AddPurchaseOrderPage() {
 
                   <button
                     onClick={handleLoadFromRFQ}
-                    className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-purple-400 hover:shadow-md transition-all"
+                    className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-purple-400 hover:shadow-md transition-all"
                   >
                     <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center">
                       <Tag className="h-5 w-5 text-purple-600" />
@@ -661,7 +661,7 @@ export default function AddPurchaseOrderPage() {
 
                   <button
                     onClick={handleBulkImport}
-                    className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-green-400 hover:shadow-md transition-all"
+                    className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-green-400 hover:shadow-md transition-all"
                   >
                     <div className="h-10 w-10 bg-green-100 rounded-lg flex items-center justify-center">
                       <FileSpreadsheet className="h-5 w-5 text-green-600" />
@@ -675,13 +675,13 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* Vendor Selection */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Vendor Details
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div className="md:col-span-3">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Vendor Name <span className="text-red-500">*</span>
@@ -755,13 +755,13 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* PO Details */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Purchase Order Details
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       PO Date <span className="text-red-500">*</span>
@@ -867,13 +867,13 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* Addresses */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <MapPin className="h-5 w-5 mr-2 text-blue-600" />
                   Addresses
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* Billing Address */}
                   <div>
                     <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase">Billing Address</h3>
@@ -955,8 +955,8 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* Line Items */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-bold text-gray-900 flex items-center">
                     <Package className="h-5 w-5 mr-2 text-blue-600" />
                     Line Items
@@ -979,10 +979,10 @@ export default function AddPurchaseOrderPage() {
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {formData.lineItems.map((item, index) => (
-                    <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                      <div className="flex items-center justify-between mb-4">
+                    <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                      <div className="flex items-center justify-between mb-2">
                         <h3 className="text-sm font-semibold text-gray-700">Item #{index + 1}</h3>
                         <div className="flex items-center space-x-2">
                           <button
@@ -1004,7 +1004,7 @@ export default function AddPurchaseOrderPage() {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
                         <div className="md:col-span-2">
                           <label className="block text-xs font-medium text-gray-700 mb-1">Item Code</label>
                           <input
@@ -1196,13 +1196,13 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* Additional Requirements */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <ClipboardCheck className="h-5 w-5 mr-2 text-blue-600" />
                   Additional Requirements
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Packaging Requirements</label>
                     <textarea
@@ -1240,13 +1240,13 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* Notes & Terms */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Additional Information
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Special Instructions / Notes</label>
                     <textarea
@@ -1272,13 +1272,13 @@ export default function AddPurchaseOrderPage() {
               </div>
 
               {/* Approval Workflow */}
-              <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg border border-yellow-200 p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg border border-yellow-200 p-3">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <CheckSquare className="h-5 w-5 mr-2 text-orange-600" />
                   Approval Workflow
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="flex items-center space-x-3">
                     <input
                       type="checkbox"
@@ -1308,7 +1308,7 @@ export default function AddPurchaseOrderPage() {
                   )}
 
                   {formData.approvalRequired && (
-                    <div className="bg-white rounded-lg p-4 border border-yellow-300">
+                    <div className="bg-white rounded-lg p-3 border border-yellow-300">
                       <div className="flex items-start space-x-3">
                         <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5" />
                         <div className="text-sm text-gray-700">
@@ -1325,14 +1325,14 @@ export default function AddPurchaseOrderPage() {
               <div className="flex justify-end space-x-3 pb-6">
                 <button
                   onClick={handleCancel}
-                  className="flex items-center space-x-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                  className="flex items-center space-x-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
                 >
                   <X className="h-5 w-5" />
                   <span>Cancel</span>
                 </button>
                 <button
                   onClick={handleSaveDraft}
-                  className="flex items-center space-x-2 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
                 >
                   <Save className="h-5 w-5" />
                   <span>Save as Draft</span>
@@ -1340,7 +1340,7 @@ export default function AddPurchaseOrderPage() {
                 {formData.approvalRequired ? (
                   <button
                     onClick={handleSubmitForApproval}
-                    className="flex items-center space-x-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+                    className="flex items-center space-x-2 px-3 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
                   >
                     <CheckSquare className="h-5 w-5" />
                     <span>Submit for Approval</span>
@@ -1348,7 +1348,7 @@ export default function AddPurchaseOrderPage() {
                 ) : (
                   <button
                     onClick={handleSendToVendor}
-                    className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <Send className="h-5 w-5" />
                     <span>Send to Vendor</span>

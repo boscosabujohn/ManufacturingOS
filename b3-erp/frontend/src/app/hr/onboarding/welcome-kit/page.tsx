@@ -320,7 +320,7 @@ export default function WelcomeKitPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Gift className="h-8 w-8 text-blue-600" />
           Welcome Kit Distribution
@@ -329,7 +329,7 @@ export default function WelcomeKitPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-7 gap-3 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-7 gap-3 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
@@ -402,8 +402,8 @@ export default function WelcomeKitPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -430,7 +430,7 @@ export default function WelcomeKitPage() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
               <select
@@ -487,7 +487,7 @@ export default function WelcomeKitPage() {
       </div>
 
       {/* Welcome Kits Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-3">
         <DataTable
           data={filteredKits}
           columns={columns}
@@ -495,16 +495,16 @@ export default function WelcomeKitPage() {
       </div>
 
       {/* Welcome Kit Items List */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <Package className="w-5 h-5 text-blue-600" />
           Standard Welcome Kit Items
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {kitItems.map((item) => (
             <div
               key={item.id}
-              className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <item.icon className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
@@ -530,7 +530,7 @@ export default function WelcomeKitPage() {
       </div>
 
       {/* Welcome Kit Guidelines */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-blue-600" />
           Welcome Kit Distribution Guidelines

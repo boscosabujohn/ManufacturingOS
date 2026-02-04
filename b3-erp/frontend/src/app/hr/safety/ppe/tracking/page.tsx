@@ -70,9 +70,9 @@ export default function PPETrackingPage() {
   const [filter, setFilter] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Package className="h-8 w-8 text-orange-600" />
@@ -93,8 +93,8 @@ export default function PPETrackingPage() {
       </div>
 
       {/* Overview Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Total Active Units</p>
@@ -109,7 +109,7 @@ export default function PPETrackingPage() {
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Site Compliance</p>
@@ -124,7 +124,7 @@ export default function PPETrackingPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Expiring / Expired</p>
@@ -137,7 +137,7 @@ export default function PPETrackingPage() {
           <p className="text-[10px] text-red-600 mt-4 font-bold uppercase tracking-tighter">Requires replacement</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Review Requests</p>
@@ -178,19 +178,19 @@ export default function PPETrackingPage() {
           <table className="w-full text-left">
             <thead className="bg-gray-50 text-[10px] uppercase font-bold text-gray-500 border-b border-gray-100">
               <tr>
-                <th className="px-6 py-4">Status & Tracking ID</th>
-                <th className="px-6 py-4">Employee</th>
-                <th className="px-6 py-4">Equipment Item</th>
-                <th className="px-6 py-4">Issue Date</th>
-                <th className="px-6 py-4">Expiration</th>
-                <th className="px-6 py-4">Condition</th>
-                <th className="px-6 py-4 text-right">Action</th>
+                <th className="px-3 py-2">Status & Tracking ID</th>
+                <th className="px-3 py-2">Employee</th>
+                <th className="px-3 py-2">Equipment Item</th>
+                <th className="px-3 py-2">Issue Date</th>
+                <th className="px-3 py-2">Expiration</th>
+                <th className="px-3 py-2">Condition</th>
+                <th className="px-3 py-2 text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50 font-medium">
               {assignedPPE.map((unit) => (
                 <tr key={unit.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-3">
                       {unit.status === 'Compliant' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> :
                         unit.status === 'Expired' ? <XCircle className="w-4 h-4 text-red-500" /> :
@@ -198,23 +198,23 @@ export default function PPETrackingPage() {
                       <span className="text-[11px] font-mono text-gray-400">{unit.id}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-900">{unit.employee}</td>
-                  <td className="px-6 py-4 text-gray-600">{unit.item}</td>
-                  <td className="px-6 py-4 text-[11px] text-gray-400">{unit.issuedDate}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-gray-900">{unit.employee}</td>
+                  <td className="px-3 py-2 text-gray-600">{unit.item}</td>
+                  <td className="px-3 py-2 text-[11px] text-gray-400">{unit.issuedDate}</td>
+                  <td className="px-3 py-2">
                     <div className="flex flex-col">
                       <span className={`text-xs ${unit.status === 'Expired' ? 'text-red-600 font-bold' : 'text-gray-900'}`}>{unit.expiryDate}</span>
                       <span className="text-[9px] text-gray-400 uppercase tracking-tighter">Approx. {unit.status === 'Expired' ? 'Overdue' : 'Remaining'}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${unit.condition === 'Good' || unit.condition === 'New' ? 'bg-green-50 text-green-700' :
                       unit.condition === 'Fair' ? 'bg-orange-50 text-orange-700' : 'bg-red-50 text-red-700'
                       }`}>
                       {unit.condition}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="p-1 hover:bg-gray-100 rounded-lg transition-colors"><MoreVertical className="w-4 h-4 text-gray-400" /></button>
                   </td>
                 </tr>
@@ -223,8 +223,8 @@ export default function PPETrackingPage() {
           </table>
         </div>
 
-        <div className="p-6 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4 text-xs">
+        <div className="p-6 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-xs">
             <span className="text-gray-500">Showing <strong>4</strong> of <strong>842</strong> assigned units</span>
             <div className="h-4 w-px bg-gray-200"></div>
             <button className="text-orange-600 font-bold hover:underline">Download Comprehensive Tracking Report</button>

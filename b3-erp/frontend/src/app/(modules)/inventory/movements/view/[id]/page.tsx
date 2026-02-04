@@ -148,10 +148,10 @@ export default function StockMovementViewPage({ params }: { params: { id: string
   const statusConfig = getStatusConfig(movement.status);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -170,7 +170,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 {statusConfig.label}
               </span>
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
               <span className="flex items-center gap-1">
                 <FileText className="w-4 h-4" />
                 <span className="font-mono font-semibold">{movement.movementNumber}</span>
@@ -197,7 +197,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-5 gap-2">
         <div className={`p-6 rounded-xl text-white ${
           movement.movementType === 'receipt' || movement.movementType === 'transfer_in' || movement.movementType === 'return'
             ? 'bg-gradient-to-br from-green-500 to-green-600'
@@ -211,7 +211,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           <div className="text-sm opacity-90">Quantity ({movement.uom})</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 opacity-80" />
           </div>
@@ -219,7 +219,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           <div className="text-blue-100 text-sm">Balance Before</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 opacity-80" />
           </div>
@@ -227,7 +227,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           <div className="text-purple-100 text-sm">Balance After</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">₹</span>
             <span className="text-sm opacity-90">per {movement.uom}</span>
@@ -236,7 +236,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           <div className="text-orange-100 text-sm">Unit Cost</div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">₹</span>
           </div>
@@ -247,7 +247,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('details')}
             className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
@@ -293,11 +293,11 @@ export default function StockMovementViewPage({ params }: { params: { id: string
 
       {/* Tab Content */}
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Movement Information */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Movement Information
               </h3>
@@ -333,8 +333,8 @@ export default function StockMovementViewPage({ params }: { params: { id: string
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Package className="w-5 h-5 text-green-600" />
                 Item Details
               </h3>
@@ -368,18 +368,18 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           </div>
 
           {/* Stock Balance Information */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
               <Activity className="w-5 h-5 text-purple-600" />
               Stock Balance Impact
             </h3>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="grid grid-cols-3 gap-3">
+              <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="text-sm text-blue-600 mb-1">Balance Before</div>
                 <div className="text-3xl font-bold text-blue-900">{movement.balanceBefore}</div>
                 <div className="text-xs text-blue-600 mt-1">{movement.uom}</div>
               </div>
-              <div className="text-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200 flex flex-col justify-center">
+              <div className="text-center p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200 flex flex-col justify-center">
                 <div className="text-sm text-purple-600 mb-1">Change</div>
                 <div className={`text-3xl font-bold ${
                   movement.movementType === 'receipt' || movement.movementType === 'transfer_in' || movement.movementType === 'return'
@@ -390,7 +390,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 </div>
                 <div className="text-xs text-purple-600 mt-1">{movement.uom}</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
                 <div className="text-sm text-green-600 mb-1">Balance After</div>
                 <div className="text-3xl font-bold text-green-900">{movement.balanceAfter}</div>
                 <div className="text-xs text-green-600 mt-1">{movement.uom}</div>
@@ -399,9 +399,9 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           </div>
 
           {/* Location & Warehouse */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-orange-600" />
                 Location Information
               </h3>
@@ -425,8 +425,8 @@ export default function StockMovementViewPage({ params }: { params: { id: string
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <User className="w-5 h-5 text-indigo-600" />
                 Personnel Information
               </h3>
@@ -457,9 +457,9 @@ export default function StockMovementViewPage({ params }: { params: { id: string
 
           {/* Tracking Information */}
           {(movement.batchNumber || movement.serialNumbers) && (
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Tracking Information</h3>
-              <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Tracking Information</h3>
+              <div className="grid grid-cols-2 gap-3">
                 {movement.batchNumber && (
                   <div>
                     <label className="text-sm font-medium text-gray-600 block mb-2">Batch Number</label>
@@ -487,9 +487,9 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           )}
 
           {/* Reason & Remarks */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Reason & Remarks</h3>
-            <div className="space-y-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Reason & Remarks</h3>
+            <div className="space-y-2">
               <div>
                 <label className="text-sm font-medium text-gray-600 block mb-2">Reason</label>
                 <p className="text-gray-900">{movement.reason}</p>
@@ -506,15 +506,15 @@ export default function StockMovementViewPage({ params }: { params: { id: string
       )}
 
       {activeTab === 'documents' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-bold text-gray-900">Attached Documents</h3>
             <span className="text-sm text-gray-600">{movement.documents.length} document(s)</span>
           </div>
           {movement.documents.length > 0 ? (
             <div className="space-y-3">
               {movement.documents.map((doc) => (
-                <div key={doc.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
+                <div key={doc.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-6 h-6 text-red-600" />
@@ -543,14 +543,14 @@ export default function StockMovementViewPage({ params }: { params: { id: string
       )}
 
       {activeTab === 'activity' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
             <Clock className="w-5 h-5 text-purple-600" />
             Activity Timeline
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {activityLog.map((log, index) => (
-              <div key={log.id} className="flex gap-4">
+              <div key={log.id} className="flex gap-2">
                 <div className="flex flex-col items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     log.status === 'success' ? 'bg-green-100 text-green-600' :
@@ -580,16 +580,16 @@ export default function StockMovementViewPage({ params }: { params: { id: string
       )}
 
       {activeTab === 'analytics' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Movement Impact Analysis */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-blue-600" />
               Movement Impact Analysis
             </h3>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
-                <div className="flex items-center justify-between mb-4">
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-8 h-8 text-green-600" />
                   <span className="text-2xl font-bold text-green-600">+24.1%</span>
                 </div>
@@ -604,13 +604,13 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-lg border border-purple-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-3 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between mb-2">
                   <Target className="w-8 h-8 text-purple-600" />
                   <span className="text-sm font-semibold text-purple-600">OPTIMAL</span>
                 </div>
                 <div className="text-sm text-gray-600 mb-2">Inventory Position</div>
-                <div className="text-xs text-gray-500 mb-4">After this movement</div>
+                <div className="text-xs text-gray-500 mb-2">After this movement</div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-gray-600">Safety Stock:</span>
@@ -627,14 +627,14 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-lg border border-orange-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-3 rounded-lg border border-orange-200">
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-2xl">₹</span>
                   <Zap className="w-6 h-6 text-orange-600" />
                 </div>
                 <div className="text-sm text-gray-600 mb-2">Value Impact</div>
                 <div className="text-2xl font-bold text-gray-900 mb-1">₹92,750</div>
-                <div className="text-xs text-gray-500 mb-4">Movement value</div>
+                <div className="text-xs text-gray-500 mb-2">Movement value</div>
                 <div className="bg-white/60 rounded-lg p-3">
                   <div className="text-xs text-gray-600 mb-1">Total Stock Value</div>
                   <div className="flex items-center justify-between">
@@ -647,14 +647,14 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           </div>
 
           {/* Movement Pattern Analysis */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <History className="w-5 h-5 text-indigo-600" />
                 Historical Movement Patterns
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-4 rounded-lg border border-indigo-100">
+              <div className="space-y-2">
+                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-3 rounded-lg border border-indigo-100">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-semibold text-gray-700">Last 30 Days Activity</span>
                     <span className="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">12 movements</span>
@@ -730,13 +730,13 @@ export default function StockMovementViewPage({ params }: { params: { id: string
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <PieChart className="w-5 h-5 text-emerald-600" />
                 Movement Efficiency Metrics
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-4 rounded-lg border border-emerald-100">
+              <div className="space-y-2">
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-3 rounded-lg border border-emerald-100">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-semibold text-gray-700">Processing Time</span>
                     <span className="text-xs bg-emerald-600 text-white px-2 py-1 rounded-full">Excellent</span>
@@ -799,7 +799,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 mt-4">
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-100 mt-4">
                   <div className="flex items-center gap-3 mb-3">
                     <Eye className="w-5 h-5 text-blue-600" />
                     <span className="text-sm font-semibold text-gray-700">Accuracy Tracking</span>
@@ -822,13 +822,13 @@ export default function StockMovementViewPage({ params }: { params: { id: string
           </div>
 
           {/* Predictive Insights */}
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-3 rounded-lg border border-purple-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <Zap className="w-5 h-5 text-purple-600" />
               Predictive Insights & Recommendations
             </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white p-4 rounded-lg border border-purple-100">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-white p-3 rounded-lg border border-purple-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -841,7 +841,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 <p className="text-xs text-gray-600">Based on current consumption rate of 68 {movement.uom}/day, next order due by Nov 30</p>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-purple-100">
+              <div className="bg-white p-3 rounded-lg border border-purple-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-blue-600" />
@@ -854,7 +854,7 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 <p className="text-xs text-gray-600">Economic Order Quantity (EOQ) calculated based on usage patterns and carrying costs</p>
               </div>
 
-              <div className="bg-white p-4 rounded-lg border border-purple-100">
+              <div className="bg-white p-3 rounded-lg border border-purple-100">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                     <AlertTriangle className="w-5 h-5 text-orange-600" />

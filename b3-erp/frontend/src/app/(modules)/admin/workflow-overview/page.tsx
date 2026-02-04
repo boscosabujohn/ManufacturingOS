@@ -146,7 +146,7 @@ export default function WorkflowOverviewPage() {
     }
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
             {/* Header */}
             <div>
                 <h1 className="text-2xl font-bold text-gray-900">Workflow Automation Overview</h1>
@@ -156,8 +156,8 @@ export default function WorkflowOverviewPage() {
             </div>
 
             {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Total Workflows</p>
@@ -173,7 +173,7 @@ export default function WorkflowOverviewPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Total Approvals</p>
@@ -186,7 +186,7 @@ export default function WorkflowOverviewPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">SLA Compliance</p>
@@ -202,7 +202,7 @@ export default function WorkflowOverviewPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Avg Approval Time</p>
@@ -218,8 +218,8 @@ export default function WorkflowOverviewPage() {
 
             {/* Quick Access Cards */}
             <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Access</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Quick Access</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                     {quickLinks.map((link, index) => {
                         const Icon = link.icon
                         const colorClasses = {
@@ -235,7 +235,7 @@ export default function WorkflowOverviewPage() {
                             <Link
                                 key={index}
                                 href={link.href}
-                                className="bg-white p-6 rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all group"
+                                className="bg-white p-3 rounded-lg border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all group"
                             >
                                 <div className="flex items-start justify-between">
                                     <div
@@ -270,7 +270,7 @@ export default function WorkflowOverviewPage() {
 
                         return (
                             <div key={index} className="p-4 hover:bg-gray-50 transition-colors">
-                                <div className="flex items-start gap-4">
+                                <div className="flex items-start gap-2">
                                     <div className="flex-shrink-0 mt-0.5">{icon[activity.type as keyof typeof icon]}</div>
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm font-medium text-gray-900">{activity.workflow}</p>
@@ -287,7 +287,7 @@ export default function WorkflowOverviewPage() {
             </div>
 
             {/* System Status */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
                 <div className="flex items-start justify-between">
                     <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">System Status</h3>

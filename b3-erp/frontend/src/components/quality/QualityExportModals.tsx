@@ -45,10 +45,10 @@ export const ExportInspectionReportModal: React.FC<ExportInspectionReportModalPr
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export Inspection Report</h2>
@@ -58,7 +58,7 @@ export const ExportInspectionReportModal: React.FC<ExportInspectionReportModalPr
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format *</label>
@@ -105,7 +105,7 @@ export const ExportInspectionReportModal: React.FC<ExportInspectionReportModalPr
           {/* Date Range */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Date Range *</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">From Date</label>
                 <input
@@ -283,10 +283,10 @@ export const ExportNCRModal: React.FC<ExportNCRModalProps> = ({ isOpen, onClose,
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export NCR Data</h2>
@@ -296,7 +296,7 @@ export const ExportNCRModal: React.FC<ExportNCRModalProps> = ({ isOpen, onClose,
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format *</label>
@@ -343,7 +343,7 @@ export const ExportNCRModal: React.FC<ExportNCRModalProps> = ({ isOpen, onClose,
           {/* Date Range */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Date Range *</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">From Date</label>
                 <input
@@ -538,10 +538,10 @@ export const ExportQualityPlansModal: React.FC<ExportQualityPlansModalProps> = (
   const statusOptions = ['active', 'draft', 'archived', 'under-review'];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export Quality Plans</h2>
@@ -551,7 +551,7 @@ export const ExportQualityPlansModal: React.FC<ExportQualityPlansModalProps> = (
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format *</label>
@@ -751,10 +751,10 @@ export const ExportQualityReportModal: React.FC<ExportQualityReportModalProps> =
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export Quality Analytics</h2>
@@ -764,7 +764,7 @@ export const ExportQualityReportModal: React.FC<ExportQualityReportModalProps> =
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Format Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format *</label>
@@ -839,7 +839,7 @@ export const ExportQualityReportModal: React.FC<ExportQualityReportModalProps> =
 
             {/* Custom Date Range */}
             {formData.dateRange === 'custom' && (
-              <div className="grid grid-cols-2 gap-4 mt-3">
+              <div className="grid grid-cols-2 gap-2 mt-3">
                 <div>
                   <label className="block text-xs text-gray-600 mb-1">From Date</label>
                   <input

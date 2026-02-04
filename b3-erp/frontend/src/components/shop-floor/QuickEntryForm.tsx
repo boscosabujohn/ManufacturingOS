@@ -261,7 +261,7 @@ export function AutocompleteInput({
         >
           {loading && displayItems.length === 0 ? (
             <div className="p-6 text-center text-gray-500">
-              <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2" />
+              <Loader2 className="w-8 h-8 animate-spin mb-2" />
               <p className="text-lg">Searching...</p>
             </div>
           ) : displayItems.length === 0 ? (
@@ -282,7 +282,7 @@ export function AutocompleteInput({
                   type="button"
                   onClick={() => handleSelect(item)}
                   className={`
-                    w-full text-left p-4 flex items-center gap-4
+                    w-full text-left p-3 flex items-center gap-2
                     ${highlightedIndex === index
                       ? 'bg-blue-50 dark:bg-blue-900/30'
                       : 'hover:bg-gray-50 dark:hover:bg-gray-800'
@@ -377,7 +377,7 @@ export function QuantityInput({
           {label}
         </label>
       )}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={handleDecrement}
@@ -534,7 +534,7 @@ export function LargeSelect({
                 }}
                 disabled={option.disabled}
                 className={`
-                  w-full text-left p-5 flex items-center gap-4
+                  w-full text-left p-5 flex items-center gap-2
                   ${option.value === value
                     ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                     : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-white'
@@ -600,17 +600,17 @@ export function QuickEntryForm({
   return (
     <form onSubmit={handleSubmit} className={className}>
       {title && (
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
           {title}
         </h2>
       )}
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {children}
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-4 mt-8">
+      <div className="flex gap-2 mt-8">
         {onCancel && (
           <button
             type="button"

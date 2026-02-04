@@ -116,14 +116,14 @@ export default function RelievingLetterPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Exit Documents - Relieving Letter</h1>
         <p className="text-sm text-gray-600 mt-1">Generate and issue relieving letters for exiting employees</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -133,7 +133,7 @@ export default function RelievingLetterPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Generated</p>
@@ -143,7 +143,7 @@ export default function RelievingLetterPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Approved</p>
@@ -153,7 +153,7 @@ export default function RelievingLetterPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Issued</p>
@@ -164,7 +164,7 @@ export default function RelievingLetterPage() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-2 flex gap-2">
         {(['pending', 'generated', 'approved', 'issued'] as const).map(tab => (
           <button
             key={tab}
@@ -182,10 +182,10 @@ export default function RelievingLetterPage() {
         ))}
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredLetters.map(letter => (
-          <div key={letter.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={letter.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{letter.employeeName}</h3>
@@ -208,8 +208,8 @@ export default function RelievingLetterPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Employment Period</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
@@ -233,7 +233,7 @@ export default function RelievingLetterPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Notice Period</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">

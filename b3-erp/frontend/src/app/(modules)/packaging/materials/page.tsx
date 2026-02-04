@@ -60,7 +60,7 @@ export default function PackingMaterialsPage() {
     const outOfStockCount = materials.filter(m => m.status === 'Out of Stock').length;
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -83,7 +83,7 @@ export default function PackingMaterialsPage() {
 
             {(lowStockCount > 0 || outOfStockCount > 0) && (
                 <Card className="border-l-4 border-l-yellow-500 bg-yellow-50">
-                    <CardContent className="pt-6 flex items-start gap-4">
+                    <CardContent className="pt-6 flex items-start gap-2">
                         <AlertTriangle className="h-6 w-6 text-yellow-600 mt-1" />
                         <div>
                             <h3 className="font-bold text-yellow-700">Stock Alert</h3>
@@ -97,7 +97,7 @@ export default function PackingMaterialsPage() {
                 </Card>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <Card>
                     <CardHeader className="pb-3">
                         <CardTitle className="text-sm font-medium text-muted-foreground">Available</CardTitle>

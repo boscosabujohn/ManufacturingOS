@@ -238,7 +238,7 @@ export default function FreightMaster() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 max-w-[1600px]">
       {toast && (
         <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
           toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
@@ -249,14 +249,14 @@ export default function FreightMaster() {
         </div>
       )}
 
-      <div className="mb-6">
+      <div className="mb-3">
         <h2 className="text-3xl font-bold text-gray-900 mb-2">Freight Master</h2>
         <p className="text-gray-600">Manage shipping charges and freight rate structures</p>
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Rates</p>
@@ -266,7 +266,7 @@ export default function FreightMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active</p>
@@ -276,7 +276,7 @@ export default function FreightMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Inactive</p>
@@ -286,7 +286,7 @@ export default function FreightMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-red-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-red-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expired</p>
@@ -296,7 +296,7 @@ export default function FreightMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Base Rate</p>
@@ -306,7 +306,7 @@ export default function FreightMaster() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:shadow-lg transition-all">
+        <div className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Per Km</p>
@@ -318,9 +318,9 @@ export default function FreightMaster() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
@@ -360,7 +360,7 @@ export default function FreightMaster() {
           </div>
 
           {showAdvancedFilters && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-4 border-t border-gray-200">
               <select
                 value={modeFilter}
                 onChange={(e) => setModeFilter(e.target.value)}
@@ -405,14 +405,14 @@ export default function FreightMaster() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Freight Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mode & Service</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Base Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Per Km</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Per Kg</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Freight Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mode & Service</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Base Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Per Km</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Per Kg</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validity</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -420,11 +420,11 @@ export default function FreightMaster() {
                 const ModeIcon = modeIcons[rate.mode];
                 return (
                   <tr key={rate.id} className="hover:bg-blue-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm font-medium text-gray-900">{rate.name}</div>
                       <div className="text-xs text-gray-500">{rate.code}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <ModeIcon className="h-4 w-4 text-gray-600" />
                         <div>
@@ -433,19 +433,19 @@ export default function FreightMaster() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{formatCurrency(rate.baseRate)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">₹{rate.perKmRate}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">₹{rate.perKgRate}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{formatCurrency(rate.baseRate)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">₹{rate.perKmRate}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">₹{rate.perKgRate}</td>
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-900">{rate.validFrom.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</div>
                       <div className="text-xs text-gray-500">to {rate.validTo.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[rate.status]}`}>
                         {rate.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleView(rate)}
@@ -491,9 +491,9 @@ export default function FreightMaster() {
 
       {/* View Modal */}
       {showViewModal && selectedRate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white">{selectedRate.name}</h2>
                 <p className="text-sm text-blue-100">{selectedRate.code}</p>
@@ -503,16 +503,16 @@ export default function FreightMaster() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
-              <div className="flex items-center gap-4">
+            <div className="p-6 space-y-3">
+              <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium border ${statusColors[selectedRate.status]}`}>
                   {selectedRate.status}
                 </span>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Rate Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Mode</p>
                     <p className="text-base font-medium text-gray-900">{selectedRate.mode}</p>
@@ -548,9 +548,9 @@ export default function FreightMaster() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Validity Period</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Valid From</p>
                     <p className="text-base font-medium text-gray-900">{selectedRate.validFrom.toLocaleDateString('en-IN')}</p>
@@ -577,9 +577,9 @@ export default function FreightMaster() {
 
       {/* Add/Edit Modal Placeholder */}
       {(showAddModal || showEditModal) && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white">
                 {showAddModal ? 'Add New Freight Rate' : 'Edit Freight Rate'}
               </h2>

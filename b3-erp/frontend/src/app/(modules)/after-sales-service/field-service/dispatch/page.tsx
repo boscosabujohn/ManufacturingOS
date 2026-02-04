@@ -176,7 +176,7 @@ export default function FieldServiceDispatchPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -193,8 +193,8 @@ export default function FieldServiceDispatchPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Jobs</span>
             <MapPin className="w-4 h-4 text-blue-600" />
@@ -203,7 +203,7 @@ export default function FieldServiceDispatchPage() {
           <div className="text-xs text-gray-500 mt-1">Today</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Dispatched</span>
             <Navigation className="w-4 h-4 text-purple-600" />
@@ -212,7 +212,7 @@ export default function FieldServiceDispatchPage() {
           <div className="text-xs text-gray-500 mt-1">En route</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">On Site</span>
             <MapPin className="w-4 h-4 text-yellow-600" />
@@ -221,7 +221,7 @@ export default function FieldServiceDispatchPage() {
           <div className="text-xs text-gray-500 mt-1">In progress</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Completed</span>
             <Clock className="w-4 h-4 text-green-600" />
@@ -230,7 +230,7 @@ export default function FieldServiceDispatchPage() {
           <div className="text-xs text-gray-500 mt-1">Today</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Engineers Active</span>
             <User className="w-4 h-4 text-blue-600" />
@@ -241,8 +241,8 @@ export default function FieldServiceDispatchPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-gray-400" />
             <span className="text-sm font-medium text-gray-700">Filters:</span>
@@ -272,7 +272,7 @@ export default function FieldServiceDispatchPage() {
       </div>
 
       {/* Jobs Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
         {filteredJobs.map(job => (
           <div key={job.id} className="bg-white p-5 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-3">

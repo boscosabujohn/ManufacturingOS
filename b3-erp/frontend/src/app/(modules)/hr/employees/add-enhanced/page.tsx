@@ -324,7 +324,7 @@ export default function AddEmployeeEnhancedPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       {/* Draft Recovery */}
       {showDraftBanner && (
         <DraftRecoveryBanner
@@ -335,8 +335,8 @@ export default function AddEmployeeEnhancedPage() {
       )}
 
       {/* Header */}
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Employees</span>
         </button>
@@ -356,7 +356,7 @@ export default function AddEmployeeEnhancedPage() {
       </div>
 
       {/* Progress */}
-      <div className="mb-4">
+      <div className="mb-2">
         <div className="flex items-center justify-between mb-1">
           <span className="text-sm text-gray-600">Onboarding progress</span>
           <span className="text-sm font-medium text-gray-900">{completionPercentage}%</span>
@@ -380,15 +380,15 @@ export default function AddEmployeeEnhancedPage() {
       </div>
 
       {/* Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Personal Information */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <User className="h-5 w-5 text-gray-500" />
               Personal Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                   Employee ID *
@@ -505,12 +505,12 @@ export default function AddEmployeeEnhancedPage() {
 
         {/* Step 2: Address */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <MapPin className="h-5 w-5 text-gray-500" />
               Address Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Address *</label>
                 <textarea
@@ -587,12 +587,12 @@ export default function AddEmployeeEnhancedPage() {
 
         {/* Step 3: Employment */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Briefcase className="h-5 w-5 text-gray-500" />
               Employment Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
                 <select
@@ -696,12 +696,12 @@ export default function AddEmployeeEnhancedPage() {
 
         {/* Step 4: Payroll & Statutory */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <CreditCard className="h-5 w-5 text-gray-500" />
               Payroll & Statutory Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Salary (CTC)</label>
                 <input
@@ -816,15 +816,15 @@ export default function AddEmployeeEnhancedPage() {
 
         {/* Step 5: Emergency & Skills */}
         {currentStep === 4 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Heart className="h-5 w-5 text-gray-500" />
               Emergency Contact & Background
             </h3>
 
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <h4 className="font-semibold text-red-900 mb-3">Emergency Contact *</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
                   <input
@@ -862,7 +862,7 @@ export default function AddEmployeeEnhancedPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                   <GraduationCap className="h-4 w-4" />
@@ -905,11 +905,11 @@ export default function AddEmployeeEnhancedPage() {
 
         {/* Step 6: Review */}
         {currentStep === 5 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Review & Submit</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Personal Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Employee ID:</span><span className="font-medium">{formData.employeeId}</span></div>
@@ -920,7 +920,7 @@ export default function AddEmployeeEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Employment Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Department:</span><span className="font-medium">{formData.department}</span></div>
@@ -931,7 +931,7 @@ export default function AddEmployeeEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Address</h4>
                 <div className="text-sm">
                   <p className="text-gray-600">{formData.address}</p>
@@ -940,7 +940,7 @@ export default function AddEmployeeEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Bank & Statutory</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Bank:</span><span className="font-medium">{formData.bankName || '-'}</span></div>
@@ -950,7 +950,7 @@ export default function AddEmployeeEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <div className="text-green-600 mt-0.5">
                   <User className="h-5 w-5" />

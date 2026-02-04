@@ -186,7 +186,7 @@ export default function ProjectHoursPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <BarChart3 className="h-8 w-8 text-blue-600" />
           Project Hours Tracking
@@ -195,9 +195,9 @@ export default function ProjectHoursPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
-          <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
+          <div className="flex gap-2">
             <select
               value={selectedPeriod}
               onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -240,8 +240,8 @@ export default function ProjectHoursPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Hours</p>
@@ -250,7 +250,7 @@ export default function ProjectHoursPage() {
             <Clock className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Billable Hours</p>
@@ -259,7 +259,7 @@ export default function ProjectHoursPage() {
             <DollarSign className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Projects</p>
@@ -268,7 +268,7 @@ export default function ProjectHoursPage() {
             <TrendingUp className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Hours/Project</p>
@@ -277,7 +277,7 @@ export default function ProjectHoursPage() {
             <BarChart3 className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Billable Rate</p>
@@ -290,7 +290,7 @@ export default function ProjectHoursPage() {
 
       {/* Over-budget Alert */}
       {filteredData.some(p => p.utilizationPercent >= 95) && (
-        <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 mb-6">
+        <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-red-600" />
             <div>
@@ -304,16 +304,16 @@ export default function ProjectHoursPage() {
       )}
 
       {/* Project Hours Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Project Hours Breakdown</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Project Hours Breakdown</h2>
         <DataTable data={filteredData} columns={columns} />
       </div>
 
       {/* Additional Insights */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Top Projects by Hours */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-blue-600" />
             Top Projects by Hours
           </h3>
@@ -348,12 +348,12 @@ export default function ProjectHoursPage() {
         </div>
 
         {/* Billable vs Non-Billable */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <DollarSign className="w-5 h-5 text-green-600" />
             Billable Hours Analysis
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredData
               .filter(p => p.status === 'active')
               .sort((a, b) => b.billableHours - a.billableHours)

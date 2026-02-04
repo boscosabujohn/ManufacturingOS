@@ -81,18 +81,18 @@ export default function VendorDetailsPage() {
         <div className="min-h-screen bg-gray-50 pb-12">
             {/* Header */}
             <div className="bg-white border-b border-gray-200">
-                <div className="w-full px-4 sm:px-6 lg:px-8">
-                    <div className="py-6">
+                <div className="w-full px-3">
+                    <div className="py-2">
                         <button
                             onClick={() => router.back()}
-                            className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4"
+                            className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-2"
                         >
                             <ArrowLeft className="h-4 w-4 mr-1" />
                             Back to Vendors
                         </button>
 
                         <div className="flex items-start justify-between">
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2">
                                 <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
                                     <Building2 className="h-8 w-8 text-white" />
                                 </div>
@@ -142,13 +142,13 @@ export default function VendorDetailsPage() {
                 </div>
             </div>
 
-            <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
+            <div className="w-full px-3 py-8">
                 <div className="grid grid-cols-3 gap-8">
                     {/* Main Content */}
-                    <div className="col-span-2 space-y-6">
+                    <div className="col-span-2 space-y-3">
                         {/* Quick Stats */}
-                        <div className="grid grid-cols-3 gap-4">
-                            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                        <div className="grid grid-cols-3 gap-2">
+                            <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm text-gray-500">Total Spend</span>
                                     <DollarSign className="h-4 w-4 text-gray-400" />
@@ -161,7 +161,7 @@ export default function VendorDetailsPage() {
                                     <span>+12% vs last year</span>
                                 </div>
                             </div>
-                            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm text-gray-500">Avg Rating</span>
                                     <Star className="h-4 w-4 text-gray-400" />
@@ -183,7 +183,7 @@ export default function VendorDetailsPage() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="text-sm text-gray-500">Open Orders</span>
                                     <Package className="h-4 w-4 text-gray-400" />
@@ -195,7 +195,7 @@ export default function VendorDetailsPage() {
 
                         {/* Detailed Info */}
                         <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                            <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                            <div className="px-3 py-2 border-b border-gray-200 flex items-center justify-between">
                                 <h3 className="font-semibold text-gray-900">Vendor Information</h3>
                                 <button className="text-sm text-blue-600 hover:text-blue-700">Edit Details</button>
                             </div>
@@ -246,12 +246,12 @@ export default function VendorDetailsPage() {
 
                         {/* Recent Activity */}
                         <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                            <div className="px-6 py-4 border-b border-gray-200">
+                            <div className="px-3 py-2 border-b border-gray-200">
                                 <h3 className="font-semibold text-gray-900">Recent Activity</h3>
                             </div>
                             <div className="divide-y divide-gray-200">
                                 {[1, 2, 3].map((i) => (
-                                    <div key={i} className="p-4 hover:bg-gray-50 transition-colors flex items-center gap-4">
+                                    <div key={i} className="p-4 hover:bg-gray-50 transition-colors flex items-center gap-2">
                                         <div className="h-10 w-10 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
                                             <FileText className="h-5 w-5 text-blue-600" />
                                         </div>
@@ -269,11 +269,11 @@ export default function VendorDetailsPage() {
                     </div>
 
                     {/* Sidebar */}
-                    <div className="space-y-6">
+                    <div className="space-y-3">
                         {/* Performance Card */}
-                        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 className="font-semibold text-gray-900 mb-4">Performance Overview</h3>
-                            <div className="space-y-4">
+                        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                            <h3 className="font-semibold text-gray-900 mb-2">Performance Overview</h3>
+                            <div className="space-y-2">
                                 <div>
                                     <div className="flex items-center justify-between text-sm mb-1">
                                         <span className="text-gray-600">On-Time Delivery</span>
@@ -308,8 +308,8 @@ export default function VendorDetailsPage() {
                         </div>
 
                         {/* Financials */}
-                        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 className="font-semibold text-gray-900 mb-4">Financial Details</h3>
+                        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                            <h3 className="font-semibold text-gray-900 mb-2">Financial Details</h3>
                             <div className="space-y-3 text-sm">
                                 <div className="flex justify-between py-2 border-b border-gray-100">
                                     <span className="text-gray-500">Payment Terms</span>
@@ -331,8 +331,8 @@ export default function VendorDetailsPage() {
                         </div>
 
                         {/* Tags */}
-                        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 className="font-semibold text-gray-900 mb-4">Tags & Certifications</h3>
+                        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                            <h3 className="font-semibold text-gray-900 mb-2">Tags & Certifications</h3>
                             <div className="flex flex-wrap gap-2">
                                 <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">
                                     ISO 9001

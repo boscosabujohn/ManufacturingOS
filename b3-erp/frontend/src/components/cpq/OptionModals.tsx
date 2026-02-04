@@ -98,9 +98,9 @@ export const OptionModal: React.FC<OptionModalProps> = ({
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <h2 className="text-xl font-semibold">{option ? 'Edit Option' : 'Add New Option'}</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -108,11 +108,11 @@ export const OptionModal: React.FC<OptionModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Basic Information */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Option Name *
@@ -225,8 +225,8 @@ export const OptionModal: React.FC<OptionModalProps> = ({
 
             {/* Available Choices (for dropdown, radio, checkbox) */}
             {['dropdown', 'radio', 'checkbox'].includes(formData.type) && (
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">Available Choices</h3>
                   <button
                     type="button"
@@ -240,7 +240,7 @@ export const OptionModal: React.FC<OptionModalProps> = ({
 
                 {choices.length === 0 ? (
                   <div className="text-center py-8 text-gray-500">
-                    <Sliders className="h-12 w-12 mx-auto mb-2 text-gray-400" />
+                    <Sliders className="h-12 w-12 mb-2 text-gray-400" />
                     <p>No choices added yet. Add choices for customers to select from.</p>
                   </div>
                 ) : (
@@ -283,9 +283,9 @@ export const OptionModal: React.FC<OptionModalProps> = ({
 
             {/* Text Input Configuration */}
             {formData.type === 'text' && (
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Text Input Configuration</h3>
-                <div className="grid grid-cols-1 gap-4">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Text Input Configuration</h3>
+                <div className="grid grid-cols-1 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Default Value
@@ -316,9 +316,9 @@ export const OptionModal: React.FC<OptionModalProps> = ({
             )}
 
             {/* Preview */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Preview</h3>
-              <div className="bg-white rounded-lg p-4 border border-gray-300">
+              <div className="bg-white rounded-lg p-3 border border-gray-300">
                 <label className="block text-sm font-medium text-gray-900 mb-2">
                   {formData.name || 'Option Name'}
                   {formData.required && <span className="text-red-600 ml-1">*</span>}
@@ -380,7 +380,7 @@ export const OptionModal: React.FC<OptionModalProps> = ({
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
             <button
               type="button"
               onClick={onClose}
@@ -421,9 +421,9 @@ export const ViewOptionModal: React.FC<ViewOptionModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <div>
             <h2 className="text-xl font-semibold">{option.name}</h2>
             <p className="text-sm text-blue-100 mt-1">{option.id}</p>
@@ -433,22 +433,22 @@ export const ViewOptionModal: React.FC<ViewOptionModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Option Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <Sliders className="h-8 w-8 text-blue-600 mb-2" />
               <p className="text-sm text-blue-600">Category</p>
               <p className="text-lg font-bold text-blue-900">{option.category}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <DollarSign className="h-8 w-8 text-purple-600 mb-2" />
               <p className="text-sm text-purple-600">Price Impact</p>
               <p className="text-lg font-bold text-purple-900">₹{(option.priceImpact / 1000).toFixed(0)}K</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="text-2xl mb-2">{option.required ? '⚠️' : '✓'}</div>
               <p className="text-sm text-green-600">Requirement</p>
               <p className="text-lg font-bold text-green-900">{option.required ? 'Required' : 'Optional'}</p>
@@ -456,9 +456,9 @@ export const ViewOptionModal: React.FC<ViewOptionModalProps> = ({
           </div>
 
           {/* Type & Status */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Configuration</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600 mb-2">Input Type</p>
                 <span className={`px-3 py-1 inline-flex text-sm font-semibold rounded-full border ${getTypeColor(option.type)}`}>
@@ -480,7 +480,7 @@ export const ViewOptionModal: React.FC<ViewOptionModalProps> = ({
 
           {/* Available Choices */}
           {['dropdown', 'radio', 'checkbox'].includes(option.type) && (
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 Available Choices ({option.options.length})
               </h3>
@@ -500,7 +500,7 @@ export const ViewOptionModal: React.FC<ViewOptionModalProps> = ({
           )}
 
           {/* Usage Information */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Usage Information</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
@@ -519,7 +519,7 @@ export const ViewOptionModal: React.FC<ViewOptionModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -610,9 +610,9 @@ export const FilterModal: React.FC<FilterModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <h2 className="text-xl font-semibold">Filter Options</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -620,7 +620,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Categories */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Categories</label>
@@ -747,7 +747,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
 
             {/* Info Box */}
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 flex gap-3">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 flex gap-3">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-900">
                 <p className="font-medium mb-1">Filter Tips</p>
@@ -760,7 +760,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-between flex-shrink-0">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-between flex-shrink-0">
             <button
               type="button"
               onClick={handleReset}

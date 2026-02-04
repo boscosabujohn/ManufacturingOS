@@ -334,11 +334,11 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
@@ -381,30 +381,30 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+        <div className="grid grid-cols-5 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <Calendar className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">
               {Math.floor((new Date().getTime() - new Date(employee.joinDate).getTime()) / (1000 * 60 * 60 * 24 * 365))}y
             </div>
             <div className="text-blue-100 text-sm">Tenure</div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <TrendingUp className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{employee.performanceRating.toFixed(1)}</div>
             <div className="text-green-100 text-sm">Performance Rating</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
             <Clock className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{employee.leaveBalance}</div>
             <div className="text-purple-100 text-sm">Leave Balance</div>
           </div>
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
             <DollarSign className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">₹{(employee.salary / 1000).toFixed(0)}K</div>
             <div className="text-orange-100 text-sm">Monthly Salary</div>
           </div>
-          <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 rounded-xl text-white">
             <Target className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{Math.round((employee.totalLeave - employee.usedLeave) / employee.totalLeave * 100)}%</div>
             <div className="text-indigo-100 text-sm">Attendance Rate</div>
@@ -412,7 +412,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -471,14 +471,14 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
           <div className="p-6">
             {/* Overview Tab */}
             {activeTab === 'overview' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Personal Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-blue-600" />
                     Personal Information
                   </h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Date of Birth</div>
                       <div className="font-semibold text-gray-900">
@@ -502,11 +502,11 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Contact Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Phone className="w-5 h-5 text-green-600" />
                     Contact Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="flex items-center gap-3 text-gray-600 mb-2">
                         <Mail className="w-4 h-4" />
@@ -540,7 +540,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Address */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-purple-600" />
                     Address
                   </h3>
@@ -555,11 +555,11 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Employment Details */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Briefcase className="w-5 h-5 text-orange-600" />
                     Employment Details
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Department</div>
                       <div className="font-semibold text-gray-900">{employee.department}</div>
@@ -592,14 +592,14 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                 </div>
 
                 {/* Performance & Leave */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Award className="w-5 h-5 text-yellow-600" />
                       Performance
                     </h3>
                     <div className="p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl border border-yellow-200">
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-between mb-2">
                         <div>
                           <div className="text-sm text-gray-600 mb-1">Overall Rating</div>
                           <div className="text-4xl font-bold text-yellow-600">{employee.performanceRating.toFixed(1)}</div>
@@ -613,12 +613,12 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Clock className="w-5 h-5 text-purple-600" />
                       Leave Balance
                     </h3>
                     <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                      <div className="grid grid-cols-3 gap-4 text-center">
+                      <div className="grid grid-cols-3 gap-2 text-center">
                         <div>
                           <div className="text-2xl font-bold text-purple-600">{employee.totalLeave}</div>
                           <div className="text-xs text-gray-600">Total</div>
@@ -638,11 +638,11 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Statutory Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-indigo-600" />
                     Statutory Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">PAN Number</div>
                       <div className="font-semibold text-gray-900 font-mono">{employee.panNumber}</div>
@@ -664,11 +664,11 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Bank Details */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <CreditCard className="w-5 h-5 text-green-600" />
                     Bank Details
                   </h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Bank Name</div>
                       <div className="font-semibold text-gray-900">{employee.bankName}</div>
@@ -686,12 +686,12 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Emergency Contact */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                     Emergency Contact
                   </h3>
                   <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-2">
                       <div>
                         <div className="text-sm text-red-600 mb-1">Name</div>
                         <div className="font-semibold text-gray-900">{employee.emergencyContactName}</div>
@@ -709,9 +709,9 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                 </div>
 
                 {/* Education & Skills */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <FileText className="w-5 h-5 text-blue-600" />
                       Education
                     </h3>
@@ -724,7 +724,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Target className="w-5 h-5 text-purple-600" />
                       Skills
                     </h3>
@@ -743,7 +743,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
             {/* Attendance Tab */}
             {activeTab === 'attendance' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Recent Attendance</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Recent Attendance</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b border-gray-200">
@@ -785,8 +785,8 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
             {/* Leave Tab */}
             {activeTab === 'leave' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Leave History</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Leave History</h3>
+                <div className="space-y-2">
                   {leaveRecords.map((leave) => {
                     const statusConfig = getLeaveStatusConfig(leave.status);
                     return (
@@ -817,14 +817,14 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
             {/* Documents Tab */}
             {activeTab === 'documents' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                   <FileText className="w-5 h-5 text-blue-600" />
                   Employee Documents Vault
                 </h3>
 
                 {/* Document Categories */}
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2">
                   <div
                     onClick={() => handleDocumentCategoryClick('identity')}
                     className={`p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border cursor-pointer hover:shadow-lg transition-all ${
@@ -878,7 +878,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                 {/* Document List */}
                 <div className="space-y-3">
                   {/* Identity Documents */}
-                  <div className="border border-gray-200 rounded-lg p-4">
+                  <div className="border border-gray-200 rounded-lg p-3">
                     <div className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                       <User className="w-5 h-5 text-blue-600" />
                       Identity Documents
@@ -904,7 +904,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                   </div>
 
                   {/* Certifications */}
-                  <div className="border border-gray-200 rounded-lg p-4">
+                  <div className="border border-gray-200 rounded-lg p-3">
                     <div className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                       <Award className="w-5 h-5 text-green-600" />
                       Professional Certifications
@@ -935,7 +935,7 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                   </div>
 
                   {/* HR Forms */}
-                  <div className="border border-gray-200 rounded-lg p-4">
+                  <div className="border border-gray-200 rounded-lg p-3">
                     <div className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                       <FileText className="w-5 h-5 text-purple-600" />
                       HR Forms & Agreements
@@ -989,11 +989,11 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Skill Matrix */}
                 <div className="p-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Target className="w-5 h-5 text-indigo-600" />
                     Skill Matrix & Competency Levels
                   </h4>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
                       { skill: 'Production Planning', level: 90, category: 'Technical' },
                       { skill: 'Quality Control', level: 85, category: 'Technical' },
@@ -1027,18 +1027,18 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Career Progression Timeline */}
                 <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-purple-600" />
                     Career Progression Timeline
                   </h4>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
                       { date: '2020-03', role: 'Production Supervisor', type: 'joined' },
                       { date: '2020-09', role: 'Production Supervisor', type: 'confirmed' },
                       { date: '2021-10', role: 'Senior Production Supervisor', type: 'promoted' },
                       { date: '2023-04', role: 'Production Manager', type: 'promoted' },
                     ].map((item, idx) => (
-                      <div key={idx} className="flex gap-4">
+                      <div key={idx} className="flex gap-2">
                         <div className="flex flex-col items-center">
                           <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                             item.type === 'promoted' ? 'bg-purple-100' :
@@ -1071,10 +1071,10 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
             {/* Activity Tab */}
             {activeTab === 'activity' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Activity Timeline</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Activity Timeline</h3>
+                <div className="space-y-2">
                   {activities.map((activity, index) => (
-                    <div key={index} className="flex gap-4">
+                    <div key={index} className="flex gap-2">
                       <div className="flex flex-col items-center">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                           activity.type === 'success' ? 'bg-green-100' :

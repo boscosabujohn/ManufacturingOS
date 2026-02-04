@@ -56,7 +56,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   return (
     <div className={`flex flex-col items-center justify-center text-center ${sizes.container} ${className}`}>
       {/* Icon */}
-      <div className="mb-4 p-4 rounded-full bg-gray-100">
+      <div className="mb-2 p-3 rounded-full bg-gray-100">
         <Icon className={`${sizes.icon} text-gray-400`} />
       </div>
 
@@ -67,7 +67,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
 
       {/* Description */}
       {description && (
-        <p className={`${sizes.description} text-gray-600 mb-6 max-w-md`}>
+        <p className={`${sizes.description} text-gray-600 mb-3 max-w-md`}>
           {description}
         </p>
       )}

@@ -68,8 +68,8 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
   const sizeClasses = {
     sm: 'max-w-md',
     md: 'max-w-2xl',
-    lg: 'max-w-4xl',
-    xl: 'max-w-6xl',
+    lg: '',
+    xl: '',
     full: 'max-w-full m-4'
   }
 
@@ -83,7 +83,7 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
       />
 
       {/* Modal */}
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-3">
         <div
           className={`
             relative bg-white rounded-xl shadow-2xl w-full ${sizeClasses[size]}
@@ -96,7 +96,7 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
         >
           {/* Header */}
           {(title || showCloseButton) && (
-            <div className="flex items-start justify-between p-6 border-b border-gray-200">
+            <div className="flex items-start justify-between p-3 border-b border-gray-200">
               <div className="flex-1">
                 {title && (
                   <h3
@@ -129,7 +129,7 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
 
           {/* Footer */}
           {footer && (
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 rounded-b-xl">
+            <div className="flex items-center justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50 rounded-b-xl">
               {footer}
             </div>
           )}

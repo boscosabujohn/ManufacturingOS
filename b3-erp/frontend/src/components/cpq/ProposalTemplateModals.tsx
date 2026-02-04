@@ -134,9 +134,9 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -155,12 +155,12 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Basic Information */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Basic Information</h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Template Name *
@@ -267,8 +267,8 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
             {template && (
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Performance Metrics</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <Users className="w-4 h-4 text-gray-400" />
                       <span className="text-sm text-gray-600">Usage Count</span>
@@ -276,7 +276,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
                     <p className="text-2xl font-bold text-gray-900">{formData.usageCount}</p>
                   </div>
 
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <TrendingUp className="w-4 h-4 text-gray-400" />
                       <span className="text-sm text-gray-600">Success Rate</span>
@@ -284,7 +284,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
                     <p className="text-2xl font-bold text-gray-900">{formData.successRate}%</p>
                   </div>
 
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <DollarSign className="w-4 h-4 text-gray-400" />
                       <span className="text-sm text-gray-600">Avg Deal Size</span>
@@ -294,7 +294,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
                     </p>
                   </div>
 
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <span className="text-sm text-gray-600">Avg Closure Time</span>
@@ -323,7 +323,7 @@ export function TemplateModal({ isOpen, onClose, onSave, template }: TemplateMod
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -400,9 +400,9 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -417,12 +417,12 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Template Information */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{template.templateName}</h3>
-              <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+              <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
                 <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full">
                   {template.category}
                 </span>
@@ -454,8 +454,8 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
             {/* Performance Metrics */}
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Performance Metrics</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <Users className="w-4 h-4 text-blue-500" />
                     <span className="text-sm text-gray-600">Usage Count</span>
@@ -463,7 +463,7 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
                   <p className="text-2xl font-bold text-gray-900">{template.usageCount}</p>
                 </div>
 
-                <div className="bg-green-50 p-4 rounded-lg">
+                <div className="bg-green-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <TrendingUp className="w-4 h-4 text-green-500" />
                     <span className="text-sm text-gray-600">Success Rate</span>
@@ -471,7 +471,7 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
                   <p className="text-2xl font-bold text-gray-900">{template.successRate}%</p>
                 </div>
 
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-purple-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <DollarSign className="w-4 h-4 text-purple-500" />
                     <span className="text-sm text-gray-600">Avg Deal Size</span>
@@ -481,7 +481,7 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
                   </p>
                 </div>
 
-                <div className="bg-orange-50 p-4 rounded-lg">
+                <div className="bg-orange-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <Calendar className="w-4 h-4 text-orange-500" />
                     <span className="text-sm text-gray-600">Avg Closure</span>
@@ -494,8 +494,8 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
             {/* Template Structure */}
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Template Structure</h4>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <div className="grid grid-cols-3 gap-2 mb-2">
                   <div className="text-center">
                     <div className="flex items-center justify-center space-x-2 mb-1">
                       <Layers className="w-4 h-4 text-gray-400" />
@@ -559,7 +559,7 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
             </div>
 
             {/* Metadata */}
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Created By:</span>
                 <span className="ml-2 font-medium text-gray-900">{template.createdBy}</span>
@@ -574,7 +574,7 @@ export function ViewTemplateModal({ isOpen, onClose, template }: ViewTemplateMod
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -651,9 +651,9 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -668,10 +668,10 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Template Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-blue-700">
@@ -684,7 +684,7 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
             {/* Customer Information */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Customer Information</h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Customer Name *
@@ -703,7 +703,7 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email *
@@ -741,7 +741,7 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
             {/* Project Details */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Project Details</h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Project Name *
@@ -760,7 +760,7 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Quote/Opportunity ID
@@ -810,7 +810,7 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
             {/* Template Options */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Template Options</h3>
-              <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+              <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
                 <label className="flex items-center space-x-3">
                   <input
                     type="checkbox"
@@ -844,9 +844,9 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
             </div>
 
             {/* Success Prediction */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <h4 className="text-sm font-semibold text-green-900 mb-3">Success Prediction</h4>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-xs text-green-700 mb-1">Success Rate</p>
                   <p className="text-2xl font-bold text-green-900">{template.successRate}%</p>
@@ -866,7 +866,7 @@ export function UseTemplateModal({ isOpen, onClose, onUse, template }: UseTempla
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -936,9 +936,9 @@ export function CopyTemplateModal({ isOpen, onClose, onCopy, template }: CopyTem
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
               <Copy className="w-5 h-5 text-white" />
@@ -953,8 +953,8 @@ export function CopyTemplateModal({ isOpen, onClose, onCopy, template }: CopyTem
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 New Template Name *
@@ -992,7 +992,7 @@ export function CopyTemplateModal({ isOpen, onClose, onCopy, template }: CopyTem
               </select>
             </div>
 
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+            <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
               <label className="flex items-center space-x-3">
                 <input
                   type="checkbox"
@@ -1024,7 +1024,7 @@ export function CopyTemplateModal({ isOpen, onClose, onCopy, template }: CopyTem
               </label>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-blue-700">
@@ -1036,7 +1036,7 @@ export function CopyTemplateModal({ isOpen, onClose, onCopy, template }: CopyTem
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"

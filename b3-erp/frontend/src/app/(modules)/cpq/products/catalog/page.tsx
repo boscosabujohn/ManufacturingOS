@@ -245,9 +245,9 @@ export default function CPQProductsCatalogPage() {
   })
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsFilterModalOpen(true)}
@@ -279,7 +279,7 @@ export default function CPQProductsCatalogPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -332,7 +332,7 @@ export default function CPQProductsCatalogPage() {
       </div>
 
       {/* Category Filters */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <button
@@ -351,7 +351,7 @@ export default function CPQProductsCatalogPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -365,7 +365,7 @@ export default function CPQProductsCatalogPage() {
       </div>
 
       {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mb-3">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
@@ -385,7 +385,7 @@ export default function CPQProductsCatalogPage() {
                 </span>
               </div>
               
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-gray-500">Category:</span>
                   <span className="font-medium text-gray-700 text-right">{product.category}</span>

@@ -114,14 +114,14 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Travel Advances</h1>
         <p className="text-sm text-gray-600 mt-1">Track travel advance requests and settlements</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Advances</p>
@@ -131,7 +131,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -141,7 +141,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Disbursed</p>
@@ -151,7 +151,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Amount</p>
@@ -161,7 +161,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Outstanding</p>
@@ -172,7 +172,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex gap-2">
           {['all', 'pending', 'approved', 'disbursed', 'settled'].map(status => (
             <button
@@ -190,10 +190,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredAdvances.map(advance => (
-          <div key={advance.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={advance.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{advance.advanceNumber}</h3>
@@ -209,7 +209,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Purpose</p>
                 <p className="text-sm font-semibold text-gray-900">{advance.purpose}</p>
@@ -225,8 +225,8 @@ export default function Page() {
             </div>
 
             {advance.status === 'settled' && advance.expensesSubmitted && (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
-                <div className="grid grid-cols-3 gap-4 text-sm">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   <div>
                     <p className="text-xs text-green-600 uppercase font-medium mb-1">Advance</p>
                     <p className="font-semibold text-green-900">₹{advance.advanceAmount.toLocaleString('en-IN')}</p>

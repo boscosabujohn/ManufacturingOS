@@ -662,20 +662,20 @@ export default function ViewWorkOrderPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/production/work-orders')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Work Orders</span>
         </button>
 
         {/* Work Order Header Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-start justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
                 <Factory className="h-8 w-8 text-white" />
@@ -774,7 +774,7 @@ export default function ViewWorkOrderPage() {
           </div>
 
           {/* Progress Tracker */}
-          <div className="mb-6">
+          <div className="mb-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-700">Production Progress</span>
               <span className="text-sm font-bold text-gray-900">{workOrder.completionPercentage}%</span>
@@ -788,7 +788,7 @@ export default function ViewWorkOrderPage() {
           </div>
 
           {/* Status Flow */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-2">
               <div className="h-10 w-10 bg-green-500 rounded-full flex items-center justify-center">
                 <CheckCircle2 className="h-5 w-5 text-white" />
@@ -846,8 +846,8 @@ export default function ViewWorkOrderPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Target className="h-5 w-5 text-blue-600" />
                 <p className="text-xs font-medium text-blue-600 uppercase">Planned Qty</p>
@@ -855,7 +855,7 @@ export default function ViewWorkOrderPage() {
               <p className="text-2xl font-bold text-blue-900">{workOrder.plannedQty} {workOrder.uom}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Completed Qty</p>
@@ -864,7 +864,7 @@ export default function ViewWorkOrderPage() {
               <p className="text-xs text-green-600 mt-1">Rejected: {workOrder.rejectedQty}, Rework: {workOrder.reworkQty}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center space-x-2 mb-2">
                 <PieChart className="h-5 w-5 text-purple-600" />
                 <p className="text-xs font-medium text-purple-600 uppercase">Completion %</p>
@@ -873,7 +873,7 @@ export default function ViewWorkOrderPage() {
               <p className="text-xs text-purple-600 mt-1">{workOrder.plannedQty - workOrder.completedQty} {workOrder.uom} remaining</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Clock className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-medium text-orange-600 uppercase">Duration</p>
@@ -886,7 +886,7 @@ export default function ViewWorkOrderPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -911,15 +911,15 @@ export default function ViewWorkOrderPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Work Order Overview</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Work Order Overview</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Product Details */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Package className="h-5 w-5 mr-2 text-orange-600" />
                   Product Details
                 </h3>
@@ -948,8 +948,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Order Details */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <ShoppingCart className="h-5 w-5 mr-2 text-orange-600" />
                   Order Details
                 </h3>
@@ -976,8 +976,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Planned Dates */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Calendar className="h-5 w-5 mr-2 text-orange-600" />
                   Planned Dates
                 </h3>
@@ -998,8 +998,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Actual Dates */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Clock className="h-5 w-5 mr-2 text-orange-600" />
                   Actual Dates
                 </h3>
@@ -1020,8 +1020,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Work Center */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Factory className="h-5 w-5 mr-2 text-orange-600" />
                   Work Centers
                 </h3>
@@ -1044,8 +1044,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Shift & Personnel */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Users className="h-5 w-5 mr-2 text-orange-600" />
                   Shift & Personnel
                 </h3>
@@ -1066,8 +1066,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* BOM & Routing */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-orange-600" />
                   BOM & Routing
                 </h3>
@@ -1084,8 +1084,8 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Cost Tracking */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <IndianRupee className="h-5 w-5 mr-2 text-orange-600" />
                   Cost Tracking
                 </h3>
@@ -1110,12 +1110,12 @@ export default function ViewWorkOrderPage() {
               </div>
 
               {/* Special Instructions */}
-              <div className="lg:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="lg:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <AlertCircle className="h-5 w-5 mr-2 text-yellow-600" />
                   Special Instructions
                 </h3>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{workOrder.specialInstructions}</p>
                 </div>
               </div>
@@ -1125,19 +1125,19 @@ export default function ViewWorkOrderPage() {
 
         {/* Materials & Operations Tab */}
         {activeTab === 'materials' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Materials & Operations</h2>
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Materials & Operations</h2>
 
             {/* Materials Required */}
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-xl font-bold text-gray-900">Materials Required</h3>
                 <span className="text-sm text-gray-600">{mockMaterials.length} items</span>
               </div>
 
               {/* Material Shortage Alert */}
               {mockMaterials.some(m => m.stockStatus === 'shortage' || m.stockStatus === 'critical') && (
-                <div className="mb-4 bg-orange-50 border-l-4 border-orange-500 p-4">
+                <div className="mb-2 bg-orange-50 border-l-4 border-orange-500 p-3">
                   <div className="flex">
                     <AlertTriangle className="h-5 w-5 text-orange-600" />
                     <div className="ml-3">
@@ -1199,14 +1199,14 @@ export default function ViewWorkOrderPage() {
 
             {/* Operations */}
             <div className="mt-8">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-xl font-bold text-gray-900">Operations / Routing</h3>
                 <span className="text-sm text-gray-600">{mockOperations.length} operations</span>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {mockOperations.map((operation, index) => (
-                  <div key={operation.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div key={operation.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center space-x-3">
                         <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -1222,7 +1222,7 @@ export default function ViewWorkOrderPage() {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
                       <div>
                         <p className="text-xs font-medium text-gray-500 uppercase">Setup Time</p>
                         <p className="text-sm font-semibold text-gray-900">{operation.setupTime} min</p>
@@ -1279,14 +1279,14 @@ export default function ViewWorkOrderPage() {
 
         {/* Progress Tracking Tab */}
         {activeTab === 'progress' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Progress Tracking</h2>
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Progress Tracking</h2>
 
             {/* OEE Metrics */}
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">OEE (Overall Equipment Effectiveness)</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">OEE (Overall Equipment Effectiveness)</h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <Gauge className="h-5 w-5 text-green-600" />
                     <p className="text-xs font-medium text-green-600 uppercase">OEE</p>
@@ -1295,7 +1295,7 @@ export default function ViewWorkOrderPage() {
                   <p className="text-xs text-green-600 mt-1">World Class: 85%+</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <Zap className="h-5 w-5 text-blue-600" />
                     <p className="text-xs font-medium text-blue-600 uppercase">Availability</p>
@@ -1304,7 +1304,7 @@ export default function ViewWorkOrderPage() {
                   <p className="text-xs text-blue-600 mt-1">Operating time / Planned time</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <TrendingUp className="h-5 w-5 text-purple-600" />
                     <p className="text-xs font-medium text-purple-600 uppercase">Performance</p>
@@ -1313,7 +1313,7 @@ export default function ViewWorkOrderPage() {
                   <p className="text-xs text-purple-600 mt-1">Actual output / Planned output</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <CheckCircle className="h-5 w-5 text-orange-600" />
                     <p className="text-xs font-medium text-orange-600 uppercase">Quality</p>
@@ -1326,7 +1326,7 @@ export default function ViewWorkOrderPage() {
 
             {/* Production Timeline */}
             <div className="mt-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Quantity Produced per Shift</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Quantity Produced per Shift</h3>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -1377,10 +1377,10 @@ export default function ViewWorkOrderPage() {
 
             {/* Downtime Log */}
             <div className="mt-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Downtime Log</h3>
-              <div className="space-y-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Downtime Log</h3>
+              <div className="space-y-2">
                 {mockDowntimeRecords.map((record) => (
-                  <div key={record.id} className="border border-gray-200 rounded-lg p-4 bg-red-50">
+                  <div key={record.id} className="border border-gray-200 rounded-lg p-3 bg-red-50">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center space-x-3">
                         <AlertCircle className="h-6 w-6 text-red-600" />
@@ -1406,9 +1406,9 @@ export default function ViewWorkOrderPage() {
             </div>
 
             {/* Labor & Machine Hours */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Users className="h-5 w-5 mr-2 text-orange-600" />
                   Labor Hours Tracking
                 </h3>
@@ -1428,8 +1428,8 @@ export default function ViewWorkOrderPage() {
                 </div>
               </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Settings className="h-5 w-5 mr-2 text-orange-600" />
                   Machine Hours Utilization
                 </h3>
@@ -1454,12 +1454,12 @@ export default function ViewWorkOrderPage() {
 
         {/* Quality & Inspection Tab */}
         {activeTab === 'quality' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Quality & Inspection</h2>
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Quality & Inspection</h2>
 
             {/* In-Process Inspection */}
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">In-Process Inspection Records</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">In-Process Inspection Records</h3>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -1510,10 +1510,10 @@ export default function ViewWorkOrderPage() {
 
             {/* Rejection Details */}
             <div className="mt-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Rejection Details</h3>
-              <div className="space-y-4">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Rejection Details</h3>
+              <div className="space-y-2">
                 {mockRejectionDetails.map((rejection) => (
-                  <div key={rejection.id} className="border border-red-200 rounded-lg p-4 bg-red-50">
+                  <div key={rejection.id} className="border border-red-200 rounded-lg p-3 bg-red-50">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-start space-x-3">
                         <XCircle className="h-6 w-6 text-red-600 mt-1" />
@@ -1544,8 +1544,8 @@ export default function ViewWorkOrderPage() {
             </div>
 
             {/* Quality Summary */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-8">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <CheckCircle className="h-5 w-5 text-green-600" />
                   <p className="text-xs font-medium text-green-600 uppercase">Passed Units</p>
@@ -1554,7 +1554,7 @@ export default function ViewWorkOrderPage() {
                 <p className="text-xs text-green-600 mt-1">94% Pass Rate</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <XCircle className="h-5 w-5 text-red-600" />
                   <p className="text-xs font-medium text-red-600 uppercase">Rejected Units</p>
@@ -1563,7 +1563,7 @@ export default function ViewWorkOrderPage() {
                 <p className="text-xs text-red-600 mt-1">4% Rejection Rate</p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <Wrench className="h-5 w-5 text-orange-600" />
                   <p className="text-xs font-medium text-orange-600 uppercase">Rework Units</p>
@@ -1574,12 +1574,12 @@ export default function ViewWorkOrderPage() {
             </div>
 
             {/* QC Approval Status */}
-            <div className="mt-8 border border-gray-200 rounded-lg p-4">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="mt-8 border border-gray-200 rounded-lg p-3">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <FileCheck className="h-5 w-5 mr-2 text-orange-600" />
                 QC Approval Status
               </h3>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <div className="flex items-center space-x-3">
                   <Clock className="h-6 w-6 text-yellow-600" />
                   <div>
@@ -1596,12 +1596,12 @@ export default function ViewWorkOrderPage() {
       </div>
 
       {/* Activity Timeline */}
-      <div className="mt-6 bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+      <div className="mt-6 bg-white rounded-lg border border-gray-200 p-3">
+        <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
           <Activity className="h-5 w-5 mr-2 text-orange-600" />
           Activity Timeline
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {mockActivityLog.map((activity, index) => {
             const isLast = index === mockActivityLog.length - 1;
             return (
@@ -1631,12 +1631,12 @@ export default function ViewWorkOrderPage() {
       </div>
 
       {/* Document Attachments */}
-      <div className="mt-6 bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+      <div className="mt-6 bg-white rounded-lg border border-gray-200 p-3">
+        <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
           <FileText className="h-5 w-5 mr-2 text-orange-600" />
           Document Attachments
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded border border-gray-200 hover:bg-gray-100 cursor-pointer">
             <FileText className="h-8 w-8 text-blue-600" />
             <div>

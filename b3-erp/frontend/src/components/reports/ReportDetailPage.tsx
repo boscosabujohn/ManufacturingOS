@@ -23,14 +23,14 @@ export function ReportDetailPage({
     filters,
 }: ReportDetailPageProps) {
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-3">
             {/* Breadcrumb Navigation */}
-            <div className="mb-6">
+            <div className="mb-3">
                 <Breadcrumb items={breadcrumbs} />
             </div>
 
             {/* Page Header */}
-            <div className="flex items-start justify-between mb-6">
+            <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                         {onBack && (
@@ -62,13 +62,13 @@ export function ReportDetailPage({
 
             {/* Filters */}
             {filters && (
-                <div className="mb-6">
+                <div className="mb-3">
                     {filters}
                 </div>
             )}
 
             {/* Content */}
-            <div className="space-y-6">
+            <div className="space-y-3">
                 {children}
             </div>
         </div>

@@ -115,8 +115,8 @@ export default function RenewContractPage({ params }: { params: { id: string } }
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -146,8 +146,8 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         </div>
 
         {/* Performance Summary */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-          <div className="flex items-start gap-3 mb-4">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
+          <div className="flex items-start gap-3 mb-2">
             <div className="bg-blue-600 p-2 rounded-lg">
               <TrendingUp className="w-5 h-5 text-white" />
             </div>
@@ -157,26 +157,26 @@ export default function RenewContractPage({ params }: { params: { id: string } }
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white p-4 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-white p-3 rounded-lg">
               <div className="text-sm text-gray-600 mb-1">Service Requests</div>
               <div className="text-2xl font-bold text-gray-900">{originalContract.performanceMetrics.serviceRequests}</div>
               <div className="text-xs text-green-600 mt-1">✓ Well utilized</div>
             </div>
 
-            <div className="bg-white p-4 rounded-lg">
+            <div className="bg-white p-3 rounded-lg">
               <div className="text-sm text-gray-600 mb-1">SLA Compliance</div>
               <div className="text-2xl font-bold text-gray-900">{originalContract.performanceMetrics.slaCompliance}%</div>
               <div className="text-xs text-green-600 mt-1">✓ Excellent performance</div>
             </div>
 
-            <div className="bg-white p-4 rounded-lg">
+            <div className="bg-white p-3 rounded-lg">
               <div className="text-sm text-gray-600 mb-1">Avg Response</div>
               <div className="text-2xl font-bold text-gray-900">{originalContract.performanceMetrics.avgResponseTime}h</div>
               <div className="text-xs text-green-600 mt-1">✓ Within SLA</div>
             </div>
 
-            <div className="bg-white p-4 rounded-lg">
+            <div className="bg-white p-3 rounded-lg">
               <div className="text-sm text-gray-600 mb-1">Customer Rating</div>
               <div className="text-2xl font-bold text-gray-900">{originalContract.performanceMetrics.customerRating}/5</div>
               <div className="text-xs text-green-600 mt-1">✓ Highly satisfied</div>
@@ -185,10 +185,10 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         </div>
 
         {/* Renewal Type */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Renewal Type</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className={`relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${renewalType === 'Standard' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Renewal Type</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <label className={`relative flex items-start p-3 border-2 rounded-lg cursor-pointer transition-all ${renewalType === 'Standard' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
               }`}>
               <input
                 type="radio"
@@ -206,7 +206,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
               </div>
             </label>
 
-            <label className={`relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${renewalType === 'Modified' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+            <label className={`relative flex items-start p-3 border-2 rounded-lg cursor-pointer transition-all ${renewalType === 'Modified' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
               }`}>
               <input
                 type="radio"
@@ -227,10 +227,10 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         </div>
 
         {/* Renewal Period */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Renewal Period</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Renewal Period</h2>
 
-          <div className="bg-gray-50 p-4 rounded-lg mb-4">
+          <div className="bg-gray-50 p-3 rounded-lg mb-2">
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-sm text-gray-600">Current Contract Period</div>
@@ -248,7 +248,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date <span className="text-red-500">*</span>
@@ -303,10 +303,10 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         </div>
 
         {/* Pricing Adjustment */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Pricing Adjustment</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Pricing Adjustment</h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -319,7 +319,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
           </div>
 
           {applyPriceIncrease && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Increase Type <span className="text-red-500">*</span>
@@ -353,9 +353,9 @@ export default function RenewContractPage({ params }: { params: { id: string } }
           )}
 
           {/* Pricing Comparison */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Pricing Comparison</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <div className="text-xs text-gray-600 mb-2">Current Contract</div>
                 <div className="space-y-1">
@@ -408,10 +408,10 @@ export default function RenewContractPage({ params }: { params: { id: string } }
 
         {/* Terms & SLA */}
         {renewalType === 'Modified' && (
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & SLA</h2>
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & SLA</h2>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -424,7 +424,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
             </div>
 
             {!keepExistingTerms && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Response Time SLA (hours)
@@ -458,10 +458,10 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         )}
 
         {/* Auto-Renewal Settings */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Auto-Renewal Settings</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Auto-Renewal Settings</h2>
 
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -474,7 +474,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
           </div>
 
           {autoRenewal && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Renewal Notice Period (days)
@@ -496,10 +496,10 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         </div>
 
         {/* Approval Workflow */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Approval & Notifications</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Approval & Notifications</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="flex items-center gap-2">
                 <input
@@ -554,7 +554,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-blue-600 mt-0.5" />
             <div className="text-sm text-blue-900">

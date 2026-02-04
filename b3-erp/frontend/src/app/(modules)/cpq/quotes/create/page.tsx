@@ -90,9 +90,9 @@ export default function CPQQuotesCreatePage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-between items-center">
+      <div className="mb-3 flex justify-between items-center">
         <button 
           onClick={() => router.push('/cpq/quotes')}
           className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
@@ -112,13 +112,13 @@ export default function CPQQuotesCreatePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Form */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Customer Information */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Customer Name *
@@ -174,9 +174,9 @@ export default function CPQQuotesCreatePage() {
           </div>
 
           {/* Project Details */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Project Details</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Project Details</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Project Name *
@@ -220,8 +220,8 @@ export default function CPQQuotesCreatePage() {
           </div>
 
           {/* Line Items */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold text-gray-900">Quote Items</h2>
               <button
                 onClick={addLineItem}
@@ -310,9 +310,9 @@ export default function CPQQuotesCreatePage() {
           </div>
 
           {/* Terms & Conditions */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & Conditions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & Conditions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Payment Terms
@@ -362,13 +362,13 @@ export default function CPQQuotesCreatePage() {
 
         {/* Summary Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 sticky top-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calculator className="h-5 w-5" />
               Quote Summary
             </h2>
             
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-3">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Subtotal:</span>
                 <span className="font-medium text-gray-900">
@@ -391,7 +391,7 @@ export default function CPQQuotesCreatePage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 rounded-lg p-4 mb-4">
+            <div className="bg-blue-50 rounded-lg p-3 mb-2">
               <h3 className="text-sm font-medium text-blue-900 mb-2">Quote Details</h3>
               <div className="space-y-2 text-xs text-blue-700">
                 <div className="flex justify-between">

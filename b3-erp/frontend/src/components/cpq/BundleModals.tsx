@@ -116,9 +116,9 @@ export const BundleModal: React.FC<BundleModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <h2 className="text-xl font-semibold">{bundle ? 'Edit Bundle' : 'Create New Bundle'}</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -126,11 +126,11 @@ export const BundleModal: React.FC<BundleModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Basic Information */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-              <div className="grid grid-cols-1 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+              <div className="grid grid-cols-1 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Bundle Name *
@@ -159,7 +159,7 @@ export const BundleModal: React.FC<BundleModalProps> = ({
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Status *
@@ -195,18 +195,18 @@ export const BundleModal: React.FC<BundleModalProps> = ({
             </div>
 
             {/* Bundle Products */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Bundle Products ({bundleProducts.length})</h3>
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Bundle Products ({bundleProducts.length})</h3>
 
               {bundleProducts.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
-                  <Package2 className="h-12 w-12 mx-auto mb-2 text-gray-400" />
+                  <Package2 className="h-12 w-12 mb-2 text-gray-400" />
                   <p>No products added yet. Add products from the list below.</p>
                 </div>
               ) : (
-                <div className="space-y-3 mb-4">
+                <div className="space-y-3 mb-2">
                   {bundleProducts.map((product) => (
-                    <div key={product.id} className="bg-white rounded-lg p-4 border border-gray-200">
+                    <div key={product.id} className="bg-white rounded-lg p-3 border border-gray-200">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <h4 className="font-semibold text-gray-900">{product.name}</h4>
@@ -262,8 +262,8 @@ export const BundleModal: React.FC<BundleModalProps> = ({
             </div>
 
             {/* Pricing Summary */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Pricing Summary</h3>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing Summary</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-700">Total Products:</span>
@@ -289,7 +289,7 @@ export const BundleModal: React.FC<BundleModalProps> = ({
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
             <button
               type="button"
               onClick={onClose}
@@ -328,9 +328,9 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] flex flex-col">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <div>
             <h2 className="text-xl font-semibold">{bundle.name}</h2>
             <p className="text-sm text-blue-100 mt-1">{bundle.id}</p>
@@ -340,28 +340,28 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Bundle Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <Package2 className="h-8 w-8 text-blue-600 mb-2" />
               <p className="text-sm text-blue-600">Products</p>
               <p className="text-2xl font-bold text-blue-900">{bundle.products}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <Tag className="h-8 w-8 text-green-600 mb-2" />
               <p className="text-sm text-green-600">Savings</p>
               <p className="text-2xl font-bold text-green-900">{bundle.savings}%</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <DollarSign className="h-8 w-8 text-purple-600 mb-2" />
               <p className="text-sm text-purple-600">Bundle Price</p>
               <p className="text-2xl font-bold text-purple-900">₹{(bundle.bundlePrice / 100000).toFixed(2)}L</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <ShoppingCart className="h-8 w-8 text-orange-600 mb-2" />
               <p className="text-sm text-orange-600">Popularity</p>
               <p className="text-2xl font-bold text-orange-900">{bundle.popularity}%</p>
@@ -369,17 +369,17 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
           </div>
 
           {/* Description */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 mb-3">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
             <p className="text-gray-700">{bundle.description}</p>
           </div>
 
           {/* Bundle Products */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Bundle Products</h3>
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Bundle Products</h3>
             <div className="space-y-3">
               {mockBundleProducts.map((product) => (
-                <div key={product.id} className="bg-white rounded-lg p-4 border border-gray-200">
+                <div key={product.id} className="bg-white rounded-lg p-3 border border-gray-200">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-900">{product.name}</h4>
@@ -400,8 +400,8 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
           </div>
 
           {/* Pricing Breakdown */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Pricing Breakdown</h3>
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing Breakdown</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-gray-700">Base Price (Individual Products):</span>
@@ -419,8 +419,8 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
           </div>
 
           {/* Status & Popularity */}
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="grid grid-cols-2 gap-2 mt-6">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-2">Status</p>
               <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${
                 bundle.status === 'active'
@@ -430,7 +430,7 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
                 {bundle.status.charAt(0).toUpperCase() + bundle.status.slice(1)}
               </span>
             </div>
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-2">Popularity Score</p>
               <div className="flex items-center gap-3">
                 <div className="flex-1 bg-gray-200 rounded-full h-2">
@@ -445,7 +445,7 @@ export const ViewBundleModal: React.FC<ViewBundleModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -516,9 +516,9 @@ export const FilterModal: React.FC<FilterModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <h2 className="text-xl font-semibold">Filter Bundles</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -526,7 +526,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Status Filter */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Status</label>
@@ -665,7 +665,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
 
             {/* Info Box */}
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 flex gap-3">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 flex gap-3">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-900">
                 <p className="font-medium mb-1">Filter Tips</p>
@@ -678,7 +678,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-between flex-shrink-0">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-between flex-shrink-0">
             <button
               type="button"
               onClick={handleReset}

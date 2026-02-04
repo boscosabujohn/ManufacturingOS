@@ -60,9 +60,9 @@ export function SendToCustomerModal({ isOpen, onClose, recommendation }: SendToC
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Send Recommendation to Customer</h2>
             <p className="text-sm text-gray-600">{recommendation.customerName}</p>
@@ -72,15 +72,15 @@ export function SendToCustomerModal({ isOpen, onClose, recommendation }: SendToC
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Recommendation Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <Package className="h-6 w-6 text-blue-600 mt-1" />
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-1">{recommendation.productName}</h3>
                 <p className="text-sm text-gray-700 mb-2">{recommendation.reason}</p>
-                <div className="flex items-center gap-4 text-sm">
+                <div className="flex items-center gap-2 text-sm">
                   <span className="text-blue-900 font-medium">₹{recommendation.estimatedValue.toLocaleString()}</span>
                   <span className="text-gray-600">•</span>
                   <span className="text-green-700">{recommendation.confidenceScore.toFixed(1)}% confidence</span>
@@ -92,7 +92,7 @@ export function SendToCustomerModal({ isOpen, onClose, recommendation }: SendToC
           {/* Delivery Method */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Delivery Method</label>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <label className="flex items-center gap-2 flex-1 p-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
                 <input
                   type="radio"
@@ -205,7 +205,7 @@ export function SendToCustomerModal({ isOpen, onClose, recommendation }: SendToC
           </div>
 
           {/* Preview */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <div className="text-xs text-gray-600 mb-2">Preview:</div>
             <div className="text-sm text-gray-800">
               <p className="font-medium mb-2">Hi {recommendation.customerName.split(' ')[0]},</p>
@@ -277,9 +277,9 @@ export function AddToQuoteModal({ isOpen, onClose, recommendation }: AddToQuoteM
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Add to Quote</h2>
             <p className="text-sm text-gray-600">{recommendation.productName}</p>
@@ -289,9 +289,9 @@ export function AddToQuoteModal({ isOpen, onClose, recommendation }: AddToQuoteM
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Product Summary */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <Package className="h-6 w-6 text-blue-600 mt-1" />
               <div className="flex-1">
@@ -310,7 +310,7 @@ export function AddToQuoteModal({ isOpen, onClose, recommendation }: AddToQuoteM
           {/* Quote Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Quote Type</label>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <label className="flex items-center gap-2 flex-1 p-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50">
                 <input
                   type="radio"
@@ -359,7 +359,7 @@ export function AddToQuoteModal({ isOpen, onClose, recommendation }: AddToQuoteM
           )}
 
           {/* Quantity and Pricing */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
               <input
@@ -463,7 +463,7 @@ export function AddToQuoteModal({ isOpen, onClose, recommendation }: AddToQuoteM
           </div>
 
           {/* Price Summary */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-100 border border-green-200 rounded-lg p-4">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-100 border border-green-200 rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-700">Base Price</span>
               <span className="text-sm text-gray-900">₹{(recommendation.estimatedValue * formData.quantity).toLocaleString()}</span>
@@ -554,9 +554,9 @@ export function GenerateRecommendationModal({ isOpen, onClose, onGenerate }: Gen
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900">Generate New Recommendations</h2>
             <p className="text-sm text-gray-600">AI-powered product recommendations</p>
@@ -566,7 +566,7 @@ export function GenerateRecommendationModal({ isOpen, onClose, onGenerate }: Gen
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Customer Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Customer ID *</label>
@@ -696,7 +696,7 @@ export function GenerateRecommendationModal({ isOpen, onClose, onGenerate }: Gen
           </div>
 
           {/* Parameters */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Minimum Confidence Score (%)
@@ -726,7 +726,7 @@ export function GenerateRecommendationModal({ isOpen, onClose, onGenerate }: Gen
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex gap-3">
             <TrendingUp className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-blue-900">
               AI will analyze customer purchase history, browsing behavior, cart abandonment, segment preferences, and current market trends to generate personalized recommendations.

@@ -231,7 +231,7 @@ export default function LicenseUsers() {
   const departments = Array.from(new Set(users.map(u => u.department)))
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -251,8 +251,8 @@ export default function LicenseUsers() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Total Licenses</p>
@@ -262,7 +262,7 @@ export default function LicenseUsers() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Assigned Licenses</p>
@@ -275,7 +275,7 @@ export default function LicenseUsers() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Available Licenses</p>
@@ -285,7 +285,7 @@ export default function LicenseUsers() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Active Users</p>
@@ -295,7 +295,7 @@ export default function LicenseUsers() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Inactive Users</p>
@@ -305,7 +305,7 @@ export default function LicenseUsers() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Suspended Users</p>
@@ -317,8 +317,8 @@ export default function LicenseUsers() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -376,28 +376,28 @@ export default function LicenseUsers() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   User
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Department
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Role
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   License Type
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Assigned Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Last Login
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -405,7 +405,7 @@ export default function LicenseUsers() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredUsers.map((user) => (
                 <tr key={user.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center text-white text-sm font-medium">
                         {user.name.split(' ').map(n => n[0]).join('')}
@@ -419,21 +419,21 @@ export default function LicenseUsers() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {user.department}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     <div className="flex items-center gap-2">
                       <Shield className="h-4 w-4 text-gray-400" />
                       {user.role}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getLicenseTypeColor(user.licenseType)}`}>
                       {user.licenseType}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       {getStatusIcon(user.status)}
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(user.status)}`}>
@@ -441,16 +441,16 @@ export default function LicenseUsers() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-gray-400" />
                       {user.assignedDate}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     {user.lastLogin}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <button className="text-purple-600 hover:text-purple-900 mr-3">
                       View
                     </button>

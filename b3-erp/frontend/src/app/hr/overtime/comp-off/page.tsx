@@ -181,7 +181,7 @@ export default function CompensatoryOffPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Calendar className="h-8 w-8 text-blue-600" />
           Compensatory Off
@@ -190,8 +190,8 @@ export default function CompensatoryOffPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Available Comp-Off</p>
@@ -200,7 +200,7 @@ export default function CompensatoryOffPage() {
             <CheckCircle className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Earned This Month</p>
@@ -209,7 +209,7 @@ export default function CompensatoryOffPage() {
             <TrendingUp className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Used This Month</p>
@@ -218,7 +218,7 @@ export default function CompensatoryOffPage() {
             <Clock className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -231,7 +231,7 @@ export default function CompensatoryOffPage() {
 
       {/* Expiring Soon Alert */}
       {stats.expiringSoon > 0 && (
-        <div className="bg-orange-50 border-l-4 border-orange-500 rounded-lg p-4 mb-6">
+        <div className="bg-orange-50 border-l-4 border-orange-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-orange-600" />
             <div>
@@ -246,8 +246,8 @@ export default function CompensatoryOffPage() {
       )}
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -298,14 +298,14 @@ export default function CompensatoryOffPage() {
 
       {/* Comp-Off History */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Comp-Off History</h3>
         </div>
         <DataTable data={filteredData} columns={columns} />
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Comp-Off Policy</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Comp-off is credited for overtime work exceeding 4 hours in a day</li>

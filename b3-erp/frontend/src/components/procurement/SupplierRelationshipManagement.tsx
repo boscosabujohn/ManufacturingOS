@@ -1447,10 +1447,10 @@ Last updated: ${new Date().toLocaleString()}`);
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Users className="w-8 h-8 text-blue-600" />
@@ -1509,8 +1509,8 @@ Last updated: ${new Date().toLocaleString()}`);
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mt-6">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total Suppliers</span>
               <Building2 className="w-5 h-5 text-blue-600" />
@@ -1522,7 +1522,7 @@ Last updated: ${new Date().toLocaleString()}`);
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Strategic Partners</span>
               <Award className="w-5 h-5 text-purple-600" />
@@ -1531,7 +1531,7 @@ Last updated: ${new Date().toLocaleString()}`);
             <div className="text-sm text-gray-600">12% of total</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Avg Performance</span>
               <TrendingUp className="w-5 h-5 text-green-600" />
@@ -1543,7 +1543,7 @@ Last updated: ${new Date().toLocaleString()}`);
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Risk Level</span>
               <Shield className="w-5 h-5 text-amber-600" />
@@ -1552,7 +1552,7 @@ Last updated: ${new Date().toLocaleString()}`);
             <div className="text-sm text-gray-600">28% avg risk score</div>
           </div>
 
-          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-rose-600 text-sm font-medium">Engagement Score</span>
               <Heart className="w-5 h-5 text-rose-600" />
@@ -1565,8 +1565,8 @@ Last updated: ${new Date().toLocaleString()}`);
 
       {/* Supplier Health Dashboard */}
       {showHealthDashboard && (
-        <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl shadow-sm p-6 border border-teal-200">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl shadow-sm p-3 border border-teal-200">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-teal-600 rounded-lg">
                 <Activity className="w-6 h-6 text-white" />
@@ -1593,9 +1593,9 @@ Last updated: ${new Date().toLocaleString()}`);
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
             {/* Health Indicator 1 */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-green-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Excellent Health</span>
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -1611,7 +1611,7 @@ Last updated: ${new Date().toLocaleString()}`);
             </div>
 
             {/* Health Indicator 2 */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Good Health</span>
                 <ThumbsUp className="w-5 h-5 text-blue-600" />
@@ -1627,7 +1627,7 @@ Last updated: ${new Date().toLocaleString()}`);
             </div>
 
             {/* Health Indicator 3 */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-amber-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Needs Attention</span>
                 <AlertCircle className="w-5 h-5 text-amber-600" />
@@ -1643,7 +1643,7 @@ Last updated: ${new Date().toLocaleString()}`);
             </div>
 
             {/* Health Indicator 4 */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-red-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Critical</span>
                 <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -1693,8 +1693,8 @@ Last updated: ${new Date().toLocaleString()}`);
 
       {/* Supplier Scorecards */}
       {showScorecards && (
-        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               <BarChart3 className="w-6 h-6 text-blue-600" />
               Detailed Supplier Scorecards
@@ -1707,10 +1707,10 @@ Last updated: ${new Date().toLocaleString()}`);
             </button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {suppliers.slice(0, 4).map((supplier) => (
               <div key={supplier.id} className="border border-gray-200 rounded-lg p-5 bg-gray-50">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div>
                     <h3 className="text-lg font-bold text-gray-900">{supplier.name}</h3>
                     <div className="flex items-center gap-2 mt-1">
@@ -1831,11 +1831,11 @@ Last updated: ${new Date().toLocaleString()}`);
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Performance Trends */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance by Tier</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance by Tier</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={performanceTrend}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -1850,8 +1850,8 @@ Last updated: ${new Date().toLocaleString()}`);
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend by Category</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Spend by Category</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RePieChart>
                       <Pie
@@ -1875,8 +1875,8 @@ Last updated: ${new Date().toLocaleString()}`);
               </div>
 
               {/* Relationship Health Radar */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Relationship Health Metrics</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Relationship Health Metrics</h3>
                 <ResponsiveContainer width="100%" height={350}>
                   <RadarChart data={relationshipHealth}>
                     <PolarGrid stroke="#E5E7EB" />
@@ -1897,7 +1897,7 @@ Last updated: ${new Date().toLocaleString()}`);
                 <div className="p-4 space-y-3">
                   {engagementActivities.map((activity, index) => (
                     <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className={`p-2 rounded-lg ${
                           activity.type === 'meeting' ? 'bg-blue-100 text-blue-600' :
                           activity.type === 'audit' ? 'bg-amber-100 text-amber-600' :
@@ -1932,11 +1932,11 @@ Last updated: ${new Date().toLocaleString()}`);
           )}
 
           {activeTab === 'suppliers' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Suppliers Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {suppliers.map((supplier) => (
-                  <div key={supplier.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                  <div key={supplier.id} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <div className="flex items-center gap-2">
@@ -1966,7 +1966,7 @@ Last updated: ${new Date().toLocaleString()}`);
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 mb-3">
+                    <div className="grid grid-cols-2 gap-2 mb-3">
                       <div>
                         <div className="text-xs text-gray-500">Performance</div>
                         <div className="flex items-center gap-2">
@@ -2001,7 +2001,7 @@ Last updated: ${new Date().toLocaleString()}`);
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                       <span className="flex items-center gap-1">
                         <DollarSign className="w-4 h-4" />
                         ${(supplier.spend / 1000000).toFixed(1)}M

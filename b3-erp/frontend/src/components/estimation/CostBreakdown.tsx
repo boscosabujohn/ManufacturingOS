@@ -142,10 +142,10 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
   const finalPrice = totalCostWithContingency + marginAmount;
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Header Section */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-1">{data.estimateName}</h2>
             <p className="text-sm text-gray-600">
@@ -173,20 +173,20 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
         </div>
 
         {/* Cost Summary Cards */}
-        <div className="grid grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+        <div className="grid grid-cols-4 gap-2">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <p className="text-sm opacity-90 mb-1">Total Direct Cost</p>
             <p className="text-3xl font-bold">${data.totalCost.toLocaleString()}</p>
           </div>
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <p className="text-sm opacity-90 mb-1">Contingency ({data.contingency}%)</p>
             <p className="text-3xl font-bold">${data.contingencyAmount.toLocaleString()}</p>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <p className="text-sm opacity-90 mb-1">Target Margin ({data.targetMargin}%)</p>
             <p className="text-3xl font-bold">${marginAmount.toLocaleString()}</p>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <p className="text-sm opacity-90 mb-1">Suggested Price</p>
             <p className="text-3xl font-bold">${finalPrice.toLocaleString()}</p>
           </div>
@@ -195,9 +195,9 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
 
       {/* Category Summary - Pie Chart View */}
       {viewMode === 'summary' && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Cost Distribution by Category</h3>
-          <div className="grid grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Cost Distribution by Category</h3>
+          <div className="grid grid-cols-2 gap-3">
             {/* Visual Pie Chart Representation */}
             <div className="flex items-center justify-center">
               <div className="relative w-64 h-64">
@@ -261,7 +261,7 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
                 return (
                   <div
                     key={summary.category}
-                    className={`border-2 rounded-lg p-4 hover:shadow-md transition-all cursor-pointer ${
+                    className={`border-2 rounded-lg p-3 hover:shadow-md transition-all cursor-pointer ${
                       summary.status === 'critical'
                         ? 'border-red-300 bg-red-50'
                         : summary.status === 'warning'
@@ -323,7 +323,7 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
                   {/* Category Header */}
                   <button
                     onClick={() => toggleCategory(summary.category)}
-                    className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                    className="w-full px-3 py-2 flex items-center justify-between hover:bg-gray-50 transition-colors"
                   >
                     <div className="flex items-center space-x-3">
                       <div className={`p-2 rounded-lg ${config.bg}`}>
@@ -348,7 +348,7 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
 
                   {/* Category Items */}
                   {isExpanded && (
-                    <div className="bg-gray-50 px-6 py-4">
+                    <div className="bg-gray-50 px-3 py-2">
                       <table className="w-full">
                         <thead>
                           <tr className="text-left text-xs text-gray-600 border-b border-gray-200">
@@ -418,8 +418,8 @@ export const CostBreakdown: React.FC<CostBreakdownProps> = ({
       )}
 
       {/* Price Calculation Summary */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Price Calculation</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Price Calculation</h3>
         <div className="space-y-3">
           <div className="flex items-center justify-between py-2">
             <span className="text-gray-700">Total Direct Cost</span>

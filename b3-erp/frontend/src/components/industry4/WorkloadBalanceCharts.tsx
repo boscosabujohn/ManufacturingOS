@@ -156,10 +156,10 @@ export function WorkloadBalanceCharts({
   }, [allMembers]);
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Summary Stats */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <span className="text-3xl">📉</span>
             <span className="text-3xl font-bold text-blue-400">{workloadStats.underloaded}</span>
@@ -167,7 +167,7 @@ export function WorkloadBalanceCharts({
           <p className="text-gray-400 mt-2">Underloaded</p>
           <p className="text-xs text-blue-400">&lt; 70% capacity</p>
         </div>
-        <div className="bg-green-900/30 border border-green-700 rounded-lg p-4">
+        <div className="bg-green-900/30 border border-green-700 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <span className="text-3xl">✅</span>
             <span className="text-3xl font-bold text-green-400">{workloadStats.optimal}</span>
@@ -175,7 +175,7 @@ export function WorkloadBalanceCharts({
           <p className="text-gray-400 mt-2">Optimal</p>
           <p className="text-xs text-green-400">70-100% capacity</p>
         </div>
-        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4">
+        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <span className="text-3xl">⚠️</span>
             <span className="text-3xl font-bold text-yellow-400">{workloadStats.overloaded}</span>
@@ -183,7 +183,7 @@ export function WorkloadBalanceCharts({
           <p className="text-gray-400 mt-2">Overloaded</p>
           <p className="text-xs text-yellow-400">100-120% capacity</p>
         </div>
-        <div className="bg-red-900/30 border border-red-700 rounded-lg p-4">
+        <div className="bg-red-900/30 border border-red-700 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <span className="text-3xl">🚨</span>
             <span className="text-3xl font-bold text-red-400">{workloadStats.critical}</span>
@@ -194,9 +194,9 @@ export function WorkloadBalanceCharts({
       </div>
 
       {/* Team Comparison Chart */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Team Workload Comparison</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Team Workload Comparison</h3>
+        <div className="space-y-2">
           {teams.map(team => {
             const utilizationPercent = Math.round((team.totalAllocated / team.totalCapacity) * 100);
             return (
@@ -244,8 +244,8 @@ export function WorkloadBalanceCharts({
       </div>
 
       {/* Balance Recommendations */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Balance Recommendations</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Balance Recommendations</h3>
         <div className="space-y-3">
           {allMembers
             .filter(m => getWorkloadStatus(m) === 'critical' || getWorkloadStatus(m) === 'overloaded')
@@ -304,14 +304,14 @@ export function WorkloadBalanceCharts({
     if (!currentTeam) return null;
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Team Header */}
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-xl font-bold text-white">{currentTeam.teamName}</h3>
             <p className="text-gray-400">{currentTeam.members.length} team members</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="text-right">
               <p className="text-sm text-gray-400">Team Utilization</p>
               <p className="text-2xl font-bold text-white">
@@ -326,9 +326,9 @@ export function WorkloadBalanceCharts({
         </div>
 
         {/* Member Workload Bars */}
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h4 className="text-lg font-semibold text-white mb-4">Individual Workload</h4>
-          <div className="space-y-4">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h4 className="text-lg font-semibold text-white mb-2">Individual Workload</h4>
+          <div className="space-y-2">
             {currentTeam.members.map(member => {
               const status = getWorkloadStatus(member);
               const colors = getStatusColor(status);
@@ -375,7 +375,7 @@ export function WorkloadBalanceCharts({
                   </div>
 
                   <div className="flex items-center justify-between mt-2 text-xs">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <span className="flex items-center gap-1">
                         <span className="w-3 h-3 bg-green-600 rounded" />
                         <span className="text-gray-400">Completed: {member.completed}h</span>
@@ -394,8 +394,8 @@ export function WorkloadBalanceCharts({
         </div>
 
         {/* Team Distribution Chart */}
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h4 className="text-lg font-semibold text-white mb-4">Workload Distribution</h4>
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h4 className="text-lg font-semibold text-white mb-2">Workload Distribution</h4>
           <div className="flex items-end justify-around h-48 px-4">
             {currentTeam.members.map(member => {
               const height = (member.allocated / 50) * 100;
@@ -427,7 +427,7 @@ export function WorkloadBalanceCharts({
               );
             })}
           </div>
-          <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-gray-700">
+          <div className="flex items-center justify-center gap-2 mt-4 pt-4 border-t border-gray-700">
             <span className="text-xs text-gray-400">--- 40h capacity line</span>
           </div>
         </div>
@@ -436,9 +436,9 @@ export function WorkloadBalanceCharts({
   };
 
   const renderTasks = () => (
-    <div className="space-y-6">
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Active Tasks</h3>
+    <div className="space-y-3">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Active Tasks</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -514,15 +514,15 @@ export function WorkloadBalanceCharts({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div>
           <h2 className="text-2xl font-bold text-white">Workload Balance</h2>
           <p className="text-gray-400">Team workload distribution and optimization</p>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {/* Timeframe Selector */}
           <select
             value={selectedTimeframe}
@@ -558,7 +558,7 @@ export function WorkloadBalanceCharts({
 
       {/* Team Selector (for detailed view) */}
       {view === 'detailed' && (
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-3">
           {teams.map(team => (
             <button
               key={team.teamId}
@@ -581,11 +581,11 @@ export function WorkloadBalanceCharts({
 
       {/* Rebalance Modal */}
       {showRebalanceModal && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-lg">
-            <h3 className="text-xl font-bold text-white mb-4">Rebalance Workload</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-lg">
+            <h3 className="text-xl font-bold text-white mb-2">Rebalance Workload</h3>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="text-gray-400 text-sm">Transfer from</label>
               <div className="flex items-center gap-3 p-3 bg-gray-700 rounded-lg mt-1">
                 <div className="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -600,7 +600,7 @@ export function WorkloadBalanceCharts({
               </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="text-gray-400 text-sm">Transfer to</label>
               <div className="space-y-2 mt-1">
                 {allMembers

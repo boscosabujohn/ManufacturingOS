@@ -149,10 +149,10 @@ export function EnergyConsumptionDashboard({
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Key Metrics */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">⚡</span>
             <span className="text-xs text-gray-400">Today</span>
@@ -160,7 +160,7 @@ export function EnergyConsumptionDashboard({
           <p className="text-3xl font-bold text-white">{metrics.totalConsumption.toLocaleString()}</p>
           <p className="text-sm text-gray-400">kWh Consumed</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">💰</span>
             <span className="text-xs text-gray-400">Today</span>
@@ -168,7 +168,7 @@ export function EnergyConsumptionDashboard({
           <p className="text-3xl font-bold text-white">${metrics.totalCost.toLocaleString()}</p>
           <p className="text-sm text-gray-400">Energy Cost</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">☀️</span>
             <span className="text-xs text-green-400">+5% vs last month</span>
@@ -176,7 +176,7 @@ export function EnergyConsumptionDashboard({
           <p className="text-3xl font-bold text-green-400">{metrics.renewablePercentage}%</p>
           <p className="text-sm text-gray-400">Renewable Energy</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">🌱</span>
             <span className="text-xs text-gray-400">Saved</span>
@@ -187,13 +187,13 @@ export function EnergyConsumptionDashboard({
       </div>
 
       {/* Real-time Power Usage */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-semibold text-white">Real-Time Power Consumption</h3>
             <p className="text-sm text-gray-400">24-hour usage pattern</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 bg-yellow-500 rounded" />
               <span className="text-sm text-gray-400">Grid</span>
@@ -239,10 +239,10 @@ export function EnergyConsumptionDashboard({
       </div>
 
       {/* Demand Metrics */}
-      <div className="grid grid-cols-2 gap-6">
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Power Demand</h3>
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-2 gap-3">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Power Demand</h3>
+          <div className="flex items-center justify-between mb-2">
             <div>
               <p className="text-sm text-gray-400">Current Load</p>
               <p className="text-3xl font-bold text-white">{metrics.avgDemand} kW</p>
@@ -270,9 +270,9 @@ export function EnergyConsumptionDashboard({
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Cost per kWh</h3>
-          <div className="flex items-center gap-6">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Cost per kWh</h3>
+          <div className="flex items-center gap-3">
             <div className="relative w-32 h-32">
               <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="#374151" strokeWidth="12" />
@@ -317,8 +317,8 @@ export function EnergyConsumptionDashboard({
   );
 
   const renderZones = () => (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-2">
+      <div className="grid grid-cols-2 gap-2">
         {zones.map(zone => {
           const config = zoneTypeConfig[zone.type];
           const colors = getColorClass(config.color);
@@ -326,7 +326,7 @@ export function EnergyConsumptionDashboard({
           return (
             <div
               key={zone.id}
-              className={`bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
+              className={`bg-gray-800 rounded-lg p-3 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
               onClick={() => handleZoneClick(zone)}
             >
               <div className="flex items-center justify-between mb-3">
@@ -371,9 +371,9 @@ export function EnergyConsumptionDashboard({
 
       {/* Zone Detail Modal */}
       {selectedZone && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-lg">
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-lg">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{zoneTypeConfig[selectedZone.type].icon}</span>
                 <div>
@@ -389,26 +389,26 @@ export function EnergyConsumptionDashboard({
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">{selectedZone.consumption.toLocaleString()}</p>
                 <p className="text-sm text-gray-400">kWh Today</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-yellow-400">{selectedZone.percentage}%</p>
                 <p className="text-sm text-gray-400">of Total Usage</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">{selectedZone.peakLoad} kW</p>
                 <p className="text-sm text-gray-400">Peak Load</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">{selectedZone.avgLoad} kW</p>
                 <p className="text-sm text-gray-400">Average Load</p>
               </div>
             </div>
 
-            <div className="bg-gray-700 rounded-lg p-4">
+            <div className="bg-gray-700 rounded-lg p-3">
               <h4 className="text-white font-medium mb-3">Trend Analysis</h4>
               <p className={`flex items-center gap-2 ${
                 selectedZone.trend === 'decreasing' ? 'text-green-400' :
@@ -431,11 +431,11 @@ export function EnergyConsumptionDashboard({
   );
 
   const renderCosts = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Cost Projections Chart */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Monthly Cost Projections vs Budget</h3>
-        <div className="h-64 flex items-end gap-4 px-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Monthly Cost Projections vs Budget</h3>
+        <div className="h-64 flex items-end gap-2 px-4">
           {projections.map((proj, i) => {
             const maxValue = Math.max(...projections.map(p => Math.max(p.projected, p.budget)));
             const projectedHeight = (proj.projected / maxValue) * 100;
@@ -463,7 +463,7 @@ export function EnergyConsumptionDashboard({
             );
           })}
         </div>
-        <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-gray-700">
+        <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-gray-700">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-green-600 rounded" />
             <span className="text-sm text-gray-400">Projected (Under Budget)</span>
@@ -480,18 +480,18 @@ export function EnergyConsumptionDashboard({
       </div>
 
       {/* Cost Summary */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="bg-gray-800 rounded-lg p-6">
+      <div className="grid grid-cols-3 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">YTD Spend</h4>
           <p className="text-3xl font-bold text-white">$267,000</p>
           <p className="text-sm text-green-400 mt-1">-4.2% vs budget</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-6">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Projected Annual</h4>
           <p className="text-3xl font-bold text-white">$534,000</p>
           <p className="text-sm text-yellow-400 mt-1">+2.1% vs budget</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-6">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Solar Savings</h4>
           <p className="text-3xl font-bold text-green-400">$42,500</p>
           <p className="text-sm text-green-400 mt-1">YTD avoided costs</p>
@@ -499,8 +499,8 @@ export function EnergyConsumptionDashboard({
       </div>
 
       {/* Rate Schedule */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Rate Schedule</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Rate Schedule</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -544,18 +544,18 @@ export function EnergyConsumptionDashboard({
   );
 
   const renderTrends = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Weekly Comparison */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Weekly Consumption Comparison</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Weekly Consumption Comparison</h3>
+        <div className="space-y-2">
           {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => {
             const thisWeek = 10000 + Math.random() * 5000;
             const lastWeek = 10000 + Math.random() * 5000;
             const max = 15000;
 
             return (
-              <div key={day} className="flex items-center gap-4">
+              <div key={day} className="flex items-center gap-2">
                 <span className="w-12 text-gray-400">{day}</span>
                 <div className="flex-1 space-y-1">
                   <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
@@ -581,7 +581,7 @@ export function EnergyConsumptionDashboard({
             );
           })}
         </div>
-        <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-gray-700">
+        <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-gray-700">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-blue-600 rounded" />
             <span className="text-sm text-gray-400">This Week</span>
@@ -594,8 +594,8 @@ export function EnergyConsumptionDashboard({
       </div>
 
       {/* Energy Efficiency Score */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Energy Efficiency Score</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Energy Efficiency Score</h3>
         <div className="flex items-center gap-8">
           <div className="relative w-40 h-40">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
@@ -660,9 +660,9 @@ export function EnergyConsumptionDashboard({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-yellow-600 rounded-lg flex items-center justify-center">
             <span className="text-2xl">⚡</span>

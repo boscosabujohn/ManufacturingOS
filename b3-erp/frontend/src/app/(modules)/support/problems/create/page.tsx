@@ -50,7 +50,7 @@ export default function CreateProblem() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -72,15 +72,15 @@ export default function CreateProblem() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Basic Information */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="h-5 w-5 text-purple-600" />
             <h2 className="text-lg font-semibold text-gray-900">Basic Information</h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Problem Title <span className="text-red-500">*</span>
@@ -109,7 +109,7 @@ export default function CreateProblem() {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Category <span className="text-red-500">*</span>
@@ -149,13 +149,13 @@ export default function CreateProblem() {
         </div>
 
         {/* Classification */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Tag className="h-5 w-5 text-orange-600" />
             <h2 className="text-lg font-semibold text-gray-900">Classification</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Priority <span className="text-red-500">*</span>
@@ -191,13 +191,13 @@ export default function CreateProblem() {
         </div>
 
         {/* Technical Details */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <FileText className="h-5 w-5 text-blue-600" />
             <h2 className="text-lg font-semibold text-gray-900">Technical Details</h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Symptoms
@@ -240,13 +240,13 @@ export default function CreateProblem() {
         </div>
 
         {/* Assignment & Timeline */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Users className="h-5 w-5 text-green-600" />
             <h2 className="text-lg font-semibold text-gray-900">Assignment & Timeline</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Assign To
@@ -281,13 +281,13 @@ export default function CreateProblem() {
         </div>
 
         {/* Related Incidents */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Link className="h-5 w-5 text-indigo-600" />
             <h2 className="text-lg font-semibold text-gray-900">Related Incidents</h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -335,7 +335,7 @@ export default function CreateProblem() {
         </div>
 
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <AlertTriangle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
             <div>

@@ -336,10 +336,10 @@ export default function DemandPlanningPage() {
   const months = ['Oct 2025', 'Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026', 'Mar 2026'];
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -370,8 +370,8 @@ export default function DemandPlanningPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Products</p>
@@ -383,7 +383,7 @@ export default function DemandPlanningPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Avg Forecast Accuracy</p>
@@ -395,7 +395,7 @@ export default function DemandPlanningPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-6 border border-emerald-200">
+        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-emerald-600">Increasing Trends</p>
@@ -407,7 +407,7 @@ export default function DemandPlanningPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Decreasing Trends</p>
@@ -421,8 +421,8 @@ export default function DemandPlanningPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-400" />
           <select
             value={filterCategory}
@@ -457,56 +457,56 @@ export default function DemandPlanningPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Forecasted</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Accuracy</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Seasonality</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Safety Stock</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Forecasted</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Accuracy</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Seasonality</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Safety Stock</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredForecasts.map((forecast) => (
                 <tr key={forecast.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{forecast.productCode}</div>
                       <div className="text-sm text-gray-500">{forecast.productName}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-700">{forecast.category}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm font-medium text-blue-600">{forecast.forecastedDemand.toLocaleString()}</span>
                     <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm font-medium text-gray-900">{forecast.currentDemand.toLocaleString()}</span>
                     <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`text-sm font-bold ${getAccuracyColor(forecast.accuracy)}`}>
                       {forecast.accuracy.toFixed(1)}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${getTrendColor(forecast.trend)}`}>
                       {getTrendIcon(forecast.trend)}
                       {forecast.trend}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className="text-sm text-gray-700">{forecast.seasonalityFactor.toFixed(2)}x</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <span className="text-sm text-gray-700">{forecast.safetyStock.toLocaleString()}</span>
                     <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={(e) => {
@@ -550,15 +550,15 @@ export default function DemandPlanningPage() {
 
       {/* Detailed View Modal (if product selected) */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedProduct(null)}>
-          <div className="bg-white rounded-xl p-6  w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50" onClick={() => setSelectedProduct(null)}>
+          <div className="bg-white rounded-xl p-3  w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             {(() => {
               const product = forecasts.find(f => f.id === selectedProduct);
               if (!product) return null;
 
               return (
                 <>
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-3">
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">{product.productCode}</h3>
                       <p className="text-gray-600">{product.productName}</p>
@@ -568,7 +568,7 @@ export default function DemandPlanningPage() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
                     <div className="p-4 bg-blue-50 rounded-lg">
                       <p className="text-sm text-blue-600">Forecast Accuracy</p>
                       <p className="text-2xl font-bold text-blue-900">{product.accuracy.toFixed(1)}%</p>
@@ -589,7 +589,7 @@ export default function DemandPlanningPage() {
 
                   {product.historicalDemand && product.actualDemand && (
                     <>
-                      <h4 className="text-lg font-bold text-gray-900 mb-4">6-Month Forecast</h4>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">6-Month Forecast</h4>
                       <div className="overflow-x-auto">
                         <table className="w-full">
                           <thead className="bg-gray-50">

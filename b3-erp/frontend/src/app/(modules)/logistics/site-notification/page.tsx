@@ -63,7 +63,7 @@ export default function SiteNotificationPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -92,7 +92,7 @@ export default function SiteNotificationPage() {
                 <CardHeader>
                     <CardTitle>Delivery Information</CardTitle>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     <div>
                         <div className="text-sm text-muted-foreground">Order Number</div>
                         <div className="font-medium">ORD-KT-345</div>
@@ -190,8 +190,8 @@ Logistics Team - B3 MACBIS`}
                 <CardHeader>
                     <CardTitle>Installation Schedule</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                <CardContent className="space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
                         <div>
                             <label className="text-sm font-medium">Installation Start Date</label>
                             <div className="mt-1">

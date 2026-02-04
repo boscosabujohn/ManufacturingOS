@@ -24,8 +24,8 @@ export default function TrialBalanceReport() {
     const totalCredit = accounts.reduce((sum, acc) => sum + acc.credit, 0);
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Trial Balance</h1>
                     <p className="text-gray-600">Summary of all ledger account balances</p>

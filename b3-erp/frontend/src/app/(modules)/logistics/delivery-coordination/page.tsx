@@ -164,10 +164,10 @@ export default function DeliveryCoordinationPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border p-6">
-                    <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border p-3">
+                    <div className="flex items-center gap-2">
                         <Link href="/logistics/tracking" className="p-2 hover:bg-gray-100 rounded-lg">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
@@ -181,8 +181,8 @@ export default function DeliveryCoordinationPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-white p-4 rounded-lg border">
+                <div className="grid grid-cols-3 gap-2">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Deliveries</p>
@@ -191,7 +191,7 @@ export default function DeliveryCoordinationPage() {
                             <Truck className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">Ready</p>
@@ -200,7 +200,7 @@ export default function DeliveryCoordinationPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-yellow-600">Pending</p>
@@ -212,7 +212,7 @@ export default function DeliveryCoordinationPage() {
                 </div>
 
                 {/* Filter */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-white rounded-lg border p-3">
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
@@ -228,15 +228,15 @@ export default function DeliveryCoordinationPage() {
                 </div>
 
                 {/* Coordinations List */}
-                <div className="grid gap-4">
+                <div className="grid gap-2">
                     {filteredCoordinations.map((coord) => (
-                        <div key={coord.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition">
-                            <div className="flex items-start gap-4">
+                        <div key={coord.id} className="bg-white rounded-lg border p-3 hover:shadow-lg transition">
+                            <div className="flex items-start gap-2">
                                 <div className={`w-16 h-16 rounded-lg ${coord.status === 'Ready' ? 'bg-green-500' : 'bg-blue-500'} flex items-center justify-center`}>
                                     <Truck className="w-8 h-8 text-white" />
                                 </div>
                                 <div className="flex-1">
-                                    <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-start justify-between mb-2">
                                         <div>
                                             <h3 className="text-xl font-bold">{coord.customerName}</h3>
                                             <p className="text-sm text-gray-600">{coord.woNumber}</p>
@@ -266,7 +266,7 @@ export default function DeliveryCoordinationPage() {
                                             <div className="flex-1">
                                                 <p className="text-xs font-semibold text-purple-900">Site Contact Person</p>
                                                 <p className="text-sm font-medium text-purple-800">{coord.siteContact.name} ({coord.siteContact.role})</p>
-                                                <div className="flex gap-4 mt-1 text-xs text-purple-700">
+                                                <div className="flex gap-2 mt-1 text-xs text-purple-700">
                                                     <span className="flex items-center gap-1">
                                                         <Phone className="w-3 h-3" />
                                                         {coord.siteContact.phone}
@@ -286,7 +286,7 @@ export default function DeliveryCoordinationPage() {
                                             <Clock className="w-4 h-4 text-amber-600 mt-0.5" />
                                             <div className="flex-1">
                                                 <p className="text-xs font-semibold text-amber-900">Delivery Timing</p>
-                                                <div className="flex gap-4 text-sm text-amber-800">
+                                                <div className="flex gap-2 text-sm text-amber-800">
                                                     <span className="flex items-center gap-1">
                                                         <Calendar className="w-3 h-3" />
                                                         {coord.deliveryTiming.preferredDate}

@@ -50,9 +50,9 @@ export default function FeedbackPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <MessageSquare className="h-8 w-8 text-purple-600" />
@@ -69,8 +69,8 @@ export default function FeedbackPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Net Promoter Score (NPS)</p>
@@ -89,7 +89,7 @@ export default function FeedbackPage() {
           <p className="text-xs text-gray-400 mt-2">Excellent (Industry Avg: 50)</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Avg. Satisfaction</p>
@@ -110,7 +110,7 @@ export default function FeedbackPage() {
           <p className="text-xs text-gray-400 mt-2">Based on 850 reviews</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Response Rate</p>
@@ -129,10 +129,10 @@ export default function FeedbackPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Chart Section */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <div className="flex justify-between items-center mb-6">
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <div className="flex justify-between items-center mb-3">
             <h2 className="text-lg font-bold text-gray-900">Satisfaction Trends</h2>
             <select className="text-sm border-gray-300 rounded-lg">
               <option>Last 6 Months</option>
@@ -159,9 +159,9 @@ export default function FeedbackPage() {
         </div>
 
         {/* Sentiment Breakdown */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6">Sentiment Analysis</h2>
-          <div className="space-y-6">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">Sentiment Analysis</h2>
+          <div className="space-y-3">
             <div>
               <div className="flex justify-between text-sm mb-1">
                 <span className="font-medium text-gray-700 flex items-center gap-2"><Smile className="w-4 h-4 text-green-500" /> Positive</span>
@@ -190,7 +190,7 @@ export default function FeedbackPage() {
               </div>
             </div>
           </div>
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="mt-8 p-3 bg-gray-50 rounded-lg border border-gray-200">
             <h3 className="text-xs font-bold text-gray-500 uppercase mb-2">Top Keywords</h3>
             <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 bg-white border border-gray-200 rounded text-xs font-medium text-gray-600">Helpful</span>
@@ -204,7 +204,7 @@ export default function FeedbackPage() {
 
       {/* Review List */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-900">Recent Reviews</h2>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />

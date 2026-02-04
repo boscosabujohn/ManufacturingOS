@@ -184,8 +184,8 @@ export default function AddEditContractPage() {
   const { subtotal, tax, total } = calculateTotals();
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -213,9 +213,9 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Basic Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Contract Type <span className="text-red-500">*</span>
@@ -265,10 +265,10 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Customer Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Search Customer <span className="text-red-500">*</span>
             </label>
@@ -304,7 +304,7 @@ export default function AddEditContractPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Customer ID</label>
               <input
@@ -341,7 +341,7 @@ export default function AddEditContractPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 City <span className="text-red-500">*</span>
@@ -393,9 +393,9 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Contract Period */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Contract Period</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Contract Period</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date <span className="text-red-500">*</span>
@@ -437,9 +437,9 @@ export default function AddEditContractPage() {
         </div>
 
         {/* SLA Terms */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">SLA Terms</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">SLA Terms</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Response Time SLA (hours) <span className="text-red-500">*</span>
@@ -504,8 +504,8 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Contract Line Items */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Contract Items & Pricing</h2>
             <button
               type="button"
@@ -517,9 +517,9 @@ export default function AddEditContractPage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {lineItems.map((item, index) => (
-              <div key={item.id} className="border border-gray-200 rounded-md p-4">
+              <div key={item.id} className="border border-gray-200 rounded-md p-3">
                 <div className="flex items-start justify-between mb-3">
                   <span className="text-sm font-medium text-gray-700">Item {index + 1}</span>
                   {lineItems.length > 1 && (
@@ -620,9 +620,9 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Payment Terms */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Payment Terms</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Payment Terms</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Billing Frequency <span className="text-red-500">*</span>
@@ -659,7 +659,7 @@ export default function AddEditContractPage() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-center gap-4">
+          <div className="mt-4 flex items-center gap-2">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -687,8 +687,8 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Customer Contacts */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Customer Contacts</h2>
             <button
               type="button"
@@ -700,9 +700,9 @@ export default function AddEditContractPage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {contacts.map((contact, index) => (
-              <div key={index} className="border border-gray-200 rounded-md p-4">
+              <div key={index} className="border border-gray-200 rounded-md p-3">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium text-gray-700">Contact {index + 1}</span>
@@ -787,10 +787,10 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Terms & Conditions */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & Conditions</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & Conditions</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Inclusions</label>
               <textarea
@@ -838,7 +838,7 @@ export default function AddEditContractPage() {
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-blue-600 mt-0.5" />
             <div className="text-sm text-blue-900">

@@ -164,21 +164,21 @@ export default function ComplianceTracking() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 p-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 p-3">
       <div>
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Compliance Tracking & Alerts</h1>
           <p className="text-gray-600">Monitor and manage regulatory compliance requirements</p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="flex">
             {['overview', 'requirements', 'alerts', 'reports'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
-                className={`flex-1 px-6 py-4 font-medium transition-colors ${
+                className={`flex-1 px-3 py-2 font-medium transition-colors ${
                   activeTab === tab
                     ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -190,32 +190,32 @@ export default function ComplianceTracking() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center gap-3 mb-2">
                     <CheckCircle className="w-5 h-5 text-green-600" />
                     <p className="text-sm font-medium text-gray-700">Compliant</p>
                   </div>
                   <p className="text-3xl font-bold text-green-600">{complianceStats.compliant}</p>
                 </div>
-                <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-4 border border-yellow-200">
+                <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-3 border border-yellow-200">
                   <div className="flex items-center gap-3 mb-2">
                     <Clock className="w-5 h-5 text-yellow-600" />
                     <p className="text-sm font-medium text-gray-700">At Risk</p>
                   </div>
                   <p className="text-3xl font-bold text-yellow-600">{complianceStats.atRisk}</p>
                 </div>
-                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-4 border border-red-200">
+                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-3 border border-red-200">
                   <div className="flex items-center gap-3 mb-2">
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                     <p className="text-sm font-medium text-gray-700">Non-Compliant</p>
                   </div>
                   <p className="text-3xl font-bold text-red-600">{complianceStats.nonCompliant}</p>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-center gap-3 mb-2">
                     <TrendingUp className="w-5 h-5 text-purple-600" />
                     <p className="text-sm font-medium text-gray-700">Compliance Score</p>
@@ -225,10 +225,10 @@ export default function ComplianceTracking() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Alerts</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Recent Alerts</h3>
                 <div className="space-y-3">
                   {alerts.slice(0, 3).map((alert) => (
-                    <div key={alert.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={alert.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                       <div className="flex items-start gap-3">
                         {getSeverityIcon(alert.severity)}
                         <div className="flex-1">
@@ -239,7 +239,7 @@ export default function ComplianceTracking() {
                             )}
                           </div>
                           <p className="text-sm text-gray-600">{alert.message}</p>
-                          <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
                             <span>{alert.createdAt}</span>
                             {alert.dueDate && <span>Due: {alert.dueDate}</span>}
                           </div>
@@ -253,8 +253,8 @@ export default function ComplianceTracking() {
           )}
 
           {activeTab === 'requirements' && (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between mb-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-2xl font-bold text-gray-900">Compliance Requirements</h2>
                 <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
                   <Plus className="w-4 h-4" />
@@ -263,7 +263,7 @@ export default function ComplianceTracking() {
               </div>
 
               {requirements.map((req) => (
-                <div key={req.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div key={req.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -276,7 +276,7 @@ export default function ComplianceTracking() {
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mb-2">{req.description}</p>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
                         <span className="flex items-center gap-1">
                           <FileText className="w-4 h-4" />
                           {req.regulation}
@@ -298,10 +298,10 @@ export default function ComplianceTracking() {
           )}
 
           {activeTab === 'alerts' && (
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Compliance Alerts</h2>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Compliance Alerts</h2>
               {alerts.map((alert) => (
-                <div key={alert.id} className={`rounded-lg p-4 border-l-4 ${
+                <div key={alert.id} className={`rounded-lg p-3 border-l-4 ${
                   alert.severity === 'critical' ? 'bg-red-50 border-red-600' :
                   alert.severity === 'error' ? 'bg-orange-50 border-orange-600' :
                   alert.severity === 'warning' ? 'bg-yellow-50 border-yellow-600' :
@@ -320,7 +320,7 @@ export default function ComplianceTracking() {
                       </div>
                       <p className="text-sm text-gray-700 mb-2">{alert.message}</p>
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-xs text-gray-600">
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
                           <span>Type: {alert.type}</span>
                           <span>Created: {alert.createdAt}</span>
                           {alert.dueDate && <span>Due: {alert.dueDate}</span>}
@@ -339,9 +339,9 @@ export default function ComplianceTracking() {
           )}
 
           {activeTab === 'reports' && (
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Compliance Reports</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Compliance Reports</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {[
                   { name: 'Monthly Compliance Summary', icon: FileText },
                   { name: 'Risk Assessment Report', icon: AlertTriangle },
@@ -350,7 +350,7 @@ export default function ComplianceTracking() {
                 ].map((report, index) => {
                   const Icon = report.icon;
                   return (
-                    <div key={index} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
+                    <div key={index} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
                       <Icon className="w-8 h-8 text-green-600 mb-3" />
                       <h3 className="font-semibold text-gray-900 mb-2">{report.name}</h3>
                       <button className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 font-medium">

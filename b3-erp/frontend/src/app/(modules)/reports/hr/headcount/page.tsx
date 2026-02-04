@@ -35,8 +35,8 @@ export default function HeadcountReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Headcount Report</h1>
                     <p className="text-gray-600">Employee demographics and distribution</p>
@@ -44,14 +44,14 @@ export default function HeadcountReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Total Employees</p><p className="text-2xl font-bold text-blue-600">{data.totalEmployees}</p></CardContent></Card>
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">New Hires</p><p className="text-2xl font-bold text-green-600">+{data.newHires}</p><p className="text-xs text-gray-500 mt-1">This month</p></CardContent></Card>
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Terminations</p><p className="text-2xl font-bold text-red-600">-{data.terminations}</p><p className="text-xs text-gray-500 mt-1">This month</p></CardContent></Card>
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Turnover Rate</p><p className="text-2xl font-bold text-orange-600">{data.turnoverRate}%</p><p className="text-xs text-gray-500 mt-1">Annual</p></CardContent></Card>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Headcount by Department</CardTitle></CardHeader>
                     <CardContent>
@@ -79,7 +79,7 @@ export default function HeadcountReport() {
                 <Card>
                     <CardHeader><CardTitle>Employee Type</CardTitle></CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {data.byType.map((type, idx) => (
                                 <div key={idx}>
                                     <div className="flex justify-between mb-2">
@@ -99,7 +99,7 @@ export default function HeadcountReport() {
             <Card>
                 <CardHeader><CardTitle>Demographics</CardTitle></CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                         <div><p className="text-sm text-gray-600 mb-2">Average Age</p><p className="text-xl font-bold text-blue-600">{data.demographics.avgAge} years</p></div>
                         <div><p className="text-sm text-gray-600 mb-2">Average Tenure</p><p className="text-xl font-bold text-green-600">{data.demographics.avgTenure} years</p></div>
                         <div><p className="text-sm text-gray-600 mb-2">Gender Distribution</p><p className="text-xl font-bold">M: {data.demographics.maleCount} / F: {data.demographics.femaleCount}</p></div>

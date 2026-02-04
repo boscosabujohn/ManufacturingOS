@@ -176,9 +176,9 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             {promotion ? 'Edit Promotion' : 'New Promotion'}
           </h2>
@@ -190,12 +190,12 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Basic Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Promotion ID <span className="text-red-500">*</span>
@@ -232,7 +232,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </div>
 
           {/* Promotion Type */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Promotion Type</h3>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -247,7 +247,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <Tag className="h-5 w-5 mx-auto mb-2" />
+                  <Tag className="h-5 w-5 mb-2" />
                   <span className="text-xs font-semibold text-center block">
                     {typeLabels[type]}
                   </span>
@@ -257,7 +257,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </div>
 
           {/* Discount Value */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Discount Value</h3>
 
             <div>
@@ -285,13 +285,13 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </div>
 
           {/* Date Range */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Promotion Period
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Start Date <span className="text-red-500">*</span>
@@ -331,7 +331,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </div>
 
           {/* Applicable Products */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Applicable Products</h3>
 
             <div>
@@ -368,7 +368,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
 
             {/* Selected Products */}
             {formData.applicableProducts.length > 0 && (
-              <div className="border border-gray-200 rounded-lg p-4">
+              <div className="border border-gray-200 rounded-lg p-3">
                 <p className="text-sm font-medium text-gray-700 mb-2">Selected Categories:</p>
                 <div className="flex flex-wrap gap-2">
                   {formData.applicableProducts.map((product) => (
@@ -392,7 +392,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </div>
 
           {/* Minimum Purchase */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Additional Conditions</h3>
 
             <div>
@@ -417,7 +417,7 @@ export function PromotionModal({ isOpen, onClose, onSave, promotion }: Promotion
           </div>
 
           {/* Preview */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-orange-900 mb-2">Promotion Summary:</h3>
             <div className="space-y-1 text-xs text-orange-700">
               <p><strong>Name:</strong> {formData.name || 'Not set'}</p>
@@ -473,16 +473,16 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Filter Promotions</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Type Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Promotion Type</label>
@@ -532,7 +532,7 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-end gap-3">
           <button
             onClick={() => setFilters({ types: [], statuses: [] })}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 text-sm"

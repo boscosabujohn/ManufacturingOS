@@ -392,7 +392,7 @@ export default function TicketsPage() {
   const isAllSelected = paginatedTickets.length > 0 && paginatedTickets.every(t => selectedTickets.includes(t.id));
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+    <div className="w-full min-h-screen px-3 py-2 w-full max-w-full">
       {/* Page Header with Toolbar */}
       <PageToolbar
 
@@ -427,9 +427,9 @@ export default function TicketsPage() {
         onFilterToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
       />
 
-      <div className="mb-6 mt-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 mt-6 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Tickets</p>
@@ -439,7 +439,7 @@ export default function TicketsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Open</p>
@@ -449,7 +449,7 @@ export default function TicketsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">In Progress</p>
@@ -459,7 +459,7 @@ export default function TicketsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Avg Response</p>
@@ -469,7 +469,7 @@ export default function TicketsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-600">SLA Breach</p>
@@ -479,7 +479,7 @@ export default function TicketsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Critical</p>
@@ -491,10 +491,10 @@ export default function TicketsPage() {
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-3">
 
         {selectedTickets.length > 0 && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between mb-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-between mb-2">
             <div className="flex items-center space-x-4">
               <span className="text-sm font-medium text-blue-900">
                 {selectedTickets.length} ticket{selectedTickets.length > 1 ? 's' : ''} selected
@@ -822,7 +822,7 @@ export default function TicketsPage() {
             </table>
           </div>
 
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-700">
               Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredTickets.length)} of {filteredTickets.length} tickets
             </div>

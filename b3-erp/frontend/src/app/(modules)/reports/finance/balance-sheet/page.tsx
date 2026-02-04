@@ -21,8 +21,8 @@ export default function BalanceSheetReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Balance Sheet</h1>
                     <p className="text-gray-600">Statement of financial position - Click cards to drill down</p>
@@ -31,7 +31,7 @@ export default function BalanceSheetReport() {
             </div>
 
             {/* Summary KPIs */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Assets"
                     value={`₹${(data.totalAssets / 10000000).toFixed(2)}Cr`}
@@ -62,8 +62,8 @@ export default function BalanceSheetReport() {
                     <table className="w-full">
                         <tbody>
                             <tr className="bg-blue-50 cursor-pointer hover:bg-blue-100" onClick={() => router.push('/reports/finance/balance-sheet/assets')}>
-                                <td className="px-6 py-3 font-bold text-blue-900">ASSETS</td>
-                                <td className="px-6 py-3 text-right font-bold text-blue-900">
+                                <td className="px-3 py-2 font-bold text-blue-900">ASSETS</td>
+                                <td className="px-3 py-2 text-right font-bold text-blue-900">
                                     ₹{data.totalAssets.toLocaleString()}
                                 </td>
                             </tr>
@@ -77,8 +77,8 @@ export default function BalanceSheetReport() {
                             </tr>
 
                             <tr className="bg-red-50 cursor-pointer hover:bg-red-100" onClick={() => router.push('/reports/finance/balance-sheet/liabilities')}>
-                                <td className="px-6 py-3 font-bold text-red-900">LIABILITIES</td>
-                                <td className="px-6 py-3 text-right font-bold text-red-900">
+                                <td className="px-3 py-2 font-bold text-red-900">LIABILITIES</td>
+                                <td className="px-3 py-2 text-right font-bold text-red-900">
                                     ₹{data.totalLiabilities.toLocaleString()}
                                 </td>
                             </tr>
@@ -92,8 +92,8 @@ export default function BalanceSheetReport() {
                             </tr>
 
                             <tr className="bg-green-50 cursor-pointer hover:bg-green-100" onClick={() => router.push('/reports/finance/balance-sheet/equity')}>
-                                <td className="px-6 py-3 font-bold text-green-900">EQUITY</td>
-                                <td className="px-6 py-3 text-right font-bold text-green-900">
+                                <td className="px-3 py-2 font-bold text-green-900">EQUITY</td>
+                                <td className="px-3 py-2 text-right font-bold text-green-900">
                                     ₹{data.totalEquity.toLocaleString()}
                                 </td>
                             </tr>

@@ -43,12 +43,12 @@ function ServiceCallStatusContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Call ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Issue</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Call ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Issue</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -57,16 +57,16 @@ function ServiceCallStatusContent() {
                                     key={call.id}
                                     onClick={() => router.push(`/after-sales/service-calls/${call.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{call.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{call.customer}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{call.issue}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{call.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{call.customer}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{call.issue}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm">
                                         <Badge className={call.priority === 'Critical' ? 'bg-red-600' : call.priority === 'High' ? 'bg-orange-600' : call.priority === 'Medium' ? 'bg-blue-600' : 'bg-gray-600'}>
                                             {call.priority}
                                         </Badge>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{call.assignedTo}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{call.assignedTo}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm">
                                         <Badge variant={call.status === 'Open' ? 'destructive' : call.status === 'Resolved' ? 'default' : 'secondary'}>
                                             {call.status}
                                         </Badge>

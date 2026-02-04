@@ -161,10 +161,10 @@ export function QualityAlertModal({ isOpen, onClose, onSubmit, context }: Qualit
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-red-600 p-6 text-white">
+        <div className="bg-gradient-to-r from-orange-600 to-red-600 p-3 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <AlertTriangle className="w-6 h-6" />
@@ -185,12 +185,12 @@ export function QualityAlertModal({ isOpen, onClose, onSubmit, context }: Qualit
         </div>
 
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Context Info */}
             {context && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <div className="grid grid-cols-3 gap-4 text-sm">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Work Order:</span>
                     <p className="font-semibold text-gray-900">{context.workOrderId}</p>
@@ -402,7 +402,7 @@ export function QualityAlertModal({ isOpen, onClose, onSubmit, context }: Qualit
 
             {/* Severity Warning */}
             {formData.severity === 'critical' && (
-              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+              <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
                 <div className="flex items-start">
                   <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5" />
                   <div>
@@ -419,7 +419,7 @@ export function QualityAlertModal({ isOpen, onClose, onSubmit, context }: Qualit
         </form>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50">
+        <div className="border-t border-gray-200 p-3 bg-gray-50">
           <div className="flex justify-end space-x-3">
             <button
               type="button"
@@ -582,10 +582,10 @@ export function SupervisorCallModal({ isOpen, onClose, onSubmit, context }: Supe
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Bell className="w-6 h-6" />
@@ -606,12 +606,12 @@ export function SupervisorCallModal({ isOpen, onClose, onSubmit, context }: Supe
         </div>
 
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Context Info */}
             {context && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Station:</span>
                     <p className="font-semibold text-gray-900">{context.stationId}</p>
@@ -788,7 +788,7 @@ export function SupervisorCallModal({ isOpen, onClose, onSubmit, context }: Supe
 
             {/* Priority Warning */}
             {formData.priority === 'emergency' && (
-              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+              <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
                 <div className="flex items-start">
                   <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5" />
                   <div>
@@ -804,7 +804,7 @@ export function SupervisorCallModal({ isOpen, onClose, onSubmit, context }: Supe
 
             {/* Impact Warning */}
             {formData.estimatedImpact === 'Production Stopped' && (
-              <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded">
+              <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded">
                 <div className="flex items-start">
                   <AlertTriangle className="w-5 h-5 text-orange-500 mr-3 mt-0.5" />
                   <div>
@@ -821,7 +821,7 @@ export function SupervisorCallModal({ isOpen, onClose, onSubmit, context }: Supe
         </form>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50">
+        <div className="border-t border-gray-200 p-3 bg-gray-50">
           <div className="flex justify-end space-x-3">
             <button
               type="button"
@@ -970,10 +970,10 @@ export function QuickDowntimeModal({ isOpen, onClose, onSubmit, context }: Quick
   const showImpactWarning = formData.estimatedDuration > 30
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 p-6 text-white">
+        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 p-3 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Clock className="w-6 h-6" />
@@ -994,12 +994,12 @@ export function QuickDowntimeModal({ isOpen, onClose, onSubmit, context }: Quick
         </div>
 
         {/* Form Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Context Info */}
             {context && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Station:</span>
                     <p className="font-semibold text-gray-900">{context.stationId}</p>
@@ -1122,7 +1122,7 @@ export function QuickDowntimeModal({ isOpen, onClose, onSubmit, context }: Quick
 
             {/* Duration Warning */}
             {showImpactWarning && (
-              <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded">
+              <div className="bg-orange-50 border-l-4 border-orange-500 p-3 rounded">
                 <div className="flex items-start">
                   <AlertTriangle className="w-5 h-5 text-orange-500 mr-3 mt-0.5" />
                   <div>
@@ -1138,7 +1138,7 @@ export function QuickDowntimeModal({ isOpen, onClose, onSubmit, context }: Quick
 
             {/* Summary Card */}
             {formData.category && formData.estimatedDuration > 0 && (
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                 <h4 className="text-sm font-semibold text-gray-700 mb-3">Downtime Summary</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -1172,7 +1172,7 @@ export function QuickDowntimeModal({ isOpen, onClose, onSubmit, context }: Quick
         </form>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50">
+        <div className="border-t border-gray-200 p-3 bg-gray-50">
           <div className="flex justify-end space-x-3">
             <button
               type="button"

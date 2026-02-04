@@ -239,7 +239,7 @@ export default function ContractTermsConfigPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -272,8 +272,8 @@ export default function ContractTermsConfigPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Contract Templates</span>
             <FileText className="w-4 h-4 text-blue-600" />
@@ -282,7 +282,7 @@ export default function ContractTermsConfigPage() {
           <div className="text-xs text-gray-500 mt-1">{templates.filter(t => t.isDefault).length} default templates</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">SLA Presets</span>
             <Clock className="w-4 h-4 text-green-600" />
@@ -291,7 +291,7 @@ export default function ContractTermsConfigPage() {
           <div className="text-xs text-gray-500 mt-1">4 priority levels</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Usage</span>
             <CheckCircle2 className="w-4 h-4 text-purple-600" />
@@ -302,7 +302,7 @@ export default function ContractTermsConfigPage() {
           <div className="text-xs text-gray-500 mt-1">Contracts created</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Standard Clauses</span>
             <Settings className="w-4 h-4 text-orange-600" />
@@ -316,7 +316,7 @@ export default function ContractTermsConfigPage() {
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('templates')}
             className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'templates'
@@ -349,10 +349,10 @@ export default function ContractTermsConfigPage() {
 
       {/* Contract Templates Tab */}
       {activeTab === 'templates' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {templates.map((template) => (
-            <div key={template.id} className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-              <div className="flex items-start justify-between mb-4">
+            <div key={template.id} className="bg-white p-3 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{template.name}</h3>
@@ -367,7 +367,7 @@ export default function ContractTermsConfigPage() {
                   </div>
                   <p className="text-sm text-gray-600 mb-3">{template.description}</p>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                     <div>
                       <span className="text-gray-500">Duration:</span>
                       <span className="ml-2 font-medium text-gray-900">{template.defaultDuration} months</span>
@@ -427,7 +427,7 @@ export default function ContractTermsConfigPage() {
                 <summary className="text-sm font-medium text-gray-700 cursor-pointer hover:text-gray-900">
                   View Terms & Conditions
                 </summary>
-                <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
                   <div>
                     <div className="font-medium text-gray-900 mb-2">Inclusions ({template.inclusions.length})</div>
                     <ul className="space-y-1">
@@ -472,10 +472,10 @@ export default function ContractTermsConfigPage() {
 
       {/* SLA Presets Tab */}
       {activeTab === 'sla' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {slaPresets.map((preset) => (
-            <div key={preset.id} className="bg-white p-6 rounded-lg border border-gray-200">
-              <div className="flex items-start justify-between mb-4">
+            <div key={preset.id} className="bg-white p-3 rounded-lg border border-gray-200">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{preset.name}</h3>
@@ -502,8 +502,8 @@ export default function ContractTermsConfigPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="w-4 h-4 text-blue-600" />
                     <span className="text-xs text-blue-600 font-medium">Response Time</span>
@@ -512,7 +512,7 @@ export default function ContractTermsConfigPage() {
                   <div className="text-xs text-blue-700 mt-1">Time to acknowledge</div>
                 </div>
 
-                <div className="bg-green-50 p-4 rounded-lg">
+                <div className="bg-green-50 p-3 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600" />
                     <span className="text-xs text-green-600 font-medium">Resolution Time</span>
@@ -528,9 +528,9 @@ export default function ContractTermsConfigPage() {
 
       {/* Standard Clauses Tab */}
       {activeTab === 'clauses' && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-2 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
               <h3 className="text-lg font-semibold text-gray-900">Inclusions</h3>
             </div>
@@ -548,8 +548,8 @@ export default function ContractTermsConfigPage() {
             </button>
           </div>
 
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-2">
               <X className="w-5 h-5 text-red-600" />
               <h3 className="text-lg font-semibold text-gray-900">Exclusions</h3>
             </div>
@@ -567,8 +567,8 @@ export default function ContractTermsConfigPage() {
             </button>
           </div>
 
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2 mb-2">
               <AlertCircle className="w-5 h-5 text-blue-600" />
               <h3 className="text-lg font-semibold text-gray-900">Special Terms</h3>
             </div>

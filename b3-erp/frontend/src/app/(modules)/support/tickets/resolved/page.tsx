@@ -11,7 +11,7 @@ export default function ResolvedTickets() {
   ])
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Resolved Tickets</h1>
@@ -28,21 +28,21 @@ export default function ResolvedTickets() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ticket</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Resolved By</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Resolution Time</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Satisfaction</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Ticket</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Resolved By</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Resolution Time</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Satisfaction</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {tickets.map((ticket) => (
                 <tr key={ticket.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4"><code className="text-sm">{ticket.ticketId}</code></td>
-                  <td className="px-6 py-4 text-sm">{ticket.subject}</td>
-                  <td className="px-6 py-4 text-sm">{ticket.resolvedBy}</td>
-                  <td className="px-6 py-4 text-sm">{ticket.resolutionTime}</td>
-                  <td className="px-6 py-4"><div className="flex">{Array.from({length: ticket.satisfaction}).map((_, i) => <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />)}</div></td>
+                  <td className="px-3 py-2"><code className="text-sm">{ticket.ticketId}</code></td>
+                  <td className="px-3 py-2 text-sm">{ticket.subject}</td>
+                  <td className="px-3 py-2 text-sm">{ticket.resolvedBy}</td>
+                  <td className="px-3 py-2 text-sm">{ticket.resolutionTime}</td>
+                  <td className="px-3 py-2"><div className="flex">{Array.from({length: ticket.satisfaction}).map((_, i) => <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />)}</div></td>
                 </tr>
               ))}
             </tbody>

@@ -329,7 +329,7 @@ export const HelpTour: React.FC<HelpTourProps> = ({
       <div className="fixed top-4 right-4 z-50 bg-white rounded-lg shadow-xl border border-gray-200 max-w-md">
         <div className="p-6">
           {/* Header */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Lightbulb className="h-5 w-5 text-yellow-500" />
               <h3 className="text-lg font-semibold text-gray-900">
@@ -356,7 +356,7 @@ export const HelpTour: React.FC<HelpTourProps> = ({
 
           {/* Progress */}
           {showProgress && (
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
                 <span>Step {currentStep + 1} of {steps.length}</span>
                 <span>{Math.round(((currentStep + 1) / steps.length) * 100)}%</span>
@@ -371,7 +371,7 @@ export const HelpTour: React.FC<HelpTourProps> = ({
           )}
 
           {/* Content */}
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-700 leading-relaxed">
               {currentStepData.content}
             </p>
@@ -481,7 +481,7 @@ export const HelpPanel: React.FC<{
       isMinimized ? 'w-80 h-12' : 'w-96 h-96'
     }`}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex items-center justify-between p-3 border-b border-gray-200">
         <div className="flex items-center space-x-2">
           <Book className="h-5 w-5 text-blue-500" />
           <h3 className="text-lg font-semibold text-gray-900">Help & Guides</h3>
@@ -543,7 +543,7 @@ export const HelpPanel: React.FC<{
             </div>
 
             {/* Topic Content */}
-            <div className="flex-1 p-4 overflow-y-auto">
+            <div className="flex-1 p-3 overflow-y-auto">
               {activeTopic ? (
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-3">
@@ -555,7 +555,7 @@ export const HelpPanel: React.FC<{
                 </div>
               ) : (
                 <div className="text-center text-gray-500 mt-8">
-                  <HelpCircle className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+                  <HelpCircle className="h-12 w-12 mb-2 text-gray-300" />
                   <p>Select a help topic to get started</p>
                 </div>
               )}
@@ -630,7 +630,7 @@ export const SmartHelpSuggestions: React.FC<{
   if (isDismissed || suggestions.length === 0) return null
 
   return (
-    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-2">
       <div className="flex items-start justify-between">
         <div className="flex items-start space-x-3">
           <Lightbulb className="h-5 w-5 text-blue-500 mt-0.5" />

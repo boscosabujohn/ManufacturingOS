@@ -7,7 +7,7 @@ export default function LeaveAnalyticsPage() {
   const [selectedPeriod, setSelectedPeriod] = useState('current_fy');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -30,8 +30,8 @@ export default function LeaveAnalyticsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-3">
           <div className="text-blue-100 text-sm mb-1">Total Leaves (YTD)</div>
           <div className="text-3xl font-bold">3,875</div>
           <div className="flex items-center gap-1 text-blue-100 text-xs mt-2">
@@ -39,7 +39,7 @@ export default function LeaveAnalyticsPage() {
             8.5% vs last year
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-3">
           <div className="text-green-100 text-sm mb-1">Avg Utilization</div>
           <div className="text-3xl font-bold">68.2%</div>
           <div className="flex items-center gap-1 text-green-100 text-xs mt-2">
@@ -47,7 +47,7 @@ export default function LeaveAnalyticsPage() {
             2.1% improvement
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg p-3">
           <div className="text-purple-100 text-sm mb-1">Team Availability</div>
           <div className="text-3xl font-bold">90.8%</div>
           <div className="flex items-center gap-1 text-purple-100 text-xs mt-2">
@@ -55,7 +55,7 @@ export default function LeaveAnalyticsPage() {
             Above target (90%)
           </div>
         </div>
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-lg p-3">
           <div className="text-orange-100 text-sm mb-1">Predicted Q4 Leaves</div>
           <div className="text-3xl font-bold">1,250</div>
           <div className="flex items-center gap-1 text-orange-100 text-xs mt-2">
@@ -65,13 +65,13 @@ export default function LeaveAnalyticsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-blue-600" />
             Year-over-Year Comparison
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center justify-between pb-3 border-b">
               <div className="text-sm font-medium text-gray-700">FY 2025-26 (Current)</div>
               <div className="text-lg font-bold text-blue-600">3,875 days</div>
@@ -98,8 +98,8 @@ export default function LeaveAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Calendar className="w-5 h-5 text-purple-600" />
             Seasonal Patterns
           </h2>
@@ -138,9 +138,9 @@ export default function LeaveAnalyticsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Users className="w-5 h-5 text-blue-600" />
             Employee Segmentation
           </h2>
@@ -178,8 +178,8 @@ export default function LeaveAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-orange-600" />
             Risk Indicators
           </h2>
@@ -220,8 +220,8 @@ export default function LeaveAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Target className="w-5 h-5 text-purple-600" />
             Predictive Insights
           </h2>
@@ -257,9 +257,9 @@ export default function LeaveAnalyticsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Performance Indicators (KPIs)</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-white rounded-lg border p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Key Performance Indicators (KPIs)</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
             <div className="text-sm font-medium text-gray-600 mb-3">Approval Efficiency</div>
             <div className="space-y-2">
@@ -314,7 +314,7 @@ export default function LeaveAnalyticsPage() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-blue-600" />
           Analytics Methodology

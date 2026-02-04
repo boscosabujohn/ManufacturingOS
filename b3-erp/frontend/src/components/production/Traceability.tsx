@@ -69,8 +69,8 @@ const Traceability: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-lg shadow-lg">
+    <div className="space-y-3">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <GitBranch className="h-8 w-8" />
@@ -102,7 +102,7 @@ const Traceability: React.FC = () => {
 
       {records.map((record) => (
         <div key={record.serialNumber} className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+          <div className="px-3 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-bold">{record.serialNumber}</h3>
@@ -129,15 +129,15 @@ const Traceability: React.FC = () => {
           </div>
 
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+              <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded">
                 <Package className="h-8 w-8 text-blue-600" />
                 <div>
                   <div className="text-sm text-gray-600">Status</div>
                   <div className="font-semibold text-gray-900 capitalize">{record.status.replace('-', ' ')}</div>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-green-50 rounded">
+              <div className="flex items-center space-x-3 p-3 bg-green-50 rounded">
                 <MapPin className="h-8 w-8 text-green-600" />
                 <div>
                   <div className="text-sm text-gray-600">Current Location</div>
@@ -146,13 +146,13 @@ const Traceability: React.FC = () => {
               </div>
             </div>
 
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Manufacturing Genealogy</h4>
-              <div className="space-y-4">
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Manufacturing Genealogy</h4>
+              <div className="space-y-2">
                 {record.genealogy.map((step, idx) => (
                   <div key={idx} className="relative pl-8 pb-4 border-l-2 border-indigo-300 last:border-l-0 last:pb-0">
                     <div className="absolute left-0 top-0 -ml-2 w-4 h-4 rounded-full bg-indigo-600"></div>
-                    <div className="bg-gray-50 p-4 rounded">
+                    <div className="bg-gray-50 p-3 rounded">
                       <div className="flex items-start justify-between mb-2">
                         <h5 className="font-semibold text-gray-900">{step.step}</h5>
                         <span className="text-sm text-gray-500 flex items-center">
@@ -181,8 +181,8 @@ const Traceability: React.FC = () => {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Quality Checkpoints</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Quality Checkpoints</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {record.qualityChecks.map((check, idx) => (
                   <div key={idx} className={`p-4 rounded border-l-4 ${check.result === 'pass' ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'}`}>
                     <div className="flex items-center justify-between mb-2">

@@ -237,8 +237,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Scale className="h-6 w-6 text-red-600" />
           Disciplinary Actions Management
@@ -246,8 +246,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Track and manage disciplinary actions, warnings, and appeals</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Total Actions</p>
@@ -257,7 +257,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-orange-600 uppercase tracking-wide">Active</p>
@@ -267,7 +267,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-red-600 uppercase tracking-wide">Suspended</p>
@@ -277,7 +277,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-yellow-600 uppercase tracking-wide">Under Appeal</p>
@@ -288,8 +288,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <div className="relative">
@@ -342,10 +342,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredActions.map((action) => (
-          <div key={action.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={action.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{action.employeeName} ({action.employeeId})</h3>
@@ -364,7 +364,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600 uppercase font-medium mb-1">Incident Date</p>
                 <p className="text-sm font-bold text-gray-900">
@@ -383,7 +383,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
               <p className="text-xs text-red-600 uppercase font-medium mb-1">Description</p>
               <p className="text-sm text-red-900 mb-2">{action.description}</p>
               <p className="text-xs text-red-600 uppercase font-medium mb-1 mt-3">Justification</p>
@@ -391,7 +391,7 @@ export default function Page() {
             </div>
 
             {action.suspensionDuration && (
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-4">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-2">
                 <p className="text-xs text-orange-600 uppercase font-medium mb-2">Suspension Details</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div>
@@ -413,20 +413,20 @@ export default function Page() {
             )}
 
             {action.witnessList && action.witnessList.length > 0 && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-2">
                 <p className="text-xs text-blue-600 uppercase font-medium mb-1">Witnesses</p>
                 <p className="text-sm text-blue-900">{action.witnessList.join(', ')}</p>
               </div>
             )}
 
             {action.employeeStatement && (
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mb-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mb-2">
                 <p className="text-xs text-purple-600 uppercase font-medium mb-1">Employee Statement</p>
                 <p className="text-sm text-purple-900">{action.employeeStatement}</p>
               </div>
             )}
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-gray-600 uppercase font-medium mb-1">Appeal Status</p>
@@ -460,7 +460,7 @@ export default function Page() {
             </div>
 
             {action.effectiveUntil && action.status === 'active' && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-2">
                 <p className="text-xs text-yellow-600 uppercase font-medium mb-1">Effective Until</p>
                 <p className="text-sm text-yellow-900 font-bold">
                   {new Date(action.effectiveUntil).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -469,7 +469,7 @@ export default function Page() {
             )}
 
             {action.remarks && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-2">
                 <p className="text-xs text-yellow-600 uppercase font-medium mb-1">Remarks</p>
                 <p className="text-sm text-yellow-900">{action.remarks}</p>
               </div>

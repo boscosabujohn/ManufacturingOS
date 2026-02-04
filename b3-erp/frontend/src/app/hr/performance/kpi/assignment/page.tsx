@@ -114,7 +114,7 @@ export default function KPIAssignmentPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -125,7 +125,7 @@ export default function KPIAssignmentPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Employee List Sidebar */}
         <div className="lg:col-span-1 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="p-4 border-b border-gray-100 bg-gray-50">
@@ -144,7 +144,7 @@ export default function KPIAssignmentPage() {
               <button
                 key={emp.id}
                 onClick={() => setSelectedEmployeeId(emp.id)}
-                className={`w-full text-left p-4 hover:bg-purple-50 transition-colors ${selectedEmployeeId === emp.id ? 'bg-purple-50 border-l-4 border-purple-600' : 'border-l-4 border-transparent'
+                className={`w-full text-left p-3 hover:bg-purple-50 transition-colors ${selectedEmployeeId === emp.id ? 'bg-purple-50 border-l-4 border-purple-600' : 'border-l-4 border-transparent'
                   }`}
               >
                 <p className="font-medium text-gray-900">{emp.name}</p>
@@ -156,16 +156,16 @@ export default function KPIAssignmentPage() {
         </div>
 
         {/* Main Content Area */}
-        <div className="lg:col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-3">
           {selectedEmployee ? (
             <>
               {/* Assignment Form */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Plus className="h-5 w-5 text-purple-600" />
                   Assign New KPI to {selectedEmployee.name}
                 </h3>
-                <form onSubmit={handleAssignKPI} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form onSubmit={handleAssignKPI} className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-1">KPI Title</label>
                     <input
@@ -241,7 +241,7 @@ export default function KPIAssignmentPage() {
             </>
           ) : (
             <div className="h-full flex flex-col items-center justify-center bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 p-12 text-center text-gray-500">
-              <UserCheck className="h-12 w-12 text-gray-300 mb-4" />
+              <UserCheck className="h-12 w-12 text-gray-300 mb-2" />
               <p className="text-lg font-medium">Select an employee to manage KPIs</p>
               <p className="text-sm">Choose from the list on the left to view or assign KPIs.</p>
             </div>

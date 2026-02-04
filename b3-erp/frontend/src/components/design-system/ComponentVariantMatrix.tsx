@@ -65,7 +65,7 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
     const sizeStyles = {
       sm: 'px-3 py-1.5 text-sm',
       md: 'px-4 py-2 text-sm',
-      lg: 'px-6 py-3 text-base'
+      lg: 'px-3 py-2 text-base'
     };
 
     const variantStyles = {
@@ -256,14 +256,14 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
   };
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="mb-3">
         <h2 className="text-xl font-bold text-gray-800">Component Variant Matrix</h2>
         <p className="text-sm text-gray-600">Document all component states and variations</p>
       </div>
 
       {/* Component Selector */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-3">
         {components.map(comp => (
           <button
             key={comp.id}
@@ -281,7 +281,7 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
 
       {selectedComp && (
         <>
-          <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-gray-800">{selectedComp.name}</h3>
             <p className="text-sm text-gray-600">{selectedComp.description}</p>
           </div>
@@ -292,13 +292,13 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
               <table className="w-full">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="text-left p-4 text-sm font-semibold text-gray-600 sticky left-0 bg-gray-50">
+                    <th className="text-left p-3 text-sm font-semibold text-gray-600 sticky left-0 bg-gray-50">
                       Variant / State
                     </th>
                     {selectedComp.states.map(state => (
                       <th
                         key={state}
-                        className="text-center p-4 text-sm font-semibold text-gray-600 capitalize min-w-[140px]"
+                        className="text-center p-3 text-sm font-semibold text-gray-600 capitalize min-w-[140px]"
                         onMouseEnter={() => setHoveredState(state)}
                         onMouseLeave={() => setHoveredState(null)}
                       >
@@ -341,8 +341,8 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
 
           {/* Size Variants */}
           <div className="mt-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Size Variants</h3>
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Size Variants</h3>
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-8">
                 {selectedComp.sizes.map(size => (
                   <div key={size} className="text-center">
@@ -358,9 +358,9 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
 
           {/* Usage Guidelines */}
           <div className="mt-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Usage Guidelines</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Usage Guidelines</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <h4 className="font-medium text-green-800 mb-2">✓ Do</h4>
                 <ul className="text-sm text-green-700 space-y-1">
                   <li>Use primary variant for main actions</li>
@@ -369,7 +369,7 @@ const ComponentVariantMatrix: React.FC<ComponentVariantMatrixProps> = ({ classNa
                   <li>Use appropriate variant for the action type</li>
                 </ul>
               </div>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <h4 className="font-medium text-red-800 mb-2">✗ Don&apos;t</h4>
                 <ul className="text-sm text-red-700 space-y-1">
                   <li>Mix different sizes in the same context</li>

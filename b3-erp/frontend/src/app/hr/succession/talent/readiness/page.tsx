@@ -241,8 +241,8 @@ export default function Page() {
   const avgScore = Math.round(mockAssessments.reduce((sum, a) => sum + a.overallScore, 0) / totalAssessments);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Target className="h-6 w-6 text-teal-600" />
           Readiness Assessment
@@ -250,8 +250,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Successor readiness evaluation and gap analysis</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Total Assessments</p>
@@ -261,7 +261,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Ready Now</p>
@@ -271,7 +271,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-4">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">Ready Soon (≤1 Yr)</p>
@@ -281,7 +281,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Avg. Score</p>
@@ -292,8 +292,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Readiness</label>
             <select value={selectedReadiness} onChange={(e) => setSelectedReadiness(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
@@ -321,10 +321,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredAssessments.map((assessment) => (
-          <div key={assessment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start gap-6 mb-6">
+          <div key={assessment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start gap-3 mb-3">
               <div className="text-6xl">{assessment.photo}</div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -351,7 +351,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-3">
               <h4 className="text-sm font-bold text-gray-900 mb-3">Readiness Dimensions</h4>
               <div className="space-y-3">
                 <div>
@@ -406,7 +406,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <AlertCircle className="h-4 w-4 text-red-600" />

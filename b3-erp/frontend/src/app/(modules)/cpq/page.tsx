@@ -188,15 +188,15 @@ export default function CPQDashboardPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Welcome Section */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Configure, Price, Quote</h1>
         <p className="text-sm text-gray-600 mt-1">Streamline your quote-to-order process with intelligent CPQ</p>
       </div>
 
       {/* Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         {metrics.map((metric, index) => {
           const Icon = metric.icon
           return (
@@ -228,9 +228,9 @@ export default function CPQDashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Quick Actions</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {quickActions.map((action, index) => {
             const Icon = action.icon
             return (
@@ -255,10 +255,10 @@ export default function CPQDashboardPage() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Recent Quotes */}
         <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+          <div className="px-3 py-2 border-b border-gray-200 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-gray-900">Recent Quotes</h2>
               <p className="text-sm text-gray-600 mt-1">Latest quote activity</p>
@@ -318,11 +318,11 @@ export default function CPQDashboardPage() {
         </div>
 
         {/* Sidebar - Performance Insights */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Performance Card */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Insights</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Insights</h3>
+            <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Award className="h-5 w-5 text-purple-600" />
@@ -355,8 +355,8 @@ export default function CPQDashboardPage() {
           </div>
 
           {/* Alerts Card */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Alerts & Notifications</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Alerts & Notifications</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                 <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />

@@ -162,9 +162,9 @@ export const RuleModal: React.FC<RuleModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] flex flex-col">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <h2 className="text-xl font-semibold">{rule ? 'Edit Rule' : 'Create New Rule'}</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -172,11 +172,11 @@ export const RuleModal: React.FC<RuleModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Basic Information */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Rule Name *
@@ -256,8 +256,8 @@ export const RuleModal: React.FC<RuleModalProps> = ({
             </div>
 
             {/* Conditions */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-gray-900">Conditions (When)</h3>
                 <button
                   type="button"
@@ -334,8 +334,8 @@ export const RuleModal: React.FC<RuleModalProps> = ({
             </div>
 
             {/* Actions */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-gray-900">Actions (Then)</h3>
                 <button
                   type="button"
@@ -381,8 +381,8 @@ export const RuleModal: React.FC<RuleModalProps> = ({
             </div>
 
             {/* Error Message Configuration */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Error Message (Optional)</h3>
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Error Message (Optional)</h3>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Custom Message for Users
               </label>
@@ -399,9 +399,9 @@ export const RuleModal: React.FC<RuleModalProps> = ({
             </div>
 
             {/* Preview */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Rule Preview</h3>
-              <div className="bg-white rounded-lg p-4 border border-gray-300 space-y-2">
+              <div className="bg-white rounded-lg p-3 border border-gray-300 space-y-2">
                 <div>
                   <span className="text-sm font-semibold text-gray-700">IF: </span>
                   <span className="text-sm text-gray-900">
@@ -422,7 +422,7 @@ export const RuleModal: React.FC<RuleModalProps> = ({
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
             <button
               type="button"
               onClick={onClose}
@@ -469,9 +469,9 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <div>
             <h2 className="text-xl font-semibold">{rule.name}</h2>
             <p className="text-sm text-blue-100 mt-1">{rule.id}</p>
@@ -481,22 +481,22 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Rule Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <GitBranch className="h-8 w-8 text-blue-600 mb-2" />
               <p className="text-sm text-blue-600">Type</p>
               <p className="text-lg font-bold text-blue-900 capitalize">{rule.type}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <AlertCircle className="h-8 w-8 text-purple-600 mb-2" />
               <p className="text-sm text-purple-600">Priority</p>
               <p className="text-lg font-bold text-purple-900">{getPriorityLabel(rule.priority)}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="text-2xl mb-2">📦</div>
               <p className="text-sm text-orange-600">Affected</p>
               <p className="text-lg font-bold text-orange-900">{rule.affectedProducts} Products</p>
@@ -504,8 +504,8 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
           </div>
 
           {/* Condition & Action */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Rule Logic</h3>
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Rule Logic</h3>
             <div className="space-y-3">
               <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-start gap-2">
@@ -523,8 +523,8 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
           </div>
 
           {/* Status & Execution Stats */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-2">Status</p>
               <span className={`px-3 py-1 inline-flex text-sm font-semibold rounded-full border ${
                 rule.status === 'active'
@@ -534,7 +534,7 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
                 {rule.status.charAt(0).toUpperCase() + rule.status.slice(1)}
               </span>
             </div>
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-2">Rule Type</p>
               <span className={`px-3 py-1 inline-flex text-sm font-semibold rounded-full border capitalize ${getTypeColor(rule.type)}`}>
                 {rule.type}
@@ -543,7 +543,7 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
           </div>
 
           {/* Usage Statistics */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Usage Statistics</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
@@ -566,7 +566,7 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
           </div>
 
           {/* Impact Analysis */}
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Impact Analysis</h3>
             <p className="text-sm text-gray-700 mb-2">
               This rule affects <strong>{rule.affectedProducts} products</strong> across multiple categories.
@@ -577,7 +577,7 @@ export const ViewRuleModal: React.FC<ViewRuleModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3 flex-shrink-0">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -671,9 +671,9 @@ export const FilterModal: React.FC<FilterModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg flex-shrink-0">
           <h2 className="text-xl font-semibold">Filter Rules</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -681,7 +681,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Rule Types */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Rule Types</label>
@@ -779,7 +779,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
 
             {/* Info Box */}
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 flex gap-3">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 flex gap-3">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-900">
                 <p className="font-medium mb-1">Filter Tips</p>
@@ -792,7 +792,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-between flex-shrink-0">
+          <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-between flex-shrink-0">
             <button
               type="button"
               onClick={handleReset}

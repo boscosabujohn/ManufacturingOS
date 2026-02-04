@@ -203,7 +203,7 @@ export default function AttendancePoliciesPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-blue-600" />
           Attendance Policies
@@ -212,8 +212,8 @@ export default function AttendancePoliciesPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Policies</p>
@@ -222,7 +222,7 @@ export default function AttendancePoliciesPage() {
             <FileText className="h-8 w-8 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Policies</p>
@@ -233,7 +233,7 @@ export default function AttendancePoliciesPage() {
             <CheckCircle className="h-8 w-8 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Draft Policies</p>
@@ -244,7 +244,7 @@ export default function AttendancePoliciesPage() {
             <Edit className="h-8 w-8 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Coverage</p>
@@ -257,7 +257,7 @@ export default function AttendancePoliciesPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-700">All Policies</h2>
           <button
@@ -271,13 +271,13 @@ export default function AttendancePoliciesPage() {
       </div>
 
       {/* Policies Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {policies.map((policy) => (
           <div
             key={policy.id}
-            className="bg-white rounded-lg shadow-sm border-2 border-gray-200 p-6 hover:shadow-md transition-all hover:border-blue-300"
+            className="bg-white rounded-lg shadow-sm border-2 border-gray-200 p-3 hover:shadow-md transition-all hover:border-blue-300"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-start gap-3 flex-1">
                 <div className="p-2 rounded-lg bg-gray-50">
                   {getTypeIcon(policy.type)}
@@ -293,7 +293,7 @@ export default function AttendancePoliciesPage() {
               <StatusBadge status={policy.status} />
             </div>
 
-            <div className="border-t border-gray-200 pt-4 mb-4">
+            <div className="border-t border-gray-200 pt-4 mb-2">
               <div className="grid grid-cols-2 gap-3 text-sm mb-3">
                 <div>
                   <span className="text-gray-500">Applicable To:</span>
@@ -351,9 +351,9 @@ export default function AttendancePoliciesPage() {
 
       {/* Policy Detail Modal */}
       {selectedPolicy && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-3">
               <div className="flex items-start justify-between">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900">{selectedPolicy.name}</h2>
@@ -370,8 +370,8 @@ export default function AttendancePoliciesPage() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Policy ID</p>
                   <p className="font-semibold text-gray-900">{selectedPolicy.id}</p>

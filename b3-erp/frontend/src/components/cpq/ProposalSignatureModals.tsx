@@ -59,9 +59,9 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -77,9 +77,9 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
         </div>
 
         <div className="flex-1 overflow-y-auto p-8 bg-gray-50">
-          <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-12">
+          <div className=" bg-white shadow-lg rounded-lg p-12">
             {/* Status Banner */}
-            <div className={`mb-6 p-4 rounded-lg flex items-center space-x-3 ${
+            <div className={`mb-3 p-3 rounded-lg flex items-center space-x-3 ${
               signature.status === 'signed' ? 'bg-green-50 border border-green-200' :
               signature.status === 'declined' ? 'bg-red-50 border border-red-200' :
               signature.status === 'expired' ? 'bg-gray-50 border border-gray-200' :
@@ -129,9 +129,9 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
             </div>
 
             {/* Sample Proposal Content */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               <section>
-                <h2 className="text-2xl font-bold text-blue-600 mb-4">Executive Summary</h2>
+                <h2 className="text-2xl font-bold text-blue-600 mb-2">Executive Summary</h2>
                 <p className="text-gray-700 leading-relaxed">
                   This proposal outlines our comprehensive solution tailored to meet your specific business needs.
                   Our approach combines industry best practices with innovative technology to deliver measurable results.
@@ -139,7 +139,7 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-blue-600 mb-4">Solution Overview</h2>
+                <h2 className="text-2xl font-bold text-blue-600 mb-2">Solution Overview</h2>
                 <p className="text-gray-700 leading-relaxed">
                   Our solution provides end-to-end capabilities designed to streamline your operations
                   and drive business growth. Key features include automation, analytics, and integration
@@ -148,8 +148,8 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-blue-600 mb-4">Investment</h2>
-                <div className="bg-gray-50 p-6 rounded-lg">
+                <h2 className="text-2xl font-bold text-blue-600 mb-2">Investment</h2>
+                <div className="bg-gray-50 p-3 rounded-lg">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-gray-700">Implementation Services</span>
                     <span className="font-semibold text-gray-900">$50,000</span>
@@ -169,16 +169,16 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
             {/* Signature Section */}
             {signature.status === 'signed' && signature.signatureImage && (
               <div className="mt-12 pt-6 border-t">
-                <h3 className="text-sm font-semibold text-gray-700 mb-4">SIGNATURE</h3>
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <div className="mb-4">
+                <h3 className="text-sm font-semibold text-gray-700 mb-2">SIGNATURE</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="mb-2">
                     <img
                       src={signature.signatureImage}
                       alt="Signature"
                       className="h-20 border-b-2 border-gray-300"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <p className="text-gray-600">Signed by:</p>
                       <p className="font-medium text-gray-900">{signature.signerName}</p>
@@ -203,7 +203,7 @@ export function ViewProposalModal({ isOpen, onClose, signature }: ViewProposalMo
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -246,9 +246,9 @@ export function SendReminderModal({ isOpen, onClose, onSend, signature }: SendRe
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
               <Send className="w-5 h-5 text-white" />
@@ -263,10 +263,10 @@ export function SendReminderModal({ isOpen, onClose, onSend, signature }: SendRe
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Reminder Info */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-blue-700">
@@ -327,7 +327,7 @@ export function SendReminderModal({ isOpen, onClose, onSend, signature }: SendRe
             </div>
 
             {/* Options */}
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+            <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
               <label className="flex items-center space-x-3">
                 <input
                   type="checkbox"
@@ -351,7 +351,7 @@ export function SendReminderModal({ isOpen, onClose, onSend, signature }: SendRe
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -431,9 +431,9 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Shield className="w-5 h-5 text-white" />
@@ -448,8 +448,8 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Status Overview */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Status</h3>
@@ -466,8 +466,8 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {/* Proposal Information */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Proposal Information</h3>
-              <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg space-y-3">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <div className="flex items-center space-x-2 mb-1">
                       <FileText className="w-4 h-4 text-gray-400" />
@@ -492,8 +492,8 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {/* Signer Information */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Signer Information</h3>
-              <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg space-y-3">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <div className="flex items-center space-x-2 mb-1">
                       <User className="w-4 h-4 text-gray-400" />
@@ -522,8 +522,8 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {/* Timeline */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Timeline</h3>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   <div>
                     <div className="flex items-center space-x-2 mb-1">
                       <Send className="w-4 h-4 text-gray-400" />
@@ -579,8 +579,8 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {signature.status === 'signed' && (
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Technical Details</h3>
-                <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
-                  <div className="grid grid-cols-3 gap-4">
+                <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
+                  <div className="grid grid-cols-3 gap-2">
                     {signature.ipAddress && (
                       <div>
                         <div className="flex items-center space-x-2 mb-1">
@@ -617,7 +617,7 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {signature.status === 'signed' && signature.signatureImage && (
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Digital Signature</h3>
-                <div className="bg-gray-50 p-6 rounded-lg border-2 border-gray-200">
+                <div className="bg-gray-50 p-3 rounded-lg border-2 border-gray-200">
                   <img
                     src={signature.signatureImage}
                     alt="Signature"
@@ -634,7 +634,7 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {signature.status === 'declined' && signature.declineReason && (
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Decline Reason</h3>
-                <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
+                <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{signature.declineReason}</p>
                 </div>
               </div>
@@ -643,8 +643,8 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {/* Audit Trail */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Audit Trail</h3>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <div className="space-y-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <div className="space-y-2">
                   {auditTrail.map((event, index) => {
                     const Icon = event.icon;
                     return (
@@ -670,7 +670,7 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
             {signature.notes && (
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Notes</h3>
-                <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{signature.notes}</p>
                 </div>
               </div>
@@ -678,7 +678,7 @@ export function SignatureDetailsModal({ isOpen, onClose, signature }: SignatureD
           </div>
         </div>
 
-        <div className="flex justify-between p-6 border-t bg-white">
+        <div className="flex justify-between p-3 border-t bg-white">
           <div className="flex space-x-2">
             {signature.status === 'signed' && (
               <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center space-x-2">
@@ -734,9 +734,9 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
               <Download className="w-5 h-5 text-white" />
@@ -751,8 +751,8 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Report Type */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -813,7 +813,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
               </select>
 
               {settings.dateRange === 'custom' && (
-                <div className="grid grid-cols-2 gap-4 mt-3">
+                <div className="grid grid-cols-2 gap-2 mt-3">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Start Date</label>
                     <input
@@ -841,7 +841,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Include Status
               </label>
-              <div className="space-y-2 bg-gray-50 p-4 rounded-lg">
+              <div className="space-y-2 bg-gray-50 p-3 rounded-lg">
                 <label className="flex items-center space-x-3">
                   <input
                     type="checkbox"
@@ -903,7 +903,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"

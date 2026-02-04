@@ -44,10 +44,10 @@ export const RecordPaymentModal: React.FC<RecordPaymentModalProps> = ({ isOpen, 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <DollarSign className="w-5 h-5" />
@@ -65,8 +65,8 @@ export const RecordPaymentModal: React.FC<RecordPaymentModalProps> = ({ isOpen, 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Invoice Summary */}
-          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-4 mb-6 border border-emerald-200">
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-3 mb-3 border border-emerald-200">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <div className="text-emerald-700 font-medium mb-1">Invoice Amount</div>
                 <div className="text-lg font-bold text-emerald-900">₹{invoiceAmount.toLocaleString()}</div>
@@ -85,7 +85,7 @@ export const RecordPaymentModal: React.FC<RecordPaymentModalProps> = ({ isOpen, 
           </div>
 
           {/* Payment Details */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Payment Date <span className="text-red-500">*</span>
@@ -178,7 +178,7 @@ export const RecordPaymentModal: React.FC<RecordPaymentModalProps> = ({ isOpen, 
           </div>
 
           {/* Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6 space-y-3">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3 space-y-3">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -243,10 +243,10 @@ export const VoidInvoiceModal: React.FC<VoidInvoiceModalProps> = ({ isOpen, onCl
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Ban className="w-5 h-5" />
@@ -264,7 +264,7 @@ export const VoidInvoiceModal: React.FC<VoidInvoiceModalProps> = ({ isOpen, onCl
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
             <div className="flex gap-3">
               <Ban className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -277,7 +277,7 @@ export const VoidInvoiceModal: React.FC<VoidInvoiceModalProps> = ({ isOpen, onCl
           </div>
 
           {/* Invoice Info */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-4 text-sm">
+          <div className="bg-gray-50 rounded-lg p-3 mb-2 text-sm">
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <span className="text-gray-600">Customer:</span>
@@ -298,7 +298,7 @@ export const VoidInvoiceModal: React.FC<VoidInvoiceModalProps> = ({ isOpen, onCl
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Void Date <span className="text-red-500">*</span>
             </label>
@@ -311,7 +311,7 @@ export const VoidInvoiceModal: React.FC<VoidInvoiceModalProps> = ({ isOpen, onCl
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reason for Voiding <span className="text-red-500">*</span>
             </label>
@@ -326,7 +326,7 @@ export const VoidInvoiceModal: React.FC<VoidInvoiceModalProps> = ({ isOpen, onCl
           </div>
 
           {/* Options */}
-          <div className="space-y-3 mb-6">
+          <div className="space-y-3 mb-3">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -402,10 +402,10 @@ export const DuplicateInvoiceModal: React.FC<DuplicateInvoiceModalProps> = ({ is
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Copy className="w-5 h-5" />
@@ -423,7 +423,7 @@ export const DuplicateInvoiceModal: React.FC<DuplicateInvoiceModalProps> = ({ is
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Source Invoice Info */}
-          <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg p-4 mb-4 border border-cyan-200">
+          <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg p-3 mb-2 border border-cyan-200">
             <h3 className="font-semibold text-cyan-900 mb-2">Source Invoice</h3>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
@@ -445,7 +445,7 @@ export const DuplicateInvoiceModal: React.FC<DuplicateInvoiceModalProps> = ({ is
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               New Invoice Number <span className="text-red-500">*</span>
             </label>
@@ -459,7 +459,7 @@ export const DuplicateInvoiceModal: React.FC<DuplicateInvoiceModalProps> = ({ is
             <p className="text-xs text-gray-500 mt-1">Will be auto-generated if left empty</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Invoice Date <span className="text-red-500">*</span>
@@ -488,7 +488,7 @@ export const DuplicateInvoiceModal: React.FC<DuplicateInvoiceModalProps> = ({ is
           </div>
 
           {/* Copy Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">What to copy?</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-2">
@@ -585,10 +585,10 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <FileEdit className="w-5 h-5" />
@@ -606,8 +606,8 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Amount Summary */}
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-4 mb-4 border border-amber-200">
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-3 mb-2 border border-amber-200">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <div className="text-amber-700 font-medium mb-1">Original Amount</div>
                 <div className="text-lg font-bold text-amber-900">₹{originalAmount.toLocaleString()}</div>
@@ -625,7 +625,7 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Adjustment Type <span className="text-red-500">*</span>
             </label>
@@ -642,7 +642,7 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
             </select>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Adjustment Amount <span className="text-red-500">*</span>
             </label>
@@ -657,7 +657,7 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Adjustment Date <span className="text-red-500">*</span>
             </label>
@@ -670,7 +670,7 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reason for Adjustment <span className="text-red-500">*</span>
             </label>
@@ -685,7 +685,7 @@ export const InvoiceAdjustmentModal: React.FC<InvoiceAdjustmentModalProps> = ({ 
           </div>
 
           {/* Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -758,10 +758,10 @@ export const PrintInvoiceOptionsModal: React.FC<PrintInvoiceOptionsModalProps> =
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Printer className="w-5 h-5" />
@@ -778,7 +778,7 @@ export const PrintInvoiceOptionsModal: React.FC<PrintInvoiceOptionsModalProps> =
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Output Format
             </label>
@@ -794,7 +794,7 @@ export const PrintInvoiceOptionsModal: React.FC<PrintInvoiceOptionsModalProps> =
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Orientation
@@ -825,7 +825,7 @@ export const PrintInvoiceOptionsModal: React.FC<PrintInvoiceOptionsModalProps> =
           </div>
 
           {/* Print Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">Include in Print</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-2">
@@ -941,10 +941,10 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Bell className="w-5 h-5" />
@@ -961,7 +961,7 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reminder Type
             </label>
@@ -977,7 +977,7 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
             </select>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               To (Recipients)
             </label>
@@ -990,7 +990,7 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Subject
             </label>
@@ -1003,7 +1003,7 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Message
             </label>
@@ -1017,7 +1017,7 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
           </div>
 
           {/* Attachments */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">Attachments</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-2">
@@ -1043,7 +1043,7 @@ export const PaymentReminderModal: React.FC<PaymentReminderModalProps> = ({ isOp
 
           {/* Warning for Urgent */}
           {reminderType === 'urgent' && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
               <div className="flex gap-3">
                 <Bell className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                 <div>
@@ -1155,10 +1155,10 @@ export const InvoiceHistoryModal: React.FC<InvoiceHistoryModalProps> = ({ isOpen
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-600 to-gray-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-slate-600 to-gray-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <History className="w-5 h-5" />
@@ -1174,16 +1174,16 @@ export const InvoiceHistoryModal: React.FC<InvoiceHistoryModalProps> = ({ isOpen
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
 
             {/* Events */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {historyEvents.map((event, index) => (
-                <div key={event.id} className="relative flex gap-4">
+                <div key={event.id} className="relative flex gap-2">
                   {/* Icon */}
                   <div className="relative z-10 flex-shrink-0">
                     <div className="w-16 h-16 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-2xl">
@@ -1192,7 +1192,7 @@ export const InvoiceHistoryModal: React.FC<InvoiceHistoryModalProps> = ({ isOpen
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className={`font-semibold ${event.color}`}>{event.action}</h3>
                       <span className="text-xs text-gray-500">{event.timestamp}</span>
@@ -1209,7 +1209,7 @@ export const InvoiceHistoryModal: React.FC<InvoiceHistoryModalProps> = ({ isOpen
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between items-center">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between items-center">
           <div className="text-sm text-gray-600">
             Total Events: <span className="font-semibold">{historyEvents.length}</span>
           </div>

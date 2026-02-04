@@ -211,10 +211,10 @@ const HSNSACCodeMaster: React.FC = () => {
   }, [codes, searchTerm, filterType, filterStatus]);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <FileText className="w-8 h-8 text-blue-600" />
@@ -234,7 +234,7 @@ const HSNSACCodeMaster: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -267,8 +267,8 @@ const HSNSACCodeMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Codes</p>
@@ -277,7 +277,7 @@ const HSNSACCodeMaster: React.FC = () => {
               <FileText className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">HSN Codes</p>
@@ -288,7 +288,7 @@ const HSNSACCodeMaster: React.FC = () => {
               <Tag className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">SAC Codes</p>
@@ -299,7 +299,7 @@ const HSNSACCodeMaster: React.FC = () => {
               <FileText className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Items Linked</p>
@@ -317,47 +317,47 @@ const HSNSACCodeMaster: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Code</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">GST Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Items</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Code</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">GST Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Items</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredCodes.map(code => (
                 <tr key={code.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{code.code}</div>
                     <div className="text-xs text-gray-500">Chapter: {code.chapterCode}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                       code.type === 'HSN' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
                     }`}>
                       {code.type}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900 max-w-md">{code.description}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{code.taxDetails.defaultGSTRate}%</div>
                     <div className="text-xs text-gray-500">
                       CGST: {code.taxDetails.cgst}% | SGST: {code.taxDetails.sgst}%
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{code.statistics.itemsLinked}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{code.statistics.itemsLinked}</td>
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                       code.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
                       {code.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex gap-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />

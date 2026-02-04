@@ -285,15 +285,15 @@ export default function NewInspectionEnhancedPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       <DraftRecoveryBanner
         hasDraft={showDraftBanner}
         onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
         onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
       />
 
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Inspections</span>
         </button>
@@ -312,7 +312,7 @@ export default function NewInspectionEnhancedPage() {
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-2">
         <ProgressBar value={completionPercentage} max={100} label="Form completion" showValue variant="gradient" color="blue" />
       </div>
 
@@ -320,13 +320,13 @@ export default function NewInspectionEnhancedPage() {
         <StepIndicator steps={steps} currentStep={currentStep} onStepClick={(i) => { if (i <= currentStep) setCurrentStep(i); }} variant="circles" />
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Basic Info */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Basic Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Inspection Name *</label>
                 <input
@@ -386,13 +386,13 @@ export default function NewInspectionEnhancedPage() {
 
         {/* Step 2: Item Details */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Package className="h-5 w-5 text-gray-500" />
               Item to Inspect
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Select Item *</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -468,13 +468,13 @@ export default function NewInspectionEnhancedPage() {
 
         {/* Step 3: Schedule */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-500" />
               Schedule & Assignment
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Scheduled Date *</label>
                 <input
@@ -558,7 +558,7 @@ export default function NewInspectionEnhancedPage() {
 
         {/* Step 4: Checklist */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900">Inspection Checklist</h3>
               <button onClick={addChecklistItem} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -573,7 +573,7 @@ export default function NewInspectionEnhancedPage() {
 
             {formData.checklist.length === 0 ? (
               <div className="text-center py-12 bg-gray-50 rounded-lg">
-                <ClipboardCheck className="h-12 w-12 text-gray-400 mb-4" />
+                <ClipboardCheck className="h-12 w-12 text-gray-400 mb-2" />
                 <p className="text-gray-600">No checklist items yet</p>
                 <p className="text-sm text-gray-500">Select an inspection type to load standard checklist, or add custom parameters</p>
               </div>
@@ -638,11 +638,11 @@ export default function NewInspectionEnhancedPage() {
 
         {/* Step 5: Review */}
         {currentStep === 4 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Review & Submit</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Inspection Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Number:</span><span className="font-mono">{formData.inspectionNumber}</span></div>
@@ -655,7 +655,7 @@ export default function NewInspectionEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Item & Sampling</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Item:</span><span className="font-medium">{formData.itemName}</span></div>
@@ -665,7 +665,7 @@ export default function NewInspectionEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Schedule</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Date:</span><span>{formData.scheduledDate}</span></div>
@@ -675,7 +675,7 @@ export default function NewInspectionEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Checklist Summary</h4>
                 <div className="space-y-2 text-sm">
                   <p><span className="text-gray-500">Parameters:</span> {formData.checklist.length} checks</p>
@@ -684,7 +684,7 @@ export default function NewInspectionEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5" />
                 <div>

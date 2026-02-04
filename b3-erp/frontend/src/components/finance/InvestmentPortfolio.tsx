@@ -188,9 +188,9 @@ const InvestmentPortfolio = () => {
   const currentPortfolio = portfolios.find(p => p.id === selectedPortfolio);
 
   const renderDashboardTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-blue-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Portfolio Value</p>
@@ -201,7 +201,7 @@ const InvestmentPortfolio = () => {
             <DollarSign className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className={`rounded-lg p-4 ${currentPortfolio && currentPortfolio.totalReturn >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
+        <div className={`rounded-lg p-3 ${currentPortfolio && currentPortfolio.totalReturn >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Return</p>
@@ -218,7 +218,7 @@ const InvestmentPortfolio = () => {
             }
           </div>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Risk Score</p>
@@ -228,7 +228,7 @@ const InvestmentPortfolio = () => {
             <Shield className="h-8 w-8 text-purple-500" />
           </div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
+        <div className="bg-yellow-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Last Rebalanced</p>
@@ -244,9 +244,9 @@ const InvestmentPortfolio = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">Portfolio Performance</h3>
             <select
               value={selectedTimeframe}
@@ -280,8 +280,8 @@ const InvestmentPortfolio = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Asset Allocation</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Asset Allocation</h3>
           <ResponsiveContainer width="100%" height={300}>
             <RePieChart>
               <Pie
@@ -304,9 +304,9 @@ const InvestmentPortfolio = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Risk Metrics</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Risk Metrics</h3>
           <div className="space-y-3">
             {riskMetrics.map(metric => (
               <div key={metric.metric} className="flex items-center justify-between">
@@ -334,8 +334,8 @@ const InvestmentPortfolio = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Recent Transactions</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Recent Transactions</h3>
           <div className="space-y-2">
             {transactions.slice(0, 5).map(transaction => {
               const investment = investments.find(inv => inv.id === transaction.investmentId);
@@ -362,8 +362,8 @@ const InvestmentPortfolio = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Top Performers</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Top Performers</h3>
           <div className="space-y-2">
             {investments
               .sort((a, b) => b.unrealizedGainLossPercent - a.unrealizedGainLossPercent)
@@ -394,9 +394,9 @@ const InvestmentPortfolio = () => {
   );
 
   const renderHoldingsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Investment Holdings</h3>
           <div className="flex space-x-2">
             <button className="border border-gray-300 px-4 py-2 rounded hover:bg-gray-50 flex items-center">
@@ -491,14 +491,14 @@ const InvestmentPortfolio = () => {
       </div>
 
       {selectedInvestment && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">{selectedInvestment.symbol} - {selectedInvestment.name}</h3>
             <button onClick={() => setSelectedInvestment(null)}>
               <X className="h-5 w-5" />
             </button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <p className="text-sm text-gray-600">Sector</p>
               <p className="font-semibold">{selectedInvestment.sector}</p>
@@ -534,10 +534,10 @@ const InvestmentPortfolio = () => {
   );
 
   const renderAnalysisTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Sector Allocation</h3>
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Sector Allocation</h3>
           <ResponsiveContainer width="100%" height={300}>
             <Treemap
               data={sectorAllocation}
@@ -551,8 +551,8 @@ const InvestmentPortfolio = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Risk-Return Analysis</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Risk-Return Analysis</h3>
           <ResponsiveContainer width="100%" height={300}>
             <ScatterChart>
               <CartesianGrid strokeDasharray="3 3" />
@@ -574,8 +574,8 @@ const InvestmentPortfolio = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Allocation vs Target</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Allocation vs Target</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={assetAllocation}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -614,9 +614,9 @@ const InvestmentPortfolio = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Performance Attribution</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Performance Attribution</h3>
           <div className="space-y-3">
             {[
               { factor: 'Stock Selection', impact: 3.2, positive: true },
@@ -647,8 +647,8 @@ const InvestmentPortfolio = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Correlation Matrix</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Correlation Matrix</h3>
           <div className="text-xs">
             <table className="w-full">
               <thead>
@@ -694,8 +694,8 @@ const InvestmentPortfolio = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Income Analysis</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Income Analysis</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">Dividends (Annual)</span>
@@ -730,9 +730,9 @@ const InvestmentPortfolio = () => {
   );
 
   const renderTransactionsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Transaction History</h3>
           <div className="flex space-x-2">
             <select className="border rounded px-3 py-2">
@@ -824,9 +824,9 @@ const InvestmentPortfolio = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Transaction Summary</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Transaction Summary</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">Total Buys</span>
@@ -853,8 +853,8 @@ const InvestmentPortfolio = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Tax Summary (YTD)</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Tax Summary (YTD)</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">Short-term Gains</span>
@@ -881,8 +881,8 @@ const InvestmentPortfolio = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Pending Transactions</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Pending Transactions</h3>
           <div className="space-y-2">
             {transactions.filter(t => t.status === 'pending').map(transaction => {
               const investment = investments.find(inv => inv.id === transaction.investmentId);
@@ -921,13 +921,13 @@ const InvestmentPortfolio = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Investment Portfolio</h2>
         <p className="text-gray-600">Track and manage investment portfolios with comprehensive analytics</p>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-3">
         <select
           value={selectedPortfolio}
           onChange={(e) => setSelectedPortfolio(e.target.value)}
@@ -941,7 +941,7 @@ const InvestmentPortfolio = () => {
         </select>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['dashboard', 'holdings', 'analysis', 'transactions'].map((tab) => (
@@ -970,14 +970,14 @@ const InvestmentPortfolio = () => {
 
       {showTransactionModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">New Transaction</h3>
               <button onClick={() => setShowTransactionModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium mb-1">Transaction Type</label>
                 <select className="w-full border rounded px-3 py-2">
@@ -1021,14 +1021,14 @@ const InvestmentPortfolio = () => {
 
       {showRebalanceModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Rebalance Portfolio</h3>
               <button onClick={() => setShowRebalanceModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <p className="text-sm text-gray-600">
                 Review the recommended trades to rebalance your portfolio to target allocation:
               </p>

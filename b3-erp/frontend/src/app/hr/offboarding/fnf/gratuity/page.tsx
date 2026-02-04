@@ -143,13 +143,13 @@ export default function FNFGratuityPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">FNF - Gratuity Settlement</h1>
         <p className="text-sm text-gray-600 mt-1">Calculate gratuity as per Payment of Gratuity Act, 1972</p>
       </div>
 
-      <div className="mb-6 bg-blue-50 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 bg-blue-50 rounded-lg p-3 border border-blue-200">
         <div className="flex items-start gap-3">
           <Info className="h-5 w-5 text-blue-600 mt-0.5" />
           <div>
@@ -173,8 +173,8 @@ export default function FNFGratuityPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -184,7 +184,7 @@ export default function FNFGratuityPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Calculated</p>
@@ -194,7 +194,7 @@ export default function FNFGratuityPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Approved</p>
@@ -204,7 +204,7 @@ export default function FNFGratuityPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Processed</p>
@@ -215,7 +215,7 @@ export default function FNFGratuityPage() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-2 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
@@ -254,11 +254,11 @@ export default function FNFGratuityPage() {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredGratuities.map(gratuity => {
           return (
-            <div key={gratuity.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={gratuity.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{gratuity.employeeName}</h3>
@@ -285,8 +285,8 @@ export default function FNFGratuityPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Service Period</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -316,7 +316,7 @@ export default function FNFGratuityPage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Salary Components</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -337,7 +337,7 @@ export default function FNFGratuityPage() {
 
               {gratuity.isEligible ? (
                 <>
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 mb-4">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 mb-2">
                     <h4 className="font-semibold text-blue-900 mb-3">Gratuity Calculation</h4>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
@@ -365,7 +365,7 @@ export default function FNFGratuityPage() {
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border-2 border-green-300">
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 border-2 border-green-300">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-green-700 mb-1">Final Gratuity Amount</p>
@@ -381,7 +381,7 @@ export default function FNFGratuityPage() {
                   </div>
                 </>
               ) : (
-                <div className="bg-red-50 rounded-lg p-4 border-2 border-red-200">
+                <div className="bg-red-50 rounded-lg p-3 border-2 border-red-200">
                   <div className="flex items-start gap-3">
                     <Info className="h-5 w-5 text-red-600 mt-0.5" />
                     <div>

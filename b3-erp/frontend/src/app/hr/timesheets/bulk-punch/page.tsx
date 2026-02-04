@@ -183,7 +183,7 @@ export default function BulkPunchPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Users className="h-8 w-8 text-blue-600" />
           Bulk Punch Entry
@@ -192,32 +192,32 @@ export default function BulkPunchPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-3">
           <div className="text-center">
             <p className="text-sm text-gray-600 mb-1">Total</p>
             <p className="text-3xl font-bold text-blue-700">{stats.total}</p>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-3">
           <div className="text-center">
             <p className="text-sm text-gray-600 mb-1">Present</p>
             <p className="text-3xl font-bold text-green-700">{stats.present}</p>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-lg p-3">
           <div className="text-center">
             <p className="text-sm text-gray-600 mb-1">Absent</p>
             <p className="text-3xl font-bold text-red-700">{stats.absent}</p>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-lg p-3">
           <div className="text-center">
             <p className="text-sm text-gray-600 mb-1">Late</p>
             <p className="text-3xl font-bold text-orange-700">{stats.late}</p>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-3">
           <div className="text-center">
             <p className="text-sm text-gray-600 mb-1">Half Day</p>
             <p className="text-3xl font-bold text-purple-700">{stats.halfDay}</p>
@@ -226,8 +226,8 @@ export default function BulkPunchPage() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-2">
           <div className="flex gap-2">
             <button
               onClick={() => setShowFilters(!showFilters)}
@@ -263,7 +263,7 @@ export default function BulkPunchPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 pt-4 border-t border-gray-200">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <Calendar className="w-4 h-4 inline mr-1" />
@@ -330,7 +330,7 @@ export default function BulkPunchPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-3">Quick Apply Shift Times</h3>
         <div className="flex flex-wrap gap-2">
           <button
@@ -471,7 +471,7 @@ export default function BulkPunchPage() {
       </div>
 
       {/* Help Text */}
-      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-2">Bulk Entry Tips</h3>
         <ul className="text-sm text-gray-700 space-y-1">
           <li>• Use <strong>Quick Apply Shift Times</strong> to set standard times for all filtered employees</li>

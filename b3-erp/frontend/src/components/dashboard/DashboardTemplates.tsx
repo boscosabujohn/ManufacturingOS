@@ -282,9 +282,9 @@ export function DashboardTemplates({
 
       {/* Dialog */}
       <div className="fixed inset-4 z-50 flex items-center justify-center">
-        <div className="w-full max-w-5xl max-h-full bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col">
+        <div className="w-full  max-h-full bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 Dashboard Templates
@@ -302,7 +302,7 @@ export function DashboardTemplates({
           </div>
 
           {/* Role Filter */}
-          <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+          <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setSelectedRole('all')}
@@ -332,14 +332,14 @@ export function DashboardTemplates({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex-1 overflow-y-auto p-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {filteredTemplates.map(template => {
                 const role = roleInfo[template.role];
                 return (
                   <div
                     key={template.id}
-                    className="relative p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 transition-colors"
+                    className="relative p-3 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 transition-colors"
                   >
                     {template.isDefault && (
                       <span className="absolute top-2 right-2 px-2 py-0.5 text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-full">
@@ -347,7 +347,7 @@ export function DashboardTemplates({
                       </span>
                     )}
 
-                    <div className="flex items-start gap-4 mb-4">
+                    <div className="flex items-start gap-2 mb-2">
                       <div className="p-3 bg-white dark:bg-gray-700 rounded-lg text-blue-600 dark:text-blue-400">
                         {template.icon}
                       </div>
@@ -361,7 +361,7 @@ export function DashboardTemplates({
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                    <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                       {role.icon}
                       <span>{role.label}</span>
                       <span className="text-gray-300 dark:text-gray-600">•</span>
@@ -403,7 +403,7 @@ export function DashboardTemplates({
             onClick={() => setPreviewTemplate(null)}
           />
           <div className="fixed inset-8 z-[60] bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">
                   {previewTemplate.name} Preview
@@ -430,14 +430,14 @@ export function DashboardTemplates({
                 </button>
               </div>
             </div>
-            <div className="flex-1 overflow-auto p-6 bg-gray-100 dark:bg-gray-800">
+            <div className="flex-1 overflow-auto p-3 bg-gray-100 dark:bg-gray-800">
               <div className="transform scale-75 origin-top-left">
                 <DashboardLayout
                   config={previewTemplate.config}
                   widgetRenderer={(widget) => (
                     <div className="h-full flex items-center justify-center text-gray-400">
                       <div className="text-center">
-                        <BarChart3 className="w-8 h-8 mx-auto mb-2 opacity-30" />
+                        <BarChart3 className="w-8 h-8 mb-2 opacity-30" />
                         <p className="text-sm">{widget.title}</p>
                         <p className="text-xs opacity-50">{widget.type}</p>
                       </div>

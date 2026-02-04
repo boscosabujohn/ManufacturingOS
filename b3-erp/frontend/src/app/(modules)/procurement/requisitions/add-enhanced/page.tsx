@@ -367,7 +367,7 @@ export default function AddRequisitionEnhancedPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       {/* Draft Recovery */}
       {showDraftBanner && (
         <DraftRecoveryBanner
@@ -378,8 +378,8 @@ export default function AddRequisitionEnhancedPage() {
       )}
 
       {/* Header */}
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Requisitions</span>
         </button>
@@ -399,7 +399,7 @@ export default function AddRequisitionEnhancedPage() {
       </div>
 
       {/* Progress Bar */}
-      <div className="mb-4">
+      <div className="mb-2">
         <FormProgressIndicator completedFields={completionPercentage} totalFields={100} variant="bar" showPercentage label="Form completion" />
       </div>
 
@@ -414,12 +414,12 @@ export default function AddRequisitionEnhancedPage() {
       </div>
 
       {/* Step Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Basic Information */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Basic Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
                 <select
@@ -516,7 +516,7 @@ export default function AddRequisitionEnhancedPage() {
 
         {/* Step 2: Items */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold text-gray-900">Items to Procure</h3>
               <button
@@ -537,7 +537,7 @@ export default function AddRequisitionEnhancedPage() {
 
             {form.items.length === 0 ? (
               <div className="text-center py-12 bg-gray-50 rounded-lg">
-                <Package className="h-12 w-12 text-gray-400 mb-4" />
+                <Package className="h-12 w-12 text-gray-400 mb-2" />
                 <p className="text-gray-600">No items added yet</p>
                 <p className="text-sm text-gray-500">Click "Add Item" to start</p>
               </div>
@@ -588,9 +588,9 @@ export default function AddRequisitionEnhancedPage() {
 
         {/* Step 3: Delivery Details */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Delivery Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Required By Date *</label>
                 <input
@@ -671,9 +671,9 @@ export default function AddRequisitionEnhancedPage() {
 
         {/* Step 4: Budget & Approval */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Budget & Approval</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                   Budget Code *
@@ -747,7 +747,7 @@ export default function AddRequisitionEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <span className="text-blue-900 font-medium">Estimated Total</span>
                 <span className="text-2xl font-bold text-blue-900">{formatCurrency(form.estimatedTotal)}</span>
@@ -758,11 +758,11 @@ export default function AddRequisitionEnhancedPage() {
 
         {/* Step 5: Review */}
         {currentStep === 4 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Review & Submit</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Requisition Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">PR Number:</span><span className="font-medium">{form.prNumber}</span></div>
@@ -772,7 +772,7 @@ export default function AddRequisitionEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Delivery & Budget</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Delivery Date:</span><span className="font-medium">{form.deliveryDate}</span></div>
@@ -783,7 +783,7 @@ export default function AddRequisitionEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-3">
               <h4 className="font-semibold text-gray-900 mb-3">Items ({form.items.length})</h4>
               <div className="space-y-2">
                 {form.items.map((item) => (
@@ -795,7 +795,7 @@ export default function AddRequisitionEnhancedPage() {
               </div>
             </div>
 
-            <div className="flex items-start space-x-3 p-4 border border-gray-200 rounded-lg">
+            <div className="flex items-start space-x-3 p-3 border border-gray-200 rounded-lg">
               <input
                 type="checkbox"
                 checked={form.termsAccepted}
@@ -844,10 +844,10 @@ export default function AddRequisitionEnhancedPage() {
       {/* Add Item Modal */}
       {showItemModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
+          <div className="flex min-h-full items-center justify-center p-3">
             <div className="fixed inset-0 bg-black/50" onClick={() => setShowItemModal(false)} />
-            <div className="relative bg-white rounded-xl shadow-xl w-full max-w-2xl p-6">
-              <div className="flex items-center justify-between mb-6">
+            <div className="relative bg-white rounded-xl shadow-xl w-full max-w-2xl p-3">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-semibold">Add Item</h3>
                 <button onClick={() => setShowItemModal(false)} className="text-gray-400 hover:text-gray-600">
                   <X className="h-5 w-5" />
@@ -855,7 +855,7 @@ export default function AddRequisitionEnhancedPage() {
               </div>
 
               {/* Quick Select from Catalog */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Quick Select from Catalog</label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                   {itemCatalog.map((item) => (
@@ -871,7 +871,7 @@ export default function AddRequisitionEnhancedPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Item Code</label>
                   <input

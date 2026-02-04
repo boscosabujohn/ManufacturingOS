@@ -304,7 +304,7 @@ export default function VendorPerformancePage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -333,8 +333,8 @@ export default function VendorPerformancePage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <Award className="h-8 w-8 text-indigo-500" />
             <span className="text-xs text-green-600 font-medium flex items-center gap-1">
@@ -346,7 +346,7 @@ export default function VendorPerformancePage() {
           <p className="text-sm text-gray-500 mt-1">Avg Performance</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <Truck className="h-8 w-8 text-blue-500" />
             <span className="text-xs text-green-600 font-medium flex items-center gap-1">
@@ -358,7 +358,7 @@ export default function VendorPerformancePage() {
           <p className="text-sm text-gray-500 mt-1">On-Time Delivery</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <Shield className="h-8 w-8 text-green-500" />
             <span className="text-xs text-red-600 font-medium flex items-center gap-1">
@@ -370,7 +370,7 @@ export default function VendorPerformancePage() {
           <p className="text-sm text-gray-500 mt-1">Quality Rate</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="h-8 w-8 text-purple-500" />
           </div>
@@ -378,7 +378,7 @@ export default function VendorPerformancePage() {
           <p className="text-sm text-gray-500 mt-1">Total Spend</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="h-8 w-8 text-red-500" />
           </div>
@@ -386,7 +386,7 @@ export default function VendorPerformancePage() {
           <p className="text-sm text-gray-500 mt-1">High Risk</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="h-8 w-8 text-green-500" />
           </div>
@@ -396,8 +396,8 @@ export default function VendorPerformancePage() {
       </div>
 
       {/* Performance Trend Chart */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Trend</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Trend</h3>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={performanceTrend}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -413,10 +413,10 @@ export default function VendorPerformancePage() {
         </ResponsiveContainer>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Category Performance */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Performance</h3>
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Performance</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={categoryPerformance} layout="horizontal">
               <CartesianGrid strokeDasharray="3 3" />
@@ -436,8 +436,8 @@ export default function VendorPerformancePage() {
         </div>
 
         {/* Delivery Distribution */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Performance</h3>
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Delivery Performance</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -462,41 +462,41 @@ export default function VendorPerformancePage() {
 
       {/* Vendor Scorecard Table */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 bg-gray-50 border-b">
+        <div className="px-3 py-2 bg-gray-50 border-b">
           <h3 className="text-lg font-semibold text-gray-900">Vendor Scorecard</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Vendor
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Overall Score
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Quality
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Delivery
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Price
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Service
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Compliance
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Risk Level
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Trend
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -504,40 +504,40 @@ export default function VendorPerformancePage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {vendorMetrics.map((vendor) => (
                 <tr key={vendor.vendorId} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{vendor.vendorName}</div>
                       <div className="text-xs text-gray-500">{vendor.vendorCode} • {vendor.category}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${getScoreBgColor(vendor.overallScore)}`}>
                       <span className={`text-xl font-bold ${getScoreColor(vendor.overallScore)}`}>
                         {vendor.overallScore}
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getScoreColor(vendor.qualityScore)}`}>
                       {vendor.qualityScore}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getScoreColor(vendor.deliveryScore)}`}>
                       {vendor.deliveryScore}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getScoreColor(vendor.priceScore)}`}>
                       {vendor.priceScore}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getScoreColor(vendor.serviceScore)}`}>
                       {vendor.serviceScore}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className="flex flex-col items-center">
                       <span className={`text-sm font-medium ${getScoreColor(vendor.complianceScore)}`}>
                         {vendor.complianceScore}%
@@ -549,18 +549,18 @@ export default function VendorPerformancePage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getRiskColor(vendor.riskLevel)}`}>
                       {vendor.riskLevel}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className="flex items-center justify-center gap-1">
                       {getTrendIcon(vendor.trend)}
                       <span className="text-xs text-gray-500">{vendor.trend}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <button className="text-blue-600 hover:text-blue-800">
                       <BarChart3 className="h-4 w-4" />
                     </button>
@@ -572,10 +572,10 @@ export default function VendorPerformancePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Top Performers */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <ThumbsUp className="h-5 w-5 text-green-500" />
             Top Performers
           </h3>
@@ -601,8 +601,8 @@ export default function VendorPerformancePage() {
         </div>
 
         {/* Bottom Performers */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <ThumbsDown className="h-5 w-5 text-red-500" />
             Needs Improvement
           </h3>
@@ -629,8 +629,8 @@ export default function VendorPerformancePage() {
       </div>
 
       {/* Quality Metrics */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quality Metrics Analysis</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Metrics Analysis</h3>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={qualityMetrics}>
             <CartesianGrid strokeDasharray="3 3" />

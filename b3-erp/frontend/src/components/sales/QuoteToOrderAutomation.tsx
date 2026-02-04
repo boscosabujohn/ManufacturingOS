@@ -386,9 +386,9 @@ export default function QuoteToOrderAutomation() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -459,8 +459,8 @@ export default function QuoteToOrderAutomation() {
       {viewMode === 'quotes' && (
         <>
           {/* Filter */}
-          <div className="bg-white shadow-md p-4">
-            <div className="flex items-center gap-4">
+          <div className="bg-white shadow-md p-3">
+            <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-gray-700">Filter by Status:</label>
               <select
                 value={filterStatus}
@@ -489,11 +489,11 @@ export default function QuoteToOrderAutomation() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {filteredQuotes.map((quote) => (
                   <div key={quote.id} className="p-5 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     {/* Quote Header */}
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div>
                         <h4 className="text-lg font-bold text-gray-900">{quote.quoteNumber}</h4>
                         <p className="text-sm text-gray-600 mt-1">{quote.customer}</p>
@@ -512,7 +512,7 @@ export default function QuoteToOrderAutomation() {
                     </div>
 
                     {/* Quote Details */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                       <div className="p-3 bg-blue-50 rounded-lg">
                         <p className="text-xs text-blue-600 font-medium">Total Amount</p>
                         <p className="text-lg font-bold text-blue-900">{formatCurrency(quote.totalAmount)}</p>
@@ -532,7 +532,7 @@ export default function QuoteToOrderAutomation() {
                     </div>
 
                     {/* Items */}
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Quote Items:</p>
                       <div className="space-y-2">
                         {quote.items.map((item, idx) => (
@@ -733,7 +733,7 @@ export default function QuoteToOrderAutomation() {
           </div>
 
           <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-sm text-blue-600 font-medium">Total Quotes</p>
                 <p className="text-3xl font-bold text-blue-900 mt-2">{conversionMetrics.totalQuotes}</p>
@@ -752,7 +752,7 @@ export default function QuoteToOrderAutomation() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="p-5 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200">
                 <div className="flex items-center justify-between mb-3">
                   <div>

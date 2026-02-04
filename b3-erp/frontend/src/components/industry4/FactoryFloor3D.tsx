@@ -390,7 +390,7 @@ export function FactoryFloor3D({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-slate-700 to-slate-900 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-slate-700 to-slate-900 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -403,7 +403,7 @@ export function FactoryFloor3D({
           </div>
 
           {/* Status Summary */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             {(Object.entries(statusCounts) as [MachineStatus, number][]).map(([status, count]) => (
               <div key={status} className="flex items-center gap-1.5">
                 <div
@@ -574,8 +574,8 @@ export function FactoryFloor3D({
       </div>
 
       {/* Legend */}
-      <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-700">
-        <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+      <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
           {(Object.entries(statusColors) as [MachineStatus, typeof statusColors.running][]).map(([status, colors]) => (
             <div key={status} className="flex items-center gap-2">
               <div

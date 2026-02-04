@@ -152,8 +152,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Shield className="h-6 w-6 text-red-600" />
           POSH Compliance (Sexual Harassment Act 2013)
@@ -161,8 +161,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Prevention of Sexual Harassment at Workplace - Internal Complaints Committee</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-red-600 uppercase tracking-wide">Total Complaints</p>
@@ -172,7 +172,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-yellow-600 uppercase tracking-wide">Under Investigation</p>
@@ -182,7 +182,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Resolved</p>
@@ -192,7 +192,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">ICC Members</p>
@@ -203,15 +203,15 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-6 mb-6">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <Shield className="h-6 w-6 text-purple-600" />
           <h2 className="text-lg font-bold text-purple-900">Internal Complaints Committee (ICC)</h2>
         </div>
-        <p className="text-sm text-purple-700 mb-4">As per POSH Act 2013, the committee comprises of at least 50% women members including an external member from NGO</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <p className="text-sm text-purple-700 mb-2">As per POSH Act 2013, the committee comprises of at least 50% women members including an external member from NGO</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {icMembers.map((member, index) => (
-            <div key={index} className="bg-white rounded-lg p-4 border border-purple-200">
+            <div key={index} className="bg-white rounded-lg p-3 border border-purple-200">
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <p className="text-sm font-bold text-gray-900">{member.name}</p>
@@ -232,14 +232,14 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <FileText className="h-5 w-5 text-red-600" />
             <h2 className="text-lg font-bold text-gray-900">Complaints Overview</h2>
           </div>
-          <div className="space-y-4">
-            <div className="bg-gray-50 rounded-lg p-4">
+          <div className="space-y-2">
+            <div className="bg-gray-50 rounded-lg p-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status</label>
               <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
                 <option value="all">All Status</option>
@@ -250,13 +250,13 @@ export default function Page() {
                 <option value="closed">Closed</option>
               </select>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <p className="text-xs text-red-600 uppercase font-medium mb-1">Avg Resolution Time</p>
                 <p className="text-2xl font-bold text-red-900">62 days</p>
                 <p className="text-xs text-red-700 mt-1">Target: &lt;90 days</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <p className="text-xs text-green-600 uppercase font-medium mb-1">Compliance Rate</p>
                 <p className="text-2xl font-bold text-green-900">{stats.complianceRate}%</p>
                 <p className="text-xs text-green-700 mt-1">All statutory requirements met</p>
@@ -265,13 +265,13 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Calendar className="h-5 w-5 text-blue-600" />
             <h2 className="text-lg font-bold text-gray-900">Awareness Training (2025)</h2>
           </div>
           <div className="space-y-3">
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
               <p className="text-xs text-blue-600 uppercase font-medium mb-1">Total Employees Trained</p>
               <p className="text-3xl font-bold text-blue-900">{stats.trainingAttendees2025}</p>
               <p className="text-xs text-blue-700 mt-1">Across {trainingData.filter(t => t.date.startsWith('2025')).length} sessions</p>
@@ -293,17 +293,17 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-bold text-gray-900">Complaint Cases (Confidential)</h2>
           <span className="px-3 py-1 text-xs font-medium rounded bg-red-100 text-red-700">
             STRICTLY CONFIDENTIAL
           </span>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredComplaints.map((complaint) => (
-            <div key={complaint.id} className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={complaint.id} className="bg-gray-50 rounded-lg border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{complaint.complaintNumber}</h3>
@@ -323,7 +323,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                 <div className="bg-white rounded-lg p-3 border border-gray-200">
                   <p className="text-xs text-gray-600 uppercase font-medium mb-1">Filed Date</p>
                   <p className="text-sm font-bold text-gray-900">
@@ -344,7 +344,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
                 <p className="text-xs text-red-600 uppercase font-medium mb-2">Details (Redacted for Privacy)</p>
                 <div className="space-y-2 text-sm text-red-900">
                   <p><span className="font-medium">Complainant:</span> {complaint.complainantDetails}</p>
@@ -355,7 +355,7 @@ export default function Page() {
               </div>
 
               {complaint.actionTaken && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
                   <p className="text-xs text-green-600 uppercase font-medium mb-1">Action Taken</p>
                   <p className="text-sm text-green-900">{complaint.actionTaken}</p>
                   {complaint.actualCompletionDate && (
@@ -367,7 +367,7 @@ export default function Page() {
               )}
 
               {complaint.remarks && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-2">
                   <p className="text-xs text-yellow-600 uppercase font-medium mb-1">Remarks</p>
                   <p className="text-sm text-yellow-900">{complaint.remarks}</p>
                 </div>
@@ -389,34 +389,34 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-6">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
+        <div className="flex items-center gap-2 mb-2">
           <AlertCircle className="h-6 w-6 text-red-600" />
           <h2 className="text-lg font-bold text-red-900">Annual Compliance Checklist (POSH Act 2013)</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg p-4 flex items-start gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-white rounded-lg p-3 flex items-start gap-3">
             <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-sm font-bold text-gray-900">ICC Constitution</p>
               <p className="text-xs text-gray-600 mt-1">Committee formed with 50%+ women members and external NGO representative</p>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 flex items-start gap-3">
+          <div className="bg-white rounded-lg p-3 flex items-start gap-3">
             <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-sm font-bold text-gray-900">Policy Display</p>
               <p className="text-xs text-gray-600 mt-1">POSH policy displayed at all workplace locations and on intranet</p>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 flex items-start gap-3">
+          <div className="bg-white rounded-lg p-3 flex items-start gap-3">
             <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-sm font-bold text-gray-900">Annual Training</p>
               <p className="text-xs text-gray-600 mt-1">Mandatory awareness programs conducted for all employees</p>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 flex items-start gap-3">
+          <div className="bg-white rounded-lg p-3 flex items-start gap-3">
             <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-sm font-bold text-gray-900">Annual Report</p>

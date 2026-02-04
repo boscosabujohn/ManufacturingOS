@@ -153,10 +153,10 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Calculator className="h-6 w-6" />
             <div>
@@ -169,14 +169,14 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Current Cost Summary */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-orange-600" />
               Current Cost Summary
             </h3>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-600 font-medium mb-1">Material Cost</p>
                 <p className="text-xl font-bold text-blue-900">{formatCurrency(currentCosts.material)}</p>
@@ -198,8 +198,8 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
 
           {/* Recalculation Options */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recalculation Options</h3>
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Recalculation Options</h3>
+            <div className="space-y-3 bg-gray-50 p-3 rounded-lg border border-gray-200">
               <label className="flex items-start gap-3 cursor-pointer group">
                 <input
                   type="checkbox"
@@ -265,7 +265,7 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
           {/* Preview Changes Section */}
           {updateSupplierPrices && (
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                   <RefreshCw className="h-5 w-5 text-orange-600" />
                   Preview Changes
@@ -280,7 +280,7 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
 
               {/* Components that will be updated */}
               {showPreview && (
-                <div className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden mb-4">
+                <div className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden mb-2">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-gray-100 border-b border-gray-200">
@@ -326,11 +326,11 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
               )}
 
               {/* Total Cost Impact */}
-              <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-200 rounded-lg p-4">
+              <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-2 border-orange-200 rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-700 mb-1">Total Material Cost Impact</p>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div className="text-sm text-gray-600">
                         <span className="font-semibold">Old Total:</span> {formatCurrency(previewTotalOldCost)}
                       </div>
@@ -361,11 +361,11 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
 
           {/* New Total Cost Summary */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-orange-600" />
               Projected New Costs
             </h3>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               <div className={`p-4 rounded-lg border-2 ${
                 updateSupplierPrices
                   ? 'bg-blue-50 border-blue-300'
@@ -431,7 +431,7 @@ export const RecalculateCostsModal: React.FC<RecalculateCostsModalProps> = ({
 
           {/* Warning Message */}
           {showWarning && (
-            <div className="bg-red-50 border-2 border-red-300 rounded-lg p-4 flex items-start gap-3">
+            <div className="bg-red-50 border-2 border-red-300 rounded-lg p-3 flex items-start gap-3">
               <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
                 <h4 className="text-sm font-bold text-red-900 mb-1">Significant Cost Increase Detected</h4>

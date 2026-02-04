@@ -154,7 +154,7 @@ export default function SLASettings() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -184,7 +184,7 @@ export default function SLASettings() {
           <nav className="flex">
             <button
               onClick={() => setActiveTab('sla-config')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'sla-config'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -197,7 +197,7 @@ export default function SLASettings() {
             </button>
             <button
               onClick={() => setActiveTab('business-hours')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'business-hours'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -210,7 +210,7 @@ export default function SLASettings() {
             </button>
             <button
               onClick={() => setActiveTab('escalation')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'escalation'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -223,7 +223,7 @@ export default function SLASettings() {
             </button>
             <button
               onClick={() => setActiveTab('notifications')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'notifications'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -239,7 +239,7 @@ export default function SLASettings() {
 
         {/* SLA Configuration Tab */}
         {activeTab === 'sla-config' && (
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-900">Priority-based SLA Targets</h2>
               <button className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
@@ -248,10 +248,10 @@ export default function SLASettings() {
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {slaConfigs.map((config) => (
-                <div key={config.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={config.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <span className={`px-3 py-1 rounded text-sm font-medium ${getPriorityColor(config.priority)}`}>
                         {config.priority}
@@ -266,7 +266,7 @@ export default function SLASettings() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {/* Response Time */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -364,7 +364,7 @@ export default function SLASettings() {
 
                   {/* Options */}
                   <div className="mt-4 pt-4 border-t border-gray-300">
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-2">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
@@ -399,7 +399,7 @@ export default function SLASettings() {
 
         {/* Business Hours Tab */}
         {activeTab === 'business-hours' && (
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-1">Business Hours Configuration</h2>
               <p className="text-sm text-gray-600">Define working hours for SLA calculations when business hours mode is enabled</p>
@@ -407,8 +407,8 @@ export default function SLASettings() {
 
             <div className="space-y-3">
               {businessHours.map((day) => (
-                <div key={day.day} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center gap-4">
+                <div key={day.day} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center gap-2">
                     <label className="flex items-center gap-2 cursor-pointer w-32">
                       <input
                         type="checkbox"
@@ -454,7 +454,7 @@ export default function SLASettings() {
               ))}
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex gap-3">
                 <SettingsIcon className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
@@ -468,7 +468,7 @@ export default function SLASettings() {
 
         {/* Escalation Rules Tab */}
         {activeTab === 'escalation' && (
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             <div className="flex justify-between items-center">
               <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-1">Escalation Rules</h2>
@@ -480,10 +480,10 @@ export default function SLASettings() {
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {escalationRules.map((rule) => (
-                <div key={rule.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={rule.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded text-sm font-medium">
                         Level {rule.level}
@@ -503,7 +503,7 @@ export default function SLASettings() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Time Threshold
@@ -562,16 +562,16 @@ export default function SLASettings() {
 
         {/* Notifications Tab */}
         {activeTab === 'notifications' && (
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-1">Notification Preferences</h2>
               <p className="text-sm text-gray-600">Configure when and how stakeholders are notified about SLA events</p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* SLA Breach Notifications */}
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">SLA Breach Notifications</h3>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2">SLA Breach Notifications</h3>
                 <div className="space-y-3">
                   <label className="flex items-center justify-between cursor-pointer">
                     <span className="text-sm text-gray-700">Notify assignee on breach</span>
@@ -589,8 +589,8 @@ export default function SLASettings() {
               </div>
 
               {/* Warning Notifications */}
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">Warning Notifications (Before Breach)</h3>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2">Warning Notifications (Before Breach)</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-700">Send warning at</span>
@@ -607,8 +607,8 @@ export default function SLASettings() {
               </div>
 
               {/* Daily Digest */}
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">Daily SLA Digest</h3>
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2">Daily SLA Digest</h3>
                 <div className="space-y-3">
                   <label className="flex items-center justify-between cursor-pointer">
                     <span className="text-sm text-gray-700">Send daily SLA summary</span>

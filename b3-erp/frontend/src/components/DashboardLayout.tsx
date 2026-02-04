@@ -35,8 +35,8 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
       <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-20'} overflow-hidden`}>
         {/* Header */}
         <header className="bg-gradient-to-r from-white via-white to-brand-blue/5 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40 shadow-sm flex-shrink-0">
-          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-12 gap-4">
+          <div className="w-full px-3">
+            <div className="flex justify-between items-center h-12 gap-2">
               {/* Logo and Menu Toggle */}
               <div className="flex items-center space-x-4 flex-shrink-0">
                 <button
@@ -130,8 +130,8 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
 
         {/* Footer */}
         <footer className="bg-white border-t border-gray-200 flex-shrink-0">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="w-full px-3 py-3">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
               <div className="text-center md:text-left">
                 <p className="text-sm font-semibold text-gray-700 mb-1">
                   OptiForge - Solution to manufacturers

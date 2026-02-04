@@ -67,9 +67,9 @@ export default function CreateWorkflowTemplatePage() {
     return (
         <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50 text-sm font-medium">
             {/* Header */}
-            <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
+            <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                         <button
                             onClick={() => router.back()}
                             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -108,8 +108,8 @@ export default function CreateWorkflowTemplatePage() {
 
             <div className="flex-1 overflow-hidden flex">
                 {/* Left Side: Configuration */}
-                <div className="w-1/3 border-r border-gray-200 bg-white overflow-y-auto p-6 space-y-6">
-                    <div className="space-y-4">
+                <div className="w-1/3 border-r border-gray-200 bg-white overflow-y-auto p-3 space-y-3">
+                    <div className="space-y-2">
                         <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
                             <FileText className="w-4 h-4 text-orange-600" /> Basic Details
                         </h3>
@@ -134,7 +134,7 @@ export default function CreateWorkflowTemplatePage() {
                                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                 />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-2">
                                 <div>
                                     <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Category</label>
                                     <select
@@ -172,7 +172,7 @@ export default function CreateWorkflowTemplatePage() {
                     </div>
 
                     <div className="pt-6 border-t border-gray-100">
-                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                             <Plus className="w-4 h-4 text-orange-600" /> Add Workflow Steps
                         </h3>
                         <div className="grid grid-cols-2 gap-3">
@@ -254,7 +254,7 @@ export default function CreateWorkflowTemplatePage() {
                                                 </button>
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-4">
+                                            <div className="grid grid-cols-2 gap-2">
                                                 <div>
                                                     <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Description</label>
                                                     <input

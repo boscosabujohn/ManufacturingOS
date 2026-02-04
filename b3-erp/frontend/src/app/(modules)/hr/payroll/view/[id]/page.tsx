@@ -169,11 +169,11 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -204,8 +204,8 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Wallet className="w-8 h-8 opacity-80" />
             </div>
@@ -213,7 +213,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
             <div className="text-blue-100 text-sm mt-1">Gross Salary</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
             </div>
@@ -221,7 +221,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
             <div className="text-red-100 text-sm mt-1">Total Deductions</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Banknote className="w-8 h-8 opacity-80" />
             </div>
@@ -229,7 +229,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
             <div className="text-green-100 text-sm mt-1">Net Salary</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Clock className="w-8 h-8 opacity-80" />
             </div>
@@ -237,7 +237,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
             <div className="text-purple-100 text-sm mt-1">Days Worked</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Calendar className="w-8 h-8 opacity-80" />
             </div>
@@ -247,7 +247,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Status Banner */}
-        <div className={`px-4 py-3 rounded-lg border mb-6 ${getStatusColor(payroll.status)}`}>
+        <div className={`px-4 py-3 rounded-lg border mb-3 ${getStatusColor(payroll.status)}`}>
           <div className="flex items-center gap-2">
             {payroll.status === 'paid' && <CheckCircle2 className="w-5 h-5" />}
             {payroll.status === 'cancelled' && <XCircle className="w-5 h-5" />}
@@ -263,7 +263,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -322,14 +322,14 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
           <div className="p-6">
             {/* Overview Tab */}
             {activeTab === 'overview' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Employee Information */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-blue-600" />
                     Employee Information
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="text-sm text-gray-600">Employee ID</label>
                       <p className="font-semibold text-gray-900">{payroll.employeeId}</p>
@@ -371,11 +371,11 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
                 {/* Payroll Details */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Receipt className="w-5 h-5 text-blue-600" />
                     Payroll Details
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="text-sm text-gray-600">Pay Period</label>
                       <p className="font-semibold text-gray-900">{payroll.payPeriod}</p>
@@ -409,11 +409,11 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
                 {/* Bank Details */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <CreditCard className="w-5 h-5 text-blue-600" />
                     Bank Details
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="text-sm text-gray-600">Bank Name</label>
                       <p className="font-semibold text-gray-900">{payroll.bankName}</p>
@@ -440,7 +440,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                 {/* Remarks */}
                 {payroll.remarks && (
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                       <FileText className="w-5 h-5 text-blue-600" />
                       Remarks
                     </h3>
@@ -452,10 +452,10 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
             {/* Salary Breakdown Tab */}
             {activeTab === 'breakdown' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Earnings */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-green-600" />
                     Earnings
                   </h3>
@@ -502,7 +502,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                         ₹{payroll.otherAllowances.toLocaleString('en-IN')}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-lg">
+                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-lg">
                       <span className="font-semibold text-green-900">Total Earnings</span>
                       <span className="font-bold text-green-900 text-lg">
                         ₹{payroll.grossSalary.toLocaleString('en-IN')}
@@ -513,7 +513,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
                 {/* Deductions */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <TrendingDown className="w-5 h-5 text-red-600" />
                     Deductions
                   </h3>
@@ -554,7 +554,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                         ₹{payroll.otherDeductions.toLocaleString('en-IN')}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-lg">
+                    <div className="flex justify-between items-center p-3 bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-lg">
                       <span className="font-semibold text-red-900">Total Deductions</span>
                       <span className="font-bold text-red-900 text-lg">
                         ₹{payroll.totalDeductions.toLocaleString('en-IN')}
@@ -578,8 +578,8 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
             {/* Attendance Tab */}
             {activeTab === 'attendance' && (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl border border-blue-200">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-blue-700 font-medium">Total Working Days</span>
@@ -641,11 +641,11 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
             {/* Activity Tab */}
             {activeTab === 'activity' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {activities.map((activity, index) => (
                   <div
                     key={activity.id}
-                    className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200"
+                    className="flex gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200"
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -670,25 +670,25 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
             {/* Tax & Analytics Tab */}
             {activeTab === 'analytics' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Tax Optimization & Salary Analytics</h3>
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Tax Optimization & Salary Analytics</h3>
 
                 {/* Tax Breakdown Chart */}
                 <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <DollarSign className="w-5 h-5 text-purple-600" />
                     Tax Breakdown & Optimization
                   </h4>
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="text-center p-4 bg-white rounded-lg">
+                  <div className="grid grid-cols-3 gap-2 mb-3">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-purple-600 mb-1">₹{payroll.incomeTax.toLocaleString('en-IN')}</div>
                       <div className="text-sm text-gray-600">Income Tax (TDS)</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-blue-600 mb-1">₹{payroll.providentFund.toLocaleString('en-IN')}</div>
                       <div className="text-sm text-gray-600">Provident Fund</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg">
+                    <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-3xl font-bold text-green-600 mb-1">₹{(payroll.incomeTax * 0.15).toFixed(0)}</div>
                       <div className="text-sm text-gray-600">Potential Savings</div>
                     </div>
@@ -723,11 +723,11 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
                 {/* Salary Comparison Analytics */}
                 <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-blue-600" />
                     Salary Comparison & Market Benchmarking
                   </h4>
-                  <div className="grid grid-cols-2 gap-6 mb-6">
+                  <div className="grid grid-cols-2 gap-3 mb-3">
                     <div className="p-4 bg-white rounded-lg">
                       <div className="text-sm text-gray-600 mb-2">Your Annual CTC</div>
                       <div className="text-3xl font-bold text-blue-600 mb-1">₹{(payroll.grossSalary * 12).toLocaleString('en-IN')}</div>
@@ -741,7 +741,7 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                   </div>
 
                   {/* Percentile Ranking */}
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm text-gray-700 font-medium">Salary Percentile</span>
                       <span className="text-lg font-bold text-blue-600">78th percentile</span>
@@ -752,16 +752,16 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                   </div>
 
                   {/* YoY Growth */}
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-white rounded-lg border border-green-200">
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="text-center p-3 bg-white rounded-lg border border-green-200">
                       <div className="text-2xl font-bold text-green-600 mb-1">+12%</div>
                       <div className="text-xs text-gray-600">YoY Growth</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
+                    <div className="text-center p-3 bg-white rounded-lg border border-blue-200">
                       <div className="text-2xl font-bold text-blue-600 mb-1">₹{(payroll.grossSalary * 0.12).toFixed(0)}</div>
                       <div className="text-xs text-gray-600">Increment</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
+                    <div className="text-center p-3 bg-white rounded-lg border border-purple-200">
                       <div className="text-2xl font-bold text-purple-600 mb-1">Oct 2024</div>
                       <div className="text-xs text-gray-600">Last Revision</div>
                     </div>
@@ -770,11 +770,11 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
 
                 {/* Payslip Generator */}
                 <div className="p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Receipt className="w-5 h-5 text-indigo-600" />
                     Payslip & Documents
                   </h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <button className="p-4 bg-white rounded-lg border border-indigo-200 hover:border-indigo-400 hover:shadow-md transition-all text-left">
                       <div className="flex items-center gap-3 mb-2">
                         <Download className="w-5 h-5 text-indigo-600" />

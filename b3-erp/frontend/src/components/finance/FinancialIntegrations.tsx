@@ -253,9 +253,9 @@ const FinancialIntegrations = () => {
   ];
 
   const renderOverviewTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-green-50 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-green-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Integrations</p>
@@ -267,7 +267,7 @@ const FinancialIntegrations = () => {
             <Link2 className="h-8 w-8 text-green-500" />
           </div>
         </div>
-        <div className="bg-blue-50 rounded-lg p-4">
+        <div className="bg-blue-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Data Synced Today</p>
@@ -277,7 +277,7 @@ const FinancialIntegrations = () => {
             <Database className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
+        <div className="bg-yellow-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">API Calls</p>
@@ -287,7 +287,7 @@ const FinancialIntegrations = () => {
             <Activity className="h-8 w-8 text-yellow-600" />
           </div>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Success Rate</p>
@@ -299,9 +299,9 @@ const FinancialIntegrations = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Sync Activity</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Sync Activity</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={syncMetrics}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -315,8 +315,8 @@ const FinancialIntegrations = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Data Volume by Integration</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Data Volume by Integration</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={dataVolumeByIntegration}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -331,14 +331,14 @@ const FinancialIntegrations = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Integration Status</h3>
           <button className="text-blue-600 hover:text-blue-800 text-sm">View All</button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {integrations.slice(0, 6).map(integration => (
-            <div key={integration.id} className="border rounded-lg p-4">
+            <div key={integration.id} className="border rounded-lg p-3">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center">
                   <div className={`w-3 h-3 rounded-full mr-2 ${
@@ -407,9 +407,9 @@ const FinancialIntegrations = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Recent Sync Jobs</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Recent Sync Jobs</h3>
           <div className="space-y-3">
             {syncJobs.slice(0, 5).map(job => {
               const integration = integrations.find(i => i.id === job.integrationId);
@@ -435,8 +435,8 @@ const FinancialIntegrations = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">API Performance</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">API Performance</h3>
           <div className="space-y-3">
             {apiPerformance.map(api => (
               <div key={api.endpoint} className="p-3 bg-gray-50 rounded">
@@ -450,7 +450,7 @@ const FinancialIntegrations = () => {
                     {api.availability}% uptime
                   </span>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-xs">
+                <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
                     <span className="text-gray-600">Avg Response:</span>
                     <span className="ml-1 font-semibold">{api.avgResponse}ms</span>
@@ -469,9 +469,9 @@ const FinancialIntegrations = () => {
   );
 
   const renderIntegrationsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Integration Configurations</h3>
           <div className="flex space-x-2">
             <select
@@ -578,15 +578,15 @@ const FinancialIntegrations = () => {
       </div>
 
       {selectedIntegration && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">{selectedIntegration.name} - Configuration</h3>
             <button onClick={() => setSelectedIntegration(null)}>
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <h4 className="font-medium mb-3">Connection Details</h4>
               <div className="space-y-2 text-sm">
@@ -672,9 +672,9 @@ const FinancialIntegrations = () => {
   );
 
   const renderDataMappingTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Data Field Mappings</h3>
           <button
             onClick={() => setShowMappingModal(true)}
@@ -746,9 +746,9 @@ const FinancialIntegrations = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Transformation Rules</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Transformation Rules</h3>
           <div className="space-y-3">
             {[
               { name: 'Currency Conversion', description: 'Convert currency values to USD', count: 12 },
@@ -772,8 +772,8 @@ const FinancialIntegrations = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Validation Rules</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Validation Rules</h3>
           <div className="space-y-3">
             {[
               { field: 'Email', rule: 'Valid email format', status: 'active' },
@@ -801,10 +801,10 @@ const FinancialIntegrations = () => {
   );
 
   const renderMonitoringTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">System Health</h3>
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">System Health</h3>
           <div className="space-y-3">
             {integrations.map(integration => (
               <div key={integration.id} className="flex items-center justify-between">
@@ -826,8 +826,8 @@ const FinancialIntegrations = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Sync Performance</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Sync Performance</h3>
           <ResponsiveContainer width="100%" height={200}>
             <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={[
               { name: 'Success', value: 98.5, fill: '#10B981' },
@@ -845,8 +845,8 @@ const FinancialIntegrations = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Active Webhooks</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Active Webhooks</h3>
           <div className="space-y-3">
             {webhookConfigs.map(webhook => (
               <div key={webhook.id} className="p-3 bg-gray-50 rounded">
@@ -867,8 +867,8 @@ const FinancialIntegrations = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Integration Logs</h3>
           <div className="flex space-x-2">
             <select className="border rounded px-3 py-2 text-sm">
@@ -922,9 +922,9 @@ const FinancialIntegrations = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Data Transfer Queue</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Data Transfer Queue</h3>
           <div className="space-y-3">
             {[
               { entity: 'Invoices', direction: 'import', count: 250, status: 'processing' },
@@ -956,8 +956,8 @@ const FinancialIntegrations = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Error Summary</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Error Summary</h3>
           <div className="space-y-3">
             {[
               { error: 'Authentication Failed', count: 3, severity: 'critical' },
@@ -985,13 +985,13 @@ const FinancialIntegrations = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Financial Integrations</h2>
         <p className="text-gray-600">Manage external system integrations, data mappings, and API connections</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['overview', 'integrations', 'data-mapping', 'monitoring'].map((tab) => (
@@ -1020,15 +1020,15 @@ const FinancialIntegrations = () => {
 
       {showConfigModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Configure Integration</h3>
               <button onClick={() => setShowConfigModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Integration Name</label>
                   <input type="text" className="w-full border rounded px-3 py-2" />
@@ -1059,7 +1059,7 @@ const FinancialIntegrations = () => {
                 <label className="block text-sm font-medium mb-1">Endpoint URL</label>
                 <input type="text" className="w-full border rounded px-3 py-2" placeholder="https://api.example.com/v1" />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Authentication</label>
                   <select className="w-full border rounded px-3 py-2">
@@ -1098,15 +1098,15 @@ const FinancialIntegrations = () => {
 
       {showMappingModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Create Field Mapping</h3>
               <button onClick={() => setShowMappingModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Source System</label>
                   <select className="w-full border rounded px-3 py-2">
@@ -1120,7 +1120,7 @@ const FinancialIntegrations = () => {
                   <input type="text" className="w-full border rounded px-3 py-2" />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Target Field</label>
                   <input type="text" className="w-full border rounded px-3 py-2" />
@@ -1174,14 +1174,14 @@ const FinancialIntegrations = () => {
 
       {showTestModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Test Integration Connection</h3>
               <button onClick={() => setShowTestModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm">
+            <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
               <div>$ testing connection to api.example.com...</div>
               <div className="mt-2">✓ Connection established</div>
               <div>✓ Authentication successful</div>

@@ -326,16 +326,16 @@ export default function BonusSchemesPage() {
   }
 
   return (
-    <div className="p-6 w-full mx-auto">
+    <div className="p-6 w-full">
 
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bonus Schemes</h1>
         <p className="text-gray-600">Manage bonus and incentive schemes for employees</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600 mb-1">Total Schemes</p>
@@ -347,7 +347,7 @@ export default function BonusSchemesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600 mb-1">Active</p>
@@ -359,7 +359,7 @@ export default function BonusSchemesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600 mb-1">Inactive</p>
@@ -371,7 +371,7 @@ export default function BonusSchemesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow p-6 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600 mb-1">Draft</p>
@@ -385,8 +385,8 @@ export default function BonusSchemesPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow mb-6 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow mb-3 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <input
@@ -440,12 +440,12 @@ export default function BonusSchemesPage() {
       </div>
 
       {/* Schemes List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredSchemes.map((scheme) => (
           <div key={scheme.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{scheme.schemeName}</h3>
@@ -457,7 +457,7 @@ export default function BonusSchemesPage() {
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{scheme.description}</p>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <FileText className="h-4 w-4" />
                       {scheme.id}
@@ -502,9 +502,9 @@ export default function BonusSchemesPage() {
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
                 {/* Eligibility */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <h4 className="text-xs font-semibold text-blue-900 mb-3 flex items-center gap-1">
                     <Users className="h-3 w-3" />
                     Eligibility
@@ -513,7 +513,7 @@ export default function BonusSchemesPage() {
                 </div>
 
                 {/* Calculation */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <h4 className="text-xs font-semibold text-purple-900 mb-3 flex items-center gap-1">
                     <DollarSign className="h-3 w-3" />
                     Calculation
@@ -528,7 +528,7 @@ export default function BonusSchemesPage() {
                 </div>
 
                 {/* Limits */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <h4 className="text-xs font-semibold text-green-900 mb-3 flex items-center gap-1">
                     <TrendingUp className="h-3 w-3" />
                     Limits
@@ -547,7 +547,7 @@ export default function BonusSchemesPage() {
                 </div>
 
                 {/* Validity */}
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
                   <h4 className="text-xs font-semibold text-yellow-900 mb-3 flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     Validity
@@ -564,7 +564,7 @@ export default function BonusSchemesPage() {
               </div>
 
               {/* Terms & Conditions */}
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
                 <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-1">
                   <FileText className="h-4 w-4" />
                   Terms & Conditions
@@ -591,12 +591,12 @@ export default function BonusSchemesPage() {
       </div>
 
       {/* Guidelines */}
-      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 border border-blue-200">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-3 border border-blue-200">
+        <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <Award className="h-5 w-5 text-blue-600" />
           Bonus Scheme Management Guidelines
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Scheme Types</h3>
             <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">

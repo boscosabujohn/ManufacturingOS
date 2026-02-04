@@ -146,14 +146,14 @@ export default function ESIReportPage() {
   }, [filteredRecords]);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">ESI Report</h1>
         <p className="text-sm text-gray-600 mt-1">Employee State Insurance contribution report</p>
       </div>
 
-      <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-lg shadow-sm border border-red-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-lg shadow-sm border border-red-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">November 2025</h2>
             <p className="text-sm text-gray-600 mt-1">ESI Contribution for the Month</p>
@@ -171,8 +171,8 @@ export default function ESIReportPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -182,7 +182,7 @@ export default function ESIReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">ESI Wages</p>
@@ -192,7 +192,7 @@ export default function ESIReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employee ESI (0.75%)</p>
@@ -202,7 +202,7 @@ export default function ESIReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employer ESI (3.0%)</p>
@@ -212,7 +212,7 @@ export default function ESIReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total ESI (3.75%)</p>
@@ -224,8 +224,8 @@ export default function ESIReportPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -256,10 +256,10 @@ export default function ESIReportPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map(record => (
-          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{record.employeeName}</h3>
@@ -285,8 +285,8 @@ export default function ESIReportPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">Wage Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -309,7 +309,7 @@ export default function ESIReportPage() {
                 </div>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="text-xs font-semibold text-orange-900 mb-3">Employee Contribution</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -332,7 +332,7 @@ export default function ESIReportPage() {
                 </div>
               </div>
 
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <h4 className="text-xs font-semibold text-red-900 mb-3">Employer Contribution</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -355,7 +355,7 @@ export default function ESIReportPage() {
                 </div>
               </div>
 
-              <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+              <div className="bg-pink-50 rounded-lg p-3 border border-pink-200">
                 <h4 className="text-xs font-semibold text-pink-900 mb-3">Total ESI</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -382,7 +382,7 @@ export default function ESIReportPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-red-900 mb-2">ESI Contribution Guidelines</h3>
         <ul className="text-sm text-red-800 space-y-1">
           <li>• <strong>Applicability:</strong> Employees earning ₹21,000 or less per month</li>

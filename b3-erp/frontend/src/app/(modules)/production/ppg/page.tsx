@@ -238,11 +238,11 @@ export default function PPGPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Active Plans</p>
@@ -252,7 +252,7 @@ export default function PPGPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Capacity Used</p>
@@ -262,7 +262,7 @@ export default function PPGPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Materials Ready</p>
@@ -272,7 +272,7 @@ export default function PPGPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">On Schedule</p>
@@ -293,7 +293,7 @@ export default function PPGPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -331,20 +331,20 @@ export default function PPGPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Plan Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product Line</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Schedule</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Capacity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Materials</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Work Orders</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Plan Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product Line</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Schedule</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Capacity</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Materials</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Work Orders</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {paginatedPlans.map((plan) => (
                 <tr key={plan.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-start space-x-3">
                       <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <Factory className="h-5 w-5 text-white" />
@@ -356,11 +356,11 @@ export default function PPGPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{plan.productLine}</div>
                     <div className="text-sm text-gray-500">{plan.shiftPlan}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="space-y-1">
                       <div className="flex items-center text-xs text-gray-600">
                         <Calendar className="h-3 w-3 mr-1" />
@@ -376,7 +376,7 @@ export default function PPGPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="w-full">
                       <div className="flex items-center justify-between text-xs mb-1">
                         <span className="font-semibold text-gray-700">
@@ -394,7 +394,7 @@ export default function PPGPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <Package className="h-4 w-4 text-gray-400" />
                       <span className="text-sm font-semibold text-gray-900">
@@ -405,7 +405,7 @@ export default function PPGPage() {
                       {Math.round((plan.materialsReady / plan.materialsRequired) * 100)}% Ready
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-bold text-blue-900">
                       {plan.workOrdersCompleted}/{plan.workOrdersTotal}
                     </div>
@@ -413,12 +413,12 @@ export default function PPGPage() {
                       {Math.round((plan.workOrdersCompleted / plan.workOrdersTotal) * 100)}% Complete
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[plan.status]}`}>
                       {statusLabels[plan.status]}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <button
                         onClick={(e) => {
@@ -459,7 +459,7 @@ export default function PPGPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredPlans.length)} of{' '}
             {filteredPlans.length} items

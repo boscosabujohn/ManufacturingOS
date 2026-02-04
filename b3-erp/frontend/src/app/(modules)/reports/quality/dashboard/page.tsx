@@ -45,8 +45,8 @@ export default function QualityDashboardReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Quality Dashboard Report</h1>
                     <p className="text-gray-600">Quality metrics and performance overview</p>
@@ -61,7 +61,7 @@ export default function QualityDashboardReport() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Pass Rate"
                     value={`${data.passRate}%`}
@@ -102,11 +102,11 @@ export default function QualityDashboardReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Inspections by Type</CardTitle></CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {data.byInspectionType.map((item, idx) => {
                                 const passRate = (item.passed / item.count) * 100;
                                 return (
@@ -139,7 +139,7 @@ export default function QualityDashboardReport() {
                 <Card>
                     <CardHeader><CardTitle>NCRs by Severity</CardTitle></CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {data.ncrBySeverity.map((item, idx) => (
                                 <div
                                     key={idx}
@@ -163,10 +163,10 @@ export default function QualityDashboardReport() {
                 </Card>
             </div>
 
-            <Card className="mb-6">
+            <Card className="mb-3">
                 <CardHeader><CardTitle>Active CAPAs Progress</CardTitle></CardHeader>
                 <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {data.capas.map((capa, idx) => (
                             <div
                                 key={idx}
@@ -195,7 +195,7 @@ export default function QualityDashboardReport() {
             <Card>
                 <CardHeader><CardTitle>Defect Trend (Last 5 Months)</CardTitle></CardHeader>
                 <CardContent>
-                    <div className="flex items-end justify-between gap-4 h-48">
+                    <div className="flex items-end justify-between gap-2 h-48">
                         {data.defectTrend.map((item, idx) => (
                             <div key={idx} className="flex-1 flex flex-col items-center">
                                 <div className="w-full flex flex-col items-center justify-end flex-1">

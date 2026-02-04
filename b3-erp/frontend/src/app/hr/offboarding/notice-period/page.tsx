@@ -80,14 +80,14 @@ export default function NoticePeriodPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Notice Period Tracking</h1>
         <p className="text-sm text-gray-600 mt-1">Monitor employee notice period completion</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total</p>
@@ -97,7 +97,7 @@ export default function NoticePeriodPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Serving Notice</p>
@@ -106,7 +106,7 @@ export default function NoticePeriodPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -115,7 +115,7 @@ export default function NoticePeriodPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Early Release</p>
@@ -125,10 +125,10 @@ export default function NoticePeriodPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {mockNoticePeriods.map(notice => (
-          <div key={notice.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={notice.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{notice.employeeName}</h3>
@@ -140,7 +140,7 @@ export default function NoticePeriodPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Resignation Date</p>
                 <p className="text-sm font-semibold text-gray-900">
@@ -163,7 +163,7 @@ export default function NoticePeriodPage() {
               </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-gray-600">Progress</span>
                 <span className="font-semibold text-gray-900">
@@ -181,7 +181,7 @@ export default function NoticePeriodPage() {
             </div>
 
             {notice.buyoutAmount && (
-              <div className="bg-purple-50 border border-purple-200 rounded p-3 mb-4">
+              <div className="bg-purple-50 border border-purple-200 rounded p-3 mb-2">
                 <p className="text-xs text-purple-500 uppercase font-medium mb-1">Notice Period Buyout</p>
                 <p className="text-sm text-purple-900">Buyout Amount: ₹{notice.buyoutAmount.toLocaleString('en-IN')}</p>
               </div>
@@ -201,7 +201,7 @@ export default function NoticePeriodPage() {
         ))}
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-6">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <AlertCircle className="h-5 w-5" />
           Notice Period Guidelines

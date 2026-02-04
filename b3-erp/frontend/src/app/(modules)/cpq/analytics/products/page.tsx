@@ -102,9 +102,9 @@ export default function CPQAnalyticsProductsPage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Product Analytics</h2>
           <p className="text-sm text-gray-600 mt-1">Comprehensive product mix, bundling, and profitability analysis</p>
@@ -132,7 +132,7 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-medium text-blue-600">Total Product Revenue</p>
@@ -177,17 +177,17 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Product Mix */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Product Mix by Revenue</h3>
               <p className="text-sm text-gray-600">Revenue distribution across categories</p>
             </div>
             <Package className="h-6 w-6 text-blue-600" />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <ResponsiveContainer width="50%" height={250}>
               <PieChart>
                 <Pie
@@ -225,8 +225,8 @@ export default function CPQAnalyticsProductsPage() {
         </div>
 
         {/* Product Revenue Trend */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Product Revenue Trend</h3>
               <p className="text-sm text-gray-600">Monthly revenue by category (₹Cr)</p>
@@ -251,8 +251,8 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Bundle Performance */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Bundle Performance</h3>
             <p className="text-sm text-gray-600">Popular product bundles and their metrics</p>
@@ -313,8 +313,8 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Configuration Trends */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Configuration & Upsell Trends</h3>
             <p className="text-sm text-gray-600">Feature adoption and average upsell value</p>
@@ -336,8 +336,8 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Cross-Sell Performance */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Cross-Sell Performance</h3>
             <p className="text-sm text-gray-600">Product cross-sell success rates and values</p>
@@ -398,10 +398,10 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Product Profitability */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Product Profitability</h3>
               <p className="text-sm text-gray-600">Revenue vs cost by category (₹Cr)</p>
@@ -422,8 +422,8 @@ export default function CPQAnalyticsProductsPage() {
         </div>
 
         {/* Top Products */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Top 5 Products by Revenue</h3>
               <p className="text-sm text-gray-600">Best performing individual products</p>
@@ -432,7 +432,7 @@ export default function CPQAnalyticsProductsPage() {
           </div>
           <div className="space-y-3">
             {topProducts.map((product, idx) => (
-              <div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={idx} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 text-purple-700 font-bold text-sm">
@@ -464,16 +464,16 @@ export default function CPQAnalyticsProductsPage() {
       </div>
 
       {/* Key Insights */}
-      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md border border-blue-200 p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md border border-blue-200 p-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-blue-900">Product Strategy Insights</h3>
             <p className="text-sm text-blue-700">Actionable recommendations</p>
           </div>
           <Target className="h-6 w-6 text-blue-600" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-blue-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-green-100 rounded-lg">
                 <TrendingUp className="h-5 w-5 text-green-600" />
@@ -484,7 +484,7 @@ export default function CPQAnalyticsProductsPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className="bg-white rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-purple-100 rounded-lg">
                 <GitMerge className="h-5 w-5 text-purple-600" />
@@ -495,7 +495,7 @@ export default function CPQAnalyticsProductsPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className="bg-white rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-orange-100 rounded-lg">
                 <ShoppingCart className="h-5 w-5 text-orange-600" />
@@ -506,7 +506,7 @@ export default function CPQAnalyticsProductsPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className="bg-white rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-yellow-100 rounded-lg">
                 <Target className="h-5 w-5 text-yellow-600" />

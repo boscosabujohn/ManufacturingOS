@@ -531,12 +531,12 @@ const GRNAddPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => router.push('/procurement/grn')}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -561,7 +561,7 @@ const GRNAddPage = () => {
           </div>
 
           {/* Step Indicator */}
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-2">
             <div className="flex items-center gap-2">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'po_selection' ? 'bg-blue-600 text-white' : 'bg-green-500 text-white'
                 }`}>
@@ -597,14 +597,14 @@ const GRNAddPage = () => {
 
         {/* Step 1: PO Selection */}
         {step === 'po_selection' && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Search className="w-5 h-5 text-blue-600" />
               Search & Select Purchase Order
             </h2>
 
             {/* Filters */}
-            <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="grid grid-cols-3 gap-2 mb-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Vendor</label>
                 <input
@@ -670,7 +670,7 @@ const GRNAddPage = () => {
                               {po.status.replace('_', ' ').toUpperCase()}
                             </span>
                           </div>
-                          <div className="grid grid-cols-4 gap-4 text-sm">
+                          <div className="grid grid-cols-4 gap-2 text-sm">
                             <div>
                               <span className="text-gray-500">Vendor:</span>
                               <p className="font-medium text-gray-900">{po.vendor_name}</p>
@@ -690,7 +690,7 @@ const GRNAddPage = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="mt-2 flex items-center gap-4 text-xs text-gray-600">
+                          <div className="mt-2 flex items-center gap-2 text-xs text-gray-600">
                             <span className="flex items-center gap-1">
                               <Package className="w-3 h-3" />
                               {po.pending_items} pending items
@@ -710,7 +710,7 @@ const GRNAddPage = () => {
               <div className="mt-6 flex justify-end">
                 <button
                   onClick={() => setStep('grn_details')}
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
                   Continue
                   <ChevronRight className="w-5 h-5" />
@@ -722,13 +722,13 @@ const GRNAddPage = () => {
 
         {/* Step 2: GRN Details */}
         {step === 'grn_details' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* PO Summary */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Selected PO: {formData.po_number}</h3>
-                  <div className="grid grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-4 gap-2 text-sm">
                     <div>
                       <span className="text-gray-600">Vendor:</span>
                       <p className="font-medium text-gray-900">{formData.vendor_name}</p>
@@ -758,13 +758,13 @@ const GRNAddPage = () => {
             </div>
 
             {/* Receipt Details */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Package className="w-5 h-5 text-green-600" />
                 Receipt Details
               </h2>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Receipt Date <span className="text-red-500">*</span>
@@ -809,13 +809,13 @@ const GRNAddPage = () => {
             </div>
 
             {/* Invoice Details */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Receipt className="w-5 h-5 text-purple-600" />
                 Invoice Details
               </h2>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Invoice Number <span className="text-red-500">*</span>
@@ -856,13 +856,13 @@ const GRNAddPage = () => {
             </div>
 
             {/* Transporter Details */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Truck className="w-5 h-5 text-orange-600" />
                 Transporter Details
               </h2>
 
-              <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-3 gap-2 mb-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Transporter Name</label>
                   <input
@@ -923,14 +923,14 @@ const GRNAddPage = () => {
             </div>
 
             {/* Line Items */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-indigo-600" />
                 Line Items - Material Receipt
               </h2>
 
               {errors.line_items && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+                <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-red-600" />
                   <span className="text-sm text-red-700">{errors.line_items}</span>
                 </div>
@@ -1034,13 +1034,13 @@ const GRNAddPage = () => {
             </div>
 
             {/* Document Upload */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Upload className="w-5 h-5 text-gray-600" />
                 Documents
               </h2>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Invoice</label>
                   <input
@@ -1092,8 +1092,8 @@ const GRNAddPage = () => {
             </div>
 
             {/* Notes */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileCheck className="w-5 h-5 text-gray-600" />
                 Notes
               </h2>
@@ -1110,7 +1110,7 @@ const GRNAddPage = () => {
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setStep('po_selection')}
-                className="flex items-center gap-2 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="flex items-center gap-2 px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Back
@@ -1119,7 +1119,7 @@ const GRNAddPage = () => {
                 <button
                   onClick={() => handleSubmit('draft')}
                   disabled={saving}
-                  className="flex items-center gap-2 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+                  className="flex items-center gap-2 px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
                 >
                   <Save className="w-5 h-5" />
                   Save as Draft
@@ -1127,7 +1127,7 @@ const GRNAddPage = () => {
                 <button
                   onClick={() => handleSubmit('inspection')}
                   disabled={saving}
-                  className="flex items-center gap-2 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:opacity-50"
+                  className="flex items-center gap-2 px-3 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:opacity-50"
                 >
                   {saving ? <Loader className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
                   Submit for QC
@@ -1135,7 +1135,7 @@ const GRNAddPage = () => {
                 <button
                   onClick={() => handleSubmit('accept_post')}
                   disabled={saving}
-                  className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+                  className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
                 >
                   {saving ? <Loader className="w-5 h-5 animate-spin" /> : <CheckCircle className="w-5 h-5" />}
                   Accept & Post

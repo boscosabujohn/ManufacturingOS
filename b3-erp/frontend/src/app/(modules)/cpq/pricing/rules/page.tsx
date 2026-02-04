@@ -229,9 +229,9 @@ export default function CPQPricingRulesPage() {
   })
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button onClick={handleExport} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Download className="h-4 w-4" />
@@ -245,7 +245,7 @@ export default function CPQPricingRulesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -296,7 +296,7 @@ export default function CPQPricingRulesPage() {
       </div>
 
       {/* Rule Type Filter */}
-      <div className="mb-6 flex gap-3">
+      <div className="mb-3 flex gap-3">
         <button onClick={() => handleTypeFilter(null)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
           selectedTypeFilter === null
             ? 'bg-blue-100 text-blue-700 border border-blue-200'
@@ -335,7 +335,7 @@ export default function CPQPricingRulesPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -435,7 +435,7 @@ export default function CPQPricingRulesPage() {
       </div>
 
       {/* Rule Types Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Pricing Rule Types:</h3>
         <ul className="text-xs text-blue-700 space-y-1">
           <li><strong>Markup:</strong> Adds a percentage or fixed amount to base price</li>

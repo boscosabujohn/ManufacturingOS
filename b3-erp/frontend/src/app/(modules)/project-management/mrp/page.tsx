@@ -447,8 +447,8 @@ export default function MRPPage() {
    </div>
 
    {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+   <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Items</p>
       <Package className="w-5 h-5 text-gray-400" />
@@ -456,7 +456,7 @@ export default function MRPPage() {
      <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Available</p>
       <CheckCircle className="w-5 h-5 text-green-600" />
@@ -464,7 +464,7 @@ export default function MRPPage() {
      <p className="text-2xl font-bold text-green-900">{stats.available}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Partial</p>
       <AlertTriangle className="w-5 h-5 text-yellow-600" />
@@ -472,7 +472,7 @@ export default function MRPPage() {
      <p className="text-2xl font-bold text-yellow-900">{stats.partial}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Out of Stock</p>
       <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -480,7 +480,7 @@ export default function MRPPage() {
      <p className="text-2xl font-bold text-red-900">{stats.outOfStock}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Ordered</p>
       <ShoppingCart className="w-5 h-5 text-blue-600" />
@@ -488,7 +488,7 @@ export default function MRPPage() {
      <p className="text-2xl font-bold text-blue-900">{stats.ordered}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Cost</p>
       <Package className="w-5 h-5 text-purple-600" />
@@ -498,8 +498,8 @@ export default function MRPPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
      {/* Search */}
      <div className="lg:col-span-2">
       <div className="relative">
@@ -547,31 +547,31 @@ export default function MRPPage() {
      <table className="w-full">
       <thead className="bg-gray-50 border-b border-gray-200">
        <tr>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Material
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Category
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Required
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Available
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Status
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Required Date
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Supplier
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Cost
         </th>
-        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
          Actions
         </th>
        </tr>
@@ -579,24 +579,24 @@ export default function MRPPage() {
       <tbody className="bg-white divide-y divide-gray-200">
        {filteredMaterials.map((material) => (
         <tr key={material.id} className="hover:bg-gray-50">
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <div>
            <p className="font-medium text-gray-900">{material.itemName}</p>
            <p className="text-sm text-gray-500">{material.itemCode}</p>
            <p className="text-xs text-gray-400 mt-1">{material.projectPhase}</p>
           </div>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
            {material.category}
           </span>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className="text-sm font-medium text-gray-900">
            {material.requiredQuantity} {material.unit}
           </p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className={`text-sm font-medium ${
            material.availableStock >= material.requiredQuantity ? 'text-green-900' :
            material.availableStock > 0 ? 'text-yellow-900' :
@@ -610,7 +610,7 @@ export default function MRPPage() {
            </p>
           )}
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(material.status)}`}>
            {getStatusIcon(material.status)}
            {material.status}
@@ -621,17 +621,17 @@ export default function MRPPage() {
            </p>
           )}
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className="text-sm text-gray-900">{formatDate(material.requiredDate)}</p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className="text-sm text-gray-900">{material.supplier}</p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <p className="text-sm font-medium text-gray-900">{formatCurrency(material.totalCost)}</p>
           <p className="text-xs text-gray-500">{formatCurrency(material.unitCost)}/unit</p>
          </td>
-         <td className="px-6 py-4">
+         <td className="px-3 py-2">
           <div className="space-y-2">
            <div className="flex gap-2">
             <button

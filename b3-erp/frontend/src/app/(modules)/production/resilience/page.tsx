@@ -22,9 +22,9 @@ export default function ResilienceDashboardPage() {
   ];
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Hero Stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white">
           <div className="flex justify-between items-start">
             <div>
@@ -68,19 +68,19 @@ export default function ResilienceDashboardPage() {
       </div>
 
       {/* Quick Action Cards */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         <div
-          className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setActiveTab('supply-risk')}
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-2xl">⚠️</div>
             <div>
               <h3 className="font-semibold text-gray-800">Supply Chain Risk Dashboard</h3>
               <p className="text-sm text-gray-500">Monitor supplier vulnerabilities and buffer stocks</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+          <div className="grid grid-cols-3 gap-2 pt-4 border-t">
             <div className="text-center">
               <div className="text-xl font-bold text-red-600">2</div>
               <div className="text-xs text-gray-500">Sole Source</div>
@@ -97,17 +97,17 @@ export default function ResilienceDashboardPage() {
         </div>
 
         <div
-          className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setActiveTab('scenarios')}
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-2xl">🎯</div>
             <div>
               <h3 className="font-semibold text-gray-800">Scenario Planning Tool</h3>
               <p className="text-sm text-gray-500">What-if analysis for disruption scenarios</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+          <div className="grid grid-cols-3 gap-2 pt-4 border-t">
             <div className="text-center">
               <div className="text-xl font-bold text-blue-600">8</div>
               <div className="text-xs text-gray-500">Scenarios</div>
@@ -124,17 +124,17 @@ export default function ResilienceDashboardPage() {
         </div>
 
         <div
-          className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setActiveTab('capacity')}
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-2xl">📈</div>
             <div>
               <h3 className="font-semibold text-gray-800">Capacity Flexibility View</h3>
               <p className="text-sm text-gray-500">Monitor capacity vs demand with surge options</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+          <div className="grid grid-cols-3 gap-2 pt-4 border-t">
             <div className="text-center">
               <div className="text-xl font-bold text-amber-600">2</div>
               <div className="text-xs text-gray-500">Strained</div>
@@ -151,17 +151,17 @@ export default function ResilienceDashboardPage() {
         </div>
 
         <div
-          className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setActiveTab('continuity')}
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-2xl">🛡️</div>
             <div>
               <h3 className="font-semibold text-gray-800">Business Continuity Status</h3>
               <p className="text-sm text-gray-500">Health check of critical business processes</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+          <div className="grid grid-cols-3 gap-2 pt-4 border-t">
             <div className="text-center">
               <div className="text-xl font-bold text-green-600">5</div>
               <div className="text-xs text-gray-500">Healthy</div>
@@ -179,8 +179,8 @@ export default function ResilienceDashboardPage() {
       </div>
 
       {/* Risk Heat Map */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="font-semibold text-gray-800 mb-4">Risk Assessment Matrix</h3>
+      <div className="bg-white border border-gray-200 rounded-xl p-3">
+        <h3 className="font-semibold text-gray-800 mb-2">Risk Assessment Matrix</h3>
         <div className="grid grid-cols-5 gap-1">
           {/* Y-axis labels */}
           <div className="col-span-1 flex flex-col justify-between pr-2">
@@ -234,7 +234,7 @@ export default function ResilienceDashboardPage() {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 mt-4 pt-4 border-t justify-center">
+        <div className="flex gap-2 mt-4 pt-4 border-t justify-center">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-green-200 rounded"></div>
             <span className="text-xs text-gray-600">Low (L)</span>
@@ -259,7 +259,7 @@ export default function ResilienceDashboardPage() {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
           <span>Production</span>
           <span>/</span>
@@ -283,7 +283,7 @@ export default function ResilienceDashboardPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex gap-2 border-b border-gray-200">
           {tabs.map(tab => (
             <button

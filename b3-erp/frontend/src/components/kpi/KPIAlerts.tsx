@@ -201,7 +201,7 @@ export function KPIAlertList({
 
       {/* Filters */}
       {showFilters && (
-        <div className="flex items-center gap-4 px-4 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+        <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-gray-400" />
             <select
@@ -378,7 +378,7 @@ export function AlertRulesManager({
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <label className="block text-gray-500 mb-1">Warning Threshold</label>
                 <input
@@ -407,7 +407,7 @@ export function AlertRulesManager({
               </div>
             </div>
 
-            <div className="flex items-center gap-4 mt-3 text-sm">
+            <div className="flex items-center gap-2 mt-3 text-sm">
               <label className="flex items-center gap-2">
                 <input
                   type="radio"

@@ -176,10 +176,10 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <FilePlus className="w-6 h-6" />
             <div>
@@ -193,7 +193,7 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           <div className={`flex items-center gap-2 ${currentStep >= 1 ? 'text-blue-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-300'}`}>1</div>
             <span className="font-medium">Basic Info</span>
@@ -211,11 +211,11 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: Basic Information */}
           {currentStep === 1 && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Contract Title *</label>
                   <input
@@ -324,8 +324,8 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
 
           {/* Step 2: Financial & Terms */}
           {currentStep === 2 && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Contract Value</label>
                   <input
@@ -445,8 +445,8 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
 
           {/* Step 3: Additional Details */}
           {currentStep === 3 && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Renewal Date</label>
                   <input
@@ -479,9 +479,9 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h4 className="font-semibold text-blue-900 mb-2">Contract Summary</h4>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-blue-700">Title:</p>
                     <p className="font-semibold">{formData.title || 'N/A'}</p>
@@ -505,7 +505,7 @@ export const CreateContractModal: React.FC<CreateContractModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -589,10 +589,10 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <div>
@@ -606,9 +606,9 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status Badges */}
-          <div className="flex gap-3 mb-6">
+          <div className="flex gap-3 mb-3">
             <span className={`px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(contract.status)}`}>
               {contract.status.toUpperCase().replace('_', ' ')}
             </span>
@@ -621,22 +621,22 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
           </div>
 
           {/* Contract Title */}
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">{contract.title}</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">{contract.title}</h3>
 
           {/* Main Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Vendor</p>
               <p className="text-lg font-bold text-gray-900">{contract.vendorName}</p>
               <p className="text-xs text-gray-500">{contract.vendorCode}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Contract Value</p>
               <p className="text-lg font-bold text-gray-900">{contract.currency} {contract.value.toLocaleString()}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Contract Period</p>
               <p className="text-lg font-bold text-gray-900">{contract.startDate}</p>
               <p className="text-sm text-gray-600">to {contract.endDate}</p>
@@ -644,7 +644,7 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
           </div>
 
           {/* Additional Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <div>
               <p className="text-sm text-gray-600">Department</p>
               <p className="font-semibold text-gray-900">{contract.department}</p>
@@ -673,7 +673,7 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
 
           {/* Description */}
           {contract.description && (
-            <div className="mb-6">
+            <div className="mb-3">
               <h4 className="font-semibold text-gray-700 mb-2">Description</h4>
               <p className="text-gray-600">{contract.description}</p>
             </div>
@@ -681,7 +681,7 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
 
           {/* Documents */}
           {contract.documents && contract.documents.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-3">
               <h4 className="font-semibold text-gray-700 mb-3">Documents</h4>
               <div className="space-y-2">
                 {contract.documents.map((doc, index) => (
@@ -704,7 +704,7 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
 
           {/* Milestones */}
           {contract.milestones && contract.milestones.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-3">
               <h4 className="font-semibold text-gray-700 mb-3">Milestones</h4>
               <div className="space-y-2">
                 {contract.milestones.map((milestone, index) => (
@@ -747,7 +747,7 @@ export const ViewContractDetailsModal: React.FC<ViewContractDetailsModalProps> =
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -870,10 +870,10 @@ export const RenewContractModal: React.FC<RenewContractModalProps> = ({
   if (!isOpen || !contract) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <RefreshCw className="w-6 h-6" />
             <div>
@@ -887,11 +887,11 @@ export const RenewContractModal: React.FC<RenewContractModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Current Contract Info */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-2">Current Contract</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Contract Period:</p>
                 <p className="font-semibold">{contract.startDate} to {contract.endDate}</p>
@@ -941,7 +941,7 @@ export const RenewContractModal: React.FC<RenewContractModalProps> = ({
           </div>
 
           {/* New Period */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">New Start Date *</label>
               <input
@@ -1061,7 +1061,7 @@ export const RenewContractModal: React.FC<RenewContractModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1155,10 +1155,10 @@ export const AmendContractModal: React.FC<AmendContractModalProps> = ({
   if (!isOpen || !contract) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -1172,9 +1172,9 @@ export const AmendContractModal: React.FC<AmendContractModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Amendment Type */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Amendment Type</label>
               <select
@@ -1217,9 +1217,9 @@ export const AmendContractModal: React.FC<AmendContractModalProps> = ({
           </div>
 
           {/* Add Changes */}
-          <div className="border border-gray-300 rounded-lg p-4">
+          <div className="border border-gray-300 rounded-lg p-3">
             <h4 className="font-semibold text-gray-700 mb-3">Add Change</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Field Being Changed</label>
                 <input
@@ -1282,7 +1282,7 @@ export const AmendContractModal: React.FC<AmendContractModalProps> = ({
               <h4 className="font-semibold text-gray-700 mb-3">Changes ({formData.changes.length})</h4>
               <div className="space-y-2">
                 {formData.changes.map((change, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                  <div key={index} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
                     <div className="flex justify-between items-start mb-2">
                       <h5 className="font-semibold text-gray-900">{change.field}</h5>
                       <button
@@ -1292,7 +1292,7 @@ export const AmendContractModal: React.FC<AmendContractModalProps> = ({
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 text-sm mb-2">
+                    <div className="grid grid-cols-2 gap-2 text-sm mb-2">
                       <div>
                         <p className="text-gray-600">From:</p>
                         <p className="font-semibold text-red-600">{change.oldValue || 'N/A'}</p>
@@ -1349,7 +1349,7 @@ export const AmendContractModal: React.FC<AmendContractModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1416,10 +1416,10 @@ export const TerminateContractModal: React.FC<TerminateContractModalProps> = ({
   if (!isOpen || !contract) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <XCircle className="w-6 h-6" />
             <div>
@@ -1433,9 +1433,9 @@ export const TerminateContractModal: React.FC<TerminateContractModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Warning */}
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+          <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
               <div>
@@ -1448,9 +1448,9 @@ export const TerminateContractModal: React.FC<TerminateContractModalProps> = ({
           </div>
 
           {/* Contract Info */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-2">Contract Information</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Contract Title:</p>
                 <p className="font-semibold">{contract.title}</p>
@@ -1471,7 +1471,7 @@ export const TerminateContractModal: React.FC<TerminateContractModalProps> = ({
           </div>
 
           {/* Termination Details */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Termination Type</label>
               <select
@@ -1578,7 +1578,7 @@ export const TerminateContractModal: React.FC<TerminateContractModalProps> = ({
           </div>
 
           {/* Approver & Notification */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Approver</label>
               <input
@@ -1605,7 +1605,7 @@ export const TerminateContractModal: React.FC<TerminateContractModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

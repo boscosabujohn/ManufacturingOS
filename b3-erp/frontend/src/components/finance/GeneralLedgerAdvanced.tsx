@@ -218,7 +218,7 @@ export default function GeneralLedgerAdvanced({
   trialBalanceSummary.isBalanced = Math.abs(trialBalanceSummary.totalDebit - trialBalanceSummary.totalCredit) < 0.01;
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -251,8 +251,8 @@ export default function GeneralLedgerAdvanced({
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-blue-600 uppercase">Total Entries</p>
@@ -262,7 +262,7 @@ export default function GeneralLedgerAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-gray-600 uppercase">Draft</p>
@@ -272,7 +272,7 @@ export default function GeneralLedgerAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-green-600 uppercase">Posted</p>
@@ -282,7 +282,7 @@ export default function GeneralLedgerAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-purple-600 uppercase">Total Debits</p>
@@ -292,7 +292,7 @@ export default function GeneralLedgerAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-orange-600 uppercase">Total Credits</p>
@@ -305,7 +305,7 @@ export default function GeneralLedgerAdvanced({
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <nav className="flex gap-4">
+        <nav className="flex gap-2">
           {[
             { id: 'entries', label: 'Journal Entries', icon: FileText },
             { id: 'trial-balance', label: 'Trial Balance', icon: BarChart3 },
@@ -332,10 +332,10 @@ export default function GeneralLedgerAdvanced({
 
       {/* Journal Entries Tab */}
       {activeTab === 'entries' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {/* Filters */}
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -383,33 +383,33 @@ export default function GeneralLedgerAdvanced({
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Entry #</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
-                    <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Debit</th>
-                    <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Credit</th>
-                    <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
-                    <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Entry #</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Debit</th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Credit</th>
+                    <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
+                    <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {filteredEntries.map((entry) => (
                     <tr key={entry.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="font-mono text-sm text-gray-900">{entry.entryNumber}</span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">{formatDate(entry.date)}</td>
-                      <td className="px-6 py-4">{getTypeBadge(entry.entryType)}</td>
-                      <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{entry.description}</td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-green-600">
+                      <td className="px-3 py-2 text-sm text-gray-900">{formatDate(entry.date)}</td>
+                      <td className="px-3 py-2">{getTypeBadge(entry.entryType)}</td>
+                      <td className="px-3 py-2 text-sm text-gray-900 max-w-xs truncate">{entry.description}</td>
+                      <td className="px-3 py-2 text-right text-sm font-medium text-green-600">
                         {formatCurrency(entry.totalDebit)}
                       </td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-red-600">
+                      <td className="px-3 py-2 text-right text-sm font-medium text-red-600">
                         {formatCurrency(entry.totalCredit)}
                       </td>
-                      <td className="px-6 py-4 text-center">{getStatusBadge(entry.status)}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2 text-center">{getStatusBadge(entry.status)}</td>
+                      <td className="px-3 py-2">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => setSelectedEntry(entry)}
@@ -453,7 +453,7 @@ export default function GeneralLedgerAdvanced({
           {/* Entry Details Modal */}
           {selectedEntry && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <div className="bg-white rounded-lg shadow-xl  w-full mx-4 max-h-[90vh] overflow-y-auto">
                 <div className="p-6 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-bold text-gray-900">Journal Entry Details</h3>
@@ -462,8 +462,8 @@ export default function GeneralLedgerAdvanced({
                     </button>
                   </div>
                 </div>
-                <div className="p-6 space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="p-6 space-y-3">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Entry Number</p>
                       <p className="text-lg font-mono text-gray-900">{selectedEntry.entryNumber}</p>
@@ -539,10 +539,10 @@ export default function GeneralLedgerAdvanced({
 
       {/* Trial Balance Tab */}
       {activeTab === 'trial-balance' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {/* Trial Balance Status */}
           <div
-            className={`border rounded-lg p-4 ${
+            className={`border rounded-lg p-3 ${
               trialBalanceSummary.isBalanced
                 ? 'bg-green-50 border-green-200'
                 : 'bg-red-50 border-red-200'
@@ -583,27 +583,27 @@ export default function GeneralLedgerAdvanced({
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Account Code</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Account Name</th>
-                    <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                    <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Debit</th>
-                    <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Credit</th>
-                    <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Balance</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Account Code</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Account Name</th>
+                    <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Debit</th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Credit</th>
+                    <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Balance</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {data?.trialBalance.map((item, idx) => (
                     <tr key={idx} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 font-mono text-sm text-gray-900">{item.accountCode}</td>
-                      <td className="px-6 py-4 text-sm text-gray-900">{item.accountName}</td>
-                      <td className="px-6 py-4 text-sm text-gray-600 capitalize">{item.accountType}</td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-green-600">
+                      <td className="px-3 py-2 font-mono text-sm text-gray-900">{item.accountCode}</td>
+                      <td className="px-3 py-2 text-sm text-gray-900">{item.accountName}</td>
+                      <td className="px-3 py-2 text-sm text-gray-600 capitalize">{item.accountType}</td>
+                      <td className="px-3 py-2 text-right text-sm font-medium text-green-600">
                         {item.debit > 0 ? formatCurrency(item.debit) : '-'}
                       </td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-red-600">
+                      <td className="px-3 py-2 text-right text-sm font-medium text-red-600">
                         {item.credit > 0 ? formatCurrency(item.credit) : '-'}
                       </td>
-                      <td className="px-6 py-4 text-right text-sm font-bold text-gray-900">
+                      <td className="px-3 py-2 text-right text-sm font-bold text-gray-900">
                         {formatCurrency(Math.abs(item.balance))}
                         <span className="text-xs ml-1 text-gray-500">
                           {item.balance >= 0 ? 'Dr' : 'Cr'}
@@ -612,16 +612,16 @@ export default function GeneralLedgerAdvanced({
                     </tr>
                   ))}
                   <tr className="bg-blue-50 font-bold border-t-2 border-blue-600">
-                    <td colSpan={3} className="px-6 py-4 text-right text-sm text-blue-900">
+                    <td colSpan={3} className="px-3 py-2 text-right text-sm text-blue-900">
                       Totals:
                     </td>
-                    <td className="px-6 py-4 text-right text-sm text-green-700">
+                    <td className="px-3 py-2 text-right text-sm text-green-700">
                       {formatCurrency(trialBalanceSummary.totalDebit)}
                     </td>
-                    <td className="px-6 py-4 text-right text-sm text-red-700">
+                    <td className="px-3 py-2 text-right text-sm text-red-700">
                       {formatCurrency(trialBalanceSummary.totalCredit)}
                     </td>
-                    <td className="px-6 py-4 text-right text-sm text-blue-900">
+                    <td className="px-3 py-2 text-right text-sm text-blue-900">
                       {formatCurrency(Math.abs(trialBalanceSummary.totalDebit - trialBalanceSummary.totalCredit))}
                     </td>
                   </tr>
@@ -639,25 +639,25 @@ export default function GeneralLedgerAdvanced({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Code</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Subtype</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Balance</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Code</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Subtype</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Balance</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.accounts.map((account) => (
                   <tr key={account.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-mono text-sm text-gray-900">{account.code}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{account.name}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600 capitalize">{account.type}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{account.subtype}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 font-mono text-sm text-gray-900">{account.code}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{account.name}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600 capitalize">{account.type}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600">{account.subtype}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-gray-900">
                       {formatCurrency(account.balance)}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
                           account.isActive

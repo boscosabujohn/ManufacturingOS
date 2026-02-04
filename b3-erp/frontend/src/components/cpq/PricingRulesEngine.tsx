@@ -121,29 +121,29 @@ export const PricingRulesEngine: React.FC<PricingRulesEngineProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats Bar */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Rules</p>
           <p className="text-3xl font-bold">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Active</p>
           <p className="text-3xl font-bold">{stats.active}</p>
         </div>
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Inactive</p>
           <p className="text-3xl font-bold">{stats.inactive}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Draft</p>
           <p className="text-3xl font-bold">{stats.draft}</p>
         </div>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4 flex-1">
             {/* Search */}
@@ -198,7 +198,7 @@ export const PricingRulesEngine: React.FC<PricingRulesEngineProps> = ({
               return (
                 <div
                   key={rule.id}
-                  className="bg-white rounded-lg border-2 border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all p-6"
+                  className="bg-white rounded-lg border-2 border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all p-3"
                 >
                   <div className="flex items-start justify-between">
                     {/* Rule Info */}
@@ -345,7 +345,7 @@ export const PricingRulesEngine: React.FC<PricingRulesEngineProps> = ({
             })
         ) : (
           <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-            <Filter className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <Filter className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-gray-600">No pricing rules found</p>
             {onCreateRule && (
               <button

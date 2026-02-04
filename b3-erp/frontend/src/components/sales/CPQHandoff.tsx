@@ -84,8 +84,8 @@ export default function CPQHandoff() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -137,10 +137,10 @@ export default function CPQHandoff() {
         </div>
 
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {handoffs.map((handoff) => (
               <div key={handoff.id} className="p-5 border border-gray-200 rounded-lg">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div>
                     <h4 className="font-bold text-gray-900">{handoff.customer}</h4>
                     <p className="text-sm text-gray-600 mt-1">{handoff.handoffDate}</p>
@@ -150,8 +150,8 @@ export default function CPQHandoff() {
                   </span>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-3 gap-4 items-center">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-3 gap-2 items-center">
                     <div className="flex items-center gap-3">
                       <FileText className="h-8 w-8 text-blue-600" />
                       <div>
@@ -174,7 +174,7 @@ export default function CPQHandoff() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className="grid grid-cols-2 gap-2 mt-4">
                   <div className="p-3 bg-blue-50 rounded-lg">
                     <p className="text-xs text-blue-600 font-medium">Items</p>
                     <p className="text-xl font-bold text-blue-900">{handoff.items}</p>

@@ -104,9 +104,9 @@ export function CreateChangeOrderModal({ isOpen, onClose, onCreate }: CreateChan
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Plus className="h-6 w-6" />
             <h2 className="text-xl font-bold">Create New Change Order</h2>
@@ -116,9 +116,9 @@ export function CreateChangeOrderModal({ isOpen, onClose, onCreate }: CreateChan
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Project Selection */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Project *</label>
               <select
@@ -149,7 +149,7 @@ export function CreateChangeOrderModal({ isOpen, onClose, onCreate }: CreateChan
           </div>
 
           {/* Change Type and Title */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Change Type *</label>
               <select
@@ -201,9 +201,9 @@ export function CreateChangeOrderModal({ isOpen, onClose, onCreate }: CreateChan
           </div>
 
           {/* Impact Analysis */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Impact Analysis</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Cost Impact (₹)</label>
                 <input
@@ -228,7 +228,7 @@ export function CreateChangeOrderModal({ isOpen, onClose, onCreate }: CreateChan
           </div>
 
           {/* Current Project Details */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Original Budget (₹)</label>
               <input
@@ -265,7 +265,7 @@ export function CreateChangeOrderModal({ isOpen, onClose, onCreate }: CreateChan
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -320,9 +320,9 @@ export function EditChangeOrderModal({ isOpen, onClose, order, onUpdate }: EditC
   if (!isOpen || !order) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <FileEdit className="h-6 w-6" />
             <h2 className="text-xl font-bold">Edit Change Order</h2>
@@ -332,7 +332,7 @@ export function EditChangeOrderModal({ isOpen, onClose, order, onUpdate }: EditC
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-gray-700">
               <span className="font-semibold">Change Order:</span> {order.changeOrderNumber} |
@@ -340,7 +340,7 @@ export function EditChangeOrderModal({ isOpen, onClose, order, onUpdate }: EditC
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Title *</label>
               <input
@@ -385,7 +385,7 @@ export function EditChangeOrderModal({ isOpen, onClose, order, onUpdate }: EditC
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Cost Impact (₹)</label>
               <input
@@ -407,7 +407,7 @@ export function EditChangeOrderModal({ isOpen, onClose, order, onUpdate }: EditC
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -459,9 +459,9 @@ export function ApprovalModal({ isOpen, onClose, order, onApprove }: ApprovalMod
   if (!isOpen || !order) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <CheckCircle className="h-6 w-6" />
             <h2 className="text-xl font-bold">Approve/Reject Change Order</h2>
@@ -471,9 +471,9 @@ export function ApprovalModal({ isOpen, onClose, order, onApprove }: ApprovalMod
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Change Order Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Change Order Details</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
@@ -529,7 +529,7 @@ export function ApprovalModal({ isOpen, onClose, order, onApprove }: ApprovalMod
           </div>
 
           {/* Approver Details */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Approver Name *</label>
               <input
@@ -587,7 +587,7 @@ export function ApprovalModal({ isOpen, onClose, order, onApprove }: ApprovalMod
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -626,9 +626,9 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
   const scheduleImpactPercent = ((order.impactOnSchedule / 30) * 100).toFixed(2); // Assuming 30-day baseline
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <TrendingUp className="h-6 w-6" />
             <h2 className="text-xl font-bold">Impact Analysis</h2>
@@ -638,30 +638,30 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Change Order Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-lg font-semibold text-gray-900 mb-1">{order.title}</h3>
             <p className="text-sm text-gray-600">{order.changeOrderNumber} | {order.projectName}</p>
           </div>
 
           {/* Cost Impact */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <DollarSign className="h-5 w-5 mr-2 text-orange-600" />
               Cost Impact Analysis
             </h3>
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="space-y-2">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Original Budget</p>
                   <p className="text-xl font-bold text-blue-700">₹{(order.originalBudget / 100000).toFixed(2)}L</p>
                 </div>
-                <div className="bg-red-50 p-4 rounded-lg">
+                <div className="bg-red-50 p-3 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Cost Impact</p>
                   <p className="text-xl font-bold text-red-700">+₹{(order.impactOnCost / 100000).toFixed(2)}L</p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-purple-50 p-3 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Revised Budget</p>
                   <p className="text-xl font-bold text-purple-700">₹{(order.revisedBudget / 100000).toFixed(2)}L</p>
                 </div>
@@ -691,13 +691,13 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
 
           {/* Schedule Impact */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Calendar className="h-5 w-5 mr-2 text-orange-600" />
               Schedule Impact Analysis
             </h3>
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="space-y-2">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Original End Date</p>
                   <p className="text-lg font-bold text-blue-700">{order.originalEndDate}</p>
                 </div>
@@ -707,7 +707,7 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
                     {order.impactOnSchedule > 0 ? '+' : ''}{order.impactOnSchedule} days
                   </p>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-purple-50 p-3 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Revised End Date</p>
                   <p className="text-lg font-bold text-purple-700">{order.revisedEndDate}</p>
                 </div>
@@ -745,11 +745,11 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
 
           {/* Resource Impact */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Users className="h-5 w-5 mr-2 text-orange-600" />
               Resource & Risk Assessment
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <h4 className="text-sm font-semibold text-gray-700 mb-2">Resource Requirements</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
@@ -772,7 +772,7 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
           </div>
 
           {/* Recommendation */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Recommendation</h4>
             <p className="text-sm text-gray-700">
               {parseFloat(budgetImpactPercent) < 5 && Math.abs(order.impactOnSchedule) < 7
@@ -784,7 +784,7 @@ export function ImpactAnalysisModal({ isOpen, onClose, order }: ImpactAnalysisMo
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
@@ -830,9 +830,9 @@ export function ImplementationTrackingModal({ isOpen, onClose, order, onUpdateSt
   if (!isOpen || !order) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Settings className="h-6 w-6" />
             <h2 className="text-xl font-bold">Implementation Tracking</h2>
@@ -842,9 +842,9 @@ export function ImplementationTrackingModal({ isOpen, onClose, order, onUpdateSt
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Change Order Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-gray-900">{order.title}</h3>
             <p className="text-xs text-gray-600 mt-1">{order.changeOrderNumber} | Approved: {order.approvalDate}</p>
           </div>
@@ -876,7 +876,7 @@ export function ImplementationTrackingModal({ isOpen, onClose, order, onUpdateSt
           </div>
 
           {/* Implementation Status */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Status</label>
               <select
@@ -942,7 +942,7 @@ export function ImplementationTrackingModal({ isOpen, onClose, order, onUpdateSt
           </div>
 
           {/* Milestone Checklist */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Implementation Milestones</h4>
             <div className="space-y-2">
               {[
@@ -969,7 +969,7 @@ export function ImplementationTrackingModal({ isOpen, onClose, order, onUpdateSt
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1045,9 +1045,9 @@ export function ChangeOrderHistoryModal({ isOpen, onClose, order }: ChangeOrderH
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <History className="h-6 w-6" />
             <h2 className="text-xl font-bold">Change Order History</h2>
@@ -1057,9 +1057,9 @@ export function ChangeOrderHistoryModal({ isOpen, onClose, order }: ChangeOrderH
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Change Order Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-lg font-semibold text-gray-900">{order.title}</h3>
             <p className="text-sm text-gray-600 mt-1">
               {order.changeOrderNumber} | {order.projectName}
@@ -1072,13 +1072,13 @@ export function ChangeOrderHistoryModal({ isOpen, onClose, order }: ChangeOrderH
           </div>
 
           {/* Timeline */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900">Activity Timeline</h3>
-            <div className="relative border-l-2 border-teal-200 ml-3 pl-6 space-y-6">
+            <div className="relative border-l-2 border-teal-200 ml-3 pl-6 space-y-3">
               {historyEntries.map((entry, index) => (
                 <div key={index} className="relative">
                   <div className="absolute -left-[29px] top-1 w-4 h-4 bg-teal-600 rounded-full border-2 border-white" />
-                  <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center space-x-2">
                         {entry.status === 'Approved' && <CheckCircle className="h-5 w-5 text-green-600" />}
@@ -1099,7 +1099,7 @@ export function ChangeOrderHistoryModal({ isOpen, onClose, order }: ChangeOrderH
           </div>
 
           {/* Document History */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Document Versions</h4>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
@@ -1132,7 +1132,7 @@ export function ChangeOrderHistoryModal({ isOpen, onClose, order }: ChangeOrderH
 
           {/* Attachments */}
           {order.attachments > 0 && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Attachments ({order.attachments})</h4>
               <div className="space-y-2">
                 {Array.from({ length: order.attachments }).map((_, index) => (
@@ -1149,7 +1149,7 @@ export function ChangeOrderHistoryModal({ isOpen, onClose, order }: ChangeOrderH
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
@@ -1197,9 +1197,9 @@ export function BulkChangeOrderModal({ isOpen, onClose, onBulkAction }: BulkChan
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <FileEdit className="h-6 w-6" />
             <h2 className="text-xl font-bold">Bulk Change Order Actions</h2>
@@ -1209,7 +1209,7 @@ export function BulkChangeOrderModal({ isOpen, onClose, onBulkAction }: BulkChan
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Action Selection */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Select Action</label>
@@ -1234,7 +1234,7 @@ export function BulkChangeOrderModal({ isOpen, onClose, onBulkAction }: BulkChan
               {pendingOrders.map((order) => (
                 <div
                   key={order.id}
-                  className={`border rounded-lg p-4 cursor-pointer transition-colors ${
+                  className={`border rounded-lg p-3 cursor-pointer transition-colors ${
                     selectedOrders.includes(order.id)
                       ? 'border-yellow-500 bg-yellow-50'
                       : 'border-gray-200 bg-white hover:bg-gray-50'
@@ -1274,7 +1274,7 @@ export function BulkChangeOrderModal({ isOpen, onClose, onBulkAction }: BulkChan
           </div>
 
           {/* Action Summary */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Action Summary</h4>
             <p className="text-sm text-gray-700">
               You are about to <span className="font-semibold">{action}</span>{' '}
@@ -1283,7 +1283,7 @@ export function BulkChangeOrderModal({ isOpen, onClose, onBulkAction }: BulkChan
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1359,9 +1359,9 @@ export function AttachmentManagementModal({ isOpen, onClose, order, onUpload }: 
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Upload className="h-6 w-6" />
             <h2 className="text-xl font-bold">Attachment Management</h2>
@@ -1371,7 +1371,7 @@ export function AttachmentManagementModal({ isOpen, onClose, order, onUpload }: 
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Change Order Info */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-gray-700">
@@ -1391,7 +1391,7 @@ export function AttachmentManagementModal({ isOpen, onClose, order, onUpload }: 
               onDragOver={handleDrag}
               onDrop={handleDrop}
             >
-              <Upload className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+              <Upload className="h-12 w-12 text-gray-400 mb-3" />
               <p className="text-sm text-gray-600 mb-2">Drag and drop files here, or click to select</p>
               <input
                 type="file"
@@ -1458,7 +1458,7 @@ export function AttachmentManagementModal({ isOpen, onClose, order, onUpload }: 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1505,9 +1505,9 @@ export function FinancialImpactDashboardModal({ isOpen, onClose, orders }: Finan
   }, {} as Record<string, number>);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <BarChart3 className="h-6 w-6" />
             <h2 className="text-xl font-bold">Financial Impact Dashboard</h2>
@@ -1517,9 +1517,9 @@ export function FinancialImpactDashboardModal({ isOpen, onClose, orders }: Finan
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
               <p className="text-sm text-gray-600 mb-1">Total Cost Impact</p>
               <p className="text-3xl font-bold text-blue-700">₹{(totalImpact / 100000).toFixed(2)}L</p>
@@ -1543,7 +1543,7 @@ export function FinancialImpactDashboardModal({ isOpen, onClose, orders }: Finan
 
           {/* By Change Type */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Cost Impact by Change Type</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Cost Impact by Change Type</h3>
             <div className="space-y-3">
               {Object.entries(byType).map(([type, amount]) => {
                 const percentage = (amount / totalImpact) * 100;
@@ -1569,7 +1569,7 @@ export function FinancialImpactDashboardModal({ isOpen, onClose, orders }: Finan
 
           {/* Top Cost Impact Orders */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 5 Cost Impact Change Orders</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Top 5 Cost Impact Change Orders</h3>
             <div className="space-y-2">
               {orders
                 .sort((a, b) => b.impactOnCost - a.impactOnCost)
@@ -1596,7 +1596,7 @@ export function FinancialImpactDashboardModal({ isOpen, onClose, orders }: Finan
 
           {/* Status Distribution */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Orders by Status</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Change Orders by Status</h3>
             <div className="grid grid-cols-3 gap-3">
               {['Pending', 'Under Review', 'Approved', 'Rejected', 'In Progress', 'Completed'].map((status) => {
                 const count = orders.filter((o) => o.status === status).length;
@@ -1615,7 +1615,7 @@ export function FinancialImpactDashboardModal({ isOpen, onClose, orders }: Finan
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
@@ -1654,9 +1654,9 @@ export function ScheduleImpactAnalysisModal({ isOpen, onClose, orders }: Schedul
   const acceleratedOrders = orders.filter((o) => o.impactOnSchedule < 0);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Calendar className="h-6 w-6" />
             <h2 className="text-xl font-bold">Schedule Impact Analysis</h2>
@@ -1666,9 +1666,9 @@ export function ScheduleImpactAnalysisModal({ isOpen, onClose, orders }: Schedul
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
               <p className="text-sm text-gray-600 mb-1">Total Schedule Impact</p>
               <p className="text-3xl font-bold text-blue-700">{totalScheduleImpact} days</p>
@@ -1692,7 +1692,7 @@ export function ScheduleImpactAnalysisModal({ isOpen, onClose, orders }: Schedul
 
           {/* Delayed Orders */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Orders Causing Delays</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Change Orders Causing Delays</h3>
             <div className="space-y-2 max-h-64 overflow-y-auto">
               {delayedOrders
                 .sort((a, b) => b.impactOnSchedule - a.impactOnSchedule)
@@ -1712,7 +1712,7 @@ export function ScheduleImpactAnalysisModal({ isOpen, onClose, orders }: Schedul
           </div>
 
           {/* Critical Path Impact */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Critical Path Impact Warning</h3>
             <p className="text-sm text-gray-700 mb-3">
               The cumulative schedule impact of {totalScheduleImpact} days may affect project milestones and delivery commitments.
@@ -1737,7 +1737,7 @@ export function ScheduleImpactAnalysisModal({ isOpen, onClose, orders }: Schedul
 
           {/* Mitigation Recommendations */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Mitigation Recommendations</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Mitigation Recommendations</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li className="flex items-start">
                 <span className="text-red-600 mr-2">•</span>
@@ -1759,7 +1759,7 @@ export function ScheduleImpactAnalysisModal({ isOpen, onClose, orders }: Schedul
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
@@ -1815,9 +1815,9 @@ export function ExportChangeOrdersModal({ isOpen, onClose, onExport }: ExportCha
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-violet-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-violet-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export Change Orders</h2>
@@ -1827,7 +1827,7 @@ export function ExportChangeOrdersModal({ isOpen, onClose, onExport }: ExportCha
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-3">Export Format</label>
@@ -1938,7 +1938,7 @@ export function ExportChangeOrdersModal({ isOpen, onClose, onExport }: ExportCha
           </div>
 
           {/* Export Preview */}
-          <div className="bg-violet-50 border border-violet-200 rounded-lg p-4">
+          <div className="bg-violet-50 border border-violet-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Export Preview</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p>Format: <span className="font-medium">{format.toUpperCase()}</span></p>
@@ -1949,7 +1949,7 @@ export function ExportChangeOrdersModal({ isOpen, onClose, onExport }: ExportCha
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -2011,9 +2011,9 @@ export function StakeholderNotificationModal({ isOpen, onClose, order, onSendNot
   if (!isOpen || !order) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Users className="h-6 w-6" />
             <h2 className="text-xl font-bold">Notify Stakeholders</h2>
@@ -2023,9 +2023,9 @@ export function StakeholderNotificationModal({ isOpen, onClose, order, onSendNot
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Change Order Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-gray-900">{order.title}</h3>
             <p className="text-xs text-gray-600 mt-1">{order.changeOrderNumber} | Status: {order.status}</p>
           </div>
@@ -2138,7 +2138,7 @@ export function StakeholderNotificationModal({ isOpen, onClose, order, onSendNot
           </div>
 
           {/* Preview */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Notification Preview</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><span className="font-medium">To:</span> {selectedStakeholders.length} recipient(s)</p>
@@ -2148,7 +2148,7 @@ export function StakeholderNotificationModal({ isOpen, onClose, order, onSendNot
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"

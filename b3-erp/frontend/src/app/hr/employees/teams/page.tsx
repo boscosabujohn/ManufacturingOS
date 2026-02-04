@@ -405,7 +405,7 @@ export default function TeamsPage() {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Users className="h-8 w-8 text-indigo-600" />
           Teams
@@ -414,8 +414,8 @@ export default function TeamsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Teams</p>
@@ -424,7 +424,7 @@ export default function TeamsPage() {
             <Users className="w-8 h-8 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Members</p>
@@ -433,7 +433,7 @@ export default function TeamsPage() {
             <UserPlus className="w-8 h-8 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Projects</p>
@@ -442,7 +442,7 @@ export default function TeamsPage() {
             <Target className="w-8 h-8 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Performance</p>
@@ -454,8 +454,8 @@ export default function TeamsPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-semibold text-gray-700">All Teams</h2>
             <span className="text-sm text-gray-500">({filteredData.length} teams)</span>
@@ -473,8 +473,8 @@ export default function TeamsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -522,7 +522,7 @@ export default function TeamsPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4 pt-4 border-t">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
               <select
@@ -554,14 +554,14 @@ export default function TeamsPage() {
 
       {/* Content */}
       {viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredData.map((team) => (
             <div
               key={team.id}
-              className="bg-white border-2 border-indigo-200 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer"
+              className="bg-white border-2 border-indigo-200 rounded-lg p-3 hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => setSelectedTeam(team)}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="h-14 w-14 rounded-full bg-indigo-100 flex items-center justify-center">
                   <Users className="h-7 w-7 text-indigo-600" />
                 </div>
@@ -570,15 +570,15 @@ export default function TeamsPage() {
 
               <h3 className="text-lg font-bold text-gray-900 mb-1">{team.name}</h3>
               <p className="text-sm text-indigo-600 font-medium mb-2">{team.code}</p>
-              <p className="text-sm text-gray-600 mb-4">{team.department} Department</p>
+              <p className="text-sm text-gray-600 mb-2">{team.department} Department</p>
 
-              <div className="mb-4 pb-4 border-b border-gray-200">
+              <div className="mb-2 pb-4 border-b border-gray-200">
                 <p className="text-xs text-gray-500 mb-1">Team Lead</p>
                 <p className="text-sm font-semibold text-gray-900">{team.teamLead}</p>
                 <p className="text-xs text-gray-500">{team.teamLeadId}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <p className="text-xs text-gray-500">Members</p>
                   <p className="text-xl font-bold text-indigo-600 flex items-center gap-1">
@@ -631,9 +631,9 @@ export default function TeamsPage() {
 
       {/* Team Details Panel */}
       {selectedTeam && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
               <h2 className="text-2xl font-bold text-gray-900">{selectedTeam.name}</h2>
               <button
                 onClick={() => setSelectedTeam(null)}
@@ -645,7 +645,7 @@ export default function TeamsPage() {
 
             <div className="p-6">
               {/* Team Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                 <div className="space-y-3">
                   <div>
                     <p className="text-sm text-gray-500">Team Code</p>
@@ -689,20 +689,20 @@ export default function TeamsPage() {
               </div>
 
               {/* Team Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-indigo-50 rounded-lg p-4 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
+                <div className="bg-indigo-50 rounded-lg p-3 text-center">
                   <p className="text-sm text-indigo-600 mb-1">Members</p>
                   <p className="text-2xl font-bold text-indigo-700">{selectedTeam.memberCount}</p>
                 </div>
-                <div className="bg-blue-50 rounded-lg p-4 text-center">
+                <div className="bg-blue-50 rounded-lg p-3 text-center">
                   <p className="text-sm text-blue-600 mb-1">Active Projects</p>
                   <p className="text-2xl font-bold text-blue-700">{selectedTeam.activeProjects}</p>
                 </div>
-                <div className="bg-green-50 rounded-lg p-4 text-center">
+                <div className="bg-green-50 rounded-lg p-3 text-center">
                   <p className="text-sm text-green-600 mb-1">Completed</p>
                   <p className="text-2xl font-bold text-green-700">{selectedTeam.completedProjects}</p>
                 </div>
-                <div className="bg-purple-50 rounded-lg p-4 text-center">
+                <div className="bg-purple-50 rounded-lg p-3 text-center">
                   <p className="text-sm text-purple-600 mb-1">Performance</p>
                   <p className="text-2xl font-bold text-purple-700">{selectedTeam.avgPerformance}%</p>
                 </div>
@@ -711,10 +711,10 @@ export default function TeamsPage() {
               {/* Team Members */}
               {selectedTeam.members.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Team Members</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Team Members</h3>
                   <div className="space-y-3">
                     {selectedTeam.members.map(member => (
-                      <div key={member.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                      <div key={member.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
                         <div className="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center font-bold text-indigo-600">
                           {member.avatar}
                         </div>

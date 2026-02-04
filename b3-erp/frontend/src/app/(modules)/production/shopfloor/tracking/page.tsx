@@ -426,10 +426,10 @@ export default function ShopFloorTrackingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -450,8 +450,8 @@ export default function ShopFloorTrackingPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Running Stations</p>
@@ -463,7 +463,7 @@ export default function ShopFloorTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Idle Stations</p>
@@ -475,7 +475,7 @@ export default function ShopFloorTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Avg Efficiency</p>
@@ -487,7 +487,7 @@ export default function ShopFloorTrackingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Utilization</p>
@@ -501,8 +501,8 @@ export default function ShopFloorTrackingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-400" />
           <select
             value={filterDepartment}
@@ -532,14 +532,14 @@ export default function ShopFloorTrackingPage() {
       </div>
 
       {/* Work Stations Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-3">
         {filteredStations.map((station) => (
           <div
             key={station.id}
-            className={`bg-white rounded-xl border-2 p-6 cursor-pointer hover:shadow-lg transition-all ${getStatusColor(station.status)}`}
+            className={`bg-white rounded-xl border-2 p-3 cursor-pointer hover:shadow-lg transition-all ${getStatusColor(station.status)}`}
             onClick={() => handleViewStation(station)}
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-lg font-bold text-gray-900">{station.stationCode}</h3>
@@ -558,7 +558,7 @@ export default function ShopFloorTrackingPage() {
 
             {station.status === 'running' && station.currentWO && (
               <>
-                <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+                <div className="mb-2 p-3 bg-gray-50 rounded-lg">
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div>
                       <p className="text-gray-500">Work Order</p>
@@ -579,7 +579,7 @@ export default function ShopFloorTrackingPage() {
                   </div>
                 </div>
 
-                <div className="mb-4">
+                <div className="mb-2">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm text-gray-600">Progress</span>
                     <span className="text-sm font-bold text-gray-900">{station.completionPercentage}%</span>
@@ -615,7 +615,7 @@ export default function ShopFloorTrackingPage() {
             )}
 
             {station.status === 'idle' && (
-              <div className="text-center py-6">
+              <div className="text-center py-2">
                 <Clock className="w-12 h-12 text-yellow-400 mb-2" />
                 <p className="text-gray-600">Station is idle</p>
                 <p className="text-sm text-gray-500">Operator: {station.operator}</p>
@@ -624,7 +624,7 @@ export default function ShopFloorTrackingPage() {
             )}
 
             {station.status === 'maintenance' && (
-              <div className="text-center py-6">
+              <div className="text-center py-2">
                 <AlertTriangle className="w-12 h-12 text-orange-400 mb-2" />
                 <p className="text-gray-600">Under maintenance</p>
                 <p className="text-sm text-gray-500">Awaiting service</p>
@@ -636,20 +636,20 @@ export default function ShopFloorTrackingPage() {
 
       {/* Active Work Orders */}
       <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-bold text-gray-900">Active Work Orders</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Work Order</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Station</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operators</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expected</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Work Order</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Station</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operators</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expected</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -659,30 +659,30 @@ export default function ShopFloorTrackingPage() {
                   className="hover:bg-gray-50 cursor-pointer transition-colors"
                   onClick={() => handleViewWorkOrder(wo)}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-blue-600">{wo.workOrderNumber}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{wo.productCode}</div>
                     <div className="text-sm text-gray-500">{wo.productName}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className="text-sm font-bold text-gray-900">{wo.completionPercentage}%</div>
                     <div className="text-xs text-gray-500">{wo.completedQuantity}/{wo.totalQuantity}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{wo.currentStation}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1">
                       <Users className="w-4 h-4 text-gray-400" />
                       <span className="text-sm text-gray-700">{wo.assignedOperators.length}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-700">{wo.expectedCompletion}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getWOStatusColor(wo.status)}`}>
                       {wo.status}
                     </span>

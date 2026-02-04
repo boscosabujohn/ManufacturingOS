@@ -206,7 +206,7 @@ export default function AuditTrailAdvanced({
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -228,8 +228,8 @@ export default function AuditTrailAdvanced({
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-blue-600 uppercase">Total Events</p>
@@ -239,7 +239,7 @@ export default function AuditTrailAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-green-600 uppercase">Today</p>
@@ -249,7 +249,7 @@ export default function AuditTrailAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-purple-600 uppercase">Active Users</p>
@@ -259,7 +259,7 @@ export default function AuditTrailAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-red-600 uppercase">Failed Actions</p>
@@ -269,7 +269,7 @@ export default function AuditTrailAdvanced({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-orange-600 uppercase">Critical</p>
@@ -281,8 +281,8 @@ export default function AuditTrailAdvanced({
       </div>
 
       {/* Filters */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
           <div className="md:col-span-2 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -353,58 +353,58 @@ export default function AuditTrailAdvanced({
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Timestamp</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">User</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Action</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Module</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Record</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">IP / Location</th>
-                <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
-                <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Timestamp</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">User</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Action</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Module</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Record</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
+                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">IP / Location</th>
+                <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
+                <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredLogs.map((log) => (
                 <tr key={log.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-gray-400" />
                       <span className="text-sm text-gray-900 font-mono">{formatTimestamp(log.timestamp)}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="text-sm font-medium text-gray-900">{log.userName}</p>
                       <p className="text-xs text-gray-500">{log.userEmail}</p>
                       <p className="text-xs text-gray-400">{log.userRole}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">{getActionBadge(log.action)}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">{getActionBadge(log.action)}</td>
+                  <td className="px-3 py-2">
                     <span className="text-sm text-gray-900 capitalize">{log.module.replace('_', ' ')}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="text-sm font-mono text-gray-900">{log.recordId}</p>
                       <p className="text-xs text-gray-500">{log.recordType}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900 max-w-xs truncate">{log.description}</p>
                     {log.changes.length > 0 && (
                       <p className="text-xs text-gray-500 mt-1">{log.changes.length} field(s) changed</p>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-xs">
                       <p className="text-gray-900 font-mono">{log.ipAddress}</p>
                       {log.location && <p className="text-gray-500 mt-1">{log.location}</p>}
                       <p className="text-gray-400 mt-1">{log.device}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">{getSeverityBadge(log.severity, log.success)}</td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">{getSeverityBadge(log.severity, log.success)}</td>
+                  <td className="px-3 py-2 text-center">
                     <button
                       onClick={() => setSelectedLog(log)}
                       className="p-1 hover:bg-gray-100 rounded transition-colors"
@@ -423,7 +423,7 @@ export default function AuditTrailAdvanced({
       {/* Detail Modal */}
       {selectedLog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl  w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -436,9 +436,9 @@ export default function AuditTrailAdvanced({
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Event Summary */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Timestamp</p>
                   <p className="text-gray-900 font-mono mt-1">{formatTimestamp(selectedLog.timestamp)}</p>
@@ -460,7 +460,7 @@ export default function AuditTrailAdvanced({
               {/* User Information */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-3">User Information</h4>
-                <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-gray-600">Name</p>
                     <p className="text-sm font-medium text-gray-900">{selectedLog.userName}</p>
@@ -483,7 +483,7 @@ export default function AuditTrailAdvanced({
               {/* Record Information */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-3">Record Information</h4>
-                <div className="bg-blue-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                <div className="bg-blue-50 rounded-lg p-3 grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-blue-600">Module</p>
                     <p className="text-sm font-medium text-blue-900 capitalize">{selectedLog.module.replace('_', ' ')}</p>
@@ -537,7 +537,7 @@ export default function AuditTrailAdvanced({
               {/* System Information */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-3">System Information</h4>
-                <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-gray-600">IP Address</p>
                     <p className="text-sm font-mono text-gray-900">{selectedLog.ipAddress}</p>
@@ -557,7 +557,7 @@ export default function AuditTrailAdvanced({
 
               {/* Error Details */}
               {!selectedLog.success && selectedLog.errorMessage && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-start gap-2">
                     <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                     <div>

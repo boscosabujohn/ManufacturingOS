@@ -40,9 +40,9 @@ export default function ErgonomicsPage() {
   const [filter, setFilter] = useState('All');
 
   return (
-    <div className="p-6 space-y-6 text-sm font-medium">
+    <div className="p-6 space-y-3 text-sm font-medium">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Layout className="h-8 w-8 text-orange-600" />
@@ -61,8 +61,8 @@ export default function ErgonomicsPage() {
       </div>
 
       {/* Site Risk Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Active Assessments</p>
@@ -75,7 +75,7 @@ export default function ErgonomicsPage() {
           <p className="text-[10px] text-gray-400 mt-6 italic font-bold">5 scheduled for next week</p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-red-100 shadow-sm border-2">
+        <div className="bg-white p-3 rounded-2xl border border-red-100 shadow-sm border-2">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-red-400 uppercase tracking-widest">High Risk Stations</p>
@@ -88,7 +88,7 @@ export default function ErgonomicsPage() {
           <p className="text-[10px] text-red-600 mt-6 font-black uppercase tracking-widest animate-pulse">Immediate Correction Necessary</p>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Adjustments Pending</p>
@@ -103,7 +103,7 @@ export default function ErgonomicsPage() {
           </div>
         </div>
 
-        <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+        <div className="bg-gray-900 p-3 rounded-2xl text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Overall Site Score</p>
@@ -118,11 +118,11 @@ export default function ErgonomicsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Assessment Queue */}
         <div className="lg:col-span-3">
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <div className="p-4 border-b border-gray-50 flex items-center justify-between gap-4">
+            <div className="p-4 border-b border-gray-50 flex items-center justify-between gap-2">
               <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic">Assessment Worklist</h3>
               <div className="relative flex-1 max-w-xs">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -185,14 +185,14 @@ export default function ErgonomicsPage() {
         </div>
 
         {/* Resources & Sidenote Sidebar */}
-        <div className="space-y-6">
-          <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 relative overflow-hidden group hover:shadow-lg transition-all">
+        <div className="space-y-3">
+          <div className="bg-orange-100 p-3 rounded-2xl border border-orange-200 relative overflow-hidden group hover:shadow-lg transition-all">
             <div className="relative z-10">
-              <h3 className="text-[10px] font-black text-orange-800 uppercase tracking-widest mb-4 flex items-center gap-2 italic">
+              <h3 className="text-[10px] font-black text-orange-800 uppercase tracking-widest mb-2 flex items-center gap-2 italic">
                 <AlertTriangle className="w-4 h-4" /> Site-Wide Study
               </h3>
               <h4 className="text-xl font-black italic tracking-tighter leading-tight uppercase text-orange-900 mb-2">Back Safety in <br />Packaging Dept</h4>
-              <p className="text-[11px] text-orange-700 italic font-bold leading-relaxed mb-6">
+              <p className="text-[11px] text-orange-700 italic font-bold leading-relaxed mb-3">
                 Recent patterns indicate strain in Packaging Line 4. Implementing mechanical lifting assists by April 30.
               </p>
               <button className="w-full py-2 bg-orange-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-800 transition-all flex items-center justify-center gap-2">
@@ -201,17 +201,17 @@ export default function ErgonomicsPage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-            <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest mb-6 flex items-center gap-2 italic">
+          <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+            <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest mb-3 flex items-center gap-2 italic">
               <Monitor className="w-4 h-4 text-blue-400" /> Best Practices
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {[
                 { icon: Monitor, text: 'Monitor top at eye level' },
                 { icon: Armchair, text: 'Lumbar support fully engaged' },
                 { icon: Activity, text: 'Micro-breaks every 20 mins' }
               ].map((tip, i) => (
-                <div key={i} className="flex items-center gap-4 group cursor-pointer">
+                <div key={i} className="flex items-center gap-2 group cursor-pointer">
                   <div className="p-2 bg-gray-50 rounded-lg text-gray-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-all">
                     <tip.icon className="w-4 h-4" />
                   </div>

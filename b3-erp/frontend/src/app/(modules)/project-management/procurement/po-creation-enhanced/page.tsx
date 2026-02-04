@@ -385,7 +385,7 @@ export default function POCreationEnhancedPage() {
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Building2 className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">PO Details & Vendor</h2>
             </div>
@@ -429,9 +429,9 @@ export default function POCreationEnhancedPage() {
             </div>
 
             {formData.vendor && (
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 mt-4">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 mt-4">
                 <h3 className="font-semibold text-blue-800 mb-2">Selected Vendor Details</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Name:</span>
                     <p className="font-medium text-gray-900">{formData.vendorName}</p>
@@ -453,7 +453,7 @@ export default function POCreationEnhancedPage() {
       case 1:
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Package className="w-5 h-5 text-blue-600" />
                 <h2 className="text-xl font-semibold text-gray-900">Line Items</h2>
@@ -567,7 +567,7 @@ export default function POCreationEnhancedPage() {
             {errors.items && <p className="text-sm text-red-500">{errors.items}</p>}
 
             {/* Totals */}
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-3">
               <div className="flex justify-end">
                 <div className="w-64 space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -595,7 +595,7 @@ export default function POCreationEnhancedPage() {
       case 2:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Truck className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Delivery Details</h2>
             </div>
@@ -650,7 +650,7 @@ export default function POCreationEnhancedPage() {
       case 3:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Terms & Conditions</h2>
             </div>
@@ -709,7 +709,7 @@ export default function POCreationEnhancedPage() {
       case 4:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review Purchase Order</h2>
             </div>
@@ -718,7 +718,7 @@ export default function POCreationEnhancedPage() {
               {/* Vendor Info */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Vendor Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Vendor:</span>
                     <p className="font-medium text-gray-900">{formData.vendorName}</p>
@@ -733,7 +733,7 @@ export default function POCreationEnhancedPage() {
               {/* Order Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Order Summary</h3>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2">
                   <div className="bg-white rounded-lg p-3 border">
                     <p className="text-2xl font-bold text-gray-900">{totals.itemCount}</p>
                     <p className="text-sm text-gray-500">Items</p>
@@ -756,7 +756,7 @@ export default function POCreationEnhancedPage() {
               {/* Delivery */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Delivery Details</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Expected Date:</span>
                     <p className="font-medium text-gray-900">{formData.expectedDelivery}</p>
@@ -775,7 +775,7 @@ export default function POCreationEnhancedPage() {
               {/* Payment */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Payment</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Payment Terms:</span>
                     <p className="font-medium text-gray-900">{formData.paymentTerms}</p>
@@ -811,10 +811,10 @@ export default function POCreationEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
@@ -822,7 +822,7 @@ export default function POCreationEnhancedPage() {
               <h1 className="text-2xl font-bold text-gray-900">Create Purchase Order</h1>
               <p className="text-sm text-gray-600 mt-1">Phase 4: Procurement - Step 4.5</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator fields={formFields} values={formData as unknown as Record<string, unknown>} variant="circular" size="md" />
             </div>

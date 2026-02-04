@@ -271,10 +271,10 @@ export default function SpendAnalysis() {
   const calculateTotalSavings = () => savingsOpportunities.reduce((sum, opp) => sum + opp.potential, 0)
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <DollarSign className="w-8 h-8 text-blue-600" />
@@ -325,8 +325,8 @@ export default function SpendAnalysis() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total Spend</span>
               <DollarSign className="w-5 h-5 text-blue-600" />
@@ -340,7 +340,7 @@ export default function SpendAnalysis() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Cost Savings</span>
               <PiggyBank className="w-5 h-5 text-green-600" />
@@ -354,7 +354,7 @@ export default function SpendAnalysis() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Budget Variance</span>
               <Calculator className="w-5 h-5 text-amber-600" />
@@ -366,7 +366,7 @@ export default function SpendAnalysis() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Active Suppliers</span>
               <Users className="w-5 h-5 text-purple-600" />
@@ -378,7 +378,7 @@ export default function SpendAnalysis() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-rose-600 text-sm font-medium">Transactions</span>
               <CreditCard className="w-5 h-5 text-rose-600" />
@@ -412,10 +412,10 @@ export default function SpendAnalysis() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Spend Trend Analysis */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Monthly Spend Trend</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Monthly Spend Trend</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <ComposedChart data={monthlySpendTrend}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -434,9 +434,9 @@ export default function SpendAnalysis() {
               </div>
 
               {/* Category Distribution */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend by Category</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Spend by Category</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RePieChart>
                       <Pie
@@ -458,8 +458,8 @@ export default function SpendAnalysis() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend by Region</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Spend by Region</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={spendByRegion}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -517,7 +517,7 @@ export default function SpendAnalysis() {
           )}
 
           {activeTab === 'categories' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Category Performance Table */}
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -591,8 +591,8 @@ export default function SpendAnalysis() {
               </div>
 
               {/* Category Trends */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Spend Trends</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Spend Trends</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={[
                     { month: 'Jan', rawMaterials: 4800000, itServices: 2600000, logistics: 3000000, mro: 1100000 },
@@ -621,7 +621,7 @@ export default function SpendAnalysis() {
           )}
 
           {activeTab === 'suppliers' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Top Suppliers */}
               <div className="bg-white border border-gray-200 rounded-lg">
                 <div className="p-4 border-b border-gray-200">
@@ -686,9 +686,9 @@ export default function SpendAnalysis() {
               </div>
 
               {/* Supplier Concentration Risk */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Concentration</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Supplier Concentration</h3>
                   <div className="space-y-3">
                     <div>
                       <div className="flex items-center justify-between mb-2">
@@ -720,8 +720,8 @@ export default function SpendAnalysis() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Payment Terms Distribution</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Payment Terms Distribution</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <RePieChart>
                       <Pie
@@ -747,9 +747,9 @@ export default function SpendAnalysis() {
           )}
 
           {activeTab === 'optimization' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Savings Opportunities */}
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-3">
                 <div className="flex items-start gap-3">
                   <Zap className="w-5 h-5 text-amber-600 mt-0.5" />
                   <div>
@@ -761,9 +761,9 @@ export default function SpendAnalysis() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {savingsOpportunities.map((opp) => (
-                  <div key={opp.id} className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div key={opp.id} className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <span className="text-sm text-gray-500">{opp.id}</span>
@@ -783,7 +783,7 @@ export default function SpendAnalysis() {
                       ${(opp.potential / 1000).toFixed(0)}K
                     </div>
 
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         {opp.timeframe}
@@ -849,11 +849,11 @@ export default function SpendAnalysis() {
           )}
 
           {activeTab === 'trends' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Advanced Analytics */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend Velocity</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Spend Velocity</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={[
                       { week: 'W1', spend: 450000, transactions: 125 },
@@ -873,8 +873,8 @@ export default function SpendAnalysis() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Price Index Trends</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Price Index Trends</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={[
                       { month: 'Jan', materials: 100, services: 100, logistics: 100 },
@@ -898,9 +898,9 @@ export default function SpendAnalysis() {
               </div>
 
               {/* Predictive Analytics */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend Forecast - Next Quarter</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Spend Forecast - Next Quarter</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-gray-900">$7.2M</div>
                     <div className="text-sm text-gray-600 mt-1">Predicted Spend</div>
@@ -927,13 +927,13 @@ export default function SpendAnalysis() {
           )}
 
           {activeTab === 'cube' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Multi-Dimensional Spend Analysis</h3>
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Multi-Dimensional Spend Analysis</h3>
 
               {/* Spend Cube Visualization */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <div className="mb-4">
-                  <div className="flex items-center gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <div className="mb-2">
+                  <div className="flex items-center gap-2">
                     <select className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                       <option>Dimension 1: Category</option>
                       <option>Dimension 1: Supplier</option>

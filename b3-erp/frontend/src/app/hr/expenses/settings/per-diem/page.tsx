@@ -377,7 +377,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <MapPin className="h-8 w-8 text-blue-600" />
           Per Diem Rates
@@ -386,8 +386,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Rates</p>
@@ -396,7 +396,7 @@ export default function Page() {
             <MapPin className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active</p>
@@ -405,7 +405,7 @@ export default function Page() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Domestic</p>
@@ -414,7 +414,7 @@ export default function Page() {
             <MapPin className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">International</p>
@@ -423,7 +423,7 @@ export default function Page() {
             <Globe className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Domestic</p>
@@ -432,7 +432,7 @@ export default function Page() {
             <DollarSign className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Currencies</p>
@@ -444,8 +444,8 @@ export default function Page() {
       </div>
 
       {/* Filters and Add Button */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Type:</label>
             <select
@@ -486,7 +486,7 @@ export default function Page() {
       <DataTable data={filteredRates} columns={columns} />
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Per Diem Rate Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Per diem rates cover daily expenses including accommodation, meals, incidentals, and local transport</li>
@@ -501,8 +501,8 @@ export default function Page() {
 
       {/* Add/Edit Modal */}
       {(showAddModal || showEditModal) && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                 <MapPin className="h-6 w-6 text-blue-600" />
@@ -522,11 +522,11 @@ export default function Page() {
             </div>
 
             <form onSubmit={handleSubmit} className="p-6">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Location Information */}
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Location Information</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">Location Name *</label>
                       <input
@@ -607,9 +607,9 @@ export default function Page() {
                 </div>
 
                 {/* Rate Components */}
-                <div className="bg-blue-50 rounded-lg p-4">
+                <div className="bg-blue-50 rounded-lg p-3">
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Rate Components (Per Day)</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Accommodation Rate *</label>
                       <input
@@ -676,9 +676,9 @@ export default function Page() {
                 </div>
 
                 {/* Effective Dates */}
-                <div className="bg-yellow-50 rounded-lg p-4">
+                <div className="bg-yellow-50 rounded-lg p-3">
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Effective Period</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Effective From *</label>
                       <input
@@ -703,9 +703,9 @@ export default function Page() {
                 </div>
 
                 {/* Status and Notes */}
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Additional Information</h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Status *</label>
                       <select
@@ -760,7 +760,7 @@ export default function Page() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && selectedRate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -769,8 +769,8 @@ export default function Page() {
               </h2>
             </div>
 
-            <div className="p-6 space-y-4">
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="p-6 space-y-2">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <p className="text-sm text-red-900">
                   Are you sure you want to delete this per diem rate?
                 </p>

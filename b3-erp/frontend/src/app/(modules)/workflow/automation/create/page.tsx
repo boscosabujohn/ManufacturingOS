@@ -90,9 +90,9 @@ export default function CreateAutomationPage() {
     return (
         <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
             {/* Header */}
-            <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
+            <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                         <button
                             onClick={() => router.back()}
                             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -130,14 +130,14 @@ export default function CreateAutomationPage() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-6">
-                <form onSubmit={handleSubmit} className="w-full space-y-6">
+            <div className="flex-1 overflow-y-auto p-3">
+                <form onSubmit={handleSubmit} className="w-full space-y-3">
                     {/* Basic Info */}
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                             <AlertCircle className="w-4 h-4 text-orange-600" /> Basic Information
                         </h3>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             <div>
                                 <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">
                                     Rule Name *
@@ -163,7 +163,7 @@ export default function CreateAutomationPage() {
                                     className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                                 />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-2">
                                 <div>
                                     <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">
                                         Category
@@ -203,11 +203,11 @@ export default function CreateAutomationPage() {
                     </div>
 
                     {/* Trigger Configuration */}
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                             <Zap className="w-4 h-4 text-orange-600" /> Trigger Configuration
                         </h3>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             <div>
                                 <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-3">
                                     Trigger Type *
@@ -321,11 +321,11 @@ export default function CreateAutomationPage() {
                     </div>
 
                     {/* Action Configuration */}
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                             <GitBranch className="w-4 h-4 text-orange-600" /> Action Configuration
                         </h3>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             <div>
                                 <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">
                                     Action Type *
@@ -358,7 +358,7 @@ export default function CreateAutomationPage() {
                     </div>
 
                     {/* Status Toggle */}
-                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+                    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <CheckCircle className={`w-5 h-5 ${formData.isActive ? 'text-green-600' : 'text-gray-400'}`} />

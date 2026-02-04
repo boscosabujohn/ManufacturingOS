@@ -139,10 +139,10 @@ export function WasteReductionMetrics({
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Key Metrics */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">♻️</span>
             <span className="text-xs text-green-400">+3.2% vs last month</span>
@@ -150,7 +150,7 @@ export function WasteReductionMetrics({
           <p className="text-3xl font-bold text-green-400">{recyclingRate.toFixed(1)}%</p>
           <p className="text-sm text-gray-400">Recycling Rate</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">⚙️</span>
             <span className="text-xs text-green-400">+1.5%</span>
@@ -158,7 +158,7 @@ export function WasteReductionMetrics({
           <p className="text-3xl font-bold text-white">{avgEfficiency.toFixed(1)}%</p>
           <p className="text-sm text-gray-400">Material Efficiency</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">📉</span>
             <span className="text-xs text-green-400">-0.3%</span>
@@ -166,7 +166,7 @@ export function WasteReductionMetrics({
           <p className="text-3xl font-bold text-white">{avgScrapRate.toFixed(1)}%</p>
           <p className="text-sm text-gray-400">Avg Scrap Rate</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">🗑️</span>
             <span className="text-xs text-yellow-400">This month</span>
@@ -177,8 +177,8 @@ export function WasteReductionMetrics({
       </div>
 
       {/* Waste by Disposal Method */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Waste by Disposal Method</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Waste by Disposal Method</h3>
         <div className="flex items-center gap-8">
           <div className="relative w-48 h-48">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
@@ -246,22 +246,22 @@ export function WasteReductionMetrics({
       </div>
 
       {/* Financial Impact */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-3 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Disposal Costs</h4>
           <p className="text-2xl font-bold text-red-400">
             ${wasteStreams.reduce((sum, w) => sum + w.cost, 0).toLocaleString()}
           </p>
           <p className="text-xs text-gray-400 mt-1">This month</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Recycling Revenue</h4>
           <p className="text-2xl font-bold text-green-400">
             ${wasteStreams.reduce((sum, w) => sum + w.revenue, 0).toLocaleString()}
           </p>
           <p className="text-xs text-gray-400 mt-1">From material sales</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Net Waste Cost</h4>
           <p className="text-2xl font-bold text-white">
             ${(wasteStreams.reduce((sum, w) => sum + w.cost - w.revenue, 0)).toLocaleString()}
@@ -273,8 +273,8 @@ export function WasteReductionMetrics({
   );
 
   const renderWaste = () => (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-2">
+      <div className="grid grid-cols-2 gap-2">
         {wasteStreams.map(stream => {
           const config = wasteTypeConfig[stream.type];
           const disposal = disposalConfig[stream.disposalMethod];
@@ -284,7 +284,7 @@ export function WasteReductionMetrics({
           return (
             <div
               key={stream.id}
-              className={`bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
+              className={`bg-gray-800 rounded-lg p-3 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
               onClick={() => handleStreamClick(stream)}
             >
               <div className="flex items-center justify-between mb-3">
@@ -330,9 +330,9 @@ export function WasteReductionMetrics({
 
       {/* Detail Modal */}
       {selectedStream && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-lg">
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-lg">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{wasteTypeConfig[selectedStream.type].icon}</span>
                 <div>
@@ -348,12 +348,12 @@ export function WasteReductionMetrics({
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">{selectedStream.quantity.toLocaleString()}</p>
                 <p className="text-sm text-gray-400">kg Total</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-green-400">{selectedStream.recyclingRate}%</p>
                 <p className="text-sm text-gray-400">Recycling Rate</p>
               </div>
@@ -382,7 +382,7 @@ export function WasteReductionMetrics({
   );
 
   const renderMaterials = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="bg-gray-800 rounded-lg overflow-hidden">
         <table className="w-full">
           <thead>
@@ -430,9 +430,9 @@ export function WasteReductionMetrics({
       </div>
 
       {/* Efficiency Visualization */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Material Utilization</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Material Utilization</h3>
+        <div className="space-y-2">
           {materialEfficiency.map(material => (
             <div key={material.id}>
               <div className="flex items-center justify-between mb-1">
@@ -454,7 +454,7 @@ export function WasteReductionMetrics({
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-center gap-6 mt-4 pt-4 border-t border-gray-700">
+        <div className="flex items-center justify-center gap-3 mt-4 pt-4 border-t border-gray-700">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-green-600 rounded" />
             <span className="text-sm text-gray-400">Utilized Output</span>
@@ -469,10 +469,10 @@ export function WasteReductionMetrics({
   );
 
   const renderScrap = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Scrap Rate Overview */}
-      <div className="grid grid-cols-3 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-3 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Best Performer</h4>
           <p className="text-xl font-bold text-green-400">
             {scrapData.reduce((best, s) => s.scrapRate < best.scrapRate ? s : best).workCenter}
@@ -481,7 +481,7 @@ export function WasteReductionMetrics({
             {scrapData.reduce((best, s) => s.scrapRate < best.scrapRate ? s : best).scrapRate}% scrap rate
           </p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Needs Attention</h4>
           <p className="text-xl font-bold text-red-400">
             {scrapData.reduce((worst, s) => s.scrapRate > worst.scrapRate ? s : worst).workCenter}
@@ -490,7 +490,7 @@ export function WasteReductionMetrics({
             {scrapData.reduce((worst, s) => s.scrapRate > worst.scrapRate ? s : worst).scrapRate}% scrap rate
           </p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <h4 className="text-gray-400 text-sm mb-2">Total Scrap This Month</h4>
           <p className="text-xl font-bold text-white">
             {scrapData.reduce((sum, s) => sum + s.quantity, 0).toLocaleString()} units
@@ -500,13 +500,13 @@ export function WasteReductionMetrics({
       </div>
 
       {/* Scrap by Work Center */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Scrap Rate by Work Center</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Scrap Rate by Work Center</h3>
+        <div className="space-y-2">
           {scrapData.map(data => {
             const overTarget = data.scrapRate > data.targetRate;
             return (
-              <div key={data.id} className="bg-gray-700 rounded-lg p-4">
+              <div key={data.id} className="bg-gray-700 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <span className="text-xl">🏭</span>
@@ -515,7 +515,7 @@ export function WasteReductionMetrics({
                       <p className="text-xs text-gray-400">Primary cause: {data.primaryCause}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <span className={`text-xl ${
                       data.trend === 'improving' ? 'text-green-400' :
                       data.trend === 'worsening' ? 'text-red-400' : 'text-yellow-400'
@@ -558,9 +558,9 @@ export function WasteReductionMetrics({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
             <span className="text-2xl">♻️</span>

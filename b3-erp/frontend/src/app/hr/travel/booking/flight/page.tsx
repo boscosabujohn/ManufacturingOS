@@ -232,8 +232,8 @@ export default function FlightBookingPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Plane className="h-7 w-7 text-blue-600" />
           Flight Bookings
@@ -242,7 +242,7 @@ export default function FlightBookingPage() {
       </div>
 
       {/* Info Alert */}
-      <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <div className="flex items-start gap-2">
           <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
@@ -256,31 +256,31 @@ export default function FlightBookingPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Bookings</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Confirmed</div>
           <div className="text-2xl font-bold text-green-600">{stats.confirmed}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Pending</div>
           <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Cancelled</div>
           <div className="text-2xl font-bold text-red-600">{stats.cancelled}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Spent</div>
           <div className="text-2xl font-bold text-blue-600">₹{(stats.totalSpent / 100000).toFixed(1)}L</div>
         </div>
       </div>
 
       {/* Filters and Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="mb-3 flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center flex-1">
           <div className="flex gap-2 items-center">
             <label className="text-sm font-medium text-gray-700">Status:</label>
@@ -314,10 +314,10 @@ export default function FlightBookingPage() {
       </div>
 
       {/* Bookings List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredBookings.map((booking) => (
           <div key={booking.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-gray-200 flex items-center justify-between">
+            <div className="px-3 py-2 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-gray-200 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-600 rounded-lg">
                   <Plane className="h-5 w-5 text-white" />
@@ -340,7 +340,7 @@ export default function FlightBookingPage() {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-2">
                 {/* Employee Info */}
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -358,7 +358,7 @@ export default function FlightBookingPage() {
                     <MapPin className="h-4 w-4 text-gray-400" />
                     <span className="text-xs text-gray-500 uppercase font-medium">Route & Schedule</span>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div>
                       <p className="text-xl font-bold text-gray-900">{booking.departureTime}</p>
                       <p className="text-sm text-gray-600">{booking.from}</p>
@@ -393,7 +393,7 @@ export default function FlightBookingPage() {
 
               {/* Additional Info */}
               {(booking.mealPreference || booking.baggageAllowance || booking.remarks) && (
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                <div className="bg-gray-50 rounded-lg p-3 mb-2">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
                     {booking.mealPreference && (
                       <div>
@@ -448,7 +448,7 @@ export default function FlightBookingPage() {
 
       {filteredBookings.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
-          <Plane className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Plane className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No bookings found</h3>
           <p className="text-gray-600">No flight bookings match your search criteria</p>
         </div>
@@ -456,8 +456,8 @@ export default function FlightBookingPage() {
 
       {/* Add Booking Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
               <h2 className="text-xl font-bold text-gray-900">Add Flight Booking</h2>
               <button onClick={() => setShowAddModal(false)} className="p-2 hover:bg-gray-100 rounded-lg">
@@ -466,9 +466,9 @@ export default function FlightBookingPage() {
             </div>
 
             <div className="p-6">
-              <form className="space-y-6">
+              <form className="space-y-3">
                 {/* Employee & Travel Request */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Travel Request ID</label>
                     <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="TR-2025-XXX" />
@@ -484,7 +484,7 @@ export default function FlightBookingPage() {
                 </div>
 
                 {/* Flight Details */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Airline</label>
                     <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Air India" />
@@ -500,7 +500,7 @@ export default function FlightBookingPage() {
                 </div>
 
                 {/* Route */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">From (Airport)</label>
                     <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Mumbai (BOM)" />
@@ -512,7 +512,7 @@ export default function FlightBookingPage() {
                 </div>
 
                 {/* Schedule */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Departure Date</label>
                     <input type="date" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -532,7 +532,7 @@ export default function FlightBookingPage() {
                 </div>
 
                 {/* Pricing */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Base Fare (₹)</label>
                     <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
@@ -548,7 +548,7 @@ export default function FlightBookingPage() {
                 </div>
 
                 {/* Booking Details */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Booking Class</label>
                     <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
@@ -582,7 +582,7 @@ export default function FlightBookingPage() {
                 </div>
 
                 {/* Additional Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Agency Name</label>
                     <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Optional" />
@@ -621,10 +621,10 @@ export default function FlightBookingPage() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && selectedBooking && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-2">
                 <div className="p-3 bg-red-100 rounded-full">
                   <AlertCircle className="h-6 w-6 text-red-600" />
                 </div>

@@ -30,7 +30,7 @@ export default function ProjectClosurePage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -54,14 +54,14 @@ export default function ProjectClosurePage() {
             {closed ? (
                 <Card className="bg-green-50 border-green-200">
                     <CardContent className="pt-6 text-center py-12">
-                        <div className="h-20 w-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+                        <div className="h-20 w-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-3">
                             <CheckCircle className="h-10 w-10" />
                         </div>
                         <h2 className="text-3xl font-bold text-green-800 mb-2">Project Successfully Closed!</h2>
                         <p className="text-green-700 max-w-md mb-8">
                             Thank you for your hard work. The project "Pearl Apartments - Tower A" has been completed and archived.
                         </p>
-                        <div className="flex justify-center gap-4">
+                        <div className="flex justify-center gap-2">
                             <Button variant="outline" className="bg-white" onClick={() => window.print()}>
                                 <FileText className="mr-2 h-4 w-4" /> Print Report
                             </Button>
@@ -72,13 +72,13 @@ export default function ProjectClosurePage() {
                     </CardContent>
                 </Card>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <Card>
                         <CardHeader>
                             <CardTitle>Project Summary</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                        <CardContent className="space-y-2">
+                            <div className="grid grid-cols-2 gap-2 text-sm">
                                 <div>
                                     <div className="text-muted-foreground">Project Name</div>
                                     <div className="font-medium">Pearl Apartments</div>
@@ -120,7 +120,7 @@ export default function ProjectClosurePage() {
                         <CardHeader>
                             <CardTitle>Internal Feedback & Closure</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-6">
+                        <CardContent className="space-y-3">
                             <div>
                                 <label className="text-sm font-medium block mb-2">Project Rating</label>
                                 <div className="flex gap-2">

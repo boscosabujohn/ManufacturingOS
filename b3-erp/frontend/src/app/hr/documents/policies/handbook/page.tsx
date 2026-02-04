@@ -19,14 +19,14 @@ export default function EmployeeHandbookPage() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Employee Handbook</h1>
         <p className="text-sm text-gray-600 mt-1">Complete guide to company policies and procedures</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Current Version</p>
@@ -36,7 +36,7 @@ export default function EmployeeHandbookPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Pages</p>
@@ -46,7 +46,7 @@ export default function EmployeeHandbookPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Last Updated</p>
@@ -57,8 +57,8 @@ export default function EmployeeHandbookPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold text-gray-900">Download Full Handbook</h2>
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
             <Download className="h-4 w-4" />
@@ -70,11 +70,11 @@ export default function EmployeeHandbookPage() {
         </p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Handbook Sections</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Handbook Sections</h2>
         <div className="space-y-3">
           {handbookSections.map((section) => (
-            <div key={section.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+            <div key={section.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900">{section.title}</h3>
                 <p className="text-sm text-gray-600 mt-1">

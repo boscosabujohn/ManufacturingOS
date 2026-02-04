@@ -915,7 +915,7 @@ export default function DriverCompliancePage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -938,8 +938,8 @@ export default function DriverCompliancePage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <ShieldCheck className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{compliantDrivers}/{totalDrivers}</span>
@@ -948,7 +948,7 @@ export default function DriverCompliancePage() {
           <div className="text-xs text-blue-600 mt-1">{((compliantDrivers/totalDrivers)*100).toFixed(1)}% Compliance Rate</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{expiringItems}</span>
@@ -957,7 +957,7 @@ export default function DriverCompliancePage() {
           <div className="text-xs text-orange-600 mt-1">Licenses/Certificates/Insurance</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">{criticalAlerts}</span>
@@ -966,7 +966,7 @@ export default function DriverCompliancePage() {
           <div className="text-xs text-red-600 mt-1">Requires Immediate Action</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <FileText className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{totalDrivers * 3}</span>
@@ -977,8 +977,8 @@ export default function DriverCompliancePage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -1039,47 +1039,47 @@ export default function DriverCompliancePage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">License Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Medical Certificate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Insurance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trainings</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Violations</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compliance Score</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Driver</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">License Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Medical Certificate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Insurance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trainings</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Violations</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compliance Score</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredData.map((driver) => (
                 <tr key={driver.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{driver.driverName}</div>
                     <div className="text-sm text-gray-600">{driver.driverId}</div>
                     <div className="text-xs text-gray-500 mt-1">{driver.licenseNumber}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(driver.licenseStatus)}`}>
                       {driver.licenseStatus.replace('-', ' ').toUpperCase()}
                     </span>
                     <div className="text-xs text-gray-600 mt-1">Expires: {new Date(driver.licenseExpiryDate).toLocaleDateString()}</div>
                     <div className="text-xs text-gray-500">{driver.licenseDaysToExpiry} days left</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(driver.medicalStatus)}`}>
                       {driver.medicalStatus.replace('-', ' ').toUpperCase()}
                     </span>
                     <div className="text-xs text-gray-600 mt-1">{driver.medicalCertificate}</div>
                     <div className="text-xs text-gray-500">{driver.medicalDaysToExpiry} days left</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(driver.insuranceStatus)}`}>
                       {driver.insuranceStatus.replace('-', ' ').toUpperCase()}
                     </span>
                     <div className="text-xs text-gray-600 mt-1">{driver.insurancePolicyNumber}</div>
                     <div className="text-xs text-gray-500">{driver.insuranceDaysToExpiry} days left</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{driver.trainingCertificates.length} certificates</div>
                     <div className="text-xs text-green-600">
                       {driver.trainingCertificates.filter(t => t.status === 'valid').length} valid
@@ -1091,7 +1091,7 @@ export default function DriverCompliancePage() {
                       {driver.mandatoryTrainings.filter(t => t.status === 'overdue').length} overdue
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">Total: {driver.totalViolations}</div>
                     {driver.criticalViolations > 0 && (
                       <div className="text-xs text-red-600">Critical: {driver.criticalViolations}</div>
@@ -1101,7 +1101,7 @@ export default function DriverCompliancePage() {
                       <div className="text-xs text-gray-500">Last: {new Date(driver.lastViolationDate).toLocaleDateString()}</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className={`text-2xl font-bold ${
                       driver.complianceScore >= 90 ? 'text-green-600' :
                       driver.complianceScore >= 75 ? 'text-blue-600' :
@@ -1120,12 +1120,12 @@ export default function DriverCompliancePage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(driver.status)}`}>
                       {driver.status.replace('-', ' ').toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
@@ -1149,9 +1149,9 @@ export default function DriverCompliancePage() {
       </div>
 
       {/* Compliance Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <FileText className="w-6 h-6 text-blue-600" />
             </div>
@@ -1168,8 +1168,8 @@ export default function DriverCompliancePage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-orange-100 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-orange-600" />
             </div>
@@ -1186,8 +1186,8 @@ export default function DriverCompliancePage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <ShieldCheck className="w-6 h-6 text-green-600" />
             </div>

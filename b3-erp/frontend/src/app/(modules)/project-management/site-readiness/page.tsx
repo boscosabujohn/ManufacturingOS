@@ -30,7 +30,7 @@ export default function SiteReadinessPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -79,7 +79,7 @@ export default function SiteReadinessPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="p-3 bg-yellow-50 border border-yellow-100 rounded-lg mb-4">
+            <div className="p-3 bg-yellow-50 border border-yellow-100 rounded-lg mb-2">
               <div className="flex items-start gap-2">
                 <AlertTriangle className="w-4 h-4 text-yellow-600 mt-0.5" />
                 <p className="text-xs text-yellow-800">

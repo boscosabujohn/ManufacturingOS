@@ -100,10 +100,10 @@ export function AddResourceModal({ isOpen, onClose, onSubmit }: AddResourceModal
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <User className="w-6 h-6" />
@@ -119,14 +119,14 @@ export function AddResourceModal({ isOpen, onClose, onSubmit }: AddResourceModal
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <User className="w-5 h-5 text-blue-600" />
               Basic Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Full Name <span className="text-red-500">*</span>
@@ -199,12 +199,12 @@ export function AddResourceModal({ isOpen, onClose, onSubmit }: AddResourceModal
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Mail className="w-5 h-5 text-blue-600" />
               Contact Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email <span className="text-red-500">*</span>
@@ -262,7 +262,7 @@ export function AddResourceModal({ isOpen, onClose, onSubmit }: AddResourceModal
           </div>
 
           {/* Skills */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Award className="w-5 h-5 text-blue-600" />
               Skills & Expertise
@@ -304,12 +304,12 @@ export function AddResourceModal({ isOpen, onClose, onSubmit }: AddResourceModal
           </div>
 
           {/* Cost & Status */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-blue-600" />
               Cost & Availability
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Cost Rate (per day) <span className="text-red-500">*</span>
@@ -398,10 +398,10 @@ export function EditResourceModal({ isOpen, onClose, resource, onSubmit }: EditR
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <User className="w-6 h-6" />
@@ -417,14 +417,14 @@ export function EditResourceModal({ isOpen, onClose, resource, onSubmit }: EditR
         </div>
 
         {/* Body - Similar to Add Resource Modal */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <User className="w-5 h-5 text-purple-600" />
               Basic Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                 <input
@@ -510,7 +510,7 @@ export function EditResourceModal({ isOpen, onClose, resource, onSubmit }: EditR
           </div>
 
           {/* Skills */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Award className="w-5 h-5 text-purple-600" />
               Skills & Expertise
@@ -548,12 +548,12 @@ export function EditResourceModal({ isOpen, onClose, resource, onSubmit }: EditR
           </div>
 
           {/* Cost & Status */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-purple-600" />
               Cost & Status
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Cost Rate (per day)</label>
                 <input
@@ -639,10 +639,10 @@ export function AssignToProjectModal({ isOpen, onClose, resource, onSubmit }: As
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Briefcase className="w-6 h-6" />
@@ -658,7 +658,7 @@ export function AssignToProjectModal({ isOpen, onClose, resource, onSubmit }: As
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Project <span className="text-red-500">*</span>
@@ -703,7 +703,7 @@ export function AssignToProjectModal({ isOpen, onClose, resource, onSubmit }: As
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date <span className="text-red-500">*</span>
@@ -731,7 +731,7 @@ export function AssignToProjectModal({ isOpen, onClose, resource, onSubmit }: As
           </div>
 
           {/* Current availability warning */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
@@ -788,10 +788,10 @@ export function ResourceCalendarModal({ isOpen, onClose, resource }: ResourceCal
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-6 h-6" />
@@ -807,10 +807,10 @@ export function ResourceCalendarModal({ isOpen, onClose, resource }: ResourceCal
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Current Status */}
-          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-4 border border-indigo-200">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-3 border border-indigo-200">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Current Allocation</p>
                 <p className="text-2xl font-bold text-indigo-900">{resource.allocation}%</p>
@@ -830,13 +830,13 @@ export function ResourceCalendarModal({ isOpen, onClose, resource }: ResourceCal
 
           {/* Project Bookings */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-indigo-600" />
               Project Bookings
             </h3>
             <div className="space-y-3">
               {mockBookings.map(booking => (
-                <div key={booking.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                <div key={booking.id} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 transition-colors">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">{booking.project}</h4>
                     <span className={`px-2 py-1 rounded text-xs font-medium ${
@@ -845,7 +845,7 @@ export function ResourceCalendarModal({ isOpen, onClose, resource }: ResourceCal
                       {booking.status}
                     </span>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="grid grid-cols-3 gap-2 text-sm">
                     <div>
                       <p className="text-gray-600">Start Date</p>
                       <p className="font-medium">{booking.start}</p>
@@ -871,13 +871,13 @@ export function ResourceCalendarModal({ isOpen, onClose, resource }: ResourceCal
 
           {/* Leaves */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Clock className="w-5 h-5 text-indigo-600" />
               Scheduled Leaves
             </h3>
             <div className="space-y-3">
               {mockLeaves.map(leave => (
-                <div key={leave.id} className="border border-orange-200 bg-orange-50 rounded-lg p-4">
+                <div key={leave.id} className="border border-orange-200 bg-orange-50 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="font-semibold text-gray-900">{leave.type}</h4>
@@ -894,7 +894,7 @@ export function ResourceCalendarModal({ isOpen, onClose, resource }: ResourceCal
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-end rounded-b-xl">
           <button
             onClick={onClose}
             className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
@@ -932,10 +932,10 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Activity className="w-6 h-6" />
@@ -951,10 +951,10 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Weekly Summary */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Clock className="w-5 h-5 text-blue-600" />
                 <h3 className="font-semibold text-gray-900">Current Week</h3>
@@ -968,7 +968,7 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
                 )}
               </div>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="w-5 h-5 text-green-600" />
                 <h3 className="font-semibold text-gray-900">Capacity</h3>
@@ -981,7 +981,7 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
                 </div>
               </div>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="w-5 h-5 text-purple-600" />
                 <h3 className="font-semibold text-gray-900">Efficiency</h3>
@@ -993,13 +993,13 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
 
           {/* Project Distribution */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <PieChart className="w-5 h-5 text-cyan-600" />
               Project Distribution
             </h3>
             <div className="space-y-3">
               {mockWorkload.projects.map((project, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-4">
+                <div key={index} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">{project.name}</h4>
                     <span className="text-sm font-medium text-gray-600">{project.hours}h/week</span>
@@ -1017,7 +1017,7 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
 
           {/* Active Tasks */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-cyan-600" />
               Active Tasks ({mockWorkload.tasks.length})
             </h3>
@@ -1067,7 +1067,7 @@ export function ResourceWorkloadModal({ isOpen, onClose, resource }: ResourceWor
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-between items-center rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-between items-center rounded-b-xl">
           <button className="px-4 py-2 text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors flex items-center gap-2">
             <Download className="w-4 h-4" />
             Export Report
@@ -1121,10 +1121,10 @@ export function RequestResourceModal({ isOpen, onClose, onSubmit }: RequestResou
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Users className="w-6 h-6" />
@@ -1140,8 +1140,8 @@ export function RequestResourceModal({ isOpen, onClose, onSubmit }: RequestResou
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Project <span className="text-red-500">*</span>
@@ -1233,7 +1233,7 @@ export function RequestResourceModal({ isOpen, onClose, onSubmit }: RequestResou
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date <span className="text-red-500">*</span>
@@ -1353,10 +1353,10 @@ export function SkillsMatrixModal({ isOpen, onClose, resource, onSubmit }: Skill
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Award className="w-6 h-6" />
@@ -1372,8 +1372,8 @@ export function SkillsMatrixModal({ isOpen, onClose, resource, onSubmit }: Skill
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
-          <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-4 border border-pink-200">
+        <div className="p-6 space-y-3">
+          <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-3 border border-pink-200">
             <h3 className="font-semibold text-gray-900 mb-2">Skill Level Guide</h3>
             <div className="grid grid-cols-5 gap-2 text-sm">
               <div className="flex items-center gap-2">
@@ -1399,16 +1399,16 @@ export function SkillsMatrixModal({ isOpen, onClose, resource, onSubmit }: Skill
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {skills.map((skill, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-4">
+              <div key={index} className="border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-semibold text-gray-900 text-lg">{skill.skill}</h4>
                   <span className={`px-3 py-1 ${getLevelColor(skill.level)} text-white rounded-full text-sm font-medium`}>
                     {getLevelText(skill.level)}
                   </span>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mb-3">
+                <div className="grid grid-cols-3 gap-2 mb-3">
                   <div>
                     <p className="text-sm text-gray-600">Proficiency Level</p>
                     <div className="flex items-center gap-2 mt-1">
@@ -1451,7 +1451,7 @@ export function SkillsMatrixModal({ isOpen, onClose, resource, onSubmit }: Skill
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end gap-3 rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-end gap-3 rounded-b-xl">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
@@ -1506,10 +1506,10 @@ export function CostRatesModal({ isOpen, onClose, resource, onSubmit }: CostRate
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <DollarSign className="w-6 h-6" />
@@ -1525,13 +1525,13 @@ export function CostRatesModal({ isOpen, onClose, resource, onSubmit }: CostRate
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-2">Current Standard Rate</h3>
             <p className="text-3xl font-bold text-teal-900">{formatCurrency(rates.standardRate)}<span className="text-lg text-gray-600">/day</span></p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Standard Rate (per day) <span className="text-red-500">*</span>
@@ -1587,7 +1587,7 @@ export function CostRatesModal({ isOpen, onClose, resource, onSubmit }: CostRate
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Currency
@@ -1618,7 +1618,7 @@ export function CostRatesModal({ isOpen, onClose, resource, onSubmit }: CostRate
           </div>
 
           {/* Rate Summary */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h4 className="font-semibold text-gray-900 mb-3">Rate Summary</h4>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div className="flex justify-between">
@@ -1701,10 +1701,10 @@ export function AvailabilityPlanningModal({ isOpen, onClose, resource, onSubmit 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-amber-600 to-amber-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-amber-600 to-amber-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-6 h-6" />
@@ -1720,11 +1720,11 @@ export function AvailabilityPlanningModal({ isOpen, onClose, resource, onSubmit 
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Add New Leave */}
-          <form onSubmit={handleSubmit} className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-4">
+          <form onSubmit={handleSubmit} className="bg-amber-50 border border-amber-200 rounded-lg p-3 space-y-2">
             <h3 className="font-semibold text-gray-900">Schedule New Unavailability</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Type <span className="text-red-500">*</span>
@@ -1792,10 +1792,10 @@ export function AvailabilityPlanningModal({ isOpen, onClose, resource, onSubmit 
 
           {/* Scheduled Leaves */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Scheduled Unavailability</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Scheduled Unavailability</h3>
             <div className="space-y-3">
               {leaves.map(leave => (
-                <div key={leave.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                <div key={leave.id} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">{leave.type}</h4>
                     <span className={`px-2 py-1 rounded text-xs font-medium ${
@@ -1806,7 +1806,7 @@ export function AvailabilityPlanningModal({ isOpen, onClose, resource, onSubmit 
                       {leave.status}
                     </span>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="grid grid-cols-3 gap-2 text-sm">
                     <div>
                       <p className="text-gray-600">Start Date</p>
                       <p className="font-medium">{leave.start}</p>
@@ -1826,9 +1826,9 @@ export function AvailabilityPlanningModal({ isOpen, onClose, resource, onSubmit 
           </div>
 
           {/* Leave Balance */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
             <h3 className="font-semibold text-gray-900 mb-3">Leave Balance</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Annual Leave</p>
                 <p className="text-lg font-bold text-blue-900">12 days</p>
@@ -1849,7 +1849,7 @@ export function AvailabilityPlanningModal({ isOpen, onClose, resource, onSubmit 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-end rounded-b-xl">
           <button
             onClick={onClose}
             className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
@@ -1915,10 +1915,10 @@ export function ResourceHistoryModal({ isOpen, onClose, resource }: ResourceHist
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-slate-600 to-slate-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-slate-600 to-slate-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-6 h-6" />
@@ -1934,22 +1934,22 @@ export function ResourceHistoryModal({ isOpen, onClose, resource }: ResourceHist
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Summary Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-gray-600">Total Projects</p>
               <p className="text-3xl font-bold text-blue-900">{resource.totalProjects}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm text-gray-600">Completed</p>
               <p className="text-3xl font-bold text-green-900">{resource.completedProjects}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm text-gray-600">Avg Performance</p>
               <p className="text-3xl font-bold text-purple-900">{resource.efficiency}%</p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-sm text-gray-600">Experience</p>
               <p className="text-3xl font-bold text-orange-900">{resource.experienceYears}y</p>
             </div>
@@ -1957,10 +1957,10 @@ export function ResourceHistoryModal({ isOpen, onClose, resource }: ResourceHist
 
           {/* Project History */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Assignment History</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Assignment History</h3>
+            <div className="space-y-2">
               {projectHistory.map(project => (
-                <div key={project.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                <div key={project.id} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <h4 className="font-semibold text-gray-900 text-lg">{project.project}</h4>
@@ -1975,7 +1975,7 @@ export function ResourceHistoryModal({ isOpen, onClose, resource }: ResourceHist
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-3">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-3">
                     <div>
                       <p className="text-xs text-gray-600">Start Date</p>
                       <p className="text-sm font-medium">{project.startDate}</p>
@@ -2016,7 +2016,7 @@ export function ResourceHistoryModal({ isOpen, onClose, resource }: ResourceHist
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-between items-center rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-between items-center rounded-b-xl">
           <button className="px-4 py-2 text-slate-600 hover:bg-slate-50 rounded-lg flex items-center gap-2">
             <Download className="w-4 h-4" />
             Export History
@@ -2058,10 +2058,10 @@ export function BulkAssignModal({ isOpen, onClose, selectedResources, onSubmit }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
         {/* Header */}
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Users className="w-6 h-6" />
@@ -2077,7 +2077,7 @@ export function BulkAssignModal({ isOpen, onClose, selectedResources, onSubmit }
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Selected Resources */}
           <div>
             <h3 className="text-sm font-medium text-gray-700 mb-2">Selected Resources ({selectedResources.length})</h3>
@@ -2129,7 +2129,7 @@ export function BulkAssignModal({ isOpen, onClose, selectedResources, onSubmit }
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date <span className="text-red-500">*</span>
@@ -2191,10 +2191,10 @@ export function ResourceComparisonModal({ isOpen, onClose, resources, onSelect }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-rose-600 to-rose-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-rose-600 to-rose-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <BarChart3 className="w-6 h-6" />
@@ -2311,7 +2311,7 @@ export function ResourceComparisonModal({ isOpen, onClose, resources, onSelect }
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-end rounded-b-xl">
           <button
             onClick={onClose}
             className="px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700"

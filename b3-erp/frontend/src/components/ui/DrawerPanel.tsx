@@ -68,7 +68,7 @@ export const DrawerPanel: React.FC<DrawerPanelProps> = ({
     sm: 'max-w-sm',
     md: 'max-w-md',
     lg: 'max-w-2xl',
-    xl: 'max-w-4xl'
+    xl: ''
   }
 
   const slideDirection = position === 'left' ? '-translate-x-full' : 'translate-x-full'
@@ -97,7 +97,7 @@ export const DrawerPanel: React.FC<DrawerPanelProps> = ({
         >
           {/* Header */}
           {(title || showCloseButton) && (
-            <div className="flex items-start justify-between p-6 border-b border-gray-200 flex-shrink-0">
+            <div className="flex items-start justify-between p-3 border-b border-gray-200 flex-shrink-0">
               <div className="flex-1">
                 {title && (
                   <h3 className="text-xl font-semibold text-gray-900">
@@ -121,13 +121,13 @@ export const DrawerPanel: React.FC<DrawerPanelProps> = ({
           )}
 
           {/* Content */}
-          <div className="flex-1 p-6 overflow-y-auto">
+          <div className="flex-1 p-3 overflow-y-auto">
             {children}
           </div>
 
           {/* Footer */}
           {footer && (
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+            <div className="flex items-center justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50 flex-shrink-0">
               {footer}
             </div>
           )}

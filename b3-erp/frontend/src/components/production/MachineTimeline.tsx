@@ -197,8 +197,8 @@ export function MachineTimeline({
   return (
     <div className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-gray-50">
+        <div className="flex items-center gap-2">
           <h3 className="text-lg font-semibold text-gray-900">Machine Utilization Timeline</h3>
           <div className="flex items-center gap-2">
             <button
@@ -432,7 +432,7 @@ export function MachineTimeline({
       {/* Legend */}
       {showLegend && (
         <div className="p-4 border-t border-gray-200 bg-gray-50">
-          <div className="flex flex-wrap items-center gap-6 text-xs">
+          <div className="flex flex-wrap items-center gap-3 text-xs">
             {Object.entries(eventColors).map(([type, colors]) => (
               <div key={type} className="flex items-center gap-2">
                 <div className={`w-4 h-4 rounded ${colors.bg}`} />
@@ -445,7 +445,7 @@ export function MachineTimeline({
 
       {/* Summary Footer */}
       <div className="p-4 border-t border-gray-200">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-green-500" />
             <span className="text-gray-600">

@@ -262,7 +262,7 @@ export default function ApprovalsPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -297,8 +297,8 @@ export default function ApprovalsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="h-8 w-8 text-yellow-500" />
             <span className={`text-xs font-medium ${stats.pending > 0 ? 'text-yellow-600' : 'text-gray-400'}`}>
@@ -309,7 +309,7 @@ export default function ApprovalsPage() {
           <p className="text-sm text-gray-500 mt-1">Pending</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="h-8 w-8 text-green-500" />
           </div>
@@ -317,7 +317,7 @@ export default function ApprovalsPage() {
           <p className="text-sm text-gray-500 mt-1">Approved</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <XCircle className="h-8 w-8 text-red-500" />
           </div>
@@ -325,7 +325,7 @@ export default function ApprovalsPage() {
           <p className="text-sm text-gray-500 mt-1">Rejected</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <Timer className="h-8 w-8 text-blue-500" />
           </div>
@@ -333,7 +333,7 @@ export default function ApprovalsPage() {
           <p className="text-sm text-gray-500 mt-1">Avg Time</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="h-8 w-8 text-orange-500" />
             {stats.overdueCount > 0 && (
@@ -344,7 +344,7 @@ export default function ApprovalsPage() {
           <p className="text-sm text-gray-500 mt-1">Overdue</p>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="h-8 w-8 text-purple-500" />
           </div>
@@ -359,7 +359,7 @@ export default function ApprovalsPage() {
           <div className="flex">
             <button
               onClick={() => setSelectedTab('my_approvals')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_approvals'
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_approvals'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
@@ -373,7 +373,7 @@ export default function ApprovalsPage() {
             </button>
             <button
               onClick={() => setSelectedTab('my_requests')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_requests'
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_requests'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
@@ -382,7 +382,7 @@ export default function ApprovalsPage() {
             </button>
             <button
               onClick={() => setSelectedTab('delegated')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'delegated'
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'delegated'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
@@ -391,7 +391,7 @@ export default function ApprovalsPage() {
             </button>
             <button
               onClick={() => setSelectedTab('all')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'all'
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'all'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
@@ -403,7 +403,7 @@ export default function ApprovalsPage() {
 
         {/* Filters */}
         <div className="p-4 border-b bg-gray-50">
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex flex-col lg:flex-row gap-2">
             <div className="flex items-center gap-3">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -470,7 +470,7 @@ export default function ApprovalsPage() {
         <div className="divide-y divide-gray-200">
           {filteredRequests.map((request) => (
             <div key={request.id} className="p-4 hover:bg-gray-50">
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-2">
                 {/* Checkbox */}
                 <div className="pt-2">
                   <input
@@ -483,7 +483,7 @@ export default function ApprovalsPage() {
 
                 <div className="flex-1">
                   {/* Document Header */}
-                  <div className="flex items-start gap-4 mb-3">
+                  <div className="flex items-start gap-2 mb-3">
                     <div className={`p-2 rounded-lg ${getPriorityColor(request.priority)}`}>
                       {getDocumentIcon(request.documentType)}
                     </div>
@@ -499,7 +499,7 @@ export default function ApprovalsPage() {
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
                         <span className="flex items-center gap-1">
                           <Hash className="h-3 w-3" />
                           {request.documentNumber}
@@ -606,7 +606,7 @@ export default function ApprovalsPage() {
                   </div>
 
                   {/* Additional Info */}
-                  <div className="ml-14 mt-3 flex items-center gap-4 text-xs text-gray-500">
+                  <div className="ml-14 mt-3 flex items-center gap-2 text-xs text-gray-500">
                     <span className="flex items-center gap-1">
                       <Building2 className="h-3 w-3" />
                       {request.department}

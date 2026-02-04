@@ -28,9 +28,9 @@ export function AddMaterialModal({ isOpen, onClose, onAdd }: AddMaterialModalPro
   const isValid = formData.itemCode && formData.itemName && formData.requiredQuantity && formData.requiredDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
@@ -45,9 +45,9 @@ export function AddMaterialModal({ isOpen, onClose, onAdd }: AddMaterialModalPro
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Item Code *</label>
                 <input
@@ -88,7 +88,7 @@ export function AddMaterialModal({ isOpen, onClose, onAdd }: AddMaterialModalPro
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Required Qty *</label>
                 <input
@@ -128,7 +128,7 @@ export function AddMaterialModal({ isOpen, onClose, onAdd }: AddMaterialModalPro
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Required Date *</label>
                 <input
@@ -164,7 +164,7 @@ export function AddMaterialModal({ isOpen, onClose, onAdd }: AddMaterialModalPro
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -197,9 +197,9 @@ export function EditMaterialModal({ isOpen, onClose, onSave, material }: EditMat
   if (!isOpen || !material) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -218,7 +218,7 @@ export function EditMaterialModal({ isOpen, onClose, onSave, material }: EditMat
           <p className="text-gray-600">Edit material requirements, quantity, and supplier details.</p>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -249,9 +249,9 @@ export function ViewMaterialDetailsModal({ isOpen, onClose, material }: ViewMate
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -266,11 +266,11 @@ export function ViewMaterialDetailsModal({ isOpen, onClose, material }: ViewMate
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">{material.itemName}</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-600 mb-1">Category</p>
                   <p className="text-sm font-medium text-gray-900">{material.category}</p>
@@ -282,7 +282,7 @@ export function ViewMaterialDetailsModal({ isOpen, onClose, material }: ViewMate
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               <div className="bg-blue-50 rounded-lg p-3 text-center">
                 <p className="text-xl font-bold text-blue-600">{material.requiredQuantity}</p>
                 <p className="text-xs text-gray-600">Required</p>
@@ -303,7 +303,7 @@ export function ViewMaterialDetailsModal({ isOpen, onClose, material }: ViewMate
 
             <div>
               <h4 className="text-sm font-semibold text-gray-700 mb-2">Supplier Information</h4>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-gray-900 font-medium">{material.supplier}</p>
                 <p className="text-sm text-gray-600 mt-1">Unit Cost: {formatCurrency(material.unitCost)}</p>
               </div>
@@ -311,7 +311,7 @@ export function ViewMaterialDetailsModal({ isOpen, onClose, material }: ViewMate
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -333,9 +333,9 @@ export function CreatePurchaseOrderModal({ isOpen, onClose, onCreate, material }
   if (!isOpen || !material) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <ShoppingCart className="w-5 h-5 text-white" />
@@ -351,8 +351,8 @@ export function CreatePurchaseOrderModal({ isOpen, onClose, onCreate, material }
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Create a purchase order for this material requirement.</p>
-          <div className="bg-gray-50 rounded-lg p-4">
+          <p className="text-gray-600 mb-2">Create a purchase order for this material requirement.</p>
+          <div className="bg-gray-50 rounded-lg p-3">
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span className="text-gray-600">Quantity:</span>
@@ -370,7 +370,7 @@ export function CreatePurchaseOrderModal({ isOpen, onClose, onCreate, material }
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -400,9 +400,9 @@ export function UpdateStockModal({ isOpen, onClose, onUpdate, material }: Update
   if (!isOpen || !material) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Package className="w-5 h-5 text-white" />
@@ -417,7 +417,7 @@ export function UpdateStockModal({ isOpen, onClose, onUpdate, material }: Update
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Update available stock for {material.itemName}</p>
+          <p className="text-gray-600 mb-2">Update available stock for {material.itemName}</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">New Stock Quantity</label>
             <input
@@ -430,7 +430,7 @@ export function UpdateStockModal({ isOpen, onClose, onUpdate, material }: Update
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -458,9 +458,9 @@ export function TrackDeliveryModal({ isOpen, onClose, material }: TrackDeliveryM
   if (!isOpen || !material) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Truck className="w-5 h-5 text-white" />
@@ -476,7 +476,7 @@ export function TrackDeliveryModal({ isOpen, onClose, material }: TrackDeliveryM
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Delivery tracking for purchase order</p>
+          <p className="text-gray-600 mb-2">Delivery tracking for purchase order</p>
           <div className="space-y-3">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -499,7 +499,7 @@ export function TrackDeliveryModal({ isOpen, onClose, material }: TrackDeliveryM
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -523,9 +523,9 @@ export function ScheduleDeliveryModal({ isOpen, onClose, onSchedule, material }:
   if (!isOpen || !material) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
@@ -540,7 +540,7 @@ export function ScheduleDeliveryModal({ isOpen, onClose, onSchedule, material }:
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Schedule delivery date for {material.itemName}</p>
+          <p className="text-gray-600 mb-2">Schedule delivery date for {material.itemName}</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Delivery Date</label>
             <input
@@ -552,7 +552,7 @@ export function ScheduleDeliveryModal({ isOpen, onClose, onSchedule, material }:
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -583,9 +583,9 @@ export function MarkShortageModal({ isOpen, onClose, onMark, material }: MarkSho
   if (!isOpen || !material) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-white" />
@@ -600,8 +600,8 @@ export function MarkShortageModal({ isOpen, onClose, onMark, material }: MarkSho
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Report shortage for {material.itemName}</p>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+          <p className="text-gray-600 mb-2">Report shortage for {material.itemName}</p>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
             <p className="text-sm text-red-800">
               Short by: {material.requiredQuantity - material.availableStock} {material.unit}
             </p>
@@ -618,7 +618,7 @@ export function MarkShortageModal({ isOpen, onClose, onMark, material }: MarkSho
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -647,9 +647,9 @@ export function ExportMRPModal({ isOpen, onClose, onExport }: ExportMRPModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Download className="w-5 h-5 text-white" />
@@ -664,7 +664,7 @@ export function ExportMRPModal({ isOpen, onClose, onExport }: ExportMRPModalProp
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Export material requirements planning data</p>
+          <p className="text-gray-600 mb-2">Export material requirements planning data</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <select
@@ -680,7 +680,7 @@ export function ExportMRPModal({ isOpen, onClose, onExport }: ExportMRPModalProp
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -709,9 +709,9 @@ export function ImportMaterialsModal({ isOpen, onClose, onImport }: ImportMateri
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Upload className="w-5 h-5 text-white" />
@@ -726,9 +726,9 @@ export function ImportMaterialsModal({ isOpen, onClose, onImport }: ImportMateri
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Import materials from file</p>
+          <p className="text-gray-600 mb-2">Import materials from file</p>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="w-12 h-12 text-gray-400 mb-2" />
             <p className="text-sm text-gray-600 mb-2">Drop your file here or click to browse</p>
             <input
               type="file"
@@ -740,7 +740,7 @@ export function ImportMaterialsModal({ isOpen, onClose, onImport }: ImportMateri
           {file && <p className="text-sm text-gray-600 mt-2">Selected: {file.name}</p>}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -770,9 +770,9 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-violet-500 to-violet-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-500 to-violet-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -787,7 +787,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Generate MRP analysis report</p>
+          <p className="text-gray-600 mb-2">Generate MRP analysis report</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Report Type</label>
             <select
@@ -804,7 +804,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate }: GenerateRep
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -833,9 +833,9 @@ export function ForecastDemandModal({ isOpen, onClose, onForecast }: ForecastDem
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -850,7 +850,7 @@ export function ForecastDemandModal({ isOpen, onClose, onForecast }: ForecastDem
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Generate demand forecast based on historical data</p>
+          <p className="text-gray-600 mb-2">Generate demand forecast based on historical data</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Forecast Period (Months)</label>
             <select
@@ -866,7 +866,7 @@ export function ForecastDemandModal({ isOpen, onClose, onForecast }: ForecastDem
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>

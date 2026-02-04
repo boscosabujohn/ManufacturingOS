@@ -256,8 +256,8 @@ export default function FreightInvoicingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -267,8 +267,8 @@ export default function FreightInvoicingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3 mb-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-4 shadow-sm">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3 mb-3">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <FileText className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{invoiceStats.total}</span>
@@ -276,7 +276,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Total Invoices</p>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <FileText className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{invoiceStats.draft}</span>
@@ -284,7 +284,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Draft</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{invoiceStats.sent}</span>
@@ -292,7 +292,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Sent</p>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{invoiceStats.partial}</span>
@@ -300,7 +300,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Partial</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{invoiceStats.paid}</span>
@@ -308,7 +308,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Paid</p>
         </div>
 
-        <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <XCircle className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{invoiceStats.overdue}</span>
@@ -316,7 +316,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Overdue</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-7 h-7 opacity-80" />
             <span className="text-lg font-bold">�{(invoiceStats.totalBilled / 1000000).toFixed(1)}M</span>
@@ -324,7 +324,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Total Billed</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-400 to-green-500 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-green-400 to-green-500 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-7 h-7 opacity-80" />
             <span className="text-lg font-bold">�{(invoiceStats.totalReceived / 1000000).toFixed(1)}M</span>
@@ -332,7 +332,7 @@ export default function FreightInvoicingPage() {
           <p className="text-xs font-medium opacity-90">Received</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-7 h-7 opacity-80" />
             <span className="text-lg font-bold">�{(invoiceStats.totalOutstanding / 1000000).toFixed(1)}M</span>
@@ -341,8 +341,8 @@ export default function FreightInvoicingPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -380,52 +380,52 @@ export default function FreightInvoicingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Invoice Details</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Customer</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Amount</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Paid</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Balance</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Dates</th>
-                <th className="text-center px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Status</th>
-                <th className="text-center px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Actions</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Invoice Details</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Customer</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Amount</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Paid</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Balance</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Dates</th>
+                <th className="text-center px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Status</th>
+                <th className="text-center px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredInvoices.map((invoice) => (
                 <tr key={invoice.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-gray-900">{invoice.invoiceNo}</p>
                     <p className="text-xs text-gray-500 mt-0.5">{invoice.bookingNo}</p>
                     <p className="text-xs text-gray-500 mt-0.5">{invoice.billOfLading}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-semibold text-gray-900">{invoice.customerName}</p>
                     <p className="text-xs text-gray-500 mt-0.5">{invoice.carrier}</p>
                     <p className="text-xs text-gray-600 mt-1">{invoice.origin} � {invoice.destination}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className="text-sm font-bold text-gray-900">�{invoice.totalAmount.toLocaleString()}</p>
                     <p className="text-xs text-gray-500 mt-0.5">Base: �{invoice.baseAmount.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className="text-sm font-semibold text-green-600">�{invoice.paidAmount.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className={`text-sm font-semibold ${invoice.balanceAmount > 0 ? 'text-red-600' : 'text-gray-400'}`}>
                       �{invoice.balanceAmount.toLocaleString()}
                     </p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-xs text-gray-600">Invoice: {invoice.invoiceDate}</p>
                     <p className="text-xs text-gray-600 mt-1">Due: {invoice.dueDate}</p>
                     <p className="text-xs text-orange-600 mt-1">{invoice.paymentTerms}</p>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(invoice.status)}`}>
                       {invoice.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className="flex items-center justify-center gap-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
@@ -446,13 +446,13 @@ export default function FreightInvoicingPage() {
 
       {filteredInvoices.length === 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <FileText className="w-16 h-16 text-gray-400 mb-4" />
+          <FileText className="w-16 h-16 text-gray-400 mb-2" />
           <p className="text-gray-500 text-lg mb-2">No invoices found</p>
           <p className="text-sm text-gray-400">Try adjusting your search or filter criteria</p>
         </div>
       )}
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Invoice Status Guide:</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
           <div><span className="font-medium">Draft:</span> Invoice created but not yet sent</div>

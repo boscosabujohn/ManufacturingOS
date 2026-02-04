@@ -197,7 +197,7 @@ export default function SkillsMasterPage() {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Award className="h-8 w-8 text-pink-600" />
           Skills Master
@@ -206,8 +206,8 @@ export default function SkillsMasterPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Total Skills</p>
@@ -216,7 +216,7 @@ export default function SkillsMasterPage() {
             <Award className="h-10 w-10 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Active Skills</p>
@@ -225,7 +225,7 @@ export default function SkillsMasterPage() {
             <ToggleRight className="h-10 w-10 text-green-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Categories</p>
@@ -234,7 +234,7 @@ export default function SkillsMasterPage() {
             <Layers className="h-10 w-10 text-purple-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-600 text-sm font-medium">Domain Skills</p>
@@ -248,8 +248,8 @@ export default function SkillsMasterPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -312,7 +312,7 @@ export default function SkillsMasterPage() {
       </div>
 
       {/* Skills List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {skills.map((skill) => {
           const IconComponent = getIconComponent(skill.icon);
           const isExpanded = expandedSkill === skill.id;
@@ -327,7 +327,7 @@ export default function SkillsMasterPage() {
                 onClick={() => toggleExpand(skill.id)}
               >
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     <div
                       className="h-12 w-12 rounded-lg flex items-center justify-center"
                       style={{ backgroundColor: `${skill.color || '#3B82F6'}20` }}
@@ -351,7 +351,7 @@ export default function SkillsMasterPage() {
                         </span>
                       </div>
                       <p className="text-sm text-gray-500 mt-1 line-clamp-2">{skill.description}</p>
-                      <div className="flex items-center gap-4 mt-2">
+                      <div className="flex items-center gap-2 mt-2">
                         <span className="text-xs text-gray-400">Code: {skill.code}</span>
                         <span className="text-xs text-gray-400">Type: {skill.skillType}</span>
                         {skill.category && (
@@ -402,7 +402,7 @@ export default function SkillsMasterPage() {
               {/* Expanded Details */}
               {isExpanded && (
                 <div className="px-4 pb-4 pt-0 border-t border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                     <div>
                       <h4 className="text-sm font-medium text-gray-700 mb-2">Description</h4>
                       <p className="text-sm text-gray-600">{skill.description || 'No description provided'}</p>
@@ -427,7 +427,7 @@ export default function SkillsMasterPage() {
                       </div>
                     </div>
                   )}
-                  <div className="mt-4 pt-4 border-t border-gray-100 flex items-center gap-4 text-xs text-gray-400">
+                  <div className="mt-4 pt-4 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-400">
                     <span>Created: {new Date(skill.createdAt).toLocaleDateString()}</span>
                     <span>Updated: {new Date(skill.updatedAt).toLocaleDateString()}</span>
                   </div>
@@ -439,9 +439,9 @@ export default function SkillsMasterPage() {
 
         {skills.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-            <Award className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Award className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No skills found</h3>
-            <p className="text-gray-500 mb-4">
+            <p className="text-gray-500 mb-2">
               {searchTerm || selectedCategory || selectedType
                 ? 'Try adjusting your filters'
                 : 'Get started by adding your first skill'}
@@ -459,9 +459,9 @@ export default function SkillsMasterPage() {
 
       {/* Add/Edit Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 sticky top-0 bg-white">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center">
                   <Award className="h-5 w-5 text-pink-600" />
@@ -485,7 +485,7 @@ export default function SkillsMasterPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Code <span className="text-red-500">*</span>
@@ -636,9 +636,9 @@ export default function SkillsMasterPage() {
 
       {/* View Modal */}
       {showViewModal && selectedSkill && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 sticky top-0 bg-white">
               <div className="flex items-center gap-3">
                 <div
                   className="h-12 w-12 rounded-lg flex items-center justify-center"
@@ -666,7 +666,7 @@ export default function SkillsMasterPage() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-2">Description</h4>
                   <p className="text-gray-600">{selectedSkill.description || 'No description provided'}</p>
@@ -677,7 +677,7 @@ export default function SkillsMasterPage() {
                   <p className="text-gray-600">{selectedSkill.useCases || 'No use cases defined'}</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <h4 className="text-sm font-medium text-gray-700 mb-2">Category</h4>
                     <p className="text-gray-600">{selectedSkill.category?.name || 'Uncategorized'}</p>
@@ -720,7 +720,7 @@ export default function SkillsMasterPage() {
                   </div>
                 )}
 
-                <div className="pt-4 border-t border-gray-200 flex items-center gap-4 text-sm text-gray-500">
+                <div className="pt-4 border-t border-gray-200 flex items-center gap-2 text-sm text-gray-500">
                   <span>Created: {new Date(selectedSkill.createdAt).toLocaleDateString()}</span>
                   <span>Updated: {new Date(selectedSkill.updatedAt).toLocaleDateString()}</span>
                 </div>

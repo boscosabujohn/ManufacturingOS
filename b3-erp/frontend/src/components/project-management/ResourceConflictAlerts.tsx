@@ -295,7 +295,7 @@ export function ResourceConflictAlerts({
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
       <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center">
               <AlertTriangle className="w-5 h-5 text-orange-600" />
@@ -343,7 +343,7 @@ export function ResourceConflictAlerts({
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           <div className="p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-100 dark:border-red-900/30">
             <div className="flex items-center justify-between">
               <div>
@@ -390,7 +390,7 @@ export function ResourceConflictAlerts({
       <div className="divide-y divide-gray-100 dark:divide-gray-700">
         {filteredConflicts.length === 0 ? (
           <div className="p-12 text-center">
-            <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+            <CheckCircle className="w-12 h-12 text-green-400 mb-2" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white">No Active Conflicts</h3>
             <p className="text-sm text-gray-500 mt-1">All resource allocations are within capacity</p>
           </div>
@@ -411,9 +411,9 @@ export function ResourceConflictAlerts({
                     setExpandedConflict(isExpanded ? null : conflict.id);
                     onConflictClick?.(conflict.id);
                   }}
-                  className="w-full p-4 text-left"
+                  className="w-full p-3 text-left"
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     {/* Icon */}
                     <div className={`w-10 h-10 rounded-lg ${styles.badge} flex items-center justify-center flex-shrink-0`}>
                       <ResourceIcon className="w-5 h-5" />
@@ -433,7 +433,7 @@ export function ResourceConflictAlerts({
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-4 mt-1 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex items-center gap-2 mt-1 text-sm text-gray-600 dark:text-gray-400">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3.5 h-3.5" />
                           {conflict.period.start.toLocaleDateString()} - {conflict.period.end.toLocaleDateString()}
@@ -487,9 +487,9 @@ export function ResourceConflictAlerts({
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="px-4 pb-4 space-y-4">
+                  <div className="px-4 pb-4 space-y-2">
                     {/* Affected Tasks */}
-                    <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
+                    <div className="bg-white dark:bg-gray-700 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                       <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                         <Users className="w-4 h-4" />
                         Affected Tasks
@@ -515,7 +515,7 @@ export function ResourceConflictAlerts({
                     </div>
 
                     {/* Suggested Resolutions */}
-                    <div className="bg-white dark:bg-gray-700 rounded-lg p-4 border border-gray-200 dark:border-gray-600">
+                    <div className="bg-white dark:bg-gray-700 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                       <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                         <RefreshCw className="w-4 h-4" />
                         Suggested Resolutions
@@ -561,10 +561,10 @@ export function ResourceConflictAlerts({
 
       {/* Resource Utilization Overview */}
       <div className="p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
-        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
+        <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Resources with High Utilization
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {[
             { name: 'John Smith', type: 'human', utilization: 150, capacity: 100 },
             { name: 'CNC Machine #3', type: 'equipment', utilization: 200, capacity: 100 },

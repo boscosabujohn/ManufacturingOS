@@ -90,7 +90,7 @@ export default function WeldingPage() {
       </div>
 
       <Card className="border-l-4 border-l-yellow-500 bg-yellow-50">
-        <CardContent className="pt-6 flex items-start gap-4">
+        <CardContent className="pt-6 flex items-start gap-2">
           <AlertTriangle className="h-6 w-6 text-yellow-600 mt-1" />
           <div>
             <h3 className="font-bold text-yellow-700">SAFETY REMINDER</h3>

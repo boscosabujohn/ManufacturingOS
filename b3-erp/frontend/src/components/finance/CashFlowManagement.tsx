@@ -256,10 +256,10 @@ export default function CashFlowManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Cash Flow Management</h1>
             <p className="text-gray-600">
@@ -323,8 +323,8 @@ export default function CashFlowManagement() {
 
       {/* Real-Time Cash Flow Monitoring */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200 mb-8">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Activity className="w-6 h-6 text-indigo-600" />
@@ -356,8 +356,8 @@ export default function CashFlowManagement() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Cash In Today</span>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -366,7 +366,7 @@ export default function CashFlowManagement() {
               <div className="text-xs text-gray-500 mt-1">18 transactions processed</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Cash Out Today</span>
                 <ArrowDownRight className="w-4 h-4 text-red-500" />
@@ -375,7 +375,7 @@ export default function CashFlowManagement() {
               <div className="text-xs text-gray-500 mt-1">12 payments made</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Net Position</span>
                 <TrendingUp className="w-4 h-4 text-green-500" />
@@ -384,7 +384,7 @@ export default function CashFlowManagement() {
               <div className="text-xs text-green-600 mt-1">↑ 12% vs yesterday</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <div className="bg-white rounded-lg p-3 border border-indigo-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Liquidity Ratio</span>
                 <CheckCircle className="w-4 h-4 text-blue-500" />
@@ -395,7 +395,7 @@ export default function CashFlowManagement() {
           </div>
 
           {/* Live Transaction Feed */}
-          <div className="bg-white rounded-lg p-4 border border-indigo-100">
+          <div className="bg-white rounded-lg p-3 border border-indigo-100">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Bell className="w-4 h-4 text-indigo-600" />
               Recent Cash Movements
@@ -426,8 +426,8 @@ export default function CashFlowManagement() {
 
       {/* AI-Powered Cash Flow Intelligence */}
       {showAIInsights && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200 mb-8">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Zap className="w-6 h-6 text-purple-600" />
@@ -443,8 +443,8 @@ export default function CashFlowManagement() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="w-5 h-5 text-purple-600" />
                 <span className="font-semibold text-gray-900">30-Day Forecast</span>
@@ -456,7 +456,7 @@ export default function CashFlowManagement() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <AlertCircle className="w-5 h-5 text-orange-600" />
                 <span className="font-semibold text-gray-900">Shortfall Risk</span>
@@ -468,7 +468,7 @@ export default function CashFlowManagement() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="w-5 h-5 text-green-600" />
                 <span className="font-semibold text-gray-900">Optimization</span>
@@ -482,7 +482,7 @@ export default function CashFlowManagement() {
           </div>
 
           {/* Smart Recommendations */}
-          <div className="bg-white rounded-lg p-4 border border-purple-100">
+          <div className="bg-white rounded-lg p-3 border border-purple-100">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Users className="w-4 h-4 text-purple-600" />
               Smart Cash Management Recommendations
@@ -518,9 +518,9 @@ export default function CashFlowManagement() {
       )}
 
       {/* Current Cash Position Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <Wallet className="h-8 w-8 text-blue-200" />
             <ArrowUpRight className="h-6 w-6 text-blue-200" />
           </div>
@@ -529,8 +529,8 @@ export default function CashFlowManagement() {
           <p className="text-blue-200 text-sm">Available: {formatCurrency(currentCashPosition.availableCash)}</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <TrendingUp className="h-8 w-8 text-green-200" />
             <ArrowUpRight className="h-6 w-6 text-green-200" />
           </div>
@@ -539,8 +539,8 @@ export default function CashFlowManagement() {
           <p className="text-green-200 text-sm">Monthly average</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <CreditCard className="h-8 w-8 text-purple-200" />
             <Info className="h-6 w-6 text-purple-200" />
           </div>
@@ -549,8 +549,8 @@ export default function CashFlowManagement() {
           <p className="text-purple-200 text-sm">Of {formatCurrency(currentCashPosition.creditLineAvailable)} total</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-3 text-white">
+          <div className="flex items-center justify-between mb-2">
             <Calendar className="h-8 w-8 text-orange-200" />
             <Clock className="h-6 w-6 text-orange-200" />
           </div>
@@ -562,10 +562,10 @@ export default function CashFlowManagement() {
 
       {/* Main Content Based on Selected View */}
       {selectedView === 'forecast' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Cash Flow Forecast Chart */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-xl shadow-lg p-3">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-semibold text-gray-900">Cash Flow Forecast</h3>
               <div className="flex items-center space-x-2">
                 <span className="text-sm text-gray-600">Confidence Range:</span>
@@ -618,34 +618,34 @@ export default function CashFlowManagement() {
 
           {/* Forecast Table */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200">
+            <div className="px-3 py-2 border-b border-gray-200">
               <h3 className="text-lg font-semibold text-gray-900">Detailed Forecast</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Beginning Balance</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inflows</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Outflows</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Cash Flow</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ending Balance</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Confidence</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Beginning Balance</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inflows</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Outflows</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Cash Flow</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ending Balance</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Confidence</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {cashFlowForecast.map((item, index) => (
                     <tr key={index} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.period}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{formatCurrency(item.beginningBalance)}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-medium">+{formatCurrency(item.totalInflows)}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-medium">-{formatCurrency(item.totalOutflows)}</td>
-                      <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${item.netCashFlow >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{item.period}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{formatCurrency(item.beginningBalance)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600 font-medium">+{formatCurrency(item.totalInflows)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-red-600 font-medium">-{formatCurrency(item.totalOutflows)}</td>
+                      <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${item.netCashFlow >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                         {item.netCashFlow >= 0 ? '+' : ''}{formatCurrency(item.netCashFlow)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{formatCurrency(item.endingBalance)}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{formatCurrency(item.endingBalance)}</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getConfidenceColor(item.confidence)}`}>
                           {formatPercentage(item.confidence)}
                         </span>
@@ -660,21 +660,21 @@ export default function CashFlowManagement() {
       )}
 
       {selectedView === 'scenarios' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Scenario Analysis */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Scenario Analysis</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="bg-white rounded-xl shadow-lg p-3">
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Scenario Analysis</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {scenarioAnalysis.map((scenario, index) => (
                 <div
                   key={index}
-                  className={`border-2 rounded-lg p-6 ${
+                  className={`border-2 rounded-lg p-3 ${
                     scenario.scenario === 'Most Likely'
                       ? 'border-blue-200 bg-blue-50'
                       : 'border-gray-200 bg-gray-50'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-2">
                     <h4 className="text-lg font-semibold text-gray-900">{scenario.scenario}</h4>
                     <span className="text-sm text-gray-600">{formatPercentage(scenario.probability)} probability</span>
                   </div>
@@ -707,9 +707,9 @@ export default function CashFlowManagement() {
           </div>
 
           {/* Cash Flow by Category */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Cash Flow by Category</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl shadow-lg p-3">
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Cash Flow by Category</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={cashFlowByCategory} layout="horizontal">
@@ -723,9 +723,9 @@ export default function CashFlowManagement() {
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {cashFlowByCategory.map((category, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <div className={`w-4 h-4 rounded-full`} style={{ backgroundColor: category.color }}></div>
                       <span className="font-medium text-gray-900">{category.name}</span>
@@ -745,11 +745,11 @@ export default function CashFlowManagement() {
       )}
 
       {selectedView === 'metrics' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Cash Flow Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <Activity className="h-8 w-8 text-blue-500" />
                 <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Ratio</span>
               </div>
@@ -758,8 +758,8 @@ export default function CashFlowManagement() {
               <p className="text-xs text-gray-500 mt-2">Current liabilities coverage</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <Target className="h-8 w-8 text-green-500" />
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Days</span>
               </div>
@@ -768,8 +768,8 @@ export default function CashFlowManagement() {
               <p className="text-xs text-gray-500 mt-2">Days to convert investment to cash</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <BarChart3 className="h-8 w-8 text-purple-500" />
                 <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Ratio</span>
               </div>
@@ -778,8 +778,8 @@ export default function CashFlowManagement() {
               <p className="text-xs text-gray-500 mt-2">Debt servicing capability</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <TrendingUp className="h-8 w-8 text-orange-500" />
                 <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">%</span>
               </div>
@@ -791,7 +791,7 @@ export default function CashFlowManagement() {
 
           {/* Cash Flow Entries */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+            <div className="px-3 py-2 border-b border-gray-200 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900">Recent Cash Flow Entries</h3>
               <div className="flex items-center space-x-2">
                 <select
@@ -814,23 +814,23 @@ export default function CashFlowManagement() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Probability</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Probability</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {cashFlowEntries.map((entry) => (
                     <tr key={entry.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                         {new Date(entry.date).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-3 py-2 text-sm text-gray-900">
                         <div>
                           <p className="font-medium">{entry.description}</p>
                           {entry.reference && (
@@ -838,28 +838,28 @@ export default function CashFlowManagement() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{entry.category}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{entry.category}</td>
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                           entry.type === 'inflow' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                         }`}>
                           {entry.type === 'inflow' ? 'Inflow' : 'Outflow'}
                         </span>
                       </td>
-                      <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${
+                      <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${
                         entry.type === 'inflow' ? 'text-green-600' : 'text-red-600'
                       }`}>
                         {entry.type === 'inflow' ? '+' : '-'}{formatCurrency(entry.amount)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(entry.status)}`}>
                           {entry.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                         {formatPercentage(entry.probability)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                         <div className="flex items-center space-x-2">
                           <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                             <Eye className="h-4 w-4 text-gray-600" />

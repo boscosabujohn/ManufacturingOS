@@ -389,7 +389,7 @@ export default function LicenseFeatures() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -412,8 +412,8 @@ export default function LicenseFeatures() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Total Features</p>
@@ -423,7 +423,7 @@ export default function LicenseFeatures() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Licensed Features</p>
@@ -433,7 +433,7 @@ export default function LicenseFeatures() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Enterprise Features</p>
@@ -443,7 +443,7 @@ export default function LicenseFeatures() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Premium Features</p>
@@ -470,13 +470,13 @@ export default function LicenseFeatures() {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {categoryFeatures.map((feature) => {
                   const Icon = feature.icon
                   return (
                     <div
                       key={feature.id}
-                      className={`border-2 rounded-lg p-4 transition-all ${
+                      className={`border-2 rounded-lg p-3 transition-all ${
                         feature.licensed
                           ? 'border-green-200 bg-green-50'
                           : 'border-gray-200 bg-gray-50'
@@ -526,12 +526,12 @@ export default function LicenseFeatures() {
       })}
 
       {/* License Tier Comparison */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-6">License Tier Comparison</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-3">License Tier Comparison</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="border-2 border-gray-300 rounded-lg p-6">
-            <div className="text-center mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="border-2 border-gray-300 rounded-lg p-3">
+            <div className="text-center mb-2">
               <h3 className="text-xl font-bold text-gray-900">Basic</h3>
               <p className="text-sm text-gray-600 mt-1">Essential features</p>
             </div>
@@ -555,8 +555,8 @@ export default function LicenseFeatures() {
             </div>
           </div>
 
-          <div className="border-2 border-blue-500 rounded-lg p-6 bg-blue-50">
-            <div className="text-center mb-4">
+          <div className="border-2 border-blue-500 rounded-lg p-3 bg-blue-50">
+            <div className="text-center mb-2">
               <h3 className="text-xl font-bold text-blue-900">Standard</h3>
               <p className="text-sm text-blue-700 mt-1">Full functionality</p>
             </div>
@@ -580,8 +580,8 @@ export default function LicenseFeatures() {
             </div>
           </div>
 
-          <div className="border-2 border-purple-500 rounded-lg p-6 bg-purple-50">
-            <div className="text-center mb-4">
+          <div className="border-2 border-purple-500 rounded-lg p-3 bg-purple-50">
+            <div className="text-center mb-2">
               <h3 className="text-xl font-bold text-purple-900">Enterprise</h3>
               <p className="text-sm text-purple-700 mt-1">Large organizations</p>
             </div>
@@ -605,8 +605,8 @@ export default function LicenseFeatures() {
             </div>
           </div>
 
-          <div className="border-2 border-yellow-500 rounded-lg p-6 bg-yellow-50">
-            <div className="text-center mb-4">
+          <div className="border-2 border-yellow-500 rounded-lg p-3 bg-yellow-50">
+            <div className="text-center mb-2">
               <h3 className="text-xl font-bold text-yellow-900">Premium</h3>
               <p className="text-sm text-yellow-700 mt-1">Ultimate package</p>
             </div>

@@ -261,7 +261,7 @@ export default function MachineMasterPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-slate-50 to-blue-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="px-3 py-2 space-y-3">
           {/* Toast Notification */}
           {toast && (
             <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
@@ -304,42 +304,42 @@ export default function MachineMasterPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Machines</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Activity className="w-3 h-3 text-green-600" /> Running
           </div>
           <div className="text-2xl font-bold text-green-600">{stats.running}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">In Maintenance</div>
           <div className="text-2xl font-bold text-blue-600">{stats.maintenance}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <AlertCircle className="w-3 h-3 text-red-600" /> Breakdown
           </div>
           <div className="text-2xl font-bold text-red-600">{stats.breakdown}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> Avg OEE
           </div>
           <div className={`text-2xl font-bold ${getOEEColor(stats.avgOEE)}`}>{stats.avgOEE}%</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Utilization</div>
           <div className="text-2xl font-bold text-purple-600">{stats.avgUtilization}%</div>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -377,7 +377,7 @@ export default function MachineMasterPage() {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Machine Type
@@ -453,7 +453,7 @@ export default function MachineMasterPage() {
       </div>
 
       {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <Activity className="w-5 h-5" />
           Overall Equipment Effectiveness (OEE) Tracking

@@ -201,7 +201,7 @@ export default function HRDashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 px-2 py-4">
-      <div className="w-full space-y-6">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -211,7 +211,7 @@ export default function HRDashboardPage() {
           <div className="flex gap-3">
             <button
               onClick={() => router.push('/hr/employees/add')}
-              className="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-lg"
+              className="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-lg"
             >
               <UserPlus className="w-5 h-5" />
               Add Employee
@@ -220,7 +220,7 @@ export default function HRDashboardPage() {
         </div>
 
         {/* Main Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {isLoading ? (
             <>
               <CardSkeleton />
@@ -267,9 +267,9 @@ export default function HRDashboardPage() {
         </div>
 
         {/* Secondary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-            <div className="flex items-center justify-between mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center">
                   <UserPlus className="w-6 h-6 text-cyan-400" />
@@ -284,8 +284,8 @@ export default function HRDashboardPage() {
             <div className="text-xs text-gray-500">This month</div>
           </div>
 
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center">
                   <TrendingDown className="w-6 h-6 text-red-400" />
@@ -300,8 +300,8 @@ export default function HRDashboardPage() {
             <div className="text-xs text-gray-500">Last 12 months</div>
           </div>
 
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
                   <Award className="w-6 h-6 text-purple-400" />
@@ -319,14 +319,14 @@ export default function HRDashboardPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Department Distribution */}
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+            <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
               <Building className="w-5 h-5" />
               Department Distribution
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {departmentStats.map((dept, index) => (
                 <div key={index} className="space-y-2">
                   <div className="flex items-center justify-between">
@@ -348,12 +348,12 @@ export default function HRDashboardPage() {
           </div>
 
           {/* Recent Activities */}
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+            <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5" />
               Recent Activities
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {recentActivities.map((activity) => {
                 const Icon = getActivityIcon(activity.type);
                 return (
@@ -380,33 +380,33 @@ export default function HRDashboardPage() {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h3 className="text-xl font-bold text-white mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <h3 className="text-xl font-bold text-white mb-2">Quick Actions</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             <button
               onClick={() => router.push('/hr/employees')}
-              className="flex flex-col items-center gap-3 p-4 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
+              className="flex flex-col items-center gap-3 p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
             >
               <Users className="w-8 h-8 text-blue-400" />
               <span className="text-white text-sm font-medium">Manage Employees</span>
             </button>
             <button
               onClick={() => router.push('/hr/attendance')}
-              className="flex flex-col items-center gap-3 p-4 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
+              className="flex flex-col items-center gap-3 p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
             >
               <Clock className="w-8 h-8 text-green-400" />
               <span className="text-white text-sm font-medium">Attendance</span>
             </button>
             <button
               onClick={() => router.push('/hr/leave')}
-              className="flex flex-col items-center gap-3 p-4 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
+              className="flex flex-col items-center gap-3 p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
             >
               <Calendar className="w-8 h-8 text-purple-400" />
               <span className="text-white text-sm font-medium">Leave Management</span>
             </button>
             <button
               onClick={() => router.push('/hr/payroll')}
-              className="flex flex-col items-center gap-3 p-4 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
+              className="flex flex-col items-center gap-3 p-3 bg-gray-900/50 rounded-lg hover:bg-gray-900/70 transition-colors"
             >
               <DollarSign className="w-8 h-8 text-orange-400" />
               <span className="text-white text-sm font-medium">Payroll</span>
@@ -415,12 +415,12 @@ export default function HRDashboardPage() {
         </div>
 
         {/* Upcoming Events */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700">
+          <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
             <Calendar className="w-5 h-5" />
             Upcoming Events
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {upcomingEvents.map((event, index) => (
               <div
                 key={index}

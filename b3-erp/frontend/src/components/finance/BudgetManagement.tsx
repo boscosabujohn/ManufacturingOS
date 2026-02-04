@@ -279,10 +279,10 @@ const BudgetManagement: React.FC = () => {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <DollarSign className="h-8 w-8 text-blue-600" />
@@ -294,7 +294,7 @@ const BudgetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <BarChart3 className="h-8 w-8 text-green-600" />
@@ -307,7 +307,7 @@ const BudgetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <TrendingDownIcon className="h-8 w-8 text-red-600" />
@@ -320,7 +320,7 @@ const BudgetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <AlertTriangle className="h-8 w-8 text-yellow-600" />
@@ -335,9 +335,9 @@ const BudgetManagement: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget vs Actual (Monthly)</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Budget vs Actual (Monthly)</h3>
           <ResponsiveContainer width="100%" height={300}>
             <ComposedChart data={monthlyBudgetData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -352,8 +352,8 @@ const BudgetManagement: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Department Variance Analysis</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Department Variance Analysis</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={departmentVarianceData} layout="horizontal">
               <CartesianGrid strokeDasharray="3 3" />
@@ -366,10 +366,10 @@ const BudgetManagement: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Budget Distribution */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Distribution</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Budget Distribution</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -392,9 +392,9 @@ const BudgetManagement: React.FC = () => {
         </div>
 
         {/* Top Variances */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Variances</h3>
-          <div className="space-y-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Variances</h3>
+          <div className="space-y-2">
             {departmentVarianceData
               .sort((a, b) => Math.abs(b.variance) - Math.abs(a.variance))
               .slice(0, 4)
@@ -416,9 +416,9 @@ const BudgetManagement: React.FC = () => {
         </div>
 
         {/* Budget Health */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Health</h3>
-          <div className="space-y-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Budget Health</h3>
+          <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-sm text-gray-600">On Track</span>
               <div className="flex items-center">
@@ -453,7 +453,7 @@ const BudgetManagement: React.FC = () => {
   );
 
   const renderBudgets = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Budget Plans</h3>
         <button
@@ -465,10 +465,10 @@ const BudgetManagement: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {budgets.map((budget) => (
-          <div key={budget.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex justify-between items-start mb-4">
+          <div key={budget.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h4 className="font-semibold text-gray-900">{budget.name}</h4>
                 <p className="text-sm text-gray-600">{budget.period}</p>
@@ -522,12 +522,12 @@ const BudgetManagement: React.FC = () => {
   );
 
   const renderVarianceAnalysis = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Variance Analysis</h3>
 
       {/* Department Analysis */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h4 className="font-medium text-gray-900">Department Performance</h4>
         </div>
         <div className="p-6">
@@ -535,22 +535,22 @@ const BudgetManagement: React.FC = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Department
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Budget
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actual
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Variance
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Variance %
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
                 </tr>
@@ -558,22 +558,22 @@ const BudgetManagement: React.FC = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {budgets[0]?.departments.map((dept) => (
                   <tr key={dept.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       {dept.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {formatCurrency(dept.budgetAmount)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {formatCurrency(dept.actualAmount)}
                     </td>
-                    <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${getVarianceColor(dept.variance)}`}>
+                    <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${getVarianceColor(dept.variance)}`}>
                       {formatCurrency(dept.variance)}
                     </td>
-                    <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${getVarianceColor(dept.variance)}`}>
+                    <td className={`px-3 py-2 whitespace-nowrap text-sm font-medium ${getVarianceColor(dept.variance)}`}>
                       {formatPercent(dept.variancePercent)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {Math.abs(dept.variancePercent) > 10 ? (
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
                           <AlertTriangle className="w-3 h-3 mr-1" />
@@ -602,11 +602,11 @@ const BudgetManagement: React.FC = () => {
   );
 
   const renderForecasting = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Budget Forecasting</h3>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-        <h4 className="font-medium text-gray-900 mb-4">12-Month Forecast</h4>
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+        <h4 className="font-medium text-gray-900 mb-2">12-Month Forecast</h4>
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart data={monthlyBudgetData}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -621,9 +621,9 @@ const BudgetManagement: React.FC = () => {
         </ResponsiveContainer>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Forecast Accuracy</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Forecast Accuracy</h4>
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Current Month:</span>
@@ -640,8 +640,8 @@ const BudgetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Key Assumptions</h4>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Key Assumptions</h4>
           <div className="space-y-2 text-sm">
             <div>• Revenue growth: 8% YoY</div>
             <div>• Inflation impact: 3.2%</div>
@@ -650,8 +650,8 @@ const BudgetManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Risk Factors</h4>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Risk Factors</h4>
           <div className="space-y-2">
             <div className="flex items-center text-sm">
               <AlertTriangle className="w-4 h-4 text-red-500 mr-2" />
@@ -672,7 +672,7 @@ const BudgetManagement: React.FC = () => {
   );
 
   const renderScenarios = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Budget Scenarios</h3>
         <button
@@ -684,10 +684,10 @@ const BudgetManagement: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {budgetScenarios.map((scenario) => (
-          <div key={scenario.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex justify-between items-start mb-4">
+          <div key={scenario.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h4 className="font-semibold text-gray-900">{scenario.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{scenario.description}</p>
@@ -724,8 +724,8 @@ const BudgetManagement: React.FC = () => {
       </div>
 
       {/* Scenario Comparison */}
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-        <h4 className="font-medium text-gray-900 mb-4">Scenario Comparison</h4>
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+        <h4 className="font-medium text-gray-900 mb-2">Scenario Comparison</h4>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={budgetScenarios}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -740,14 +740,14 @@ const BudgetManagement: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Budget Management</h1>
         <p className="text-gray-600 mt-2">Plan, track, and analyze budgets with variance analysis and forecasting</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },

@@ -205,9 +205,9 @@ export default function FinancialRollup() {
     : projectFinancials.filter(p => p.projectId === selectedProject);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -251,7 +251,7 @@ export default function FinancialRollup() {
 
             <div className="p-6">
               {/* Key Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
                 <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                   <p className="text-sm text-blue-600 font-medium">Total Budget</p>
                   <p className="text-2xl font-bold text-blue-900 mt-1">{formatCurrency(portfolioFinancials.totalBudget)}</p>
@@ -286,7 +286,7 @@ export default function FinancialRollup() {
               </div>
 
               {/* EVM Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
                 <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
                   <div className="flex items-center justify-between">
                     <div>
@@ -345,36 +345,36 @@ export default function FinancialRollup() {
               <table className="w-full">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Committed</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Forecasted</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">CPI</th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Committed</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Forecasted</th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
+                    <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">CPI</th>
+                    <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {projectFinancials.map((project) => (
                     <tr key={project.projectId} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <p className="font-semibold text-gray-900">{project.projectName}</p>
                         <p className="text-xs text-gray-600">{project.projectId}</p>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-right text-sm text-gray-900">
                         {formatCurrency(project.totalBudget)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-right text-sm text-gray-900">
                         {formatCurrency(project.totalActual)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-right text-sm text-gray-900">
                         {formatCurrency(project.totalCommitted)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-right text-sm text-gray-900">
                         {formatCurrency(project.totalForecasted)}
                       </td>
-                      <td className={`px-6 py-4 whitespace-nowrap text-right text-sm font-medium ${
+                      <td className={`px-3 py-2 whitespace-nowrap text-right text-sm font-medium ${
                         project.variance >= 0 ? 'text-green-600' : 'text-red-600'
                       }`}>
                         <div className="flex items-center justify-end gap-1">
@@ -382,14 +382,14 @@ export default function FinancialRollup() {
                           {formatCurrency(Math.abs(project.variance))}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
+                      <td className="px-3 py-2 whitespace-nowrap text-center">
                         <span className={`text-sm font-bold ${
                           project.costPerformanceIndex >= 1.0 ? 'text-green-600' : 'text-red-600'
                         }`}>
                           {project.costPerformanceIndex.toFixed(2)}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
+                      <td className="px-3 py-2 whitespace-nowrap text-center">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getBudgetStatusColor(project.status)}`}>
                           {project.status.toUpperCase()}
                         </span>
@@ -406,8 +406,8 @@ export default function FinancialRollup() {
       {viewMode === 'detailed' && (
         <>
           {/* Project Filter */}
-          <div className="bg-white shadow-md p-4">
-            <div className="flex items-center gap-4">
+          <div className="bg-white shadow-md p-3">
+            <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-gray-700">Select Project:</label>
               <select
                 value={selectedProject}
@@ -442,7 +442,7 @@ export default function FinancialRollup() {
 
               <div className="p-6">
                 {/* EVM Metrics Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
                   <div className="p-3 bg-blue-50 rounded-lg">
                     <p className="text-xs text-blue-600 font-medium">Planned Value (PV)</p>
                     <p className="text-lg font-bold text-blue-900 mt-1">{formatCurrency(project.plannedValue)}</p>
@@ -462,7 +462,7 @@ export default function FinancialRollup() {
                 </div>
 
                 {/* Performance Indices */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-2 mb-3">
                   <div className="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200">
                     <div className="flex items-center justify-between">
                       <div>
@@ -487,7 +487,7 @@ export default function FinancialRollup() {
 
                 {/* Cost Breakdown */}
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <PieChart className="h-5 w-5 text-gray-600" />
                     Cost Breakdown by Category
                   </h4>
@@ -543,7 +543,7 @@ export default function FinancialRollup() {
 
                 {/* Alert if over budget */}
                 {project.status === 'over-budget' && (
-                  <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                  <div className="mt-6 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
                     <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="font-semibold text-red-900">Budget Overrun Alert</p>

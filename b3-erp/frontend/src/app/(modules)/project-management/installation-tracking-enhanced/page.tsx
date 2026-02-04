@@ -361,7 +361,7 @@ export default function InstallationTrackingEnhancedPage() {
   <div className="w-full py-2 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
      <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
       <ArrowLeft className="w-6 h-6 text-gray-600" />
      </Button>
@@ -370,7 +370,7 @@ export default function InstallationTrackingEnhancedPage() {
       <p className="text-sm text-gray-500">Phase 8: Installation & Handover - Track equipment installation</p>
      </div>
     </div>
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
      <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
      <FormProgressIndicator
       fields={FORM_FIELDS}
@@ -659,7 +659,7 @@ export default function InstallationTrackingEnhancedPage() {
 
         {formData.teamMembers.length === 0 ? (
          <div className="text-center py-8 text-gray-500 border-2 border-dashed rounded-lg">
-          <Users className="h-12 w-12 mb-4 text-gray-300" />
+          <Users className="h-12 w-12 mb-2 text-gray-300" />
           <p>No team members added yet</p>
           <Button onClick={addTeamMember} variant="link" className="mt-2">
            Click to add team members
@@ -669,11 +669,11 @@ export default function InstallationTrackingEnhancedPage() {
          <div className="space-y-3">
           {formData.teamMembers.map((member, index) => (
            <Card key={member.id} className="p-4">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-medium">
               {index + 1}
              </div>
-             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+             <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="space-y-2">
                <Label>Name</Label>
                <Input
@@ -764,7 +764,7 @@ export default function InstallationTrackingEnhancedPage() {
         <Card>
          <CardContent className="pt-4 space-y-3">
           {formData.safetyChecklist.map((item) => (
-           <div key={item.id} className="flex items-center gap-4 py-2 border-b last:border-b-0">
+           <div key={item.id} className="flex items-center gap-2 py-2 border-b last:border-b-0">
             <Checkbox
              checked={item.checked}
              onChange={(checked) => updateSafetyItem(item.id, 'checked', checked)}
@@ -805,7 +805,7 @@ export default function InstallationTrackingEnhancedPage() {
         <Card>
          <CardContent className="pt-4 space-y-3">
           {formData.qualityChecklist.map((item) => (
-           <div key={item.id} className="flex items-center gap-4 py-2 border-b last:border-b-0">
+           <div key={item.id} className="flex items-center gap-2 py-2 border-b last:border-b-0">
             <span className="flex-1 text-sm">{item.checkPoint}</span>
             <Select
              value={item.status}
@@ -917,7 +917,7 @@ export default function InstallationTrackingEnhancedPage() {
        </div>
 
        {/* Summary Cards */}
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         <Card className="bg-gray-50">
          <CardContent className="pt-4">
           <div className="flex items-center gap-2 mb-2">
@@ -963,7 +963,7 @@ export default function InstallationTrackingEnhancedPage() {
         </Card>
        </div>
 
-       <div className="flex items-center justify-center p-4 bg-blue-50 rounded-lg">
+       <div className="flex items-center justify-center p-3 bg-blue-50 rounded-lg">
         <div className="flex items-center gap-2 text-blue-800">
          <span className={`px-3 py-1 rounded text-sm font-medium ${getStatusColor(formData.status)}`}>
           {formData.status.replace('_', ' ').toUpperCase()}

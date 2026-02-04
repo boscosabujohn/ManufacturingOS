@@ -140,8 +140,8 @@ export const PrintHeader: React.FC<PrintHeaderProps> = ({
   date
 }) => (
   <div className="header print-avoid-break">
-    <div className="flex justify-between items-start mb-4">
-      <div className="flex items-center gap-4">
+    <div className="flex justify-between items-start mb-2">
+      <div className="flex items-center gap-2">
         {companyInfo.logo && (
           <img src={companyInfo.logo} alt="Company Logo" className="h-16 w-auto" />
         )}
@@ -152,7 +152,7 @@ export const PrintHeader: React.FC<PrintHeaderProps> = ({
               <MapPin className="h-3 w-3" />
               {companyInfo.address}
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
                 <Phone className="h-3 w-3" />
                 {companyInfo.phone}
@@ -224,7 +224,7 @@ export const PurchaseOrderPrint: React.FC<{
   return (
     <div className="bg-white">
       {/* Print Controls */}
-      <div className="no-print bg-gray-50 p-4 border-b flex justify-between items-center">
+      <div className="no-print bg-gray-50 p-3 border-b flex justify-between items-center">
         <h3 className="text-lg font-semibold">Purchase Order - {data.poNumber}</h3>
         <div className="flex gap-2">
           <button
@@ -246,7 +246,7 @@ export const PurchaseOrderPrint: React.FC<{
       </div>
 
       {/* Print Content */}
-      <div ref={printRef} className="p-8 max-w-4xl mx-auto">
+      <div ref={printRef} className="p-8 ">
         <PrintHeader
           companyInfo={companyInfo}
           documentTitle="PURCHASE ORDER"
@@ -255,7 +255,7 @@ export const PurchaseOrderPrint: React.FC<{
         />
 
         {/* Vendor and Shipping Information */}
-        <div className="grid grid-cols-3 gap-6 mb-6 print-avoid-break">
+        <div className="grid grid-cols-3 gap-3 mb-3 print-avoid-break">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2 border-b border-gray-300 pb-1">VENDOR</h3>
             <div className="text-sm space-y-1">
@@ -287,8 +287,8 @@ export const PurchaseOrderPrint: React.FC<{
         </div>
 
         {/* Order Details */}
-        <div className="mb-4 print-avoid-break">
-          <div className="grid grid-cols-2 gap-6 text-sm">
+        <div className="mb-2 print-avoid-break">
+          <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
               <span className="font-medium">PO Number:</span> {data.poNumber}
             </div>
@@ -305,7 +305,7 @@ export const PurchaseOrderPrint: React.FC<{
         </div>
 
         {/* Items Table */}
-        <table className="w-full mb-4">
+        <table className="w-full mb-2">
           <thead>
             <tr>
               <th className="text-left">Description</th>
@@ -331,7 +331,7 @@ export const PurchaseOrderPrint: React.FC<{
         </table>
 
         {/* Totals */}
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <div className="w-64">
             <div className="flex justify-between py-1">
               <span>Subtotal:</span>
@@ -354,7 +354,7 @@ export const PurchaseOrderPrint: React.FC<{
 
         {/* Notes */}
         {data.notes && (
-          <div className="mb-6 print-avoid-break">
+          <div className="mb-3 print-avoid-break">
             <h3 className="font-semibold text-gray-900 mb-2">NOTES:</h3>
             <div className="text-sm border border-gray-300 p-3 rounded">
               {data.notes}
@@ -414,7 +414,7 @@ export const RFQPrint: React.FC<{
   return (
     <div className="bg-white">
       {/* Print Controls */}
-      <div className="no-print bg-gray-50 p-4 border-b flex justify-between items-center">
+      <div className="no-print bg-gray-50 p-3 border-b flex justify-between items-center">
         <h3 className="text-lg font-semibold">Request for Quotation - {data.rfqNumber}</h3>
         <div className="flex gap-2">
           <button
@@ -428,7 +428,7 @@ export const RFQPrint: React.FC<{
       </div>
 
       {/* Print Content */}
-      <div ref={printRef} className="p-8 max-w-4xl mx-auto">
+      <div ref={printRef} className="p-8 ">
         <PrintHeader
           companyInfo={companyInfo}
           documentTitle="REQUEST FOR QUOTATION"
@@ -437,7 +437,7 @@ export const RFQPrint: React.FC<{
         />
 
         {/* RFQ Information */}
-        <div className="grid grid-cols-2 gap-6 mb-6 print-avoid-break">
+        <div className="grid grid-cols-2 gap-3 mb-3 print-avoid-break">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2 border-b border-gray-300 pb-1">VENDOR INFORMATION</h3>
             <div className="text-sm space-y-1">
@@ -459,7 +459,7 @@ export const RFQPrint: React.FC<{
         </div>
 
         {/* Items Table */}
-        <div className="mb-6">
+        <div className="mb-3">
           <h3 className="font-semibold text-gray-900 mb-3">ITEMS REQUESTED FOR QUOTATION</h3>
           <table className="w-full">
             <thead>
@@ -493,9 +493,9 @@ export const RFQPrint: React.FC<{
         </div>
 
         {/* Quote Response Section */}
-        <div className="mb-6 print-avoid-break">
+        <div className="mb-3 print-avoid-break">
           <h3 className="font-semibold text-gray-900 mb-3">VENDOR RESPONSE SECTION</h3>
-          <div className="grid grid-cols-2 gap-6 text-sm">
+          <div className="grid grid-cols-2 gap-3 text-sm">
             <div className="space-y-3">
               <div>
                 <label className="font-medium">Delivery Time:</label>
@@ -528,7 +528,7 @@ export const RFQPrint: React.FC<{
         </div>
 
         {/* Additional Terms */}
-        <div className="mb-6 print-avoid-break">
+        <div className="mb-3 print-avoid-break">
           <h3 className="font-semibold text-gray-900 mb-2">ADDITIONAL TERMS & CONDITIONS</h3>
           <div className="text-xs space-y-1 border border-gray-300 p-3">
             <p>1. Please provide complete specifications and technical documentation</p>
@@ -541,7 +541,7 @@ export const RFQPrint: React.FC<{
 
         {/* Notes */}
         {data.notes && (
-          <div className="mb-6 print-avoid-break">
+          <div className="mb-3 print-avoid-break">
             <h3 className="font-semibold text-gray-900 mb-2">SPECIAL NOTES:</h3>
             <div className="text-sm border border-gray-300 p-3">
               {data.notes}
@@ -603,7 +603,7 @@ export const ReportPrint: React.FC<{
   return (
     <div className="bg-white">
       {/* Print Controls */}
-      <div className="no-print bg-gray-50 p-4 border-b flex justify-between items-center">
+      <div className="no-print bg-gray-50 p-3 border-b flex justify-between items-center">
         <h3 className="text-lg font-semibold">{data.title}</h3>
         <div className="flex gap-2">
           <button
@@ -617,7 +617,7 @@ export const ReportPrint: React.FC<{
       </div>
 
       {/* Print Content */}
-      <div ref={printRef} className="p-8 max-w-4xl mx-auto">
+      <div ref={printRef} className="p-8 ">
         <PrintHeader
           companyInfo={companyInfo}
           documentTitle={data.title.toUpperCase()}
@@ -626,11 +626,11 @@ export const ReportPrint: React.FC<{
         />
 
         {/* Report Summary */}
-        <div className="mb-6 print-avoid-break">
+        <div className="mb-3 print-avoid-break">
           <h3 className="font-semibold text-gray-900 mb-3 border-b border-gray-300 pb-1">EXECUTIVE SUMMARY</h3>
           <div className="text-sm">
             <p className="mb-2"><span className="font-medium">Report Period:</span> {data.period}</p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
                 <div><span className="font-medium">Total Orders:</span> {data.summary.totalOrders}</div>
                 <div><span className="font-medium">Total Value:</span> ${data.summary.totalValue.toLocaleString()}</div>
@@ -644,7 +644,7 @@ export const ReportPrint: React.FC<{
         </div>
 
         {/* Data Table */}
-        <div className="mb-6">
+        <div className="mb-3">
           <h3 className="font-semibold text-gray-900 mb-3 border-b border-gray-300 pb-1">DETAILED BREAKDOWN</h3>
           <table className="w-full">
             <thead>
@@ -670,10 +670,10 @@ export const ReportPrint: React.FC<{
 
         {/* Charts Placeholder */}
         {data.charts && (
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-3 border-b border-gray-300 pb-1">VISUAL ANALYSIS</h3>
             {data.charts.map((chart, index) => (
-              <div key={index} className="mb-4 print-avoid-break">
+              <div key={index} className="mb-2 print-avoid-break">
                 <h4 className="font-medium text-gray-900 mb-2">{chart.title}</h4>
                 <div className="border border-gray-300 h-48 flex items-center justify-center text-gray-500">
                   Chart: {chart.title} ({chart.type})

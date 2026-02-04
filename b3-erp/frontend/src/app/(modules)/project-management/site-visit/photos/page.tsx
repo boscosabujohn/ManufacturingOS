@@ -67,7 +67,7 @@ export default function PhotoDocumentationPage() {
   return (
     <div className="w-full py-2 space-y-3">
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </Button>
@@ -96,7 +96,7 @@ export default function PhotoDocumentationPage() {
         {/* Upload Area */}
         <Card className="md:col-span-3 border-dashed border-2 bg-gray-50/50 hover:bg-gray-50 transition-colors">
           <CardContent className="flex flex-col items-center justify-center py-12 text-center cursor-pointer" onClick={handleUploadClick}>
-            <div className="p-4 bg-blue-100 rounded-full mb-4 text-blue-600">
+            <div className="p-4 bg-blue-100 rounded-full mb-2 text-blue-600">
               <Camera className="w-8 h-8" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900">Drag & Drop or Click to Upload</h3>

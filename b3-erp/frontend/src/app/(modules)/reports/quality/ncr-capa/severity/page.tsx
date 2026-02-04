@@ -45,7 +45,7 @@ function NCRBySeverityContent() {
             onExport={() => console.log('Export')}
         >
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 <Card>
                     <CardContent className="pt-6">
                         <p className="text-sm text-gray-600">Total NCRs</p>

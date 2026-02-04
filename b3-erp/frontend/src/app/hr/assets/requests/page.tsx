@@ -264,37 +264,37 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Asset Requests</h1>
         <p className="text-sm text-gray-600 mt-1">Manage and track asset requests</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Total Requests</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <p className="text-sm font-medium text-yellow-600">Pending</p>
           <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.pending}</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Approved</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{stats.approved}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <p className="text-sm font-medium text-green-600">Fulfilled</p>
           <p className="text-2xl font-bold text-green-900 mt-1">{stats.fulfilled}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <p className="text-sm font-medium text-red-600">Rejected</p>
           <p className="text-2xl font-bold text-red-900 mt-1">{stats.rejected}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
             <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -335,10 +335,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRequests.map(request => (
-          <div key={request.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={request.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-12 w-12 bg-blue-50 rounded-lg flex items-center justify-center">
@@ -367,7 +367,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 py-4 border-y border-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2 py-4 border-y border-gray-200">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Department</p>
                 <p className="text-sm font-semibold text-gray-900">{request.department}</p>
@@ -392,13 +392,13 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 mb-4">
+            <div className="bg-gray-50 rounded-lg p-3 mb-2">
               <p className="text-xs text-gray-500 uppercase font-medium mb-2">Business Justification</p>
               <p className="text-sm text-gray-700">{request.businessJustification}</p>
             </div>
 
             {request.status === 'approved' && request.approvedBy && (
-              <div className="bg-blue-50 rounded-lg p-3 mb-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 mb-2 border border-blue-200">
                 <div className="flex items-center gap-2 mb-1">
                   <CheckCircle className="h-4 w-4 text-blue-600" />
                   <p className="text-xs text-blue-700 uppercase font-medium">Approved</p>
@@ -410,7 +410,7 @@ export default function Page() {
             )}
 
             {request.status === 'fulfilled' && request.fulfilledDate && (
-              <div className="bg-green-50 rounded-lg p-3 mb-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 mb-2 border border-green-200">
                 <div className="flex items-center gap-2 mb-1">
                   <CheckCircle className="h-4 w-4 text-green-600" />
                   <p className="text-xs text-green-700 uppercase font-medium">Fulfilled</p>
@@ -434,7 +434,7 @@ export default function Page() {
             )}
 
             {request.status === 'rejected' && request.rejectionReason && (
-              <div className="bg-red-50 rounded-lg p-3 mb-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 mb-2 border border-red-200">
                 <div className="flex items-center gap-2 mb-1">
                   <XCircle className="h-4 w-4 text-red-600" />
                   <p className="text-xs text-red-700 uppercase font-medium">Rejected</p>
@@ -444,7 +444,7 @@ export default function Page() {
             )}
 
             {request.status === 'pending' && request.priority === 'urgent' && (
-              <div className="bg-red-50 rounded-lg p-3 mb-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 mb-2 border border-red-200">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="h-4 w-4 text-red-600" />
                   <p className="text-xs text-red-700 uppercase font-medium">Urgent - Awaiting Approval</p>
@@ -494,9 +494,9 @@ export default function Page() {
 
       {/* View Details Modal */}
       {showDetailsModal && selectedRequest && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Eye className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Asset Request Details</h2>
@@ -507,7 +507,7 @@ export default function Page() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 flex items-start justify-between">
+              <div className="mb-3 flex items-start justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedRequest.assetType}</h3>
                   <p className="text-gray-600">Request ID: {selectedRequest.requestId}</p>
@@ -517,9 +517,9 @@ export default function Page() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                 <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="h-5 w-5 text-gray-600" />
                     Requestor Information
                   </h4>
@@ -544,7 +544,7 @@ export default function Page() {
                 </div>
 
                 <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
-                  <h4 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <Package className="h-5 w-5 text-blue-600" />
                     Asset Information
                   </h4>
@@ -569,12 +569,12 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="mb-6 bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="mb-3 bg-gray-50 rounded-lg p-5 border border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <CalendarIcon className="h-5 w-5 text-gray-600" />
                   Timeline & Priority
                 </h4>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-xs text-gray-500">Request Date</p>
                     <p className="font-medium text-gray-900">
@@ -596,13 +596,13 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="mb-6 bg-yellow-50 rounded-lg p-5 border border-yellow-200">
+              <div className="mb-3 bg-yellow-50 rounded-lg p-5 border border-yellow-200">
                 <h4 className="font-semibold text-yellow-900 mb-3">Business Justification</h4>
                 <p className="text-sm text-yellow-800">{selectedRequest.businessJustification}</p>
               </div>
 
               {selectedRequest.approvedBy && (
-                <div className="mb-6 bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="mb-3 bg-green-50 rounded-lg p-3 border border-green-200">
                   <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     Approval Information
@@ -614,7 +614,7 @@ export default function Page() {
               )}
 
               {selectedRequest.assignedAssets && selectedRequest.assignedAssets.length > 0 && (
-                <div className="mb-6 bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="mb-3 bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-semibold text-blue-900 mb-3">Assigned Assets</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedRequest.assignedAssets.map((asset, idx) => (
@@ -641,9 +641,9 @@ export default function Page() {
 
       {/* Approve Modal */}
       {showApproveModal && selectedRequest && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Approve Asset Request</h2>
@@ -654,13 +654,13 @@ export default function Page() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="mb-3 p-3 bg-green-50 rounded-lg border border-green-200">
                 <h3 className="font-bold text-green-900 mb-2">{selectedRequest.assetType}</h3>
                 <p className="text-sm text-green-700">Request ID: {selectedRequest.requestId}</p>
                 <p className="text-sm text-green-700">Requested by: {selectedRequest.requestedBy} ({selectedRequest.department})</p>
               </div>
 
-              <div className="mb-6 p-5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border-2 border-blue-300">
+              <div className="mb-3 p-5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border-2 border-blue-300">
                 <p className="text-sm font-medium text-gray-700 mb-2">Estimated Cost</p>
                 <p className="text-4xl font-bold text-blue-700">₹{selectedRequest.estimatedCost?.toLocaleString('en-IN')}</p>
                 <p className="text-xs text-gray-600 mt-2">
@@ -668,7 +668,7 @@ export default function Page() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmitApprove} className="space-y-4">
+              <form onSubmit={handleSubmitApprove} className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Approved By <span className="text-red-500">*</span>
@@ -719,7 +719,7 @@ export default function Page() {
                   <button
                     type="button"
                     onClick={() => setShowApproveModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -732,9 +732,9 @@ export default function Page() {
 
       {/* Reject Modal */}
       {showRejectModal && selectedRequest && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <XCircle className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Reject Asset Request</h2>
@@ -745,13 +745,13 @@ export default function Page() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-red-50 rounded-lg border border-red-200">
+              <div className="mb-3 p-3 bg-red-50 rounded-lg border border-red-200">
                 <h3 className="font-bold text-red-900 mb-2">{selectedRequest.assetType}</h3>
                 <p className="text-sm text-red-700">Request ID: {selectedRequest.requestId}</p>
                 <p className="text-sm text-red-700">Requested by: {selectedRequest.requestedBy} ({selectedRequest.department})</p>
               </div>
 
-              <form onSubmit={handleSubmitReject} className="space-y-4">
+              <form onSubmit={handleSubmitReject} className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Rejection Reason <span className="text-red-500">*</span>
@@ -809,7 +809,7 @@ export default function Page() {
                   <button
                     type="button"
                     onClick={() => setShowRejectModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -822,9 +822,9 @@ export default function Page() {
 
       {/* Fulfill Modal */}
       {showFulfillModal && selectedRequest && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Package className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Fulfill Asset Request</h2>
@@ -835,13 +835,13 @@ export default function Page() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <h3 className="font-bold text-blue-900 mb-2">{selectedRequest.assetType}</h3>
                 <p className="text-sm text-blue-700">Request ID: {selectedRequest.requestId}</p>
                 <p className="text-sm text-blue-700">Assign to: {selectedRequest.requestedBy} ({selectedRequest.employeeCode})</p>
               </div>
 
-              <div className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mb-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <h4 className="font-semibold text-gray-900 mb-3">Request Details</h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
@@ -865,7 +865,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmitFulfill} className="space-y-4">
+              <form onSubmit={handleSubmitFulfill} className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Asset Tag(s) / Serial Number(s) <span className="text-red-500">*</span>
@@ -932,7 +932,7 @@ export default function Page() {
                   <button
                     type="button"
                     onClick={() => setShowFulfillModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>

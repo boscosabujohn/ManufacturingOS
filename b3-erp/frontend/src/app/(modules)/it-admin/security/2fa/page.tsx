@@ -349,7 +349,7 @@ const TwoFactorAuthPage = () => {
       )}
 
       {/* Header Section */}
-      <div className="flex-none p-6 pb-4 space-y-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-teal-100 rounded-lg">
@@ -370,10 +370,10 @@ const TwoFactorAuthPage = () => {
         </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
         <button
           onClick={() => handleStatsCardClick('total')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-blue-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Users</span>
@@ -385,7 +385,7 @@ const TwoFactorAuthPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('enrolled')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-green-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Enrolled</span>
@@ -397,7 +397,7 @@ const TwoFactorAuthPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('pending')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-yellow-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-yellow-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Pending</span>
@@ -409,7 +409,7 @@ const TwoFactorAuthPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('not-enrolled')}
-          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-red-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3 hover:border-red-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Not Enrolled</span>
@@ -419,7 +419,7 @@ const TwoFactorAuthPage = () => {
           <p className="text-xs text-red-600 mt-1">Click to filter</p>
         </button>
 
-        <div className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Mandatory Users</span>
             <AlertTriangle className="w-4 h-4 text-orange-600" />
@@ -429,7 +429,7 @@ const TwoFactorAuthPage = () => {
 
         <button
           onClick={() => handleStatsCardClick('analytics')}
-          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-3 hover:border-purple-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-purple-600 font-medium">Analytics</span>
@@ -441,8 +441,8 @@ const TwoFactorAuthPage = () => {
       </div>
 
       {/* Enrollment Progress */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="font-semibold text-gray-900">Enrollment Progress</h3>
           <span className="text-sm text-gray-600">{stats.enrolled} of {stats.totalUsers} users enrolled</span>
         </div>
@@ -454,8 +454,8 @@ const TwoFactorAuthPage = () => {
         </div>
 
         {/* Methods Distribution */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-purple-100 rounded-lg">
                 <Smartphone className="w-5 h-5 text-purple-600" />
@@ -468,7 +468,7 @@ const TwoFactorAuthPage = () => {
             <div className="text-sm text-gray-500">Most secure method</div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <MessageSquare className="w-5 h-5 text-blue-600" />
@@ -481,7 +481,7 @@ const TwoFactorAuthPage = () => {
             <div className="text-sm text-gray-500">Phone number required</div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-green-100 rounded-lg">
                 <Mail className="w-5 h-5 text-green-600" />
@@ -503,7 +503,7 @@ const TwoFactorAuthPage = () => {
           
           {/* Tabs */}
           <div className="flex-none border-b border-gray-200">
-            <div className="flex gap-4 px-6">
+            <div className="flex gap-2 px-6">
               <button
                 onClick={() => setActiveTab('settings')}
                 className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
@@ -543,10 +543,10 @@ const TwoFactorAuthPage = () => {
             {/* Settings Tab */}
             {activeTab === 'settings' && (
               <div className="p-6">
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Global Settings */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Settings className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Global Settings</h3>
                 </div>
@@ -576,15 +576,15 @@ const TwoFactorAuthPage = () => {
               </div>
 
               {/* Authentication Methods */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Key className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Authentication Methods</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {/* Authenticator App */}
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-3">
                     <label className="flex items-center gap-2 mb-3">
                       <input
                         type="checkbox"
@@ -611,7 +611,7 @@ const TwoFactorAuthPage = () => {
                   </div>
 
                   {/* SMS */}
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-3">
                     <label className="flex items-center gap-2 mb-3">
                       <input
                         type="checkbox"
@@ -645,7 +645,7 @@ const TwoFactorAuthPage = () => {
                   </div>
 
                   {/* Email */}
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-3">
                     <label className="flex items-center gap-2 mb-2">
                       <input
                         type="checkbox"
@@ -662,7 +662,7 @@ const TwoFactorAuthPage = () => {
                   </div>
 
                   {/* Backup Codes */}
-                  <div className="bg-white rounded-lg p-4">
+                  <div className="bg-white rounded-lg p-3">
                     <label className="flex items-center gap-2 mb-3">
                       <input
                         type="checkbox"
@@ -697,13 +697,13 @@ const TwoFactorAuthPage = () => {
               </div>
 
               {/* Enforcement Policy */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Enforcement Policy</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Grace Period (days)
@@ -778,8 +778,8 @@ const TwoFactorAuthPage = () => {
               </div>
 
               {/* Recovery Options */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Key className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Recovery Options</h3>
                 </div>
@@ -954,15 +954,15 @@ const TwoFactorAuthPage = () => {
         {/* Setup Guide Tab */}
         {activeTab === 'setup' && (
           <div className="p-6">
-            <div className="w-full space-y-6">
+            <div className="w-full space-y-3">
               {/* QR Code Section */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div className="flex items-center gap-3 mb-2">
                   <QrCode className="w-6 h-6 text-blue-600" />
                   <h3 className="font-semibold text-blue-900">Setup Authenticator App</h3>
                 </div>
                 
-                <ol className="space-y-3 text-sm text-blue-800 mb-4">
+                <ol className="space-y-3 text-sm text-blue-800 mb-2">
                   <li className="flex gap-2">
                     <span className="font-medium">1.</span>
                     <span>Download an authenticator app (Google Authenticator, Microsoft Authenticator, or Authy)</span>
@@ -981,9 +981,9 @@ const TwoFactorAuthPage = () => {
                   </li>
                 </ol>
 
-                <div className="flex items-center justify-center mb-4">
+                <div className="flex items-center justify-center mb-2">
                   {showQRCode ? (
-                    <div className="bg-white p-4 rounded-lg">
+                    <div className="bg-white p-3 rounded-lg">
                       <div className="w-48 h-48 bg-gray-200 flex items-center justify-center">
                         <QrCode className="w-32 h-32 text-gray-400" />
                       </div>
@@ -995,7 +995,7 @@ const TwoFactorAuthPage = () => {
                   ) : (
                     <button
                       onClick={() => setShowQRCode(true)}
-                      className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     >
                       Show QR Code
                     </button>
@@ -1004,8 +1004,8 @@ const TwoFactorAuthPage = () => {
               </div>
 
               {/* SMS Setup */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                <div className="flex items-center gap-3 mb-2">
                   <MessageSquare className="w-6 h-6 text-green-600" />
                   <h3 className="font-semibold text-green-900">Setup SMS Authentication</h3>
                 </div>
@@ -1031,8 +1031,8 @@ const TwoFactorAuthPage = () => {
               </div>
 
               {/* Email Setup */}
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
+                <div className="flex items-center gap-3 mb-2">
                   <Mail className="w-6 h-6 text-purple-600" />
                   <h3 className="font-semibold text-purple-900">Setup Email Authentication</h3>
                 </div>
@@ -1058,8 +1058,8 @@ const TwoFactorAuthPage = () => {
               </div>
 
               {/* Backup Codes */}
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
+                <div className="flex items-center gap-3 mb-2">
                   <Key className="w-6 h-6 text-orange-600" />
                   <h3 className="font-semibold text-orange-900">Backup Codes</h3>
                 </div>

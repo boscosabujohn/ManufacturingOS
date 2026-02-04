@@ -36,17 +36,17 @@ export function AddAccountModal({ isOpen, onClose, onCreate }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center sticky top-0 z-10">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center sticky top-0 z-10">
           <h2 className="text-xl font-bold text-white">Add New Account</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Basic Information */}
             <div className="col-span-2">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Basic Information</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Basic Information</h3>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Account Code *</label>
@@ -135,7 +135,7 @@ export function AddAccountModal({ isOpen, onClose, onCreate }: any) {
 
             {/* Opening Balance */}
             <div className="col-span-2">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b mt-4">Opening Balance</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b mt-4">Opening Balance</h3>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Opening Balance</label>
@@ -171,9 +171,9 @@ export function AddAccountModal({ isOpen, onClose, onCreate }: any) {
 
             {/* Advanced Options */}
             <div className="col-span-2">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b mt-4">Advanced Options</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b mt-4">Advanced Options</h3>
             </div>
-            <div className="col-span-2 grid grid-cols-2 gap-4">
+            <div className="col-span-2 grid grid-cols-2 gap-2">
               <label className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
                 <input
                   type="checkbox"
@@ -256,7 +256,7 @@ export function AddAccountModal({ isOpen, onClose, onCreate }: any) {
             )}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Create Account:', formData); onCreate(formData); }}
@@ -287,14 +287,14 @@ export function EditAccountModal({ isOpen, onClose, onSave, account }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Edit Account - {formData.code}</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Account Code</label>
               <input
@@ -366,7 +366,7 @@ export function EditAccountModal({ isOpen, onClose, onSave, account }: any) {
             </div>
           )}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Save Account:', formData); onSave(formData); }}
@@ -405,35 +405,35 @@ export function ViewAccountDetailsModal({ isOpen, onClose, account }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Account Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-700">Current Balance</p>
               <p className="text-2xl font-bold text-blue-900 mt-1">₹{mockAccount.balance.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm font-medium text-green-700">Total Debits</p>
               <p className="text-2xl font-bold text-green-900 mt-1">₹{mockAccount.debitBalance.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-700">Total Credits</p>
               <p className="text-2xl font-bold text-red-900 mt-1">₹{mockAccount.creditBalance.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm font-medium text-purple-700">Transactions</p>
               <p className="text-2xl font-bold text-purple-900 mt-1">{mockAccount.transactionCount}</p>
             </div>
           </div>
 
           {/* Account Information */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Account Information</h3>
               <dl className="space-y-2">
@@ -512,7 +512,7 @@ export function ViewAccountDetailsModal({ isOpen, onClose, account }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
             <FileText className="h-4 w-4" />
@@ -534,14 +534,14 @@ export function ToggleAccountStatusModal({ isOpen, onClose, onConfirm, account, 
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className={`bg-gradient-to-r ${isDeactivating ? 'from-orange-600 to-orange-700' : 'from-green-600 to-green-700'} px-6 py-4 flex justify-between items-center`}>
+        <div className={`bg-gradient-to-r ${isDeactivating ? 'from-orange-600 to-orange-700' : 'from-green-600 to-green-700'} px-3 py-2 flex justify-between items-center`}>
           <h2 className="text-xl font-bold text-white">{isDeactivating ? 'Deactivate' : 'Activate'} Account</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className={`flex items-start gap-3 p-4 ${isDeactivating ? 'bg-orange-50 border-orange-200' : 'bg-green-50 border-green-200'} border rounded-lg mb-4`}>
+          <div className={`flex items-start gap-3 p-3 ${isDeactivating ? 'bg-orange-50 border-orange-200' : 'bg-green-50 border-green-200'} border rounded-lg mb-2`}>
             {isDeactivating ? (
               <AlertTriangle className="h-6 w-6 text-orange-600 flex-shrink-0 mt-0.5" />
             ) : (
@@ -580,7 +580,7 @@ export function ToggleAccountStatusModal({ isOpen, onClose, onConfirm, account, 
             </div>
           )}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log(`${isDeactivating ? 'Deactivate' : 'Activate'} Account:`, account); onConfirm(); }}
@@ -604,14 +604,14 @@ export function BulkImportAccountsModal({ isOpen, onClose, onImport }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Bulk Import Accounts</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Import Mode</label>
               <select
@@ -639,7 +639,7 @@ export function BulkImportAccountsModal({ isOpen, onClose, onImport }: any) {
             </div>
 
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+              <Upload className="h-12 w-12 text-gray-400 mb-3" />
               <p className="text-sm font-medium text-gray-900 mb-1">Drop your Excel or CSV file here</p>
               <p className="text-xs text-gray-500 mb-3">or</p>
               <label className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 cursor-pointer">
@@ -659,7 +659,7 @@ export function BulkImportAccountsModal({ isOpen, onClose, onImport }: any) {
               )}
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-900 mb-2">Required Columns:</p>
               <ul className="text-xs text-blue-700 space-y-1">
                 <li>• <strong>code</strong> - Account code (required, unique)</li>
@@ -680,7 +680,7 @@ export function BulkImportAccountsModal({ isOpen, onClose, onImport }: any) {
             </button>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Import Accounts:', { file, importMode, validateOnly }); onImport({ file, importMode, validateOnly }); }}

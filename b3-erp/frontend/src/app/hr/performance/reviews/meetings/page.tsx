@@ -96,7 +96,7 @@ export default function ReviewMeetingsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -114,19 +114,19 @@ export default function ReviewMeetingsPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Today's Schedule */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <h2 className="text-lg font-semibold text-gray-900">Upcoming Schedule</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {meetings.map((meeting) => (
               <div
                 key={meeting.id}
                 className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex items-start gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-start gap-2">
                     <div className="h-12 w-12 bg-purple-50 rounded-xl flex flex-col items-center justify-center min-w-[3rem]">
                       <span className="text-xs font-semibold text-purple-600 uppercase">
                         {new Date(meeting.date).toLocaleDateString('en-US', { month: 'short' })}
@@ -138,7 +138,7 @@ export default function ReviewMeetingsPage() {
                     <div>
                       <h3 className="font-semibold text-gray-900 text-lg">{meeting.employeeName}</h3>
                       <p className="text-sm text-gray-500">{meeting.role}</p>
-                      <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-600">
+                      <div className="flex flex-wrap items-center gap-2 mt-2 text-sm text-gray-600">
                         <div className="flex items-center gap-1.5">
                           <Clock className="h-4 w-4" />
                           <span>{meeting.time} ({meeting.duration})</span>
@@ -167,8 +167,8 @@ export default function ReviewMeetingsPage() {
         </div>
 
         {/* Hints / Sidebar */}
-        <div className="space-y-6">
-          <div className="bg-gradient-to-br from-purple-50 to-white p-6 rounded-xl border border-purple-100">
+        <div className="space-y-3">
+          <div className="bg-gradient-to-br from-purple-50 to-white p-3 rounded-xl border border-purple-100">
             <h3 className="font-semibold text-purple-900 mb-2">Meeting Tips</h3>
             <ul className="space-y-3 text-sm text-purple-800">
               <li className="flex items-start gap-2">
@@ -194,7 +194,7 @@ export default function ReviewMeetingsPage() {
 
       {/* Schedule Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-md w-full">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Schedule Review</h2>
@@ -206,7 +206,7 @@ export default function ReviewMeetingsPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSchedule} className="p-6 space-y-4">
+            <form onSubmit={handleSchedule} className="p-6 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Employee Name</label>
                 <input
@@ -219,7 +219,7 @@ export default function ReviewMeetingsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
                   <input
@@ -244,7 +244,7 @@ export default function ReviewMeetingsPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Meeting Type</label>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"

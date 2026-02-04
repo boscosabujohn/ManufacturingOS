@@ -109,7 +109,7 @@ export const PageToolbar: React.FC<PageToolbarProps> = ({
 
   return (
     <div className={`bg-white border-b border-gray-200 ${className}`}>
-      <div className="px-6 py-4">
+      <div className="px-3 py-2">
         {/* Breadcrumbs */}
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav className="flex items-center gap-2 text-sm text-gray-600 mb-3">
@@ -131,8 +131,8 @@ export const PageToolbar: React.FC<PageToolbarProps> = ({
         )}
 
         {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex items-start gap-4">
+        <div className="flex items-start justify-between mb-2">
+          <div className="flex items-start gap-2">
             {/* Back Button */}
             {backButton && (
               <Link
@@ -202,7 +202,7 @@ export const PageToolbar: React.FC<PageToolbarProps> = ({
 
         {/* Search & Filters */}
         {(onSearch || onFilterToggle) && (
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-2">
             {onSearch && (
               <form onSubmit={handleSearch} className="flex-1 max-w-md">
                 <input
@@ -234,7 +234,7 @@ export const PageToolbar: React.FC<PageToolbarProps> = ({
 
         {/* Tabs */}
         {tabs && tabs.length > 0 && (
-          <div className="flex items-center gap-1 border-b border-gray-200 -mb-4">
+          <div className="flex items-center gap-1 border-b border-gray-200 -mb-2">
             {tabs.map((tab) => (
               <button
                 key={tab.id}

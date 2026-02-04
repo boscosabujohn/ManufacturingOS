@@ -114,8 +114,8 @@ export default function QualityDashboard() {
 
     if (loading) {
         return (
-            <div className="w-full p-6 flex items-center justify-center min-h-[400px]">
-                <div className="flex flex-col items-center gap-4">
+            <div className="w-full p-3 flex items-center justify-center min-h-[400px]">
+                <div className="flex flex-col items-center gap-2">
                     <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
                     <p className="text-gray-600">Loading quality dashboard...</p>
                 </div>
@@ -125,8 +125,8 @@ export default function QualityDashboard() {
 
     if (error) {
         return (
-            <div className="w-full p-6">
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="w-full p-3">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                     <p className="text-red-600">{error}</p>
                     <button
                         onClick={fetchQualityStats}
@@ -140,15 +140,15 @@ export default function QualityDashboard() {
     }
 
     return (
-        <div className="w-full p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="mb-6">
+            <div className="mb-3">
                 <h1 className="text-3xl font-bold mb-2">Quality Management Dashboard</h1>
                 <p className="text-gray-600">Monitor quality metrics and performance</p>
             </div>
 
             {/* KPI Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium text-gray-600">Pending Inspections</CardTitle>
@@ -230,7 +230,7 @@ export default function QualityDashboard() {
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                     <Link href="/quality/inspections/new">
                         <CardContent className="pt-6">

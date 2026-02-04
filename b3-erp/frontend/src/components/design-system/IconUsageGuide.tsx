@@ -156,20 +156,20 @@ const IconUsageGuide: React.FC<IconUsageGuideProps> = ({ className = '' }) => {
   };
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="mb-3">
         <h2 className="text-xl font-bold text-gray-800">Icon Usage Guide</h2>
         <p className="text-sm text-gray-600">Standardized icon sizes and usage patterns</p>
       </div>
 
       {/* Size Guide */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Icon Sizes</h3>
-        <div className="grid grid-cols-4 gap-6">
+      <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">Icon Sizes</h3>
+        <div className="grid grid-cols-4 gap-3">
           {iconSizes.map(({ size, label, usage }) => (
             <div
               key={size}
-              className={`text-center p-4 rounded-lg cursor-pointer transition-all ${
+              className={`text-center p-3 rounded-lg cursor-pointer transition-all ${
                 selectedSize === size
                   ? 'bg-blue-50 border-2 border-blue-500'
                   : 'bg-gray-50 border-2 border-transparent hover:border-gray-300'
@@ -193,7 +193,7 @@ const IconUsageGuide: React.FC<IconUsageGuideProps> = ({ className = '' }) => {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="flex-1">
           <input
             type="text"
@@ -221,11 +221,11 @@ const IconUsageGuide: React.FC<IconUsageGuideProps> = ({ className = '' }) => {
       </div>
 
       {/* Icon Grid */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         {filteredIcons.map(icon => (
           <div
             key={icon.name}
-            className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all cursor-pointer"
+            className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-all cursor-pointer"
             onClick={() => copyIconCode(icon)}
           >
             <div className="flex justify-center mb-3">
@@ -252,8 +252,8 @@ const IconUsageGuide: React.FC<IconUsageGuideProps> = ({ className = '' }) => {
 
       {/* Usage Guidelines */}
       <div className="mt-8">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Icon Guidelines</h3>
-        <div className="grid grid-cols-2 gap-6">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">Icon Guidelines</h3>
+        <div className="grid grid-cols-2 gap-3">
           <div className="bg-white border border-gray-200 rounded-lg p-5">
             <h4 className="font-medium text-gray-800 mb-3">Sizing Rules</h4>
             <ul className="text-sm text-gray-600 space-y-2">

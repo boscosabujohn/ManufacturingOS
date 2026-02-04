@@ -284,7 +284,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Clock className="h-8 w-8 text-orange-600" />
           Pending Reimbursements
@@ -293,8 +293,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Claims</p>
@@ -303,7 +303,7 @@ export default function Page() {
             <User className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Amount</p>
@@ -312,7 +312,7 @@ export default function Page() {
             <Wallet className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">High Priority</p>
@@ -321,7 +321,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Medium</p>
@@ -330,7 +330,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Days</p>
@@ -339,7 +339,7 @@ export default function Page() {
             <Clock className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-rose-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-rose-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue</p>
@@ -351,7 +351,7 @@ export default function Page() {
       </div>
 
       {/* Export Actions */}
-      <div className="mb-6 flex justify-end gap-3">
+      <div className="mb-3 flex justify-end gap-3">
         <button
           onClick={handleExportToExcel}
           className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
@@ -369,8 +369,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Department:</label>
             <select
@@ -414,9 +414,9 @@ export default function Page() {
       <DataTable data={filteredReimbursements} columns={columns} />
 
       {/* Reimbursement Categories Info */}
-      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Reimbursement Categories & Limits</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Reimbursement Categories & Limits</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="p-4 bg-blue-50 rounded-lg">
             <h4 className="font-semibold text-gray-900 mb-2">Medical Reimbursement</h4>
             <p className="text-sm text-gray-700">Annual limit: ₹15,000 per employee</p>
@@ -451,7 +451,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+      <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-orange-900 mb-2">Reimbursement Processing Guidelines</h3>
         <ul className="text-sm text-orange-800 space-y-1">
           <li>• Claims should be processed within 7 days of submission</li>
@@ -465,7 +465,7 @@ export default function Page() {
 
       {/* View Details Modal */}
       {showDetailsModal && selectedClaim && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
               <h2 className="text-2xl font-bold text-gray-900">Claim Details</h2>
@@ -477,8 +477,8 @@ export default function Page() {
               </button>
             </div>
 
-            <div className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Claim Number</p>
                   <p className="font-semibold text-gray-900">{selectedClaim.claimNumber}</p>
@@ -569,7 +569,7 @@ export default function Page() {
 
       {/* Approve Modal */}
       {showApproveModal && selectedClaim && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -578,8 +578,8 @@ export default function Page() {
               </h2>
             </div>
 
-            <div className="p-6 space-y-4">
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="p-6 space-y-2">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <p className="text-sm text-green-900">
                   Are you sure you want to approve this reimbursement claim?
                 </p>
@@ -616,7 +616,7 @@ export default function Page() {
 
       {/* Reject Modal */}
       {showRejectModal && selectedClaim && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -625,8 +625,8 @@ export default function Page() {
               </h2>
             </div>
 
-            <div className="p-6 space-y-4">
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="p-6 space-y-2">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <p className="text-sm text-red-900">
                   You are about to reject this reimbursement claim:
                 </p>

@@ -18,8 +18,8 @@ export default function TaxSummaryReport() {
     ];
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Tax Summary</h1>
                     <p className="text-gray-600">GST/VAT collection and payment summary</p>

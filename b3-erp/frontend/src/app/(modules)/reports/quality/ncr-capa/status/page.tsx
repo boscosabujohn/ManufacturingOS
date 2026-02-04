@@ -89,13 +89,13 @@ function NCRByStatusContent() {
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                             <tr>
-                                <th className="px-6 py-3">NCR ID</th>
-                                <th className="px-6 py-3">Issue</th>
-                                <th className="px-6 py-3">Severity</th>
-                                <th className="px-6 py-3">Raised By</th>
-                                <th className="px-6 py-3">Date</th>
-                                <th className="px-6 py-3 text-center">Age (Days)</th>
-                                <th className="px-6 py-3 text-center">Status</th>
+                                <th className="px-3 py-2">NCR ID</th>
+                                <th className="px-3 py-2">Issue</th>
+                                <th className="px-3 py-2">Severity</th>
+                                <th className="px-3 py-2">Raised By</th>
+                                <th className="px-3 py-2">Date</th>
+                                <th className="px-3 py-2 text-center">Age (Days)</th>
+                                <th className="px-3 py-2 text-center">Status</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -105,17 +105,17 @@ function NCRByStatusContent() {
                                     id={record.id}
                                     basePath="/quality/ncr/view"
                                 >
-                                    <td className="px-6 py-4 font-medium text-gray-900">{record.id}</td>
-                                    <td className="px-6 py-4">{record.issue}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 font-medium text-gray-900">{record.id}</td>
+                                    <td className="px-3 py-2">{record.issue}</td>
+                                    <td className="px-3 py-2">
                                         <Badge className={getSeverityColor(record.severity)}>
                                             {record.severity}
                                         </Badge>
                                     </td>
-                                    <td className="px-6 py-4">{record.raisedBy}</td>
-                                    <td className="px-6 py-4">{record.date}</td>
-                                    <td className="px-6 py-4 text-center">{record.age}</td>
-                                    <td className="px-6 py-4 text-center">
+                                    <td className="px-3 py-2">{record.raisedBy}</td>
+                                    <td className="px-3 py-2">{record.date}</td>
+                                    <td className="px-3 py-2 text-center">{record.age}</td>
+                                    <td className="px-3 py-2 text-center">
                                         <Badge variant="outline">
                                             {record.status}
                                         </Badge>

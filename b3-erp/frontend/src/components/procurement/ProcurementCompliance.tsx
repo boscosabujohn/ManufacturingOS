@@ -137,7 +137,7 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
 
   return (
     <div className="p-6">
-      <div className="mb-6 bg-gradient-to-r from-green-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="mb-3 bg-gradient-to-r from-green-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Shield className="h-8 w-8" />
@@ -199,8 +199,8 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
 
       {/* Real-Time Compliance Monitoring */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-lg shadow-lg p-6 mb-6 border border-teal-200">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-lg shadow-lg p-3 mb-3 border border-teal-200">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-teal-600 rounded-lg relative">
                 <Shield className="w-6 h-6 text-white" />
@@ -238,8 +238,8 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-green-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Compliance Health</span>
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -253,7 +253,7 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Active Monitors</span>
                 <Activity className="w-5 h-5 text-blue-600" />
@@ -263,7 +263,7 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
               <div className="text-xs text-gray-500 mt-1">{complianceMetrics.nonCompliant} need attention</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-amber-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Risk Alerts</span>
                 <AlertTriangle className="w-5 h-5 text-amber-600" />
@@ -275,7 +275,7 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
               </button>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-purple-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Next Audit</span>
                 <Calendar className="w-5 h-5 text-purple-600" />
@@ -314,7 +314,7 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
           </div>
 
           {/* Predictive Compliance Insights */}
-          <div className="mt-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-4 border border-indigo-200">
+          <div className="mt-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-3 border border-indigo-200">
             <div className="flex items-center gap-2 mb-3">
               <Zap className="w-5 h-5 text-indigo-600" />
               <h3 className="font-semibold text-gray-900">AI-Powered Compliance Insights</h3>
@@ -341,7 +341,7 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['overview', 'requirements', 'audits', 'policies'].map((tab) => (
           <button
             key={tab}
@@ -359,11 +359,11 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
 
       {/* Overview Content */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Compliance Score Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <Shield className="h-8 w-8 text-green-500" />
                 <span className="text-sm text-green-600">+2.3%</span>
               </div>
@@ -371,8 +371,8 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
               <p className="text-sm text-gray-600">Overall Compliance</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <CheckCircle className="h-8 w-8 text-blue-500" />
                 <span className="text-sm text-blue-600">{complianceMetrics.compliant}/{complianceMetrics.totalRequirements}</span>
               </div>
@@ -380,8 +380,8 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
               <p className="text-sm text-gray-600">Compliant Items</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <AlertTriangle className="h-8 w-8 text-yellow-500" />
                 <span className="text-sm text-yellow-600">Action needed</span>
               </div>
@@ -389,8 +389,8 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
               <p className="text-sm text-gray-600">Non-Compliant</p>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <Award className="h-8 w-8 text-purple-500" />
                 <span className="text-sm text-purple-600">Recent audit</span>
               </div>
@@ -400,8 +400,8 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
           </div>
 
           {/* Compliance Requirements Table */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold mb-4">Compliance Requirements Status</h3>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h3 className="text-lg font-semibold mb-2">Compliance Requirements Status</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>

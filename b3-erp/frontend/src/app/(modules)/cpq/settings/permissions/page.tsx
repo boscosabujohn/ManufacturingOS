@@ -245,9 +245,9 @@ export default function CPQSettingsPermissionsPage() {
   )
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Permissions & Access Control</h2>
           <p className="text-sm text-gray-600 mt-1">Configure role-based access and approval limits</p>
@@ -282,14 +282,14 @@ export default function CPQSettingsPermissionsPage() {
 
       {/* Success Banner */}
       {saveStatus === 'success' && (
-        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
+        <div className="mb-3 bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3">
           <CheckCircle className="h-5 w-5 text-green-600" />
           <p className="text-sm text-green-800 font-medium">Permissions updated successfully!</p>
         </div>
       )}
 
       {/* Search */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -303,8 +303,8 @@ export default function CPQSettingsPermissionsPage() {
       </div>
 
       {/* Role-Based Permissions Matrix */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="p-2 bg-blue-100 rounded-lg">
             <Shield className="h-6 w-6 text-blue-600" />
           </div>
@@ -381,8 +381,8 @@ export default function CPQSettingsPermissionsPage() {
       </div>
 
       {/* Approval Limits */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="p-2 bg-purple-100 rounded-lg">
             <Lock className="h-6 w-6 text-purple-600" />
           </div>
@@ -441,8 +441,8 @@ export default function CPQSettingsPermissionsPage() {
       </div>
 
       {/* Data Visibility Rules */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="p-2 bg-green-100 rounded-lg">
             <Eye className="h-6 w-6 text-green-600" />
           </div>
@@ -452,9 +452,9 @@ export default function CPQSettingsPermissionsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {filteredRoles.map((role) => (
-            <div key={role.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div key={role.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold text-gray-900">{role.name}</h4>
                 <Users className="h-5 w-5 text-blue-600" />
@@ -499,7 +499,7 @@ export default function CPQSettingsPermissionsPage() {
       </div>
 
       {/* Info Banner */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start gap-3">
         <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
         <div>
           <p className="text-sm text-blue-900 font-medium">Permission Changes Impact</p>

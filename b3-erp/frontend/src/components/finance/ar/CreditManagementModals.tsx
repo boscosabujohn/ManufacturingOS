@@ -34,10 +34,10 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Lock className="w-5 h-5" />
@@ -55,7 +55,7 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
             <div className="flex gap-3">
               <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -68,8 +68,8 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
           </div>
 
           {/* Customer Summary */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-4">
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-gray-50 rounded-lg p-3 mb-2">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Credit Limit:</span>
                 <p className="font-semibold text-gray-900">₹500,000</p>
@@ -85,7 +85,7 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Hold Type <span className="text-red-500">*</span>
             </label>
@@ -102,7 +102,7 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
             </select>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reason for Hold <span className="text-red-500">*</span>
             </label>
@@ -117,7 +117,7 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
           </div>
 
           {/* Actions */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6 space-y-3">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3 space-y-3">
             <h3 className="font-semibold text-gray-900 text-sm mb-2">Automatic Actions</h3>
             <label className="flex items-center gap-2">
               <input
@@ -140,7 +140,7 @@ export const CreditHoldModal: React.FC<CreditHoldModalProps> = ({ isOpen, onClos
           </div>
 
           {/* Notifications */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6 space-y-3">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3 space-y-3">
             <h3 className="font-semibold text-gray-900 text-sm mb-2">Notifications</h3>
             <label className="flex items-center gap-2">
               <input
@@ -213,10 +213,10 @@ export const ReleaseCreditHoldModal: React.FC<ReleaseCreditHoldModalProps> = ({ 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Unlock className="w-5 h-5" />
@@ -234,7 +234,7 @@ export const ReleaseCreditHoldModal: React.FC<ReleaseCreditHoldModalProps> = ({ 
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Hold Info */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-2">
             <div className="flex gap-3">
               <Lock className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -250,9 +250,9 @@ export const ReleaseCreditHoldModal: React.FC<ReleaseCreditHoldModalProps> = ({ 
           </div>
 
           {/* Payment Status */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3 mb-2">
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">Current Status</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Total Due:</span>
                 <p className="font-semibold text-gray-900">₹125,000</p>
@@ -268,7 +268,7 @@ export const ReleaseCreditHoldModal: React.FC<ReleaseCreditHoldModalProps> = ({ 
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reason for Release <span className="text-red-500">*</span>
             </label>
@@ -282,7 +282,7 @@ export const ReleaseCreditHoldModal: React.FC<ReleaseCreditHoldModalProps> = ({ 
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Conditions/Notes
             </label>
@@ -296,7 +296,7 @@ export const ReleaseCreditHoldModal: React.FC<ReleaseCreditHoldModalProps> = ({ 
           </div>
 
           {/* Options */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6 space-y-3">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3 space-y-3">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -375,10 +375,10 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <FileText className="w-5 h-5" />
@@ -396,8 +396,8 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
         {/* Content */}
         <div className="p-6">
           {/* Payment Score */}
-          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 mb-6 border border-blue-200">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-3 mb-3 border border-blue-200">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold text-blue-900">Payment Performance Score</h3>
               <div className="text-4xl font-bold text-blue-600">{paymentScore}</div>
             </div>
@@ -416,26 +416,26 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
               <div className="text-green-700 text-sm font-medium mb-1">Total Revenue</div>
               <div className="text-2xl font-bold text-green-900">₹52.5L</div>
               <div className="text-xs text-green-600 mt-1">45 invoices</div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
               <div className="text-blue-700 text-sm font-medium mb-1">Avg Payment</div>
               <div className="text-2xl font-bold text-blue-900">28 days</div>
               <div className="text-xs text-blue-600 mt-1">Terms: Net 30</div>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-3 border border-orange-200">
               <div className="text-orange-700 text-sm font-medium mb-1">Current Due</div>
               <div className="text-2xl font-bold text-orange-900">₹125K</div>
               <div className="text-xs text-orange-600 mt-1">5 days overdue</div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
               <div className="text-purple-700 text-sm font-medium mb-1">Credit Used</div>
               <div className="text-2xl font-bold text-purple-900">95%</div>
               <div className="text-xs text-purple-600 mt-1">₹475K / ₹500K</div>
@@ -443,10 +443,10 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
           </div>
 
           {/* Payment History */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Payment History (Last 12 Months)</h3>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="grid grid-cols-6 gap-4 text-sm">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Payment History (Last 12 Months)</h3>
+            <div className="bg-gray-50 rounded-lg p-3">
+              <div className="grid grid-cols-6 gap-2 text-sm">
                 <div>
                   <span className="text-gray-600">On-time Payments:</span>
                   <p className="font-semibold text-green-600">38 / 45 (84%)</p>
@@ -477,7 +477,7 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
 
           {/* Review Form */}
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Review Decision <span className="text-red-500">*</span>
               </label>
@@ -496,7 +496,7 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
             </div>
 
             {(reviewDecision === 'increase' || reviewDecision === 'decrease') && (
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Recommended Credit Limit (₹) <span className="text-red-500">*</span>
                 </label>
@@ -514,7 +514,7 @@ export const CreditReviewModal: React.FC<CreditReviewModalProps> = ({ isOpen, on
               </div>
             )}
 
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Review Notes <span className="text-red-500">*</span>
               </label>
@@ -583,10 +583,10 @@ export const AgingAlertSettingsModal: React.FC<AgingAlertSettingsModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-amber-600 to-yellow-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-amber-600 to-yellow-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <AlertTriangle className="w-5 h-5" />
@@ -604,10 +604,10 @@ export const AgingAlertSettingsModal: React.FC<AgingAlertSettingsModalProps> = (
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Alert Thresholds */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Alert Thresholds</h3>
-            <div className="space-y-4">
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Alert Thresholds</h3>
+            <div className="space-y-2">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                 <label className="flex items-center gap-3 mb-3">
                   <input
                     type="checkbox"
@@ -627,7 +627,7 @@ export const AgingAlertSettingsModal: React.FC<AgingAlertSettingsModalProps> = (
                 )}
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <label className="flex items-center gap-3 mb-3">
                   <input
                     type="checkbox"
@@ -647,7 +647,7 @@ export const AgingAlertSettingsModal: React.FC<AgingAlertSettingsModalProps> = (
                 )}
               </div>
 
-              <div className="bg-rose-50 border border-rose-200 rounded-lg p-4">
+              <div className="bg-rose-50 border border-rose-200 rounded-lg p-3">
                 <label className="flex items-center gap-3 mb-3">
                   <input
                     type="checkbox"
@@ -670,9 +670,9 @@ export const AgingAlertSettingsModal: React.FC<AgingAlertSettingsModalProps> = (
           </div>
 
           {/* Automatic Actions */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Automatic Actions</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Automatic Actions</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Critical Amount Threshold (₹)
@@ -703,9 +703,9 @@ export const AgingAlertSettingsModal: React.FC<AgingAlertSettingsModalProps> = (
           </div>
 
           {/* Notification Settings */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b">Notification Settings</h3>
-            <div className="mb-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 border-b">Notification Settings</h3>
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Alert Recipients (comma separated)
               </label>
@@ -780,10 +780,10 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <TrendingUp className="w-5 h-5" />
@@ -801,9 +801,9 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
         {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Current Credit Info */}
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-4 mb-6 border border-indigo-200">
+          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-3 mb-3 border border-indigo-200">
             <h3 className="font-semibold text-indigo-900 mb-3">Current Credit Status</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <span className="text-indigo-700">Current Limit:</span>
                 <p className="font-semibold text-indigo-900">₹500,000</p>
@@ -819,7 +819,7 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Request Type <span className="text-red-500">*</span>
             </label>
@@ -837,7 +837,7 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
             </select>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {requestType.includes('increase') ? 'Requested New Limit (₹)' : 'Requested Amount (₹)'} <span className="text-red-500">*</span>
             </label>
@@ -857,7 +857,7 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
             )}
           </div>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Urgency Level <span className="text-red-500">*</span>
             </label>
@@ -874,7 +874,7 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
             </select>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Business Justification <span className="text-red-500">*</span>
             </label>
@@ -894,7 +894,7 @@ export const CreditApprovalRequestModal: React.FC<CreditApprovalRequestModalProp
           </div>
 
           {/* Supporting Documents */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
             <h3 className="font-semibold text-gray-900 mb-3 text-sm">Supporting Documents</h3>
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-sm">
@@ -965,10 +965,10 @@ export const ApproveRejectCreditModal: React.FC<ApproveRejectCreditModalProps> =
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-green-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-green-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <CheckCircle className="w-5 h-5" />
@@ -986,7 +986,7 @@ export const ApproveRejectCreditModal: React.FC<ApproveRejectCreditModalProps> =
         {/* Content */}
         <div className="p-6">
           {/* Request Details */}
-          <div className="bg-gradient-to-br from-teal-50 to-green-50 rounded-lg p-4 mb-6 border border-teal-200">
+          <div className="bg-gradient-to-br from-teal-50 to-green-50 rounded-lg p-3 mb-3 border border-teal-200">
             <h3 className="font-semibold text-teal-900 mb-3">Request Details</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -1017,15 +1017,15 @@ export const ApproveRejectCreditModal: React.FC<ApproveRejectCreditModalProps> =
           </div>
 
           {/* Justification */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">Business Justification</h3>
-            <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700">
+            <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700">
               Customer has secured a new major contract worth ₹2.5M annually. Expected to increase monthly orders by 60%. Payment history excellent with 95% on-time payments. Currently utilizing 95% of credit limit which is limiting order capacity.
             </div>
           </div>
 
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Decision <span className="text-red-500">*</span>
               </label>
@@ -1044,7 +1044,7 @@ export const ApproveRejectCreditModal: React.FC<ApproveRejectCreditModalProps> =
             </div>
 
             {decision === 'approve_conditional' && (
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Approval Conditions
                 </label>
@@ -1058,7 +1058,7 @@ export const ApproveRejectCreditModal: React.FC<ApproveRejectCreditModalProps> =
               </div>
             )}
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Effective Date
               </label>
@@ -1070,7 +1070,7 @@ export const ApproveRejectCreditModal: React.FC<ApproveRejectCreditModalProps> =
               />
             </div>
 
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Decision Notes <span className="text-red-500">*</span>
               </label>

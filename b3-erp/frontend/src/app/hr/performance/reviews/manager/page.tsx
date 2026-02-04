@@ -162,7 +162,7 @@ export default function ManagerReviewPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <UserCheck className="h-8 w-8 text-indigo-600" />
           Manager Reviews
@@ -171,8 +171,8 @@ export default function ManagerReviewPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Reviews</p>
@@ -181,7 +181,7 @@ export default function ManagerReviewPage() {
             <Users className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending</p>
@@ -190,7 +190,7 @@ export default function ManagerReviewPage() {
             <Calendar className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -199,7 +199,7 @@ export default function ManagerReviewPage() {
             <TrendingUp className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -208,7 +208,7 @@ export default function ManagerReviewPage() {
             <UserCheck className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Self Rating</p>
@@ -220,8 +220,8 @@ export default function ManagerReviewPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -249,7 +249,7 @@ export default function ManagerReviewPage() {
 
       {/* Reviews Table */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Team Performance Reviews</h3>
         </div>
         <DataTable data={filteredReviews} columns={columns} />
@@ -257,9 +257,9 @@ export default function ManagerReviewPage() {
 
       {/* Detail Modal */}
       {showDetailModal && selectedReview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Performance Review - {selectedReview.employeeName}</h2>
               <button
                 onClick={() => setShowDetailModal(false)}
@@ -269,9 +269,9 @@ export default function ManagerReviewPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Employee Info */}
-              <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+              <div className="grid grid-cols-3 gap-2 p-3 bg-gray-50 rounded-lg">
                 <div>
                   <p className="text-xs text-gray-600">Employee</p>
                   <p className="font-semibold text-gray-900">{selectedReview.employeeName}</p>
@@ -290,9 +290,9 @@ export default function ManagerReviewPage() {
               </div>
 
               {/* Manager Rating Section */}
-              <div className="border border-gray-200 rounded-lg p-4">
+              <div className="border border-gray-200 rounded-lg p-3">
                 <h3 className="font-semibold text-gray-900 mb-3">Manager Assessment</h3>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Overall Performance Rating</label>
                     <div className="flex items-center gap-2">
@@ -373,7 +373,7 @@ export default function ManagerReviewPage() {
       )}
 
       {/* Help Text */}
-      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-indigo-900 mb-2">Manager Review Guidelines</h3>
         <ul className="text-sm text-indigo-800 space-y-1">
           <li>• Review employee self-assessments carefully before providing your ratings</li>

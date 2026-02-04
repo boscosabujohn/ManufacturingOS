@@ -113,7 +113,7 @@ export default function ShiftMasterPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Clock className="h-8 w-8 text-blue-600" />
           Shift Master
@@ -122,8 +122,8 @@ export default function ShiftMasterPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Shifts</p>
@@ -132,7 +132,7 @@ export default function ShiftMasterPage() {
             <Clock className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Shifts</p>
@@ -141,7 +141,7 @@ export default function ShiftMasterPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Assigned</p>
@@ -150,7 +150,7 @@ export default function ShiftMasterPage() {
             <Users className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Night Allowance</p>
@@ -162,7 +162,7 @@ export default function ShiftMasterPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-700">All Shift Templates</h2>
           <button
@@ -176,13 +176,13 @@ export default function ShiftMasterPage() {
       </div>
 
       {/* Shifts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {mockShifts.map((shift) => (
           <div
             key={shift.id}
-            className={`bg-gradient-to-br ${getTypeColor(shift.type)} rounded-lg shadow-sm border-2 p-6 hover:shadow-md transition-all`}
+            className={`bg-gradient-to-br ${getTypeColor(shift.type)} rounded-lg shadow-sm border-2 p-3 hover:shadow-md transition-all`}
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white rounded-lg shadow-sm">
                   {getTypeIcon(shift.type)}
@@ -195,7 +195,7 @@ export default function ShiftMasterPage() {
               <StatusBadge status={shift.status} />
             </div>
 
-            <div className="space-y-3 mb-4">
+            <div className="space-y-3 mb-2">
               <div className="flex justify-between items-center p-2 bg-white bg-opacity-50 rounded">
                 <span className="text-sm text-gray-700 flex items-center gap-2">
                   <Clock className="w-4 h-4" />
@@ -218,7 +218,7 @@ export default function ShiftMasterPage() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-2">
               {shift.overtimeEligible && (
                 <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full">
                   OT Eligible
@@ -254,9 +254,9 @@ export default function ShiftMasterPage() {
 
       {/* Shift Detail Modal */}
       {selectedShift && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-6">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-3">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-3 bg-gray-100 rounded-lg">
@@ -278,8 +278,8 @@ export default function ShiftMasterPage() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="p-4 bg-gray-50 rounded-lg">
                   <p className="text-sm text-gray-600 mb-1">Start Time</p>
                   <p className="text-xl font-bold text-gray-900">{formatTime(selectedShift.startTime)}</p>

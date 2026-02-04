@@ -11,15 +11,15 @@ export default function CustomerVisibilityPortal() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Customer Visibility Portal</h1>
           <p className="text-gray-600">Self-service shipment tracking for customers</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3 mb-3">
+          <div className="flex items-center gap-3 mb-3">
             <Eye className="w-8 h-8 text-purple-600" />
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Track Your Shipment</h2>
@@ -33,19 +33,19 @@ export default function CustomerVisibilityPortal() {
               placeholder="Enter tracking number (e.g., TRK-2025-4567)"
               className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none"
             />
-            <button className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">
+            <button className="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">
               Track
             </button>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Recent Shipments</h2>
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Your Recent Shipments</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {customerShipments.map((shipment) => (
-              <div key={shipment.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
-                <div className="flex items-center justify-between mb-4">
+              <div key={shipment.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <Package className="w-6 h-6 text-purple-600" />
                     <div>
@@ -65,7 +65,7 @@ export default function CustomerVisibilityPortal() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <MapPin className="w-4 h-4" />
                     Current: {shipment.location}

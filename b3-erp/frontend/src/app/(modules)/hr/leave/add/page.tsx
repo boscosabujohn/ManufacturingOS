@@ -272,11 +272,11 @@ export default function AddLeavePage() {
   const leaveBalance = getLeaveBalance();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -290,15 +290,15 @@ export default function AddLeavePage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Employee Selection */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <User className="w-5 h-5 text-blue-600" />
               Employee Information
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Select Employee *
@@ -374,7 +374,7 @@ export default function AddLeavePage() {
               </div>
 
               {selectedEmployee && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div>
                     <label className="text-xs text-blue-700 font-medium">Email</label>
                     <p className="text-sm font-semibold text-blue-900 flex items-center gap-1 mt-1">
@@ -402,13 +402,13 @@ export default function AddLeavePage() {
           </div>
 
           {/* Leave Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               Leave Details
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Leave Type *
@@ -534,13 +534,13 @@ export default function AddLeavePage() {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Phone className="w-5 h-5 text-blue-600" />
               Contact Information
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Contact Number During Leave
@@ -599,13 +599,13 @@ export default function AddLeavePage() {
           </div>
 
           {/* Handover Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <UserCheck className="w-5 h-5 text-blue-600" />
               Handover Details
             </h3>
 
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Handover To *
@@ -643,13 +643,13 @@ export default function AddLeavePage() {
           </div>
 
           {/* Supporting Documents */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-blue-600" />
               Supporting Documents
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {attachments.length > 0 && (
                 <div className="space-y-2">
                   {attachments.map((file, index) => (
@@ -699,7 +699,7 @@ export default function AddLeavePage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-end">
+          <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => router.back()}

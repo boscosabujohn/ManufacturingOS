@@ -13,8 +13,8 @@ export default function AuditLogsPage() {
     ]);
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Audit Logs</h1>
@@ -27,7 +27,7 @@ export default function AuditLogsPage() {
                 </div>
 
                 {/* Search and Filter */}
-                <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-4">
+                <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-2">
                     <div className="relative flex-1">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                         <input
@@ -53,22 +53,22 @@ export default function AuditLogsPage() {
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Time</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Action</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">User</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">IP Address</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Details</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Time</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Action</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">User</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">IP Address</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Status</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Details</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {logs.map((log) => (
                                 <tr key={log.id} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{log.time}</td>
-                                    <td className="px-6 py-4 font-medium text-gray-900">{log.action}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-600">{log.user}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-600 font-mono">{log.ip}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 text-sm text-gray-600 whitespace-nowrap">{log.time}</td>
+                                    <td className="px-3 py-2 font-medium text-gray-900">{log.action}</td>
+                                    <td className="px-3 py-2 text-sm text-gray-600">{log.user}</td>
+                                    <td className="px-3 py-2 text-sm text-gray-600 font-mono">{log.ip}</td>
+                                    <td className="px-3 py-2">
                                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${log.status === 'success' ? 'bg-green-100 text-green-800' :
                                                 log.status === 'failure' ? 'bg-red-100 text-red-800' :
                                                     'bg-yellow-100 text-yellow-800'
@@ -76,7 +76,7 @@ export default function AuditLogsPage() {
                                             {log.status.toUpperCase()}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title={log.details}>
+                                    <td className="px-3 py-2 text-sm text-gray-600 max-w-xs truncate" title={log.details}>
                                         {log.details}
                                     </td>
                                 </tr>

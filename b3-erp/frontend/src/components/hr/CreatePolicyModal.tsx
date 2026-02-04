@@ -82,10 +82,10 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Create New Attendance Policy</h2>
             <p className="text-sm text-blue-100 mt-1">Step {currentStep} of 3</p>
@@ -100,7 +100,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
 
         {/* Progress Bar */}
         <div className="px-6 pt-4">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-3">
             <div className="flex items-center flex-1">
               <div className={`flex items-center justify-center w-8 h-8 rounded-full ${currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'}`}>
                 1
@@ -120,10 +120,10 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Step 1: Basic Information */}
           {currentStep === 1 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
 
               <div>
@@ -178,7 +178,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
 
           {/* Step 2: Applicability */}
           {currentStep === 2 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-900">Applicability & Status</h3>
 
               <div>
@@ -259,7 +259,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
 
           {/* Step 3: Policy Rules */}
           {currentStep === 3 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold text-gray-900">Policy Rules</h3>
                 <button
@@ -273,7 +273,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
 
               <div className="space-y-3 max-h-96 overflow-y-auto">
                 {rules.map((rule, index) => (
-                  <div key={index} className="flex gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <div key={index} className="flex gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
                     <div className="flex-1 space-y-3">
                       <input
                         type="text"
@@ -302,7 +302,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
                 ))}
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex gap-3">
                   <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-blue-800">
@@ -320,7 +320,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: CreatePolicyMod
         </div>
 
         {/* Footer */}
-        <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-between gap-3 border-t border-gray-200 rounded-b-lg">
+        <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-between gap-3 border-t border-gray-200 rounded-b-lg">
           <button
             onClick={() => {
               if (currentStep > 1) {

@@ -73,10 +73,10 @@ export function NewPlanModal({ isOpen, onClose, plan, onSave }: NewPlanModalProp
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Layers className="h-6 w-6" />
             <h2 className="text-xl font-semibold">
@@ -91,12 +91,12 @@ export function NewPlanModal({ isOpen, onClose, plan, onSave }: NewPlanModalProp
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6">
           {/* Plan Information */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <FileText className="h-4 w-4" />
               Plan Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Plan Number *</label>
                 <input
@@ -167,7 +167,7 @@ export function NewPlanModal({ isOpen, onClose, plan, onSave }: NewPlanModalProp
           </div>
 
           {/* Monthly Planning Parameters */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Monthly Planning Parameters
@@ -257,12 +257,12 @@ export function NewPlanModal({ isOpen, onClose, plan, onSave }: NewPlanModalProp
           </div>
 
           {/* Cost Parameters */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <DollarSign className="h-4 w-4" />
               Cost Parameters (Optional)
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-xs text-blue-600 font-medium">Regular Time Cost</p>
                 <p className="text-sm text-gray-600 mt-1">₹1,340/unit</p>
@@ -326,10 +326,10 @@ export function ExportPlanModal({ isOpen, onClose, onExport }: ExportPlanModalPr
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Export Aggregate Plan</h2>
@@ -341,7 +341,7 @@ export function ExportPlanModal({ isOpen, onClose, onExport }: ExportPlanModalPr
 
         <div className="p-6">
           {/* Export Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
               <button
@@ -384,7 +384,7 @@ export function ExportPlanModal({ isOpen, onClose, onExport }: ExportPlanModalPr
           </div>
 
           {/* Export Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Include in Export</label>
             <div className="space-y-3">
               <label className="flex items-start gap-3 cursor-pointer p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
@@ -510,10 +510,10 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <BarChart3 className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Scenario Comparison</h2>
@@ -563,13 +563,13 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
         <div className="p-6">
           {activeTab === 'cost' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Total Cost Comparison</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Total Cost Comparison</h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
                 {scenarios.map((scenario, idx) => (
                   <div
                     key={idx}
-                    className={`border-2 rounded-lg p-4 ${
+                    className={`border-2 rounded-lg p-3 ${
                       scenario.type === 'current'
                         ? 'border-blue-500 bg-blue-50'
                         : scenario.totalCost === Math.min(...scenarios.map(s => s.totalCost))
@@ -595,7 +595,7 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
                 ))}
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h4 className="text-sm font-semibold text-blue-900 mb-2">Cost Insights</h4>
                 <ul className="text-sm text-blue-800 space-y-1">
                   <li>• Hybrid Strategy offers 4.5% cost savings compared to current plan</li>
@@ -608,11 +608,11 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
 
           {activeTab === 'capacity' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Capacity Utilization Comparison</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Capacity Utilization Comparison</h3>
 
-              <div className="space-y-4 mb-6">
+              <div className="space-y-2 mb-3">
                 {scenarios.map((scenario, idx) => (
-                  <div key={idx} className="border border-gray-200 rounded-lg p-4">
+                  <div key={idx} className="border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-gray-700">{scenario.name}</span>
                       <span className="text-sm font-bold text-gray-900">{scenario.avgCapacityUtilization}%</span>
@@ -639,7 +639,7 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
                 ))}
               </div>
 
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                 <h4 className="text-sm font-semibold text-orange-900 mb-2">Capacity Insights</h4>
                 <ul className="text-sm text-orange-800 space-y-1">
                   <li>• Level Strategy maximizes capacity utilization at 92%</li>
@@ -652,9 +652,9 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
 
           {activeTab === 'workforce' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Workforce & Resource Requirements</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Workforce & Resource Requirements</h3>
 
-              <div className="overflow-x-auto mb-6">
+              <div className="overflow-x-auto mb-3">
                 <table className="w-full border border-gray-200 rounded-lg">
                   <thead className="bg-gray-50">
                     <tr>
@@ -694,7 +694,7 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
                 </table>
               </div>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <h4 className="text-sm font-semibold text-green-900 mb-2">Workforce Insights</h4>
                 <ul className="text-sm text-green-800 space-y-1">
                   <li>• Level Strategy maintains stable workforce with minimal hiring/layoff</li>
@@ -707,7 +707,7 @@ export function ScenarioComparisonModal({ isOpen, onClose, currentPlan }: Scenar
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50">
           <div className="flex items-center justify-end gap-3">
             <button
               onClick={onClose}

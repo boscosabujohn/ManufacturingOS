@@ -569,8 +569,8 @@ export default function SiteIssuesPage() {
    </div>
 
    {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+   <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Issues</p>
@@ -579,7 +579,7 @@ export default function SiteIssuesPage() {
       <AlertTriangle className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Open</p>
@@ -588,7 +588,7 @@ export default function SiteIssuesPage() {
       <AlertTriangle className="h-8 w-8 text-yellow-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">In Progress</p>
@@ -597,7 +597,7 @@ export default function SiteIssuesPage() {
       <Clock className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Resolved</p>
@@ -606,7 +606,7 @@ export default function SiteIssuesPage() {
       <CheckCircle className="h-8 w-8 text-green-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Closed</p>
@@ -615,7 +615,7 @@ export default function SiteIssuesPage() {
       <XCircle className="h-8 w-8 text-gray-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Critical</p>
@@ -624,7 +624,7 @@ export default function SiteIssuesPage() {
       <AlertTriangle className="h-8 w-8 text-red-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Avg Resolution</p>
@@ -636,8 +636,8 @@ export default function SiteIssuesPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg border border-gray-200">
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+   <div className="bg-white p-3 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
      <div className="md:col-span-2">
       <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
       <input

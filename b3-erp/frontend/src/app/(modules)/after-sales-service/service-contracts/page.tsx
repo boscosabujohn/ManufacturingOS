@@ -106,7 +106,7 @@ export default function ServiceContractsPage() {
   if (loading) {
     return (
       <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading service contracts...</p>
         </div>
@@ -118,7 +118,7 @@ export default function ServiceContractsPage() {
   if (error) {
     return (
       <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <AlertCircle className="h-12 w-12 text-red-500" />
           <p className="text-gray-900 font-medium">{error}</p>
           <button
@@ -148,16 +148,16 @@ export default function ServiceContractsPage() {
   };
 
   return (
-    <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 space-y-6">
+    <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 space-y-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Service Contracts</h1>
         <p className="text-gray-600">Manage AMC, CMC, and service agreements</p>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Contracts</p>
@@ -167,7 +167,7 @@ export default function ServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Contracts</p>
@@ -177,7 +177,7 @@ export default function ServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -187,7 +187,7 @@ export default function ServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Value</p>
@@ -197,7 +197,7 @@ export default function ServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Outstanding</p>
@@ -209,9 +209,9 @@ export default function ServiceContractsPage() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-          <div className="flex-1 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col lg:flex-row gap-2 items-start lg:items-center justify-between">
+          <div className="flex-1 flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -276,28 +276,28 @@ export default function ServiceContractsPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Contract Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Type & Tier
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Duration
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   SLA
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Value & Payment
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Account Manager
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -307,14 +307,14 @@ export default function ServiceContractsPage() {
                 const StatusIcon = statusIcons[contract.status];
                 return (
                   <tr key={contract.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{contract.contractNumber}</span>
                         <span className="text-sm text-gray-600">{contract.customerName}</span>
                         <span className="text-xs text-gray-500">{contract.equipmentCount} equipment(s)</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col gap-1">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${contractTypeColors[contract.contractType]}`}>
                           {contract.contractType}
@@ -324,7 +324,7 @@ export default function ServiceContractsPage() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${statusColors[contract.status]}`}>
                         <StatusIcon className="h-3 w-3" />
                         {contract.status.charAt(0).toUpperCase() + contract.status.slice(1)}
@@ -337,7 +337,7 @@ export default function ServiceContractsPage() {
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-900">{contract.duration} months</span>
                         <span className="text-xs text-gray-600">
@@ -351,13 +351,13 @@ export default function ServiceContractsPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col text-xs text-gray-600">
                         <span>Response: {contract.responseTimeSLA}h</span>
                         <span>Resolution: {contract.resolutionTimeSLA}h</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{formatCurrency(contract.contractValue)}</span>
                         <span className="text-xs text-gray-600">Billed: {formatCurrency(contract.totalBilled)}</span>
@@ -367,11 +367,11 @@ export default function ServiceContractsPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="text-sm text-gray-900">{contract.accountManager}</span>
                       <div className="text-xs text-gray-500">Renewals: {contract.renewalCount}</div>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => router.push(`/after-sales-service/service-contracts/view/${contract.id}`)}
@@ -413,7 +413,7 @@ export default function ServiceContractsPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+          <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-700">
               Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredContracts.length)} of {filteredContracts.length} contracts
             </div>

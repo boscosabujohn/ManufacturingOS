@@ -140,7 +140,7 @@ export default function DocumentTypeMasterPage() {
   const stats = useMemo(() => getDocumentTypeStats(), [documentTypes]);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -161,37 +161,37 @@ export default function DocumentTypeMasterPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Types</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Mandatory</div>
           <div className="text-2xl font-bold text-red-600">{stats.mandatory}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Documents</div>
           <div className="text-2xl font-bold text-blue-600">{stats.totalDocuments}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <AlertCircle className="w-3 h-3" /> Pending
           </div>
           <div className="text-2xl font-bold text-orange-600">{stats.pendingVerification}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Expiring Soon</div>
           <div className="text-2xl font-bold text-red-600">{stats.expiringIn30Days}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">For Joining</div>
           <div className="text-2xl font-bold text-purple-600">{stats.requiredForJoining}</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input type="text" placeholder="Search document types..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -204,7 +204,7 @@ export default function DocumentTypeMasterPage() {
           {activeFilterCount > 0 && <button onClick={clearFilters} className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900"><X className="w-4 h-4" />Clear</button>}
         </div>
         {showFilters && (
-          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
               <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
@@ -225,7 +225,7 @@ export default function DocumentTypeMasterPage() {
         <DataTable data={filteredData} columns={columns} pagination={{ enabled: true, pageSize: 10 }} sorting={{ enabled: true }} emptyMessage="No document types found" />
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2"><FileText className="w-5 h-5 inline mr-2" />Document Management</h3>
         <ul className="text-sm text-blue-800 space-y-1 ml-7">
           <li>✓ Mandatory and optional document classifications for employee lifecycle</li>

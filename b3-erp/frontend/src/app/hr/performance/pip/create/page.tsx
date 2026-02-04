@@ -48,7 +48,7 @@ export default function CreatePIPPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -60,9 +60,9 @@ export default function CreatePIPPage() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Employee & Duration */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Employee Name</label>
               <div className="relative">
@@ -106,7 +106,7 @@ export default function CreatePIPPage() {
           </div>
 
           {/* Reason & Goals */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Reason for PIP</label>
               <textarea
@@ -134,8 +134,8 @@ export default function CreatePIPPage() {
           {/* Action Plan */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Action Plan</label>
-            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-4">
-              <div className="flex gap-4">
+            <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 space-y-2">
+              <div className="flex gap-2">
                 <input
                   type="text"
                   placeholder="Action item description..."

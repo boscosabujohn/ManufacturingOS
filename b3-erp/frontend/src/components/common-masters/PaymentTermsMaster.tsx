@@ -129,10 +129,10 @@ const PaymentTermsMaster: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Calendar className="w-8 h-8 text-green-600" />
@@ -146,7 +146,7 @@ const PaymentTermsMaster: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -171,8 +171,8 @@ const PaymentTermsMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Terms</p>
@@ -181,7 +181,7 @@ const PaymentTermsMaster: React.FC = () => {
               <Calendar className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Purchase Terms</p>
@@ -192,7 +192,7 @@ const PaymentTermsMaster: React.FC = () => {
               <CreditCard className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Sales Terms</p>
@@ -203,7 +203,7 @@ const PaymentTermsMaster: React.FC = () => {
               <CreditCard className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">With Discounts</p>
@@ -217,10 +217,10 @@ const PaymentTermsMaster: React.FC = () => {
         </div>
 
         {/* Payment Terms List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {filteredTerms.map(term => (
-            <div key={term.id} className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={term.id} className="bg-white rounded-lg shadow-sm p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{term.termName}</h3>

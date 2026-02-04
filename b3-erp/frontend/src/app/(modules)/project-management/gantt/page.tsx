@@ -132,7 +132,7 @@ export default function GanttChartPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-2"></div>
           <p className="text-gray-600">Loading Gantt chart...</p>
         </div>
       </div>
@@ -175,9 +175,9 @@ export default function GanttChartPage() {
       </div>
 
       {/* Toolbar */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-500" />
               <span className="text-sm font-medium text-gray-700">View Mode:</span>
@@ -234,7 +234,7 @@ export default function GanttChartPage() {
       </div>
 
       {/* Legend */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
         <div className="flex items-center gap-3 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-green-500 rounded"></div>
@@ -307,8 +307,8 @@ export default function GanttChartPage() {
       {/* Selected Task Details */}
       {selectedTask && (
         <div className="bg-white p-3 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Task Details</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Task Details</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             <div>
               <p className="text-sm text-gray-500">Task Name</p>
               <p className="font-medium text-gray-900">{selectedTask.name}</p>

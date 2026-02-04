@@ -324,7 +324,7 @@ function WorkflowStats({ workflows }: { workflows: AutomatedWorkflow[] }) {
   }, [workflows]);
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
       <Card>
         <CardContent className="pt-4">
           <div className="flex items-center gap-3">
@@ -509,7 +509,7 @@ function WorkflowCard({
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-4 mt-4 text-sm">
+        <div className="grid grid-cols-4 gap-2 mt-4 text-sm">
           <div>
             <p className="text-gray-500 text-xs">Success Rate</p>
             <p className={`font-semibold ${workflow.successRate >= 95 ? 'text-green-600' : workflow.successRate >= 80 ? 'text-amber-600' : 'text-red-600'}`}>
@@ -641,7 +641,7 @@ export function AutomatedWorkflowStatus({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <Card>
         <CardHeader className="pb-2">
@@ -689,7 +689,7 @@ export function AutomatedWorkflowStatus({
       </Card>
 
       {/* Workflow Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
         {filteredWorkflows.map(workflow => (
           <WorkflowCard
             key={workflow.id}

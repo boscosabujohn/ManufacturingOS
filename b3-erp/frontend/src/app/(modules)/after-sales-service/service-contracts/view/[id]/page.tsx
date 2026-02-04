@@ -228,7 +228,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -276,8 +276,8 @@ export default function ViewContractPage({ params }: { params: { id: string } })
       </div>
 
       {/* Performance Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Service Requests</span>
             <FileText className="w-4 h-4 text-blue-600" />
@@ -286,7 +286,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
           <div className="text-xs text-gray-500 mt-1">{contract.metrics.completed} completed, {contract.metrics.inProgress} in progress</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">SLA Compliance</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -297,7 +297,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Response Time</span>
             <Clock className="w-4 h-4 text-orange-600" />
@@ -306,7 +306,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
           <div className="text-xs text-gray-500 mt-1">Target: {contract.responseTimeSLA}h</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Customer Rating</span>
             <TrendingUp className="w-4 h-4 text-purple-600" />
@@ -324,7 +324,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
 
       {/* Contract Status Alert */}
       {contract.daysRemaining < 90 && (
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5" />
             <div>
@@ -347,7 +347,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('details')}
             className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'details'
@@ -380,11 +380,11 @@ export default function ViewContractPage({ params }: { params: { id: string } })
 
       {/* Details Tab */}
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Customer Information */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
@@ -449,9 +449,9 @@ export default function ViewContractPage({ params }: { params: { id: string } })
           </div>
 
           {/* Contract Terms */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Contract Terms</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Contract Terms</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-gray-400" />
@@ -492,8 +492,8 @@ export default function ViewContractPage({ params }: { params: { id: string } })
           </div>
 
           {/* Line Items */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Contract Items</h2>
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Contract Items</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50 border-y border-gray-200">
@@ -544,20 +544,20 @@ export default function ViewContractPage({ params }: { params: { id: string } })
           </div>
 
           {/* Terms & Conditions */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Inclusions</h3>
               <div className="text-sm text-gray-700 whitespace-pre-line">{contract.inclusions}</div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Exclusions</h3>
               <div className="text-sm text-gray-700 whitespace-pre-line">{contract.exclusions}</div>
             </div>
           </div>
 
           {contract.specialTerms && (
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Special Terms</h3>
               <div className="text-sm text-gray-700 whitespace-pre-line">{contract.specialTerms}</div>
             </div>
@@ -576,23 +576,23 @@ export default function ViewContractPage({ params }: { params: { id: string } })
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ticket #</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Engineer</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Ticket #</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Engineer</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {serviceHistory.map((record) => (
                   <tr key={record.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
+                    <td className="px-3 py-2 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
                       {record.ticketNumber}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(record.date)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{record.type}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(record.date)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{record.type}</td>
+                    <td className="px-3 py-2">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${record.status === 'Completed' ? 'bg-green-100 text-green-700' :
                           record.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
                             'bg-gray-100 text-gray-700'
@@ -600,8 +600,8 @@ export default function ViewContractPage({ params }: { params: { id: string } })
                         {record.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{record.engineer}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{record.description}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{record.engineer}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600">{record.description}</td>
                   </tr>
                 ))}
               </tbody>
@@ -621,24 +621,24 @@ export default function ViewContractPage({ params }: { params: { id: string } })
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Invoice #</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Due Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Invoice #</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Amount</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Due Date</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {invoices.map((invoice) => (
                   <tr key={invoice.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
+                    <td className="px-3 py-2 text-sm font-medium text-blue-600 hover:underline cursor-pointer">
                       {invoice.invoiceNumber}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(invoice.date)}</td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900 text-right">{formatCurrency(invoice.amount)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{formatDate(invoice.dueDate)}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(invoice.date)}</td>
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900 text-right">{formatCurrency(invoice.amount)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{formatDate(invoice.dueDate)}</td>
+                    <td className="px-3 py-2">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${invoice.status === 'Paid' ? 'bg-green-100 text-green-700' :
                           invoice.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
                             'bg-red-100 text-red-700'
@@ -646,7 +646,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
                         {invoice.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
                         View Details
                       </button>

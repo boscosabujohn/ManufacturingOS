@@ -27,16 +27,16 @@ export default function UserProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header Card */}
-        <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden mb-6">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden mb-3">
           {/* Cover Image */}
           <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600"></div>
 
           {/* Profile Info */}
           <div className="px-6 pb-6">
-            <div className="flex items-end gap-6 -mt-16">
+            <div className="flex items-end gap-3 -mt-16">
               {/* Avatar */}
               <div className="w-32 h-32 rounded-full border-4 border-white bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
                 {profileData.firstName[0]}{profileData.lastName[0]}
@@ -65,7 +65,7 @@ export default function UserProfilePage() {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-lg shadow border border-gray-200 mb-6">
+        <div className="bg-white rounded-lg shadow border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <nav className="flex gap-8 px-6">
               {[
@@ -95,10 +95,10 @@ export default function UserProfilePage() {
           {/* Tab Content */}
           <div className="p-6">
             {activeTab === 'personal' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       First Name
@@ -243,10 +243,10 @@ export default function UserProfilePage() {
             )}
 
             {activeTab === 'security' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <h2 className="text-xl font-semibold text-gray-900">Security Settings</h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Current Password
@@ -296,8 +296,8 @@ export default function UserProfilePage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">Two-Factor Authentication</h3>
-                  <p className="text-gray-600 mb-4">
+                  <h3 className="font-semibold text-gray-900 mb-2">Two-Factor Authentication</h3>
+                  <p className="text-gray-600 mb-2">
                     Add an extra layer of security to your account by enabling two-factor authentication.
                   </p>
                   <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
@@ -308,10 +308,10 @@ export default function UserProfilePage() {
             )}
 
             {activeTab === 'preferences' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <h2 className="text-xl font-semibold text-gray-900">Notification Preferences</h2>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {[
                     { id: 'email', name: 'Email Notifications', description: 'Receive notifications via email' },
                     { id: 'push', name: 'Push Notifications', description: 'Receive browser push notifications' },
@@ -319,7 +319,7 @@ export default function UserProfilePage() {
                     { id: 'approvals', name: 'Approval Requests', description: 'Notifications for pending approvals' },
                     { id: 'reports', name: 'Report Generation', description: 'Get notified when reports are ready' },
                   ].map((pref) => (
-                    <div key={pref.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div key={pref.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div>
                         <h4 className="font-medium text-gray-900">{pref.name}</h4>
                         <p className="text-sm text-gray-600">{pref.description}</p>

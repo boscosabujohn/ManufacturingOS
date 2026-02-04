@@ -436,7 +436,7 @@ export default function UploadBOQEnhancedPage() {
             {errors.file && <p className="text-sm text-red-500">{errors.file}</p>}
 
             {formData.file && (
-              <div className="flex items-center gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-200">
                 {formData.fileName.endsWith('x') ? (
                   <FileSpreadsheet className="w-10 h-10 text-green-600" />
                 ) : (
@@ -458,7 +458,7 @@ export default function UploadBOQEnhancedPage() {
             )}
 
             {formData.file && (formData.fileName.endsWith('.xlsx') || formData.fileName.endsWith('.xls')) && (
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center gap-2 text-blue-700">
                   <CheckCircle className="w-5 h-5" />
                   <span className="font-medium">Excel file detected</span>
@@ -483,20 +483,20 @@ export default function UploadBOQEnhancedPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-4 gap-4">
-              <div className="bg-gray-50 rounded-lg p-4 text-center">
+            <div className="grid grid-cols-4 gap-2">
+              <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-gray-900">{totals.itemCount}</p>
                 <p className="text-sm text-gray-500">Total Items</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4 text-center">
+              <div className="bg-green-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-green-600">{totals.validItems}</p>
                 <p className="text-sm text-green-700">Valid</p>
               </div>
-              <div className="bg-red-50 rounded-lg p-4 text-center">
+              <div className="bg-red-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-red-600">{totals.invalidItems}</p>
                 <p className="text-sm text-red-700">Issues</p>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4 text-center">
+              <div className="bg-blue-50 rounded-lg p-3 text-center">
                 <p className="text-lg font-bold text-blue-600">{formatCurrency(totals.totalAmount)}</p>
                 <p className="text-sm text-blue-700">Total Value</p>
               </div>
@@ -611,7 +611,7 @@ export default function UploadBOQEnhancedPage() {
       case 3:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Confirm Submission</h2>
             </div>
@@ -620,7 +620,7 @@ export default function UploadBOQEnhancedPage() {
               {/* Document Summary */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Document Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project:</span>
                     <p className="font-medium text-gray-900">{formData.projectName || formData.project}</p>
@@ -643,16 +643,16 @@ export default function UploadBOQEnhancedPage() {
               {/* BOQ Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">BOQ Summary</h3>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="bg-white rounded-lg p-4 border">
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-white rounded-lg p-3 border">
                     <p className="text-2xl font-bold text-gray-900">{totals.itemCount}</p>
                     <p className="text-sm text-gray-500">Line Items</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border">
+                  <div className="bg-white rounded-lg p-3 border">
                     <p className="text-2xl font-bold text-green-600">{totals.validItems}</p>
                     <p className="text-sm text-gray-500">Validated Items</p>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border">
+                  <div className="bg-white rounded-lg p-3 border">
                     <p className="text-xl font-bold text-blue-600">{formatCurrency(totals.totalAmount)}</p>
                     <p className="text-sm text-gray-500">Total Value</p>
                   </div>
@@ -674,7 +674,7 @@ export default function UploadBOQEnhancedPage() {
               </div>
 
               {/* Approval Notice */}
-              <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
                   <div>
@@ -696,10 +696,10 @@ export default function UploadBOQEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-gray-100 rounded-lg"
@@ -710,7 +710,7 @@ export default function UploadBOQEnhancedPage() {
               <h1 className="text-2xl font-bold text-gray-900">Upload Bill of Quantities (BOQ)</h1>
               <p className="text-sm text-gray-600 mt-1">Phase 1: Project Initiation</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}

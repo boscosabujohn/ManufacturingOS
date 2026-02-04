@@ -577,10 +577,10 @@ const ProductionPlanningPage = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header Section */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Calendar className="h-8 w-8 text-blue-600" />
@@ -610,7 +610,7 @@ const ProductionPlanningPage = () => {
         </div>
 
         {/* Planning Period and Date Range */}
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Planning Period:</label>
             <div className="flex bg-gray-100 rounded-lg p-1">
@@ -661,8 +661,8 @@ const ProductionPlanningPage = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+        <div className="grid grid-cols-4 gap-2">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Demand</p>
@@ -673,7 +673,7 @@ const ProductionPlanningPage = () => {
             </div>
           </div>
 
-          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+          <div className="bg-green-50 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Planned Production</p>
@@ -684,7 +684,7 @@ const ProductionPlanningPage = () => {
             </div>
           </div>
 
-          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+          <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Available Inventory</p>
@@ -695,7 +695,7 @@ const ProductionPlanningPage = () => {
             </div>
           </div>
 
-          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+          <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">Available-to-Promise</p>
@@ -709,8 +709,8 @@ const ProductionPlanningPage = () => {
       </div>
 
       {/* Alerts Section */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-yellow-600" />
           Planning Alerts
         </h2>
@@ -766,7 +766,7 @@ const ProductionPlanningPage = () => {
           <div className="flex gap-1 p-2">
             <button
               onClick={() => setActiveTab('schedule')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'schedule'
                   ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -779,7 +779,7 @@ const ProductionPlanningPage = () => {
             </button>
             <button
               onClick={() => setActiveTab('capacity')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'capacity'
                   ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -792,7 +792,7 @@ const ProductionPlanningPage = () => {
             </button>
             <button
               onClick={() => setActiveTab('variance')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'variance'
                   ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -805,7 +805,7 @@ const ProductionPlanningPage = () => {
             </button>
             <button
               onClick={() => setActiveTab('scenarios')}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'scenarios'
                   ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -823,9 +823,9 @@ const ProductionPlanningPage = () => {
         <div className="p-6">
           {/* Master Production Schedule Tab */}
           {activeTab === 'schedule' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Filters */}
-              <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
                 <Filter className="h-5 w-5 text-gray-600" />
                 <div className="flex items-center gap-2">
                   <label className="text-sm font-medium text-gray-700">Product Family:</label>
@@ -1088,13 +1088,13 @@ const ProductionPlanningPage = () => {
                         {expandedRows.has(product.id) && (
                           <tr className="bg-gray-50">
                             <td colSpan={24} className="px-4 py-4">
-                              <div className="ml-8 space-y-4">
+                              <div className="ml-8 space-y-2">
                                 <h4 className="font-semibold text-gray-900 flex items-center gap-2">
                                   <Layers className="h-4 w-4" />
                                   Demand Breakdown & Details
                                 </h4>
 
-                                <div className="grid grid-cols-4 gap-4">
+                                <div className="grid grid-cols-4 gap-2">
                                   {product.periods.map((period) => (
                                     <div
                                       key={period.periodNumber}
@@ -1141,7 +1141,7 @@ const ProductionPlanningPage = () => {
                                   ))}
                                 </div>
 
-                                <div className="grid grid-cols-3 gap-4 mt-4">
+                                <div className="grid grid-cols-3 gap-2 mt-4">
                                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                                     <p className="text-xs font-medium text-blue-600 mb-1">
                                       Planning Parameters
@@ -1217,7 +1217,7 @@ const ProductionPlanningPage = () => {
               </div>
 
               {/* Demand Sources Section */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <ShoppingCart className="h-5 w-5 text-blue-600" />
                   Demand Sources Aggregation
@@ -1281,14 +1281,14 @@ const ProductionPlanningPage = () => {
                 <button
                   onClick={generateProductionOrders}
                   disabled={planFrozen}
-                  className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Play className="h-5 w-5" />
                   Generate Production Orders
                 </button>
                 <button
                   onClick={runMRP}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
+                  className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
                 >
                   <RefreshCw className="h-5 w-5" />
                   Run MRP Cascade
@@ -1301,14 +1301,14 @@ const ProductionPlanningPage = () => {
                     }
                   }}
                   disabled={planFrozen}
-                  className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Edit className="h-5 w-5" />
                   Adjust Plan
                 </button>
                 <button
                   onClick={exportMPS}
-                  className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium flex items-center gap-2"
+                  className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium flex items-center gap-2"
                 >
                   <Download className="h-5 w-5" />
                   Export to Excel
@@ -1319,8 +1319,8 @@ const ProductionPlanningPage = () => {
 
           {/* Rough-Cut Capacity Tab */}
           {activeTab === 'capacity' && (
-            <div className="space-y-6">
-              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+            <div className="space-y-3">
+              <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                 <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                   <Info className="h-5 w-5" />
                   Rough-Cut Capacity Planning (RCCP)
@@ -1423,9 +1423,9 @@ const ProductionPlanningPage = () => {
               </div>
 
               {/* Capacity Visualization */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <BarChart3 className="h-5 w-5 text-blue-600" />
                     Capacity vs Load Comparison
                   </h3>
@@ -1470,8 +1470,8 @@ const ProductionPlanningPage = () => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <AlertTriangle className="h-5 w-5 text-red-600" />
                     Bottleneck Analysis
                   </h3>
@@ -1517,7 +1517,7 @@ const ProductionPlanningPage = () => {
                       ))}
 
                     {capacityData.filter((c) => c.utilization > 100).length === 0 && (
-                      <div className="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
+                      <div className="bg-green-50 p-3 rounded-lg border border-green-200 text-center">
                         <CheckCircle className="h-8 w-8 text-green-600 mb-2" />
                         <p className="text-sm font-medium text-green-900">
                           No Bottlenecks Detected
@@ -1535,8 +1535,8 @@ const ProductionPlanningPage = () => {
 
           {/* Plan vs Actual Variance Tab */}
           {activeTab === 'variance' && (
-            <div className="space-y-6">
-              <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <div className="space-y-3">
+              <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
                 <h3 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5" />
                   Plan vs Actual Performance Analysis
@@ -1630,9 +1630,9 @@ const ProductionPlanningPage = () => {
               </div>
 
               {/* Trend Analysis */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <LineChart className="h-5 w-5 text-blue-600" />
                     Production Trend (6 Months)
                   </h3>
@@ -1673,7 +1673,7 @@ const ProductionPlanningPage = () => {
                         </div>
                       ))}
                   </div>
-                  <div className="flex items-center gap-4 mt-4 text-xs">
+                  <div className="flex items-center gap-2 mt-4 text-xs">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 bg-blue-500 rounded"></div>
                       <span className="text-gray-600">Planned</span>
@@ -1685,12 +1685,12 @@ const ProductionPlanningPage = () => {
                   </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-lg border border-gray-200">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <PieChart className="h-5 w-5 text-purple-600" />
                     Variance Summary
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-green-900">Over-Performance</span>
@@ -1741,8 +1741,8 @@ const ProductionPlanningPage = () => {
 
           {/* What-If Scenarios Tab */}
           {activeTab === 'scenarios' && (
-            <div className="space-y-6">
-              <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+            <div className="space-y-3">
+              <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                 <h3 className="font-semibold text-yellow-900 mb-2 flex items-center gap-2">
                   <Zap className="h-5 w-5" />
                   What-If Scenario Simulation
@@ -1754,13 +1754,13 @@ const ProductionPlanningPage = () => {
               </div>
 
               {/* Create New Scenario */}
-              <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white p-3 rounded-lg border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Plus className="h-5 w-5 text-blue-600" />
                   Create New Scenario
                 </h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Scenario Name
@@ -1839,7 +1839,7 @@ const ProductionPlanningPage = () => {
                     </button>
                   </div>
 
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <h4 className="font-semibold text-gray-900 mb-3">Projected Impact:</h4>
                     <div className="space-y-3">
                       <div className="bg-white p-3 rounded border border-gray-200">
@@ -1899,7 +1899,7 @@ const ProductionPlanningPage = () => {
 
               {/* Saved Scenarios */}
               <div className="bg-white rounded-lg border border-gray-200">
-                <div className="px-6 py-4 border-b border-gray-200">
+                <div className="px-3 py-2 border-b border-gray-200">
                   <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                     <FileText className="h-5 w-5 text-purple-600" />
                     Saved Scenarios ({scenarios.length})

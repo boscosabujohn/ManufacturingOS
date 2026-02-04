@@ -211,7 +211,7 @@ export default function DepartmentLeaveBalancePage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -233,8 +233,8 @@ export default function DepartmentLeaveBalancePage() {
       </div>
 
       {/* Organization-wide Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-gray-600">Departments</div>
             <Building className="w-5 h-5 text-gray-400" />
@@ -243,7 +243,7 @@ export default function DepartmentLeaveBalancePage() {
           <div className="text-xs text-gray-500 mt-1">total</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-blue-700 font-medium">Total Employees</div>
             <Users className="w-5 h-5 text-blue-600" />
@@ -252,7 +252,7 @@ export default function DepartmentLeaveBalancePage() {
           <div className="text-xs text-blue-600 mt-1">across org</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-green-700 font-medium">Total Entitlement</div>
             <Calendar className="w-5 h-5 text-green-600" />
@@ -261,7 +261,7 @@ export default function DepartmentLeaveBalancePage() {
           <div className="text-xs text-green-600 mt-1">days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-red-700 font-medium">Total Taken</div>
             <TrendingUp className="w-5 h-5 text-red-600" />
@@ -270,7 +270,7 @@ export default function DepartmentLeaveBalancePage() {
           <div className="text-xs text-red-600 mt-1">{avgOrgUtilization}% utilized</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-orange-700 font-medium">On Leave Today</div>
             <AlertCircle className="w-5 h-5 text-orange-600" />
@@ -279,7 +279,7 @@ export default function DepartmentLeaveBalancePage() {
           <div className="text-xs text-orange-600 mt-1">{totalUpcoming} upcoming</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-red-700 font-medium">Critical</div>
             <AlertCircle className="w-5 h-5 text-red-600" />
@@ -290,15 +290,15 @@ export default function DepartmentLeaveBalancePage() {
       </div>
 
       {/* Department Comparison Chart */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-purple-600" />
             Department Leave Utilization Comparison
           </h2>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {departments.map((dept) => (
             <div key={dept.id} className="space-y-2">
               <div className="flex items-center justify-between">
@@ -306,7 +306,7 @@ export default function DepartmentLeaveBalancePage() {
                   <span className="font-medium text-gray-900 min-w-[140px]">{dept.department}</span>
                   <span className="text-sm text-gray-500">{dept.totalEmployees} employees</span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="text-right">
                     <div className="text-sm font-semibold text-gray-900">{dept.totalTaken} / {dept.totalEntitlement}</div>
                     <div className="text-xs text-gray-500">{dept.avgUtilization}% utilized</div>
@@ -331,7 +331,7 @@ export default function DepartmentLeaveBalancePage() {
       </div>
 
       {/* Search */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
@@ -362,7 +362,7 @@ export default function DepartmentLeaveBalancePage() {
       </div>
 
       {/* Information Panel */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-5 h-5" />
           Department Analytics Insights

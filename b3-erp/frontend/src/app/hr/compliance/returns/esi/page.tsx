@@ -171,8 +171,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Heart className="h-6 w-6 text-pink-600" />
           ESI Returns Filing
@@ -180,8 +180,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Employee State Insurance monthly contribution returns</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg shadow-sm border border-pink-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg shadow-sm border border-pink-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-pink-600 uppercase tracking-wide">Total Returns</p>
@@ -192,7 +192,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Filed</p>
@@ -203,7 +203,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-yellow-600 uppercase tracking-wide">Pending</p>
@@ -214,7 +214,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-red-600 uppercase tracking-wide">Overdue</p>
@@ -226,8 +226,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Month</label>
             <select value={selectedMonth} onChange={(e) => setSelectedMonth(parseInt(e.target.value))} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500">
@@ -259,13 +259,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredReturns.length > 0 ? (
           filteredReturns.map((esiReturn) => {
             const StatusIcon = statusIcons[esiReturn.status];
             return (
-              <div key={esiReturn.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <div className="flex items-start justify-between mb-4">
+              <div key={esiReturn.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-lg font-bold text-gray-900">ESI Return - {esiReturn.returnPeriod}</h3>
@@ -280,7 +280,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
                   <div className="bg-gray-50 rounded-lg p-3">
                     <p className="text-xs text-gray-600 uppercase font-medium mb-1">Due Date</p>
                     <p className="text-sm font-bold text-gray-900">
@@ -305,7 +305,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                   <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                     <p className="text-xs text-blue-600 uppercase font-medium mb-1">Gross Wages</p>
                     <p className="text-lg font-bold text-blue-900">{formatCurrency(esiReturn.grossWages)}</p>
@@ -320,7 +320,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                   <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                     <p className="text-xs text-green-600 uppercase font-medium mb-1">Total Contribution</p>
                     <p className="text-lg font-bold text-green-900">{formatCurrency(esiReturn.totalContribution)}</p>
@@ -338,7 +338,7 @@ export default function Page() {
                   )}
                 </div>
 
-                <div className="bg-pink-50 rounded-lg p-3 border border-pink-200 mb-4">
+                <div className="bg-pink-50 rounded-lg p-3 border border-pink-200 mb-2">
                   <p className="text-xs text-pink-600 uppercase font-medium mb-2">Coverage Ratio</p>
                   <div className="flex items-center justify-between">
                     <p className="text-lg font-bold text-pink-900">{esiReturn.coveredEmployees} / {esiReturn.totalEmployees}</p>
@@ -350,7 +350,7 @@ export default function Page() {
                 </div>
 
                 {esiReturn.remarks && (
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-2">
                     <p className="text-xs text-yellow-600 uppercase font-medium mb-1">Remarks</p>
                     <p className="text-sm text-yellow-900">{esiReturn.remarks}</p>
                   </div>
@@ -377,7 +377,7 @@ export default function Page() {
           })
         ) : (
           <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
-            <Heart className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Heart className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No returns found</h3>
             <p className="text-gray-600">No ESI returns for the selected filters</p>
           </div>

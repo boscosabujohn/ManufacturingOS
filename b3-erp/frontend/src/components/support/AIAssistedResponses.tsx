@@ -80,8 +80,8 @@ export default function AIAssistedResponses() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -100,9 +100,9 @@ export default function AIAssistedResponses() {
       {/* Response Generator */}
       <div className="bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden">
         <div className="p-6 bg-gradient-to-r from-purple-50 to-pink-50 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Generate Response</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Generate Response</h3>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Ticket Subject</label>
               <input
@@ -135,7 +135,7 @@ export default function AIAssistedResponses() {
             <button
               onClick={handleGenerate}
               disabled={generating}
-              className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {generating ? (
                 <>
@@ -175,7 +175,7 @@ export default function AIAssistedResponses() {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+          <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
             <p className="text-gray-900 leading-relaxed">
               Hi there! I completely understand your concern about the duplicate charge. I sincerely apologize for any inconvenience this has caused. I've reviewed your account and confirmed that you were charged twice on January 15th for $99.00 each.
               <br /><br />
@@ -221,7 +221,7 @@ export default function AIAssistedResponses() {
               </div>
 
               <div className="flex items-center justify-between pt-3 border-t border-gray-200">
-                <div className="flex items-center gap-6 text-sm">
+                <div className="flex items-center gap-3 text-sm">
                   <div className="flex items-center gap-2">
                     <span className="text-gray-600">Quality:</span>
                     <span className={`font-medium ${getQualityColor(response.quality)}`}>
@@ -251,8 +251,8 @@ export default function AIAssistedResponses() {
       </div>
 
       {/* AI Features */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-3">
           <Sparkles className="h-8 w-8 text-purple-600 mb-3" />
           <h4 className="font-semibold text-gray-900 mb-2">Context-Aware</h4>
           <p className="text-sm text-gray-700">
@@ -260,7 +260,7 @@ export default function AIAssistedResponses() {
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-3">
           <Zap className="h-8 w-8 text-blue-600 mb-3" />
           <h4 className="font-semibold text-gray-900 mb-2">Multi-Language</h4>
           <p className="text-sm text-gray-700">
@@ -268,7 +268,7 @@ export default function AIAssistedResponses() {
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-6">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
           <TrendingUp className="h-8 w-8 text-green-600 mb-3" />
           <h4 className="font-semibold text-gray-900 mb-2">Learning System</h4>
           <p className="text-sm text-gray-700">

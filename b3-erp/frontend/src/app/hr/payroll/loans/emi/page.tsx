@@ -153,8 +153,8 @@ export default function LoanEMIPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 w-full">
-      <div className="mb-6">
+    <div className="min-h-screen bg-gray-50 p-3 w-full">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Calendar className="h-6 w-6 text-indigo-600" />
           EMI Management
@@ -162,31 +162,31 @@ export default function LoanEMIPage() {
         <p className="text-gray-500 text-sm mt-1">Track repayments and calculate schedules</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Left Column: Stats & Calculator */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
               <p className="text-xs text-gray-500 uppercase font-medium">Monthly Collection</p>
               <h3 className="text-xl font-bold text-gray-900 mt-1">₹{(stats.monthlyCollection / 1000).toFixed(1)}K</h3>
             </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+            <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
               <p className="text-xs text-gray-500 uppercase font-medium">Outstanding</p>
               <h3 className="text-xl font-bold text-indigo-600 mt-1">₹{(stats.totalOutstanding / 100000).toFixed(2)}L</h3>
             </div>
           </div>
 
           {/* EMI Calculator */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-2">
               <div className="p-2 bg-indigo-50 rounded-lg">
                 <Calculator className="h-5 w-5 text-indigo-600" />
               </div>
               <h3 className="font-bold text-gray-900">EMI Simulator</h3>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-xs font-medium text-gray-600 mb-1">Loan Amount (₹)</label>
                 <input
@@ -204,7 +204,7 @@ export default function LoanEMIPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-xs font-medium text-gray-600 mb-1">Interest Rate (% p.a)</label>
                   <input
@@ -225,7 +225,7 @@ export default function LoanEMIPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-xl p-4 text-white mt-4">
+              <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-xl p-3 text-white mt-4">
                 <p className="text-indigo-100 text-xs mb-1">Estimated Monthly EMI</p>
                 <h2 className="text-2xl font-bold">₹{Math.round(calculatedEMI).toLocaleString('en-IN')}</h2>
                 <div className="mt-3 pt-3 border-t border-indigo-500/30 flex justify-between text-xs text-indigo-100">

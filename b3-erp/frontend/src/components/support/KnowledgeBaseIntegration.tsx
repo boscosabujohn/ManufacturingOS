@@ -127,9 +127,9 @@ export default function KnowledgeBaseIntegration() {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
-        <div className="flex items-center justify-between mb-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
               <BookOpen className="h-8 w-8 text-blue-600" />
@@ -156,8 +156,8 @@ export default function KnowledgeBaseIntegration() {
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <Eye className="h-8 w-8 text-blue-600" />
           </div>
@@ -165,7 +165,7 @@ export default function KnowledgeBaseIntegration() {
           <div className="text-sm text-gray-600">Total Views</div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <ThumbsUp className="h-8 w-8 text-green-600" />
           </div>
@@ -173,7 +173,7 @@ export default function KnowledgeBaseIntegration() {
           <div className="text-sm text-gray-600">Helpful Votes</div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <Star className="h-8 w-8 text-yellow-600" />
           </div>
@@ -181,7 +181,7 @@ export default function KnowledgeBaseIntegration() {
           <div className="text-sm text-gray-600">Avg Rating</div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center gap-3 mb-3">
             <FileText className="h-8 w-8 text-purple-600" />
           </div>
@@ -208,7 +208,7 @@ export default function KnowledgeBaseIntegration() {
                       {article.category.replace('-', ' ').toUpperCase()}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                     <span>By {article.author}</span>
                     <span>•</span>
                     <span>Updated {article.lastUpdated}</span>
@@ -230,7 +230,7 @@ export default function KnowledgeBaseIntegration() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-4 gap-4 pt-3 border-t border-gray-200">
+              <div className="grid grid-cols-4 gap-2 pt-3 border-t border-gray-200">
                 <div>
                   <div className="flex items-center gap-1 text-sm text-gray-600 mb-1">
                     <Eye className="h-4 w-4" />
@@ -266,7 +266,7 @@ export default function KnowledgeBaseIntegration() {
       </div>
 
       {/* AI Suggestions */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6">
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <TrendingUp className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
           <div>

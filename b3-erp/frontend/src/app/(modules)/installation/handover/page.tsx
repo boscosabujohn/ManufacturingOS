@@ -125,10 +125,10 @@ export default function ClientHandoverPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border p-6">
-                    <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border p-3">
+                    <div className="flex items-center gap-2">
                         <Link href="/installation/progress" className="p-2 hover:bg-gray-100 rounded-lg">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
@@ -142,8 +142,8 @@ export default function ClientHandoverPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-white p-4 rounded-lg border">
+                <div className="grid grid-cols-3 gap-2">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Projects</p>
@@ -152,7 +152,7 @@ export default function ClientHandoverPage() {
                             <FileText className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">Closed</p>
@@ -161,7 +161,7 @@ export default function ClientHandoverPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-yellow-600">Pending</p>
@@ -173,7 +173,7 @@ export default function ClientHandoverPage() {
                 </div>
 
                 {/* Filter */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-white rounded-lg border p-3">
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
@@ -189,7 +189,7 @@ export default function ClientHandoverPage() {
                 </div>
 
                 {/* Handovers List */}
-                <div className="grid gap-4">
+                <div className="grid gap-2">
                     {filteredHandovers.map((handover) => {
                         const handoverArray = Object.values(handover.handover).filter(v => typeof v === 'boolean');
                         const completedSteps = handoverArray.filter(Boolean).length;
@@ -197,8 +197,8 @@ export default function ClientHandoverPage() {
                         const percentage = (completedSteps / totalSteps) * 100;
 
                         return (
-                            <div key={handover.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition">
-                                <div className="flex items-start gap-4">
+                            <div key={handover.id} className="bg-white rounded-lg border p-3 hover:shadow-lg transition">
+                                <div className="flex items-start gap-2">
                                     <div className={`w-16 h-16 rounded-lg ${handover.status === 'Closed' ? 'bg-green-500' : 'bg-blue-500'} flex items-center justify-center`}>
                                         {handover.status === 'Closed' ? (
                                             <Award className="w-8 h-8 text-white" />

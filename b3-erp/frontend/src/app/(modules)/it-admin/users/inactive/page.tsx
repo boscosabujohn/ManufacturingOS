@@ -67,7 +67,7 @@ export default function InactiveUsersPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -78,15 +78,15 @@ export default function InactiveUsersPage() {
             </h1>
             <p className="text-slate-600 mt-2">{filteredUsers.length} inactive users in system</p>
           </div>
-          <button className="px-6 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 flex items-center gap-2 font-medium">
+          <button className="px-3 py-2 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 flex items-center gap-2 font-medium">
             <Download className="w-5 h-5" />
             Export Report
           </button>
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-3 mb-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
@@ -115,16 +115,16 @@ export default function InactiveUsersPage() {
         </div>
 
         {/* Users List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredUsers.map(user => (
-            <div key={user.id} className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 hover:shadow-md transition">
+            <div key={user.id} className="bg-white rounded-lg shadow-sm border border-slate-200 p-3 hover:shadow-md transition">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-6 flex-1">
+                <div className="flex items-center gap-3 flex-1">
                   <div className="text-4xl">{user.avatar}</div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-slate-900">{user.name}</h3>
                     <p className="text-slate-600">{user.email} • {user.phone}</p>
-                    <div className="flex gap-4 mt-2">
+                    <div className="flex gap-2 mt-2">
                       <span className="text-sm text-slate-600"><span className="font-medium">Department:</span> {user.department}</span>
                       <span className="text-sm text-slate-600"><span className="font-medium">Role:</span> {user.role}</span>
                       <span className="text-sm text-slate-600"><span className="font-medium">Deactivated:</span> {new Date(user.deactivatedDate).toLocaleDateString('en-IN')}</span>
@@ -160,7 +160,7 @@ export default function InactiveUsersPage() {
 
         {filteredUsers.length === 0 && (
           <div className="text-center py-12 bg-white rounded-lg border border-slate-200">
-            <UserX className="w-12 h-12 text-slate-400 mb-4" />
+            <UserX className="w-12 h-12 text-slate-400 mb-2" />
             <p className="text-slate-600">No inactive users found matching your filters</p>
           </div>
         )}

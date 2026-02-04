@@ -77,10 +77,10 @@ export default function CreateUserPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
       <div className="max-w-2xl">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-2 mb-8">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-slate-200 rounded-lg text-slate-600"
@@ -94,12 +94,12 @@ export default function CreateUserPage() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-slate-200 p-8 space-y-6">
+        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm border border-slate-200 p-8 space-y-3">
           
           {/* Personal Information */}
           <div>
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">Personal Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">Personal Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* First Name */}
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">First Name *</label>
@@ -174,8 +174,8 @@ export default function CreateUserPage() {
 
           {/* Work Information */}
           <div>
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">Work Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">Work Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* Department */}
               <div>
                 <label className="flex text-sm font-medium text-slate-700 mb-2 items-center gap-2">
@@ -242,8 +242,8 @@ export default function CreateUserPage() {
 
           {/* Security */}
           <div>
-            <h2 className="text-xl font-semibold text-slate-900 mb-4">Security</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">Security</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* Password */}
               <div>
                 <label className="flex text-sm font-medium text-slate-700 mb-2 items-center gap-2">
@@ -282,7 +282,7 @@ export default function CreateUserPage() {
           </div>
 
           {/* Options */}
-          <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
             <input
               type="checkbox"
               id="sendCredentials"
@@ -296,11 +296,11 @@ export default function CreateUserPage() {
           </div>
 
           {/* Buttons */}
-          <div className="flex gap-4 pt-6 border-t border-slate-200">
+          <div className="flex gap-2 pt-6 border-t border-slate-200">
             <button
               type="button"
               onClick={() => router.back()}
-              className="flex-1 px-6 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium flex items-center justify-center gap-2"
             >
               <X className="w-5 h-5" />
               Cancel
@@ -308,7 +308,7 @@ export default function CreateUserPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium flex items-center justify-center gap-2 disabled:opacity-50"
+              className="flex-1 px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium flex items-center justify-center gap-2 disabled:opacity-50"
             >
               <Save className="w-5 h-5" />
               {isSubmitting ? 'Creating...' : 'Create User'}

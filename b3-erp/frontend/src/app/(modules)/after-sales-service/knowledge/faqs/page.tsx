@@ -186,9 +186,9 @@ export default function FAQsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
             <HelpCircle className="h-8 w-8 text-emerald-600" />
@@ -196,14 +196,14 @@ export default function FAQsPage() {
           </h1>
           <p className="text-gray-600 mt-1">Browse common questions and answers</p>
         </div>
-        <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+        <button className="bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
           <Plus className="h-5 w-5" />
           Add FAQ
         </button>
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
         <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -254,8 +254,8 @@ export default function FAQsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -267,7 +267,7 @@ export default function FAQsPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">Category</label>
               <select
@@ -311,7 +311,7 @@ export default function FAQsPage() {
           <div key={faq.id} className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
             <button
               onClick={() => setExpandedId(expandedId === faq.id ? null : faq.id)}
-              className="w-full px-6 py-4 flex items-start justify-between hover:bg-gray-50 transition-colors text-left"
+              className="w-full px-3 py-2 flex items-start justify-between hover:bg-gray-50 transition-colors text-left"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -320,7 +320,7 @@ export default function FAQsPage() {
                     <span className="bg-purple-100 text-purple-700 text-xs font-medium px-2 py-1 rounded">Featured</span>
                   )}
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">{faq.category}</span>
                   <div className="flex items-center gap-1">
                     <Eye className="h-4 w-4" />
@@ -339,8 +339,8 @@ export default function FAQsPage() {
             </button>
 
             {expandedId === faq.id && (
-              <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                <p className="text-gray-700 mb-6 leading-relaxed">{faq.answer}</p>
+              <div className="px-3 py-2 bg-gray-50 border-t border-gray-200">
+                <p className="text-gray-700 mb-3 leading-relaxed">{faq.answer}</p>
 
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                   <p className="text-sm text-gray-600">Was this helpful?</p>
@@ -368,7 +368,7 @@ export default function FAQsPage() {
 
         {filteredFAQs.length === 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-            <HelpCircle className="h-12 w-12 text-gray-300 mb-4" />
+            <HelpCircle className="h-12 w-12 text-gray-300 mb-2" />
             <p className="text-gray-600 font-medium">No FAQs found</p>
             <p className="text-gray-500 text-sm">Try adjusting your search or filters</p>
           </div>

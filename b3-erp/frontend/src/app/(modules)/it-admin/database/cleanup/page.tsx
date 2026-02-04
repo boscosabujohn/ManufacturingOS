@@ -283,8 +283,8 @@ export default function DatabaseCleanupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2 w-full max-w-full">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -303,8 +303,8 @@ export default function DatabaseCleanupPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-purple-50 rounded-lg">
               <HardDrive className="w-6 h-6 text-purple-600" />
@@ -316,7 +316,7 @@ export default function DatabaseCleanupPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <Database className="w-6 h-6 text-blue-600" />
@@ -328,7 +328,7 @@ export default function DatabaseCleanupPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-50 rounded-lg">
               <CheckCircle className="w-6 h-6 text-green-600" />
@@ -340,7 +340,7 @@ export default function DatabaseCleanupPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-orange-50 rounded-lg">
               <Clock className="w-6 h-6 text-orange-600" />
@@ -354,7 +354,7 @@ export default function DatabaseCleanupPage() {
       </div>
 
       {selectedTasks.length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="font-semibold text-blue-900">
@@ -374,10 +374,10 @@ export default function DatabaseCleanupPage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Cleanup History */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Cleanups</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Recent Cleanups</h2>
 
           <div className="space-y-3">
             {cleanupHistory.map((history) => (
@@ -395,7 +395,7 @@ export default function DatabaseCleanupPage() {
             ))}
           </div>
 
-          <div className="mt-6 bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-4">
+          <div className="mt-6 bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-3">
             <h3 className="text-sm font-bold text-purple-900 mb-2">Total Freed</h3>
             <p className="text-3xl font-bold text-purple-900">3.7 GB</p>
             <p className="text-xs text-purple-700 mt-1">Last 30 days</p>
@@ -403,7 +403,7 @@ export default function DatabaseCleanupPage() {
         </div>
 
         {/* Cleanup Tasks */}
-        <div className="lg:col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-3">
           {categories.map((category) => {
             const categoryTasks = cleanupTasks.filter(t => t.category === category.id);
             if (categoryTasks.length === 0) return null;
@@ -411,8 +411,8 @@ export default function DatabaseCleanupPage() {
             const IconComponent = category.icon;
 
             return (
-              <div key={category.id} className="bg-white rounded-xl border border-gray-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div key={category.id} className="bg-white rounded-xl border border-gray-200 p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <IconComponent className={`w-5 h-5 ${getCategoryColor(category.color)}`} />
                   <h2 className="text-lg font-bold text-gray-900">{category.name}</h2>
                   <span className="text-sm text-gray-600">({categoryTasks.length})</span>
@@ -422,7 +422,7 @@ export default function DatabaseCleanupPage() {
                   {categoryTasks.map((task) => (
                     <div
                       key={task.id}
-                      className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${selectedTasks.includes(task.id)
+                      className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${selectedTasks.includes(task.id)
                           ? 'border-blue-500 bg-blue-50'
                           : 'border-gray-200 hover:border-blue-300'
                         }`}
@@ -451,7 +451,7 @@ export default function DatabaseCleanupPage() {
 
                           <p className="text-sm text-gray-600 mb-3 ml-7">{task.description}</p>
 
-                          <div className="grid grid-cols-3 gap-4 ml-7">
+                          <div className="grid grid-cols-3 gap-2 ml-7">
                             <div>
                               <p className="text-xs text-gray-600">Estimated Space</p>
                               <p className="font-semibold text-gray-900">{task.estimatedSpace}</p>
@@ -474,7 +474,7 @@ export default function DatabaseCleanupPage() {
             );
           })}
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -495,22 +495,22 @@ export default function DatabaseCleanupPage() {
 
       {/* Confirmation Modal */}
       {showConfirmation && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl max-w-md w-full p-6">
-            <div className="flex items-center gap-3 mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-xl max-w-md w-full p-3">
+            <div className="flex items-center gap-3 mb-2">
               <div className="p-3 bg-red-100 rounded-full">
                 <AlertTriangle className="w-6 h-6 text-red-600" />
               </div>
               <h2 className="text-xl font-bold text-gray-900">Confirm Cleanup</h2>
             </div>
 
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-2">
               You are about to run {selectedTasks.length} cleanup task{selectedTasks.length > 1 ? 's' : ''}.
               This will delete approximately <strong>{totalEstimatedSpace.toFixed(2)} GB</strong> of data
               ({totalRecords.toLocaleString()} records).
             </p>
 
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-6">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-3">
               <p className="text-sm text-yellow-800">
                 <strong>Warning:</strong> This action cannot be undone. Ensure you have a recent backup.
               </p>

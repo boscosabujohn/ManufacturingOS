@@ -260,16 +260,16 @@ export default function KitchenLayoutMaster() {
   }, [layouts, searchTerm, filterType, filterStyle]);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold mb-2">Kitchen Layout Master</h2>
         <p className="text-gray-600">Manage kitchen design templates and configurations</p>
       </div>
 
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-1 gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+            <div className="flex flex-1 gap-2">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
@@ -320,10 +320,10 @@ export default function KitchenLayoutMaster() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-3">
           {filteredLayouts.map((layout) => (
             <div key={layout.id} className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 flex items-center justify-center h-48">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 flex items-center justify-center h-48">
                 <Layout className="h-24 w-24 text-blue-400" />
               </div>
               
@@ -399,7 +399,7 @@ export default function KitchenLayoutMaster() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden">
             <div className="p-4 border-b border-gray-200 flex justify-between items-center">
               <h3 className="text-lg font-semibold">
                 {selectedLayout ? 'Edit Kitchen Layout' : 'Add New Kitchen Layout'}
@@ -410,8 +410,8 @@ export default function KitchenLayoutMaster() {
             </div>
 
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Layout Code *
@@ -436,7 +436,7 @@ export default function KitchenLayoutMaster() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Layout Type *
@@ -484,7 +484,7 @@ export default function KitchenLayoutMaster() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Length (mm) *

@@ -6,8 +6,8 @@ import { Shield, FileText, Lock, AlertCircle, CheckCircle, Clock, ArrowRight } f
 
 export default function CompliancePage() {
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <div>
@@ -21,10 +21,10 @@ export default function CompliancePage() {
                 </div>
 
                 {/* Quick Links */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <Link href="/compliance/gdpr" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-blue-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-blue-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition-colors">
                                     <Lock className="w-6 h-6 text-blue-600" />
                                 </div>
@@ -36,8 +36,8 @@ export default function CompliancePage() {
                     </Link>
 
                     <Link href="/compliance/reporting" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-purple-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-purple-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-purple-50 rounded-lg group-hover:bg-purple-100 transition-colors">
                                     <FileText className="w-6 h-6 text-purple-600" />
                                 </div>
@@ -49,8 +49,8 @@ export default function CompliancePage() {
                     </Link>
 
                     <Link href="/compliance/audit" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-orange-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-orange-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-orange-50 rounded-lg group-hover:bg-orange-100 transition-colors">
                                     <Clock className="w-6 h-6 text-orange-600" />
                                 </div>
@@ -63,10 +63,10 @@ export default function CompliancePage() {
                 </div>
 
                 {/* Compliance Status */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
-                        <h2 className="text-lg font-bold text-gray-900 mb-6">Compliance Scorecard</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                    <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-3">
+                        <h2 className="text-lg font-bold text-gray-900 mb-3">Compliance Scorecard</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                                 <p className="text-sm text-gray-500 mb-1">Overall Score</p>
                                 <div className="flex items-end gap-2">
@@ -90,7 +90,7 @@ export default function CompliancePage() {
                             </div>
                         </div>
 
-                        <div className="mt-6 space-y-4">
+                        <div className="mt-6 space-y-2">
                             {[
                                 { name: 'GDPR Compliance', score: 100, status: 'Compliant' },
                                 { name: 'SOC 2 Type II', score: 95, status: 'Review Needed' },
@@ -102,7 +102,7 @@ export default function CompliancePage() {
                                         <div className={`w-2 h-2 rounded-full ${item.score === 100 ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
                                         <span className="font-medium text-gray-900">{item.name}</span>
                                     </div>
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-2">
                                         <div className="w-32 h-2 bg-gray-100 rounded-full">
                                             <div
                                                 className={`h-2 rounded-full ${item.score === 100 ? 'bg-green-500' : 'bg-yellow-500'}`}
@@ -116,9 +116,9 @@ export default function CompliancePage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-xl border border-gray-200 p-6">
-                        <h2 className="text-lg font-bold text-gray-900 mb-6">Recent Alerts</h2>
-                        <div className="space-y-4">
+                    <div className="bg-white rounded-xl border border-gray-200 p-3">
+                        <h2 className="text-lg font-bold text-gray-900 mb-3">Recent Alerts</h2>
+                        <div className="space-y-2">
                             {[
                                 { title: 'New DSR Request', desc: 'User ID #492 requested data export', time: '2 hours ago', type: 'info' },
                                 { title: 'Policy Update Required', desc: 'Data Retention Policy expires in 5 days', time: '1 day ago', type: 'warning' },

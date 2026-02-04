@@ -120,7 +120,7 @@ function ResultCard({
     switch (result.visualType) {
       case 'metric':
         return (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {Array.isArray(result.data) && result.data.map((item, index) => (
               <div key={index} className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg text-center">
                 <p className="text-2xl font-bold text-indigo-600">{Object.values(item)[1]}</p>
@@ -133,7 +133,7 @@ function ResultCard({
       case 'chart':
         // Simplified bar chart visualization
         return (
-          <div className="h-48 flex items-end gap-2 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+          <div className="h-48 flex items-end gap-2 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
             {Array.isArray(result.data) && result.data.map((item, index) => {
               const value = Number(Object.values(item)[1]);
               const dataArray = result.data as Record<string, number | string>[];
@@ -211,7 +211,7 @@ function ResultCard({
 
       {/* Answer */}
       <div className="p-4">
-        <div className="flex items-start gap-3 mb-4">
+        <div className="flex items-start gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0">
             <Sparkles className="w-4 h-4 text-white" />
           </div>
@@ -225,14 +225,14 @@ function ResultCard({
 
         {/* Visualization */}
         {result.data && (
-          <div className="mb-4">
+          <div className="mb-2">
             {renderVisualization()}
           </div>
         )}
 
         {/* Insights */}
         {result.insights && result.insights.length > 0 && (
-          <div className="mb-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+          <div className="mb-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
             <h4 className="text-sm font-medium text-amber-700 mb-2 flex items-center gap-2">
               <AlertTriangle className="w-4 h-4" />
               Key Insights
@@ -250,7 +250,7 @@ function ResultCard({
 
         {/* Related Queries */}
         {result.relatedQueries && result.relatedQueries.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-2">
             <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
               Related Questions
             </h4>
@@ -480,7 +480,7 @@ export function NaturalLanguageQuery({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -589,7 +589,7 @@ export function NaturalLanguageQuery({
       )}
 
       {/* Results */}
-      <div className="p-4 space-y-4 max-h-[600px] overflow-y-auto">
+      <div className="p-4 space-y-2 max-h-[600px] overflow-y-auto">
         {isLoading && (
           <div className="flex items-center justify-center py-8">
             <div className="flex items-center gap-3">
@@ -611,7 +611,7 @@ export function NaturalLanguageQuery({
 
         {!isLoading && results.length === 0 && (
           <div className="text-center py-12">
-            <Sparkles className="w-12 h-12 mx-auto mb-3 text-indigo-300" />
+            <Sparkles className="w-12 h-12 mb-3 text-indigo-300" />
             <p className="text-gray-500 font-medium">Ask me anything about your production data</p>
             <p className="text-sm text-gray-400 mt-1">
               I can analyze defects, OEE, maintenance needs, and more

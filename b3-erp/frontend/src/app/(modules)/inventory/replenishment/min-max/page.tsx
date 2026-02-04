@@ -138,9 +138,9 @@ const MinMaxPlanningPage = () => {
     );
 
     return (
-        <div className="w-full h-full p-6 space-y-6">
+        <div className="w-full h-full p-3 space-y-3">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <div>
                     <button
                         onClick={() => router.back()}
@@ -165,7 +165,7 @@ const MinMaxPlanningPage = () => {
             </div>
 
             {/* Search and Filter */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+            <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
                 <div className="relative max-w-md">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
@@ -184,31 +184,31 @@ const MinMaxPlanningPage = () => {
                     <table className="w-full">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Item Details</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Usage Stats</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Min Level</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Max Level</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Reorder Point</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Item Details</th>
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Usage Stats</th>
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Min Level</th>
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Max Level</th>
+                                <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Reorder Point</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {filteredItems.map((item) => (
                                 <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="flex flex-col">
                                             <span className="font-medium text-gray-900">{item.itemName}</span>
                                             <span className="text-xs text-gray-500">{item.itemCode}</span>
                                             <span className="text-xs text-blue-600 mt-1">{item.category}</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="space-y-1 text-sm">
-                                            <div className="flex justify-between gap-4">
+                                            <div className="flex justify-between gap-2">
                                                 <span className="text-gray-500">Lead Time:</span>
                                                 <span className="font-medium">{item.leadTimeDays} days</span>
                                             </div>
-                                            <div className="flex justify-between gap-4">
+                                            <div className="flex justify-between gap-2">
                                                 <span className="text-gray-500">Daily Usage:</span>
                                                 <span className="font-medium">{item.avgDailyUsage} {item.uom}</span>
                                             </div>
@@ -216,7 +216,7 @@ const MinMaxPlanningPage = () => {
                                     </td>
 
                                     {/* Min Level */}
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         {editingId === item.id ? (
                                             <input
                                                 type="number"
@@ -230,7 +230,7 @@ const MinMaxPlanningPage = () => {
                                     </td>
 
                                     {/* Max Level */}
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         {editingId === item.id ? (
                                             <input
                                                 type="number"
@@ -244,7 +244,7 @@ const MinMaxPlanningPage = () => {
                                     </td>
 
                                     {/* Reorder Point */}
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         {editingId === item.id ? (
                                             <div className="flex flex-col gap-1">
                                                 <input
@@ -266,7 +266,7 @@ const MinMaxPlanningPage = () => {
                                         )}
                                     </td>
 
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-3 py-2 text-right">
                                         {editingId === item.id ? (
                                             <div className="flex justify-end gap-2">
                                                 <button

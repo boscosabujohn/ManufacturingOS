@@ -194,7 +194,7 @@ export function ModuleConnectionPanel({ title, icon, connections, onCreateNew }:
   return (
     <div className="bg-white rounded-lg border-2 border-blue-200 shadow-sm">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-b border-blue-200 p-4">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-b border-blue-200 p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-100 rounded-lg text-blue-600">
@@ -235,8 +235,8 @@ export function ModuleConnectionPanel({ title, icon, connections, onCreateNew }:
             {expandedSection === connection.label && (
               <div className="p-3 space-y-2 bg-white">
                 {connection.items.length === 0 ? (
-                  <div className="text-center py-6 text-gray-500">
-                    <AlertCircle className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+                  <div className="text-center py-2 text-gray-500">
+                    <AlertCircle className="w-8 h-8 mb-2 text-gray-400" />
                     <p className="text-sm">No {connection.label.toLowerCase()} found</p>
                     {onCreateNew && (
                       <button
@@ -394,10 +394,10 @@ export function CRMToFinanceConnections({ connection }: { connection: CRMToFinan
   ]
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Credit Summary */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-4">
-        <div className="grid grid-cols-3 gap-4">
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-3">
+        <div className="grid grid-cols-3 gap-2">
           <div>
             <div className="text-xs text-purple-600 font-medium">Credit Limit</div>
             <div className="text-lg font-bold text-purple-900">

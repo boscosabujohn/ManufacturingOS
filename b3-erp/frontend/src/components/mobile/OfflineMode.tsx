@@ -547,14 +547,14 @@ export function SyncStatusPanel({ className = '' }: SyncStatusPanelProps) {
       </div>
 
       {/* Stats */}
-      <div className="p-4 grid grid-cols-2 gap-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="p-4 grid grid-cols-2 gap-2 border-b border-gray-200 dark:border-gray-700">
         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-          <Database className="w-5 h-5 mx-auto mb-1 text-gray-400" />
+          <Database className="w-5 h-5 mb-1 text-gray-400" />
           <p className="text-lg font-bold text-gray-900 dark:text-white">{cacheSize} KB</p>
           <p className="text-xs text-gray-500">Cached Data</p>
         </div>
         <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-          <Upload className="w-5 h-5 mx-auto mb-1 text-gray-400" />
+          <Upload className="w-5 h-5 mb-1 text-gray-400" />
           <p className="text-lg font-bold text-gray-900 dark:text-white">{pendingActions.length}</p>
           <p className="text-xs text-gray-500">Pending Actions</p>
         </div>

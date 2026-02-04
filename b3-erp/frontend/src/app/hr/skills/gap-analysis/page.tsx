@@ -152,7 +152,7 @@ export default function SkillGapAnalysisPage() {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <TrendingUp className="h-8 w-8 text-pink-600" />
           Skill Gap Analysis
@@ -161,8 +161,8 @@ export default function SkillGapAnalysisPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Total Gaps</p>
@@ -171,7 +171,7 @@ export default function SkillGapAnalysisPage() {
             <Target className="h-10 w-10 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-600 text-sm font-medium">Critical</p>
@@ -180,7 +180,7 @@ export default function SkillGapAnalysisPage() {
             <AlertTriangle className="h-10 w-10 text-red-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-600 text-sm font-medium">High Priority</p>
@@ -189,7 +189,7 @@ export default function SkillGapAnalysisPage() {
             <AlertCircle className="h-10 w-10 text-orange-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Avg Gap %</p>
@@ -198,7 +198,7 @@ export default function SkillGapAnalysisPage() {
             <TrendingUp className="h-10 w-10 text-purple-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Staff Needed</p>
@@ -210,8 +210,8 @@ export default function SkillGapAnalysisPage() {
       </div>
 
       {/* Filter Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Filter by Priority:</label>
           <select
             value={filterPriority}
@@ -229,7 +229,7 @@ export default function SkillGapAnalysisPage() {
       </div>
 
       {/* Gap Cards */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredGaps.map((gap) => {
           const priorityConfig = getPriorityConfig(gap.priority);
           const SkillIcon = getSkillIcon(gap.skill?.code);
@@ -247,7 +247,7 @@ export default function SkillGapAnalysisPage() {
                 onClick={() => toggleExpand(gap.id)}
               >
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     <div
                       className="h-12 w-12 rounded-lg flex items-center justify-center"
                       style={{ backgroundColor: `${gap.skill?.color || '#3B82F6'}20` }}
@@ -266,7 +266,7 @@ export default function SkillGapAnalysisPage() {
                         </span>
                       </div>
                       <p className="text-sm text-gray-500 mt-1">{gap.skill?.name} - {gap.roleName}</p>
-                      <div className="flex items-center gap-6 mt-3">
+                      <div className="flex items-center gap-3 mt-3">
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-gray-500">Gap:</span>
                           <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -307,9 +307,9 @@ export default function SkillGapAnalysisPage() {
               {/* Expanded Details */}
               {isExpanded && (
                 <div className="px-4 pb-4 pt-0 border-t border-gray-100">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-4">
                     {/* Description & Impact */}
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <div>
                         <h4 className="text-sm font-semibold text-gray-700 flex items-center gap-2 mb-2">
                           <Info className="h-4 w-4 text-blue-500" />
@@ -327,7 +327,7 @@ export default function SkillGapAnalysisPage() {
                     </div>
 
                     {/* Recommendations & Training */}
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       <div>
                         <h4 className="text-sm font-semibold text-gray-700 flex items-center gap-2 mb-2">
                           <ArrowRight className="h-4 w-4 text-green-500" />
@@ -382,7 +382,7 @@ export default function SkillGapAnalysisPage() {
 
         {filteredGaps.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-            <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Target className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No skill gaps found</h3>
             <p className="text-gray-500">
               {filterPriority ? 'Try adjusting your filters' : 'All skill requirements are being met'}

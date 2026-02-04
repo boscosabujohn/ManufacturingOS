@@ -194,7 +194,7 @@ export default function InstallationCalendarPage() {
   const completedCount = Object.values(installations).flat().filter(i => i.status === 'Completed').length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -211,8 +211,8 @@ export default function InstallationCalendarPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Installations</span>
             <CalendarIcon className="w-4 h-4 text-blue-600" />
@@ -221,7 +221,7 @@ export default function InstallationCalendarPage() {
           <div className="text-xs text-gray-500 mt-1">This month</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Scheduled</span>
             <CalendarIcon className="w-4 h-4 text-blue-600" />
@@ -230,7 +230,7 @@ export default function InstallationCalendarPage() {
           <div className="text-xs text-gray-500 mt-1">Upcoming jobs</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">In Progress</span>
             <Users className="w-4 h-4 text-yellow-600" />
@@ -239,7 +239,7 @@ export default function InstallationCalendarPage() {
           <div className="text-xs text-gray-500 mt-1">Active today</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Completed</span>
             <Users className="w-4 h-4 text-green-600" />
@@ -250,9 +250,9 @@ export default function InstallationCalendarPage() {
       </div>
 
       {/* Calendar Controls */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={previousMonth}
               className="p-2 hover:bg-gray-100 rounded-md"
@@ -358,8 +358,8 @@ export default function InstallationCalendarPage() {
       </div>
 
       {/* Legend */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-6">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-gray-700">Status Legend:</span>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-blue-100 border border-blue-300" />

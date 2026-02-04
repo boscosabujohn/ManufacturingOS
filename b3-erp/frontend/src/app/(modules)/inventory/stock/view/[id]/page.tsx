@@ -209,10 +209,10 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
   const daysToReorder = Math.ceil((stockItem.currentStock - stockItem.reorderLevel) / (stockItem.currentStock / 30));
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -227,7 +227,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 {stockItem.status.replace('_', ' ').toUpperCase()}
               </span>
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
               <span className="flex items-center gap-1">
                 <Package className="w-4 h-4" />
                 <span className="font-mono font-semibold">{stockItem.itemCode}</span>
@@ -258,8 +258,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 opacity-80" />
             <TrendingUp className="w-5 h-5" />
@@ -268,7 +268,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           <div className="text-blue-100 text-sm">Current Stock ({stockItem.uom})</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 opacity-80" />
             <span className="text-sm text-green-100">Available</span>
@@ -277,7 +277,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           <div className="text-green-100 text-sm">After Commitments</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <ShoppingCart className="w-8 h-8 opacity-80" />
             <span className="text-sm text-orange-100">Reserved</span>
@@ -286,7 +286,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           <div className="text-orange-100 text-sm">Committed Stock</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 opacity-80" />
             <span className="text-sm text-purple-100">INR</span>
@@ -295,7 +295,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           <div className="text-purple-100 text-sm">Total Value</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-500 to-red-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-8 h-8 opacity-80" />
             <span className="text-sm text-red-100">Min Level</span>
@@ -307,7 +307,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('overview')}
             className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
@@ -363,11 +363,11 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Item Details */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Package className="w-5 h-5 text-blue-600" />
                 Item Information
               </h3>
@@ -409,12 +409,12 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-green-600" />
                 Stock Levels & Planning
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm text-gray-600">Current Stock</span>
@@ -428,7 +428,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-2">
+                <div className="grid grid-cols-2 gap-2 pt-2">
                   <div className="p-3 bg-green-50 rounded-lg border border-green-200">
                     <div className="text-xs text-green-600 mb-1">Safety Stock</div>
                     <div className="text-lg font-bold text-green-900">{stockItem.safetyStock} {stockItem.uom}</div>
@@ -462,9 +462,9 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Costing & Location */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <DollarSign className="w-5 h-5 text-purple-600" />
                 Costing Information
               </h3>
@@ -505,8 +505,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Warehouse className="w-5 h-5 text-orange-600" />
                 Storage Location
               </h3>
@@ -559,8 +559,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Reorder History */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
               <ShoppingCart className="w-5 h-5 text-blue-600" />
               Recent Purchase Orders
             </h3>
@@ -622,8 +622,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
       )}
 
       {activeTab === 'transactions' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               <Activity className="w-5 h-5 text-blue-600" />
               Stock Transaction History
@@ -685,8 +685,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
       )}
 
       {activeTab === 'locations' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
               <Warehouse className="w-5 h-5 text-orange-600" />
               Storage Locations & Distribution
@@ -695,7 +695,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
               Total Locations: <span className="font-bold text-gray-900">{stockLocations.length}</span>
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {stockLocations.map((location, index) => (
               <div key={index} className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
                 <div className="flex items-start justify-between">
@@ -704,7 +704,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                       <MapPin className="w-5 h-5 text-blue-600" />
                       <h4 className="font-semibold text-gray-900">{location.warehouse}</h4>
                     </div>
-                    <div className="grid grid-cols-4 gap-4 ml-8">
+                    <div className="grid grid-cols-4 gap-2 ml-8">
                       <div>
                         <div className="text-xs text-gray-500">Zone</div>
                         <div className="font-mono font-semibold text-gray-900">{location.zone}</div>
@@ -740,7 +740,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
             ))}
           </div>
 
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <div className="flex items-start gap-3">
               <Warehouse className="w-5 h-5 text-blue-600 mt-0.5" />
               <div>
@@ -756,14 +756,14 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
       )}
 
       {activeTab === 'activity' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
             <Clock className="w-5 h-5 text-purple-600" />
             Activity Timeline
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {activityLog.map((log, index) => (
-              <div key={log.id} className="flex gap-4">
+              <div key={log.id} className="flex gap-2">
                 <div className="flex flex-col items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     log.status === 'success' ? 'bg-green-100 text-green-600' :
@@ -793,16 +793,16 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
       )}
 
       {activeTab === 'analytics' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Stock Aging Analysis */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <Clock className="w-5 h-5 text-blue-600" />
               Stock Aging & Turnover Analysis
             </h3>
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
-                <div className="flex items-center justify-between mb-4">
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-2">
                   <RefreshCw className="w-8 h-8 text-green-600" />
                   <span className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">Fast Moving</span>
                 </div>
@@ -818,8 +818,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between mb-2">
                   <Clock className="w-8 h-8 text-blue-600" />
                   <span className="text-sm font-semibold text-blue-600">Average</span>
                 </div>
@@ -842,8 +842,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-3 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between mb-2">
                   <TrendingUp className="w-8 h-8 text-purple-600" />
                   <span className="text-sm font-semibold text-purple-600">Efficient</span>
                 </div>
@@ -872,14 +872,14 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Demand Forecasting & Reorder Optimization */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <Target className="w-5 h-5 text-emerald-600" />
                 Demand Forecast & Reorder Planning
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4 rounded-lg border border-emerald-100">
+              <div className="space-y-2">
+                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-3 rounded-lg border border-emerald-100">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-semibold text-gray-700">Next 30 Days Forecast</span>
                     <span className="text-xs bg-emerald-600 text-white px-2 py-1 rounded-full">AI Predicted</span>
@@ -953,7 +953,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100">
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-100">
                   <div className="flex items-center gap-3 mb-3">
                     <Zap className="w-5 h-5 text-blue-600" />
                     <span className="text-sm font-semibold text-gray-700">Smart Recommendations</span>
@@ -976,18 +976,18 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <PieChart className="w-5 h-5 text-indigo-600" />
                 Stock Valuation & Cost Analysis
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-4 rounded-lg border border-indigo-100">
+              <div className="space-y-2">
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-lg border border-indigo-100">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-semibold text-gray-700">Current Stock Value</span>
                     <span className="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">At Avg Cost</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <div className="text-xs text-gray-600 mb-1">Total Value</div>
                       <div className="text-2xl font-bold text-indigo-600">₹4.54L</div>
@@ -1007,7 +1007,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                       <span className="text-sm font-semibold text-gray-700">Cost Price Trend (Last 90 Days)</span>
                       <span className="text-sm font-bold text-green-600">+2.1%</span>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div className="flex-1">
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div>
@@ -1060,7 +1060,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-100">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border border-green-100">
                   <div className="flex items-center gap-3 mb-3">
                     <DollarSign className="w-5 h-5 text-green-600" />
                     <span className="text-sm font-semibold text-gray-700">Cost Savings Opportunities</span>
@@ -1083,13 +1083,13 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* ABC Analysis & Stock Classification */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
               <Layers className="w-5 h-5 text-purple-600" />
               ABC Analysis & Stock Classification
             </h3>
-            <div className="grid grid-cols-4 gap-4">
-              <div className="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-lg border border-red-200">
+            <div className="grid grid-cols-4 gap-2">
+              <div className="bg-gradient-to-br from-red-50 to-pink-50 p-3 rounded-lg border border-red-200">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-2xl font-bold text-red-600">A</span>
                   <span className="text-xs bg-red-600 text-white px-2 py-1 rounded-full">High Value</span>
@@ -1108,7 +1108,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 p-4 rounded-lg border border-yellow-200">
+              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 p-3 rounded-lg border border-yellow-200">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-2xl font-bold text-yellow-600">B</span>
                   <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded-full">Medium Value</span>
@@ -1127,7 +1127,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-3 rounded-lg border border-green-200">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-2xl font-bold text-green-600">C</span>
                   <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Low Value</span>
@@ -1146,7 +1146,7 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
                 <div className="flex items-center justify-between mb-3">
                   <Box className="w-8 h-8 text-blue-600" />
                   <CheckCircle className="w-5 h-5 text-blue-600" />
@@ -1162,8 +1162,8 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
       )}
 
       {/* Metadata */}
-      <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-        <div className="grid grid-cols-4 gap-4 text-sm">
+      <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-4 gap-2 text-sm">
           <div>
             <span className="text-gray-600">Created By: </span>
             <span className="font-medium text-gray-900">{stockItem.createdBy}</span>

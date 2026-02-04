@@ -476,11 +476,11 @@ export function ChartExport({
       {showOptions && (
         <>
           <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setShowOptions(false)} />
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-xl shadow-2xl p-6">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Export Options</h3>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
+            <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-xl shadow-2xl p-3">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Export Options</h3>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Scale

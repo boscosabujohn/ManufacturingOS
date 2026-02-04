@@ -60,7 +60,7 @@ export default function UploadDrawingsPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -161,7 +161,7 @@ export default function UploadDrawingsPage() {
                   accept=".pdf,.dwg,.dxf"
                   onChange={handleFileChange}
                 />
-                <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center gap-4 w-full h-full justify-center">
+                <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center gap-2 w-full h-full justify-center">
                   <div className={`p-4 rounded-full ${isDragging ? 'bg-blue-100' : 'bg-blue-50'}`}>
                     <Layers className={`w-8 h-8 ${isDragging ? 'text-blue-700' : 'text-blue-600'}`} />
                   </div>
@@ -227,9 +227,9 @@ export default function UploadDrawingsPage() {
 
       {/* PDF Preview Modal */}
       {previewFile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3">
           <div className={`bg-white rounded-lg shadow-xl flex flex-col transition-all duration-200 ${isMaximized ? 'w-full h-full' : 'w-full  h-[80vh]'}`}>
-            <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center justify-between p-3 border-b">
               <h3 className="text-lg font-semibold">{previewFile.name}</h3>
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm" onClick={() => setIsMaximized(!isMaximized)}>
@@ -240,7 +240,7 @@ export default function UploadDrawingsPage() {
                 </Button>
               </div>
             </div>
-            <div className="flex-1 bg-gray-100 p-4 overflow-hidden">
+            <div className="flex-1 bg-gray-100 p-3 overflow-hidden">
               <iframe
                 src={URL.createObjectURL(previewFile)}
                 className="w-full h-full rounded border bg-white"

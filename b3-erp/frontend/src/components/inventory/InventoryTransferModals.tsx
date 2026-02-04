@@ -225,10 +225,10 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Package className="w-6 h-6" />
             <h2 className="text-xl font-bold">Create Transfer Request</h2>
@@ -239,7 +239,7 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
         </div>
 
         {/* Progress Indicator */}
-        <div className="px-6 py-4 bg-gray-50 border-b">
+        <div className="px-3 py-2 bg-gray-50 border-b">
           <div className="flex items-center justify-between">
             <div className={`flex items-center ${currentStep >= 1 ? 'text-blue-600' : 'text-gray-400'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-300'}`}>
@@ -265,10 +265,10 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: Transfer Details */}
           {currentStep === 1 && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Transfer Type */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Transfer Type *</label>
@@ -310,8 +310,8 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
               </div>
 
               {/* From Location */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-2">
                   <h3 className="font-semibold text-gray-900 flex items-center">
                     <MapPin className="w-5 h-5 mr-2 text-blue-600" />
                     From Location
@@ -358,7 +358,7 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
                 </div>
 
                 {/* To Location */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <h3 className="font-semibold text-gray-900 flex items-center">
                     <MapPin className="w-5 h-5 mr-2 text-green-600" />
                     To Location
@@ -406,7 +406,7 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
               </div>
 
               {/* Dates and Priority */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Transfer Date *</label>
                   <input
@@ -427,7 +427,7 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Priority *</label>
                   <select
@@ -460,7 +460,7 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
 
           {/* Step 2: Select Items */}
           {currentStep === 2 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="flex justify-between items-center">
                 <h3 className="text-lg font-semibold text-gray-900">Transfer Items</h3>
                 <button
@@ -556,10 +556,10 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
 
           {/* Step 3: Review & Submit */}
           {currentStep === 3 && (
-            <div className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Transfer Summary</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="space-y-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Transfer Summary</h3>
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="font-medium text-gray-700">Transfer Type:</span>
                     <span className="ml-2 text-gray-900">{formData.transferType.replace('-', ' ').toUpperCase()}</span>
@@ -632,7 +632,7 @@ export const CreateTransferModal: React.FC<CreateTransferModalProps> = ({ isOpen
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-gray-50 border-t flex justify-between">
+        <div className="px-3 py-2 bg-gray-50 border-t flex justify-between">
           <button
             onClick={currentStep === 1 ? onClose : handlePrevious}
             className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
@@ -700,10 +700,10 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
   if (!isOpen || !transfer) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -717,9 +717,9 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Transfer Header */}
-          <div className="bg-gray-50 rounded-lg p-4 flex justify-between items-start">
+          <div className="bg-gray-50 rounded-lg p-3 flex justify-between items-start">
             <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <StatusBadge status={transfer.status} />
@@ -740,8 +740,8 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
           </div>
 
           {/* Locations */}
-          <div className="grid grid-cols-3 gap-4 items-center">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2 items-center">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-center text-blue-700 mb-2">
                 <MapPin className="w-5 h-5 mr-2" />
                 <span className="font-semibold">From Location</span>
@@ -757,7 +757,7 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
               <ArrowRight className="w-8 h-8 text-gray-400" />
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-center text-green-700 mb-2">
                 <MapPin className="w-5 h-5 mr-2" />
                 <span className="font-semibold">To Location</span>
@@ -814,7 +814,7 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
           {/* Timeline */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Transfer Timeline</h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {transfer.timeline.map((event, index) => (
                 <div key={index} className="flex items-start">
                   <div className="flex-shrink-0">
@@ -841,8 +841,8 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
           {/* Attachments */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Attachments</h3>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center text-gray-500">
-              <FileText className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center text-gray-500">
+              <FileText className="w-8 h-8 mb-2 text-gray-400" />
               <p className="text-sm">No attachments available</p>
               {/* TODO: Add attachment upload/display functionality */}
             </div>
@@ -850,7 +850,7 @@ export const ViewTransferDetailsModal: React.FC<ViewTransferDetailsModalProps> =
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-gray-50 border-t flex justify-between">
+        <div className="px-3 py-2 bg-gray-50 border-t flex justify-between">
           <div className="flex space-x-2">
             {transfer.status === 'draft' && onEdit && (
               <button
@@ -966,10 +966,10 @@ export const ApproveTransferModal: React.FC<ApproveTransferModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-6 h-6" />
             <h2 className="text-xl font-bold">Approve Transfer Request</h2>
@@ -980,9 +980,9 @@ export const ApproveTransferModal: React.FC<ApproveTransferModalProps> = ({
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Transfer Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-3">Transfer Summary</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -1076,7 +1076,7 @@ export const ApproveTransferModal: React.FC<ApproveTransferModalProps> = ({
           )}
 
           {formData.decision === 'reject' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Rejection Reason *</label>
                 <select
@@ -1120,7 +1120,7 @@ export const ApproveTransferModal: React.FC<ApproveTransferModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-gray-50 border-t flex justify-end space-x-3">
+        <div className="px-3 py-2 bg-gray-50 border-t flex justify-end space-x-3">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
@@ -1199,10 +1199,10 @@ export const DispatchTransferModal: React.FC<DispatchTransferModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <TruckIcon className="w-6 h-6" />
             <h2 className="text-xl font-bold">Dispatch Transfer</h2>
@@ -1213,9 +1213,9 @@ export const DispatchTransferModal: React.FC<DispatchTransferModalProps> = ({
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Transfer Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-2">Transfer: {transfer.transferNumber}</h3>
             <div className="text-sm text-gray-600">
               <span className="font-medium">From:</span> {transfer.fromLocation.warehouse} → <span className="font-medium">To:</span> {transfer.toLocation.warehouse}
@@ -1223,7 +1223,7 @@ export const DispatchTransferModal: React.FC<DispatchTransferModalProps> = ({
           </div>
 
           {/* Dispatch Details */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">Dispatch Date & Time *</label>
               <input
@@ -1342,7 +1342,7 @@ export const DispatchTransferModal: React.FC<DispatchTransferModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-gray-50 border-t flex justify-end space-x-3">
+        <div className="px-3 py-2 bg-gray-50 border-t flex justify-end space-x-3">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
@@ -1453,10 +1453,10 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
   const totalValue = transfer.value || 0
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Package className="w-6 h-6" />
             <h2 className="text-xl font-bold">Receive Transfer</h2>
@@ -1467,9 +1467,9 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Transfer Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-2">Transfer: {transfer.transferNumber}</h3>
             <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
               <div>
@@ -1488,7 +1488,7 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
           </div>
 
           {/* Receipt Details */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Receipt Date & Time *</label>
               <input
@@ -1586,7 +1586,7 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
 
           {/* Discrepancy Section */}
           {hasDiscrepancies && (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                 <AlertCircle className="w-5 h-5 mr-2 text-yellow-600" />
                 Discrepancy Information Required
@@ -1594,7 +1594,7 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
               {Object.values(receivedItems)
                 .filter((item) => item.receivedQuantity !== item.sentQuantity)
                 .map((item) => (
-                  <div key={item.itemId} className="mb-4 pb-4 border-b border-yellow-300 last:border-b-0">
+                  <div key={item.itemId} className="mb-2 pb-4 border-b border-yellow-300 last:border-b-0">
                     <p className="font-medium text-gray-900 mb-3">
                       {transfer.items.find((i) => i.itemCode === item.itemId)?.itemName} (Diff: {item.receivedQuantity - item.sentQuantity})
                     </p>
@@ -1658,7 +1658,7 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
           )}
 
           {/* Quality Check */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Inspection Status (Optional)</label>
               <select
@@ -1685,9 +1685,9 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
           </div>
 
           {/* Summary */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h3 className="font-semibold text-gray-900 mb-3">Receipt Summary</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <div className="text-gray-600">Items Fully Received</div>
                 <div className="text-2xl font-bold text-green-600">{itemsFullyReceived}</div>
@@ -1705,7 +1705,7 @@ export const ReceiveTransferModal: React.FC<ReceiveTransferModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-gray-50 border-t flex justify-between">
+        <div className="px-3 py-2 bg-gray-50 border-t flex justify-between">
           <button
             onClick={onReject}
             className="px-6 py-2 border border-red-600 text-red-600 rounded-lg hover:bg-red-50 transition-colors"
@@ -1826,10 +1826,10 @@ export const TransferHistoryModal: React.FC<TransferHistoryModalProps> = ({
   const totalPages = Math.ceil(totalTransfers / itemsPerPage)
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Clock className="w-6 h-6" />
             <h2 className="text-xl font-bold">Transfer History</h2>
@@ -1840,11 +1840,11 @@ export const TransferHistoryModal: React.FC<TransferHistoryModalProps> = ({
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Filters */}
-          <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+          <div className="bg-gray-50 rounded-lg p-3 space-y-2">
             <h3 className="font-semibold text-gray-900">Filters</h3>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               {/* Date Range */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
@@ -1940,20 +1940,20 @@ export const TransferHistoryModal: React.FC<TransferHistoryModalProps> = ({
           </div>
 
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="text-sm text-blue-700 mb-1">Total Transfers</div>
               <div className="text-3xl font-bold text-blue-900">{totalTransfers}</div>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <div className="text-sm text-purple-700 mb-1">In Transit</div>
               <div className="text-3xl font-bold text-purple-900">{inTransit}</div>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="text-sm text-green-700 mb-1">Completed</div>
               <div className="text-3xl font-bold text-green-900">{completed}</div>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="text-sm text-gray-700 mb-1">Total Value</div>
               <div className="text-3xl font-bold text-gray-900">${totalValue.toLocaleString()}</div>
             </div>
@@ -2035,7 +2035,7 @@ export const TransferHistoryModal: React.FC<TransferHistoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-gray-50 border-t flex justify-end space-x-3">
+        <div className="px-3 py-2 bg-gray-50 border-t flex justify-end space-x-3">
           {onExport && (
             <button
               onClick={onExport}

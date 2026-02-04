@@ -65,7 +65,7 @@ export default function StockCheckPage() {
   return (
     <div className="w-full py-2 space-y-3">
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </Button>
@@ -144,7 +144,7 @@ export default function StockCheckPage() {
                 <Progress value={progress} className="h-2" />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="p-4 bg-green-50 rounded-lg border border-green-100 text-center">
                   <div className="text-2xl font-bold text-green-700">{availableCount}</div>
                   <div className="text-xs text-green-600">Items Available</div>

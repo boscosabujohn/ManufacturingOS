@@ -161,10 +161,10 @@ export const CreateScheduleModal: React.FC<CreateScheduleModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Calendar className="w-6 h-6" />
             <div>
@@ -178,9 +178,9 @@ export const CreateScheduleModal: React.FC<CreateScheduleModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
           {/* Basic Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Schedule Name *
@@ -281,7 +281,7 @@ export const CreateScheduleModal: React.FC<CreateScheduleModalProps> = ({
           </div>
 
           {/* Zones */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Zones to Count *
             </label>
@@ -327,7 +327,7 @@ export const CreateScheduleModal: React.FC<CreateScheduleModalProps> = ({
           </div>
 
           {/* Item Categories */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Item Categories (Optional)
             </label>
@@ -372,7 +372,7 @@ export const CreateScheduleModal: React.FC<CreateScheduleModalProps> = ({
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -387,7 +387,7 @@ export const CreateScheduleModal: React.FC<CreateScheduleModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -498,10 +498,10 @@ export const StartSessionModal: React.FC<StartSessionModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Play className="w-6 h-6" />
             <div>
@@ -515,9 +515,9 @@ export const StartSessionModal: React.FC<StartSessionModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
           {/* Basic Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Session Name *
@@ -584,7 +584,7 @@ export const StartSessionModal: React.FC<StartSessionModalProps> = ({
           </div>
 
           {/* Zones */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Zones to Count *
             </label>
@@ -629,12 +629,12 @@ export const StartSessionModal: React.FC<StartSessionModalProps> = ({
           </div>
 
           {/* Generate Items */}
-          <div className="mb-6">
+          <div className="mb-3">
             <button
               type="button"
               onClick={generateItems}
               disabled={formData.zones.length === 0}
-              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               <ClipboardList className="w-5 h-5" />
               Generate Count List ({formData.totalItems} items)
@@ -660,7 +660,7 @@ export const StartSessionModal: React.FC<StartSessionModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -732,10 +732,10 @@ export const PerformCountModal: React.FC<PerformCountModalProps> = ({
     : 0
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <ClipboardList className="w-6 h-6" />
             <div>
@@ -763,8 +763,8 @@ export const PerformCountModal: React.FC<PerformCountModalProps> = ({
         {/* Content */}
         <div className="p-6">
           {/* Item Details */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Item Code</p>
                 <p className="text-lg font-bold text-gray-800">{currentItem.itemCode}</p>
@@ -787,7 +787,7 @@ export const PerformCountModal: React.FC<PerformCountModalProps> = ({
           </div>
 
           {/* Count Input */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Counted Quantity *
             </label>
@@ -803,7 +803,7 @@ export const PerformCountModal: React.FC<PerformCountModalProps> = ({
 
           {/* Variance Display */}
           {countedQuantity > 0 && (
-            <div className={`p-4 rounded-lg mb-6 ${
+            <div className={`p-4 rounded-lg mb-3 ${
               Math.abs(variancePercentage) > 5
                 ? 'bg-red-50 border border-red-200'
                 : variance !== 0
@@ -840,7 +840,7 @@ export const PerformCountModal: React.FC<PerformCountModalProps> = ({
           )}
 
           {/* Notes */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Notes {Math.abs(variancePercentage) > 5 && <span className="text-red-500">*</span>}
             </label>
@@ -855,7 +855,7 @@ export const PerformCountModal: React.FC<PerformCountModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between rounded-b-lg">
           <button
             onClick={handlePrevious}
             disabled={!hasPrevious}
@@ -924,10 +924,10 @@ export const ViewSessionDetailsModal: React.FC<ViewSessionDetailsModalProps> = (
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -941,51 +941,51 @@ export const ViewSessionDetailsModal: React.FC<ViewSessionDetailsModalProps> = (
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Status</p>
               <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${getStatusColor(session.status)}`}>
                 {session.status.toUpperCase()}
               </span>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-600 font-medium">Total Items</p>
               <p className="text-2xl font-bold text-blue-700">{session.totalItems}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm text-green-600 font-medium">Counted</p>
               <p className="text-2xl font-bold text-green-700">{session.countedItems}</p>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <p className="text-sm text-yellow-600 font-medium">Discrepancies</p>
               <p className="text-2xl font-bold text-yellow-700">{session.discrepancies}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm text-purple-600 font-medium">Progress</p>
               <p className="text-2xl font-bold text-purple-700">{session.progress}%</p>
             </div>
           </div>
 
           {/* Session Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Warehouse</p>
               <p className="text-lg font-semibold text-gray-800">{session.warehouse}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Count Date</p>
               <p className="text-lg font-semibold text-gray-800">{session.countDate}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Assigned To</p>
               <p className="text-lg font-semibold text-gray-800">{session.assignedTo}</p>
             </div>
           </div>
 
           {/* Zones */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Zones</label>
             <div className="flex flex-wrap gap-2">
               {session.zones.map((zone) => (
@@ -1000,7 +1000,7 @@ export const ViewSessionDetailsModal: React.FC<ViewSessionDetailsModalProps> = (
           </div>
 
           {/* Items Table */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">Count Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -1044,7 +1044,7 @@ export const ViewSessionDetailsModal: React.FC<ViewSessionDetailsModalProps> = (
           {session.notes && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Session Notes</label>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                 <p className="text-gray-700">{session.notes}</p>
               </div>
             </div>
@@ -1052,7 +1052,7 @@ export const ViewSessionDetailsModal: React.FC<ViewSessionDetailsModalProps> = (
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1101,10 +1101,10 @@ export const VarianceAnalysisModal: React.FC<VarianceAnalysisModalProps> = ({
   if (!isOpen || !analysis) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <TrendingUp className="w-6 h-6" />
             <div>
@@ -1118,25 +1118,25 @@ export const VarianceAnalysisModal: React.FC<VarianceAnalysisModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm text-red-600 font-medium">Total Variance</p>
               <p className="text-3xl font-bold text-red-700">{analysis.totalVariance}</p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-sm text-orange-600 font-medium">Variance %</p>
               <p className="text-3xl font-bold text-orange-700">{analysis.variancePercentage.toFixed(2)}%</p>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <p className="text-sm text-yellow-600 font-medium">Items with Variance</p>
               <p className="text-3xl font-bold text-yellow-700">{analysis.itemsWithVariance}</p>
             </div>
           </div>
 
           {/* High Variance Items */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">High Variance Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -1173,7 +1173,7 @@ export const VarianceAnalysisModal: React.FC<VarianceAnalysisModalProps> = ({
           </div>
 
           {/* Variance by Category */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <div>
               <h3 className="font-semibold text-gray-700 mb-3">Variance by Category</h3>
               <div className="space-y-2">
@@ -1208,7 +1208,7 @@ export const VarianceAnalysisModal: React.FC<VarianceAnalysisModalProps> = ({
           {/* Recommended Actions */}
           <div>
             <h3 className="font-semibold text-gray-700 mb-3">Recommended Actions</h3>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <ul className="space-y-2">
                 {analysis.recommendedActions.map((action, index) => (
                   <li key={index} className="flex items-start gap-2">
@@ -1222,7 +1222,7 @@ export const VarianceAnalysisModal: React.FC<VarianceAnalysisModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

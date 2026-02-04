@@ -94,8 +94,8 @@ export default function ResponseScoring() {
   const formatCurrency = (amount: number) => `₹${(amount / 100000).toFixed(2)}L`;
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <Award className="h-8 w-8 text-yellow-600" />
           Response Scoring & Evaluation
@@ -103,9 +103,9 @@ export default function ResponseScoring() {
         <p className="text-gray-600 mt-1">Weighted scoring matrix for vendor comparison</p>
       </div>
 
-      <div className="bg-white shadow-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Scoring Criteria & Weights</h3>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white shadow-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Scoring Criteria & Weights</h3>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {criteria.map((c, idx) => (
             <div key={idx} className="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border border-blue-200">
               <p className="text-sm text-gray-700 font-medium mb-2">{c.criterion}</p>
@@ -122,10 +122,10 @@ export default function ResponseScoring() {
         </div>
 
         <div className="p-6">
-          <div className="space-y-6">
+          <div className="space-y-3">
             {vendorScores.map((vendor) => (
               <div key={vendor.vendorId} className="p-5 border-2 border-gray-200 rounded-lg hover:shadow-lg transition-shadow">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-3">
                     {vendor.rank <= 3 && (
                       <div className={`p-2 rounded-full ${getRankColor(vendor.rank)}`}>
@@ -143,7 +143,7 @@ export default function ResponseScoring() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                   <div className="p-3 bg-green-50 rounded-lg">
                     <p className="text-xs text-green-600 font-medium">Price Quote</p>
                     <p className="text-lg font-bold text-green-900">{formatCurrency(vendor.priceQuote)}</p>

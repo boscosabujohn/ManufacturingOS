@@ -243,11 +243,11 @@ export default function BOMVerificationPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                    <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
                             <Link
                                 href="/production/bom"
                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -267,8 +267,8 @@ export default function BOMVerificationPage() {
                 </div>
 
                 {/* Statistics */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total BOMs</p>
@@ -277,7 +277,7 @@ export default function BOMVerificationPage() {
                             <FileText className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Verified</p>
@@ -286,7 +286,7 @@ export default function BOMVerificationPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">In Review</p>
@@ -295,7 +295,7 @@ export default function BOMVerificationPage() {
                             <AlertCircle className="w-8 h-8 text-yellow-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Failed</p>
@@ -308,7 +308,7 @@ export default function BOMVerificationPage() {
 
                 {/* Verifications List */}
                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                    <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
                         <h2 className="text-lg font-semibold text-gray-900">BOM Verification Status</h2>
                     </div>
                     <div className="divide-y divide-gray-200">
@@ -322,7 +322,7 @@ export default function BOMVerificationPage() {
                                             </h3>
                                         </div>
 
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3 text-sm">
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 text-sm">
                                             <div>
                                                 <p className="text-xs text-gray-500">Verification Date</p>
                                                 <p className="font-medium text-gray-900 flex items-center gap-1">
@@ -421,8 +421,8 @@ export default function BOMVerificationPage() {
                 {/* Details Modal */}
                 {showDetailsModal && selectedVerification && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div className="bg-white rounded-lg p-6 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-lg p-3 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+                            <div className="flex items-center justify-between mb-2">
                                 <h2 className="text-2xl font-bold text-gray-900">Verification Checklist</h2>
                                 <button
                                     onClick={() => setShowDetailsModal(false)}
@@ -432,7 +432,7 @@ export default function BOMVerificationPage() {
                                 </button>
                             </div>
 
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <h3 className="text-lg font-semibold text-gray-900">{selectedVerification.productName}</h3>
                                 <p className="text-sm text-gray-600">{selectedVerification.bomCode}</p>
                             </div>
@@ -441,7 +441,7 @@ export default function BOMVerificationPage() {
                                 {selectedVerification.checks.map((check) => (
                                     <div
                                         key={check.id}
-                                        className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg"
+                                        className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg"
                                     >
                                         {getCheckIcon(check.status)}
                                         <div className="flex-1">
@@ -479,7 +479,7 @@ export default function BOMVerificationPage() {
                 )}
 
                 {/* Info Box */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                         <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
                         <div>

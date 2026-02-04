@@ -124,9 +124,9 @@ const SafetyStockPage = () => {
     const investmentDiff = totalProjectedInvestment - totalCurrentInvestment;
 
     return (
-        <div className="w-full h-full p-6 space-y-6 bg-gray-50 min-h-screen">
+        <div className="w-full h-full p-3 space-y-3 bg-gray-50 min-h-screen">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <div>
                     <button
                         onClick={() => router.back()}
@@ -154,10 +154,10 @@ const SafetyStockPage = () => {
             </div>
 
             {/* Control Panel */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Service Level Slider */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 lg:col-span-2">
-                    <div className="flex items-center justify-between mb-4">
+                <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 lg:col-span-2">
+                    <div className="flex items-center justify-between mb-2">
                         <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                             <Sliders className="w-5 h-5 text-gray-500" />
                             Target Service Level
@@ -182,7 +182,7 @@ const SafetyStockPage = () => {
                         <span>99.9% (Critical)</span>
                     </div>
 
-                    <div className="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-100 flex gap-4 items-start">
+                    <div className="mt-6 bg-blue-50 p-3 rounded-lg border border-blue-100 flex gap-2 items-start">
                         <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
                             <p className="text-sm font-medium text-blue-900">What does this mean?</p>
@@ -196,7 +196,7 @@ const SafetyStockPage = () => {
                 </div>
 
                 {/* Impact Analysis Cards */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                     <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-200">
                         <p className="text-sm font-medium text-gray-500 mb-1">Total Safety Stock Investment</p>
                         <p className="text-2xl font-bold text-gray-900">${totalProjectedInvestment.toLocaleString()}</p>
@@ -227,12 +227,12 @@ const SafetyStockPage = () => {
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Item</th>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Input Factors</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Current SS</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-blue-600 uppercase bg-blue-50">Recommended SS</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Est. Annual Cost</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Action</th>
+                                <th className="px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Item</th>
+                                <th className="px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Input Factors</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Current SS</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-blue-600 uppercase bg-blue-50">Recommended SS</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Est. Annual Cost</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Action</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -243,7 +243,7 @@ const SafetyStockPage = () => {
 
                                 return (
                                     <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-6 py-4">
+                                        <td className="px-3 py-2">
                                             <div>
                                                 <p className="font-medium text-gray-900">{item.itemName}</p>
                                                 <p className="text-xs text-gray-500">{item.itemCode}</p>
@@ -252,7 +252,7 @@ const SafetyStockPage = () => {
                                                 </span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4">
+                                        <td className="px-3 py-2">
                                             <div className="text-xs text-gray-600 space-y-1">
                                                 <div className="flex justify-between w-40">
                                                     <span>Avg Demand:</span>
@@ -264,10 +264,10 @@ const SafetyStockPage = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-right">
+                                        <td className="px-3 py-2 text-right">
                                             <span className="text-sm font-medium text-gray-700">{item.currentSafetystock}</span>
                                         </td>
-                                        <td className="px-6 py-4 text-right bg-blue-50/50">
+                                        <td className="px-3 py-2 text-right bg-blue-50/50">
                                             <div className="flex flex-col items-end">
                                                 <span className="text-lg font-bold text-blue-700">{recommended}</span>
                                                 {diff !== 0 && (
@@ -278,10 +278,10 @@ const SafetyStockPage = () => {
                                                 )}
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-right">
+                                        <td className="px-3 py-2 text-right">
                                             <span className="text-sm text-gray-600">${holdingCost}/yr</span>
                                         </td>
-                                        <td className="px-6 py-4 text-right">
+                                        <td className="px-3 py-2 text-right">
                                             <button className="text-sm font-medium text-blue-600 hover:text-blue-800">
                                                 Detail
                                             </button>

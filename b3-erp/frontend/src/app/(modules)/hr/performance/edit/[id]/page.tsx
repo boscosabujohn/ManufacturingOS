@@ -249,11 +249,11 @@ export default function EditPerformancePage({ params }: { params: { id: string }
   const overallRating = calculateOverallRating();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -268,7 +268,7 @@ export default function EditPerformancePage({ params }: { params: { id: string }
         </div>
 
         {/* Overall Rating Card */}
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg mb-6">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-3 text-white shadow-lg mb-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 mb-1">Overall Rating (Auto-calculated)</p>
@@ -279,12 +279,12 @@ export default function EditPerformancePage({ params }: { params: { id: string }
         </div>
 
         {/* Employee Info Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <User className="w-5 h-5 text-blue-600" />
             Employee Information
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="text-sm text-gray-600">Employee ID</label>
               <p className="font-semibold text-gray-900">{review.employeeId}</p>
@@ -304,11 +304,11 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Review Dates */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Review Dates</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Review Dates</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Review Date *
@@ -353,12 +353,12 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Performance Ratings */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Star className="w-5 h-5 text-yellow-500" />
               Performance Ratings
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {[
                 { field: 'technicalSkills', label: 'Technical Skills', icon: TrendingUp },
                 { field: 'communication', label: 'Communication', icon: MessageSquare },
@@ -369,7 +369,7 @@ export default function EditPerformancePage({ params }: { params: { id: string }
                 { field: 'attendance', label: 'Attendance', icon: User },
                 { field: 'punctuality', label: 'Punctuality', icon: User },
               ].map((item) => (
-                <div key={item.field} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={item.field} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <item.icon className="w-5 h-5 text-blue-600" />
                     <span className="font-medium text-gray-900">{item.label}</span>
@@ -381,8 +381,8 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Strengths */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Strengths *</h3>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Strengths *</h3>
             <textarea
               value={formData.strengths}
               onChange={(e) => handleInputChange('strengths', e.target.value)}
@@ -401,8 +401,8 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Areas for Improvement */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Areas for Improvement *</h3>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Areas for Improvement *</h3>
             <textarea
               value={formData.areasForImprovement}
               onChange={(e) => handleInputChange('areasForImprovement', e.target.value)}
@@ -421,8 +421,8 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Key Achievements */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Award className="w-5 h-5 text-blue-600" />
               Key Achievements *
             </h3>
@@ -467,8 +467,8 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Goals */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Target className="w-5 h-5 text-purple-600" />
               Goals for Next Period *
             </h3>
@@ -513,8 +513,8 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Training Needs */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-indigo-600" />
               Training Needs
             </h3>
@@ -558,8 +558,8 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Comments */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-blue-600" />
               Overall Comments *
             </h3>
@@ -581,7 +581,7 @@ export default function EditPerformancePage({ params }: { params: { id: string }
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-end">
+          <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => router.back()}

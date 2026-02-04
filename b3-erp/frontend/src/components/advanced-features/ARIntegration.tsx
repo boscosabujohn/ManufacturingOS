@@ -378,7 +378,7 @@ export function ARViewer({
     return (
       <div className={`flex items-center justify-center p-8 bg-gray-100 dark:bg-gray-900 rounded-xl ${className}`}>
         <div className="text-center">
-          <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-16 h-16 mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
           <h3 className="text-lg font-semibold mb-2">AR Not Available</h3>
@@ -406,7 +406,7 @@ export function ARViewer({
         <div className="absolute inset-0 pointer-events-none">
           {/* Step indicator */}
           <div className="absolute top-4 left-4 right-4 pointer-events-auto">
-            <div className="bg-black/70 backdrop-blur-sm rounded-lg p-4 text-white">
+            <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3 text-white">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-300">
                   Step {currentStep + 1} of {activeGuide.steps.length}
@@ -529,7 +529,7 @@ export function ARViewer({
       {error && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/80">
           <div className="text-center text-white">
-            <svg className="w-12 h-12 mx-auto mb-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-12 h-12 mb-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <p>{error}</p>
@@ -556,12 +556,12 @@ export function MaintenanceGuideList({
   className = '',
 }: MaintenanceGuideListProps) {
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       {guides.map((guide) => (
         <button
           key={guide.id}
           onClick={() => onSelectGuide(guide)}
-          className="w-full text-left p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors"
+          className="w-full text-left p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 transition-colors"
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -586,7 +586,7 @@ export function MaintenanceGuideList({
               </span>
             </div>
           </div>
-          <div className="mt-3 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-3 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />

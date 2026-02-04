@@ -100,8 +100,8 @@ export default function ApiDocsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
-            <div className="mb-6 flex items-center gap-4">
+        <div className="min-h-screen bg-gray-50 px-3 py-2 w-full max-w-full">
+            <div className="mb-3 flex items-center gap-2">
                 <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
                     <ArrowLeft className="w-5 h-5 text-gray-600" />
                 </button>
@@ -121,10 +121,10 @@ export default function ApiDocsPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
                 {/* Sidebar Navigation */}
-                <div className="bg-white rounded-xl border border-gray-200 p-4 h-fit sticky top-6">
-                    <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 px-2">Resources</h2>
+                <div className="bg-white rounded-xl border border-gray-200 p-3 h-fit sticky top-6">
+                    <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2 px-2">Resources</h2>
                     <nav className="space-y-1">
                         {['Authentication', 'Orders', 'Inventory', 'Customers', 'Products', 'Webhooks'].map((item) => (
                             <button
@@ -141,7 +141,7 @@ export default function ApiDocsPage() {
                     </nav>
 
                     <div className="mt-8 pt-6 border-t border-gray-200">
-                        <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 px-2">Client Libraries</h2>
+                        <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-2 px-2">Client Libraries</h2>
                         <div className="space-y-2">
                             <button className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg">
                                 <Code className="w-4 h-4" /> Node.js SDK
@@ -154,14 +154,14 @@ export default function ApiDocsPage() {
                 </div>
 
                 {/* Main Content */}
-                <div className="lg:col-span-3 space-y-6">
+                <div className="lg:col-span-3 space-y-3">
                     {/* Authentication Info */}
-                    <div className="bg-white rounded-xl border border-gray-200 p-6">
-                        <h2 className="text-xl font-bold text-gray-900 mb-4">Authentication</h2>
-                        <p className="text-gray-600 mb-4">
+                    <div className="bg-white rounded-xl border border-gray-200 p-3">
+                        <h2 className="text-xl font-bold text-gray-900 mb-2">Authentication</h2>
+                        <p className="text-gray-600 mb-2">
                             All API requests must be authenticated using a Bearer Token in the Authorization header.
                         </p>
-                        <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm text-gray-300">
+                        <div className="bg-gray-900 rounded-lg p-3 font-mono text-sm text-gray-300">
                             <div className="flex justify-between items-start">
                                 <p>Authorization: Bearer &lt;your_access_token&gt;</p>
                                 <button
@@ -175,14 +175,14 @@ export default function ApiDocsPage() {
                     </div>
 
                     {/* Endpoints List */}
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {endpoints.map((endpoint) => (
                             <div key={endpoint.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
                                 <button
                                     onClick={() => toggleEndpoint(endpoint.id)}
-                                    className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                                    className="w-full flex items-center justify-between p-3 hover:bg-gray-50 transition-colors"
                                 >
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-2">
                                         <span className={`px-3 py-1 rounded-md text-xs font-bold border ${getMethodColor(endpoint.method)}`}>
                                             {endpoint.method}
                                         </span>
@@ -197,11 +197,11 @@ export default function ApiDocsPage() {
                                 </button>
 
                                 {expandedEndpoints.includes(endpoint.id) && (
-                                    <div className="border-t border-gray-200 p-6 bg-gray-50">
-                                        <p className="text-gray-600 mb-6">{endpoint.description}</p>
+                                    <div className="border-t border-gray-200 p-3 bg-gray-50">
+                                        <p className="text-gray-600 mb-3">{endpoint.description}</p>
 
                                         {endpoint.parameters && (
-                                            <div className="mb-6">
+                                            <div className="mb-3">
                                                 <h3 className="text-sm font-bold text-gray-900 mb-3">Parameters</h3>
                                                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                                     <table className="min-w-full divide-y divide-gray-200">
@@ -234,10 +234,10 @@ export default function ApiDocsPage() {
                                             </div>
                                         )}
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             <div>
                                                 <h3 className="text-sm font-bold text-gray-900 mb-3">Example Request</h3>
-                                                <div className="bg-gray-900 rounded-lg p-4 font-mono text-xs text-gray-300 overflow-x-auto">
+                                                <div className="bg-gray-900 rounded-lg p-3 font-mono text-xs text-gray-300 overflow-x-auto">
                                                     <p className="text-green-400">curl</p>
                                                     <p className="pl-4">-X {endpoint.method}</p>
                                                     <p className="pl-4">https://api.b3erp.com{endpoint.path}</p>
@@ -246,7 +246,7 @@ export default function ApiDocsPage() {
                                             </div>
                                             <div>
                                                 <h3 className="text-sm font-bold text-gray-900 mb-3">Example Response</h3>
-                                                <div className="bg-gray-900 rounded-lg p-4 font-mono text-xs text-green-300 overflow-x-auto">
+                                                <div className="bg-gray-900 rounded-lg p-3 font-mono text-xs text-green-300 overflow-x-auto">
                                                     <pre>{endpoint.response}</pre>
                                                 </div>
                                             </div>

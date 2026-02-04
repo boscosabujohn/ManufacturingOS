@@ -81,12 +81,12 @@ export default function CustomerSelfServicePortal() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-slate-50 py-8 px-3">
             {/* Hero Section */}
             <div className="w-full mb-10">
                 <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-2xl p-8 text-white shadow-xl relative overflow-hidden">
                     <div className="relative z-10 max-w-2xl">
-                        <h1 className="text-4xl font-extrabold mb-4 tracking-tight">How can we help you today?</h1>
+                        <h1 className="text-4xl font-extrabold mb-2 tracking-tight">How can we help you today?</h1>
                         <p className="text-blue-100 text-lg mb-8">Search our knowledge base for instant answers or manage your existing service requests.</p>
 
                         <div className="relative">
@@ -113,8 +113,8 @@ export default function CustomerSelfServicePortal() {
 
                     {/* Quick Actions Card */}
                     <section>
-                        <h2 className="text-xl font-bold text-gray-900 mb-4 px-1">Quick Actions</h2>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <h2 className="text-xl font-bold text-gray-900 mb-2 px-1">Quick Actions</h2>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                             {[
                                 { title: 'New Request', icon: Plus, color: 'bg-blue-600', hover: 'hover:bg-blue-700' },
                                 { title: 'Register Asset', icon: ShieldCheck, color: 'bg-green-600', hover: 'hover:bg-green-700' },
@@ -123,7 +123,7 @@ export default function CustomerSelfServicePortal() {
                             ].map((action, idx) => (
                                 <button
                                     key={idx}
-                                    className="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-100 transition-all group"
+                                    className="flex flex-col items-center justify-center p-3 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-100 transition-all group"
                                 >
                                     <div className={`w-12 h-12 ${action.color} rounded-xl flex items-center justify-center text-white mb-3 group-hover:scale-110 transition-transform`}>
                                         <action.icon className="h-6 w-6" />
@@ -144,7 +144,7 @@ export default function CustomerSelfServicePortal() {
                             {incidents.map((incident) => (
                                 <div key={incident.id} className="p-6 hover:bg-slate-50 transition-colors group cursor-pointer">
                                     <div className="flex items-start justify-between">
-                                        <div className="flex gap-4">
+                                        <div className="flex gap-2">
                                             <div className={`mt-1 p-2 rounded-lg ${incident.priority === 'High' ? 'bg-red-50' : 'bg-gray-50'}`}>
                                                 <AlertCircle className={`h-5 w-5 ${incident.priority === 'High' ? 'text-red-600' : 'text-gray-400'}`} />
                                             </div>
@@ -157,7 +157,7 @@ export default function CustomerSelfServicePortal() {
                                                 <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                                                     {incident.subject}
                                                 </h3>
-                                                <div className="flex items-center gap-4">
+                                                <div className="flex items-center gap-2">
                                                     <span className={`px-3 py-1 rounded-full text-xs font-bold ${getStatusColor(incident.status)}`}>
                                                         {incident.status}
                                                     </span>
@@ -173,20 +173,20 @@ export default function CustomerSelfServicePortal() {
                                 </div>
                             ))}
                         </div>
-                        <div className="bg-gray-50 p-4 text-center">
+                        <div className="bg-gray-50 p-3 text-center">
                             <button className="text-sm font-bold text-blue-600 hover:text-blue-700">Submit a new incident request</button>
                         </div>
                     </section>
 
                     {/* My Equipment / Assets */}
                     <section>
-                        <div className="flex items-center justify-between mb-4 px-1">
+                        <div className="flex items-center justify-between mb-2 px-1">
                             <h2 className="text-xl font-bold text-gray-900">My Registered Equipment</h2>
                             <Link href="#" className="text-blue-600 hover:underline text-sm font-medium">Add more</Link>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {assets.map((asset) => (
-                                <div key={asset.id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                                <div key={asset.id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-2 hover:shadow-md transition-shadow">
                                     <img
                                         src={asset.thumbnail}
                                         alt={asset.name}
@@ -219,11 +219,11 @@ export default function CustomerSelfServicePortal() {
                 <div className="space-y-8">
                     {/* Summary Stats */}
                     <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                             <CheckCircle className="h-5 w-5 text-green-600" />
                             Your Protection Status
                         </h3>
-                        <div className="space-y-6">
+                        <div className="space-y-3">
                             <div>
                                 <div className="flex justify-between text-sm font-bold mb-2">
                                     <span className="text-gray-600 uppercase tracking-widest text-[10px]">Warranty Coverage</span>
@@ -233,7 +233,7 @@ export default function CustomerSelfServicePortal() {
                                     <div className="bg-green-500 h-2 rounded-full w-[85%]"></div>
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-2">
                                 <div className="p-4 bg-slate-50 rounded-xl">
                                     <p className="text-xs font-bold text-gray-400 uppercase mb-1">Active AMCs</p>
                                     <p className="text-2xl font-black text-gray-800">03</p>
@@ -258,7 +258,7 @@ export default function CustomerSelfServicePortal() {
                                 Featured help
                             </h3>
                         </div>
-                        <div className="p-6 space-y-4">
+                        <div className="p-6 space-y-2">
                             {[
                                 'How to reset your Industrial Mixer',
                                 'Troubleshooting motor overheating',
@@ -282,8 +282,8 @@ export default function CustomerSelfServicePortal() {
                     <div className="bg-indigo-900 text-white p-8 rounded-2xl shadow-lg relative overflow-hidden group">
                         <div className="relative z-10">
                             <h3 className="text-xl font-bold mb-2">Need direct help?</h3>
-                            <p className="text-indigo-100 text-sm mb-6">Our experts are available 24/7 to resolve your issues quickly.</p>
-                            <button className="flex items-center gap-2 bg-white text-indigo-900 px-6 py-3 rounded-xl font-black shadow-lg hover:bg-indigo-50 transition-colors w-full justify-center">
+                            <p className="text-indigo-100 text-sm mb-3">Our experts are available 24/7 to resolve your issues quickly.</p>
+                            <button className="flex items-center gap-2 bg-white text-indigo-900 px-3 py-2 rounded-xl font-black shadow-lg hover:bg-indigo-50 transition-colors w-full justify-center">
                                 <MessageSquare className="h-5 w-5" />
                                 Live Chat with Support
                             </button>
@@ -295,12 +295,12 @@ export default function CustomerSelfServicePortal() {
 
             {/* Forms Section Placeholder */}
             <div className="w-full mt-20 mb-10 text-center">
-                <div className="inline-flex items-center gap-4 p-2 bg-blue-50 rounded-full px-4 mb-6">
+                <div className="inline-flex items-center gap-2 p-2 bg-blue-50 rounded-full px-4 mb-3">
                     <ShieldCheck className="h-4 w-4 text-blue-600" />
                     <span className="text-xs font-bold text-blue-700 tracking-wide uppercase">Unified Forms Center</span>
                 </div>
                 <h2 className="text-3xl font-extrabold text-gray-900 mb-12">Submit documents effortlessly</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {[
                         { title: 'Warranty Claim', desc: 'Report issues under coverage', icon: ShieldCheck },
                         { title: 'Service Report', desc: 'Submit post-service feedback', icon: FileText },
@@ -308,11 +308,11 @@ export default function CustomerSelfServicePortal() {
                         { title: 'Incident Report', desc: 'Formal safety/operation log', icon: AlertCircle },
                     ].map((form, idx) => (
                         <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition-all">
-                            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-800 mb-6">
+                            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-800 mb-3">
                                 <form.icon className="h-8 w-8" />
                             </div>
                             <h3 className="text-lg font-bold text-gray-900 mb-2">{form.title}</h3>
-                            <p className="text-sm text-gray-500 mb-6 leading-relaxed">{form.desc}</p>
+                            <p className="text-sm text-gray-500 mb-3 leading-relaxed">{form.desc}</p>
                             <button className="mt-auto text-sm font-bold text-blue-600 flex items-center gap-1 hover:gap-2 transition-all">
                                 Launch Form <ChevronRight className="h-4 w-4" />
                             </button>

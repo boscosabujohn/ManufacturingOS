@@ -15,14 +15,14 @@ export function ViewCashPositionModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Cash Position Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-700">Total Cash Position</p>
@@ -73,22 +73,22 @@ export function ViewCashPositionModal({ isOpen, onClose }: any) {
             </table>
           </div>
 
-          <div className="mt-6 grid grid-cols-3 gap-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="mt-6 grid grid-cols-3 gap-2">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm font-medium text-green-700">Bank Accounts</p>
               <p className="text-2xl font-bold text-green-900 mt-1">₹{cashAccounts.filter(a => a.type !== 'Cash').reduce((sum, acc) => sum + acc.balance, 0).toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <p className="text-sm font-medium text-yellow-700">Cash on Hand</p>
               <p className="text-2xl font-bold text-yellow-900 mt-1">₹{cashAccounts.filter(a => a.type === 'Cash').reduce((sum, acc) => sum + acc.balance, 0).toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm font-medium text-purple-700">Total Accounts</p>
               <p className="text-2xl font-bold text-purple-900 mt-1">{cashAccounts.length}</p>
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             <Download className="h-4 w-4" />
@@ -115,23 +115,23 @@ export function ViewReceivablesModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Accounts Receivable Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm font-medium text-green-700">Total Receivables</p>
               <p className="text-3xl font-bold text-green-900 mt-2">₹{totalReceivables.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-700">Current (Not Due)</p>
               <p className="text-3xl font-bold text-blue-900 mt-2">₹{receivablesData.filter(r => r.status === 'Current').reduce((sum, r) => sum + r.amount, 0).toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-700">Overdue</p>
               <p className="text-3xl font-bold text-red-900 mt-2">₹{overdueAmount.toLocaleString('en-IN')}</p>
               <p className="text-xs text-red-600 mt-1">{((overdueAmount / totalReceivables) * 100).toFixed(1)}% of total</p>
@@ -181,7 +181,7 @@ export function ViewReceivablesModal({ isOpen, onClose }: any) {
             </table>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t sticky bottom-0">
           <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700">Send Reminders</button>
           <div className="flex space-x-3">
             <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
@@ -211,27 +211,27 @@ export function ViewPayablesModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Accounts Payable Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-sm font-medium text-orange-700">Total Payables</p>
               <p className="text-2xl font-bold text-orange-900 mt-2">₹{totalPayables.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-700">Due Soon (7 days)</p>
               <p className="text-2xl font-bold text-red-900 mt-2">₹{payablesData.filter(p => p.status === 'Due Soon').reduce((sum, p) => sum + p.amount, 0).toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm font-medium text-green-700">Discounts Available</p>
               <p className="text-2xl font-bold text-green-900 mt-2">₹{totalDiscounts.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-700">Total Bills</p>
               <p className="text-2xl font-bold text-blue-900 mt-2">{payablesData.length}</p>
             </div>
@@ -278,7 +278,7 @@ export function ViewPayablesModal({ isOpen, onClose }: any) {
             </table>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t sticky bottom-0">
           <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Process Batch Payment</button>
           <div className="flex space-x-3">
             <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
@@ -321,14 +321,14 @@ export function ViewProfitModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Profit & Loss Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-6">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-700">Net Profit (Current Month)</p>
@@ -341,9 +341,9 @@ export function ViewProfitModal({ isOpen, onClose }: any) {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Revenue Breakdown */}
-            <div className="border rounded-lg p-4">
+            <div className="border rounded-lg p-3">
               <h3 className="font-semibold text-lg text-gray-900 mb-3">Revenue Breakdown</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
@@ -366,7 +366,7 @@ export function ViewProfitModal({ isOpen, onClose }: any) {
             </div>
 
             {/* Expense Breakdown */}
-            <div className="border rounded-lg p-4">
+            <div className="border rounded-lg p-3">
               <h3 className="font-semibold text-lg text-gray-900 mb-3">Expense Breakdown</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
@@ -393,20 +393,20 @@ export function ViewProfitModal({ isOpen, onClose }: any) {
             </div>
 
             {/* Profitability Metrics */}
-            <div className="border rounded-lg p-4">
+            <div className="border rounded-lg p-3">
               <h3 className="font-semibold text-lg text-gray-900 mb-3">Profitability Metrics</h3>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <p className="text-sm font-medium text-green-700">Gross Profit</p>
                   <p className="text-2xl font-bold text-green-900 mt-1">₹{profitData.profit.gross.toLocaleString('en-IN')}</p>
                   <p className="text-xs text-green-600 mt-1">Margin: {profitData.profit.grossMargin}%</p>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm font-medium text-blue-700">Operating Profit</p>
                   <p className="text-2xl font-bold text-blue-900 mt-1">₹{profitData.profit.operating.toLocaleString('en-IN')}</p>
                   <p className="text-xs text-blue-600 mt-1">Margin: {profitData.profit.operatingMargin}%</p>
                 </div>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                   <p className="text-sm font-medium text-purple-700">Net Profit</p>
                   <p className="text-2xl font-bold text-purple-900 mt-1">₹{profitData.profit.net.toLocaleString('en-IN')}</p>
                   <p className="text-xs text-purple-600 mt-1">Margin: {profitData.profit.netMargin}%</p>
@@ -415,7 +415,7 @@ export function ViewProfitModal({ isOpen, onClose }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
             <FileText className="h-4 w-4" />
@@ -446,14 +446,14 @@ export function SearchTransactionsModal({ isOpen, onClose, onSearch }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Search Transactions</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Keyword Search</label>
               <input
@@ -515,7 +515,7 @@ export function SearchTransactionsModal({ isOpen, onClose, onSearch }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={() => setSearchCriteria({ keyword: '', type: 'all', dateFrom: '', dateTo: '', minAmount: '', maxAmount: '', status: 'all', account: '' })} className="px-4 py-2 text-indigo-600 hover:text-indigo-700 font-medium">
             Clear All
           </button>
@@ -547,16 +547,16 @@ export function RecentActivitiesModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Recent Activities</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
           <div className="space-y-3">
             {activities.map((activity) => (
-              <div key={activity.id} className="flex items-start gap-4 p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors border border-gray-200">
+              <div key={activity.id} className="flex items-start gap-2 p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors border border-gray-200">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                   activity.type === 'journal' ? 'bg-blue-100 text-blue-700' :
                   activity.type === 'payment' ? 'bg-green-100 text-green-700' :
@@ -586,7 +586,7 @@ export function RecentActivitiesModal({ isOpen, onClose }: any) {
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">Close</button>
         </div>
       </div>

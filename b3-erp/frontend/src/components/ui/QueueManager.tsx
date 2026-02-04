@@ -83,27 +83,27 @@ export const QueueManager: React.FC<QueueManagerProps> = ({
   }
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       {/* Stats */}
       {showStats && stats && (
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <p className="text-sm text-gray-600">Total in Queue</p>
             <p className="text-2xl font-bold text-gray-900 mt-1">{stats.total}</p>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <p className="text-sm text-gray-600">Waiting</p>
             <p className="text-2xl font-bold text-orange-600 mt-1">{stats.waiting}</p>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <p className="text-sm text-gray-600">Assigned</p>
             <p className="text-2xl font-bold text-blue-600 mt-1">{stats.assigned}</p>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <p className="text-sm text-gray-600">Avg Wait Time</p>
             <p className="text-2xl font-bold text-gray-900 mt-1">{formatWaitTime(stats.avgWaitTime)}</p>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <p className="text-sm text-gray-600">Longest Wait</p>
             <p className="text-2xl font-bold text-red-600 mt-1">{formatWaitTime(stats.longestWait)}</p>
           </div>
@@ -134,7 +134,7 @@ export const QueueManager: React.FC<QueueManagerProps> = ({
                 onClick={() => onItemClick?.(item)}
                 className="p-4 hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2">
                   {/* Wait Time Indicator */}
                   <div className="flex flex-col items-center justify-center min-w-[60px]">
                     <Clock className={`h-5 w-5 mb-1 ${item.waitTime > 30 ? 'text-red-600' : item.waitTime > 15 ? 'text-orange-600' : 'text-gray-400'}`} />
@@ -163,7 +163,7 @@ export const QueueManager: React.FC<QueueManagerProps> = ({
                     <p className="text-sm text-gray-700 mb-3 line-clamp-2">{item.preview}</p>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <span className="capitalize">{item.channel}</span>
                         <span>{item.createdAt}</span>
                       </div>

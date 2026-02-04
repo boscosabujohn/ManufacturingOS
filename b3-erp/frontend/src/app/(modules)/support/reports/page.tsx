@@ -298,7 +298,7 @@ export default function SupportReports() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -312,7 +312,7 @@ export default function SupportReports() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -323,7 +323,7 @@ export default function SupportReports() {
             gray: 'bg-gray-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -343,7 +343,7 @@ export default function SupportReports() {
           <nav className="flex">
             <button
               onClick={() => setActiveTab('templates')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'templates'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -356,7 +356,7 @@ export default function SupportReports() {
             </button>
             <button
               onClick={() => setActiveTab('scheduled')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'scheduled'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -369,7 +369,7 @@ export default function SupportReports() {
             </button>
             <button
               onClick={() => setActiveTab('custom')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'custom'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -385,7 +385,7 @@ export default function SupportReports() {
 
         {/* Report Templates Tab */}
         {activeTab === 'templates' && (
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {/* Category Filter */}
             <div className="flex flex-wrap gap-2">
               {categories.map(category => (
@@ -404,9 +404,9 @@ export default function SupportReports() {
             </div>
 
             {/* Reports Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               {filteredReports.map((report) => (
-                <div key={report.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200 hover:shadow-md transition-shadow">
+                <div key={report.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -427,7 +427,7 @@ export default function SupportReports() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b border-gray-300">
+                  <div className="grid grid-cols-2 gap-3 mb-2 pb-4 border-b border-gray-300">
                     <div>
                       <div className="text-xs text-gray-500">Last Generated</div>
                       <div className="text-sm font-medium text-gray-900">{report.lastGenerated}</div>
@@ -482,10 +482,10 @@ export default function SupportReports() {
 
         {/* Scheduled Reports Tab */}
         {activeTab === 'scheduled' && (
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {scheduledReports.map((scheduled) => (
-              <div key={scheduled.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <div className="flex items-start justify-between mb-4">
+              <div key={scheduled.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-lg font-semibold text-gray-900">{scheduled.reportName}</h3>
@@ -509,7 +509,7 @@ export default function SupportReports() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <div className="text-xs text-gray-500 mb-1">Next Run</div>
                     <div className="text-sm font-medium text-blue-600">{scheduled.nextRun}</div>
@@ -535,11 +535,11 @@ export default function SupportReports() {
           <div className="p-6">
             <div className="w-full">
               <div className="text-center py-12">
-                <Settings className="h-16 w-16 text-gray-400 mb-4" />
+                <Settings className="h-16 w-16 text-gray-400 mb-2" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Report Builder</h3>
-                <p className="text-gray-600 mb-6">Create custom reports with your own metrics, filters, and visualizations</p>
+                <p className="text-gray-600 mb-3">Create custom reports with your own metrics, filters, and visualizations</p>
                 
-                <div className="bg-gray-50 rounded-lg p-6 text-left space-y-4">
+                <div className="bg-gray-50 rounded-lg p-3 text-left space-y-2">
                   <h4 className="font-semibold text-gray-900">Build Your Report:</h4>
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-center gap-2">
@@ -565,7 +565,7 @@ export default function SupportReports() {
                   </ul>
                 </div>
 
-                <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+                <button className="mt-6 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
                   <Plus className="h-5 w-5" />
                   Start Building
                 </button>
@@ -576,23 +576,23 @@ export default function SupportReports() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
           <BarChart3 className="h-5 w-5" />
           Quick Report Actions
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <button className="bg-white border border-blue-200 rounded-lg p-4 text-left hover:bg-blue-50 transition-colors">
+          <button className="bg-white border border-blue-200 rounded-lg p-3 text-left hover:bg-blue-50 transition-colors">
             <Download className="h-5 w-5 text-blue-600 mb-2" />
             <div className="font-semibold text-blue-900">Export All Data</div>
             <div className="text-xs text-blue-700">Download complete dataset</div>
           </button>
-          <button className="bg-white border border-blue-200 rounded-lg p-4 text-left hover:bg-blue-50 transition-colors">
+          <button className="bg-white border border-blue-200 rounded-lg p-3 text-left hover:bg-blue-50 transition-colors">
             <Calendar className="h-5 w-5 text-blue-600 mb-2" />
             <div className="font-semibold text-blue-900">Schedule Report</div>
             <div className="text-xs text-blue-700">Set up automated delivery</div>
           </button>
-          <button className="bg-white border border-blue-200 rounded-lg p-4 text-left hover:bg-blue-50 transition-colors">
+          <button className="bg-white border border-blue-200 rounded-lg p-3 text-left hover:bg-blue-50 transition-colors">
             <FileText className="h-5 w-5 text-blue-600 mb-2" />
             <div className="font-semibold text-blue-900">Save Template</div>
             <div className="text-xs text-blue-700">Create reusable report</div>

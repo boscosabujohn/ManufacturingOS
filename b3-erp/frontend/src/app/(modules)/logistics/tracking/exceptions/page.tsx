@@ -186,9 +186,9 @@ export default function TrackingExceptionsPage() {
     });
 
     return (
-        <div className="p-6 space-y-6 text-sm font-medium">
+        <div className="p-6 space-y-3 text-sm font-medium">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                         <AlertTriangle className="h-8 w-8 text-orange-600" />
@@ -209,8 +209,8 @@ export default function TrackingExceptionsPage() {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+                <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Exceptions</p>
@@ -222,7 +222,7 @@ export default function TrackingExceptionsPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
+                <div className="bg-white p-3 rounded-xl border border-red-100 shadow-sm">
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="text-[10px] font-black text-red-500 uppercase tracking-widest">Critical</p>
@@ -234,7 +234,7 @@ export default function TrackingExceptionsPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-yellow-100 shadow-sm">
+                <div className="bg-white p-3 rounded-xl border border-yellow-100 shadow-sm">
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Warning</p>
@@ -246,7 +246,7 @@ export default function TrackingExceptionsPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+                <div className="bg-white p-3 rounded-xl border border-green-100 shadow-sm">
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="text-[10px] font-black text-green-600 uppercase tracking-widest">Resolved</p>
@@ -258,7 +258,7 @@ export default function TrackingExceptionsPage() {
                     </div>
                 </div>
 
-                <div className="bg-gray-900 p-4 rounded-xl text-white shadow-xl">
+                <div className="bg-gray-900 p-3 rounded-xl text-white shadow-xl">
                     <div className="flex justify-between items-start">
                         <div>
                             <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Avg Resolution</p>
@@ -272,8 +272,8 @@ export default function TrackingExceptionsPage() {
             </div>
 
             {/* Filters & Search */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-3">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-2 flex-wrap">
                         {['all', 'critical', 'warning', 'open', 'resolved'].map((f) => (
                             <button
@@ -310,13 +310,13 @@ export default function TrackingExceptionsPage() {
                             className="p-4 hover:bg-gray-50 transition-colors cursor-pointer group"
                             onClick={() => setSelectedException(exception)}
                         >
-                            <div className="flex items-start gap-4">
+                            <div className="flex items-start gap-2">
                                 {/* Status Indicator */}
                                 <div className={`w-2 h-2 rounded-full mt-2 ${getStatusColor(exception.status)}`}></div>
 
                                 {/* Main Content */}
                                 <div className="flex-1 min-w-0">
-                                    <div className="flex items-start justify-between gap-4">
+                                    <div className="flex items-start justify-between gap-2">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
                                                 <span className="font-black text-gray-900 group-hover:text-orange-600 transition-colors">
@@ -333,7 +333,7 @@ export default function TrackingExceptionsPage() {
                                                 </span>
                                             </div>
                                             <p className="text-[11px] text-gray-700 font-bold">{exception.description}</p>
-                                            <div className="flex items-center gap-4 mt-2 text-[10px] text-gray-500">
+                                            <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-500">
                                                 <span className="flex items-center gap-1">
                                                     <Package className="w-3 h-3" /> {exception.shipmentId}
                                                 </span>
@@ -370,8 +370,8 @@ export default function TrackingExceptionsPage() {
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-red-50 p-4 rounded-xl border border-red-100">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-red-50 p-3 rounded-xl border border-red-100">
                     <h4 className="text-xs font-black text-red-800 uppercase tracking-widest mb-2 flex items-center gap-2">
                         <AlertTriangle className="w-4 h-4" /> Critical Actions Required
                     </h4>
@@ -383,7 +383,7 @@ export default function TrackingExceptionsPage() {
                     </button>
                 </div>
 
-                <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
                     <h4 className="text-xs font-black text-blue-800 uppercase tracking-widest mb-2 flex items-center gap-2">
                         <Clock className="w-4 h-4" /> Pending Resolution
                     </h4>
@@ -395,7 +395,7 @@ export default function TrackingExceptionsPage() {
                     </button>
                 </div>
 
-                <div className="bg-green-50 p-4 rounded-xl border border-green-100">
+                <div className="bg-green-50 p-3 rounded-xl border border-green-100">
                     <h4 className="text-xs font-black text-green-800 uppercase tracking-widest mb-2 flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4" /> Recently Resolved
                     </h4>

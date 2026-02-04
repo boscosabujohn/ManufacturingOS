@@ -133,33 +133,33 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Vehicle Assignments</h1>
         <p className="text-sm text-gray-600 mt-1">Track vehicle assignments to employees</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Total Assignments</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <p className="text-sm font-medium text-green-600">Active</p>
           <p className="text-2xl font-bold text-green-900 mt-1">{stats.active}</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Returned</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{stats.returned}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <p className="text-sm font-medium text-red-600">Overdue</p>
           <p className="text-2xl font-bold text-red-900 mt-1">{stats.overdue}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
             <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -186,13 +186,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredAssignments.map(assignment => {
           const distanceTraveled = assignment.odometerReadingEnd ? assignment.odometerReadingEnd - assignment.odometerReadingStart : null;
 
           return (
-            <div key={assignment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={assignment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="h-12 w-12 bg-blue-50 rounded-lg flex items-center justify-center">
@@ -211,7 +211,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 py-4 border-y border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2 py-4 border-y border-gray-200">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 bg-green-50 rounded-lg flex items-center justify-center">
                     <UserCheck className="h-5 w-5 text-green-600" />
@@ -240,12 +240,12 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3 mb-2">
                 <p className="text-xs text-gray-500 uppercase font-medium mb-2">Purpose</p>
                 <p className="text-sm text-gray-700">{assignment.purpose}</p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                 <div className="bg-blue-50 rounded-lg p-3">
                   <p className="text-xs text-blue-600 uppercase font-medium mb-1">Start Reading</p>
                   <p className="text-lg font-bold text-blue-700">{assignment.odometerReadingStart.toLocaleString('en-IN')} km</p>
@@ -272,7 +272,7 @@ export default function Page() {
               </div>
 
               {assignment.remarks && (
-                <div className="bg-yellow-50 rounded-lg p-3 mb-4 border border-yellow-200">
+                <div className="bg-yellow-50 rounded-lg p-3 mb-2 border border-yellow-200">
                   <p className="text-xs text-yellow-700 uppercase font-medium mb-1">Remarks</p>
                   <p className="text-sm text-yellow-800">{assignment.remarks}</p>
                 </div>

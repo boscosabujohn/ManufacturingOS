@@ -54,12 +54,12 @@ function SatisfactionRegionContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Region</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Region</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -68,17 +68,17 @@ function SatisfactionRegionContent() {
                                     key={item.id}
                                     onClick={() => router.push(`/after-sales/feedback/${item.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{item.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.customer}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.region}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.category}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{item.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{item.customer}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{item.region}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{item.category}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-center">
                                         <div className="flex items-center justify-center gap-1">
                                             <span className="font-semibold">{item.rating}</span>
                                             <Star className={`h-4 w-4 ${item.rating >= 4 ? 'fill-green-500 text-green-500' : item.rating >= 3 ? 'fill-yellow-500 text-yellow-500' : 'fill-red-500 text-red-500'}`} />
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.date}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{item.date}</td>
                                 </ClickableTableRow>
                             ))}
                         </tbody>

@@ -83,14 +83,14 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Travel History</h1>
         <p className="text-sm text-gray-600 mt-1">View past travel records and expenses</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Trips</p>
@@ -100,7 +100,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Domestic</p>
@@ -110,7 +110,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">International</p>
@@ -120,7 +120,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Total Spent</p>
@@ -130,7 +130,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Avg Cost</p>
@@ -141,7 +141,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex justify-between items-center">
           <select
             value={selectedYear}
@@ -163,24 +163,24 @@ export default function Page() {
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Trip Details</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Destination</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Financial</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Trip Details</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Destination</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Financial</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {mockHistory.map(trip => (
               <tr key={trip.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div>
                     <div className="font-semibold text-gray-900">{trip.tripNumber}</div>
                     <div className="text-sm text-gray-600">{trip.employeeName}</div>
                     <div className="text-xs text-gray-500">{trip.purpose}</div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-gray-400" />
                     <div>
@@ -193,19 +193,19 @@ export default function Page() {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="text-sm text-gray-900">{trip.startDate}</div>
                   <div className="text-sm text-gray-600">to {trip.endDate}</div>
                   <div className="text-xs text-gray-500">{trip.duration} days</div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="text-sm">
                     <div className="font-semibold text-gray-900">₹{trip.totalCost.toLocaleString('en-IN')}</div>
                     <div className="text-xs text-gray-600">Advance: ₹{trip.advanceTaken.toLocaleString('en-IN')}</div>
                     <div className="text-xs text-gray-600">Claimed: ₹{trip.expensesClaimed.toLocaleString('en-IN')}</div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
                     trip.status === 'completed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
                   }`}>

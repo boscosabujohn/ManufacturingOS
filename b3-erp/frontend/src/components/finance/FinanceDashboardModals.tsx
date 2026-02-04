@@ -32,14 +32,14 @@ export function QuickJournalEntryModal({ isOpen, onClose, onCreate }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Quick Journal Entry</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-3 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date *</label>
               <input type="date" value={formData.date} onChange={(e) => setFormData({...formData, date: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -54,7 +54,7 @@ export function QuickJournalEntryModal({ isOpen, onClose, onCreate }: any) {
             </div>
           </div>
 
-          <div className="border rounded-lg overflow-hidden mb-4">
+          <div className="border rounded-lg overflow-hidden mb-2">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -117,7 +117,7 @@ export function QuickJournalEntryModal({ isOpen, onClose, onCreate }: any) {
             </div>
           )}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button onClick={() => { console.log('Create Journal Entry:', formData); onCreate(formData); }} disabled={!isBalanced} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">Post Entry</button>
         </div>
@@ -142,14 +142,14 @@ export function QuickPaymentModal({ isOpen, onClose, onCreate }: any) {
   const isValid = formData.payee && formData.amount && formData.bankAccount;
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Quick Payment</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Payment Type *</label>
               <select value={formData.paymentType} onChange={(e) => setFormData({...formData, paymentType: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500">
@@ -199,7 +199,7 @@ export function QuickPaymentModal({ isOpen, onClose, onCreate }: any) {
           </div>
 
           {formData.amount && (
-            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium text-gray-700">Total {formData.paymentType === 'payment-out' ? 'Payment' : 'Receipt'}:</span>
                 <span className="text-2xl font-bold text-green-700">₹{parseFloat(formData.amount || '0').toFixed(2)}</span>
@@ -207,7 +207,7 @@ export function QuickPaymentModal({ isOpen, onClose, onCreate }: any) {
             </div>
           )}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button onClick={() => { console.log('Create Payment:', formData); onCreate(formData); }} disabled={!isValid} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50">Record Payment</button>
         </div>
@@ -231,14 +231,14 @@ export function QuickReceiptModal({ isOpen, onClose, onCreate }: any) {
   const isValid = formData.customer && formData.amount && formData.bankAccount;
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Quick Receipt</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Customer *</label>
               <input type="text" value={formData.customer} onChange={(e) => setFormData({...formData, customer: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500" placeholder="Customer name" />
@@ -286,7 +286,7 @@ export function QuickReceiptModal({ isOpen, onClose, onCreate }: any) {
           </div>
 
           {formData.amount && (
-            <div className="mt-4 p-4 bg-teal-50 border border-teal-200 rounded-lg">
+            <div className="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-lg">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium text-gray-700">Total Receipt Amount:</span>
                 <span className="text-2xl font-bold text-teal-700">₹{parseFloat(formData.amount || '0').toFixed(2)}</span>
@@ -294,7 +294,7 @@ export function QuickReceiptModal({ isOpen, onClose, onCreate }: any) {
             </div>
           )}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button onClick={() => { console.log('Create Receipt:', formData); onCreate(formData); }} disabled={!isValid} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 disabled:opacity-50">Record Receipt</button>
         </div>
@@ -316,14 +316,14 @@ export function FilterDashboardModal({ isOpen, onClose, onApply }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Filter Dashboard</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Time Period</label>
               <select value={filters.period} onChange={(e) => setFilters({...filters, period: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-violet-500">
@@ -383,7 +383,7 @@ export function FilterDashboardModal({ isOpen, onClose, onApply }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={() => setFilters({ period: 'current-month', accountType: 'all', status: 'all', amountRange: 'all', customStartDate: '', customEndDate: '' })} className="px-4 py-2 text-violet-600 hover:text-violet-700 font-medium">Reset Filters</button>
           <div className="flex space-x-3">
             <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
@@ -414,14 +414,14 @@ export function CustomizeWidgetsModal({ isOpen, onClose, onSave }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Customize Dashboard Widgets</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-4">Select which widgets to display on your finance dashboard</p>
+          <p className="text-sm text-gray-600 mb-2">Select which widgets to display on your finance dashboard</p>
           <div className="grid grid-cols-2 gap-3">
             <label className="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
               <input type="checkbox" checked={widgets.cashPosition} onChange={(e) => setWidgets({...widgets, cashPosition: e.target.checked})} className="mr-3" />
@@ -473,7 +473,7 @@ export function CustomizeWidgetsModal({ isOpen, onClose, onSave }: any) {
             </label>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button onClick={() => { console.log('Save Widget Layout:', widgets); onSave(widgets); }} className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Save Layout</button>
         </div>
@@ -500,13 +500,13 @@ export function ExportDashboardModal({ isOpen, onClose, onExport }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Export Dashboard</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Export Format</label>
             <select value={settings.format} onChange={(e) => setSettings({...settings, format: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
@@ -543,7 +543,7 @@ export function ExportDashboardModal({ isOpen, onClose, onExport }: any) {
             </select>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button onClick={() => { console.log('Export Dashboard:', settings); onExport(settings); }} className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
             <Download className="h-4 w-4" />
@@ -568,9 +568,9 @@ export function ViewAlertsModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Alerts & Notifications</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
@@ -604,7 +604,7 @@ export function ViewAlertsModal({ isOpen, onClose }: any) {
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button className="px-4 py-2 text-red-600 hover:text-red-700 font-medium">Mark All as Read</button>
           <button onClick={onClose} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Close</button>
         </div>
@@ -628,14 +628,14 @@ export function RefreshDataModal({ isOpen, onClose, onRefresh }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Refresh Dashboard Data</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200" disabled={refreshing}><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="text-sm text-gray-600 mb-2">
             This will fetch the latest financial data from all sources including:
           </p>
           <ul className="space-y-2 text-sm text-gray-700">
@@ -665,7 +665,7 @@ export function RefreshDataModal({ isOpen, onClose, onRefresh }: any) {
             </div>
           )}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} disabled={refreshing} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 disabled:opacity-50">Cancel</button>
           <button onClick={handleRefresh} disabled={refreshing} className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50">
             {refreshing ? 'Refreshing...' : 'Refresh Now'}
@@ -689,14 +689,14 @@ export function PeriodSelectorModal({ isOpen, onClose, onSelect }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Select Accounting Period</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Period Type</label>
               <select value={period.type} onChange={(e) => setPeriod({...period, type: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500">
@@ -717,7 +717,7 @@ export function PeriodSelectorModal({ isOpen, onClose, onSelect }: any) {
           </div>
 
           {period.type === 'month' && (
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Select Month</label>
               <select value={period.month} onChange={(e) => setPeriod({...period, month: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500">
                 <option>January</option>
@@ -737,7 +737,7 @@ export function PeriodSelectorModal({ isOpen, onClose, onSelect }: any) {
           )}
 
           {period.type === 'quarter' && (
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Select Quarter</label>
               <select value={period.quarter} onChange={(e) => setPeriod({...period, quarter: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500">
                 <option value="Q1">Q1 (Apr-Jun)</option>
@@ -749,7 +749,7 @@ export function PeriodSelectorModal({ isOpen, onClose, onSelect }: any) {
           )}
 
           {period.type === 'custom' && (
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
                 <input type="date" value={period.customStart} onChange={(e) => setPeriod({...period, customStart: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-amber-500" />
@@ -761,7 +761,7 @@ export function PeriodSelectorModal({ isOpen, onClose, onSelect }: any) {
             </div>
           )}
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
             <p className="text-sm font-medium text-gray-700 mb-1">Selected Period:</p>
             <p className="text-lg font-bold text-amber-700">
               {period.type === 'custom'
@@ -775,7 +775,7 @@ export function PeriodSelectorModal({ isOpen, onClose, onSelect }: any) {
             </p>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button onClick={() => { console.log('Select Period:', period); onSelect(period); }} className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700">
             <Calendar className="h-4 w-4" />
@@ -809,14 +809,14 @@ export function ViewTransactionDetailsModal({ isOpen, onClose, transaction }: an
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex justify-between items-center sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Transaction Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-3 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-600">Transaction ID</label>
               <p className="text-lg font-semibold text-gray-900">{mockTransaction.id}</p>
@@ -845,12 +845,12 @@ export function ViewTransactionDetailsModal({ isOpen, onClose, transaction }: an
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-600 mb-2">Description</label>
             <p className="text-gray-900">{mockTransaction.description}</p>
           </div>
 
-          <div className="border rounded-lg overflow-hidden mb-6">
+          <div className="border rounded-lg overflow-hidden mb-3">
             <table className="w-full">
               <thead className="bg-slate-100">
                 <tr>
@@ -887,7 +887,7 @@ export function ViewTransactionDetailsModal({ isOpen, onClose, transaction }: an
             <span>{mockTransaction.approvedBy}</span>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Print</button>
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">

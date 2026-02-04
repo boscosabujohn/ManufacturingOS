@@ -52,9 +52,9 @@ export default function SafetyTrainingPage() {
   const [activeTab, setActiveTab] = useState('Compliance');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <GraduationCap className="h-8 w-8 text-orange-600" />
@@ -69,8 +69,8 @@ export default function SafetyTrainingPage() {
       </div>
 
       {/* KPI Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">Overall Compliance</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">94%</p>
@@ -84,7 +84,7 @@ export default function SafetyTrainingPage() {
             </ResponsiveContainer>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">Expired Certifications</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">12</p>
@@ -94,7 +94,7 @@ export default function SafetyTrainingPage() {
             <AlertTriangle className="w-6 h-6 text-red-600" />
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">Upcoming Drills</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">{upcomingDrills.length}</p>
@@ -106,10 +106,10 @@ export default function SafetyTrainingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Compliance Matrix */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Training Compliance by Category</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Training Compliance by Category</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={complianceData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
@@ -125,11 +125,11 @@ export default function SafetyTrainingPage() {
         </div>
 
         {/* Drill Schedule */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Upcoming Emergency Drills</h3>
-          <div className="space-y-4">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Upcoming Emergency Drills</h3>
+          <div className="space-y-2">
             {upcomingDrills.map((drill) => (
-              <div key={drill.id} className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <div key={drill.id} className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                 <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold flex-col">
                   <span className="text-xs uppercase">{new Date(drill.date).toLocaleString('default', { month: 'short' })}</span>
                   <span className="text-lg leading-none">{new Date(drill.date).getDate()}</span>
@@ -156,7 +156,7 @@ export default function SafetyTrainingPage() {
 
       {/* Certification Records */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h3 className="text-lg font-bold text-gray-900">Recent Certification Status</h3>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -171,27 +171,27 @@ export default function SafetyTrainingPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Employee</th>
-                <th className="px-6 py-4">Course / Certification</th>
-                <th className="px-6 py-4">Completion Date</th>
-                <th className="px-6 py-4">Expiry Date</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-3 py-2">Employee</th>
+                <th className="px-3 py-2">Course / Certification</th>
+                <th className="px-3 py-2">Completion Date</th>
+                <th className="px-3 py-2">Expiry Date</th>
+                <th className="px-3 py-2">Status</th>
+                <th className="px-3 py-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {trainingRecords.map((record) => (
                 <tr key={record.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                  <td className="px-3 py-2 font-medium text-gray-900 flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">
                       {record.employee.split(' ').map(n => n[0]).join('')}
                     </div>
                     {record.employee}
                   </td>
-                  <td className="px-6 py-4">{record.course}</td>
-                  <td className="px-6 py-4">{record.date}</td>
-                  <td className="px-6 py-4">{record.expiry}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">{record.course}</td>
+                  <td className="px-3 py-2">{record.date}</td>
+                  <td className="px-3 py-2">{record.expiry}</td>
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${record.status === 'Valid' ? 'bg-green-100 text-green-800' :
                         record.status === 'Expired' ? 'bg-red-100 text-red-800' :
                           'bg-yellow-100 text-yellow-800'
@@ -199,7 +199,7 @@ export default function SafetyTrainingPage() {
                       {record.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="text-gray-400 hover:text-gray-600 transition-colors">
                       <MoreHorizontal className="w-5 h-5" />
                     </button>

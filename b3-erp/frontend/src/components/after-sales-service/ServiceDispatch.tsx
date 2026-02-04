@@ -27,10 +27,10 @@ export default function ServiceDispatch() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Premium Header */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3 flex flex-col md:flex-row md:items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
           <div className="p-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-100">
             <Radio className="h-6 w-6 text-white animate-pulse" />
           </div>
@@ -64,21 +64,21 @@ export default function ServiceDispatch() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Urgent Queue Sidebar */}
-        <div className="lg:col-span-1 space-y-6">
-          <div className="bg-slate-900 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden group">
+        <div className="lg:col-span-1 space-y-3">
+          <div className="bg-slate-900 rounded-2xl p-3 text-white shadow-xl relative overflow-hidden group">
             <div className="relative z-10">
-              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
                 <Zap className="h-4 w-4 text-amber-400" />
                 Urgent Dispatch
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {[
                   { id: 'TKT-9922', client: 'Taj Hotels', issue: 'Gas Leakage System', time: '10m ago' },
                   { id: 'TKT-9925', client: 'DLF CyberCity', issue: 'Central HVAC Failure', time: '25m ago' },
                 ].map((urgent, idx) => (
-                  <div key={idx} className="bg-white/10 hover:bg-white/15 transition-all p-4 rounded-xl border border-white/10 cursor-pointer group/item">
+                  <div key={idx} className="bg-white/10 hover:bg-white/15 transition-all p-3 rounded-xl border border-white/10 cursor-pointer group/item">
                     <div className="flex justify-between items-start mb-2">
                       <span className="text-[10px] font-black text-amber-400 tracking-widest">{urgent.id}</span>
                       <span className="text-[10px] text-slate-400 font-bold">{urgent.time}</span>
@@ -96,9 +96,9 @@ export default function ServiceDispatch() {
             <Radio className="absolute -right-8 -bottom-8 h-32 w-32 text-blue-500/20 pointer-events-none" />
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-slate-900 mb-4 text-sm uppercase tracking-tight">Active Dispatches</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h3 className="font-bold text-slate-900 mb-2 text-sm uppercase tracking-tight">Active Dispatches</h3>
+            <div className="space-y-2">
               {[
                 { label: 'En-route', count: 12, color: 'blue' },
                 { label: 'On-site', count: 18, color: 'green' },
@@ -115,9 +115,9 @@ export default function ServiceDispatch() {
         </div>
 
         {/* Main Dispatch Board */}
-        <div className="lg:col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-3">
           {/* Filters Bar */}
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap gap-4 items-center">
+          <div className="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap gap-2 items-center">
             <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
@@ -144,12 +144,12 @@ export default function ServiceDispatch() {
               <table className="w-full text-left">
                 <thead className="bg-slate-50/50 text-[10px] font-black text-slate-400 uppercase tracking-widest border-b border-slate-100">
                   <tr>
-                    <th className="px-6 py-4">Job Info</th>
-                    <th className="px-6 py-4">Client / Area</th>
-                    <th className="px-6 py-4">Technician</th>
-                    <th className="px-6 py-4">Schedule</th>
-                    <th className="px-6 py-4">Status</th>
-                    <th className="px-6 py-4 text-right">Actions</th>
+                    <th className="px-3 py-2">Job Info</th>
+                    <th className="px-3 py-2">Client / Area</th>
+                    <th className="px-3 py-2">Technician</th>
+                    <th className="px-3 py-2">Schedule</th>
+                    <th className="px-3 py-2">Status</th>
+                    <th className="px-3 py-2 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -205,7 +205,7 @@ export default function ServiceDispatch() {
               </table>
             </div>
             <div className="p-6 bg-slate-50 md:flex items-center justify-between border-t border-slate-100">
-              <p className="text-xs text-slate-500 font-medium mb-4 md:mb-0">Showing 3 of 42 dispatches for Oct 24, 2025</p>
+              <p className="text-xs text-slate-500 font-medium mb-2 md:mb-0">Showing 3 of 42 dispatches for Oct 24, 2025</p>
               <div className="flex gap-2">
                 <button className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">Previous</button>
                 <button className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all">Next</button>

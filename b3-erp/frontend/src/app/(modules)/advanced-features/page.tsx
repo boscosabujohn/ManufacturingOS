@@ -33,20 +33,20 @@ export default function AdvancedFeaturesPage() {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">Advanced Features</h1>
                 <p className="text-gray-600 mt-2">Next-generation capabilities for your manufacturing operations</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {features.map((feature) => (
                     <Link
                         key={feature.title}
                         href={feature.href}
-                        className="group bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all duration-200"
+                        className="group bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-all duration-200"
                     >
-                        <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start justify-between mb-2">
                             <div className={`p-3 rounded-lg ${feature.color}`}>
                                 <feature.icon className="w-6 h-6" />
                             </div>
@@ -56,7 +56,7 @@ export default function AdvancedFeaturesPage() {
                         <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                             {feature.title}
                         </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-2">
+                        <p className="text-gray-600 mb-2 line-clamp-2">
                             {feature.description}
                         </p>
 
@@ -69,13 +69,13 @@ export default function AdvancedFeaturesPage() {
             </div>
 
             {/* Quick Stats / Overview Section */}
-            <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                    <div className="flex items-center gap-3 mb-6">
+            <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                    <div className="flex items-center gap-3 mb-3">
                         <Cpu className="w-5 h-5 text-indigo-600" />
                         <h2 className="text-lg font-semibold text-gray-900">System Utilization</h2>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         <div>
                             <div className="flex justify-between text-sm mb-1">
                                 <span className="text-gray-600">AI Processing Units</span>
@@ -106,12 +106,12 @@ export default function AdvancedFeaturesPage() {
                     </div>
                 </div>
 
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                    <div className="flex items-center gap-3 mb-6">
+                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                    <div className="flex items-center gap-3 mb-3">
                         <FileText className="w-5 h-5 text-orange-600" />
                         <h2 className="text-lg font-semibold text-gray-900">Recent Activities</h2>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {[
                             { text: 'Invoice #INV-2024-001 processed via OCR', time: '2 mins ago', type: 'ocr' },
                             { text: 'Machine B3-Milling-02 reported high temp', time: '15 mins ago', type: 'iot' },

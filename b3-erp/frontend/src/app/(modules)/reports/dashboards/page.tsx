@@ -294,8 +294,8 @@ export default function DashboardsPage() {
 
   const renderMetricWidget = (title: string, value: string, change: number, icon: React.ReactNode, color: string, href?: string) => {
     const content = (
-      <div className={`bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow ${href ? 'cursor-pointer hover:border-blue-500 border border-transparent' : ''}`}>
-        <div className="flex justify-between items-start mb-4">
+      <div className={`bg-white rounded-lg shadow-sm p-3 hover:shadow-md transition-shadow ${href ? 'cursor-pointer hover:border-blue-500 border border-transparent' : ''}`}>
+        <div className="flex justify-between items-start mb-2">
           <div className={`${color} p-3 rounded-lg text-white`}>{icon}</div>
           <div className="flex items-center gap-1">
             {change >= 0 ? (
@@ -322,8 +322,8 @@ export default function DashboardsPage() {
 
   const renderChartWidget = (title: string, type: string) => {
     return (
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow-sm p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
             <Settings className="w-4 h-4 text-gray-600" />
@@ -404,8 +404,8 @@ export default function DashboardsPage() {
     ];
 
     return (
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow-sm p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
             View All
@@ -460,8 +460,8 @@ export default function DashboardsPage() {
     };
 
     return (
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow-sm p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
             View All
@@ -496,7 +496,7 @@ export default function DashboardsPage() {
     const [category, setCategory] = useState('');
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
         <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
           <div className="p-6 border-b border-gray-200">
             <div className="flex justify-between items-center">
@@ -509,7 +509,7 @@ export default function DashboardsPage() {
               </button>
             </div>
           </div>
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Dashboard Name
@@ -573,13 +573,13 @@ export default function DashboardsPage() {
   };
 
   return (
-    <div className={`w-full min-h-screen ${isFullscreen ? 'p-0' : 'px-4 sm:px-6 lg:px-8 py-6'}`}>
-      <div className={`mx-auto space-y-6 ${isFullscreen ? 'max-w-full' : 'w-full max-w-full'}`}>
+    <div className={`w-full min-h-screen ${isFullscreen ? 'p-0' : 'px-3 py-2'}`}>
+      <div className={`mx-auto space-y-3 ${isFullscreen ? 'max-w-full' : 'w-full max-w-full'}`}>
         {!isFullscreen && (
           <>
             {/* Header */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex justify-end items-start gap-2 mb-4">
+            <div className="bg-white rounded-lg shadow-sm p-3">
+              <div className="flex justify-end items-start gap-2 mb-2">
                 <button
                   onClick={handleRefreshDashboard}
                   className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
@@ -597,7 +597,7 @@ export default function DashboardsPage() {
               </div>
 
               {/* Search and Filters */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-2">
                 <div className="flex-1 min-w-[300px]">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -625,13 +625,13 @@ export default function DashboardsPage() {
             </div>
 
             {/* Dashboard List */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">My Dashboards</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg shadow-sm p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">My Dashboards</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {filteredDashboards.map((dashboard) => (
                   <div
                     key={dashboard.id}
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${selectedDashboard?.id === dashboard.id
+                    className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${selectedDashboard?.id === dashboard.id
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                       }`}
@@ -715,7 +715,7 @@ export default function DashboardsPage() {
         {/* Dashboard View */}
         {selectedDashboard && (
           <div className={`bg-white rounded-lg shadow-sm ${isFullscreen ? 'min-h-screen' : 'p-6'}`}>
-            <div className="flex justify-between items-center mb-6 p-6">
+            <div className="flex justify-between items-center mb-3 p-3">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{selectedDashboard.name}</h2>
                 <p className="text-gray-600 mt-1">{selectedDashboard.description}</p>
@@ -763,7 +763,7 @@ export default function DashboardsPage() {
             </div>
 
             {/* Widgets Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-3">
               {/* Metric Widgets */}
               {renderMetricWidget('Total Revenue', '$2,456,789', 12.5, <DollarSign className="w-6 h-6" />, 'bg-green-500', '/reports/finance/revenue-analysis')}
               {renderMetricWidget('Total Orders', '8,542', 8.2, <ShoppingCart className="w-6 h-6" />, 'bg-blue-500', '/reports/sales/orders/status')}
@@ -802,7 +802,7 @@ export default function DashboardsPage() {
 
       {/* Widget Library Modal */}
       {showWidgetLibrary && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
             <div className="p-6 border-b border-gray-200">
               <div className="flex justify-between items-center">
@@ -816,7 +816,7 @@ export default function DashboardsPage() {
               </div>
             </div>
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 {widgetTypes.map((widget) => (
                   <button
                     key={widget.id}

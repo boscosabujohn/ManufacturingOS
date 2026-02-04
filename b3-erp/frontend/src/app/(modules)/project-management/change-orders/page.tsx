@@ -497,7 +497,7 @@ export default function ChangeOrdersPage() {
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
    <div className="px-3 py-2 space-y-3">
     {/* Header Actions */}
-    <div className="flex justify-between mb-4">
+    <div className="flex justify-between mb-2">
      <div className="flex gap-2">
       <button
        onClick={() => setShowFinancialDashboard(true)}
@@ -538,8 +538,8 @@ export default function ChangeOrdersPage() {
     </div>
 
     {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+   <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Orders</p>
@@ -548,7 +548,7 @@ export default function ChangeOrdersPage() {
       <FileEdit className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Pending</p>
@@ -557,7 +557,7 @@ export default function ChangeOrdersPage() {
       <Clock className="h-8 w-8 text-yellow-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Under Review</p>
@@ -566,7 +566,7 @@ export default function ChangeOrdersPage() {
       <AlertTriangle className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Approved</p>
@@ -575,7 +575,7 @@ export default function ChangeOrdersPage() {
       <CheckCircle className="h-8 w-8 text-green-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Rejected</p>
@@ -584,7 +584,7 @@ export default function ChangeOrdersPage() {
       <XCircle className="h-8 w-8 text-red-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Cost Impact</p>
@@ -593,7 +593,7 @@ export default function ChangeOrdersPage() {
       <DollarSign className="h-8 w-8 text-purple-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Avg Delay</p>
@@ -605,8 +605,8 @@ export default function ChangeOrdersPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg border border-gray-200">
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+   <div className="bg-white p-3 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
      <div className="md:col-span-2">
       <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
       <input
@@ -831,9 +831,9 @@ export default function ChangeOrdersPage() {
 
    {/* View Details Modal */}
    {selectedOrder && (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
-      <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+      <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
        <div>
         <h2 className="text-xl font-bold text-gray-900">{selectedOrder.changeOrderNumber}</h2>
         <p className="text-sm text-gray-600">{selectedOrder.projectName}</p>
@@ -867,7 +867,7 @@ export default function ChangeOrdersPage() {
        </div>
 
        {/* Reason */}
-       <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+       <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
         <p className="text-sm font-semibold text-gray-900 mb-1">Reason for Change:</p>
         <p className="text-sm text-gray-700">{selectedOrder.reason}</p>
        </div>
@@ -918,7 +918,7 @@ export default function ChangeOrdersPage() {
 
        {/* Timeline */}
        {selectedOrder.approvalDate && (
-        <div className="bg-gray-50 p-4 rounded-lg">
+        <div className="bg-gray-50 p-3 rounded-lg">
          <h4 className="text-sm font-semibold text-gray-900 mb-3">Timeline</h4>
          <div className="space-y-2 text-sm">
           <div className="flex items-center space-x-2">
@@ -952,7 +952,7 @@ export default function ChangeOrdersPage() {
        )}
 
        {/* Remarks */}
-       <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+       <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
         <p className="text-sm font-semibold text-gray-900 mb-1">Remarks:</p>
         <p className="text-sm text-gray-700">{selectedOrder.remarks}</p>
        </div>

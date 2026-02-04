@@ -401,11 +401,11 @@ const FinancialAnalytics: React.FC = () => {
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Key Metrics Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {analyticsMetrics.slice(0, 6).map((metric) => (
-          <div key={metric.id} className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+          <div key={metric.id} className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-gray-600">{metric.name}</h3>
               {getTrendIcon(metric.trend, metric.changePercent)}
@@ -433,9 +433,9 @@ const FinancialAnalytics: React.FC = () => {
       </div>
 
       {/* Main Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Revenue & Profitability Trends</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Revenue & Profitability Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
             <ComposedChart data={monthlyTrends}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -456,8 +456,8 @@ const FinancialAnalytics: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Department Performance</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Department Performance</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={departmentAnalysis} layout="horizontal">
               <CartesianGrid strokeDasharray="3 3" />
@@ -472,9 +472,9 @@ const FinancialAnalytics: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Cash Flow Analysis</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Cash Flow Analysis</h3>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={cashFlowAnalysis}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -489,8 +489,8 @@ const FinancialAnalytics: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Profitability Metrics vs Benchmarks</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Profitability Metrics vs Benchmarks</h3>
           <ResponsiveContainer width="100%" height={300}>
             <RadarChart data={profitabilityMetrics}>
               <PolarGrid />
@@ -508,7 +508,7 @@ const FinancialAnalytics: React.FC = () => {
   );
 
   const renderMetrics = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Financial Metrics Analysis</h3>
         <div className="flex space-x-2">
@@ -525,10 +525,10 @@ const FinancialAnalytics: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {analyticsMetrics.map((metric) => (
-          <div key={metric.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={metric.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900">{metric.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{metric.description}</p>
@@ -601,7 +601,7 @@ const FinancialAnalytics: React.FC = () => {
   );
 
   const renderDrillDown = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Interactive Drill-Down Analysis</h3>
         <button
@@ -631,8 +631,8 @@ const FinancialAnalytics: React.FC = () => {
       )}
 
       {/* Drill-down interface */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="mb-2">
           <h4 className="font-medium text-gray-900">
             {drillDownPath.length > 0 ? drillDownPath[drillDownPath.length - 1].category : 'Revenue Breakdown'}
           </h4>
@@ -658,16 +658,16 @@ const FinancialAnalytics: React.FC = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Amount
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Percentage
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -675,16 +675,16 @@ const FinancialAnalytics: React.FC = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {generateDrillDownData('revenue').items.map((item) => (
                   <tr key={item.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       {item.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {formatCurrency(item.value)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {item.percentage}%
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       {item.children && (
                         <button className="text-blue-600 hover:text-blue-800">
                           Drill Down
@@ -702,7 +702,7 @@ const FinancialAnalytics: React.FC = () => {
   );
 
   const renderInsights = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">AI-Powered Financial Insights</h3>
         <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
@@ -710,9 +710,9 @@ const FinancialAnalytics: React.FC = () => {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {insights.map((insight) => (
-          <div key={insight.id} className={`border rounded-lg p-6 ${getSeverityColor(insight.severity)}`}>
+          <div key={insight.id} className={`border rounded-lg p-3 ${getSeverityColor(insight.severity)}`}>
             <div className="flex items-start justify-between">
               <div className="flex items-start space-x-3 flex-1">
                 {getInsightIcon(insight.type)}
@@ -731,7 +731,7 @@ const FinancialAnalytics: React.FC = () => {
 
                   <p className="text-gray-700 mb-3">{insight.description}</p>
 
-                  <div className="grid grid-cols-3 gap-4 mb-3 text-sm">
+                  <div className="grid grid-cols-3 gap-2 mb-3 text-sm">
                     <div>
                       <span className="text-gray-600">Confidence: </span>
                       <span className="font-medium">{insight.confidence}%</span>
@@ -773,7 +773,7 @@ const FinancialAnalytics: React.FC = () => {
   );
 
   const renderCustomReports = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Custom Analytics Reports</h3>
         <button
@@ -785,15 +785,15 @@ const FinancialAnalytics: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {[
           { name: 'Executive Dashboard', metrics: 8, visualizations: 4, schedule: 'Daily', lastRun: '2024-01-15' },
           { name: 'Department Performance', metrics: 12, visualizations: 6, schedule: 'Weekly', lastRun: '2024-01-10' },
           { name: 'Cash Flow Analysis', metrics: 6, visualizations: 3, schedule: 'Monthly', lastRun: '2024-01-01' },
           { name: 'Profitability Deep Dive', metrics: 15, visualizations: 8, schedule: 'Quarterly', lastRun: '2024-01-01' }
         ].map((report, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div>
                 <h4 className="font-semibold text-gray-900">{report.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">Custom analytics report</p>
@@ -840,15 +840,15 @@ const FinancialAnalytics: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Financial Analytics</h1>
         <p className="text-gray-600 mt-2">Advanced financial analysis with interactive drill-down capabilities and AI insights</p>
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Period</label>
             <select
@@ -909,7 +909,7 @@ const FinancialAnalytics: React.FC = () => {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'overview', label: 'Overview', icon: BarChart3 },

@@ -87,8 +87,8 @@ const ShopFloorControl: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-6 rounded-lg shadow-lg">
+    <div className="space-y-3">
+      <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Monitor className="h-8 w-8" />
@@ -114,10 +114,10 @@ const ShopFloorControl: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {workstations.map((ws) => (
           <div key={ws.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className={`px-6 py-4 ${ws.status === 'running' ? 'bg-green-600' : ws.status === 'paused' ? 'bg-yellow-600' : ws.status === 'idle' ? 'bg-gray-600' : 'bg-blue-600'} text-white`}>
+            <div className={`px-3 py-2 ${ws.status === 'running' ? 'bg-green-600' : ws.status === 'paused' ? 'bg-yellow-600' : ws.status === 'idle' ? 'bg-gray-600' : 'bg-blue-600'} text-white`}>
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-bold">{ws.name}</h3>
@@ -129,7 +129,7 @@ const ShopFloorControl: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               <div>
                 <div className="text-sm text-gray-600">Current Job</div>
                 <div className="font-semibold text-gray-900">{ws.currentJob}</div>
@@ -148,7 +148,7 @@ const ShopFloorControl: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-3 bg-blue-50 rounded">
                       <div className="text-sm text-gray-600">Time Remaining</div>
                       <div className="text-lg font-bold text-blue-700">{ws.timeRemaining} min</div>

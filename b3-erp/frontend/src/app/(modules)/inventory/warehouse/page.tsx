@@ -339,7 +339,7 @@ const InventoryWarehousePage = () => {
 
   if (loading) {
     return (
-      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+      <div className="w-full min-h-screen px-3 py-2 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           <p className="mt-4 text-gray-600">Loading warehouses...</p>
@@ -350,9 +350,9 @@ const InventoryWarehousePage = () => {
 
   if (error) {
     return (
-      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+      <div className="w-full min-h-screen px-3 py-2 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 mb-4">{error}</p>
+          <p className="text-red-600 mb-2">{error}</p>
           <button
             onClick={fetchWarehouses}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -365,10 +365,10 @@ const InventoryWarehousePage = () => {
   }
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full h-full space-y-6">
+    <div className="w-full min-h-screen px-3 py-2">
+      <div className="w-full h-full space-y-3">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {stats.map((stat, index) => {
             const gradientMap: { [key: string]: string } = {
               'from-blue-500 to-blue-600': 'from-blue-50 to-blue-100',
@@ -401,7 +401,7 @@ const InventoryWarehousePage = () => {
             return (
               <div
                 key={index}
-                className={`bg-gradient-to-br ${gradientMap[stat.gradient]} rounded-lg p-4 border ${borderMap[stat.gradient]}`}
+                className={`bg-gradient-to-br ${gradientMap[stat.gradient]} rounded-lg p-3 border ${borderMap[stat.gradient]}`}
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -433,8 +433,8 @@ const InventoryWarehousePage = () => {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex flex-col lg:flex-row gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+          <div className="flex flex-col lg:flex-row gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -445,7 +445,7 @@ const InventoryWarehousePage = () => {
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
@@ -477,34 +477,34 @@ const InventoryWarehousePage = () => {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Warehouse ID
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Location
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Type
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Capacity (m³)
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Stock Value
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Utilization %
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Manager
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -516,47 +516,47 @@ const InventoryWarehousePage = () => {
                     className="hover:bg-gray-50 transition-colors cursor-pointer"
                     onClick={() => handleViewWarehouse(warehouse)}
                   >
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{warehouse.warehouseId}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm font-medium text-gray-900">{warehouse.name}</div>
                       <div className="text-sm text-gray-500">{warehouse.city}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-600">{warehouse.location}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${getTypeColor(warehouse.type)}`}>
                         {warehouse.type.charAt(0).toUpperCase() + warehouse.type.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900 font-medium">
                         {warehouse.capacity.toLocaleString()} m³
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900 font-medium">
                         {formatCurrency(warehouse.currentStockValue)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className={`inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium ${getUtilizationBgColor(warehouse.utilizationPercent)}`}>
                         <span className={getUtilizationColor(warehouse.utilizationPercent)}>
                           {warehouse.utilizationPercent}%
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{warehouse.manager}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(warehouse.status)}`}>
                         {warehouse.status.charAt(0).toUpperCase() + warehouse.status.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                    <td className="px-3 py-2 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                       <div className="flex items-center gap-2">
                         <button
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
@@ -581,7 +581,7 @@ const InventoryWarehousePage = () => {
           </div>
 
           {/* Pagination */}
-          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+          <div className="bg-gray-50 px-3 py-2 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
                 Showing {startIndex + 1} to {Math.min(endIndex, filteredWarehouses.length)} of {filteredWarehouses.length} warehouses

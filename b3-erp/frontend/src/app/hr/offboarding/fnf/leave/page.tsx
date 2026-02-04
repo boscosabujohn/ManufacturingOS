@@ -227,14 +227,14 @@ export default function FNFLeavePage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">FNF - Leave Encashment</h1>
         <p className="text-sm text-gray-600 mt-1">Calculate and process leave encashment for exiting employees</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -244,7 +244,7 @@ export default function FNFLeavePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Calculated</p>
@@ -254,7 +254,7 @@ export default function FNFLeavePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Approved</p>
@@ -264,7 +264,7 @@ export default function FNFLeavePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Processed</p>
@@ -275,7 +275,7 @@ export default function FNFLeavePage() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-2 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
@@ -314,13 +314,13 @@ export default function FNFLeavePage() {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredEncashments.map(encashment => {
           const totalLeaves = calculateTotalLeaves(encashment.leaveBalance);
 
           return (
-            <div key={encashment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={encashment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{encashment.employeeName}</h3>
@@ -338,8 +338,8 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Leave Balance</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -382,7 +382,7 @@ export default function FNFLeavePage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Encashment Calculation</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -421,7 +421,7 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border-2 border-green-300">
+              <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-3 border-2 border-green-300">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-green-700 mb-1">Total Leave Encashment</p>
@@ -524,9 +524,9 @@ export default function FNFLeavePage() {
 
       {/* Calculate Encashment Modal */}
       {showCalculateModal && selectedEncashment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Calculator className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Calculate Leave Encashment</h2>
@@ -537,7 +537,7 @@ export default function FNFLeavePage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <h3 className="font-bold text-blue-900 mb-2">{selectedEncashment.employeeName}</h3>
                 <p className="text-sm text-blue-700">
                   {selectedEncashment.designation} • {selectedEncashment.department}
@@ -545,8 +545,8 @@ export default function FNFLeavePage() {
                 <p className="text-xs text-blue-600 mt-1">Employee ID: {selectedEncashment.employeeId}</p>
               </div>
 
-              <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="mb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <h4 className="font-semibold text-gray-900 mb-3">Leave Balance</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -579,7 +579,7 @@ export default function FNFLeavePage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <h4 className="font-semibold text-gray-900 mb-3">Leave Policy</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -612,8 +612,8 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmitCalculation} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmitCalculation} className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Encashable EL Days <span className="text-red-500">*</span>
@@ -701,7 +701,7 @@ export default function FNFLeavePage() {
                   />
                 </div>
 
-                <div className="bg-gray-100 rounded-lg p-4 border-2 border-gray-300">
+                <div className="bg-gray-100 rounded-lg p-3 border-2 border-gray-300">
                   <h3 className="font-bold text-gray-900 mb-3">Calculation Summary</h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -763,7 +763,7 @@ export default function FNFLeavePage() {
                   <button
                     type="button"
                     onClick={() => setShowCalculateModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -776,9 +776,9 @@ export default function FNFLeavePage() {
 
       {/* Approve Encashment Modal */}
       {showApproveModal && selectedEncashment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Approve Leave Encashment</h2>
@@ -789,7 +789,7 @@ export default function FNFLeavePage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="mb-3 p-3 bg-green-50 rounded-lg border border-green-200">
                 <h3 className="font-bold text-green-900 mb-2">{selectedEncashment.employeeName}</h3>
                 <p className="text-sm text-green-700">
                   {selectedEncashment.designation} • {selectedEncashment.department}
@@ -797,7 +797,7 @@ export default function FNFLeavePage() {
                 <p className="text-xs text-green-600 mt-1">Employee ID: {selectedEncashment.employeeId}</p>
               </div>
 
-              <div className="mb-6 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
+              <div className="mb-3 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
                 <p className="text-sm font-medium text-gray-700 mb-2">Leave Encashment Amount</p>
                 <p className="text-4xl font-bold text-green-700">
                   {formatCurrency(selectedEncashment.encashmentAmount)}
@@ -807,8 +807,8 @@ export default function FNFLeavePage() {
                 </p>
               </div>
 
-              <div className="mb-6 space-y-4">
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="mb-3 space-y-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <h4 className="font-semibold text-gray-900 mb-3">Encashment Breakdown</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -834,7 +834,7 @@ export default function FNFLeavePage() {
                   </div>
                 </div>
 
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-semibold text-blue-900 mb-2">Leave Balance Used</h4>
                   <div className="space-y-2 text-sm">
                     {selectedEncashment.leavePolicy.earnedLeaveEncashable && (
@@ -853,7 +853,7 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmitApproval} className="space-y-4">
+              <form onSubmit={handleSubmitApproval} className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Approving Authority <span className="text-red-500">*</span>
@@ -904,7 +904,7 @@ export default function FNFLeavePage() {
                   <button
                     type="button"
                     onClick={() => setShowApproveModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -917,9 +917,9 @@ export default function FNFLeavePage() {
 
       {/* View Details Modal */}
       {showViewModal && selectedEncashment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Eye className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Leave Encashment Details</h2>
@@ -930,7 +930,7 @@ export default function FNFLeavePage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 flex items-start justify-between">
+              <div className="mb-3 flex items-start justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedEncashment.employeeName}</h3>
                   <p className="text-gray-600">{selectedEncashment.designation} • {selectedEncashment.department}</p>
@@ -944,9 +944,9 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-gray-600" />
                     Service Details
                   </h4>
@@ -981,7 +981,7 @@ export default function FNFLeavePage() {
                 </div>
 
                 <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-4">Complete Leave Balance</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">Complete Leave Balance</h4>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Earned Leave (EL)</span>
@@ -1015,8 +1015,8 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <div className="mb-6 bg-blue-50 rounded-lg p-5 border border-blue-200">
-                <h4 className="font-semibold text-blue-900 mb-4">Encashment Calculation</h4>
+              <div className="mb-3 bg-blue-50 rounded-lg p-5 border border-blue-200">
+                <h4 className="font-semibold text-blue-900 mb-2">Encashment Calculation</h4>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-blue-700">Encashable Days (as per policy)</span>
@@ -1041,7 +1041,7 @@ export default function FNFLeavePage() {
                 </div>
               </div>
 
-              <div className="p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border-2 border-green-400 mb-6">
+              <div className="p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border-2 border-green-400 mb-3">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-700 mb-2">Total Leave Encashment Amount</p>
@@ -1057,7 +1057,7 @@ export default function FNFLeavePage() {
               </div>
 
               {(selectedEncashment.calculatedBy || selectedEncashment.approvedBy) && (
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <h4 className="font-semibold text-gray-900 mb-3">Approval History</h4>
                   <div className="space-y-2 text-sm">
                     {selectedEncashment.calculatedBy && (

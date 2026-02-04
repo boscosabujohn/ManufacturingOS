@@ -250,25 +250,25 @@ export default function TasksListPage() {
         <table className="w-full">
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              <th className="px-6 py-4">Task</th>
-              <th className="px-6 py-4">Status & Priority</th>
-              <th className="px-6 py-4">Assignee</th>
-              <th className="px-6 py-4">Project</th>
-              <th className="px-6 py-4">Due Date</th>
-              <th className="px-6 py-4 text-right">Actions</th>
+              <th className="px-3 py-2">Task</th>
+              <th className="px-3 py-2">Status & Priority</th>
+              <th className="px-3 py-2">Assignee</th>
+              <th className="px-3 py-2">Project</th>
+              <th className="px-3 py-2">Due Date</th>
+              <th className="px-3 py-2 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
             {filteredTasks.length > 0 ? (
               filteredTasks.map((task) => (
                 <tr key={task.id} className="hover:bg-gray-50 transition-colors group">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex flex-col">
                       <span className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{task.taskName}</span>
                       <span className="text-xs text-gray-500">{task.taskNumber}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${getStatusColor(task.status)}`}>
                         {task.status}
@@ -278,7 +278,7 @@ export default function TasksListPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold border border-blue-200">
                         {task.avatar}
@@ -286,18 +286,18 @@ export default function TasksListPage() {
                       <span className="text-sm text-gray-700">{task.assignedTo}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex flex-col">
                       <span className="text-sm text-gray-900 truncate max-w-[150px]" title={task.projectName}>{task.projectName}</span>
                       <span className="text-xs text-gray-500">{task.projectNumber}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-sm text-gray-600">
                       {new Date(task.dueDate).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-lg">
                       <MoreHorizontal className="w-5 h-5" />
                     </button>
@@ -324,8 +324,8 @@ export default function TasksListPage() {
     const columnTasks = filteredTasks.filter(t => t.status === status);
 
     return (
-      <div className="flex flex-col min-w-[320px] bg-gray-50 rounded-xl p-4 border border-gray-200 h-[calc(100vh-280px)]">
-        <div className={`flex items-center justify-between mb-4 pb-3 border-b border-gray-200 ${colorClass}`}>
+      <div className="flex flex-col min-w-[320px] bg-gray-50 rounded-xl p-3 border border-gray-200 h-[calc(100vh-280px)]">
+        <div className={`flex items-center justify-between mb-2 pb-3 border-b border-gray-200 ${colorClass}`}>
           <h3 className="font-semibold text-gray-900 flex items-center gap-2">
             {title}
             <span className="bg-white px-2 py-0.5 rounded-md text-xs border border-gray-200 shadow-sm">
@@ -339,7 +339,7 @@ export default function TasksListPage() {
 
         <div className="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-hide">
           {columnTasks.map(task => (
-            <div key={task.id} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow cursor-pointer group">
+            <div key={task.id} className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow cursor-pointer group">
               <div className="flex justify-between items-start mb-2">
                 <span className={`px-2 py-0.5 rounded text-[10px] font-medium uppercase border ${getPriorityColor(task.priority)}`}>
                   {task.priority}
@@ -368,7 +368,7 @@ export default function TasksListPage() {
           ))}
 
           {columnTasks.length === 0 && (
-            <div className="h-full flex flex-col items-center justify-center text-gray-400 border-2 border-dashed border-gray-200 rounded-lg p-4">
+            <div className="h-full flex flex-col items-center justify-center text-gray-400 border-2 border-dashed border-gray-200 rounded-lg p-3">
               <p className="text-xs">No tasks</p>
             </div>
           )}
@@ -390,7 +390,7 @@ export default function TasksListPage() {
   if (loading) {
     return (
       <div className="w-full h-screen flex items-center justify-center bg-gray-50">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
           <p className="text-sm text-gray-500 font-medium">Loading Tasks...</p>
         </div>
@@ -402,8 +402,8 @@ export default function TasksListPage() {
     <div className="w-full min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <div className="w-full bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="w-full px-3 py-4">
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Task Management</h1>
               <p className="text-sm text-gray-500 mt-1">Track, manage, and deliver deliverables across all projects.</p>
@@ -421,7 +421,7 @@ export default function TasksListPage() {
           </div>
 
           {/* Controls Bar */}
-          <div className="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div className="mt-6 flex flex-col md:flex-row gap-2 items-center justify-between">
             <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
               {/* View Toggle */}
               <div className="flex items-center p-1 bg-gray-100 rounded-lg border border-gray-200">
@@ -497,7 +497,7 @@ export default function TasksListPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-2 overflow-hidden">
+      <div className="flex-1 w-full px-3 py-2 overflow-hidden">
         {viewMode === 'list' ? renderListView() : renderBoardView()}
       </div>
 

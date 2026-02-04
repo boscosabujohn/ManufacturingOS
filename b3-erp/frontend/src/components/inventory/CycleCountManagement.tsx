@@ -66,38 +66,38 @@ export default function CycleCountManagement() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Cycle Count Management</h1>
           <p className="text-gray-600">Perpetual inventory accuracy through systematic counting</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
             <p className="text-sm text-gray-600 mb-1">Scheduled</p>
             <p className="text-3xl font-bold text-gray-600">{counts.filter(c => c.status === 'scheduled').length}</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-blue-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-blue-200">
             <p className="text-sm text-gray-600 mb-1">In Progress</p>
             <p className="text-3xl font-bold text-blue-600">{counts.filter(c => c.status === 'in-progress').length}</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-green-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-green-200">
             <p className="text-sm text-gray-600 mb-1">Completed</p>
             <p className="text-3xl font-bold text-green-600">{counts.filter(c => c.status === 'completed').length}</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4 border border-purple-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-purple-200">
             <p className="text-sm text-gray-600 mb-1">Avg Accuracy</p>
             <p className="text-3xl font-bold text-purple-600">98.5%</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Cycle Counts</h2>
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Cycle Counts</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {counts.map((count) => (
-              <div key={count.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={count.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <Clipboard className="w-6 h-6 text-blue-600" />
@@ -111,7 +111,7 @@ export default function CycleCountManagement() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
                   <div>
                     <p className="text-gray-600">Progress</p>
                     <p className="font-semibold text-gray-900">{count.itemsCounted}/{count.itemsToCount}</p>

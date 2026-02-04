@@ -122,7 +122,7 @@ function NotificationItem({ notification, onMarkAsRead, onArchive, onDelete, onC
   return (
     <div
       className={`
-        group relative p-4 border-b border-gray-100 hover:bg-gray-50 transition-all
+        group relative p-3 border-b border-gray-100 hover:bg-gray-50 transition-all
         ${notification.status === 'unread' ? 'bg-blue-50/50' : ''}
         ${isEscalated ? 'animate-pulse bg-red-50 border-l-4 border-l-red-500' : ''}
       `}
@@ -489,7 +489,7 @@ export default function NotificationCenter() {
             <div className="max-h-[400px] overflow-y-auto">
               {filteredNotifications.length === 0 ? (
                 <div className="py-12 text-center">
-                  <BellOff className="w-12 h-12 mx-auto text-gray-300 mb-3" />
+                  <BellOff className="w-12 h-12 text-gray-300 mb-3" />
                   <p className="text-gray-500 font-medium">No notifications</p>
                   <p className="text-sm text-gray-400">You're all caught up!</p>
                 </div>

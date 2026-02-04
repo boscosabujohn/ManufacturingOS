@@ -392,8 +392,8 @@ export function PipelineKanban({
   return (
     <div className="h-full flex flex-col bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="flex-shrink-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-        <div className="flex items-center justify-between mb-4">
+      <div className="flex-shrink-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-3 py-2">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <Target className="w-6 h-6 text-blue-600" />
             <div>
@@ -454,8 +454,8 @@ export function PipelineKanban({
       </div>
 
       {/* Kanban Board */}
-      <div className="flex-1 overflow-x-auto p-6">
-        <div className="flex gap-4 h-full min-w-max">
+      <div className="flex-1 overflow-x-auto p-3">
+        <div className="flex gap-2 h-full min-w-max">
           {stages.map(stage => {
             const totals = getStageTotals(stage.id);
             const stageOpps = getStageOpportunities(stage.id);
@@ -474,7 +474,7 @@ export function PipelineKanban({
                 onDrop={e => handleDrop(e, stage.id)}
               >
                 {/* Stage Header */}
-                <div className="flex-shrink-0 p-4 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex-shrink-0 p-3 border-b border-gray-200 dark:border-gray-700">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <div

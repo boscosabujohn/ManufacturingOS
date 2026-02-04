@@ -316,7 +316,7 @@ export default function ReportsPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -335,11 +335,11 @@ export default function ReportsPage() {
       </div>
 
       {/* Report Categories */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
         {categories.map((category, index) => {
           const Icon = category.icon;
           return (
-            <div key={index} className={`bg-gradient-to-br from-${category.color}-50 to-${category.color}-100 rounded-lg p-4 border border-${category.color}-200 cursor-pointer hover:shadow-md transition-shadow`}>
+            <div key={index} className={`bg-gradient-to-br from-${category.color}-50 to-${category.color}-100 rounded-lg p-3 border border-${category.color}-200 cursor-pointer hover:shadow-md transition-shadow`}>
               <div className="flex flex-col items-center text-center">
                 <Icon className={`w-8 h-8 text-${category.color}-600 mb-2`} />
                 <div className={`text-2xl font-bold text-${category.color}-900`}>{category.count}</div>
@@ -351,8 +351,8 @@ export default function ReportsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="relative">
             <input
               type="text"
@@ -400,11 +400,11 @@ export default function ReportsPage() {
       </div>
 
       {/* Reports Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredReports.map((report) => (
           <div key={report.id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
             <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-2">
                     <FileText className="w-6 h-6 text-blue-600" />
@@ -428,7 +428,7 @@ export default function ReportsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
+              <div className="grid grid-cols-2 gap-2 mb-2 text-sm">
                 <div>
                   <div className="text-gray-600">Last Generated</div>
                   <div className="font-medium text-gray-900">{report.lastGenerated}</div>
@@ -448,7 +448,7 @@ export default function ReportsPage() {
               </div>
 
               {report.scheduleTime && (
-                <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="mb-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div className="flex items-center space-x-2 text-sm">
                     <Clock className="w-4 h-4 text-blue-600" />
                     <span className="text-blue-700">
@@ -458,7 +458,7 @@ export default function ReportsPage() {
                 </div>
               )}
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="text-xs text-gray-600 mb-2">Recipients ({report.recipients.length})</div>
                 <div className="flex flex-wrap gap-1">
                   {report.recipients.slice(0, 2).map((recipient, idx) => (
@@ -497,9 +497,9 @@ export default function ReportsPage() {
       </div>
 
       {/* Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <FileText className="w-6 h-6 text-blue-600" />
             </div>
@@ -516,8 +516,8 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <BarChart3 className="w-6 h-6 text-green-600" />
             </div>
@@ -534,8 +534,8 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Share2 className="w-6 h-6 text-purple-600" />
             </div>

@@ -127,33 +127,33 @@ export const RiskAnalysis: React.FC<RiskAnalysisProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Risks</p>
           <p className="text-3xl font-bold">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Open Risks</p>
           <p className="text-3xl font-bold">{stats.open}</p>
         </div>
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Critical/High</p>
           <p className="text-3xl font-bold">{stats.critical + stats.high}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Cost Impact</p>
           <p className="text-2xl font-bold">${(stats.totalCostImpact / 1000).toFixed(0)}K</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Contingency</p>
           <p className="text-2xl font-bold">${(totalContingency / 1000).toFixed(0)}K</p>
         </div>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             {['all', 'open', 'critical', 'high', 'medium', 'low'].map((f) => (
@@ -181,8 +181,8 @@ export const RiskAnalysis: React.FC<RiskAnalysisProps> = ({
       </div>
 
       {/* Risk Matrix */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Risk Matrix</h3>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Risk Matrix</h3>
         <div className="grid grid-cols-6 gap-2">
           {/* Header */}
           <div className="text-center text-xs font-semibold text-gray-700"></div>
@@ -238,7 +238,7 @@ export const RiskAnalysis: React.FC<RiskAnalysisProps> = ({
             return (
               <div
                 key={risk.id}
-                className={`bg-white rounded-lg border-2 ${levelConfig.border} hover:shadow-lg transition-all p-4`}
+                className={`bg-white rounded-lg border-2 ${levelConfig.border} hover:shadow-lg transition-all p-3`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-4 flex-1">
@@ -325,7 +325,7 @@ export const RiskAnalysis: React.FC<RiskAnalysisProps> = ({
 
       {filteredRisks.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <Shield className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <Shield className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No risks found matching your filter</p>
         </div>
       )}

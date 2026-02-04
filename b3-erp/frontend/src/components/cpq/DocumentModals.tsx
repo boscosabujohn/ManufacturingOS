@@ -77,16 +77,16 @@ export const CreateTemplateModal: React.FC<CreateTemplateModalProps> = ({ isOpen
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 flex items-center justify-between rounded-t-xl">
           <h2 className="text-2xl font-bold">Create Document Template</h2>
           <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Template Name *</label>
             <input
@@ -109,7 +109,7 @@ export const CreateTemplateModal: React.FC<CreateTemplateModalProps> = ({ isOpen
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Document Type *</label>
               <select
@@ -193,9 +193,9 @@ export const GenerateDocumentModal: React.FC<GenerateDocumentModalProps> = ({ is
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 flex items-center justify-between rounded-t-xl">
           <div>
             <h2 className="text-2xl font-bold">Generate Document</h2>
             <p className="text-sm opacity-90 mt-1">Using template: {template.name}</p>
@@ -205,7 +205,7 @@ export const GenerateDocumentModal: React.FC<GenerateDocumentModalProps> = ({ is
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Document Title *</label>
             <input
@@ -218,10 +218,10 @@ export const GenerateDocumentModal: React.FC<GenerateDocumentModalProps> = ({ is
             />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Customer Information</h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name *</label>
                 <input
@@ -257,7 +257,7 @@ export const GenerateDocumentModal: React.FC<GenerateDocumentModalProps> = ({ is
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Deal Value ($)</label>
               <input
@@ -306,9 +306,9 @@ export const ViewDocumentModal: React.FC<ViewDocumentModalProps> = ({ isOpen, on
   if (!isOpen || !document) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className={`text-white p-6 flex items-center justify-between rounded-t-xl ${
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className={`text-white p-3 flex items-center justify-between rounded-t-xl ${
           document.status === 'signed' ? 'bg-gradient-to-r from-green-600 to-emerald-600' :
           document.status === 'sent' ? 'bg-gradient-to-r from-blue-600 to-indigo-600' :
           'bg-gradient-to-r from-gray-600 to-slate-600'
@@ -322,7 +322,7 @@ export const ViewDocumentModal: React.FC<ViewDocumentModalProps> = ({ isOpen, on
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Status & Type */}
           <div className="flex items-center gap-3">
             <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
@@ -339,9 +339,9 @@ export const ViewDocumentModal: React.FC<ViewDocumentModalProps> = ({ isOpen, on
           </div>
 
           {/* Customer Info */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Customer Information</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div className="flex items-center gap-2">
                 <Building2 className="h-4 w-4 text-gray-600" />
                 <div>
@@ -367,7 +367,7 @@ export const ViewDocumentModal: React.FC<ViewDocumentModalProps> = ({ isOpen, on
           </div>
 
           {/* Timeline */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h3 className="text-sm font-semibold text-blue-900 mb-3">Document Timeline</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
@@ -403,7 +403,7 @@ export const ViewDocumentModal: React.FC<ViewDocumentModalProps> = ({ isOpen, on
 
           {/* Document Preview Placeholder */}
           <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <FileText className="h-16 w-16 text-gray-400 mx-auto mb-3" />
+            <FileText className="h-16 w-16 text-gray-400 mb-3" />
             <p className="text-gray-600">Document preview would appear here</p>
             <p className="text-sm text-gray-500 mt-1">Full document viewer implementation in production</p>
           </div>
@@ -446,9 +446,9 @@ export const PreviewTemplateModal: React.FC<PreviewTemplateModalProps> = ({ isOp
   if (!isOpen || !template) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-6 flex items-center justify-between rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-3 flex items-center justify-between rounded-t-xl">
           <div>
             <h2 className="text-2xl font-bold">Template Preview</h2>
             <p className="text-sm opacity-90 mt-1">{template.name}</p>
@@ -458,9 +458,9 @@ export const PreviewTemplateModal: React.FC<PreviewTemplateModalProps> = ({ isOp
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Template Info */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-2">
             <div className="bg-gray-50 rounded-lg p-3">
               <p className="text-xs text-gray-500">Type</p>
               <p className="font-semibold text-gray-900 capitalize">{template.type}</p>
@@ -481,12 +481,12 @@ export const PreviewTemplateModal: React.FC<PreviewTemplateModalProps> = ({ isOp
 
           {/* Template Preview */}
           <div className="bg-white border-2 border-gray-200 rounded-lg p-8 min-h-96">
-            <div className="max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{template.name}</h3>
-              <p className="text-gray-600 mb-6">{template.description}</p>
+            <div className="max-w-3xl">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">{template.name}</h3>
+              <p className="text-gray-600 mb-3">{template.description}</p>
 
               {template.sections.map(section => (
-                <div key={section.id} className="mb-6">
+                <div key={section.id} className="mb-3">
                   <h4 className="text-lg font-semibold text-gray-800 mb-2">{section.title}</h4>
                   <p className="text-gray-600">{section.content}</p>
                 </div>

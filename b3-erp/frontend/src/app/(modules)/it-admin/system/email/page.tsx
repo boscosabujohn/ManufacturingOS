@@ -109,8 +109,8 @@ export default function EmailSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -129,18 +129,18 @@ export default function EmailSettingsPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Settings */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* SMTP Configuration */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <Server className="w-5 h-5 text-blue-600" />
               <h2 className="text-lg font-bold text-gray-900">SMTP Configuration</h2>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">SMTP Host *</label>
                   <input
@@ -163,7 +163,7 @@ export default function EmailSettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Username *</label>
                   <input
@@ -190,7 +190,7 @@ export default function EmailSettingsPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Encryption *</label>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   {(['none', 'ssl', 'tls'] as const).map((type) => (
                     <label key={type} className="flex items-center gap-2 cursor-pointer">
                       <input
@@ -216,14 +216,14 @@ export default function EmailSettingsPage() {
           </div>
 
           {/* Sender Information */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <Mail className="w-5 h-5 text-green-600" />
               <h2 className="text-lg font-bold text-gray-900">Sender Information</h2>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">From Name *</label>
                   <input
@@ -261,13 +261,13 @@ export default function EmailSettingsPage() {
           </div>
 
           {/* Email Template Settings */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <Mail className="w-5 h-5 text-purple-600" />
               <h2 className="text-lg font-bold text-gray-900">Email Templates</h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Header Text</label>
                 <input
@@ -288,7 +288,7 @@ export default function EmailSettingsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Primary Color</label>
                   <div className="flex gap-2">
@@ -323,14 +323,14 @@ export default function EmailSettingsPage() {
           </div>
 
           {/* Rate Limits */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <AlertCircle className="w-5 h-5 text-orange-600" />
               <h2 className="text-lg font-bold text-gray-900">Rate Limits</h2>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Daily Limit</label>
                   <input
@@ -375,10 +375,10 @@ export default function EmailSettingsPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Test Email */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-2">
               <TestTube className="w-5 h-5 text-blue-600" />
               <h2 className="text-lg font-bold text-gray-900">Test Connection</h2>
             </div>
@@ -427,8 +427,8 @@ export default function EmailSettingsPage() {
           </div>
 
           {/* Email Statistics */}
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-3">
+            <div className="flex items-center gap-2 mb-2">
               <Mail className="w-5 h-5 text-blue-600" />
               <h2 className="text-lg font-bold text-blue-900">Email Statistics</h2>
             </div>
@@ -466,8 +466,8 @@ export default function EmailSettingsPage() {
           </div>
 
           {/* Email Settings */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Email Features</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Email Features</h2>
 
             <div className="space-y-3">
               {Object.entries(settings.settings).map(([key, value]) => (

@@ -52,7 +52,7 @@ export default function InventoryAdvancedFeaturesPage() {
   return (
     <div className="w-full h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-cyan-50 to-blue-50">
       <div className="h-full flex flex-col px-2 py-2">
-        <div className="mb-4">
+        <div className="mb-2">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
               <Sparkles className="w-6 h-6 text-white" />
@@ -64,7 +64,7 @@ export default function InventoryAdvancedFeaturesPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-2">
           <div className="flex overflow-x-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;

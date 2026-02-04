@@ -44,7 +44,7 @@ function QuickStats() {
   ];
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
@@ -202,7 +202,7 @@ export default function SmartAnalyticsPage() {
       default:
         // Overview - show all components in a compact layout
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Natural Language Query - Featured */}
             <NaturalLanguageQuery
               onQuerySubmit={handleQuerySubmit}
@@ -210,7 +210,7 @@ export default function SmartAnalyticsPage() {
             />
 
             {/* AI Insights and Anomalies */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
               <AIInsightsPanel
                 onInsightClick={handleInsightClick}
                 onActionClick={handleInsightAction}
@@ -241,9 +241,9 @@ export default function SmartAnalyticsPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6 max-w-full px-4">
+    <div className="w-full py-2 space-y-3 max-w-full px-4">
       {/* Page Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-lg flex items-center justify-center">

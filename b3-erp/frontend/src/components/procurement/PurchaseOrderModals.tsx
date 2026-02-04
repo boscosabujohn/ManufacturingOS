@@ -216,10 +216,10 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Plus className="w-6 h-6" />
             <div>
@@ -233,7 +233,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           <div className={`flex items-center gap-2 ${currentStep >= 1 ? 'text-green-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-green-600 text-white' : 'bg-gray-300'}`}>1</div>
             <span className="font-medium">PO Details</span>
@@ -251,11 +251,11 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: PO Details */}
           {currentStep === 1 && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Vendor *
@@ -382,15 +382,15 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
 
           {/* Step 2: Add Items */}
           {currentStep === 2 && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Add Item Section */}
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-3">
+                <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
                   <Plus className="w-5 h-5" />
                   Add Item to PO
                 </h3>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Item Code</label>
                     <input
@@ -462,7 +462,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                     <input
@@ -549,10 +549,10 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
 
           {/* Step 3: Review & Submit */}
           {currentStep === 3 && (
-            <div className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="space-y-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
                 <h3 className="font-semibold text-blue-900 mb-3">Review Purchase Order</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-blue-700">Vendor:</p>
                     <p className="font-semibold text-blue-900">{formData.vendorName}</p>
@@ -603,8 +603,8 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
               </div>
 
               <div className="border-t pt-4">
-                <div className="grid grid-cols-2 gap-4 max-w-md ml-auto">
-                  <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-2 max-w-md ml-auto">
+                  <div className="grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-sm font-medium text-gray-700">Subtotal:</label>
                     <input
                       type="number"
@@ -614,7 +614,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-sm font-medium text-gray-700">Tax:</label>
                     <input
                       type="number"
@@ -625,7 +625,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-sm font-medium text-gray-700">Shipping:</label>
                     <input
                       type="number"
@@ -636,7 +636,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-sm font-medium text-gray-700">Discount:</label>
                     <input
                       type="number"
@@ -647,7 +647,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
                     />
                   </div>
 
-                  <div className="col-span-2 border-t pt-3 grid grid-cols-3 gap-4">
+                  <div className="col-span-2 border-t pt-3 grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-base font-bold text-gray-900">Total Amount:</label>
                     <input
                       type="number"
@@ -663,7 +663,7 @@ export const CreatePurchaseOrderModal: React.FC<CreatePOModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             type="button"
             onClick={onClose}
@@ -739,10 +739,10 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -756,17 +756,17 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status Badge */}
-          <div className="mb-6">
+          <div className="mb-3">
             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(po.status)}`}>
               {po.status.toUpperCase().replace('_', ' ')}
             </span>
           </div>
 
           {/* PO Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Building2 className="w-4 h-4" />
                 <p className="text-sm font-medium">Vendor</p>
@@ -774,7 +774,7 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
               <p className="text-lg font-bold text-gray-900">{po.vendorName}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Calendar className="w-4 h-4" />
                 <p className="text-sm font-medium">Delivery Date</p>
@@ -782,7 +782,7 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
               <p className="text-lg font-bold text-gray-900">{po.deliveryDate}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <DollarSign className="w-4 h-4" />
                 <p className="text-sm font-medium">Total Amount</p>
@@ -792,7 +792,7 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
           </div>
 
           {/* Additional Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <p className="text-sm text-gray-600">Payment Terms</p>
               <p className="font-semibold text-gray-900">{po.paymentTerms}</p>
@@ -816,7 +816,7 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
           </div>
 
           {/* Items Table */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">Order Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -854,7 +854,7 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
           {po.notes && (
             <div>
               <p className="text-sm font-medium text-gray-700 mb-2">Notes</p>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <p className="text-gray-700">{po.notes}</p>
               </div>
             </div>
@@ -862,7 +862,7 @@ export const ViewPODetailsModal: React.FC<ViewPODetailsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -984,10 +984,10 @@ export const EditPurchaseOrderModal: React.FC<EditPOModalProps> = ({
   if (!isOpen || !po) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Edit className="w-6 h-6" />
             <div>
@@ -1001,8 +1001,8 @@ export const EditPurchaseOrderModal: React.FC<EditPOModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Vendor *</label>
               <select
@@ -1103,8 +1103,8 @@ export const EditPurchaseOrderModal: React.FC<EditPOModalProps> = ({
 
           {/* Totals */}
           <div className="border-t pt-4">
-            <div className="grid grid-cols-2 gap-4 max-w-md ml-auto">
-              <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-2 max-w-md ml-auto">
+              <div className="grid grid-cols-3 gap-2">
                 <label className="col-span-2 text-sm font-medium text-gray-700">Tax:</label>
                 <input
                   type="number"
@@ -1115,7 +1115,7 @@ export const EditPurchaseOrderModal: React.FC<EditPOModalProps> = ({
                 />
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <label className="col-span-2 text-sm font-medium text-gray-700">Shipping:</label>
                 <input
                   type="number"
@@ -1126,7 +1126,7 @@ export const EditPurchaseOrderModal: React.FC<EditPOModalProps> = ({
                 />
               </div>
 
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <label className="col-span-2 text-sm font-medium text-gray-700">Discount:</label>
                 <input
                   type="number"
@@ -1152,7 +1152,7 @@ export const EditPurchaseOrderModal: React.FC<EditPOModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1218,10 +1218,10 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
   if (!isOpen || !po) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Copy className="w-6 h-6" />
             <div>
@@ -1235,7 +1235,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* New PO Number */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">New PO Number</label>
@@ -1251,7 +1251,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">What to Clone</label>
             <div className="space-y-3">
-              <label className="flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
+              <label className="flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
                 style={{ borderColor: cloneOptions.cloneItems ? '#14b8a6' : '#e5e7eb' }}
               >
                 <input
@@ -1266,7 +1266,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
                 </div>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
+              <label className="flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
                 style={{ borderColor: cloneOptions.cloneVendor ? '#14b8a6' : '#e5e7eb' }}
               >
                 <input
@@ -1281,7 +1281,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
                 </div>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
+              <label className="flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
                 style={{ borderColor: cloneOptions.cloneTerms ? '#14b8a6' : '#e5e7eb' }}
               >
                 <input
@@ -1296,7 +1296,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
                 </div>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
+              <label className="flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer hover:bg-teal-50 transition-colors"
                 style={{ borderColor: cloneOptions.cloneNotes ? '#14b8a6' : '#e5e7eb' }}
               >
                 <input
@@ -1314,7 +1314,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
           </div>
 
           {/* Preview */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h4 className="font-semibold text-teal-900 mb-2">Clone Summary</h4>
             <ul className="text-sm text-teal-800 space-y-1">
               <li>• New PO will be created in DRAFT status</li>
@@ -1325,7 +1325,7 @@ export const ClonePOModal: React.FC<ClonePOModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1425,10 +1425,10 @@ export const POHistoryModal: React.FC<POHistoryModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-gray-700 to-gray-900 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-gray-700 to-gray-900 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <History className="w-6 h-6" />
             <div>
@@ -1442,22 +1442,22 @@ export const POHistoryModal: React.FC<POHistoryModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300"></div>
 
             {/* Timeline Events */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {historyEvents.map((event, index) => (
-                <div key={index} className="relative flex gap-4">
+                <div key={index} className="relative flex gap-2">
                   {/* Timeline Dot */}
                   <div className="flex-shrink-0 w-16 flex items-start justify-center pt-1">
                     <div className="w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-md z-10"></div>
                   </div>
 
                   {/* Event Card */}
-                  <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <h4 className="font-semibold text-gray-900">{event.action}</h4>
@@ -1482,7 +1482,7 @@ export const POHistoryModal: React.FC<POHistoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end">
           <button
             onClick={onClose}
             className="px-6 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors"
@@ -1526,10 +1526,10 @@ export const AddNoteModal: React.FC<AddNoteModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -1569,7 +1569,7 @@ export const AddNoteModal: React.FC<AddNoteModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

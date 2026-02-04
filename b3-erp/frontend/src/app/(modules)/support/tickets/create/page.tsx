@@ -58,7 +58,7 @@ export default function CreateTicket() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -80,15 +80,15 @@ export default function CreateTicket() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Ticket Details */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Ticket className="h-5 w-5 text-blue-600" />
             <h2 className="text-lg font-semibold text-gray-900">Ticket Details</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Subject <span className="text-red-500">*</span>
@@ -191,13 +191,13 @@ export default function CreateTicket() {
         </div>
 
         {/* Requester Information */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <User className="h-5 w-5 text-purple-600" />
             <h2 className="text-lg font-semibold text-gray-900">Requester Information</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Name <span className="text-red-500">*</span>
@@ -248,13 +248,13 @@ export default function CreateTicket() {
         </div>
 
         {/* Classification */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Flag className="h-5 w-5 text-orange-600" />
             <h2 className="text-lg font-semibold text-gray-900">Classification</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Impact
@@ -305,8 +305,8 @@ export default function CreateTicket() {
         </div>
 
         {/* Attachments */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Paperclip className="h-5 w-5 text-green-600" />
             <h2 className="text-lg font-semibold text-gray-900">Attachments</h2>
           </div>

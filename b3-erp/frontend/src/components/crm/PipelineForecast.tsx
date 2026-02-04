@@ -101,10 +101,10 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-green-600">Total Committed</p>
             <CheckCircle className="h-5 w-5 text-green-600" />
@@ -119,7 +119,7 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-blue-600">Avg Attainment</p>
             <Activity className="h-5 w-5 text-blue-600" />
@@ -135,7 +135,7 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-purple-600">Total Target</p>
             <Target className="h-5 w-5 text-purple-600" />
@@ -146,7 +146,7 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-4 border border-emerald-200">
+        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-3 border border-emerald-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-emerald-600">Total Closed</p>
             <DollarSign className="h-5 w-5 text-emerald-600" />
@@ -243,7 +243,7 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
 
       {/* Selected Period Detail */}
       {selectedPeriod && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Forecast Breakdown */}
           <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
             <div className="p-4 border-b border-gray-200">
@@ -316,9 +316,9 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
                   </span>
                 </div>
               </div>
-              <div className="p-4 space-y-4">
+              <div className="p-4 space-y-2">
                 {/* Predicted Revenue */}
-                <div className="bg-white rounded-lg p-4 border border-purple-100">
+                <div className="bg-white rounded-lg p-3 border border-purple-100">
                   <p className="text-sm text-gray-600 mb-2">Predicted Revenue</p>
                   <p className="text-3xl font-bold text-purple-900">
                     ${(selectedPeriod.aiPrediction.expectedRevenue / 1000).toFixed(0)}K
@@ -398,11 +398,11 @@ export const PipelineForecast: React.FC<PipelineForecastProps> = ({
             <p className="text-sm text-gray-600 mt-1">Different forecast outcomes based on variables</p>
           </div>
           <div className="p-4">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               {scenarios.map((scenario, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200"
+                  className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="font-bold text-gray-900">{scenario.name}</h4>

@@ -184,10 +184,10 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-rose-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-rose-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <AlertTriangle className="h-8 w-8" />
             <div>
@@ -200,9 +200,9 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Auto-generated NCR Number */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-blue-600 font-medium">Auto-Generated NCR Number</p>
@@ -214,8 +214,8 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
 
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   NCR Title <span className="text-red-500">*</span>
@@ -303,8 +303,8 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
 
           {/* Detection Details */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Detection Details</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Detection Details</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Detected By</label>
                 <select
@@ -381,7 +381,7 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
 
           {/* Description */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Nonconformance Description</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Nonconformance Description</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Detailed Description <span className="text-red-500">*</span>
@@ -407,8 +407,8 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
 
           {/* Assignment & Timeline */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Assignment & Timeline</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Assignment & Timeline</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Assign To <span className="text-red-500">*</span>
@@ -443,8 +443,8 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
 
           {/* Impact Assessment */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Impact Assessment</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Impact Assessment</h3>
+            <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <input
                   type="checkbox"
@@ -480,9 +480,9 @@ export const RaiseNCRModal: React.FC<RaiseNCRModalProps> = ({ isOpen, onClose, o
 
           {/* Attachments */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Attachments</h3>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-400 transition-colors cursor-pointer">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Attachments</h3>
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-red-400 transition-colors cursor-pointer">
+              <Upload className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
               <p className="text-xs text-gray-500 mt-1">Images, documents, or other evidence (Max 10MB)</p>
             </div>
@@ -560,10 +560,10 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <div className="flex items-center space-x-3">
               <h2 className="text-2xl font-bold">{ncr.ncrNumber}</h2>
@@ -578,14 +578,14 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Product & WO Information */}
           <div>
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center space-x-2">
               <Package className="h-4 w-4" />
               <span>Product & Work Order Information</span>
             </h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="text-xs text-gray-500 mb-1">Product Code</p>
                 <p className="font-semibold text-gray-900">{ncr.productCode}</p>
@@ -615,7 +615,7 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
               <AlertCircle className="h-4 w-4" />
               <span>Detection Details</span>
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-600 mb-1">Detected By</p>
                 <p className="font-semibold text-blue-900">{ncr.detectedBy}</p>
@@ -697,7 +697,7 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
               <Clock className="h-4 w-4" />
               <span>Assignment & Timeline</span>
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <p className="text-xs text-gray-500 mb-1">Assigned To</p>
                 <p className="font-semibold text-gray-900">{ncr.assignedTo}</p>
@@ -725,7 +725,7 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
               <DollarSign className="h-4 w-4" />
               <span>Impact Assessment</span>
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                 <p className="text-xs text-yellow-600 mb-1">Cost Impact</p>
                 <p className="text-xl font-bold text-yellow-900">${ncr.costImpact.toFixed(2)}</p>
@@ -752,7 +752,7 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
                 <CheckCircle className="h-4 w-4" />
                 <span>Approval & Verification</span>
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 {ncr.approvedBy && (
                   <div className="p-3 bg-green-50 rounded-lg border border-green-200">
                     <p className="text-xs text-green-600 mb-1">Approved By</p>
@@ -897,10 +897,10 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Edit3 className="h-8 w-8" />
             <div>
@@ -913,11 +913,11 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   NCR Title <span className="text-red-500">*</span>
@@ -1008,8 +1008,8 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Detection Details */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Detection Details</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Detection Details</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Detection Stage</label>
                 <select
@@ -1060,7 +1060,7 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Description */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Nonconformance Description</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Nonconformance Description</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Detailed Description <span className="text-red-500">*</span>
@@ -1079,7 +1079,7 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Root Cause */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Root Cause Analysis</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Root Cause Analysis</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Root Cause</label>
               <textarea
@@ -1094,7 +1094,7 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Corrective Action */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Corrective Action Plan</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Corrective Action Plan</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Corrective Action</label>
               <textarea
@@ -1109,7 +1109,7 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Preventive Action */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Preventive Action Plan</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Preventive Action Plan</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Preventive Action</label>
               <textarea
@@ -1124,8 +1124,8 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Assignment & Dates */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Assignment & Timeline</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Assignment & Timeline</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Assigned To</label>
                 <select
@@ -1165,8 +1165,8 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Approval & Verification */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Approval & Verification</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Approval & Verification</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Approved By</label>
                 <select
@@ -1199,8 +1199,8 @@ export const EditNCRModal: React.FC<EditNCRModalProps> = ({ isOpen, onClose, onS
 
           {/* Impact Assessment */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Impact Assessment</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 border-b pb-2">Impact Assessment</h3>
+            <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <input
                   type="checkbox"

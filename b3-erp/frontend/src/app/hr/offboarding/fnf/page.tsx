@@ -53,30 +53,30 @@ export default function FNFPage() {
                 <p className="text-gray-600 mt-2">Manage employee exit settlements and clearance</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-8">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Pending</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.pendingSettlements}</p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Completed</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.completedSettlements}</p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Total Disbursed</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">₹{(stats.totalDisbursed / 100000).toFixed(2)}L</p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Avg. Time</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.avgProcessingTime}</p>
                 </div>
             </div>
 
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Settlement Modules</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">Settlement Modules</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {modules.map((module) => (
                     <Link href={module.href} key={module.title} className="block group">
-                        <div className={`p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-md ${module.color} flex items-start gap-4 h-full`}>
+                        <div className={`p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-md ${module.color} flex items-start gap-2 h-full`}>
                             <div className="bg-white p-3 rounded-lg shadow-sm">
                                 {module.icon}
                             </div>
@@ -97,7 +97,7 @@ export default function FNFPage() {
                 ))}
             </div>
 
-            <div className="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-6">
+            <div className="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-3">
                 <h3 className="font-semibold text-blue-900 mb-2">Process Overview</h3>
                 <ol className="list-decimal list-inside space-y-2 text-sm text-blue-800">
                     <li>Calculate <strong>Gratuity</strong> based on tenure (requires 5+ years).</li>

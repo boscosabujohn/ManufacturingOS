@@ -27,7 +27,7 @@ export default function Error({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 flex items-center justify-center p-3">
       <div className="max-w-2xl w-full">
         {/* Main Error Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 text-center">
@@ -63,10 +63,10 @@ export default function Error({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center mb-8">
             <button
               onClick={reset}
-              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-semibold rounded-lg hover:from-red-700 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-red-600 to-orange-600 text-white font-semibold rounded-lg hover:from-red-700 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               <RefreshCw className="w-5 h-5 mr-2" />
               Try Again
@@ -74,7 +74,7 @@ export default function Error({
             
             <Link
               href="/dashboard"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-red-600 hover:text-red-600 transition-all duration-200"
+              className="inline-flex items-center justify-center px-3 py-2 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-red-600 hover:text-red-600 transition-all duration-200"
             >
               <Home className="w-5 h-5 mr-2" />
               Back to Dashboard
@@ -83,7 +83,7 @@ export default function Error({
 
           {/* Quick Tips */}
           <div className="border-t border-gray-200 pt-8 mb-8">
-            <p className="text-sm text-gray-600 mb-4 font-medium">
+            <p className="text-sm text-gray-600 mb-2 font-medium">
               What you can try:
             </p>
             <div className="grid gap-3 text-left">
@@ -126,7 +126,7 @@ export default function Error({
           <div className="border-t border-gray-200 pt-6">
             <button
               onClick={() => setShowErrorDetails(!showErrorDetails)}
-              className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors mx-auto"
+              className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
             >
               <AlertCircle className="w-4 h-4 mr-2" />
               {showErrorDetails ? 'Hide' : 'Show'} Technical Details
@@ -139,7 +139,7 @@ export default function Error({
 
             {/* Error Details Panel */}
             {showErrorDetails && (
-              <div className="mt-4 bg-gray-50 rounded-lg p-4 text-left border border-gray-200 animate-fadeIn">
+              <div className="mt-4 bg-gray-50 rounded-lg p-3 text-left border border-gray-200 animate-fadeIn">
                 <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
                   <AlertCircle className="w-4 h-4 mr-2 text-red-500" />
                   Technical Details

@@ -112,9 +112,9 @@ export default function CPQContractsGeneratePage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex justify-between items-center">
+      <div className="mb-3 flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Generate Contract</h2>
           <p className="text-sm text-gray-600 mt-1">From Proposal: {contractData.proposalNumber}</p>
@@ -136,7 +136,7 @@ export default function CPQContractsGeneratePage() {
       </div>
 
       {/* Progress Steps */}
-      <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="mb-3 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">1</div>
@@ -160,16 +160,16 @@ export default function CPQContractsGeneratePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Form - Left 2 columns */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Template Selection */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-blue-600" />
               Select Contract Template
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {templates.map((template) => (
                 <div
                   key={template.id}
@@ -188,12 +188,12 @@ export default function CPQContractsGeneratePage() {
           </div>
 
           {/* Customer Information */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Building className="h-5 w-5 text-green-600" />
               Customer Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
                 <input
@@ -243,12 +243,12 @@ export default function CPQContractsGeneratePage() {
           </div>
 
           {/* Contract Details */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-purple-600" />
               Contract Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Contract Type</label>
                 <select
@@ -314,9 +314,9 @@ export default function CPQContractsGeneratePage() {
           </div>
 
           {/* Clause Selection */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Contract Clauses</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Select Contract Clauses</h3>
+            <div className="space-y-2">
               {clauseCategories.map((cat) => (
                 <div key={cat.category}>
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">{cat.category} Clauses</h4>
@@ -357,10 +357,10 @@ export default function CPQContractsGeneratePage() {
 
         {/* Summary Sidebar - Right column */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Summary</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 sticky top-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Summary</h3>
             
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="pb-4 border-b border-gray-200">
                 <p className="text-sm text-gray-600 mb-1">Contract Value</p>
                 <p className="text-2xl font-bold text-blue-600">₹{(contractData.contractValue / 100000).toFixed(2)}L</p>
@@ -422,7 +422,7 @@ export default function CPQContractsGeneratePage() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Contract Generation Process:</h3>
         <ul className="text-xs text-blue-700 space-y-1">
           <li><strong>1. Select Template:</strong> Choose appropriate contract type for your needs</li>

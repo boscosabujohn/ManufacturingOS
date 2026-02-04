@@ -96,15 +96,15 @@ export default function WorkflowOrderDetailPage() {
         <div className="min-h-screen bg-gray-50 pb-12">
             {/* Header */}
             <div className="bg-white border-b border-gray-200">
-                <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+                <div className="w-full px-3 py-2">
                     <button
                         onClick={() => router.back()}
-                        className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-4"
+                        className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-2"
                     >
                         <ArrowLeft className="h-4 w-4 mr-1" />
                         Back to Dashboard
                     </button>
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                         <div>
                             <div className="flex items-center gap-3">
                                 <h1 className="text-2xl font-bold text-gray-900">Order {order.orderNumber}</h1>
@@ -131,13 +131,13 @@ export default function WorkflowOrderDetailPage() {
                 </div>
             </div>
 
-            <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
+            <div className="w-full px-3 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-6">
+                    <div className="lg:col-span-2 space-y-3">
                         {/* Progress Bar */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                            <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Progress</h2>
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                            <h2 className="text-lg font-semibold text-gray-900 mb-2">Order Progress</h2>
                             <div className="mb-2 flex justify-between text-sm">
                                 <span className="font-medium text-gray-700">{order.progress}% Completed</span>
                                 <span className="text-gray-500">Est. Delivery: {new Date(order.expectedDeliveryDate).toLocaleDateString()}</span>
@@ -169,11 +169,11 @@ export default function WorkflowOrderDetailPage() {
                         </div>
 
                         {/* Work Orders */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                            <h2 className="text-lg font-semibold text-gray-900 mb-4">Work Orders</h2>
-                            <div className="space-y-4">
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                            <h2 className="text-lg font-semibold text-gray-900 mb-2">Work Orders</h2>
+                            <div className="space-y-2">
                                 {order.workOrders.map((wo) => (
-                                    <div key={wo.workOrderNumber} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                                    <div key={wo.workOrderNumber} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 transition-colors">
                                         <div className="flex items-center justify-between mb-2">
                                             <div className="flex items-center gap-3">
                                                 <div className="p-2 bg-orange-100 rounded-lg">
@@ -210,32 +210,32 @@ export default function WorkflowOrderDetailPage() {
 
                         {/* Order Items */}
                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                            <div className="px-6 py-4 border-b border-gray-200">
+                            <div className="px-3 py-2 border-b border-gray-200">
                                 <h2 className="text-lg font-semibold text-gray-900">Order Items</h2>
                             </div>
                             <table className="w-full">
                                 <thead className="bg-gray-50">
                                     <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Price</th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
+                                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Price</th>
+                                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
                                     {order.items.map((item) => (
                                         <tr key={item.id}>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.name}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{item.quantity}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">{formatCurrency(item.unitPrice)}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">{formatCurrency(item.total)}</td>
+                                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{item.name}</td>
+                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500 text-right">{item.quantity}</td>
+                                            <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500 text-right">{formatCurrency(item.unitPrice)}</td>
+                                            <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-right">{formatCurrency(item.total)}</td>
                                         </tr>
                                     ))}
                                 </tbody>
                                 <tfoot className="bg-gray-50">
                                     <tr>
-                                        <td colSpan={3} className="px-6 py-4 text-right text-sm font-medium text-gray-900">Total Amount</td>
-                                        <td className="px-6 py-4 text-right text-sm font-bold text-gray-900">{formatCurrency(order.totalAmount)}</td>
+                                        <td colSpan={3} className="px-3 py-2 text-right text-sm font-medium text-gray-900">Total Amount</td>
+                                        <td className="px-3 py-2 text-right text-sm font-bold text-gray-900">{formatCurrency(order.totalAmount)}</td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -243,11 +243,11 @@ export default function WorkflowOrderDetailPage() {
                     </div>
 
                     {/* Sidebar */}
-                    <div className="space-y-6">
+                    <div className="space-y-3">
                         {/* Customer Details */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                            <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Details</h2>
-                            <div className="space-y-4">
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                            <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Details</h2>
+                            <div className="space-y-2">
                                 <div className="flex items-start gap-3">
                                     <User className="h-5 w-5 text-gray-400 mt-0.5" />
                                     <div>
@@ -267,11 +267,11 @@ export default function WorkflowOrderDetailPage() {
                         </div>
 
                         {/* Timeline */}
-                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                            <h2 className="text-lg font-semibold text-gray-900 mb-4">Activity Log</h2>
-                            <div className="space-y-6">
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                            <h2 className="text-lg font-semibold text-gray-900 mb-2">Activity Log</h2>
+                            <div className="space-y-3">
                                 {order.events.map((event, index) => (
-                                    <div key={index} className="relative flex gap-4">
+                                    <div key={index} className="relative flex gap-2">
                                         <div className={`
                       absolute left-0 top-0 bottom-0 w-px bg-gray-200
                       ${index === order.events.length - 1 ? 'h-2' : ''}

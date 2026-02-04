@@ -138,7 +138,7 @@ export default function TicketAnalytics() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -158,7 +158,7 @@ export default function TicketAnalytics() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -168,7 +168,7 @@ export default function TicketAnalytics() {
             purple: 'bg-purple-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -186,7 +186,7 @@ export default function TicketAnalytics() {
       </div>
 
       {/* Period Selector */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">Ticket Volume Trends</h2>
           <div className="flex gap-2">
@@ -208,9 +208,9 @@ export default function TicketAnalytics() {
       </div>
 
       {/* Trend Chart Visualization */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="space-y-4">
-          <div className="flex items-center gap-6 text-sm">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="space-y-2">
+          <div className="flex items-center gap-3 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-blue-500 rounded"></div>
               <span className="text-gray-600">Total</span>
@@ -262,10 +262,10 @@ export default function TicketAnalytics() {
       </div>
 
       {/* Category Breakdown and Priority Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Category Breakdown */}
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Tickets by Category</h2>
+        <div className="bg-white rounded-lg shadow-sm border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Tickets by Category</h2>
           <div className="space-y-3">
             {categoryData.map((category, index) => (
               <div key={index} className="space-y-2">
@@ -296,11 +296,11 @@ export default function TicketAnalytics() {
         </div>
 
         {/* Priority Distribution */}
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Priority Distribution</h2>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Priority Distribution</h2>
+          <div className="space-y-2">
             {priorityData.map((priority, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-4">
+              <div key={index} className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <div className={`w-3 h-3 ${getPriorityColor(priority.priority)} rounded`}></div>
@@ -308,7 +308,7 @@ export default function TicketAnalytics() {
                   </div>
                   <span className="text-xl font-bold text-gray-900">{priority.count}</span>
                 </div>
-                <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   <div>
                     <div className="text-gray-500 text-xs">Share</div>
                     <div className="font-semibold text-gray-900">{priority.percentage}%</div>
@@ -331,7 +331,7 @@ export default function TicketAnalytics() {
       </div>
 
       {/* Key Insights */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
           <BarChart3 className="h-5 w-5" />
           Key Insights

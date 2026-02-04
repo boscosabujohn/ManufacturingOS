@@ -6,8 +6,8 @@ import { MessageSquare, Folder, Activity, Users, Bell, Search, Plus, FileText, I
 
 export default function CollaborationPage() {
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <div>
@@ -27,10 +27,10 @@ export default function CollaborationPage() {
                 </div>
 
                 {/* Quick Links */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <Link href="/collaboration/messaging" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-blue-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-blue-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition-colors">
                                     <MessageSquare className="w-6 h-6 text-blue-600" />
                                 </div>
@@ -42,8 +42,8 @@ export default function CollaborationPage() {
                     </Link>
 
                     <Link href="/collaboration/files" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-purple-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-purple-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-purple-50 rounded-lg group-hover:bg-purple-100 transition-colors">
                                     <Folder className="w-6 h-6 text-purple-600" />
                                 </div>
@@ -54,8 +54,8 @@ export default function CollaborationPage() {
                     </Link>
 
                     <Link href="/collaboration/feed" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-green-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-green-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-green-50 rounded-lg group-hover:bg-green-100 transition-colors">
                                     <Activity className="w-6 h-6 text-green-600" />
                                 </div>
@@ -67,23 +67,23 @@ export default function CollaborationPage() {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                     {/* Recent Activity */}
-                    <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
-                        <div className="flex justify-between items-center mb-6">
+                    <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-3">
+                        <div className="flex justify-between items-center mb-3">
                             <h2 className="text-lg font-bold text-gray-900">Recent Activity</h2>
                             <Link href="/collaboration/feed" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
                                 View All
                             </Link>
                         </div>
-                        <div className="space-y-6">
+                        <div className="space-y-3">
                             {[
                                 { user: 'Sarah Wilson', action: 'uploaded a new document', target: 'Q4 Financial Report.pdf', time: '10 mins ago', icon: FileText, color: 'bg-blue-100 text-blue-600' },
                                 { user: 'Mike Johnson', action: 'commented on', target: 'Project Alpha Timeline', time: '1 hour ago', icon: MessageSquare, color: 'bg-purple-100 text-purple-600' },
                                 { user: 'System', action: 'completed', target: 'Weekly Backup', time: '2 hours ago', icon: Activity, color: 'bg-green-100 text-green-600' },
                                 { user: 'David Lee', action: 'shared an image', target: 'Site Inspection.jpg', time: '3 hours ago', icon: Image, color: 'bg-orange-100 text-orange-600' },
                             ].map((activity, index) => (
-                                <div key={index} className="flex gap-4">
+                                <div key={index} className="flex gap-2">
                                     <div className={`p-2 rounded-full h-fit ${activity.color}`}>
                                         <activity.icon className="w-4 h-4" />
                                     </div>
@@ -99,12 +99,12 @@ export default function CollaborationPage() {
                     </div>
 
                     {/* Online Users */}
-                    <div className="bg-white rounded-xl border border-gray-200 p-6">
-                        <div className="flex justify-between items-center mb-6">
+                    <div className="bg-white rounded-xl border border-gray-200 p-3">
+                        <div className="flex justify-between items-center mb-3">
                             <h2 className="text-lg font-bold text-gray-900">Online Team</h2>
                             <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">12 Online</span>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {['Sarah Wilson', 'Mike Johnson', 'David Lee', 'Emma Davis', 'James Brown'].map((user, index) => (
                                 <div key={index} className="flex items-center gap-3">
                                     <div className="relative">

@@ -106,10 +106,10 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Filter className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Advanced Filters</h2>
@@ -120,14 +120,14 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Budget Range */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-green-600" />
               Budget Range
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Min Budget (₹)</label>
                 <input
@@ -152,13 +152,13 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
           </div>
 
           {/* Date Ranges */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               Date Ranges
             </h3>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Start Date From</label>
                   <input
@@ -178,7 +178,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">End Date From</label>
                   <input
@@ -202,12 +202,12 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
           </div>
 
           {/* Progress Range */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-purple-600" />
               Progress Range (%)
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Min Progress</label>
                 <input
@@ -236,9 +236,9 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
           </div>
 
           {/* Multi-Select Filters */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {/* Status */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Status</h3>
               <div className="space-y-2">
                 {statuses.map(status => (
@@ -256,7 +256,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
             </div>
 
             {/* Project Type */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Project Type</h3>
               <div className="space-y-2">
                 {types.map(type => (
@@ -274,7 +274,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
             </div>
 
             {/* Priority */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Priority</h3>
               <div className="space-y-2">
                 {priorities.map(priority => (
@@ -292,7 +292,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
             </div>
 
             {/* Project Manager */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Project Manager</h3>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {managers.map(manager => (
@@ -310,7 +310,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
             </div>
 
             {/* Customer */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Customer</h3>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {customers.map(customer => (
@@ -328,7 +328,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
             </div>
 
             {/* Location */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">Location</h3>
               <div className="space-y-2">
                 {locations.map(location => (
@@ -348,7 +348,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApply }: AdvancedFilter
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={handleReset}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -407,10 +407,10 @@ export function BulkUpdateModal({ isOpen, onClose, selectedProjects, onUpdate }:
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <CheckSquare className="w-6 h-6 text-white" />
             <div>
@@ -424,9 +424,9 @@ export function BulkUpdateModal({ isOpen, onClose, selectedProjects, onUpdate }:
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Selected Projects Preview */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Selected Projects</h3>
             <div className="space-y-2 max-h-32 overflow-y-auto">
               {selectedProjects.map((project, index) => (
@@ -527,7 +527,7 @@ export function BulkUpdateModal({ isOpen, onClose, selectedProjects, onUpdate }:
           </div>
 
           {/* Warning */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
@@ -541,7 +541,7 @@ export function BulkUpdateModal({ isOpen, onClose, selectedProjects, onUpdate }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -603,10 +603,10 @@ export function CloneProjectModal({ isOpen, onClose, project, onClone }: ClonePr
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Copy className="w-6 h-6 text-white" />
             <div>
@@ -620,9 +620,9 @@ export function CloneProjectModal({ isOpen, onClose, project, onClone }: ClonePr
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Source Project Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="font-semibold text-blue-900 mb-2">Source Project</h3>
             <div className="space-y-1 text-sm">
               <p className="text-blue-800"><span className="font-medium">Number:</span> {project?.projectNumber}</p>
@@ -633,7 +633,7 @@ export function CloneProjectModal({ isOpen, onClose, project, onClone }: ClonePr
           </div>
 
           {/* New Project Details */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900">New Project Details</h3>
 
             <div>
@@ -666,7 +666,7 @@ export function CloneProjectModal({ isOpen, onClose, project, onClone }: ClonePr
           </div>
 
           {/* Clone Options */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">What to Clone</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-2 cursor-pointer">
@@ -750,7 +750,7 @@ export function CloneProjectModal({ isOpen, onClose, project, onClone }: ClonePr
           </div>
 
           {/* Date Adjustment */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -781,7 +781,7 @@ export function CloneProjectModal({ isOpen, onClose, project, onClone }: ClonePr
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -831,10 +831,10 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6 text-white" />
             <div>
@@ -848,7 +848,7 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Project Header */}
           <div>
             <h3 className="text-2xl font-bold text-gray-900">{project.projectName}</h3>
@@ -873,28 +873,28 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-sm text-blue-600 mb-1">Progress</p>
               <p className="text-2xl font-bold text-blue-900">{project.progress}%</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-sm text-green-600 mb-1">Budget</p>
               <p className="text-xl font-bold text-green-900">{formatCurrency(project.budget)}</p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
+            <div className="bg-purple-50 p-3 rounded-lg">
               <p className="text-sm text-purple-600 mb-1">Actual Cost</p>
               <p className="text-xl font-bold text-purple-900">{formatCurrency(project.actualCost)}</p>
             </div>
-            <div className="bg-orange-50 p-4 rounded-lg">
+            <div className="bg-orange-50 p-3 rounded-lg">
               <p className="text-sm text-orange-600 mb-1">Team Size</p>
               <p className="text-2xl font-bold text-orange-900">{project.team}</p>
             </div>
           </div>
 
           {/* Project Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="space-y-2">
               <div className="flex items-center gap-3">
                 <Building2 className="w-5 h-5 text-gray-400" />
                 <div>
@@ -920,7 +920,7 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="flex items-center gap-3">
                 <Calendar className="w-5 h-5 text-gray-400" />
                 <div>
@@ -948,7 +948,7 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
           </div>
 
           {/* Deliverables Progress */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="font-semibold text-gray-900 mb-3">Deliverables</h4>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-600">
@@ -967,7 +967,7 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
           </div>
 
           {/* Budget Status */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="font-semibold text-gray-900 mb-3">Budget Status</h4>
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -999,7 +999,7 @@ export function QuickViewModal({ isOpen, onClose, project }: QuickViewModalProps
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1053,10 +1053,10 @@ export function AssignManagerModal({ isOpen, onClose, project, onAssign }: Assig
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <UserPlus className="w-6 h-6 text-white" />
             <div>
@@ -1070,9 +1070,9 @@ export function AssignManagerModal({ isOpen, onClose, project, onAssign }: Assig
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Current Manager */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-blue-600 mb-1">Current Project Manager</p>
             <p className="font-semibold text-blue-900">{project?.projectManager || 'Not Assigned'}</p>
           </div>
@@ -1086,7 +1086,7 @@ export function AssignManagerModal({ isOpen, onClose, project, onAssign }: Assig
               {managers.map((manager) => (
                 <label
                   key={manager.name}
-                  className={`flex items-center justify-between p-4 border-2 rounded-lg cursor-pointer transition ${
+                  className={`flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition ${
                     selectedManager === manager.name
                       ? 'border-orange-500 bg-orange-50'
                       : 'border-gray-200 hover:border-orange-300'
@@ -1135,7 +1135,7 @@ export function AssignManagerModal({ isOpen, onClose, project, onAssign }: Assig
           </div>
 
           {/* Notification Options */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <h4 className="font-semibold text-gray-900">Notifications</h4>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -1159,7 +1159,7 @@ export function AssignManagerModal({ isOpen, onClose, project, onAssign }: Assig
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1237,10 +1237,10 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6 text-white" />
             <div>
@@ -1256,12 +1256,12 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
-              <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition ${
+              <label className={`flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer transition ${
                 exportFormat === 'excel' ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-teal-300'
               }`}>
                 <input
@@ -1277,7 +1277,7 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
                 <span className="text-xs text-gray-600">.xlsx</span>
               </label>
 
-              <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition ${
+              <label className={`flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer transition ${
                 exportFormat === 'pdf' ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-teal-300'
               }`}>
                 <input
@@ -1293,7 +1293,7 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
                 <span className="text-xs text-gray-600">.pdf</span>
               </label>
 
-              <label className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition ${
+              <label className={`flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer transition ${
                 exportFormat === 'csv' ? 'border-teal-500 bg-teal-50' : 'border-gray-200 hover:border-teal-300'
               }`}>
                 <input
@@ -1376,7 +1376,7 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
               </label>
 
               {dateRange === 'custom' && (
-                <div className="ml-6 grid grid-cols-2 gap-4 mt-2">
+                <div className="ml-6 grid grid-cols-2 gap-2 mt-2">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Start Date</label>
                     <input
@@ -1401,7 +1401,7 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
           </div>
 
           {/* Export Preview */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="font-semibold text-blue-900 mb-2">Export Summary</h4>
             <div className="space-y-1 text-sm text-blue-800">
               <p>Format: <span className="font-medium uppercase">{exportFormat}</span></p>
@@ -1412,7 +1412,7 @@ export function ExportProjectsModal({ isOpen, onClose, selectedProjects, onExpor
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1468,10 +1468,10 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Archive className="w-6 h-6 text-white" />
             <div>
@@ -1485,9 +1485,9 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Project Info */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-2">Project Details</h3>
             <div className="space-y-1 text-sm">
               <p className="text-gray-700"><span className="font-medium">Name:</span> {project?.projectName}</p>
@@ -1537,7 +1537,7 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
           )}
 
           {/* Data Preservation */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h4 className="font-semibold text-yellow-900 mb-3">Data Preservation</h4>
             <div className="space-y-3">
               <label className="flex items-start gap-2 cursor-pointer">
@@ -1569,7 +1569,7 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
           </div>
 
           {/* Notification */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -1582,7 +1582,7 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
           </div>
 
           {/* Impact Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-red-600 mt-0.5" />
               <div>
@@ -1598,7 +1598,7 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
           </div>
 
           {/* Confirmation */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <label className="flex items-start gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -1614,7 +1614,7 @@ export function ArchiveProjectModal({ isOpen, onClose, project, onArchive }: Arc
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1717,10 +1717,10 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Calendar className="w-6 h-6 text-white" />
             <div>
@@ -1734,8 +1734,8 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
         </div>
 
         {/* Controls */}
-        <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="bg-gray-50 px-3 py-2 border-b border-gray-200 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-gray-700">View:</span>
               <select
@@ -1768,36 +1768,36 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Project Overview */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-sm text-blue-600 mb-1">Total Duration</p>
               <p className="text-2xl font-bold text-blue-900">180 Days</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-sm text-green-600 mb-1">Days Elapsed</p>
               <p className="text-2xl font-bold text-green-900">95 Days</p>
             </div>
-            <div className="bg-orange-50 p-4 rounded-lg">
+            <div className="bg-orange-50 p-3 rounded-lg">
               <p className="text-sm text-orange-600 mb-1">Days Remaining</p>
               <p className="text-2xl font-bold text-orange-900">85 Days</p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
+            <div className="bg-purple-50 p-3 rounded-lg">
               <p className="text-sm text-purple-600 mb-1">Overall Progress</p>
               <p className="text-2xl font-bold text-purple-900">{project?.progress}%</p>
             </div>
           </div>
 
           {/* Phases Timeline */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <ChevronRight className="w-5 h-5" />
               Project Phases
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {phases.map((phase, index) => (
-                <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
+                <div key={index} className="bg-white p-3 rounded-lg border border-gray-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <div className={`w-3 h-3 rounded-full bg-${phase.color}-500`}></div>
@@ -1821,7 +1821,7 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-2 text-xs text-gray-600">
                     <span>{phase.completedTasks}/{phase.tasks} tasks completed</span>
                   </div>
                 </div>
@@ -1830,8 +1830,8 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
           </div>
 
           {/* Milestones */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <CheckSquare className="w-5 h-5" />
               Key Milestones
             </h3>
@@ -1867,7 +1867,7 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
           </div>
 
           {/* Dependencies Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
               <div>
@@ -1881,7 +1881,7 @@ export function ProjectTimelineModal({ isOpen, onClose, project }: ProjectTimeli
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -2000,10 +2000,10 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Users className="w-6 h-6 text-white" />
             <div>
@@ -2019,7 +2019,7 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
         </div>
 
         {/* Controls */}
-        <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 border-b border-gray-200">
           <div className="flex items-center gap-3">
             <input
               type="text"
@@ -2039,10 +2039,10 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Add Member Form */}
           {showAddMember && (
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <h3 className="font-semibold text-purple-900 mb-3">Add Team Member</h3>
               <div className="space-y-3">
                 {availableMembers.map((member, index) => (
@@ -2064,24 +2064,24 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
           )}
 
           {/* Team Statistics */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-sm text-blue-600 mb-1">Total Members</p>
               <p className="text-2xl font-bold text-blue-900">{teamMembers.length}</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-sm text-green-600 mb-1">Active</p>
               <p className="text-2xl font-bold text-green-900">
                 {teamMembers.filter(m => m.status === 'active').length}
               </p>
             </div>
-            <div className="bg-orange-50 p-4 rounded-lg">
+            <div className="bg-orange-50 p-3 rounded-lg">
               <p className="text-sm text-orange-600 mb-1">Avg Allocation</p>
               <p className="text-2xl font-bold text-orange-900">
                 {Math.round(teamMembers.reduce((acc, m) => acc + m.allocation, 0) / teamMembers.length)}%
               </p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
+            <div className="bg-purple-50 p-3 rounded-lg">
               <p className="text-sm text-purple-600 mb-1">Total Tasks</p>
               <p className="text-2xl font-bold text-purple-900">
                 {teamMembers.reduce((acc, m) => acc + m.tasksAssigned, 0)}
@@ -2099,7 +2099,7 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
               .map((member) => (
                 <div
                   key={member.id}
-                  className={`bg-white border-2 rounded-lg p-4 ${
+                  className={`bg-white border-2 rounded-lg p-3 ${
                     member.status === 'active' ? 'border-gray-200' : 'border-gray-100 opacity-60'
                   }`}
                 >
@@ -2117,7 +2117,7 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
                         )}
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
                         <div>
                           <p className="text-xs text-gray-600">Email</p>
                           <p className="text-sm text-gray-900">{member.email}</p>
@@ -2175,7 +2175,7 @@ export function TeamMembersModal({ isOpen, onClose, project, onUpdateTeam }: Tea
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -2294,10 +2294,10 @@ export function QuickNotesModal({ isOpen, onClose, project, onSaveNote }: QuickN
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <StickyNote className="w-6 h-6 text-white" />
             <div>
@@ -2311,12 +2311,12 @@ export function QuickNotesModal({ isOpen, onClose, project, onSaveNote }: QuickN
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Add New Note */}
-          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-3">
             <h3 className="font-semibold text-yellow-900 mb-3">Add New Note</h3>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Note Text */}
               <div>
                 <textarea
@@ -2354,7 +2354,7 @@ export function QuickNotesModal({ isOpen, onClose, project, onSaveNote }: QuickN
               </div>
 
               {/* Options */}
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
                   <label className="text-sm font-medium text-gray-700">Priority:</label>
                   <select
@@ -2391,7 +2391,7 @@ export function QuickNotesModal({ isOpen, onClose, project, onSaveNote }: QuickN
 
               {/* File Upload */}
               {attachFile && (
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-3">
                   <div className="flex items-center gap-3">
                     <Upload className="w-5 h-5 text-gray-400" />
                     <div>
@@ -2423,7 +2423,7 @@ export function QuickNotesModal({ isOpen, onClose, project, onSaveNote }: QuickN
               {existingNotes.map((note) => (
                 <div
                   key={note.id}
-                  className={`bg-white border-l-4 border-${getCategoryColor(note.category)}-500 rounded-lg p-4 shadow-sm`}
+                  className={`bg-white border-l-4 border-${getCategoryColor(note.category)}-500 rounded-lg p-3 shadow-sm`}
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -2466,7 +2466,7 @@ export function QuickNotesModal({ isOpen, onClose, project, onSaveNote }: QuickN
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <div className="text-sm text-gray-600">
             All notes are automatically saved and synced
           </div>

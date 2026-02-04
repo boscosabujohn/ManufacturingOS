@@ -110,9 +110,9 @@ export function ApproveModal({ isOpen, onClose, request, onApprove }: ApprovalMo
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <ThumbsUp className="w-6 h-6" />
@@ -127,14 +127,14 @@ export function ApproveModal({ isOpen, onClose, request, onApprove }: ApprovalMo
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Request Summary */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-5 border border-green-200">
-            <h3 className="text-sm font-semibold text-green-900 mb-4 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-green-900 mb-2 flex items-center gap-2">
               <FileText className="w-4 h-4" />
               Request Summary
             </h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Document:</span>
                 <p className="font-medium text-gray-900">{request?.documentNumber}</p>
@@ -194,7 +194,7 @@ export function ApproveModal({ isOpen, onClose, request, onApprove }: ApprovalMo
           </div>
 
           {/* Conditional Approval */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -248,7 +248,7 @@ export function ApproveModal({ isOpen, onClose, request, onApprove }: ApprovalMo
           </div>
 
           {/* Impact Warning */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex gap-3">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex gap-3">
             <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h4 className="text-sm font-semibold text-green-900">Approval Impact</h4>
@@ -265,13 +265,13 @@ export function ApproveModal({ isOpen, onClose, request, onApprove }: ApprovalMo
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <ThumbsUp className="w-4 h-4" />
               Approve Request
@@ -308,9 +308,9 @@ export function RejectModal({ isOpen, onClose, request, onReject }: ApprovalModa
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-rose-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-rose-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <ThumbsDown className="w-6 h-6" />
@@ -325,14 +325,14 @@ export function RejectModal({ isOpen, onClose, request, onReject }: ApprovalModa
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Request Summary */}
           <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-5 border border-red-200">
-            <h3 className="text-sm font-semibold text-red-900 mb-4 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-red-900 mb-2 flex items-center gap-2">
               <FileText className="w-4 h-4" />
               Request Summary
             </h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Document:</span>
                 <p className="font-medium text-gray-900">{request?.documentNumber}</p>
@@ -437,7 +437,7 @@ export function RejectModal({ isOpen, onClose, request, onReject }: ApprovalModa
           </div>
 
           {/* Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex gap-3">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex gap-3">
             <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h4 className="text-sm font-semibold text-red-900">Rejection Impact</h4>
@@ -453,13 +453,13 @@ export function RejectModal({ isOpen, onClose, request, onReject }: ApprovalModa
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-red-600 to-rose-600 text-white rounded-lg hover:from-red-700 hover:to-rose-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-red-600 to-rose-600 text-white rounded-lg hover:from-red-700 hover:to-rose-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <ThumbsDown className="w-4 h-4" />
               Reject Request
@@ -505,9 +505,9 @@ export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: App
   ]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <UserCheck className="w-6 h-6" />
@@ -522,10 +522,10 @@ export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: App
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Current Request Info (if specific) */}
           {request?.documentNumber && (
-            <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+            <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
               <h3 className="text-sm font-semibold text-purple-900 mb-2">Delegating Approval For:</h3>
               <p className="text-sm text-purple-800">{request.documentNumber} - {request.title}</p>
             </div>
@@ -551,7 +551,7 @@ export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: App
           </div>
 
           {/* Delegation Period */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Start Date <span className="text-red-500">*</span>
@@ -596,7 +596,7 @@ export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: App
           </div>
 
           {/* Delegation Scope */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -628,7 +628,7 @@ export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: App
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex gap-3">
             <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h4 className="text-sm font-semibold text-blue-900">Delegation Notes</h4>
@@ -646,13 +646,13 @@ export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: App
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <UserCheck className="w-4 h-4" />
               Delegate Approval
@@ -683,9 +683,9 @@ export function ReturnModalFixed({ isOpen, onClose, request, onReturn }: Approva
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-yellow-500 to-amber-500 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-yellow-500 to-amber-500 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <RotateCcw className="w-6 h-6" />
@@ -700,8 +700,8 @@ export function ReturnModalFixed({ isOpen, onClose, request, onReturn }: Approva
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <p className="text-sm text-yellow-800">
               Returning a request allows the requester to provide additional information without rejecting the entire request. The workflow will pause until clarification is provided.
             </p>
@@ -739,13 +739,13 @@ export function ReturnModalFixed({ isOpen, onClose, request, onReturn }: Approva
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-500 to-amber-500 text-white rounded-lg hover:from-yellow-600 hover:to-amber-600 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-yellow-500 to-amber-500 text-white rounded-lg hover:from-yellow-600 hover:to-amber-600 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />
               Return Request
@@ -763,9 +763,9 @@ export function ViewHistoryModal({ isOpen, onClose, request }: ApprovalModalProp
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="px-6 py-4 border-b flex items-center justify-between">
+        <div className="px-3 py-2 border-b flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900">Approval History</h2>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="w-5 h-5 text-gray-500" />
@@ -773,7 +773,7 @@ export function ViewHistoryModal({ isOpen, onClose, request }: ApprovalModalProp
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-1">{request?.title}</h3>
             <p className="text-sm text-gray-500">{request?.documentNumber}</p>
           </div>
@@ -789,7 +789,7 @@ export function ViewHistoryModal({ isOpen, onClose, request }: ApprovalModalProp
                     history.action === 'rejected' ? <XCircle className="w-4 h-4" /> :
                       <RotateCcw className="w-4 h-4" />}
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <span className="font-semibold text-gray-900">{history.approver}</span>
@@ -827,9 +827,9 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between z-10">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b px-3 py-2 flex items-center justify-between z-10">
           <div>
             <h2 className="text-xl font-bold text-gray-900">Request Details</h2>
             <p className="text-sm text-gray-500">{request?.documentNumber}</p>
@@ -841,10 +841,10 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
 
         <div className="p-6">
           {/* Header Info */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-8 bg-gray-50 p-3 rounded-xl border border-gray-200">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 mb-1">{request?.title}</h1>
-              <div className="flex items-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-gray-500">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   {request?.requestedDate}
@@ -862,9 +862,9 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Building2 className="w-5 h-5 text-gray-400" />
                   General Information
                 </h3>
@@ -900,23 +900,23 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <FileText className="w-5 h-5 text-gray-400" />
                   Justification
                 </h3>
-                <div className="bg-gray-50 p-4 rounded-lg border text-gray-700 leading-relaxed">
+                <div className="bg-gray-50 p-3 rounded-lg border text-gray-700 leading-relaxed">
                   {request?.justification}
                 </div>
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Users className="w-5 h-5 text-gray-400" />
                   Vendor Information
                 </h3>
-                <div className="bg-white border rounded-lg p-4">
+                <div className="bg-white border rounded-lg p-3">
                   {request?.vendor ? (
                     <>
                       <div className="flex items-center gap-3 mb-3">
@@ -928,7 +928,7 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
                           <p className="text-sm text-gray-500">Vendor ID: V-2024-001</p>
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-sm mt-4 pt-4 border-t">
+                      <div className="grid grid-cols-2 gap-2 text-sm mt-4 pt-4 border-t">
                         <div>
                           <p className="text-gray-500 mb-1">Status</p>
                           <span className="text-green-600 bg-green-50 px-2 py-1 rounded text-xs font-medium">Preferred</span>
@@ -946,7 +946,7 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Package className="w-5 h-5 text-gray-400" />
                   Line Items (Summary)
                 </h3>
@@ -978,7 +978,7 @@ export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProp
           </div>
         </div>
 
-        <div className="sticky bottom-0 bg-white border-t px-6 py-4 flex justify-end gap-3 rounded-b-xl z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div className="sticky bottom-0 bg-white border-t px-3 py-2 flex justify-end gap-3 rounded-b-xl z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
             Close
           </button>
@@ -1006,17 +1006,17 @@ export function BulkActionsModal({ isOpen, onClose, selectedCount, onComplete }:
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
-        <div className="px-6 py-4 border-b">
+        <div className="px-3 py-2 border-b">
           <h2 className="text-xl font-bold flex items-center gap-2">
             <Zap className="w-5 h-5 text-purple-600" />
             Bulk Actions
           </h2>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
+        <div className="p-6 space-y-2">
+          <div className="bg-purple-50 p-3 rounded-lg border border-purple-100">
             <p className="font-medium text-purple-900">
               You defined {selectedCount} items for bulk action.
             </p>
@@ -1027,7 +1027,7 @@ export function BulkActionsModal({ isOpen, onClose, selectedCount, onComplete }:
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Action</label>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <label className={`flex-1 p-3 rounded-lg border cursor-pointer transition-colors flex items-center justify-center gap-2 ${action === 'approve' ? 'bg-green-50 border-green-500 text-green-700' : 'hover:bg-gray-50'
                 }`}>
                 <input
@@ -1072,7 +1072,7 @@ export function BulkActionsModal({ isOpen, onClose, selectedCount, onComplete }:
           </div>
         </div>
 
-        <div className="px-6 py-4 border-t flex justify-end gap-3 bg-gray-50 rounded-b-xl">
+        <div className="px-3 py-2 border-t flex justify-end gap-3 bg-gray-50 rounded-b-xl">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium"
@@ -1107,9 +1107,9 @@ export function ExportApprovalsModal({ isOpen, onClose }: ExportModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
-        <div className="px-6 py-4 border-b flex justify-between items-center">
+        <div className="px-3 py-2 border-b flex justify-between items-center">
           <h2 className="text-lg font-bold flex items-center gap-2">
             <Download className="w-5 h-5 text-blue-600" />
             Export Data
@@ -1119,13 +1119,13 @@ export function ExportApprovalsModal({ isOpen, onClose }: ExportModalProps) {
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <p className="text-gray-600 text-sm">
             Select the format to export your approval history and current requests.
           </p>
 
           <div className="grid grid-cols-1 gap-3">
-            <button className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50 hover:border-blue-200 group transition-colors">
+            <button className="flex items-center justify-between p-3 border rounded-lg hover:bg-blue-50 hover:border-blue-200 group transition-colors">
               <div className="flex items-center gap-3">
                 <div className="bg-red-100 p-2 rounded text-red-600">
                   <FileText className="w-6 h-6" />
@@ -1138,7 +1138,7 @@ export function ExportApprovalsModal({ isOpen, onClose }: ExportModalProps) {
               <Download className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
             </button>
 
-            <button className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50 hover:border-blue-200 group transition-colors">
+            <button className="flex items-center justify-between p-3 border rounded-lg hover:bg-blue-50 hover:border-blue-200 group transition-colors">
               <div className="flex items-center gap-3">
                 <div className="bg-green-100 p-2 rounded text-green-600">
                   <FileText className="w-6 h-6" />

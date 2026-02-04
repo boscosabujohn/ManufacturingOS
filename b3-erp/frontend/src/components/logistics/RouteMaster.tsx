@@ -186,8 +186,8 @@ export default function RouteMaster() {
   return (
     <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Navigation className="h-8 w-8 text-orange-600" />
@@ -214,11 +214,11 @@ export default function RouteMaster() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 text-sm font-medium">
+      <div className="flex-1 overflow-y-auto p-3 space-y-3 text-sm font-medium">
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Routes</p>
@@ -228,7 +228,7 @@ export default function RouteMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active</p>
@@ -238,7 +238,7 @@ export default function RouteMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Distance</p>
@@ -248,7 +248,7 @@ export default function RouteMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Distance</p>
@@ -258,7 +258,7 @@ export default function RouteMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Toll</p>
@@ -268,7 +268,7 @@ export default function RouteMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Fuel Cost</p>
@@ -281,9 +281,9 @@ export default function RouteMaster() {
 
         <div className="bg-white rounded-lg shadow">
           <div className="p-4 border-b">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-2 items-center">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <input
@@ -306,7 +306,7 @@ export default function RouteMaster() {
 
               {/* Advanced Filters */}
               {showAdvancedFilters && (
-                <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="flex gap-2 p-3 bg-gray-50 rounded-lg">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Transport Mode</label>
                     <select
@@ -341,7 +341,7 @@ export default function RouteMaster() {
 
           {filteredRoutes.length === 0 ? (
             <div className="p-12 text-center">
-              <Navigation className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Navigation className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-gray-500 mb-2">No routes found</p>
               <p className="text-sm text-gray-400">Try adjusting your search or filters</p>
             </div>
@@ -350,14 +350,14 @@ export default function RouteMaster() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Route</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Origin - Destination</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mode</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Distance</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Est. Time</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stops</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Route</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Origin - Destination</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Mode</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Distance</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Est. Time</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Stops</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -365,11 +365,11 @@ export default function RouteMaster() {
                     const ModeIcon = modeIcons[route.mode];
                     return (
                       <tr key={route.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="text-sm font-medium">{route.name}</div>
                           <div className="text-xs text-gray-500">{route.code}</div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="text-sm flex items-center gap-2">
                             <MapPin className="h-4 w-4 text-green-600" />
                             {route.origin}
@@ -378,23 +378,23 @@ export default function RouteMaster() {
                             {route.destination}
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex items-center gap-2">
                             <ModeIcon className="h-4 w-4 text-blue-600" />
                             <span className="text-sm">{route.mode}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm">{route.distance} km</td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2 text-sm">{route.distance} km</td>
+                        <td className="px-3 py-2">
                           <div className="flex items-center gap-1 text-sm text-gray-600">
                             <Clock className="h-3 w-3" />
                             {route.estimatedTime}
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-xs text-gray-600">
+                        <td className="px-3 py-2 text-xs text-gray-600">
                           {route.stops.length > 0 ? `${route.stops.length} stops` : 'Direct'}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <span className={`px-2.5 py-0.5 rounded-full text-xs ${route.status === 'Active' ? 'bg-green-100 text-green-800' :
                               route.status === 'Inactive' ? 'bg-gray-100 text-gray-800' :
                                 'bg-yellow-100 text-yellow-800'
@@ -402,7 +402,7 @@ export default function RouteMaster() {
                             {route.status}
                           </span>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex gap-2">
                             <button
                               onClick={() => handleViewRoute(route)}
@@ -429,8 +429,8 @@ export default function RouteMaster() {
         {/* View Route Modal */}
         {showViewModal && selectedRoute && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-              <div className="flex justify-between items-start mb-4">
+            <div className="bg-white rounded-lg p-3 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="text-xl font-bold">{selectedRoute.name}</h3>
                   <p className="text-sm text-gray-500">{selectedRoute.code}</p>
@@ -443,11 +443,11 @@ export default function RouteMaster() {
                 </button>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Route Details */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Route Details</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs text-gray-500">Origin</p>
                       <p className="text-sm font-medium">{selectedRoute.origin}</p>
@@ -478,7 +478,7 @@ export default function RouteMaster() {
                 {/* Cost Breakdown */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Cost Breakdown</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="bg-blue-50 p-3 rounded-lg">
                       <p className="text-xs text-blue-600">Toll Charges</p>
                       <p className="text-lg font-bold text-blue-700">₹{selectedRoute.tollCharges.toLocaleString()}</p>
@@ -531,7 +531,7 @@ export default function RouteMaster() {
 
         {/* Toast Notification */}
         {showToast && (
-          <div className="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+          <div className="fixed bottom-4 right-4 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg flex items-center gap-2">
             <Download className="h-4 w-4" />
             {toastMessage}
           </div>

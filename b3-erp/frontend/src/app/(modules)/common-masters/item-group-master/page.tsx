@@ -280,7 +280,7 @@ export default function ItemGroupMasterPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-amber-50 to-orange-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="px-3 py-2 space-y-3">
           {/* Toast Notification */}
           {toast && (
             <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
@@ -323,36 +323,36 @@ export default function ItemGroupMasterPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Groups</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Raw Materials</div>
           <div className="text-2xl font-bold text-blue-600">{stats.rawMaterial}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Semi-Finished</div>
           <div className="text-2xl font-bold text-yellow-600">{stats.semiFinished}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Finished Goods</div>
           <div className="text-2xl font-bold text-green-600">{stats.finishedGoods}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Consumables</div>
           <div className="text-2xl font-bold text-purple-600">{stats.consumables}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Items</div>
           <div className="text-2xl font-bold text-orange-600">{stats.totalItems}</div>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -390,7 +390,7 @@ export default function ItemGroupMasterPage() {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Category
@@ -447,7 +447,7 @@ export default function ItemGroupMasterPage() {
       </div>
 
       {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <Layers className="w-5 h-5" />
           Item Group Hierarchy & Classification

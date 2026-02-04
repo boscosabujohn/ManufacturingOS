@@ -12,8 +12,8 @@ export default function RegulatoryReportingPage() {
     ]);
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Regulatory Reporting</h1>
@@ -26,7 +26,7 @@ export default function RegulatoryReportingPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="flex gap-4 overflow-x-auto pb-2">
+                <div className="flex gap-2 overflow-x-auto pb-2">
                     <button className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 whitespace-nowrap flex items-center gap-2">
                         <Filter className="w-4 h-4" /> All Reports
                     </button>
@@ -45,10 +45,10 @@ export default function RegulatoryReportingPage() {
                 </div>
 
                 {/* Reports Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {reports.map((report) => (
-                        <div key={report.id} className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex justify-between items-start mb-4">
+                        <div key={report.id} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex justify-between items-start mb-2">
                                 <div className="p-3 bg-purple-50 rounded-lg">
                                     <FileText className="w-8 h-8 text-purple-600" />
                                 </div>
@@ -57,9 +57,9 @@ export default function RegulatoryReportingPage() {
                                 </button>
                             </div>
                             <h3 className="text-lg font-bold text-gray-900 mb-1">{report.name}</h3>
-                            <p className="text-sm text-gray-500 mb-4">{report.type}</p>
+                            <p className="text-sm text-gray-500 mb-2">{report.type}</p>
 
-                            <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                            <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                                 <div className="flex items-center gap-1">
                                     <Calendar className="w-4 h-4" />
                                     {report.date}

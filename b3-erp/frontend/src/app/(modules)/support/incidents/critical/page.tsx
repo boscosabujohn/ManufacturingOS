@@ -253,10 +253,10 @@ const CriticalIncidentsPage = () => {
   return (
     <div className="p-6 max-w-[1600px]">
       {/* Header with Alert */}
-      <div className="mb-6">
-        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-xl p-6 mb-4">
+      <div className="mb-3">
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-xl p-3 mb-2">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className="p-3 bg-white/20 rounded-lg">
                 <AlertTriangle className="w-8 h-8" />
               </div>
@@ -274,7 +274,7 @@ const CriticalIncidentsPage = () => {
 
         {/* SLA Breach Alert */}
         {stats.slaBreach > 0 && (
-          <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg mb-4">
+          <div className="bg-red-50 border-l-4 border-red-600 p-3 rounded-r-lg mb-2">
             <div className="flex items-center gap-3">
               <Bell className="w-6 h-6 text-red-600 animate-pulse" />
               <div>
@@ -287,8 +287,8 @@ const CriticalIncidentsPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Critical</span>
             <AlertTriangle className="w-4 h-4 text-red-600" />
@@ -296,7 +296,7 @@ const CriticalIncidentsPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.totalCritical}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">P0 Priority</span>
             <XCircle className="w-4 h-4 text-red-700" />
@@ -305,7 +305,7 @@ const CriticalIncidentsPage = () => {
           <div className="text-xs text-gray-500 mt-1">15 min response</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">P1 Priority</span>
             <AlertTriangle className="w-4 h-4 text-orange-600" />
@@ -314,7 +314,7 @@ const CriticalIncidentsPage = () => {
           <div className="text-xs text-gray-500 mt-1">1 hour response</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">War Rooms</span>
             <Users className="w-4 h-4 text-purple-600" />
@@ -323,7 +323,7 @@ const CriticalIncidentsPage = () => {
           <div className="text-xs text-gray-500 mt-1">Active</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">SLA Breach</span>
             <Clock className="w-4 h-4 text-red-600" />
@@ -332,7 +332,7 @@ const CriticalIncidentsPage = () => {
           <div className="text-xs text-gray-500 mt-1">Exceeded</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Criticality</span>
             <TrendingUp className="w-4 h-4 text-orange-600" />
@@ -343,7 +343,7 @@ const CriticalIncidentsPage = () => {
       </div>
 
       {/* Critical Incidents List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {incidents.sort((a, b) => b.criticalityScore - a.criticalityScore).map((incident) => (
           <div key={incident.id} className="bg-white rounded-xl shadow-sm border-2 border-red-200 overflow-hidden hover:shadow-md transition-shadow">
             {/* Incident Header */}
@@ -368,7 +368,7 @@ const CriticalIncidentsPage = () => {
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{incident.title}</h3>
                   <p className="text-gray-700 mb-3">{incident.description}</p>
                   
-                  <div className="grid grid-cols-4 gap-4 mb-3">
+                  <div className="grid grid-cols-4 gap-2 mb-3">
                     <div>
                       <div className="text-xs text-gray-500 mb-1">Time Elapsed</div>
                       <div className="font-bold text-red-600">{incident.timeElapsed}</div>
@@ -389,7 +389,7 @@ const CriticalIncidentsPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 text-sm">
+                  <div className="flex items-center gap-3 text-sm">
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-gray-500" />
                       <span className="text-gray-700">{incident.assignedTo} ({incident.assignedTeam})</span>
@@ -406,7 +406,7 @@ const CriticalIncidentsPage = () => {
                 </div>
 
                 <div className="text-right ml-6">
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <div className="text-sm text-gray-600 mb-1">Criticality Score</div>
                     <div className={`text-5xl font-bold ${getCriticalityColor(incident.criticalityScore)}`}>
                       {incident.criticalityScore}
@@ -418,7 +418,7 @@ const CriticalIncidentsPage = () => {
 
             {/* Incident Details */}
             <div className="p-4 bg-gray-50 border-t border-gray-200">
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <div className="text-sm font-medium text-gray-700 mb-2">Business Impact:</div>
                   <div className="text-sm text-red-700 bg-red-50 rounded-lg p-3">{incident.businessImpact}</div>
@@ -504,9 +504,9 @@ const CriticalIncidentsPage = () => {
 
       {/* Detail Modal */}
       {selectedIncident && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-red-50">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-red-50">
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{selectedIncident.incidentNumber}</h3>
                 <p className="text-gray-600">{selectedIncident.title}</p>
@@ -521,8 +521,8 @@ const CriticalIncidentsPage = () => {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">Description</label>
                     <div className="bg-gray-50 rounded-lg p-3 text-gray-900">{selectedIncident.description}</div>
@@ -536,8 +536,8 @@ const CriticalIncidentsPage = () => {
                     <div className="bg-red-50 rounded-lg p-3 text-2xl font-bold text-red-900">{selectedIncident.revenueImpact}</div>
                   </div>
                 </div>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-1">Priority</label>
                       <span className={`inline-flex px-3 py-1 rounded-full font-bold ${getPriorityColor(selectedIncident.priority)}`}>
@@ -570,7 +570,7 @@ const CriticalIncidentsPage = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200">
               <button
                 onClick={handleCloseDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"

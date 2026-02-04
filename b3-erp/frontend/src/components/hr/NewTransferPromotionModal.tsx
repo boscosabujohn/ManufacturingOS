@@ -54,10 +54,10 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+      <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div>
             <h2 className="text-2xl font-bold flex items-center gap-2">
               <TrendingUp className="w-6 h-6" />
@@ -75,12 +75,12 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Request Type */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-green-600" />
               Request Type
             </h3>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -118,12 +118,12 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
           </div>
 
           {/* Employee Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <User className="w-5 h-5 text-blue-600" />
               Employee Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Employee Code <span className="text-red-500">*</span>
@@ -158,12 +158,12 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
 
           {/* Designation Changes */}
           {(formData.type === 'promotion' || formData.type === 'both') && (
-            <div className="mb-6 bg-green-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="mb-3 bg-green-50 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-green-600" />
                 Designation Change
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Current Designation <span className="text-red-500">*</span>
@@ -198,12 +198,12 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
           )}
 
           {/* Department/Location Changes */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Building2 className="w-5 h-5 text-indigo-600" />
               Department & Location
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Current Department <span className="text-red-500">*</span>
@@ -268,12 +268,12 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
 
           {/* Salary Information (for promotions) */}
           {(formData.type === 'promotion' || formData.type === 'both') && (
-            <div className="mb-6 bg-yellow-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="mb-3 bg-yellow-50 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <DollarSign className="w-5 h-5 text-yellow-600" />
                 Salary Information
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Current Salary (Annual) <span className="text-red-500">*</span>
@@ -342,12 +342,12 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
           )}
 
           {/* Request Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-purple-600" />
               Request Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Effective Date <span className="text-red-500">*</span>
@@ -409,9 +409,9 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
           </div>
 
           {/* Summary Card */}
-          <div className="mb-6 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg p-4 border border-green-200">
+          <div className="mb-3 bg-gradient-to-r from-green-50 to-teal-50 rounded-lg p-3 border border-green-200">
             <h3 className="text-sm font-semibold text-green-900 mb-3">Request Summary</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-gray-600 text-xs">Employee</p>
                 <p className="font-semibold text-gray-900">{formData.employeeName || '-'}</p>
@@ -440,7 +440,7 @@ export function NewTransferPromotionModal({ isOpen, onClose, onSubmit }: NewTran
           </div>
 
           {/* Info Banner */}
-          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">

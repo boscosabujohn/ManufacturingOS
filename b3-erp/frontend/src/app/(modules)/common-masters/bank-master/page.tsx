@@ -189,7 +189,7 @@ export default function BankMasterPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <div className="px-3 py-2 space-y-3">
           {toast && (
             <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
               <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
@@ -229,32 +229,32 @@ export default function BankMasterPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Banks</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <CreditCard className="w-3 h-3" /> Total Balance
           </div>
           <div className="text-2xl font-bold text-green-600">₹{(stats.totalBalance / 10000000).toFixed(1)}Cr</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Available</div>
           <div className="text-2xl font-bold text-blue-600">₹{(stats.totalAvailableBalance / 10000000).toFixed(1)}Cr</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> Deposits
           </div>
           <div className="text-2xl font-bold text-purple-600">₹{(stats.totalDeposits / 10000000).toFixed(1)}Cr</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Withdrawals</div>
           <div className="text-2xl font-bold text-orange-600">₹{(stats.totalWithdrawals / 10000000).toFixed(1)}Cr</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <RefreshCw className="w-3 h-3" /> Integrated
           </div>
@@ -262,8 +262,8 @@ export default function BankMasterPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input type="text" placeholder="Search by bank name, account number, or IFSC..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
@@ -282,7 +282,7 @@ export default function BankMasterPage() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
               <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
@@ -312,7 +312,7 @@ export default function BankMasterPage() {
         <DataTable data={filteredData} columns={columns} pagination={{ enabled: true, pageSize: 10 }} sorting={{ enabled: true, defaultSort: { column: 'bank', direction: 'asc' } }} emptyMessage="No banks found" />
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <Building2 className="w-5 h-5" />
           Bank Account Management

@@ -278,7 +278,7 @@ export default function AddWorkOrderEnhancedPage() {
   const totalEstimatedCost = formData.estimatedMaterialCost + formData.estimatedLaborCost + formData.estimatedOverheadCost;
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       {showDraftBanner && (
         <DraftRecoveryBanner
           onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
@@ -287,8 +287,8 @@ export default function AddWorkOrderEnhancedPage() {
         />
       )}
 
-      <div className="mb-6">
-        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Work Orders</span>
         </button>
@@ -310,7 +310,7 @@ export default function AddWorkOrderEnhancedPage() {
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-2">
         <FormProgressIndicator completedFields={completionPercentage} totalFields={100} variant="bar" showPercentage label="Form completion" />
       </div>
 
@@ -318,22 +318,22 @@ export default function AddWorkOrderEnhancedPage() {
         <StepIndicator steps={steps} currentStep={currentStep} onStepClick={(i) => { if (i <= currentStep) setCurrentStep(i); }} variant="circles" />
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Product Selection */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Package className="h-5 w-5 text-gray-500" />
               Product Information
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                   Creation Source
                   <HelpIcon {...FIELD_HELP.createFrom} />
                 </label>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <label className="flex items-center gap-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
                     <input
                       type="radio"
@@ -406,7 +406,7 @@ export default function AddWorkOrderEnhancedPage() {
 
               {formData.productCode && (
                 <>
-                  <div className="md:col-span-2 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="md:col-span-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <h4 className="font-semibold text-blue-900">Selected Product</h4>
                     <p className="text-blue-800">{formData.productName}</p>
                     <p className="text-sm text-blue-700">{formData.productCode} - {formData.productDescription}</p>
@@ -442,13 +442,13 @@ export default function AddWorkOrderEnhancedPage() {
 
         {/* Step 2: Schedule & Priority */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-gray-500" />
               Schedule & Priority
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Due Date *</label>
                 <input
@@ -529,13 +529,13 @@ export default function AddWorkOrderEnhancedPage() {
 
         {/* Step 3: Resources */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Users className="h-5 w-5 text-gray-500" />
               Resources & Assignment
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                   Work Center *
@@ -616,7 +616,7 @@ export default function AddWorkOrderEnhancedPage() {
 
         {/* Step 4: Materials & Operations */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <Settings className="h-5 w-5 text-gray-500" />
               Materials & Operations
@@ -683,7 +683,7 @@ export default function AddWorkOrderEnhancedPage() {
               ) : (
                 <div className="space-y-2">
                   {formData.operations.map((op) => (
-                    <div key={op.id} className="flex items-center gap-4 p-3 border border-gray-200 rounded-lg">
+                    <div key={op.id} className="flex items-center gap-2 p-3 border border-gray-200 rounded-lg">
                       <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-700 rounded-full font-semibold">
                         {op.sequence}
                       </div>
@@ -705,11 +705,11 @@ export default function AddWorkOrderEnhancedPage() {
 
         {/* Step 5: Review */}
         {currentStep === 4 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900">Review & Submit</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Work Order Details</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">WO Number:</span><span className="font-medium font-mono">{formData.woNumber}</span></div>
@@ -719,7 +719,7 @@ export default function AddWorkOrderEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Schedule & Resources</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span className="text-gray-500">Due Date:</span><span className="font-medium">{formData.dueDate}</span></div>
@@ -729,7 +729,7 @@ export default function AddWorkOrderEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h4 className="font-semibold text-blue-900 mb-2">Estimated Costs</h4>
                 <div className="space-y-1 text-sm">
                   <div className="flex justify-between"><span>Material:</span><span>{formatCurrency(formData.estimatedMaterialCost)}</span></div>
@@ -741,7 +741,7 @@ export default function AddWorkOrderEnhancedPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-2">Summary</h4>
                 <div className="space-y-1 text-sm">
                   <p><span className="text-gray-500">Materials:</span> {formData.materialRequirements.length} items</p>
@@ -751,7 +751,7 @@ export default function AddWorkOrderEnhancedPage() {
               </div>
             </div>
 
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <PlayCircle className="h-5 w-5 text-orange-600 mt-0.5" />
                 <div>

@@ -50,7 +50,7 @@ export default function BOMValidationPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -68,7 +68,7 @@ export default function BOMValidationPage() {
               <CardDescription>Review all components before final submission</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
+              <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-100 rounded-lg">
                     <FileText className="w-5 h-5 text-blue-600" />
@@ -81,7 +81,7 @@ export default function BOMValidationPage() {
                 <Button variant="outline" size="sm" onClick={() => router.push('/project-management/technical/drawings')}>Review</Button>
               </div>
 
-              <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
+              <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-green-100 rounded-lg">
                     <Package className="w-5 h-5 text-green-600" />
@@ -94,7 +94,7 @@ export default function BOMValidationPage() {
                 <Button variant="outline" size="sm" onClick={() => router.push('/project-management/technical/bom/accessories')}>Review</Button>
               </div>
 
-              <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
+              <div className="flex items-center justify-between p-3 border rounded-lg bg-gray-50">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-purple-100 rounded-lg">
                     <Layers className="w-5 h-5 text-purple-600" />

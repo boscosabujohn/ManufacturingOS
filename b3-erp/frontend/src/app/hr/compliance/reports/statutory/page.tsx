@@ -10,14 +10,14 @@ export default function Page() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-3">
         <FileText className="h-6 w-6 text-blue-600" />
         Statutory Reports
       </h1>
-      <div className="space-y-4">
+      <div className="space-y-2">
         {reports.map(r => (
-          <div key={r.id} className="bg-white p-6 rounded-lg border border-gray-200">
+          <div key={r.id} className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">{r.title}</h3>

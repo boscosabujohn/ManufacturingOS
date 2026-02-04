@@ -464,7 +464,7 @@ export function ErrorBoundaryShake({
       variant="shake"
       intensity={4}
       className={`
-        p-4 rounded-lg border border-red-200 bg-red-50
+        p-3 rounded-lg border border-red-200 bg-red-50
         dark:border-red-800 dark:bg-red-950
         ${className}
       `}
@@ -479,7 +479,7 @@ export function ErrorBoundaryShake({
           <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-1">
             Something went wrong
           </h3>
-          <p className="text-sm text-red-600 dark:text-red-400 mb-4">
+          <p className="text-sm text-red-600 dark:text-red-400 mb-2">
             {errorMessage}
           </p>
           {onReset && (
@@ -580,7 +580,7 @@ export function ValidationErrorList({
       variant="shake"
       intensity={3}
       className={`
-        p-4 rounded-lg border border-red-200 bg-red-50
+        p-3 rounded-lg border border-red-200 bg-red-50
         dark:border-red-800 dark:bg-red-950
         ${className}
       `}

@@ -103,7 +103,7 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
     const COLORS = financials.expensesByCategory.map((item: any) => item.color);
 
     return (
-        <div className="space-y-6 animate-in fade-in duration-500">
+        <div className="space-y-3 animate-in fade-in duration-500">
             {/* Action Toolbar */}
             <div className="flex justify-between items-center">
                 <div>
@@ -123,7 +123,7 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
             </div>
 
             {/* KPI Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 <Card className="bg-gradient-to-br from-blue-50 to-white border-blue-100">
                     <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium text-blue-600 flex items-center gap-2">
@@ -187,7 +187,7 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
             </div>
 
             {/* Charts Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <Card className="shadow-sm">
                     <CardHeader>
                         <CardTitle>Cash Flow Analysis</CardTitle>
@@ -239,7 +239,7 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
                 </Card>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 <Card className="lg:col-span-1 shadow-sm">
                     <CardHeader>
                         <CardTitle>Expense Distribution</CardTitle>

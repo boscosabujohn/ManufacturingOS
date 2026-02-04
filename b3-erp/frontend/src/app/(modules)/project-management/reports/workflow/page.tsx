@@ -176,9 +176,9 @@ export default function ManufacturingWorkflowReportPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className=" px-4 sm:px-6 lg:px-8 py-4">
+        <div className=" px-3 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" onClick={() => router.back()}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -205,7 +205,7 @@ export default function ManufacturingWorkflowReportPage() {
           </div>
 
           {/* Filters */}
-          <div className="flex items-center gap-4 mt-6 pb-2">
+          <div className="flex items-center gap-2 mt-6 pb-2">
             <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
               <Button
                 variant={dateRange === 'this-month' ? 'default' : 'ghost'}
@@ -253,10 +253,10 @@ export default function ManufacturingWorkflowReportPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-6 lg:p-8">
         <div className=" space-y-3">
           {/* KPI Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             <Card>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
@@ -516,23 +516,23 @@ export default function ManufacturingWorkflowReportPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {selectedStage && stageDetails[selectedStage as keyof typeof stageDetails]?.map((job) => (
                 <tr key={job.id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{job.id}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{job.product}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{job.status}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{job.due}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{job.id}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{job.product}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{job.status}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{job.due}</td>
                 </tr>
               )) || (
                   <tr>
-                    <td colSpan={4} className="px-6 py-4 text-center text-sm text-gray-500">No active jobs in this stage</td>
+                    <td colSpan={4} className="px-3 py-2 text-center text-sm text-gray-500">No active jobs in this stage</td>
                   </tr>
                 )}
             </tbody>
@@ -587,7 +587,7 @@ export default function ManufacturingWorkflowReportPage() {
       >
         <div className="space-y-2">
           {selectedResource && resourceDetails[selectedResource as keyof typeof resourceDetails]?.map((item, index) => (
-            <div key={index} className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
+            <div key={index} className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-lg">
               <div>
                 <p className="font-medium text-gray-900">{item.name}</p>
                 <div className="flex items-center gap-2 mt-1">

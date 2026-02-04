@@ -204,7 +204,7 @@ export default function TeamWorkload() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -228,8 +228,8 @@ export default function TeamWorkload() {
       </div>
 
       {/* Overall Statistics */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Agents</p>
@@ -239,7 +239,7 @@ export default function TeamWorkload() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Agents</p>
@@ -249,7 +249,7 @@ export default function TeamWorkload() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Tickets</p>
@@ -259,7 +259,7 @@ export default function TeamWorkload() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Utilization</p>
@@ -269,7 +269,7 @@ export default function TeamWorkload() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overloaded</p>
@@ -279,7 +279,7 @@ export default function TeamWorkload() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Available Capacity</p>
@@ -291,11 +291,11 @@ export default function TeamWorkload() {
       </div>
 
       {/* Team Summary Cards */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold mb-4">Team Summary</h2>
-        <div className="grid grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <h2 className="text-xl font-semibold mb-2">Team Summary</h2>
+        <div className="grid grid-cols-3 gap-2">
           {teamSummaries.map((team) => (
-            <div key={team.teamName} className="border rounded-lg p-4">
+            <div key={team.teamName} className="border rounded-lg p-3">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-semibold">{team.teamName}</h3>
                 {team.overloadedAgents > 0 && (
@@ -330,7 +330,7 @@ export default function TeamWorkload() {
       </div>
 
       {/* Filter */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
         <select
           value={selectedTeam}
           onChange={(e) => setSelectedTeam(e.target.value)}
@@ -347,11 +347,11 @@ export default function TeamWorkload() {
       </div>
 
       {/* Agent Workload Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredAgents.map((agent) => (
-          <div key={agent.agentId} className="bg-white rounded-lg shadow-sm border p-6">
+          <div key={agent.agentId} className="bg-white rounded-lg shadow-sm border p-3">
             {/* Agent Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                   {agent.avatar}
@@ -367,7 +367,7 @@ export default function TeamWorkload() {
             </div>
 
             {/* Utilization Bar */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-600">Utilization</span>
                 <span className={`text-lg font-bold ${getUtilizationTextColor(agent.capacity.utilizationRate)}`}>
@@ -387,7 +387,7 @@ export default function TeamWorkload() {
             </div>
 
             {/* Current Load by Priority */}
-            <div className="mb-4 pb-4 border-b">
+            <div className="mb-2 pb-4 border-b">
               <p className="text-sm text-gray-600 mb-2">Current Load by Priority</p>
               <div className="grid grid-cols-4 gap-2">
                 <div className="text-center">
@@ -418,7 +418,7 @@ export default function TeamWorkload() {
             </div>
 
             {/* Schedule & Activity */}
-            <div className="grid grid-cols-2 gap-4 mb-3">
+            <div className="grid grid-cols-2 gap-2 mb-3">
               <div>
                 <p className="text-xs text-gray-600">Shift</p>
                 <p className="text-sm font-medium">{agent.schedule.shift}</p>

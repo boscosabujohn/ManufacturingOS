@@ -160,9 +160,9 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
               <Upload className="w-5 h-5 text-white" />
@@ -177,11 +177,11 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Upload Methods */}
             <div>
-              <div className="flex items-center space-x-4 mb-4">
+              <div className="flex items-center space-x-4 mb-2">
                 <button
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     !formData.url ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'
@@ -235,7 +235,7 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
                     </div>
                   ) : (
                     <div className="space-y-3">
-                      <Upload className="w-12 h-12 text-gray-400 mx-auto" />
+                      <Upload className="w-12 h-12 text-gray-400" />
                       <div>
                         <label className="cursor-pointer">
                           <span className="text-blue-600 hover:text-blue-700 font-medium">
@@ -279,7 +279,7 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
             {/* Content Details */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Content Details</h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Title *
@@ -298,7 +298,7 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Type
@@ -413,7 +413,7 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
 
             {/* Upload Progress */}
             {isUploading && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-blue-900">Uploading...</span>
                   <span className="text-sm font-medium text-blue-900">{uploadProgress}%</span>
@@ -429,7 +429,7 @@ export function UploadContentModal({ isOpen, onClose, onUpload }: UploadContentM
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -473,9 +473,9 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -490,15 +490,15 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Preview Area */}
             <div className="bg-gray-100 rounded-lg p-8 flex items-center justify-center min-h-[300px]">
               {content.type === 'image' && content.thumbnail ? (
                 <img src={content.thumbnail} alt={content.title} className="max-h-[400px] rounded" />
               ) : content.type === 'video' ? (
                 <div className="text-center">
-                  <Video className="w-24 h-24 text-gray-400 mx-auto mb-4" />
+                  <Video className="w-24 h-24 text-gray-400 mb-2" />
                   <p className="text-gray-600">Video Preview</p>
                   <p className="text-sm text-gray-500 mt-2">{content.format}</p>
                 </div>
@@ -514,7 +514,7 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
             {/* Content Information */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{content.title}</h3>
-              <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+              <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
                 <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full">
                   {content.type}
                 </span>
@@ -549,8 +549,8 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
             {/* Usage Statistics */}
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Usage Statistics</h4>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <TrendingUp className="w-4 h-4 text-blue-500" />
                     <span className="text-sm text-gray-600">Times Used</span>
@@ -558,7 +558,7 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
                   <p className="text-2xl font-bold text-gray-900">{content.usageCount}</p>
                 </div>
 
-                <div className="bg-green-50 p-4 rounded-lg">
+                <div className="bg-green-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="w-4 h-4 text-green-500" />
                     <span className="text-sm text-gray-600">Last Used</span>
@@ -568,7 +568,7 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
                   </p>
                 </div>
 
-                <div className="bg-purple-50 p-4 rounded-lg">
+                <div className="bg-purple-50 p-3 rounded-lg">
                   <div className="flex items-center space-x-2 mb-2">
                     <File className="w-4 h-4 text-purple-500" />
                     <span className="text-sm text-gray-600">File Size</span>
@@ -581,7 +581,7 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
             {/* Metadata */}
             <div className="border-t pt-4">
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Metadata</h4>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-2 text-sm">
                 <div>
                   <span className="text-gray-600">Content ID:</span>
                   <span className="ml-2 font-medium text-gray-900">{content.contentId}</span>
@@ -617,7 +617,7 @@ export function ViewContentModal({ isOpen, onClose, content }: ViewContentModalP
           </div>
         </div>
 
-        <div className="flex justify-between p-6 border-t bg-white">
+        <div className="flex justify-between p-3 border-t bg-white">
           <div className="flex space-x-2">
             <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center space-x-2">
               <Download className="w-4 h-4" />
@@ -700,9 +700,9 @@ export function EditContentModal({ isOpen, onClose, onSave, content }: EditConte
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -717,8 +717,8 @@ export function EditContentModal({ isOpen, onClose, onSave, content }: EditConte
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Title *
@@ -737,7 +737,7 @@ export function EditContentModal({ isOpen, onClose, onSave, content }: EditConte
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Type
@@ -793,7 +793,7 @@ export function EditContentModal({ isOpen, onClose, onSave, content }: EditConte
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Version
@@ -866,7 +866,7 @@ export function EditContentModal({ isOpen, onClose, onSave, content }: EditConte
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -960,9 +960,9 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
@@ -977,8 +977,8 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Select Proposal */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1018,7 +1018,7 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <Folder className={`w-5 h-5 mx-auto mb-2 ${
+                  <Folder className={`w-5 h-5 mb-2 ${
                     formData.sectionType === 'existing' ? 'text-blue-500' : 'text-gray-400'
                   }`} />
                   <span className={`text-sm font-medium ${
@@ -1037,7 +1037,7 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <Plus className={`w-5 h-5 mx-auto mb-2 ${
+                  <Plus className={`w-5 h-5 mb-2 ${
                     formData.sectionType === 'new' ? 'text-blue-500' : 'text-gray-400'
                   }`} />
                   <span className={`text-sm font-medium ${
@@ -1125,7 +1125,7 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
             </div>
 
             {/* Options */}
-            <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <label className="flex items-center space-x-3">
                 <input
                   type="checkbox"
@@ -1138,7 +1138,7 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
             </div>
 
             {/* Preview */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-blue-700">
@@ -1150,7 +1150,7 @@ export function AddToProposalModal({ isOpen, onClose, onAdd, content }: AddToPro
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -1201,9 +1201,9 @@ export function OrganizeContentModal({ isOpen, onClose, onOrganize }: OrganizeCo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Folder className="w-5 h-5 text-white" />
@@ -1218,8 +1218,8 @@ export function OrganizeContentModal({ isOpen, onClose, onOrganize }: OrganizeCo
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Action Type */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1243,7 +1243,7 @@ export function OrganizeContentModal({ isOpen, onClose, onOrganize }: OrganizeCo
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
-                      <Icon className={`w-5 h-5 mx-auto mb-2 ${
+                      <Icon className={`w-5 h-5 mb-2 ${
                         formData.action === action.value ? 'text-blue-500' : 'text-gray-400'
                       }`} />
                       <span className={`text-sm font-medium ${
@@ -1330,7 +1330,7 @@ export function OrganizeContentModal({ isOpen, onClose, onOrganize }: OrganizeCo
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"

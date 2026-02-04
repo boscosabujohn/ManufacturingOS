@@ -713,12 +713,12 @@ export default function BOMViewPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/production/bom')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to BOM List</span>
@@ -784,8 +784,8 @@ export default function BOMViewPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Components</p>
@@ -795,7 +795,7 @@ export default function BOMViewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Levels</p>
@@ -805,7 +805,7 @@ export default function BOMViewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Cost</p>
@@ -818,7 +818,7 @@ export default function BOMViewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Scrap %</p>
@@ -879,10 +879,10 @@ export default function BOMViewPage() {
         {/* Overview Tab */}
         {activeTab === 'overview' && (
           <div className="p-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Product Information */}
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <Box className="h-5 w-5 text-blue-600" />
                   <span>Product Information</span>
                 </h3>
@@ -912,7 +912,7 @@ export default function BOMViewPage() {
 
               {/* BOM Details */}
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <FileText className="h-5 w-5 text-purple-600" />
                   <span>BOM Details</span>
                 </h3>
@@ -954,7 +954,7 @@ export default function BOMViewPage() {
 
               {/* BOM Type & Category */}
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <Wrench className="h-5 w-5 text-green-600" />
                   <span>BOM Type & Category</span>
                 </h3>
@@ -972,7 +972,7 @@ export default function BOMViewPage() {
 
               {/* Manufacturing Details */}
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <Factory className="h-5 w-5 text-orange-600" />
                   <span>Manufacturing Details</span>
                 </h3>
@@ -1016,7 +1016,7 @@ export default function BOMViewPage() {
         {/* Component Tree Tab */}
         {activeTab === 'tree' && (
           <div className="p-6">
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-2 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-bold text-gray-900">Bill of Materials - Hierarchical Structure</h3>
                 <p className="text-sm text-gray-600 mt-1">Multi-level indented BOM tree view</p>
@@ -1067,12 +1067,12 @@ export default function BOMViewPage() {
         {/* Cost Analysis Tab */}
         {activeTab === 'cost' && (
           <div className="p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">Cost Analysis & Breakdown</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Cost Analysis & Breakdown</h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
               {/* Cost Breakdown */}
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <IndianRupee className="h-5 w-5 text-green-600" />
                   <span>Cost Breakdown</span>
                 </h4>
@@ -1117,7 +1117,7 @@ export default function BOMViewPage() {
 
               {/* Cost by Category */}
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <PieChart className="h-5 w-5 text-blue-600" />
                   <span>Cost by Category</span>
                 </h4>
@@ -1147,8 +1147,8 @@ export default function BOMViewPage() {
             </div>
 
             {/* Top 10 Expensive Components */}
-            <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 mb-6">
-              <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+            <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 mb-3">
+              <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                 <BarChart3 className="h-5 w-5 text-purple-600" />
                 <span>Top 10 Expensive Components</span>
               </h4>
@@ -1178,9 +1178,9 @@ export default function BOMViewPage() {
             </div>
 
             {/* Cost Comparison & Margin Analysis */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <TrendingUp className="h-5 w-5 text-orange-600" />
                   <span>Cost Comparison</span>
                 </h4>
@@ -1214,7 +1214,7 @@ export default function BOMViewPage() {
               </div>
 
               <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                   <Percent className="h-5 w-5 text-green-600" />
                   <span>Margin Analysis</span>
                 </h4>
@@ -1253,11 +1253,11 @@ export default function BOMViewPage() {
         {/* Where Used Tab */}
         {activeTab === 'where_used' && (
           <div className="p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">Where This BOM/Component is Used</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Where This BOM/Component is Used</h3>
 
             {/* Parent Products */}
-            <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 mb-6">
-              <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+            <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 mb-3">
+              <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                 <Network className="h-5 w-5 text-blue-600" />
                 <span>Parent Products Using This BOM</span>
               </h4>
@@ -1306,8 +1306,8 @@ export default function BOMViewPage() {
             </div>
 
             {/* Work Order Usage */}
-            <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 mb-6">
-              <h4 className="text-md font-bold text-gray-900 mb-4 flex items-center space-x-2">
+            <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 mb-3">
+              <h4 className="text-md font-bold text-gray-900 mb-2 flex items-center space-x-2">
                 <Factory className="h-5 w-5 text-green-600" />
                 <span>Work Order Usage</span>
               </h4>
@@ -1380,8 +1380,8 @@ export default function BOMViewPage() {
       </div>
 
       {/* Activity Timeline */}
-      <div className="mt-6 bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+      <div className="mt-6 bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
           <Activity className="h-5 w-5 text-gray-600" />
           <span>Activity Timeline</span>
         </h3>

@@ -379,9 +379,9 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50">
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl">
-          <div className="px-6 py-4 border-b flex items-center justify-between">
+      <div className="flex min-h-screen items-center justify-center p-3">
+        <div className="bg-white rounded-lg shadow-xl w-full ">
+          <div className="px-3 py-2 border-b flex items-center justify-between">
             <div className="flex items-center gap-3">
               <HelpCircle className="h-6 w-6 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Keyboard Shortcuts</h2>
@@ -395,8 +395,8 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
             </button>
           </div>
 
-          <div className="px-6 py-4 max-h-96 overflow-y-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="px-3 py-2 max-h-96 overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {Object.entries(groupedShortcuts).map(([category, categoryShortcuts]) => (
                 <div key={category}>
                   <h3 className="text-lg font-medium text-gray-900 mb-3">{category}</h3>
@@ -415,7 +415,7 @@ export const KeyboardShortcutsHelp: React.FC<KeyboardShortcutsHelpProps> = ({
             </div>
           </div>
 
-          <div className="px-6 py-4 border-t bg-gray-50">
+          <div className="px-3 py-2 border-t bg-gray-50">
             <div className="flex items-center justify-between text-sm text-gray-600">
               <span>Press <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs">?</kbd> or <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs">F1</kbd> to show this help again</span>
               <span>Press <kbd className="px-1 py-0.5 bg-gray-200 rounded text-xs">Esc</kbd> to close</span>

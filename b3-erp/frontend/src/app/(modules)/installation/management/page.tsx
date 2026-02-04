@@ -142,10 +142,10 @@ export default function InstallationManagementPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border p-6">
-                    <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border p-3">
+                    <div className="flex items-center gap-2">
                         <Link href="/logistics/loading" className="p-2 hover:bg-gray-100 rounded-lg">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
@@ -159,8 +159,8 @@ export default function InstallationManagementPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                    <div className="bg-white p-4 rounded-lg border">
+                <div className="grid grid-cols-3 gap-2">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Projects</p>
@@ -169,7 +169,7 @@ export default function InstallationManagementPage() {
                             <Wrench className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">On Site</p>
@@ -178,7 +178,7 @@ export default function InstallationManagementPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-yellow-600">Planning</p>
@@ -190,7 +190,7 @@ export default function InstallationManagementPage() {
                 </div>
 
                 {/* Filter */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-white rounded-lg border p-3">
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
@@ -206,15 +206,15 @@ export default function InstallationManagementPage() {
                 </div>
 
                 {/* Installations List */}
-                <div className="grid gap-4">
+                <div className="grid gap-2">
                     {filteredInstallations.map((inst) => (
-                        <div key={inst.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition">
-                            <div className="flex items-start gap-4">
+                        <div key={inst.id} className="bg-white rounded-lg border p-3 hover:shadow-lg transition">
+                            <div className="flex items-start gap-2">
                                 <div className={`w-16 h-16 rounded-lg ${inst.status === 'On Site' ? 'bg-green-500' : 'bg-blue-500'} flex items-center justify-center`}>
                                     <Wrench className="w-8 h-8 text-white" />
                                 </div>
                                 <div className="flex-1">
-                                    <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-start justify-between mb-2">
                                         <div>
                                             <h3 className="text-xl font-bold">{inst.projectName}</h3>
                                             <p className="text-sm text-gray-600">{inst.woNumber} - {inst.siteLocation}</p>
@@ -293,7 +293,7 @@ export default function InstallationManagementPage() {
                 </div>
 
                 {/* Tool List Reference */}
-                <div className="bg-white rounded-lg border p-6">
+                <div className="bg-white rounded-lg border p-3">
                     <h3 className="text-lg font-bold mb-3">Standard Tool List (8.1)</h3>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                         {TOOL_LIST.map((tool, idx) => (

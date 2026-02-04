@@ -246,7 +246,7 @@ export default function HardwareAssets() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -260,8 +260,8 @@ export default function HardwareAssets() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Assets</p>
@@ -271,7 +271,7 @@ export default function HardwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Use</p>
@@ -281,7 +281,7 @@ export default function HardwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active</p>
@@ -291,7 +291,7 @@ export default function HardwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Maintenance</p>
@@ -301,7 +301,7 @@ export default function HardwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Value</p>
@@ -311,7 +311,7 @@ export default function HardwareAssets() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Age</p>
@@ -323,8 +323,8 @@ export default function HardwareAssets() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -373,15 +373,15 @@ export default function HardwareAssets() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="text-left p-4 font-medium text-gray-600">Asset</th>
-                <th className="text-left p-4 font-medium text-gray-600">Category</th>
-                <th className="text-left p-4 font-medium text-gray-600">Status</th>
-                <th className="text-left p-4 font-medium text-gray-600">Condition</th>
-                <th className="text-left p-4 font-medium text-gray-600">Assigned To</th>
-                <th className="text-left p-4 font-medium text-gray-600">Location</th>
-                <th className="text-left p-4 font-medium text-gray-600">Value</th>
-                <th className="text-left p-4 font-medium text-gray-600">Age</th>
-                <th className="text-left p-4 font-medium text-gray-600">Actions</th>
+                <th className="text-left p-3 font-medium text-gray-600">Asset</th>
+                <th className="text-left p-3 font-medium text-gray-600">Category</th>
+                <th className="text-left p-3 font-medium text-gray-600">Status</th>
+                <th className="text-left p-3 font-medium text-gray-600">Condition</th>
+                <th className="text-left p-3 font-medium text-gray-600">Assigned To</th>
+                <th className="text-left p-3 font-medium text-gray-600">Location</th>
+                <th className="text-left p-3 font-medium text-gray-600">Value</th>
+                <th className="text-left p-3 font-medium text-gray-600">Age</th>
+                <th className="text-left p-3 font-medium text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -469,7 +469,7 @@ export default function HardwareAssets() {
       {showDetailModal && selectedAsset && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 {(() => {
                   const Icon = categoryIcons[selectedAsset.category]
@@ -492,11 +492,11 @@ export default function HardwareAssets() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Basic Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Basic Information</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Category</p>
                     <p className="font-medium">{selectedAsset.category}</p>
@@ -529,7 +529,7 @@ export default function HardwareAssets() {
               {/* Specifications */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Specifications</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   {selectedAsset.specifications.processor && (
                     <div>
                       <p className="text-sm text-gray-600">Processor</p>
@@ -566,7 +566,7 @@ export default function HardwareAssets() {
               {/* Location & Assignment */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Location & Assignment</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Building</p>
                     <p className="font-medium">{selectedAsset.location.building}</p>
@@ -596,7 +596,7 @@ export default function HardwareAssets() {
               {/* Purchase & Financial */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Purchase & Financial</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Purchase Date</p>
                     <p className="font-medium">{selectedAsset.purchase.date}</p>
@@ -629,7 +629,7 @@ export default function HardwareAssets() {
               {/* Maintenance */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Maintenance History</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Last Service</p>
                     <p className="font-medium">{selectedAsset.maintenance.lastService}</p>
@@ -648,7 +648,7 @@ export default function HardwareAssets() {
               {/* Lifecycle */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Asset Lifecycle</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Age</p>
                     <p className="font-medium">{selectedAsset.lifecycle.age}</p>

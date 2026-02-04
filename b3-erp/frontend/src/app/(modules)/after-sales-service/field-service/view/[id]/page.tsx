@@ -85,7 +85,7 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -102,7 +102,7 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
       </div>
 
       {/* Progress Bar */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-700">Job Progress</span>
           <span className="text-sm font-bold text-gray-900">{fieldJob.progress}%</span>
@@ -115,10 +115,10 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Customer & Location */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer & Location</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer & Location</h2>
           <div className="space-y-3">
             <div>
               <div className="text-sm text-gray-500">Customer</div>
@@ -137,8 +137,8 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
         </div>
 
         {/* Engineer Info */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Field Engineer</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Field Engineer</h2>
           <div className="space-y-3">
             <div>
               <div className="text-sm text-gray-500">Engineer</div>
@@ -163,8 +163,8 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
       </div>
 
       {/* Issue Details */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Issue Details</h2>
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Issue Details</h2>
         <div>
           <div className="text-sm font-medium text-gray-700 mb-1">{fieldJob.issueTitle}</div>
           <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-md">{fieldJob.issueDescription}</div>
@@ -172,8 +172,8 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
       </div>
 
       {/* Checklist */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Job Checklist</h2>
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Job Checklist</h2>
         <div className="space-y-3">
           {fieldJob.checklistItems.map(item => (
             <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -196,8 +196,8 @@ export default function ViewFieldServicePage({ params }: { params: { id: string 
       </div>
 
       {/* Parts Used */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Parts Used</h2>
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Parts Used</h2>
         <div className="space-y-2">
           {fieldJob.partsUsed.map((part, idx) => (
             <div key={idx} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">

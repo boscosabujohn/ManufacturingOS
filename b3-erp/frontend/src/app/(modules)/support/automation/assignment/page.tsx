@@ -281,7 +281,7 @@ export default function AutoAssignment() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -295,7 +295,7 @@ export default function AutoAssignment() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -306,7 +306,7 @@ export default function AutoAssignment() {
             red: 'bg-red-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -326,7 +326,7 @@ export default function AutoAssignment() {
           <nav className="flex">
             <button
               onClick={() => setActiveTab('rules')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'rules'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -339,7 +339,7 @@ export default function AutoAssignment() {
             </button>
             <button
               onClick={() => setActiveTab('team')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'team'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -352,7 +352,7 @@ export default function AutoAssignment() {
             </button>
             <button
               onClick={() => setActiveTab('settings')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'settings'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-600 hover:text-gray-900'
@@ -368,10 +368,10 @@ export default function AutoAssignment() {
 
         {/* Assignment Rules Tab */}
         {activeTab === 'rules' && (
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {assignmentRules.map((rule) => (
-              <div key={rule.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <div className="flex items-start justify-between mb-4">
+              <div key={rule.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">
@@ -413,7 +413,7 @@ export default function AutoAssignment() {
                 </div>
 
                 <div className="flex items-center justify-between pt-4 border-t border-gray-300">
-                  <div className="flex gap-6 text-sm">
+                  <div className="flex gap-3 text-sm">
                     <div>
                       <span className="text-gray-500">Assign To:</span>
                       <span className="ml-1 font-medium text-gray-900">{rule.assignTo}</span>
@@ -436,10 +436,10 @@ export default function AutoAssignment() {
         {/* Team Workload Tab */}
         {activeTab === 'team' && (
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {teamMembers.map((member) => (
-                <div key={member.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={member.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center justify-between mb-2">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{member.name}</h3>
                       <p className="text-sm text-gray-600">{member.role}</p>
@@ -449,7 +449,7 @@ export default function AutoAssignment() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
                     <div>
                       <div className="text-xs text-gray-500 mb-1">Current Workload</div>
                       <div className="text-lg font-semibold text-gray-900">{member.currentWorkload}/{member.maxCapacity}</div>
@@ -498,15 +498,15 @@ export default function AutoAssignment() {
 
         {/* Settings Tab */}
         {activeTab === 'settings' && (
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-1">Assignment Settings</h2>
               <p className="text-sm text-gray-600">Configure global auto-assignment behavior</p>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">General Settings</h3>
+            <div className="space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2">General Settings</h3>
                 <div className="space-y-3">
                   <label className="flex items-center justify-between cursor-pointer">
                     <span className="text-sm text-gray-700">Enable auto-assignment</span>
@@ -527,9 +527,9 @@ export default function AutoAssignment() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">Capacity Management</h3>
-                <div className="space-y-4">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-2">Capacity Management</h3>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm text-gray-700 mb-2">Max tickets per agent</label>
                     <input type="number" defaultValue="15" className="w-full px-3 py-2 border border-gray-300 rounded-lg" />

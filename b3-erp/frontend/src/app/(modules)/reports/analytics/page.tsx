@@ -244,11 +244,11 @@ export default function AnalyticsPage() {
   }, [selectedPeriod, selectedMetric]);
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex justify-between items-start mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <div className="flex justify-between items-start mb-2">
             <div className="flex gap-2">
               <button
                 onClick={handleRefresh}
@@ -269,7 +269,7 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4 text-gray-500" />
               <select
@@ -313,11 +313,11 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {metrics.map((metric) => (
             <Link key={metric.id} href={metric.href} className="block">
-              <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow cursor-pointer hover:border-blue-500 border border-transparent">
-                <div className="flex justify-between items-start mb-4">
+              <div className="bg-white rounded-lg shadow-sm p-3 hover:shadow-md transition-shadow cursor-pointer hover:border-blue-500 border border-transparent">
+                <div className="flex justify-between items-start mb-2">
                   <div className={`${metric.color} p-3 rounded-lg text-white`}>
                     {metric.icon}
                   </div>
@@ -343,8 +343,8 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Revenue & Orders Trend */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex justify-between items-center mb-6">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <div className="flex justify-between items-center mb-3">
             <h2 className="text-xl font-bold text-gray-900">Revenue & Orders Trend</h2>
             <div className="flex gap-2">
               <button className="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-lg">
@@ -383,10 +383,10 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Product Category Distribution */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Product Category Distribution</h2>
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Product Category Distribution</h2>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -409,8 +409,8 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Performance Radar */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Performance Metrics</h2>
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Performance Metrics</h2>
             <ResponsiveContainer width="100%" height={300}>
               <RadarChart data={performanceData}>
                 <PolarGrid />
@@ -437,8 +437,8 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Regional Sales */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Regional Sales Performance</h2>
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Regional Sales Performance</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={regionalData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -452,8 +452,8 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Production Efficiency */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Production Efficiency (24h)</h2>
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Production Efficiency (24h)</h2>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={productionMetrics}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -469,9 +469,9 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Summary Statistics */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Quick Statistics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Quick Statistics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600">98.5%</div>
               <div className="text-gray-600 mt-1">System Uptime</div>

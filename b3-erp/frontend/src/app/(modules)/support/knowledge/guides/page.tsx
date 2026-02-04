@@ -244,7 +244,7 @@ export default function Guides() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -274,8 +274,8 @@ export default function Guides() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Total Guides</p>
@@ -285,7 +285,7 @@ export default function Guides() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 text-sm">Featured</p>
@@ -295,7 +295,7 @@ export default function Guides() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">Avg Read Time</p>
@@ -305,7 +305,7 @@ export default function Guides() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Avg Helpful</p>
@@ -315,7 +315,7 @@ export default function Guides() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-100 text-sm">Categories</p>
@@ -325,7 +325,7 @@ export default function Guides() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100 text-sm">New This Month</p>
@@ -337,8 +337,8 @@ export default function Guides() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -378,16 +378,16 @@ export default function Guides() {
 
       {/* Featured Guides */}
       {categoryFilter === 'all' && difficultyFilter === 'all' && !searchQuery && (
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Star className="h-5 w-5 text-yellow-600" />
             <h2 className="text-lg font-semibold text-gray-900">Featured Guides</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {guides.filter(g => g.featured).slice(0, 3).map(guide => (
               <div
                 key={guide.id}
-                className="bg-white rounded-lg p-4 border border-yellow-200 hover:shadow-md transition-shadow"
+                className="bg-white rounded-lg p-3 border border-yellow-200 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className={`px-2 py-1 rounded text-xs font-medium border ${getDifficultyColor(guide.difficulty)}`}>
@@ -407,7 +407,7 @@ export default function Guides() {
       )}
 
       {/* Guides Grid/List */}
-      <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-4'}>
+      <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2' : 'space-y-2'}>
         {filteredGuides.map((guide) => (
           <div
             key={guide.id}
@@ -433,11 +433,11 @@ export default function Guides() {
                   {guide.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                <p className="text-sm text-gray-600 mb-2 line-clamp-3">
                   {guide.description}
                 </p>
 
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-2">
                   <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getDifficultyColor(guide.difficulty)}`}>
                     {guide.difficulty}
                   </span>
@@ -446,7 +446,7 @@ export default function Guides() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
                   <span className="flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     {guide.readTime}
@@ -461,7 +461,7 @@ export default function Guides() {
                   </span>
                 </div>
 
-                <div className="flex flex-wrap gap-1 mb-4">
+                <div className="flex flex-wrap gap-1 mb-2">
                   {guide.tags.slice(0, 3).map((tag, idx) => (
                     <span
                       key={idx}
@@ -481,7 +481,7 @@ export default function Guides() {
                 </div>
               </div>
             ) : (
-              <div className="p-5 flex items-start gap-4">
+              <div className="p-5 flex items-start gap-2">
                 <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                   <BookOpen className="h-6 w-6 text-purple-600" />
                 </div>
@@ -504,7 +504,7 @@ export default function Guides() {
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{guide.title}</h3>
                       <p className="text-sm text-gray-600 mb-3">{guide.description}</p>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
                           {guide.readTime}
@@ -538,7 +538,7 @@ export default function Guides() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <BookMarked className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
           <div>
@@ -560,7 +560,7 @@ export default function Guides() {
 
       {filteredGuides.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <BookOpen className="h-12 w-12 text-gray-400 mb-4" />
+          <BookOpen className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No guides found matching your filters.</p>
         </div>
       )}

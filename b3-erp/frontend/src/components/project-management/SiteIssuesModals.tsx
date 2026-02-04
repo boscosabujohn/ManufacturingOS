@@ -39,10 +39,10 @@ export function ReportIssueModal({ isOpen, onClose, onReport }: ReportIssueModal
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <AlertTriangle className="h-6 w-6 text-white" />
@@ -59,11 +59,11 @@ export function ReportIssueModal({ isOpen, onClose, onReport }: ReportIssueModal
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Basic Information */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Project ID <span className="text-red-500">*</span>
@@ -109,8 +109,8 @@ export function ReportIssueModal({ isOpen, onClose, onReport }: ReportIssueModal
 
             {/* Classification */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Classification</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Classification</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Issue Type</label>
                   <select
@@ -159,8 +159,8 @@ export function ReportIssueModal({ isOpen, onClose, onReport }: ReportIssueModal
 
             {/* Description */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Issue Details</h3>
-              <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Issue Details</h3>
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Description <span className="text-red-500">*</span>
@@ -188,8 +188,8 @@ export function ReportIssueModal({ isOpen, onClose, onReport }: ReportIssueModal
 
             {/* Reporter Information */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Reported By</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Reported By</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Name <span className="text-red-500">*</span>
@@ -218,7 +218,7 @@ export function ReportIssueModal({ isOpen, onClose, onReport }: ReportIssueModal
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -271,10 +271,10 @@ export function EditIssueModal({ isOpen, onClose, onEdit, issue }: EditIssueModa
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <FileText className="h-6 w-6 text-white" />
@@ -291,7 +291,7 @@ export function EditIssueModal({ isOpen, onClose, onEdit, issue }: EditIssueModa
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Issue Title <span className="text-red-500">*</span>
@@ -304,7 +304,7 @@ export function EditIssueModal({ isOpen, onClose, onEdit, issue }: EditIssueModa
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Issue Type</label>
                 <select
@@ -387,7 +387,7 @@ export function EditIssueModal({ isOpen, onClose, onEdit, issue }: EditIssueModa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -437,10 +437,10 @@ export function AssignIssueModal({ isOpen, onClose, onAssign, issue }: AssignIss
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Users className="h-6 w-6 text-white" />
@@ -457,8 +457,8 @@ export function AssignIssueModal({ isOpen, onClose, onAssign, issue }: AssignIss
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-purple-50 border border-purple-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-purple-900 mb-2">Issue Details</h4>
               <p className="text-sm text-gray-700 mb-2">{issue.description}</p>
               <div className="flex items-center space-x-4 mt-3">
@@ -490,7 +490,7 @@ export function AssignIssueModal({ isOpen, onClose, onAssign, issue }: AssignIss
               </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Target Resolution Date <span className="text-red-500">*</span>
@@ -531,7 +531,7 @@ export function AssignIssueModal({ isOpen, onClose, onAssign, issue }: AssignIss
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -579,10 +579,10 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, issue }: UpdateSt
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <TrendingUp className="h-6 w-6 text-white" />
@@ -599,8 +599,8 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, issue }: UpdateSt
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
               <p className="text-sm font-medium text-gray-900 mb-1">{issue.issueTitle}</p>
               <p className="text-xs text-gray-600">Current Status: <span className="font-semibold">{issue.status}</span></p>
             </div>
@@ -637,7 +637,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, issue }: UpdateSt
             </div>
 
             {formData.status === 'Closed' && (
-              <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+              <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
                 <p className="text-sm text-green-800">
                   ✓ Closing this issue will mark it as fully resolved. Ensure all resolution details are documented.
                 </p>
@@ -645,7 +645,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, issue }: UpdateSt
             )}
 
             {formData.status === 'Reopened' && (
-              <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
+              <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
                 <p className="text-sm text-red-800">
                   ⚠ Reopening this issue requires clear explanation of why the previous resolution was inadequate.
                 </p>
@@ -655,7 +655,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, issue }: UpdateSt
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -704,10 +704,10 @@ export function AddRootCauseModal({ isOpen, onClose, onAdd, issue }: AddRootCaus
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <AlertTriangle className="h-6 w-6 text-white" />
@@ -724,8 +724,8 @@ export function AddRootCauseModal({ isOpen, onClose, onAdd, issue }: AddRootCaus
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-red-900 mb-2">Issue Details</h4>
               <p className="text-sm font-medium text-gray-900">{issue.issueTitle}</p>
               <p className="text-xs text-gray-600 mt-1">{issue.description}</p>
@@ -770,7 +770,7 @@ export function AddRootCauseModal({ isOpen, onClose, onAdd, issue }: AddRootCaus
               />
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+            <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-blue-900 mb-2">💡 Root Cause Analysis Tips</h4>
               <ul className="text-xs text-blue-800 space-y-1">
                 <li>• Focus on systemic issues, not individual blame</li>
@@ -783,7 +783,7 @@ export function AddRootCauseModal({ isOpen, onClose, onAdd, issue }: AddRootCaus
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -834,10 +834,10 @@ export function AddSolutionModal({ isOpen, onClose, onAdd, issue }: AddSolutionM
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -854,8 +854,8 @@ export function AddSolutionModal({ isOpen, onClose, onAdd, issue }: AddSolutionM
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-teal-50 border border-teal-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-teal-50 border border-teal-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-teal-900 mb-2">Issue & Root Cause</h4>
               <p className="text-sm font-medium text-gray-900">{issue.issueTitle}</p>
               {issue.rootCause && (
@@ -878,7 +878,7 @@ export function AddSolutionModal({ isOpen, onClose, onAdd, issue }: AddSolutionM
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Estimated Cost (₹)</label>
                 <input
@@ -928,7 +928,7 @@ export function AddSolutionModal({ isOpen, onClose, onAdd, issue }: AddSolutionM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -979,10 +979,10 @@ export function AddResolutionModal({ isOpen, onClose, onAdd, issue }: AddResolut
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -999,8 +999,8 @@ export function AddResolutionModal({ isOpen, onClose, onAdd, issue }: AddResolut
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-indigo-50 border border-indigo-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-indigo-900 mb-2">Issue Details</h4>
               <p className="text-sm font-medium text-gray-900">{issue.issueTitle}</p>
               {issue.proposedSolution && (
@@ -1023,7 +1023,7 @@ export function AddResolutionModal({ isOpen, onClose, onAdd, issue }: AddResolut
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Resolution Date <span className="text-red-500">*</span>
@@ -1068,7 +1068,7 @@ export function AddResolutionModal({ isOpen, onClose, onAdd, issue }: AddResolut
               />
             </div>
 
-            <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+            <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
               <p className="text-sm text-green-800">
                 ✓ Once resolution is documented, the issue status will be updated to "Resolved"
               </p>
@@ -1077,7 +1077,7 @@ export function AddResolutionModal({ isOpen, onClose, onAdd, issue }: AddResolut
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -1127,10 +1127,10 @@ export function AddPreventiveMeasuresModal({ isOpen, onClose, onAdd, issue }: Ad
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Shield className="h-6 w-6 text-white" />
@@ -1147,8 +1147,8 @@ export function AddPreventiveMeasuresModal({ isOpen, onClose, onAdd, issue }: Ad
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-emerald-900 mb-2">Issue Summary</h4>
               <p className="text-sm font-medium text-gray-900 mb-2">{issue.issueTitle}</p>
               {issue.rootCause && (
@@ -1182,7 +1182,7 @@ export function AddPreventiveMeasuresModal({ isOpen, onClose, onAdd, issue }: Ad
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Responsible Person</label>
                 <input
@@ -1204,7 +1204,7 @@ export function AddPreventiveMeasuresModal({ isOpen, onClose, onAdd, issue }: Ad
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+            <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
               <h4 className="text-sm font-semibold text-blue-900 mb-2">💡 Preventive Measure Examples</h4>
               <ul className="text-xs text-blue-800 space-y-1">
                 <li>• Update standard operating procedures (SOPs)</li>
@@ -1218,7 +1218,7 @@ export function AddPreventiveMeasuresModal({ isOpen, onClose, onAdd, issue }: Ad
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -1265,10 +1265,10 @@ export function UploadAttachmentsModal({ isOpen, onClose, onUpload, issue }: Upl
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Upload className="h-6 w-6 text-white" />
@@ -1285,9 +1285,9 @@ export function UploadAttachmentsModal({ isOpen, onClose, onUpload, issue }: Upl
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-amber-500 transition-colors cursor-pointer">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+              <Upload className="h-12 w-12 text-gray-400 mb-3" />
               <p className="text-sm font-medium text-gray-900 mb-1">Click to upload or drag and drop</p>
               <p className="text-xs text-gray-500">PNG, JPG, PDF, DOC (max 10MB each)</p>
               <button
@@ -1326,7 +1326,7 @@ export function UploadAttachmentsModal({ isOpen, onClose, onUpload, issue }: Upl
               />
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+            <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg">
               <p className="text-sm text-amber-800">
                 <span className="font-semibold">Current attachments:</span> {issue.attachments} files
               </p>
@@ -1335,7 +1335,7 @@ export function UploadAttachmentsModal({ isOpen, onClose, onUpload, issue }: Upl
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -1382,10 +1382,10 @@ export function AddCommentsModal({ isOpen, onClose, onAdd, issue }: AddCommentsM
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <MessageSquare className="h-6 w-6 text-white" />
@@ -1402,8 +1402,8 @@ export function AddCommentsModal({ isOpen, onClose, onAdd, issue }: AddCommentsM
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="bg-cyan-50 border border-cyan-200 p-4 rounded-lg">
+          <div className="space-y-3">
+            <div className="bg-cyan-50 border border-cyan-200 p-3 rounded-lg">
               <p className="text-sm font-medium text-gray-900">{issue.issueTitle}</p>
               <p className="text-xs text-gray-600 mt-1">Status: {issue.status}</p>
             </div>
@@ -1434,7 +1434,7 @@ export function AddCommentsModal({ isOpen, onClose, onAdd, issue }: AddCommentsM
               </label>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+            <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
               <p className="text-xs text-blue-800">
                 💡 Comments are timestamped and attributed to you. They provide a complete audit trail of issue communication.
               </p>
@@ -1443,7 +1443,7 @@ export function AddCommentsModal({ isOpen, onClose, onAdd, issue }: AddCommentsM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -1492,10 +1492,10 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, issue }: Gene
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <FileText className="h-6 w-6 text-white" />
@@ -1512,7 +1512,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, issue }: Gene
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">Report Scope</label>
               <div className="space-y-2">
@@ -1633,7 +1633,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, issue }: Gene
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
@@ -1666,10 +1666,10 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
   if (!isOpen || !issue) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -1686,11 +1686,11 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
 
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Classification */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Classification</h3>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-2">
                 <div className="bg-gray-50 p-3 rounded-lg">
                   <p className="text-xs text-gray-600">Type</p>
                   <p className="font-semibold text-gray-900">{issue.issueType}</p>
@@ -1713,7 +1713,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             {/* Project & Location */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Project & Location</h3>
-              <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+              <div className="bg-gray-50 p-3 rounded-lg space-y-2">
                 <p className="text-sm"><span className="font-semibold">Project:</span> {issue.projectId} - {issue.projectName}</p>
                 <p className="text-sm"><span className="font-semibold">Location:</span> {issue.location}</p>
                 <p className="text-sm"><span className="font-semibold">Reported By:</span> {issue.reportedBy} ({issue.reportedByRole})</p>
@@ -1722,18 +1722,18 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             </div>
 
             {/* Description & Impact */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Description</h3>
-                <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{issue.description}</p>
                 </div>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Impact on Work</h3>
-                <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{issue.impactOnWork}</p>
-                  <div className="grid grid-cols-2 gap-4 mt-3">
+                  <div className="grid grid-cols-2 gap-2 mt-3">
                     <div>
                       <p className="text-xs text-gray-600">Cost Impact</p>
                       <p className="text-sm font-semibold text-red-600">₹{issue.costImpact.toLocaleString('en-IN')}</p>
@@ -1748,16 +1748,16 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             </div>
 
             {/* Root Cause & Solution */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Root Cause</h3>
-                <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
+                <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{issue.rootCause}</p>
                 </div>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Proposed Solution</h3>
-                <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+                <div className="bg-green-50 border border-green-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{issue.proposedSolution}</p>
                 </div>
               </div>
@@ -1766,8 +1766,8 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             {/* Assignment */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Assignment</h3>
-              <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
-                <div className="grid grid-cols-3 gap-4">
+              <div className="bg-purple-50 border border-purple-200 p-3 rounded-lg">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-xs text-gray-600">Assigned To</p>
                     <p className="text-sm font-semibold text-gray-900">{issue.assignedTo}</p>
@@ -1788,7 +1788,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             {issue.resolutionDetails && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Resolution Details</h3>
-                <div className="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
+                <div className="bg-indigo-50 border border-indigo-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{issue.resolutionDetails}</p>
                 </div>
               </div>
@@ -1798,7 +1798,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             {issue.preventiveMeasures && (
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Preventive Measures</h3>
-                <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-lg">
+                <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-lg">
                   <p className="text-sm text-gray-700">{issue.preventiveMeasures}</p>
                 </div>
               </div>
@@ -1807,7 +1807,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
             {/* Attachments */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Attachments</h3>
-              <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+              <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg">
                 <p className="text-sm text-gray-700">{issue.attachments} files attached</p>
               </div>
             </div>
@@ -1815,7 +1815,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, issue }: ViewFullDetails
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 font-medium transition-colors"

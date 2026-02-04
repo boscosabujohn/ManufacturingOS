@@ -238,9 +238,9 @@ export default function CPQProductsBundlesPage() {
   })
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsFilterModalOpen(true)}
@@ -267,7 +267,7 @@ export default function CPQProductsBundlesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -324,7 +324,7 @@ export default function CPQProductsBundlesPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -338,10 +338,10 @@ export default function CPQProductsBundlesPage() {
       </div>
 
       {/* Bundles Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredBundles.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <Package2 className="h-16 w-16 text-gray-400 mb-4" />
+            <Package2 className="h-16 w-16 text-gray-400 mb-2" />
             <p className="text-gray-600 text-lg">No bundles found</p>
             <p className="text-gray-500 text-sm mt-2">
               {searchQuery || appliedFilters
@@ -369,7 +369,7 @@ export default function CPQProductsBundlesPage() {
                   </span>
                 </div>
 
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Products:</span>
                     <span className="font-medium text-gray-900">{bundle.products} items</span>
@@ -388,7 +388,7 @@ export default function CPQProductsBundlesPage() {
                   </div>
                 </div>
 
-                <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
                   <div
                     className="bg-green-600 h-2 rounded-full"
                     style={{ width: `${bundle.popularity}%` }}

@@ -302,9 +302,9 @@ export default function ProjectHealthScoring() {
     : projectHealthData.filter(p => p.projectId === selectedProject);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -323,8 +323,8 @@ export default function ProjectHealthScoring() {
       </div>
 
       {/* Project Filter */}
-      <div className="bg-white shadow-md p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white shadow-md p-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Filter by Project:</label>
           <select
             value={selectedProject}
@@ -342,7 +342,7 @@ export default function ProjectHealthScoring() {
       </div>
 
       {/* Project Health Cards */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredProjects.map((project) => (
           <div key={project.projectId} className="bg-white shadow-lg border border-gray-200">
             {/* Project Header */}
@@ -376,7 +376,7 @@ export default function ProjectHealthScoring() {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4 mt-4">
+              <div className="grid grid-cols-3 gap-2 mt-4">
                 <div className="text-center">
                   <p className="text-xs text-gray-600">Risk Level</p>
                   <p className={`text-sm font-bold mt-1 ${
@@ -401,8 +401,8 @@ export default function ProjectHealthScoring() {
 
             {/* Health Metrics Grid */}
             <div className="p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Health Metrics Breakdown</h4>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Health Metrics Breakdown</h4>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                 {project.metrics.map((metric) => (
                   <div key={metric.category} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">

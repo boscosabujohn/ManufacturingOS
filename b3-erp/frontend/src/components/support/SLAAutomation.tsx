@@ -69,8 +69,8 @@ export default function SLAAutomation() {
   const avgCompliance = policies.reduce((sum, p) => sum + p.complianceRate, 0) / policies.length;
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <Clock className="h-8 w-8 text-blue-600" />
           SLA Automation
@@ -79,23 +79,23 @@ export default function SLAAutomation() {
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <Target className="h-8 w-8 text-blue-600 mb-3" />
           <div className="text-3xl font-bold text-gray-900 mb-1">{avgCompliance.toFixed(1)}%</div>
           <div className="text-sm text-gray-600">Avg Compliance</div>
         </div>
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <CheckCircle className="h-8 w-8 text-green-600 mb-3" />
           <div className="text-3xl font-bold text-green-600 mb-1">{tickets.filter(t => t.slaStatus === 'met').length}</div>
           <div className="text-sm text-gray-600">Met SLA</div>
         </div>
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <AlertTriangle className="h-8 w-8 text-yellow-600 mb-3" />
           <div className="text-3xl font-bold text-yellow-600 mb-1">{tickets.filter(t => t.slaStatus === 'at-risk').length}</div>
           <div className="text-sm text-gray-600">At Risk</div>
         </div>
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <Zap className="h-8 w-8 text-purple-600 mb-3" />
           <div className="text-3xl font-bold text-purple-600 mb-1">{policies.length}</div>
           <div className="text-sm text-gray-600">Active Policies</div>
@@ -111,26 +111,26 @@ export default function SLAAutomation() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Policy</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">First Response</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Resolution</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Compliance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Active</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase">Policy</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase">First Response</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase">Resolution</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase">Compliance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase">Active</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {policies.map((policy) => (
                 <tr key={policy.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{policy.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap font-medium text-gray-900">{policy.name}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${getPriorityColor(policy.priority)}`}>
                       {policy.priority.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-900">{policy.firstResponseTime}m</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-900">{policy.resolutionTime / 60}h</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-gray-900">{policy.firstResponseTime}m</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-gray-900">{policy.resolutionTime / 60}h</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <div className="flex-1 bg-gray-200 rounded-full h-2 w-24">
                         <div className={`h-2 rounded-full ${policy.complianceRate >= 90 ? 'bg-green-600' : 'bg-yellow-600'}`} style={{ width: `${policy.complianceRate}%` }}></div>
@@ -138,7 +138,7 @@ export default function SLAAutomation() {
                       <span className="text-sm font-medium text-gray-900">{policy.complianceRate}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-900">{policy.activeTickets}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-gray-900">{policy.activeTickets}</td>
                 </tr>
               ))}
             </tbody>
@@ -165,7 +165,7 @@ export default function SLAAutomation() {
                       {ticket.slaStatus.toUpperCase()}
                     </span>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="grid grid-cols-3 gap-2 text-sm">
                     <div>
                       <div className="text-gray-600">Time Remaining</div>
                       <div className="font-bold text-gray-900">{ticket.timeRemaining}m</div>

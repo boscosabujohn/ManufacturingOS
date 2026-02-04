@@ -97,13 +97,13 @@ function PerformanceByDepartmentContent() {
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                             <tr>
-                                <th className="px-6 py-3">Employee ID</th>
-                                <th className="px-6 py-3">Name</th>
-                                <th className="px-6 py-3">Department</th>
-                                <th className="px-6 py-3">Role</th>
-                                <th className="px-6 py-3">Rating</th>
-                                <th className="px-6 py-3">Last Review</th>
-                                <th className="px-6 py-3">Status</th>
+                                <th className="px-3 py-2">Employee ID</th>
+                                <th className="px-3 py-2">Name</th>
+                                <th className="px-3 py-2">Department</th>
+                                <th className="px-3 py-2">Role</th>
+                                <th className="px-3 py-2">Rating</th>
+                                <th className="px-3 py-2">Last Review</th>
+                                <th className="px-3 py-2">Status</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -113,18 +113,18 @@ function PerformanceByDepartmentContent() {
                                     id={record.id}
                                     basePath="/hr/employees/view"
                                 >
-                                    <td className="px-6 py-4 font-medium text-gray-900">{record.employeeId}</td>
-                                    <td className="px-6 py-4">{record.name}</td>
-                                    <td className="px-6 py-4">{record.department}</td>
-                                    <td className="px-6 py-4">{record.role}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 font-medium text-gray-900">{record.employeeId}</td>
+                                    <td className="px-3 py-2">{record.name}</td>
+                                    <td className="px-3 py-2">{record.department}</td>
+                                    <td className="px-3 py-2">{record.role}</td>
+                                    <td className="px-3 py-2">
                                         <div className="flex items-center">
                                             <span className="mr-1 font-medium">{record.rating}</span>
                                             <Star className="w-4 h-4 text-yellow-400 fill-current" />
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4">{record.lastReview}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">{record.lastReview}</td>
+                                    <td className="px-3 py-2">
                                         <Badge className={getStatusColor(record.status)}>
                                             {record.status}
                                         </Badge>

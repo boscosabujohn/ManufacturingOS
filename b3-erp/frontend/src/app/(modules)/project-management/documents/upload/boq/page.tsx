@@ -48,7 +48,7 @@ export default function UploadBOQPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>

@@ -124,9 +124,9 @@ export default function CPQSettingsGeneralPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">General Settings</h2>
           <p className="text-sm text-gray-600 mt-1">Configure company information, currency, tax, and quote defaults</p>
@@ -172,23 +172,23 @@ export default function CPQSettingsGeneralPage() {
 
       {/* Status Banner */}
       {saveStatus === 'success' && (
-        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
+        <div className="mb-3 bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3">
           <CheckCircle className="h-5 w-5 text-green-600" />
           <p className="text-sm text-green-800 font-medium">Settings saved successfully!</p>
         </div>
       )}
 
       {saveStatus === 'error' && (
-        <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+        <div className="mb-3 bg-red-50 border border-red-200 rounded-lg p-3 flex items-center gap-3">
           <AlertCircle className="h-5 w-5 text-red-600" />
           <p className="text-sm text-red-800 font-medium">Failed to save settings. Please try again.</p>
         </div>
       )}
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Company Information */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Building2 className="h-6 w-6 text-blue-600" />
             </div>
@@ -198,7 +198,7 @@ export default function CPQSettingsGeneralPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
               <input
@@ -293,8 +293,8 @@ export default function CPQSettingsGeneralPage() {
         </div>
 
         {/* Currency Settings */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-green-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-green-600" />
             </div>
@@ -304,7 +304,7 @@ export default function CPQSettingsGeneralPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Base Currency</label>
               <select
@@ -378,8 +378,8 @@ export default function CPQSettingsGeneralPage() {
         </div>
 
         {/* Tax Configuration */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <FileCheck className="h-6 w-6 text-purple-600" />
             </div>
@@ -389,7 +389,7 @@ export default function CPQSettingsGeneralPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Default Tax Rate (%)</label>
               <input
@@ -454,8 +454,8 @@ export default function CPQSettingsGeneralPage() {
         </div>
 
         {/* Quote Configuration */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-orange-100 rounded-lg">
               <FileText className="h-6 w-6 text-orange-600" />
             </div>
@@ -465,7 +465,7 @@ export default function CPQSettingsGeneralPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Default Validity</label>
               <div className="flex gap-2">
@@ -546,8 +546,8 @@ export default function CPQSettingsGeneralPage() {
         </div>
 
         {/* Terms & Conditions */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-red-100 rounded-lg">
               <FileText className="h-6 w-6 text-red-600" />
             </div>
@@ -557,7 +557,7 @@ export default function CPQSettingsGeneralPage() {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {Object.entries(termsSettings).map(([key, value]) => (
               <div key={key}>
                 <label className="block text-sm font-medium text-gray-700 mb-2 capitalize">

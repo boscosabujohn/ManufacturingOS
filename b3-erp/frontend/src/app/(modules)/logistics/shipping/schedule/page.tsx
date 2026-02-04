@@ -147,9 +147,9 @@ export default function ShippingSchedulePage() {
     };
 
     return (
-        <div className="p-6 space-y-6 text-sm font-medium">
+        <div className="p-6 space-y-3 text-sm font-medium">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                         <Calendar className="h-8 w-8 text-orange-600" />
@@ -181,7 +181,7 @@ export default function ShippingSchedulePage() {
             </div>
 
             {/* Date Navigation */}
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
                 <div className="flex items-center justify-between">
                     <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                         <ChevronLeft className="w-5 h-5 text-gray-600" />
@@ -199,8 +199,8 @@ export default function ShippingSchedulePage() {
             </div>
 
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex items-center gap-2">
                     <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
                         <Truck className="w-5 h-5" />
                     </div>
@@ -210,7 +210,7 @@ export default function ShippingSchedulePage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex items-center gap-2">
                     <div className="p-3 bg-green-50 rounded-xl text-green-600">
                         <CheckCircle2 className="w-5 h-5" />
                     </div>
@@ -222,7 +222,7 @@ export default function ShippingSchedulePage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex items-center gap-2">
                     <div className="p-3 bg-red-50 rounded-xl text-red-600">
                         <AlertCircle className="w-5 h-5" />
                     </div>
@@ -234,7 +234,7 @@ export default function ShippingSchedulePage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm flex items-center gap-2">
                     <div className="p-3 bg-orange-50 rounded-xl text-orange-600">
                         <Package className="w-5 h-5" />
                     </div>
@@ -247,7 +247,7 @@ export default function ShippingSchedulePage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
                 {/* Schedule List */}
                 <div className="lg:col-span-3 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                     <div className="p-4 border-b border-gray-50 flex items-center justify-between">
@@ -267,7 +267,7 @@ export default function ShippingSchedulePage() {
                     <div className="divide-y divide-gray-50">
                         {scheduleData.map((shipment) => (
                             <div key={shipment.id} className="p-4 hover:bg-gray-50 transition-colors cursor-pointer group">
-                                <div className="flex items-start gap-4">
+                                <div className="flex items-start gap-2">
                                     <div className="text-center min-w-[60px]">
                                         <p className="text-xl font-black text-gray-900 italic tracking-tighter">{shipment.time}</p>
                                         <span className={`inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase border ${getStatusColor(shipment.status)}`}>
@@ -291,7 +291,7 @@ export default function ShippingSchedulePage() {
                                             </button>
                                         </div>
 
-                                        <div className="flex items-center gap-6 mt-3 text-[10px] text-gray-500">
+                                        <div className="flex items-center gap-3 mt-3 text-[10px] text-gray-500">
                                             <span className="flex items-center gap-1">
                                                 <MapPin className="w-3 h-3" /> {shipment.destination}
                                             </span>
@@ -310,9 +310,9 @@ export default function ShippingSchedulePage() {
                 </div>
 
                 {/* Dock Status Sidebar */}
-                <div className="space-y-4">
-                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
-                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-4">
+                <div className="space-y-2">
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-2">
                             <MapPin className="w-4 h-4 text-orange-600" /> Dock Status
                         </h3>
                         <div className="space-y-3">
@@ -337,7 +337,7 @@ export default function ShippingSchedulePage() {
                         </div>
                     </div>
 
-                    <div className="bg-orange-50 p-4 rounded-2xl border border-orange-100">
+                    <div className="bg-orange-50 p-3 rounded-2xl border border-orange-100">
                         <h3 className="text-xs font-black text-orange-800 uppercase tracking-widest italic flex items-center gap-2 mb-2">
                             <AlertCircle className="w-4 h-4" /> Attention Required
                         </h3>

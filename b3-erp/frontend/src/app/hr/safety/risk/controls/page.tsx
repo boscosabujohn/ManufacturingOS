@@ -68,9 +68,9 @@ export default function ControlMeasuresPage() {
   const [activeLevel, setActiveLevel] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Shield className="h-8 w-8 text-orange-600" />
@@ -85,7 +85,7 @@ export default function ControlMeasuresPage() {
       </div>
 
       {/* Hierarchy of Controls Visualization */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
         {hierarchyData.map((item, idx) => (
           <div
             key={idx}
@@ -105,7 +105,7 @@ export default function ControlMeasuresPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Active Controls Table */}
         <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden text-sm">
           <div className="p-4 border-b border-gray-100 flex items-center justify-between">
@@ -120,22 +120,22 @@ export default function ControlMeasuresPage() {
             <table className="w-full text-left">
               <thead className="bg-gray-50 text-[10px] uppercase font-bold text-gray-500 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3">Control ID & Title</th>
-                  <th className="px-6 py-3">Hierarchy Level</th>
-                  <th className="px-6 py-3">Efficiency</th>
-                  <th className="px-6 py-3">Last Review</th>
-                  <th className="px-6 py-3">Status</th>
+                  <th className="px-3 py-2">Control ID & Title</th>
+                  <th className="px-3 py-2">Hierarchy Level</th>
+                  <th className="px-3 py-2">Efficiency</th>
+                  <th className="px-3 py-2">Last Review</th>
+                  <th className="px-3 py-2">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {activeControls.map((control) => (
                   <tr key={control.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-bold text-gray-900">{control.title}</div>
                       <div className="text-[10px] text-gray-400">ID: {control.id} · Target: {control.targetRisk}</div>
                     </td>
-                    <td className="px-6 py-4 font-medium text-gray-600">{control.type}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 font-medium text-gray-600">{control.type}</td>
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                           <div className="h-full bg-green-500" style={{ width: `${control.efficiency}%` }}></div>
@@ -143,8 +143,8 @@ export default function ControlMeasuresPage() {
                         <span className="text-[10px] font-bold">{control.efficiency}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-500 text-xs">{control.lastReview}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-gray-500 text-xs">{control.lastReview}</td>
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold ${control.status === 'Active' ? 'bg-green-50 text-green-700' : 'bg-orange-50 text-orange-700'
                         }`}>
                         {control.status}
@@ -161,13 +161,13 @@ export default function ControlMeasuresPage() {
         </div>
 
         {/* Review Alerts & Effectiveness */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-orange-500" />
               Review Alerts
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="p-3 bg-red-50 border border-red-100 rounded-lg">
                 <p className="text-xs font-bold text-red-800">PPE Inspection Overdue</p>
                 <p className="text-[10px] text-red-600 mt-1 italic">Line 2 Respiratory protection requires inspection since Apr 01.</p>
@@ -180,7 +180,7 @@ export default function ControlMeasuresPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900 p-6 rounded-xl shadow-lg relative overflow-hidden">
+          <div className="bg-gray-900 p-3 rounded-xl shadow-lg relative overflow-hidden">
             <div className="relative z-10 text-white">
               <h3 className="font-bold flex items-center gap-2 mb-2">
                 <TrendingDown className="w-4 h-4 text-green-400" />

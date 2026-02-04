@@ -33,8 +33,8 @@ export default function CustomerGrowthReport() {
     return (
         <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
             {/* Header */}
-            <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
                             <Users className="w-5 h-5 text-white" />
@@ -58,9 +58,9 @@ export default function CustomerGrowthReport() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
                 {/* KPI Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                     <Card
                         className="cursor-pointer hover:shadow-md transition-all border-l-4 border-l-blue-500 hover:-translate-y-1"
                         onClick={() => router.push('/reports/crm/customers/acquisition')}
@@ -138,7 +138,7 @@ export default function CustomerGrowthReport() {
                 </div>
 
                 {/* Sub-Reports Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <Card className="overflow-hidden">
                         <CardHeader className="bg-white border-b border-gray-100 flex flex-row items-center justify-between py-4">
                             <CardTitle className="text-sm font-black uppercase tracking-widest text-gray-900">Acquisition Trends</CardTitle>
@@ -191,7 +191,7 @@ export default function CustomerGrowthReport() {
                                     <p className="text-xs text-purple-600 mt-1">Interactive heatmap available in full report</p>
                                 </div>
                             </div>
-                            <div className="mt-6 grid grid-cols-2 gap-4">
+                            <div className="mt-6 grid grid-cols-2 gap-2">
                                 <div className="p-3 bg-gray-50 rounded-lg">
                                     <p className="text-[10px] font-black text-gray-400 uppercase">Enterprise</p>
                                     <p className="text-xl font-black text-gray-900 italic tracking-tighter">42%</p>
@@ -206,7 +206,7 @@ export default function CustomerGrowthReport() {
                 </div>
 
                 {/* Growth Summary Panel */}
-                <div className="bg-gray-900 text-white rounded-2xl p-6 shadow-xl flex items-center justify-between overflow-hidden relative">
+                <div className="bg-gray-900 text-white rounded-2xl p-3 shadow-xl flex items-center justify-between overflow-hidden relative">
                     <div className="relative z-10">
                         <h4 className="text-xs font-black text-orange-500 uppercase tracking-widest mb-1">Growth Forecast</h4>
                         <p className="text-2xl font-black italic tracking-tighter">Sustained expansion at {data.growthRate}% annually</p>

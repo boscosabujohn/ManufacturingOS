@@ -199,7 +199,7 @@ export default function StockMovementAddPage() {
   return (
     <div className="p-6 w-full">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-2 mb-3">
         <button
           onClick={() => router.back()}
           className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -212,11 +212,11 @@ export default function StockMovementAddPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Movement Type Selection */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Movement Type</h2>
-          <div className="grid grid-cols-2 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Movement Type</h2>
+          <div className="grid grid-cols-2 gap-2">
             {movementTypes.map((type) => (
               <button
                 key={type.value}
@@ -243,12 +243,12 @@ export default function StockMovementAddPage() {
         {formData.movementType && (
           <>
             {/* Basic Information */}
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Basic Information
               </h2>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Movement Date <span className="text-red-500">*</span>
@@ -325,8 +325,8 @@ export default function StockMovementAddPage() {
             </div>
 
             {/* Item Selection */}
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Package className="w-5 h-5 text-green-600" />
                 Item Selection
               </h2>
@@ -348,7 +348,7 @@ export default function StockMovementAddPage() {
                   )}
 
                   {showItemSearch && (
-                    <div className="mt-4 border border-gray-200 rounded-lg p-4">
+                    <div className="mt-4 border border-gray-200 rounded-lg p-3">
                       <div className="mb-3">
                         <input
                           type="text"
@@ -382,13 +382,13 @@ export default function StockMovementAddPage() {
                   )}
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="font-mono font-bold text-blue-900 mb-1">{formData.itemCode}</div>
                         <div className="font-semibold text-gray-900 mb-2">{formData.itemName}</div>
-                        <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div className="grid grid-cols-3 gap-2 text-sm">
                           <div>
                             <span className="text-gray-600">Category:</span>
                             <div className="font-medium text-gray-900">{formData.category}</div>
@@ -417,7 +417,7 @@ export default function StockMovementAddPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         {formData.movementType === 'adjustment' ? 'New Balance' : 'Quantity'} <span className="text-red-500">*</span>
@@ -437,7 +437,7 @@ export default function StockMovementAddPage() {
                     </div>
 
                     <div className="flex items-end">
-                      <div className="w-full p-4 bg-green-50 rounded-lg border border-green-200">
+                      <div className="w-full p-3 bg-green-50 rounded-lg border border-green-200">
                         <div className="text-sm text-green-700 mb-1">Balance After Movement</div>
                         <div className="text-2xl font-bold text-green-900">
                           {balanceAfter.toLocaleString()} {formData.uom}
@@ -451,12 +451,12 @@ export default function StockMovementAddPage() {
 
             {/* Location Information */}
             {formData.itemCode && (
-              <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white p-3 rounded-lg border border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-orange-600" />
                   Location Information
                 </h2>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   {(formData.movementType === 'issue' || formData.movementType === 'adjustment') && (
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">From Location</label>
@@ -487,9 +487,9 @@ export default function StockMovementAddPage() {
 
             {/* Tracking Information */}
             {formData.itemCode && formData.quantity > 0 && (
-              <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">Tracking Information</h2>
-                <div className="space-y-4">
+              <div className="bg-white p-3 rounded-lg border border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900 mb-2">Tracking Information</h2>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Batch Number</label>
                     <input
@@ -535,9 +535,9 @@ export default function StockMovementAddPage() {
             )}
 
             {/* Reason & Remarks */}
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Reason & Remarks</h2>
-              <div className="space-y-4">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Reason & Remarks</h2>
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Reason <span className="text-red-500">*</span>
@@ -570,12 +570,12 @@ export default function StockMovementAddPage() {
 
             {/* Summary */}
             {formData.itemCode && formData.quantity > 0 && (
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
                 <div className="flex items-start gap-3">
                   <Info className="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" />
                   <div className="flex-1">
                     <h3 className="font-bold text-blue-900 mb-3">Movement Summary</h3>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-2 gap-2 text-sm">
                       <div>
                         <span className="text-blue-700">Item:</span>
                         <div className="font-semibold text-blue-900">{formData.itemName}</div>
@@ -613,7 +613,7 @@ export default function StockMovementAddPage() {
         )}
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
+        <div className="flex items-center justify-end gap-2 pt-6 border-t border-gray-200">
           <button
             type="button"
             onClick={handleCancel}

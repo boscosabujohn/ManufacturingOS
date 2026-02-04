@@ -19,9 +19,9 @@ export default function OCRPage() {
     };
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
-            <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
+            <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
                     <Link href="/advanced-features" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                         <span className="text-gray-700">Back</span>
@@ -33,17 +33,17 @@ export default function OCRPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Upload Section */}
                 <div className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                        <h2 className="text-lg font-bold text-gray-900 mb-4">Upload Document</h2>
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                        <h2 className="text-lg font-bold text-gray-900 mb-2">Upload Document</h2>
                         <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors cursor-pointer bg-gray-50">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2">
                                 <Upload className="w-6 h-6" />
                             </div>
                             <p className="text-gray-900 font-medium mb-1">Click to upload or drag and drop</p>
-                            <p className="text-sm text-gray-500 mb-4">PDF, PNG, JPG up to 10MB</p>
+                            <p className="text-sm text-gray-500 mb-2">PDF, PNG, JPG up to 10MB</p>
                             <button
                                 onClick={handleUpload}
                                 disabled={isUploading || uploadStatus === 'success'}
@@ -82,8 +82,8 @@ export default function OCRPage() {
                 {/* Results Section */}
                 <div className="lg:col-span-2">
                     {uploadStatus === 'success' ? (
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                            <div className="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+                            <div className="flex items-center justify-between mb-3 border-b border-gray-100 pb-4">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 bg-green-100 rounded-lg">
                                         <FileText className="w-6 h-6 text-green-600" />
@@ -98,7 +98,7 @@ export default function OCRPage() {
                                 </span>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-6 mb-6">
+                            <div className="grid grid-cols-2 gap-3 mb-3">
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 uppercase mb-1">Vendor Name</label>
                                     <div className="p-2 bg-gray-50 rounded border border-gray-200 text-gray-900 font-medium">
@@ -172,7 +172,7 @@ export default function OCRPage() {
                         </div>
                     ) : (
                         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
-                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-2">
                                 <ScanText className="w-8 h-8 text-gray-400" />
                             </div>
                             <h3 className="text-xl font-semibold text-gray-900 mb-2">No Document Selected</h3>

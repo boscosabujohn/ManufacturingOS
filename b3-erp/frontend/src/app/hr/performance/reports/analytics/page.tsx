@@ -47,9 +47,9 @@ export default function PerformanceAnalyticsPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header & Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <BarChart3 className="h-8 w-8 text-purple-600" />
@@ -82,8 +82,8 @@ export default function PerformanceAnalyticsPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm font-medium text-gray-500">Avg Performance Score</p>
@@ -102,7 +102,7 @@ export default function PerformanceAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm font-medium text-gray-500">Review Completion</p>
@@ -119,7 +119,7 @@ export default function PerformanceAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm font-medium text-gray-500">Employee Engagement</p>
@@ -138,7 +138,7 @@ export default function PerformanceAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm font-medium text-gray-500">Active PIPs</p>
@@ -156,10 +156,10 @@ export default function PerformanceAnalyticsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Performance Trend */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Performance Trend vs Industry</h3>
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">Performance Trend vs Industry</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={performanceTrend}>
@@ -182,8 +182,8 @@ export default function PerformanceAnalyticsPage() {
         </div>
 
         {/* Rating Distribution */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Rating Bell Curve</h3>
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">Rating Bell Curve</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={ratingDistribution}>
@@ -198,8 +198,8 @@ export default function PerformanceAnalyticsPage() {
         </div>
 
         {/* Department Comparison */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 lg:col-span-2">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Department Performance Comparison (YoY)</h3>
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 lg:col-span-2">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">Department Performance Comparison (YoY)</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={departmentScores} barGap={8}>

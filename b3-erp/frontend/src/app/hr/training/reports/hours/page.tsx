@@ -46,9 +46,9 @@ export default function TrainingHoursPage() {
   const [timeRange, setTimeRange] = useState('Last 6 Months');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Clock className="h-8 w-8 text-purple-600" />
@@ -73,33 +73,33 @@ export default function TrainingHoursPage() {
       </div>
 
       {/* KPI Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center">
           <h3 className="text-gray-500 text-sm font-medium uppercase">Total Training Hours</h3>
           <p className="text-3xl font-extrabold text-gray-900 mt-2">1,150</p>
           <p className="text-xs text-green-600 mt-1">+12% vs last period</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center">
           <h3 className="text-gray-500 text-sm font-medium uppercase">Avg Hours / Employee</h3>
           <p className="text-3xl font-extrabold text-gray-900 mt-2">24.5</p>
           <p className="text-xs text-green-600 mt-1">Target: 20.0</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center">
           <h3 className="text-gray-500 text-sm font-medium uppercase">Peak Month</h3>
           <p className="text-3xl font-extrabold text-gray-900 mt-2">June</p>
           <p className="text-xs text-gray-400 mt-1">325 hours logged</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center">
           <h3 className="text-gray-500 text-sm font-medium uppercase">Most Popular Type</h3>
           <p className="text-2xl font-bold text-gray-900 mt-2">Online Courses</p>
           <p className="text-xs text-gray-400 mt-1">39% of total time</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Monthly Trend Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Monthly Training Volume Trend</h3>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Monthly Training Volume Trend</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={monthlyHoursData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -127,7 +127,7 @@ export default function TrainingHoursPage() {
         </div>
 
         {/* Training Type Breakdown */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col items-center justify-center">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col items-center justify-center">
           <h3 className="text-lg font-bold text-gray-900 mb-2 w-full text-left">Hours by Training Type</h3>
           <div className="w-full h-64">
             <ResponsiveContainer width="100%" height="100%">

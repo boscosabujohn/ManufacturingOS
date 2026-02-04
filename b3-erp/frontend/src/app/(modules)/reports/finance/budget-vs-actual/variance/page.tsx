@@ -37,12 +37,12 @@ function VarianceContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ref ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ref ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -51,16 +51,16 @@ function VarianceContent() {
                                     key={txn.id}
                                     onClick={() => router.push(`/accounts/transactions/${txn.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{txn.date}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{txn.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{txn.description}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-500">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{txn.date}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{txn.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{txn.description}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-gray-500">
                                         ₹{txn.budget.toLocaleString()}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-gray-900">
                                         ₹{txn.actual.toLocaleString()}
                                     </td>
-                                    <td className={`px-6 py-4 whitespace-nowrap text-sm text-right font-medium ${txn.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                    <td className={`px-3 py-2 whitespace-nowrap text-sm text-right font-medium ${txn.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                         {txn.variance > 0 ? '+' : ''}₹{txn.variance.toLocaleString()}
                                     </td>
                                 </ClickableTableRow>

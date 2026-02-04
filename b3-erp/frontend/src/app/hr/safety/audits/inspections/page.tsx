@@ -68,9 +68,9 @@ export default function InspectionsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <ClipboardCheck className="h-8 w-8 text-orange-600" />
@@ -85,7 +85,7 @@ export default function InspectionsPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Active</p>
           <div className="flex items-end justify-between mt-2">
@@ -125,9 +125,9 @@ export default function InspectionsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Inspection List */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-2">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between">
               <h2 className="font-bold text-gray-900">Recent Inspections</h2>
@@ -196,9 +196,9 @@ export default function InspectionsPage() {
         </div>
 
         {/* Inspection Templates & Tips */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-green-600" />
               Quick Templates
             </h3>
@@ -220,7 +220,7 @@ export default function InspectionsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-900 to-indigo-700 p-6 rounded-xl text-white shadow-lg relative overflow-hidden">
+          <div className="bg-gradient-to-br from-indigo-900 to-indigo-700 p-3 rounded-xl text-white shadow-lg relative overflow-hidden">
             <h3 className="font-bold mb-2">Did you know?</h3>
             <p className="text-xs opacity-80 leading-relaxed italic">
               "Mobile inspections are 40% more efficient than paper-based reporting. Capture photos of hazards directly to the checklist to accelerate corrective actions."

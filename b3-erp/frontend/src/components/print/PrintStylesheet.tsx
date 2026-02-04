@@ -466,7 +466,7 @@ export function PrintHeader({
 }: PrintHeaderProps) {
   return (
     <div className={`print-header hidden print:block ${className}`}>
-      <div className="flex items-center justify-between border-b border-gray-300 pb-2 mb-4">
+      <div className="flex items-center justify-between border-b border-gray-300 pb-2 mb-2">
         <div className="flex items-center gap-3">
           {logo && <img src={logo} alt="" className="h-8" />}
           <span className="font-bold text-lg">{companyName}</span>

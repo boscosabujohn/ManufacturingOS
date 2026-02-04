@@ -34,8 +34,8 @@ export default function ExternalTrainingPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="p-6 space-y-3">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <ExternalLink className="h-8 w-8 text-purple-600" />
@@ -54,11 +54,11 @@ export default function ExternalTrainingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Approved Vendors */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-6">
+        <div className="lg:col-span-2 space-y-3">
+          <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-gray-900">Training Providers</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -108,13 +108,13 @@ export default function ExternalTrainingPage() {
         </div>
 
         {/* Featured Courses */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Book className="h-5 w-5 text-gray-400" />
               Popular Courses
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {courses.map(course => (
                 <div key={course.id} className="p-4 border border-gray-100 rounded-lg hover:border-purple-200 hover:shadow-sm transition-all bg-gray-50/50">
                   <div className="flex justify-between items-start mb-2">
@@ -137,9 +137,9 @@ export default function ExternalTrainingPage() {
             </button>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-600 to-indigo-700 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-600 to-indigo-700 p-3 rounded-xl text-white">
             <h3 className="font-semibold text-lg mb-2">Propose New Vendor</h3>
-            <p className="text-purple-100 text-sm mb-4">
+            <p className="text-purple-100 text-sm mb-2">
               Need a specific training provider not listed here? Submit a request for approval.
             </p>
             <button className="px-4 py-2 bg-white text-purple-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors">

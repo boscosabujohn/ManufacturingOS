@@ -60,9 +60,9 @@ export default function CertificationsPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Award className="h-8 w-8 text-purple-600" />
@@ -89,9 +89,9 @@ export default function CertificationsPage() {
       </div>
 
       {/* Stats Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
-          <div className="flex items-center gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl p-3 text-white shadow-lg">
+          <div className="flex items-center gap-2">
             <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
               <Award className="w-8 h-8 text-white" />
             </div>
@@ -101,7 +101,7 @@ export default function CertificationsPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex items-center gap-4">
+        <div className="bg-white rounded-xl p-3 border border-gray-200 shadow-sm flex items-center gap-2">
           <div className="p-3 bg-green-50 rounded-lg">
             <ShieldCheck className="w-8 h-8 text-green-600" />
           </div>
@@ -110,7 +110,7 @@ export default function CertificationsPage() {
             <h2 className="text-3xl font-bold text-gray-900">10</h2>
           </div>
         </div>
-        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex items-center gap-4">
+        <div className="bg-white rounded-xl p-3 border border-gray-200 shadow-sm flex items-center gap-2">
           <div className="p-3 bg-amber-50 rounded-lg">
             <Calendar className="w-8 h-8 text-amber-600" />
           </div>
@@ -122,10 +122,10 @@ export default function CertificationsPage() {
       </div>
 
       {/* Certificates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {certifications.map((cert) => (
           <div key={cert.id} className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden group">
-            <div className={`h-32 ${cert.image} relative p-6 flex flex-col justify-between`}>
+            <div className={`h-32 ${cert.image} relative p-3 flex flex-col justify-between`}>
               <div className="flex justify-between items-start">
                 <div className="bg-white/20 backdrop-blur-md p-2 rounded-lg">
                   <Award className="w-6 h-6 text-white" />
@@ -142,9 +142,9 @@ export default function CertificationsPage() {
             <div className="p-6 pt-8 flex-1 flex flex-col">
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">{cert.title}</h3>
-                <p className="text-sm text-gray-500 font-medium mb-4">{cert.issuer}</p>
+                <p className="text-sm text-gray-500 font-medium mb-2">{cert.issuer}</p>
 
-                <div className="space-y-2 text-sm text-gray-600 mb-6">
+                <div className="space-y-2 text-sm text-gray-600 mb-3">
                   <div className="flex justify-between">
                     <span className="text-gray-400">Issued</span>
                     <span className="font-medium">{cert.issueDate}</span>
@@ -155,7 +155,7 @@ export default function CertificationsPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-3">
                   {cert.skills.map((skill, index) => (
                     <span key={index} className="px-2 py-1 bg-gray-50 text-gray-600 text-xs rounded-md border border-gray-100">
                       {skill}
@@ -181,12 +181,12 @@ export default function CertificationsPage() {
         ))}
 
         {/* Add New Placeholder/Promo */}
-        <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center p-6 text-center hover:bg-gray-100 transition-colors cursor-pointer group">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform">
+        <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center p-3 text-center hover:bg-gray-100 transition-colors cursor-pointer group">
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-2 group-hover:scale-110 transition-transform">
             <Award className="w-8 h-8 text-gray-400" />
           </div>
           <h3 className="text-lg font-bold text-gray-900 mb-2">Detailed Certification?</h3>
-          <p className="text-sm text-gray-500 max-w-xs mb-6">
+          <p className="text-sm text-gray-500 max-w-xs mb-3">
             Upload an external certification to add it to your employee profile.
           </p>
           <button className="px-5 py-2 bg-white border border-gray-300 shadow-sm text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors">

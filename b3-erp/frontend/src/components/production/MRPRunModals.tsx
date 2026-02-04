@@ -37,9 +37,9 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Play className="h-6 w-6 text-white" />
@@ -56,7 +56,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Planning Horizon */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Planning Horizon (weeks) <span className="text-red-500">*</span>
             </label>
@@ -72,7 +72,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
 
           {/* Reorder Point Method */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Reorder Point Method <span className="text-red-500">*</span>
             </label>
@@ -88,7 +88,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
 
           {/* Configuration Options */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-2 mb-3">
             <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg hover:bg-gray-50">
               <input
                 type="checkbox"
@@ -143,7 +143,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -159,7 +159,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -208,9 +208,9 @@ export function ConfigureMRPModal({ isOpen, onClose, onSave, currentSettings }: 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Settings className="h-6 w-6 text-white" />
@@ -227,12 +227,12 @@ export function ConfigureMRPModal({ isOpen, onClose, onSave, currentSettings }: 
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Planning Parameters */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-purple-600" />
               Planning Parameters
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Default Planning Horizon (weeks)
@@ -264,12 +264,12 @@ export function ConfigureMRPModal({ isOpen, onClose, onSave, currentSettings }: 
           </div>
 
           {/* Threshold Settings */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-purple-600" />
               Threshold Settings
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Auto-Approve Threshold (₹)
@@ -315,8 +315,8 @@ export function ConfigureMRPModal({ isOpen, onClose, onSave, currentSettings }: 
           </div>
 
           {/* Processing Options */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Processing Options</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Processing Options</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg hover:bg-gray-50">
                 <input
@@ -347,7 +347,7 @@ export function ConfigureMRPModal({ isOpen, onClose, onSave, currentSettings }: 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -378,9 +378,9 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
   if (!isOpen || !item) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -397,8 +397,8 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Summary Header */}
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 mb-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-indigo-600 mb-1">Item Code</p>
                 <p className="font-bold text-indigo-900">{item.itemCode}</p>
@@ -425,10 +425,10 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
           </div>
 
           {/* Material Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Material Information</h3>
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-              <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Material Information</h3>
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Material Name</p>
                   <p className="font-semibold text-gray-900">{item.itemName}</p>
@@ -442,38 +442,38 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
           </div>
 
           {/* Inventory Status */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="h-5 w-5 text-indigo-600" />
               Inventory Status
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-1">Gross Requirement</p>
                 <p className="text-2xl font-bold text-blue-900">{item.grossRequirement?.toLocaleString()}</p>
                 <p className="text-xs text-blue-600">{item.uom}</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4">
+              <div className="bg-green-50 rounded-lg p-3">
                 <p className="text-sm text-green-600 mb-1">Scheduled Receipts</p>
                 <p className="text-2xl font-bold text-green-900">{item.scheduledReceipts?.toLocaleString()}</p>
                 <p className="text-xs text-green-600">{item.uom}</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <p className="text-sm text-purple-600 mb-1">On Hand Inventory</p>
                 <p className="text-2xl font-bold text-purple-900">{item.onHandInventory?.toLocaleString()}</p>
                 <p className="text-xs text-purple-600">{item.uom}</p>
               </div>
-              <div className="bg-yellow-50 rounded-lg p-4">
+              <div className="bg-yellow-50 rounded-lg p-3">
                 <p className="text-sm text-yellow-600 mb-1">Allocated Quantity</p>
                 <p className="text-2xl font-bold text-yellow-900">{item.allocatedQty?.toLocaleString()}</p>
                 <p className="text-xs text-yellow-600">{item.uom}</p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-600 mb-1">Available Quantity</p>
                 <p className="text-2xl font-bold text-gray-900">{item.availableQty?.toLocaleString()}</p>
                 <p className="text-xs text-gray-600">{item.uom}</p>
               </div>
-              <div className="bg-orange-50 rounded-lg p-4">
+              <div className="bg-orange-50 rounded-lg p-3">
                 <p className="text-sm text-orange-600 mb-1">Safety Stock</p>
                 <p className="text-2xl font-bold text-orange-900">{item.safetyStock?.toLocaleString()}</p>
                 <p className="text-xs text-orange-600">{item.uom}</p>
@@ -482,16 +482,16 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
           </div>
 
           {/* Net Requirement & Planned Order */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Planning Details</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className={`rounded-lg p-4 ${item.netRequirement > 0 ? 'bg-red-50 border-2 border-red-200' : 'bg-green-50 border-2 border-green-200'}`}>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Planning Details</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <div className={`rounded-lg p-3 ${item.netRequirement > 0 ? 'bg-red-50 border-2 border-red-200' : 'bg-green-50 border-2 border-green-200'}`}>
                 <p className="text-sm font-medium mb-1">Net Requirement</p>
                 <p className={`text-3xl font-bold ${item.netRequirement > 0 ? 'text-red-600' : 'text-green-600'}`}>
                   {item.netRequirement?.toLocaleString()} {item.uom}
                 </p>
               </div>
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-3">
                 <p className="text-sm text-blue-600 font-medium mb-1">Planned Order Release</p>
                 <p className="text-3xl font-bold text-blue-600">
                   {item.plannedOrderRelease?.toLocaleString()} {item.uom}
@@ -501,9 +501,9 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
           </div>
 
           {/* Procurement Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Procurement Information</h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Procurement Information</h3>
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Suggested Action</p>
                 <p className="font-semibold text-gray-900">{item.suggestedAction}</p>
@@ -534,7 +534,7 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
           {/* Affected Work Orders */}
           {item.affectedWOs && item.affectedWOs.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Affected Work Orders</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Affected Work Orders</h3>
               <div className="flex flex-wrap gap-2">
                 {item.affectedWOs.map((wo: string, idx: number) => (
                   <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
@@ -546,7 +546,7 @@ export function ViewItemDetailsModal({ isOpen, onClose, item }: ViewItemDetailsM
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

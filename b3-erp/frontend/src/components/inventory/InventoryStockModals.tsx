@@ -199,10 +199,10 @@ export function ViewStockDetailsModal({
   ]
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Package className="w-6 h-6" />
             <div>
@@ -216,9 +216,9 @@ export function ViewStockDetailsModal({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Header Info */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-2xl font-semibold text-gray-900 mb-2">{item.itemName}</h3>
             <p className="text-gray-600 mb-3">{item.description}</p>
             <div className="flex items-center gap-3">
@@ -235,10 +235,10 @@ export function ViewStockDetailsModal({
           </div>
 
           {/* Stock Summary */}
-          <div className="mb-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Stock Summary</h4>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mb-3">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Stock Summary</h4>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Package className="w-5 h-5 text-blue-600" />
                   <p className="text-sm font-medium text-blue-900">Current Quantity</p>
@@ -246,7 +246,7 @@ export function ViewStockDetailsModal({
                 <p className="text-2xl font-bold text-blue-600">{item.currentQuantity}</p>
                 <p className="text-sm text-blue-700">{item.uom}</p>
               </div>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   <p className="text-sm font-medium text-green-900">Available</p>
@@ -254,7 +254,7 @@ export function ViewStockDetailsModal({
                 <p className="text-2xl font-bold text-green-600">{item.available}</p>
                 <p className="text-sm text-green-700">{item.uom}</p>
               </div>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-5 h-5 text-yellow-600" />
                   <p className="text-sm font-medium text-yellow-900">Reserved</p>
@@ -262,7 +262,7 @@ export function ViewStockDetailsModal({
                 <p className="text-2xl font-bold text-yellow-600">{item.reserved}</p>
                 <p className="text-sm text-yellow-700">{item.uom}</p>
               </div>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="w-5 h-5 text-purple-600" />
                   <p className="text-sm font-medium text-purple-900">On Order</p>
@@ -274,9 +274,9 @@ export function ViewStockDetailsModal({
           </div>
 
           {/* Item Details */}
-          <div className="mb-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Item Details</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 bg-gray-50 p-4 rounded-lg">
+          <div className="mb-3">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Item Details</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 bg-gray-50 p-3 rounded-lg">
               <div>
                 <p className="text-sm font-medium text-gray-500">SKU / Barcode</p>
                 <p className="text-base text-gray-900">{item.barcode}</p>
@@ -335,8 +335,8 @@ export function ViewStockDetailsModal({
 
           {/* Location Breakdown */}
           {item.locations && item.locations.length > 0 && (
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4">Location Breakdown</h4>
+            <div className="mb-3">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Location Breakdown</h4>
               <div className="border border-gray-200 rounded-lg overflow-hidden">
                 <table className="w-full">
                   <thead className="bg-gray-50">
@@ -369,8 +369,8 @@ export function ViewStockDetailsModal({
           )}
 
           {/* Recent Transactions */}
-          <div className="mb-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Recent Transactions</h4>
+          <div className="mb-3">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Recent Transactions</h4>
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <table className="w-full">
                 <thead className="bg-gray-50">
@@ -415,17 +415,17 @@ export function ViewStockDetailsModal({
 
           {/* Valuation */}
           <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Valuation</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">Valuation</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
                 <p className="text-sm font-medium text-indigo-900 mb-2">Total Value</p>
                 <p className="text-2xl font-bold text-indigo-600">{formatCurrency(item.currentQuantity * item.costPrice)}</p>
               </div>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-sm font-medium text-blue-900 mb-2">Average Cost</p>
                 <p className="text-2xl font-bold text-blue-600">{formatCurrency(item.costPrice)}</p>
               </div>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <p className="text-sm font-medium text-purple-900 mb-2">Method</p>
                 <p className="text-lg font-bold text-purple-600">{item.valuationMethod}</p>
               </div>
@@ -434,7 +434,7 @@ export function ViewStockDetailsModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex flex-wrap items-center justify-between gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap gap-2">
             {onEdit && (
               <button
@@ -563,10 +563,10 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Plus className="w-6 h-6" />
             <div>
@@ -580,11 +580,11 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Item Code <span className="text-red-500">*</span>
@@ -696,9 +696,9 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
           </div>
 
           {/* Inventory Parameters */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Inventory Parameters</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Inventory Parameters</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Min Stock Level</label>
                 <input
@@ -756,9 +756,9 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
           </div>
 
           {/* Pricing */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Pricing</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Cost Price <span className="text-red-500">*</span>
@@ -807,9 +807,9 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
           </div>
 
           {/* Supplier Info */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Supplier Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Default Supplier</label>
                 <input
@@ -847,8 +847,8 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
           </div>
 
           {/* Tracking Options */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Tracking Options</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Tracking Options</h3>
             <div className="space-y-3">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -891,8 +891,8 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
 
           {/* Location Assignment */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Location Assignment</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Location Assignment</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Primary Warehouse <span className="text-red-500">*</span>
@@ -936,7 +936,7 @@ export function AddStockItemModal({ isOpen, onClose, onSubmit }: AddStockItemMod
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -1032,10 +1032,10 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
   const hasTransactions = true // Mock - in real app, check if item has any transactions
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Edit className="w-6 h-6" />
             <div>
@@ -1049,10 +1049,10 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
         </div>
 
         {/* Content - Similar structure to Add modal but pre-filled */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Warning about tracking changes */}
           {hasTransactions && (formData.enableSerial !== item.enableSerial || formData.enableBatch !== item.enableBatch) && (
-            <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+            <div className="mb-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
                 <p className="font-medium text-yellow-900">Warning: Tracking Option Changes</p>
@@ -1066,7 +1066,7 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
 
           {/* Last Modified Info */}
           {item.lastModifiedBy && (
-            <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center gap-2 text-sm">
+            <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center gap-2 text-sm">
               <User className="w-4 h-4 text-blue-600" />
               <span className="text-blue-900">
                 Last modified by <strong>{item.lastModifiedBy}</strong> on {item.lastModifiedDate ? formatDateTime(item.lastModifiedDate) : 'N/A'}
@@ -1075,11 +1075,11 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
           )}
 
           {/* Form fields - simplified version, similar to Add modal */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Basic Info */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Item Name</label>
                   <input
@@ -1121,8 +1121,8 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
 
             {/* Inventory Parameters */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Inventory Parameters</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Inventory Parameters</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Min Level</label>
                   <input
@@ -1167,8 +1167,8 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
 
             {/* Pricing */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Pricing</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Cost Price</label>
                   <input
@@ -1200,8 +1200,8 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
 
             {/* Supplier */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Supplier Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Supplier</label>
                   <input
@@ -1226,7 +1226,7 @@ export function EditStockItemModal({ isOpen, onClose, onSave, item }: EditStockI
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -1305,10 +1305,10 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
   if (!isOpen || !item) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <TrendingUp className="w-6 h-6" />
             <div>
@@ -1322,9 +1322,9 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Current Stock */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm font-medium text-blue-900 mb-2">Current Stock Level</p>
             <p className="text-3xl font-bold text-blue-600">{item.currentQuantity} {item.uom}</p>
           </div>
@@ -1341,7 +1341,7 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
                     : 'border-gray-200 hover:border-green-300'
                 }`}
               >
-                <Plus className={`w-6 h-6 mx-auto mb-2 ${formData.adjustmentType === 'increase' ? 'text-green-600' : 'text-gray-400'}`} />
+                <Plus className={`w-6 h-6 mb-2 ${formData.adjustmentType === 'increase' ? 'text-green-600' : 'text-gray-400'}`} />
                 <p className={`text-sm font-medium ${formData.adjustmentType === 'increase' ? 'text-green-900' : 'text-gray-600'}`}>
                   Increase
                 </p>
@@ -1354,7 +1354,7 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
                     : 'border-gray-200 hover:border-red-300'
                 }`}
               >
-                <Minus className={`w-6 h-6 mx-auto mb-2 ${formData.adjustmentType === 'decrease' ? 'text-red-600' : 'text-gray-400'}`} />
+                <Minus className={`w-6 h-6 mb-2 ${formData.adjustmentType === 'decrease' ? 'text-red-600' : 'text-gray-400'}`} />
                 <p className={`text-sm font-medium ${formData.adjustmentType === 'decrease' ? 'text-red-900' : 'text-gray-600'}`}>
                   Decrease
                 </p>
@@ -1367,7 +1367,7 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <Edit className={`w-6 h-6 mx-auto mb-2 ${formData.adjustmentType === 'set' ? 'text-blue-600' : 'text-gray-400'}`} />
+                <Edit className={`w-6 h-6 mb-2 ${formData.adjustmentType === 'set' ? 'text-blue-600' : 'text-gray-400'}`} />
                 <p className={`text-sm font-medium ${formData.adjustmentType === 'set' ? 'text-blue-900' : 'text-gray-600'}`}>
                   Set Exact
                 </p>
@@ -1394,7 +1394,7 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
           </div>
 
           {/* New Quantity Preview */}
-          <div className={`rounded-lg p-4 border-2 ${
+          <div className={`rounded-lg p-3 border-2 ${
             formData.adjustmentType === 'increase' ? 'bg-green-50 border-green-200' :
             formData.adjustmentType === 'decrease' ? 'bg-red-50 border-red-200' :
             'bg-blue-50 border-blue-200'
@@ -1418,7 +1418,7 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
 
           {/* Large Change Warning */}
           {isLargeChange && formData.quantity > 0 && (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
                 <p className="font-medium text-yellow-900">Large Adjustment Detected</p>
@@ -1479,7 +1479,7 @@ export function QuickAdjustmentModal({ isOpen, onClose, onAdjust, item }: QuickA
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -1532,10 +1532,10 @@ export function LowStockAlertModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-6 h-6" />
             <div>
@@ -1549,9 +1549,9 @@ export function LowStockAlertModal({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Bulk Actions */}
-          <div className="mb-6 flex items-center justify-between gap-4 bg-gray-50 p-4 rounded-lg">
+          <div className="mb-3 flex items-center justify-between gap-2 bg-gray-50 p-3 rounded-lg">
             <div className="flex items-center gap-3">
               <input
                 type="checkbox"
@@ -1605,17 +1605,17 @@ export function LowStockAlertModal({
           </div>
 
           {/* Items List */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {items.map((item) => (
               <div
                 key={item.id}
-                className={`border-2 rounded-lg p-4 transition-all ${
+                className={`border-2 rounded-lg p-3 transition-all ${
                   selectedItems.includes(item.id)
                     ? 'border-red-500 bg-red-50'
                     : 'border-gray-200 hover:border-red-300'
                 }`}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2">
                   <input
                     type="checkbox"
                     checked={selectedItems.includes(item.id)}
@@ -1633,7 +1633,7 @@ export function LowStockAlertModal({
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                       <div>
                         <p className="text-xs font-medium text-gray-500">Current Stock</p>
                         <p className="text-lg font-bold text-red-600">{item.currentQty}</p>
@@ -1697,7 +1697,7 @@ export function LowStockAlertModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

@@ -159,21 +159,21 @@ export const CreateQualityPlanModal: React.FC<CreateQualityPlanModalProps> = ({ 
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">Create New Quality Plan</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded p-1">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Plan Number (Auto-generated)</label>
                 <input
@@ -288,7 +288,7 @@ export const CreateQualityPlanModal: React.FC<CreateQualityPlanModalProps> = ({ 
 
           {/* Inspection Points Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Inspection Points</h3>
               <button
                 type="button"
@@ -300,7 +300,7 @@ export const CreateQualityPlanModal: React.FC<CreateQualityPlanModalProps> = ({ 
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {inspectionPoints.map((point, index) => (
                 <div key={point.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="flex items-start justify-between mb-3">
@@ -390,7 +390,7 @@ export const CreateQualityPlanModal: React.FC<CreateQualityPlanModalProps> = ({ 
 
           {/* Acceptance Criteria Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Acceptance Criteria</h3>
               <button
                 type="button"
@@ -592,10 +592,10 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">Edit Quality Plan</h2>
             <p className="text-sm opacity-90">{plan.planNumber} - Current Version: {plan.version}</p>
@@ -605,9 +605,9 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Version Control */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h3 className="text-sm font-semibold text-blue-900 mb-3">Version Control</h3>
             <div className="flex items-center space-x-4">
               <label className="flex items-center space-x-2 cursor-pointer">
@@ -626,8 +626,8 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
 
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Plan Number</label>
                 <input
@@ -741,7 +741,7 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
 
           {/* Inspection Points Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Inspection Points</h3>
               <button
                 type="button"
@@ -753,7 +753,7 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {inspectionPoints.map((point, index) => (
                 <div key={point.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="flex items-start justify-between mb-3">
@@ -843,7 +843,7 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
 
           {/* Acceptance Criteria Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Acceptance Criteria</h3>
               <button
                 type="button"
@@ -882,7 +882,7 @@ export const EditQualityPlanModal: React.FC<EditQualityPlanModalProps> = ({ isOp
 
           {/* Change History Note */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change History Note</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Change History Note</h3>
             <textarea
               value={changeNote}
               onChange={(e) => setChangeNote(e.target.value)}
@@ -947,10 +947,10 @@ export const ApproveQualityPlanModal: React.FC<ApproveQualityPlanModalProps> = (
   if (!isOpen || !plan) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">Approve Quality Plan</h2>
             <p className="text-sm opacity-90">{plan.planNumber} - {plan.planName}</p>
@@ -960,12 +960,12 @@ export const ApproveQualityPlanModal: React.FC<ApproveQualityPlanModalProps> = (
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Plan Summary */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Plan Summary (Read-Only)</h3>
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 space-y-3">
-              <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Plan Summary (Read-Only)</h3>
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-xs font-medium text-gray-600">Plan Number</p>
                   <p className="text-sm font-semibold text-gray-900">{plan.planNumber}</p>
@@ -1000,7 +1000,7 @@ export const ApproveQualityPlanModal: React.FC<ApproveQualityPlanModalProps> = (
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-3 border-t border-gray-300">
+              <div className="grid grid-cols-2 gap-2 pt-3 border-t border-gray-300">
                 <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <p className="text-xs font-medium text-blue-600">Inspection Points</p>
                   <p className="text-2xl font-bold text-blue-900">{plan.inspectionPoints.length}</p>
@@ -1015,7 +1015,7 @@ export const ApproveQualityPlanModal: React.FC<ApproveQualityPlanModalProps> = (
 
           {/* Approval Decision */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Decision *</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Decision *</h3>
             <div className="space-y-2">
               <label className="flex items-center p-3 border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors border-gray-300 has-[:checked]:border-green-500 has-[:checked]:bg-green-50">
                 <input

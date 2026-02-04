@@ -338,9 +338,9 @@ const ApprovalWorkflows: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <GitBranch className="h-8 w-8" />
@@ -371,8 +371,8 @@ const ApprovalWorkflows: React.FC = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending Approvals</p>
@@ -384,7 +384,7 @@ const ApprovalWorkflows: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Approved</p>
@@ -396,7 +396,7 @@ const ApprovalWorkflows: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Rejected</p>
@@ -408,7 +408,7 @@ const ApprovalWorkflows: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-orange-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-orange-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue (5+ days)</p>
@@ -423,56 +423,56 @@ const ApprovalWorkflows: React.FC = () => {
 
       {/* Approval Requests */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Approval Requests</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Request</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Requester</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Approver</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Days Open</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Request</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Requester</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Approver</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Days Open</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {requests.map((request) => (
                 <tr key={request.id} className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedRequest(request.id)}>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{request.requestNumber}</div>
                       <div className="text-xs text-gray-500">{request.title}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{request.type}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{request.type}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center text-sm text-gray-900">
                       <User className="h-4 w-4 mr-1 text-gray-400" />
                       {request.requestedBy}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {request.amount > 0 ? `$${(request.amount / 1000).toFixed(0)}K` : 'N/A'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(request.status)}`}>
                       {request.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${getPriorityColor(request.priority)}`}>
                       {request.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{request.currentApprover}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{request.currentApprover}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-24 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -483,12 +483,12 @@ const ApprovalWorkflows: React.FC = () => {
                       <span className="text-sm text-gray-700">{request.approvalLevel}/{request.totalLevels}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm ${request.daysOpen >= 5 ? 'text-red-600 font-bold' : 'text-gray-900'}`}>
                       {request.daysOpen} days
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                  <td className="px-3 py-2 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                     <div className="flex flex-wrap gap-2">
                       {request.status === 'pending' && (
                         <>
@@ -546,7 +546,7 @@ const ApprovalWorkflows: React.FC = () => {
       {/* Approval Steps Example */}
       {selectedRequest && (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
+          <div className="px-3 py-2 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">Approval Chain - {requests.find(r => r.id === selectedRequest)?.requestNumber}</h3>
           </div>
           <div className="p-6">
@@ -593,32 +593,32 @@ const ApprovalWorkflows: React.FC = () => {
 
       {/* Workflow Rules */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Workflow Rules</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rule Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount Range</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approval Levels</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approvers</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Escalation</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rule Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount Range</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approval Levels</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approvers</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Escalation</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {workflowRules.map((rule) => (
                 <tr key={rule.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{rule.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{rule.type}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{rule.name}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{rule.type}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(rule.amountRange.min / 1000).toFixed(0)}K - {rule.amountRange.max ? `$${(rule.amountRange.max / 1000).toFixed(0)}K` : 'Unlimited'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{rule.approvers.length} levels</td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{rule.approvers.length} levels</td>
+                  <td className="px-3 py-2 text-sm text-gray-600">
                     <div className="max-w-xs">
                       {rule.approvers.map((approver, idx) => (
                         <div key={idx} className="text-xs">
@@ -627,8 +627,8 @@ const ApprovalWorkflows: React.FC = () => {
                       ))}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{rule.escalationDays} days</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{rule.escalationDays} days</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${rule.active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
                       {rule.active ? 'Active' : 'Inactive'}
                     </span>

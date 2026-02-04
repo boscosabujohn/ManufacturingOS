@@ -388,7 +388,7 @@ export const FormErrorSummary: React.FC<FormErrorSummaryProps> = ({
   if (errorEntries.length === 0) return null
 
   return (
-    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+    <div className="bg-red-50 border border-red-200 rounded-lg p-3">
       <div className="flex items-start gap-3">
         <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
         <div>
@@ -422,7 +422,7 @@ export const SuccessMessage: React.FC<SuccessMessageProps> = ({
   onClose
 }) => {
   return (
-    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
       <div className="flex items-start gap-3">
         <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
         <div className="flex-1">
@@ -538,11 +538,11 @@ export const ProcurementFormExample: React.FC = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Add New Vendor</h2>
+    <div className="max-w-2xl p-3">
+      <h2 className="text-2xl font-bold text-gray-900 mb-3">Add New Vendor</h2>
 
       {showSuccess && (
-        <div className="mb-6">
+        <div className="mb-3">
           <SuccessMessage
             message="Vendor has been successfully added to the system!"
             onClose={() => setShowSuccess(false)}
@@ -555,11 +555,11 @@ export const ProcurementFormExample: React.FC = () => {
           e.preventDefault()
           handleSubmit(onSubmit)
         }}
-        className="space-y-6"
+        className="space-y-3"
       >
         <FormErrorSummary errors={errors} fieldConfigs={fieldConfigs} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {fieldConfigs.map((config) => (
             <div
               key={config.name}
@@ -578,11 +578,11 @@ export const ProcurementFormExample: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex gap-4 pt-4">
+        <div className="flex gap-2 pt-4">
           <button
             type="submit"
             disabled={isSubmitting || hasErrors}
-            className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>
@@ -597,7 +597,7 @@ export const ProcurementFormExample: React.FC = () => {
             type="button"
             onClick={reset}
             disabled={isSubmitting}
-            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+            className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 disabled:opacity-50"
           >
             Reset
           </button>

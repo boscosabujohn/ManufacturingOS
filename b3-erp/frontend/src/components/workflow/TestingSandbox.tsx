@@ -185,8 +185,8 @@ export default function TestingSandbox() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -207,9 +207,9 @@ export default function TestingSandbox() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Test Scenarios */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           <h3 className="text-lg font-semibold text-gray-900">Test Scenarios</h3>
 
           {scenarios.map((scenario) => (
@@ -269,12 +269,12 @@ export default function TestingSandbox() {
         </div>
 
         {/* Test Results */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           <h3 className="text-lg font-semibold text-gray-900">Recent Test Results</h3>
 
           {testResults.length === 0 ? (
             <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-8 text-center">
-              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+              <FileText className="h-12 w-12 text-gray-400 mb-3" />
               <p className="text-gray-600">No test results yet. Run a test to see results here.</p>
             </div>
           ) : (

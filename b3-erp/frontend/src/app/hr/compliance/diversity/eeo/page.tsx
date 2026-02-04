@@ -97,8 +97,8 @@ export default function Page() {
   const categoriesMeetingTarget = eeoCategories.filter(c => c.targetMet).length;
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Users className="h-6 w-6 text-blue-600" />
           Equal Employment Opportunity (EEO) Reports
@@ -106,8 +106,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Comprehensive EEO compliance tracking and reporting</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Total Workforce</p>
@@ -117,7 +117,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg shadow-sm border border-pink-200 p-4">
+        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg shadow-sm border border-pink-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-pink-600 uppercase tracking-wide">Female %</p>
@@ -128,7 +128,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Categories Meeting Target</p>
@@ -138,7 +138,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Pay Gap</p>
@@ -150,8 +150,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Year</label>
             <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -170,8 +170,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-bold text-gray-900">EEO Job Categories Breakdown</h2>
         </div>
         <div className="overflow-x-auto">
@@ -233,13 +233,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">2025 Hiring Statistics</h2>
-          <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">2025 Hiring Statistics</h2>
+          <div className="space-y-2">
             {hiringData2025.map((data, index) => (
               <div key={index}>
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                   <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                     <p className="text-xs text-blue-600 uppercase font-medium mb-1">Total Applications</p>
                     <p className="text-2xl font-bold text-blue-900">{data.totalApplications}</p>
@@ -249,7 +249,7 @@ export default function Page() {
                     <p className="text-2xl font-bold text-green-900">{data.totalHired}</p>
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <p className="text-xs text-gray-600 uppercase font-medium mb-3">Hiring Breakdown</p>
                   <div className="grid grid-cols-3 gap-3">
                     <div>
@@ -274,20 +274,20 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Promotions & Advancement</h2>
-          <div className="space-y-4">
-            <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Promotions & Advancement</h2>
+          <div className="space-y-2">
+            <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
               <p className="text-xs text-purple-600 uppercase font-medium mb-2">Total Promotions (2025)</p>
               <p className="text-3xl font-bold text-purple-900">{promotionData.totalPromotions}</p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-xs text-blue-600 uppercase font-medium mb-1">Male Promoted</p>
                 <p className="text-2xl font-bold text-blue-900">{promotionData.malePromoted}</p>
                 <p className="text-xs text-blue-700 mt-1">{promotionData.malePromotionRate}%</p>
               </div>
-              <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+              <div className="bg-pink-50 rounded-lg p-3 border border-pink-200">
                 <p className="text-xs text-pink-600 uppercase font-medium mb-1">Female Promoted</p>
                 <p className="text-2xl font-bold text-pink-900">{promotionData.femalePromoted}</p>
                 <p className="text-xs text-pink-700 mt-1">{promotionData.femalePromotionRate}%</p>
@@ -310,21 +310,21 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Compensation Equity</h2>
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Compensation Equity</h2>
+          <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-xs text-blue-600 uppercase font-medium mb-1">Avg Male Salary</p>
                 <p className="text-2xl font-bold text-blue-900">₹{(compensationData.avgMaleSalary / 100000).toFixed(1)}L</p>
               </div>
-              <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+              <div className="bg-pink-50 rounded-lg p-3 border border-pink-200">
                 <p className="text-xs text-pink-600 uppercase font-medium mb-1">Avg Female Salary</p>
                 <p className="text-2xl font-bold text-pink-900">₹{(compensationData.avgFemaleSalary / 100000).toFixed(1)}L</p>
               </div>
             </div>
-            <div className={`rounded-lg p-4 border ${compensationData.compliant ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+            <div className={`rounded-lg p-3 border ${compensationData.compliant ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className={`text-xs uppercase font-medium mb-1 ${compensationData.compliant ? 'text-green-600' : 'text-red-600'}`}>Gender Pay Gap</p>
@@ -344,14 +344,14 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Training & Development</h2>
-          <div className="space-y-4">
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Training & Development</h2>
+          <div className="space-y-2">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
               <p className="text-xs text-blue-600 uppercase font-medium mb-1">Total Training Hours (2025)</p>
               <p className="text-3xl font-bold text-blue-900">{trainingData.totalTrainingHours.toLocaleString()}</p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <p className="text-xs text-purple-600 uppercase font-medium mb-1">Avg Male Training</p>
                 <p className="text-xl font-bold text-purple-900">{trainingData.avgMaleTraining} hrs</p>
@@ -361,7 +361,7 @@ export default function Page() {
                 <p className="text-xl font-bold text-pink-900">{trainingData.avgFemaleTraining} hrs</p>
               </div>
             </div>
-            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
               <p className="text-xs text-green-600 uppercase font-medium mb-2">Diversity Training Progress</p>
               <div className="flex items-center gap-3">
                 <div className="flex-1 bg-gray-200 rounded-full h-3">

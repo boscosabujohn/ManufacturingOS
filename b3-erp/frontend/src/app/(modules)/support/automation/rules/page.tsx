@@ -337,7 +337,7 @@ export default function AutomationRules() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -351,7 +351,7 @@ export default function AutomationRules() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -362,7 +362,7 @@ export default function AutomationRules() {
             gray: 'bg-gray-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -377,8 +377,8 @@ export default function AutomationRules() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -418,12 +418,12 @@ export default function AutomationRules() {
       </div>
 
       {/* Rules Grid */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRules.map((rule) => (
           <div key={rule.id} className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-gray-500 text-sm font-medium">{rule.ruleId}</span>
@@ -459,7 +459,7 @@ export default function AutomationRules() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-2">
                 {/* Trigger Conditions */}
                 <div>
                   <div className="text-xs font-medium text-gray-700 mb-2">TRIGGER CONDITIONS</div>
@@ -491,7 +491,7 @@ export default function AutomationRules() {
 
               {/* Stats */}
               <div className="flex items-center justify-between pt-4 border-t">
-                <div className="flex items-center gap-6 text-sm">
+                <div className="flex items-center gap-3 text-sm">
                   <div>
                     <span className="text-gray-500">Executions:</span>
                     <span className="ml-1 font-semibold text-gray-900">{rule.executionCount}</span>
@@ -532,7 +532,7 @@ export default function AutomationRules() {
       {/* No Results */}
       {filteredRules.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
-          <Filter className="h-12 w-12 text-gray-400 mb-4" />
+          <Filter className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No Rules Found</h3>
           <p className="text-gray-600">Try adjusting your filters or search query</p>
         </div>

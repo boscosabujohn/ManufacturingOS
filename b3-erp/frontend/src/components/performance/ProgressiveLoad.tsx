@@ -162,7 +162,7 @@ export function ProgressiveLoad<T>({
   // Default loading renderer
   const defaultLoadingRenderer = (prog: number) => (
     <div className="flex flex-col items-center justify-center p-8">
-      <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4" />
+      <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-2" />
       {showProgress && (
         <div className="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
@@ -177,12 +177,12 @@ export function ProgressiveLoad<T>({
   // Default error renderer
   const defaultErrorRenderer = (err: Error, retry: () => void) => (
     <div className="flex flex-col items-center justify-center p-8 text-center">
-      <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+      <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-2">
         <svg className="w-6 h-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
-      <p className="text-gray-600 dark:text-gray-400 mb-4">{err.message}</p>
+      <p className="text-gray-600 dark:text-gray-400 mb-2">{err.message}</p>
       <button
         onClick={retry}
         className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"

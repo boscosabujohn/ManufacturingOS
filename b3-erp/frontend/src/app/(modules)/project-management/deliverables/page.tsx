@@ -413,7 +413,7 @@ export default function DeliverablesListPage() {
         <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
             <div className="px-3 py-2 space-y-3">
                 {/* Header Actions */}
-                <div className="flex justify-between mb-4">
+                <div className="flex justify-between mb-2">
                     <div className="flex gap-2">
                         <button
                             onClick={() => setShowTemplates(true)}
@@ -440,8 +440,8 @@ export default function DeliverablesListPage() {
                 </div>
 
                 {/* Statistics Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total</p>
@@ -451,7 +451,7 @@ export default function DeliverablesListPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Completed</p>
@@ -461,7 +461,7 @@ export default function DeliverablesListPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">In Progress</p>
@@ -471,7 +471,7 @@ export default function DeliverablesListPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Delayed</p>
@@ -481,7 +481,7 @@ export default function DeliverablesListPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Not Started</p>
@@ -493,8 +493,8 @@ export default function DeliverablesListPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                         {/* Search */}
                         <div className="lg:col-span-2">
                             <div className="relative">
@@ -545,7 +545,7 @@ export default function DeliverablesListPage() {
                         {paginatedDeliverables.map((deliverable) => (
                             <div key={deliverable.id} className="p-6 hover:bg-gray-50 transition-colors">
                                 <div className="flex items-start justify-between">
-                                    <div className="flex items-start gap-4 flex-1">
+                                    <div className="flex items-start gap-2 flex-1">
                                         {/* Icon */}
                                         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                                             <Package className="w-6 h-6 text-blue-600" />
@@ -568,7 +568,7 @@ export default function DeliverablesListPage() {
 
                                             <p className="text-sm text-gray-600 mb-3">{deliverable.description}</p>
 
-                                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
+                                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
                                                 <div>
                                                     <p className="text-xs text-gray-500">Deliverable #</p>
                                                     <p className="text-sm font-medium text-gray-900">{deliverable.deliverableNumber}</p>
@@ -709,7 +709,7 @@ export default function DeliverablesListPage() {
                     </div>
 
                     {/* Pagination */}
-                    <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                    <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
                         <div className="text-sm text-gray-700">
                             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredDeliverables.length)} of{' '}
                             {filteredDeliverables.length} deliverables

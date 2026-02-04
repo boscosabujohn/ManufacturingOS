@@ -132,7 +132,7 @@ export default function ELearningLibraryPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Library className="h-8 w-8 text-blue-600" />
           E-Learning Course Library
@@ -141,8 +141,8 @@ export default function ELearningLibraryPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Courses</p>
@@ -151,7 +151,7 @@ export default function ELearningLibraryPage() {
             <Library className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Enrolled</p>
@@ -160,7 +160,7 @@ export default function ELearningLibraryPage() {
             <Users className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Rating</p>
@@ -169,7 +169,7 @@ export default function ELearningLibraryPage() {
             <Star className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Certifications</p>
@@ -178,7 +178,7 @@ export default function ELearningLibraryPage() {
             <Award className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Hours</p>
@@ -190,8 +190,8 @@ export default function ELearningLibraryPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -214,7 +214,7 @@ export default function ELearningLibraryPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4 pt-4 border-t">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
               <select
@@ -249,7 +249,7 @@ export default function ELearningLibraryPage() {
       </div>
 
       {/* Courses Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredCourses.map(course => (
           <div key={course.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
             {/* Thumbnail */}
@@ -270,9 +270,9 @@ export default function ELearningLibraryPage() {
                 )}
               </div>
 
-              <p className="text-sm text-gray-600 mb-4 line-clamp-2">{course.description}</p>
+              <p className="text-sm text-gray-600 mb-2 line-clamp-2">{course.description}</p>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center gap-2">
                   <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getCategoryColor(course.category)}`}>
                     {course.category.replace('_', ' ').toUpperCase()}
@@ -282,7 +282,7 @@ export default function ELearningLibraryPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     <span>{course.duration}h</span>
@@ -293,7 +293,7 @@ export default function ELearningLibraryPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 text-yellow-500" />
                     <span className="font-medium">{course.rating}</span>
@@ -336,13 +336,13 @@ export default function ELearningLibraryPage() {
 
       {filteredCourses.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <Library className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <Library className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No courses found matching your criteria</p>
         </div>
       )}
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">E-Learning Benefits</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Learn at your own pace with 24/7 access to course materials</li>

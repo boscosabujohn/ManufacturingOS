@@ -273,9 +273,9 @@ export function PhaseProgressVisualization({
   // Horizontal Timeline View
   if (variant === 'horizontal') {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-3">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-blue-500" />
@@ -385,8 +385,8 @@ export function PhaseProgressVisualization({
                 const PhaseIcon = phase.icon;
 
                 return (
-                  <div key={phase.id} className={`rounded-lg border-l-4 ${colors.border} ${colors.light} dark:bg-gray-700/50 p-4`}>
-                    <div className="flex items-center justify-between mb-4">
+                  <div key={phase.id} className={`rounded-lg border-l-4 ${colors.border} ${colors.light} dark:bg-gray-700/50 p-3`}>
+                    <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 rounded-lg ${colors.bg} text-white flex items-center justify-center`}>
                           <PhaseIcon className="w-5 h-5" />
@@ -448,7 +448,7 @@ export function PhaseProgressVisualization({
         )}
 
         {/* Phase Status Summary */}
-        <div className="mt-6 grid grid-cols-4 gap-4">
+        <div className="mt-6 grid grid-cols-4 gap-2">
           <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
             <div className="text-2xl font-bold text-green-600">{phases.filter(p => p.status === 'completed').length}</div>
             <div className="text-xs text-green-700 dark:text-green-400">Completed</div>
@@ -473,8 +473,8 @@ export function PhaseProgressVisualization({
   // Compact View
   if (variant === 'compact') {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-        <div className="flex items-center gap-4 overflow-x-auto pb-2">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2">
           {phases.map((phase, index) => {
             const isPast = phase.number < currentPhase;
             const isActive = phase.number === currentPhase;
@@ -515,13 +515,13 @@ export function PhaseProgressVisualization({
 
   // Vertical View
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-3">
+      <div className="flex items-center justify-between mb-3">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Phase Progress</h2>
         <span className="text-2xl font-bold text-blue-600">{overallProgress}%</span>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {phases.map((phase, index) => {
           const colors = colorClasses[phase.color as keyof typeof colorClasses];
           const isExpanded = expandedPhase === phase.id;
@@ -538,7 +538,7 @@ export function PhaseProgressVisualization({
 
               <button
                 onClick={() => togglePhase(phase.id)}
-                className={`w-full flex items-center gap-4 p-3 rounded-lg border transition-all ${
+                className={`w-full flex items-center gap-2 p-3 rounded-lg border transition-all ${
                   isExpanded
                     ? `${colors.light} ${colors.border} border-l-4`
                     : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
@@ -563,7 +563,7 @@ export function PhaseProgressVisualization({
                       <span className="px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded-full">Active</span>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 mt-1">
+                  <div className="flex items-center gap-2 mt-1">
                     <div className="flex-1 max-w-[200px]">
                       <div className="h-1.5 bg-gray-200 dark:bg-gray-600 rounded-full">
                         <div

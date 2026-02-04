@@ -26,12 +26,12 @@ export default function OfferDetailsPage() {
   );
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <button onClick={() => router.back()} className="inline-flex items-center gap-2 text-blue-600 hover:underline mb-4">
+    <div className="w-full h-full px-3 py-2">
+      <button onClick={() => router.back()} className="inline-flex items-center gap-2 text-blue-600 hover:underline mb-2">
         <ArrowLeft className="h-4 w-4" /> Back to Offers
       </button>
 
-      <div className="bg-white rounded-lg border p-6">
+      <div className="bg-white rounded-lg border p-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-xl font-semibold text-gray-900">Offer {data.id}</h1>
@@ -53,7 +53,7 @@ export default function OfferDetailsPage() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6">
           <div className="flex items-center gap-3">
             <User className="h-5 w-5 text-gray-500" />
             <div>

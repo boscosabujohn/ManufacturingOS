@@ -78,10 +78,10 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -101,12 +101,12 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Your Current Shift */}
-          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="mb-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <User className="w-4 h-4" />
               Your Current Shift
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-xs text-gray-600">Name</p>
                 <p className="font-semibold text-gray-900">{currentEmployee.name}</p>
@@ -133,8 +133,8 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
           </div>
 
           {/* Select Employee to Swap With */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
                 Select Employee to Swap With
@@ -142,7 +142,7 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
             </div>
 
             {/* Search and Filter */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <input
@@ -170,7 +170,7 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
             <div className="border border-gray-200 rounded-lg max-h-64 overflow-y-auto">
               {filteredEmployees.length === 0 ? (
                 <div className="p-8 text-center text-gray-500">
-                  <User className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                  <User className="w-12 h-12 mb-2 text-gray-300" />
                   <p>No employees found</p>
                 </div>
               ) : (
@@ -216,13 +216,13 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
           </div>
 
           {/* Swap Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">2</span>
               Swap Details
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Calendar className="w-4 h-4 inline mr-1" />
@@ -277,9 +277,9 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
 
           {/* Swap Preview */}
           {selectedEmployee && swapDate && (
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Swap Preview</h3>
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Swap Preview</h3>
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="text-sm text-gray-600 mb-1">You</div>
@@ -311,7 +311,7 @@ export function RequestShiftSwapModal({ isOpen, onClose, onSubmit, currentEmploy
           )}
 
           {/* Information Alert */}
-          <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+          <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
               <div className="flex-1 text-sm">

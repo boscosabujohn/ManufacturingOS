@@ -359,9 +359,9 @@ export default function TroubleshootingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
             <Wrench className="h-8 w-8 text-emerald-600" />
@@ -369,14 +369,14 @@ export default function TroubleshootingPage() {
           </h1>
           <p className="text-gray-600 mt-1">Diagnose and resolve common appliance issues</p>
         </div>
-        <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+        <button className="bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
           <Plus className="h-5 w-5" />
           New Guide
         </button>
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
         <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -439,8 +439,8 @@ export default function TroubleshootingPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -452,7 +452,7 @@ export default function TroubleshootingPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">Category</label>
               <select
@@ -505,12 +505,12 @@ export default function TroubleshootingPage() {
       </div>
 
       {/* Troubleshooting Guides */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredGuides.map((guide) => (
           <div key={guide.id} className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
             <button
               onClick={() => setExpandedId(expandedId === guide.id ? null : guide.id)}
-              className="w-full px-6 py-4 flex items-start justify-between hover:bg-gray-50 transition-colors text-left"
+              className="w-full px-3 py-2 flex items-start justify-between hover:bg-gray-50 transition-colors text-left"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -523,7 +523,7 @@ export default function TroubleshootingPage() {
                   )}
                 </div>
                 <p className="text-sm text-gray-600 mb-2">{guide.symptoms.slice(0, 2).join(' • ')}</p>
-                <div className="flex items-center gap-6 text-sm text-gray-600">
+                <div className="flex items-center gap-3 text-sm text-gray-600">
                   <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">{guide.category}</span>
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
@@ -547,7 +547,7 @@ export default function TroubleshootingPage() {
             </button>
 
             {expandedId === guide.id && (
-              <div className="px-6 py-6 bg-gray-50 border-t border-gray-200 space-y-6">
+              <div className="px-6 py-2 bg-gray-50 border-t border-gray-200 space-y-3">
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <AlertCircle className="h-5 w-5 text-yellow-600" />
@@ -593,7 +593,7 @@ export default function TroubleshootingPage() {
                   </ol>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
                   <p className="text-sm text-gray-600 mb-2"><strong>Related Products:</strong></p>
                   <div className="flex flex-wrap gap-2">
                     {guide.relatedProducts.map(product => (
@@ -620,7 +620,7 @@ export default function TroubleshootingPage() {
 
         {filteredGuides.length === 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-            <Wrench className="h-12 w-12 text-gray-300 mb-4" />
+            <Wrench className="h-12 w-12 text-gray-300 mb-2" />
             <p className="text-gray-600 font-medium">No troubleshooting guides found</p>
             <p className="text-gray-500 text-sm">Try adjusting your search or filters</p>
           </div>

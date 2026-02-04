@@ -95,10 +95,10 @@ export default function BudgetTracking() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+        <div className="flex justify-between items-center mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Budget Tracking & Spend Analysis</h1>
             <p className="text-gray-600 mt-1">Monitor budgets, track spending, and analyze variances</p>
@@ -123,7 +123,7 @@ export default function BudgetTracking() {
         </div>
 
         {/* Filters */}
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -158,9 +158,9 @@ export default function BudgetTracking() {
       </div>
 
       {/* Budget Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-blue-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-blue-600" />
             </div>
@@ -176,8 +176,8 @@ export default function BudgetTracking() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-green-100 rounded-lg">
               <Activity className="h-6 w-6 text-green-600" />
             </div>
@@ -191,8 +191,8 @@ export default function BudgetTracking() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-amber-100 rounded-lg">
               <AlertTriangle className="h-6 w-6 text-amber-600" />
             </div>
@@ -203,8 +203,8 @@ export default function BudgetTracking() {
           <div className="mt-3 text-xs text-amber-600">Will impact available budget</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-purple-100 rounded-lg">
               <Target className="h-6 w-6 text-purple-600" />
             </div>
@@ -220,10 +220,10 @@ export default function BudgetTracking() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
         {/* Spend Trend Chart */}
-        <div className="lg:col-span-2 bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <div className="lg:col-span-2 bg-white rounded-lg shadow-sm p-3">
+          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-blue-600" />
             Monthly Spend Trend & Forecast
           </h3>
@@ -246,7 +246,7 @@ export default function BudgetTracking() {
               />
             </ComposedChart>
           </ResponsiveContainer>
-          <div className="grid grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-3 gap-2 mt-4">
             <div className="text-center p-3 bg-blue-50 rounded-lg">
               <div className="text-xs text-gray-600">Average Monthly</div>
               <div className="text-lg font-bold text-blue-900">$475K</div>
@@ -263,8 +263,8 @@ export default function BudgetTracking() {
         </div>
 
         {/* Budget Alerts */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-amber-600" />
             Budget Alerts
           </h3>
@@ -299,8 +299,8 @@ export default function BudgetTracking() {
       </div>
 
       {/* Department Budgets */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+        <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
           <BarChart3 className="h-5 w-5 text-purple-600" />
           Department Budget Status
         </h3>
@@ -377,10 +377,10 @@ export default function BudgetTracking() {
       </div>
 
       {/* Category Spend Analysis */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Category Budget vs Actual */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <PieChartIcon className="h-5 w-5 text-green-600" />
             Category Budget Analysis
           </h3>
@@ -422,8 +422,8 @@ export default function BudgetTracking() {
         </div>
 
         {/* Quarterly Spend Breakdown */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm p-3">
+          <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
             <Calendar className="h-5 w-5 text-indigo-600" />
             Quarterly Spend Pattern
           </h3>
@@ -438,7 +438,7 @@ export default function BudgetTracking() {
               <Bar dataKey="actual" fill="#3B82F6" name="Actual" />
             </BarChart>
           </ResponsiveContainer>
-          <div className="mt-4 grid grid-cols-2 gap-4">
+          <div className="mt-4 grid grid-cols-2 gap-2">
             <div className="p-3 bg-blue-50 rounded-lg">
               <div className="text-xs text-gray-600">Q2 Spend</div>
               <div className="text-lg font-bold text-blue-900">$1.43M</div>
@@ -461,7 +461,7 @@ export default function BudgetTracking() {
               <h3 className="text-lg font-semibold">Set Department Budget</h3>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
                   <select className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">

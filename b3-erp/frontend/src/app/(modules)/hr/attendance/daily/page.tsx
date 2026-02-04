@@ -128,11 +128,11 @@ export default function DailyAttendancePage() {
     const leaveCount = attendanceData.filter(r => r.status === 'On Leave').length;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
-            <div className="w-full space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-3">
+            <div className="w-full space-y-3">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                     <div>
                         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
                             <Clock className="w-8 h-8 text-green-500" />
@@ -163,8 +163,8 @@ export default function DailyAttendancePage() {
                 </div>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">Total Employees</p>
@@ -175,7 +175,7 @@ export default function DailyAttendancePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">Present Today</p>
@@ -187,7 +187,7 @@ export default function DailyAttendancePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">On Leave</p>
@@ -198,7 +198,7 @@ export default function DailyAttendancePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                    <div className="bg-gray-800 rounded-xl p-3 border border-gray-700">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-gray-400 text-sm">Absent</p>
@@ -212,7 +212,7 @@ export default function DailyAttendancePage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700 flex flex-wrap gap-4 items-center">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700 flex flex-wrap gap-2 items-center">
                     <div className="flex-1 min-w-[300px] relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                         <input
@@ -259,41 +259,41 @@ export default function DailyAttendancePage() {
                         <table className="w-full">
                             <thead className="bg-gray-900/50">
                                 <tr>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Employee</th>
-                                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Shift</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Check In</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Check Out</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Work Hours</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Employee</th>
+                                    <th className="px-3 py-2 text-left text-sm font-semibold text-gray-300">Shift</th>
+                                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Check In</th>
+                                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Check Out</th>
+                                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Work Hours</th>
+                                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Status</th>
+                                    <th className="px-3 py-2 text-center text-sm font-semibold text-gray-300">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-700">
                                 {filteredData.map((record) => (
                                     <tr key={record.id} className="hover:bg-gray-700/50 transition-colors">
-                                        <td className="px-6 py-4">
+                                        <td className="px-3 py-2">
                                             <div className="font-medium text-white">{record.employeeName}</div>
                                             <div className="text-xs text-gray-400 font-mono">{record.employeeId} • {record.department}</div>
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-gray-300">
+                                        <td className="px-3 py-2 text-sm text-gray-300">
                                             {record.shift}
                                         </td>
-                                        <td className="px-6 py-4 text-center">
+                                        <td className="px-3 py-2 text-center">
                                             <span className="font-mono text-white">{record.checkIn || '--:--'}</span>
                                         </td>
-                                        <td className="px-6 py-4 text-center">
+                                        <td className="px-3 py-2 text-center">
                                             <span className="font-mono text-white">{record.checkOut || '--:--'}</span>
                                         </td>
-                                        <td className="px-6 py-4 text-center">
+                                        <td className="px-3 py-2 text-center">
                                             <div className="font-mono text-white">{record.workHours}</div>
                                             {record.overtime !== '00:00' && (
                                                 <div className="text-xs text-green-400">OT: {record.overtime}</div>
                                             )}
                                         </td>
-                                        <td className="px-6 py-4 text-center">
+                                        <td className="px-3 py-2 text-center">
                                             {getStatusBadge(record.status)}
                                         </td>
-                                        <td className="px-6 py-4 text-center">
+                                        <td className="px-3 py-2 text-center">
                                             <button className="text-blue-400 hover:text-blue-300 text-sm font-medium">Edit</button>
                                         </td>
                                     </tr>

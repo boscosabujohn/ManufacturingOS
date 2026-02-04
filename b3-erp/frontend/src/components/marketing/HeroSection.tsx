@@ -29,15 +29,15 @@ export function HeroSection({
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative  px-3 py-24 lg:py-32">
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-3">
             {title}
           </h1>
-          <p className="max-w-3xl mx-auto text-xl sm:text-2xl text-blue-100 mb-10">
+          <p className="max-w-3xl text-xl sm:text-2xl text-blue-100 mb-10">
             {subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-2">
             <a
               href={ctaLink}
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-colors shadow-lg"

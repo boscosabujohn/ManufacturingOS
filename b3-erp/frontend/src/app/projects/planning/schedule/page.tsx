@@ -474,7 +474,7 @@ export default function ProjectSchedulePage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Calendar className="h-8 w-8 text-teal-600" />
           Project Schedule
@@ -483,8 +483,8 @@ export default function ProjectSchedulePage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -505,8 +505,8 @@ export default function ProjectSchedulePage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-sm font-medium">Total Activities</p>
@@ -516,7 +516,7 @@ export default function ProjectSchedulePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">In Progress</p>
@@ -526,7 +526,7 @@ export default function ProjectSchedulePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Completed</p>
@@ -536,7 +536,7 @@ export default function ProjectSchedulePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Critical Path</p>
@@ -546,7 +546,7 @@ export default function ProjectSchedulePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-600 text-sm font-medium">Delayed</p>
@@ -556,7 +556,7 @@ export default function ProjectSchedulePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-600 text-sm font-medium">Total Duration</p>
@@ -568,7 +568,7 @@ export default function ProjectSchedulePage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex items-center gap-3 flex-wrap">
           <Filter className="h-4 w-4 text-gray-500" />
 
@@ -626,7 +626,7 @@ export default function ProjectSchedulePage() {
       </div>
 
       {/* Schedule Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-3">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -740,10 +740,10 @@ export default function ProjectSchedulePage() {
       </div>
 
       {/* Guidelines Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Schedule Management Guidelines</h2>
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">Schedule Management Guidelines</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-medium text-gray-700 mb-2">Critical Path Method (CPM)</h3>
             <ul className="space-y-2 text-sm text-gray-600">
@@ -791,7 +791,7 @@ export default function ProjectSchedulePage() {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg">
+        <div className="mt-6 p-3 bg-purple-50 border border-purple-200 rounded-lg">
           <h3 className="font-medium text-purple-800 mb-2">Critical Path Analysis</h3>
           <p className="text-sm text-purple-700">
             Activities on the critical path have zero float and directly impact project completion date. Any delay in critical path

@@ -312,7 +312,7 @@ const SchedulerAutomationPage = () => {
       )}
 
       {/* Header Section */}
-      <div className="flex-none p-6 pb-4 space-y-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-pink-100 rounded-lg">
@@ -341,8 +341,8 @@ const SchedulerAutomationPage = () => {
         </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Rules</span>
             <Zap className="w-4 h-4 text-gray-600" />
@@ -350,7 +350,7 @@ const SchedulerAutomationPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.totalRules}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -358,7 +358,7 @@ const SchedulerAutomationPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.activeRules}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Paused</span>
             <Pause className="w-4 h-4 text-gray-600" />
@@ -366,7 +366,7 @@ const SchedulerAutomationPage = () => {
           <div className="text-2xl font-bold text-gray-600">{stats.pausedRules}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Triggered</span>
             <Play className="w-4 h-4 text-blue-600" />
@@ -374,7 +374,7 @@ const SchedulerAutomationPage = () => {
           <div className="text-2xl font-bold text-blue-600">{stats.triggeredToday}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Success</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -382,7 +382,7 @@ const SchedulerAutomationPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.successToday}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Failed</span>
             <XCircle className="w-4 h-4 text-red-600" />
@@ -396,12 +396,12 @@ const SchedulerAutomationPage = () => {
       <div className="flex-1 overflow-hidden px-6">
         <div className="h-full overflow-auto">
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           <div className="flex-1 min-w-[300px]">
             <input
               type="text"
@@ -439,10 +439,10 @@ const SchedulerAutomationPage = () => {
       </div>
 
       {/* Rules Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
         {filteredRules.map((rule) => (
-          <div key={rule.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={rule.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">{rule.name}</h3>
                 <p className="text-sm text-gray-600">{rule.description}</p>
@@ -454,7 +454,7 @@ const SchedulerAutomationPage = () => {
               </div>
             </div>
 
-            <div className="space-y-3 mb-4">
+            <div className="space-y-3 mb-2">
               <div>
                 <label className="text-xs font-medium text-gray-500 uppercase tracking-wide">Trigger</label>
                 <div className="flex items-center gap-2 mt-1">
@@ -497,7 +497,7 @@ const SchedulerAutomationPage = () => {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-4 mb-4">
+            <div className="border-t border-gray-200 pt-4 mb-2">
               <div className="flex items-center justify-between text-sm mb-2">
                 <span className="text-gray-600">Success Rate</span>
                 <span className="font-semibold text-gray-900">{rule.successRate}%</span>
@@ -557,9 +557,9 @@ const SchedulerAutomationPage = () => {
 
       {/* Details Modal */}
       {selectedRule && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl  w-full max-h-[90vh] overflow-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200">
               <h3 className="text-xl font-bold text-gray-900">Automation Rule Details</h3>
               <button
                 onClick={handleCloseDetails}
@@ -570,7 +570,7 @@ const SchedulerAutomationPage = () => {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-600 mb-1">Rule Name</label>
                   <div className="bg-gray-50 rounded-lg p-3 font-semibold text-gray-900">{selectedRule.name}</div>
@@ -597,7 +597,7 @@ const SchedulerAutomationPage = () => {
 
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-600 mb-2">Trigger</label>
-                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-2xl">{getTriggerTypeIcon(selectedRule.triggerType)}</span>
                       <div>
@@ -610,7 +610,7 @@ const SchedulerAutomationPage = () => {
 
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-600 mb-2">Conditions ({selectedRule.conditions.length})</label>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 space-y-2">
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 space-y-2">
                     {selectedRule.conditions.map((condition, idx) => (
                       <div key={idx} className="flex items-start gap-2">
                         <CheckCircle2 className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
@@ -622,7 +622,7 @@ const SchedulerAutomationPage = () => {
 
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-600 mb-2">Actions ({selectedRule.actions.length})</label>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 space-y-2">
                     {selectedRule.actions.map((action, idx) => (
                       <div key={idx} className="flex items-start gap-2">
                         <ArrowRight className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
@@ -676,7 +676,7 @@ const SchedulerAutomationPage = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200">
               <button
                 onClick={handleCloseDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"

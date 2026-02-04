@@ -159,7 +159,7 @@ export default function LeadScoringQualification() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -176,8 +176,8 @@ export default function LeadScoringQualification() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Leads</p>
@@ -187,7 +187,7 @@ export default function LeadScoringQualification() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Hot Leads</p>
@@ -197,7 +197,7 @@ export default function LeadScoringQualification() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Qualified</p>
@@ -207,7 +207,7 @@ export default function LeadScoringQualification() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Avg Score</p>
@@ -217,7 +217,7 @@ export default function LeadScoringQualification() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Grade A</p>
@@ -227,7 +227,7 @@ export default function LeadScoringQualification() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Grade B</p>
@@ -239,7 +239,7 @@ export default function LeadScoringQualification() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center space-x-4">
           <Filter className="h-5 w-5 text-gray-400" />
           <select
@@ -276,27 +276,27 @@ export default function LeadScoringQualification() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Engagement</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deal Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Probability</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lead</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Engagement</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deal Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Probability</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredLeads.map((lead) => (
                 <tr key={lead.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="font-semibold text-gray-900">{lead.name}</div>
                       <div className="text-sm text-gray-500">{lead.company}</div>
                       <div className="text-xs text-gray-400">{lead.lastActivity}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 bg-gray-200 rounded-full h-2 w-24">
                         <div
@@ -311,17 +311,17 @@ export default function LeadScoringQualification() {
                       <span className="text-sm font-semibold text-gray-900">{lead.totalScore}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${gradeColors[lead.grade]}`}>
                       {lead.grade}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full border capitalize ${statusColors[lead.status]}`}>
                       {lead.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       {lead.engagementLevel === 'high' ? (
                         <>
@@ -341,13 +341,13 @@ export default function LeadScoringQualification() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-semibold text-gray-900">${lead.dealValue.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-sm text-gray-900">{lead.probability}%</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <button
                       onClick={() => setSelectedLead(lead)}
                       className="flex items-center space-x-1 text-purple-600 hover:text-purple-700 font-medium text-sm"
@@ -365,7 +365,7 @@ export default function LeadScoringQualification() {
 
       {/* Lead Detail Modal */}
       {selectedLead && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
@@ -382,10 +382,10 @@ export default function LeadScoringQualification() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Overall Score */}
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
-                <h4 className="text-lg font-bold text-purple-900 mb-4">Overall Lead Score</h4>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
+                <h4 className="text-lg font-bold text-purple-900 mb-2">Overall Lead Score</h4>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-3xl font-bold text-purple-900">{selectedLead.totalScore}</span>
                   <span className={`px-4 py-2 text-lg font-bold rounded-full border ${gradeColors[selectedLead.grade]}`}>
@@ -401,8 +401,8 @@ export default function LeadScoringQualification() {
               </div>
 
               {/* Score Breakdown */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <p className="text-sm font-medium text-blue-600 mb-2">Behavioral Score</p>
                   <p className="text-2xl font-bold text-blue-900">{selectedLead.behavioralScore}</p>
                   <div className="mt-2 bg-white rounded-full h-2">
@@ -410,7 +410,7 @@ export default function LeadScoringQualification() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <p className="text-sm font-medium text-green-600 mb-2">Demographic Score</p>
                   <p className="text-2xl font-bold text-green-900">{selectedLead.demographicScore}</p>
                   <div className="mt-2 bg-white rounded-full h-2">
@@ -418,7 +418,7 @@ export default function LeadScoringQualification() {
                   </div>
                 </div>
 
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                   <p className="text-sm font-medium text-orange-600 mb-2">Firmographic Score</p>
                   <p className="text-2xl font-bold text-orange-900">{selectedLead.firmographicScore}</p>
                   <div className="mt-2 bg-white rounded-full h-2">
@@ -429,7 +429,7 @@ export default function LeadScoringQualification() {
 
               {/* Qualification Criteria */}
               <div>
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Auto-Qualification Criteria</h4>
+                <h4 className="text-lg font-bold text-gray-900 mb-2">Auto-Qualification Criteria</h4>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <span className="text-sm font-medium text-gray-700">Lead Score ≥ 80</span>
@@ -498,7 +498,7 @@ export default function LeadScoringQualification() {
       )}
 
       {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <div className="flex items-start space-x-3">
           <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
           <div>

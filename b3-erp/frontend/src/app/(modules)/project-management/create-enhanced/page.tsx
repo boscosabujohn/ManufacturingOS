@@ -499,7 +499,7 @@ export default function CreateProjectEnhancedPage() {
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Building2 className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Basic Information</h2>
             </div>
@@ -630,7 +630,7 @@ export default function CreateProjectEnhancedPage() {
       case 1:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Timeline & Budget</h2>
             </div>
@@ -666,7 +666,7 @@ export default function CreateProjectEnhancedPage() {
 
               {duration && (
                 <div className="md:col-span-2">
-                  <div className="bg-blue-50 rounded-lg p-4">
+                  <div className="bg-blue-50 rounded-lg p-3">
                     <p className="text-sm text-blue-900">
                       <span className="font-semibold">Project Duration:</span> {duration}
                     </p>
@@ -714,7 +714,7 @@ export default function CreateProjectEnhancedPage() {
 
               {profitMargin && (
                 <div className="md:col-span-2">
-                  <div className={`rounded-lg p-4 ${profitMargin.profit >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
+                  <div className={`rounded-lg p-3 ${profitMargin.profit >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
                     <p className={`text-sm ${profitMargin.profit >= 0 ? 'text-green-900' : 'text-red-900'}`}>
                       <span className="font-semibold">Estimated Profit Margin:</span>{' '}
                       {profitMargin.percentage}% ({formatCurrency(profitMargin.profit)})
@@ -729,7 +729,7 @@ export default function CreateProjectEnhancedPage() {
       case 2:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Users className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Project Team</h2>
             </div>
@@ -782,7 +782,7 @@ export default function CreateProjectEnhancedPage() {
             </div>
 
             <div className="border-t pt-6">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-medium text-gray-900">Team Members</h3>
                 <button
                   type="button"
@@ -796,8 +796,8 @@ export default function CreateProjectEnhancedPage() {
 
               <div className="space-y-3">
                 {formData.teamMembers.map((member) => (
-                  <div key={member.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                    <div className="flex-1 grid grid-cols-3 gap-4">
+                  <div key={member.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1 grid grid-cols-3 gap-2">
                       <div>
                         <label className="block text-xs font-medium text-gray-700 mb-1">Role</label>
                         <input
@@ -854,7 +854,7 @@ export default function CreateProjectEnhancedPage() {
       case 3:
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Package className="w-5 h-5 text-blue-600" />
                 <h2 className="text-xl font-semibold text-gray-900">Key Deliverables</h2>
@@ -872,8 +872,8 @@ export default function CreateProjectEnhancedPage() {
             <div className="space-y-3">
               {formData.deliverables.map((deliverable) => (
                 <div key={deliverable.id} className="p-4 bg-gray-50 rounded-lg space-y-2">
-                  <div className="flex items-center gap-4">
-                    <div className="flex-1 grid grid-cols-3 gap-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 grid grid-cols-3 gap-2">
                       <div>
                         <label className="block text-xs font-medium text-gray-700 mb-1">Deliverable Name</label>
                         <input
@@ -937,7 +937,7 @@ export default function CreateProjectEnhancedPage() {
       case 4:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Scope & Requirements</h2>
             </div>
@@ -982,11 +982,11 @@ export default function CreateProjectEnhancedPage() {
       case 5:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Paperclip className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Project Attachments</h2>
             </div>
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-3">
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-3">
               <p className="text-sm text-blue-800">
                 Upload relevant project documents such as contracts, engineering drawings, site photos, or technical specifications.
               </p>
@@ -1004,7 +1004,7 @@ export default function CreateProjectEnhancedPage() {
       case 6:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review & Create Project</h2>
             </div>
@@ -1013,7 +1013,7 @@ export default function CreateProjectEnhancedPage() {
               {/* Basic Info Summary */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Basic Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project Name:</span>
                     <p className="font-medium text-gray-900">{formData.projectName || '-'}</p>
@@ -1040,7 +1040,7 @@ export default function CreateProjectEnhancedPage() {
               {/* Timeline & Budget Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Timeline & Budget</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Duration:</span>
                     <p className="font-medium text-gray-900">
@@ -1073,7 +1073,7 @@ export default function CreateProjectEnhancedPage() {
               {/* Team Summary */}
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Team</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Project Manager:</span>
                     <p className="font-medium text-gray-900">{formData.projectManager || '-'}</p>
@@ -1144,13 +1144,13 @@ export default function CreateProjectEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Create New Project</h1>
-              <div className="flex items-center gap-4 mt-1">
+              <div className="flex items-center gap-2 mt-1">
                 <p className="text-sm text-gray-600">Phase 1: Project Initiation</p>
                 <div className="h-4 w-px bg-gray-300" />
                 <div className="flex bg-gray-100 p-0.5 rounded-lg border border-gray-200">
@@ -1169,7 +1169,7 @@ export default function CreateProjectEnhancedPage() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}

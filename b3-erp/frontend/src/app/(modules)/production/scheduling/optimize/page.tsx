@@ -231,9 +231,9 @@ export default function ScheduleOptimizationPage() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+    <div className="w-full px-3 py-2">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
             <ArrowLeft className="h-5 w-5" />
             <span>Back</span>
@@ -251,7 +251,7 @@ export default function ScheduleOptimizationPage() {
       </div>
 
       {/* Scenario Selection */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         {scenarios.map((scenario) => (
           <button
             key={scenario.id}
@@ -279,8 +279,8 @@ export default function ScheduleOptimizationPage() {
       </div>
 
       {/* Selected Scenario Details */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <Zap className="h-6 w-6 text-purple-600" />
           <div>
             <h2 className="text-xl font-bold text-gray-900">{selected.scenarioName}</h2>
@@ -289,7 +289,7 @@ export default function ScheduleOptimizationPage() {
         </div>
 
         {/* Comparison Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
           {/* Current State */}
           <div>
             <h3 className="text-sm font-medium text-gray-700 mb-3">Current Schedule</h3>

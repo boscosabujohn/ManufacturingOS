@@ -282,7 +282,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Building className="h-8 w-8 text-blue-600" />
           Department Induction
@@ -291,8 +291,8 @@ export default function Page() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-l-4 border-blue-500 rounded-lg shadow-sm p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-l-4 border-blue-500 rounded-lg shadow-sm p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Active Inductions</p>
@@ -301,7 +301,7 @@ export default function Page() {
             <Clock className="h-8 w-8 text-blue-100" />
           </div>
         </div>
-        <div className="bg-white border-l-4 border-yellow-500 rounded-lg shadow-sm p-4">
+        <div className="bg-white border-l-4 border-yellow-500 rounded-lg shadow-sm p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Pending Schedule</p>
@@ -310,7 +310,7 @@ export default function Page() {
             <Calendar className="h-8 w-8 text-yellow-100" />
           </div>
         </div>
-        <div className="bg-white border-l-4 border-green-500 rounded-lg shadow-sm p-4">
+        <div className="bg-white border-l-4 border-green-500 rounded-lg shadow-sm p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Completed (Month)</p>
@@ -319,7 +319,7 @@ export default function Page() {
             <CheckCircle className="h-8 w-8 text-green-100" />
           </div>
         </div>
-        <div className="bg-white border-l-4 border-purple-500 rounded-lg shadow-sm p-4">
+        <div className="bg-white border-l-4 border-purple-500 rounded-lg shadow-sm p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Mentors Assigned</p>
@@ -333,7 +333,7 @@ export default function Page() {
       {/* Main Content */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         {/* Toolbar */}
-        <div className="p-4 border-b border-gray-200 flex flex-col md:flex-row gap-4 justify-between items-center">
+        <div className="p-4 border-b border-gray-200 flex flex-col md:flex-row gap-2 justify-between items-center">
           <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -373,7 +373,7 @@ export default function Page() {
 
       {/* Schedule Modal */}
       {showScheduleModal && selectedJoiner && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
           <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
             <div className="p-4 border-b border-gray-100 flex justify-between items-center">
               <h3 className="text-lg font-semibold">Schedule Induction</h3>
@@ -381,7 +381,7 @@ export default function Page() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               <div>
                 <p className="text-sm font-medium text-gray-500 mb-1">Employee</p>
                 <p className="text-lg font-semibold text-gray-900">{selectedJoiner.name}</p>
@@ -429,7 +429,7 @@ export default function Page() {
 
       {/* Checklist Modal */}
       {showChecklistModal && selectedJoiner && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
           <div className="bg-white rounded-lg shadow-lg w-full max-w-lg">
             <div className="p-4 border-b border-gray-100 flex justify-between items-center">
               <div className="flex items-center gap-2">
@@ -443,7 +443,7 @@ export default function Page() {
               </button>
             </div>
             <div className="p-6">
-              <div className="mb-6">
+              <div className="mb-3">
                 <h4 className="font-semibold text-gray-900">{selectedJoiner.name}</h4>
                 <p className="text-sm text-gray-500 mb-2">{selectedJoiner.designation}</p>
 

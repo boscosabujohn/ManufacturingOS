@@ -523,10 +523,10 @@ const ProductionSchedulingAddPage = () => {
   const periodDates = getPeriodDates();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <div className="flex justify-between items-start mb-4">
+      <div className="bg-white rounded-lg shadow-md p-3 mb-3">
+        <div className="flex justify-between items-start mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2">
               Create Production Schedule
@@ -570,11 +570,11 @@ const ProductionSchedulingAddPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-12 gap-3">
         {/* Left Panel - Configuration */}
-        <div className="col-span-3 space-y-6">
+        <div className="col-span-3 space-y-3">
           {/* Planning Period */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               Planning Period
@@ -632,7 +632,7 @@ const ProductionSchedulingAddPage = () => {
           </div>
 
           {/* Scheduling Constraints */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <AlertCircle className="w-4 h-4" />
               Scheduling Constraints
@@ -663,7 +663,7 @@ const ProductionSchedulingAddPage = () => {
           </div>
 
           {/* Scheduling Method */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <Target className="w-4 h-4" />
               Scheduling Method
@@ -755,7 +755,7 @@ const ProductionSchedulingAddPage = () => {
           <button
             onClick={handleAutoSchedule}
             disabled={autoScheduling || selectedWOs.length === 0}
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:from-gray-400 disabled:to-gray-400 shadow-lg"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:from-gray-400 disabled:to-gray-400 shadow-lg"
           >
             {autoScheduling ? (
               <>
@@ -772,10 +772,10 @@ const ProductionSchedulingAddPage = () => {
         </div>
 
         {/* Middle Panel - Work Order Selection */}
-        <div className="col-span-6 space-y-6">
+        <div className="col-span-6 space-y-3">
           {/* Work Order Selection */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
                 <Package className="w-5 h-5" />
                 Select Work Orders
@@ -786,7 +786,7 @@ const ProductionSchedulingAddPage = () => {
             </div>
 
             {/* Filters */}
-            <div className="grid grid-cols-4 gap-3 mb-4">
+            <div className="grid grid-cols-4 gap-3 mb-2">
               <div className="relative">
                 <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
@@ -850,7 +850,7 @@ const ProductionSchedulingAddPage = () => {
               {filteredWOs.map((wo) => (
                 <label
                   key={wo.id}
-                  className={`flex items-start gap-3 p-4 border rounded-lg cursor-pointer transition-all ${
+                  className={`flex items-start gap-3 p-3 border rounded-lg cursor-pointer transition-all ${
                     selectedWOs.includes(wo.id)
                       ? "border-blue-500 bg-blue-50"
                       : "border-gray-300 bg-white hover:bg-gray-50"
@@ -921,8 +921,8 @@ const ProductionSchedulingAddPage = () => {
 
           {/* Schedule Preview */}
           {scheduleGenerated && (
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg shadow-md p-3">
+              <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5" />
                 Schedule Preview (Gantt Chart)
               </h3>
@@ -969,9 +969,9 @@ const ProductionSchedulingAddPage = () => {
         </div>
 
         {/* Right Panel - Results & Analysis */}
-        <div className="col-span-3 space-y-6">
+        <div className="col-span-3 space-y-3">
           {/* Statistics */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
             <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
               Selection Statistics
@@ -1020,7 +1020,7 @@ const ProductionSchedulingAddPage = () => {
 
           {/* Resource Utilization */}
           {scheduleGenerated && (
-            <div className="bg-white rounded-lg shadow-md p-4">
+            <div className="bg-white rounded-lg shadow-md p-3">
               <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
                 <Gauge className="w-4 h-4" />
                 Resource Utilization
@@ -1056,7 +1056,7 @@ const ProductionSchedulingAddPage = () => {
 
           {/* Conflicts */}
           {scheduleGenerated && conflicts.length > 0 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-3">
                 <AlertTriangle className="w-5 h-5 text-red-600" />
                 <h3 className="font-semibold text-red-900">
@@ -1075,7 +1075,7 @@ const ProductionSchedulingAddPage = () => {
 
           {/* Material Projection */}
           {scheduleGenerated && (
-            <div className="bg-white rounded-lg shadow-md p-4">
+            <div className="bg-white rounded-lg shadow-md p-3">
               <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
                 <Box className="w-4 h-4" />
                 Material Requirements
@@ -1126,7 +1126,7 @@ const ProductionSchedulingAddPage = () => {
 
           {/* Success Message */}
           {scheduleGenerated && conflicts.length === 0 && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className="w-5 h-5 text-green-600" />
                 <h3 className="font-semibold text-green-900">

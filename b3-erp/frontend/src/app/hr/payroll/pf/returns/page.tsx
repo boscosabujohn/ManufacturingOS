@@ -32,17 +32,17 @@ function DownloadTemplateModal({ onClose }: { onClose: () => void }) {
   const [format, setFormat] = useState<'text' | 'excel'>('text');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Download ECR Template</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+        <div className="p-6 space-y-3">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -55,7 +55,7 @@ function DownloadTemplateModal({ onClose }: { onClose: () => void }) {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Select Template Format</label>
             <div className="space-y-3">
-              <label className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
+              <label className="flex items-start gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
                 <input
                   type="radio"
                   value="text"
@@ -74,7 +74,7 @@ function DownloadTemplateModal({ onClose }: { onClose: () => void }) {
                 </div>
               </label>
 
-              <label className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
+              <label className="flex items-start gap-3 p-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
                 <input
                   type="radio"
                   value="excel"
@@ -95,7 +95,7 @@ function DownloadTemplateModal({ onClose }: { onClose: () => void }) {
             </div>
           </div>
 
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-start gap-3">
               <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -148,22 +148,22 @@ function UploadECRModal({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Upload ECR File</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {uploadStep === 'select' && (
             <>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors">
-                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <Upload className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-900 font-medium mb-1">Click to upload or drag and drop</p>
-                <p className="text-sm text-gray-600 mb-4">ECR file in .txt or .xlsx format</p>
+                <p className="text-sm text-gray-600 mb-2">ECR file in .txt or .xlsx format</p>
                 <input
                   type="file"
                   accept=".txt,.xlsx,.xls"
@@ -179,7 +179,7 @@ function UploadECRModal({ onClose }: { onClose: () => void }) {
                 </label>
               </div>
 
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-start gap-3">
                   <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-blue-800">
@@ -198,7 +198,7 @@ function UploadECRModal({ onClose }: { onClose: () => void }) {
 
           {uploadStep === 'validate' && selectedFile && (
             <>
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center gap-3 mb-3">
                   <CheckCircle className="h-5 w-5 text-green-600" />
                   <p className="font-semibold text-green-900">File Selected</p>
@@ -210,7 +210,7 @@ function UploadECRModal({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="font-semibold text-gray-900 mb-3">Validation Checklist</h4>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm">
@@ -232,7 +232,7 @@ function UploadECRModal({ onClose }: { onClose: () => void }) {
                 </div>
               </div>
 
-              <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-yellow-800">
@@ -274,21 +274,21 @@ function FileECRModal({ returnData, onClose, formatCurrency }: { returnData: PFR
   const [step, setStep] = useState<'review' | 'confirm' | 'filing'>('review');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50 overflow-y-auto">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">File ECR - {returnData.monthYear}</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {step === 'review' && (
             <>
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="font-semibold text-blue-900 mb-3">ECR Summary</h4>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-blue-700">Return Period</p>
                     <p className="font-semibold text-blue-900">{returnData.monthYear}</p>
@@ -342,7 +342,7 @@ function FileECRModal({ returnData, onClose, formatCurrency }: { returnData: PFR
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="font-semibold text-green-900 mb-3">Pre-Filing Checklist</h4>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm">
@@ -364,7 +364,7 @@ function FileECRModal({ returnData, onClose, formatCurrency }: { returnData: PFR
                 </div>
               </div>
 
-              <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-yellow-800">
@@ -378,12 +378,12 @@ function FileECRModal({ returnData, onClose, formatCurrency }: { returnData: PFR
 
           {step === 'confirm' && (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
                 <CheckCircle className="h-10 w-10 text-green-600" />
               </div>
               <h4 className="text-xl font-bold text-gray-900 mb-2">ECR Filed Successfully!</h4>
-              <p className="text-gray-600 mb-6">Your ECR has been submitted to EPFO portal</p>
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 text-left max-w-md mx-auto">
+              <p className="text-gray-600 mb-3">Your ECR has been submitted to EPFO portal</p>
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 text-left max-w-md">
                 <p className="text-sm text-blue-800 mb-2"><strong>Acknowledgement Number:</strong></p>
                 <p className="text-lg font-mono font-bold text-blue-900">ACK{new Date().getFullYear()}{(new Date().getMonth() + 1).toString().padStart(2, '0')}{new Date().getDate().toString().padStart(2, '0')}0001</p>
                 <p className="text-xs text-blue-700 mt-3">Please save this number for future reference</p>
@@ -426,19 +426,19 @@ function FileECRModal({ returnData, onClose, formatCurrency }: { returnData: PFR
 
 function CheckStatusModal({ returnData, onClose }: { returnData: PFReturn; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">ECR Filing Status</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+        <div className="p-6 space-y-3">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h4 className="font-semibold text-blue-900 mb-3">Return Details</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-blue-700">Return Period</p>
                 <p className="font-semibold text-blue-900">{returnData.monthYear}</p>
@@ -497,7 +497,7 @@ function CheckStatusModal({ returnData, onClose }: { returnData: PFReturn; onClo
             </div>
           </div>
 
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-start gap-3">
               <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -507,7 +507,7 @@ function CheckStatusModal({ returnData, onClose }: { returnData: PFReturn; onClo
             </div>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <ExternalLink className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -536,16 +536,16 @@ function CheckStatusModal({ returnData, onClose }: { returnData: PFReturn; onClo
 
 function ViewReceiptModal({ returnData, onClose, formatCurrency }: { returnData: PFReturn; onClose: () => void; formatCurrency: (amount: number) => string }) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50 overflow-y-auto">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">ECR Acknowledgement Receipt</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Header */}
           <div className="text-center border-b border-gray-200 pb-6">
             <div className="flex items-center justify-center gap-3 mb-3">
@@ -558,12 +558,12 @@ function ViewReceiptModal({ returnData, onClose, formatCurrency }: { returnData:
           </div>
 
           {/* Acknowledgement Details */}
-          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+          <div className="bg-green-50 rounded-lg p-3 border border-green-200">
             <div className="flex items-center gap-3 mb-3">
               <CheckCircle className="h-6 w-6 text-green-600" />
               <h4 className="font-semibold text-green-900">ECR Successfully Filed & Accepted</h4>
             </div>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-green-700">Acknowledgement Number</p>
                 <p className="font-mono font-bold text-green-900">{returnData.acknowledgeNumber}</p>
@@ -580,7 +580,7 @@ function ViewReceiptModal({ returnData, onClose, formatCurrency }: { returnData:
           {/* Establishment Details */}
           <div>
             <h4 className="font-semibold text-gray-900 mb-3">Establishment Details</h4>
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 space-y-2 text-sm">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200 space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Establishment Name:</span>
                 <span className="font-medium text-gray-900">ManufacturingOS Manufacturing Pvt. Ltd.</span>
@@ -646,7 +646,7 @@ function ViewReceiptModal({ returnData, onClose, formatCurrency }: { returnData:
           </div>
 
           {/* Filing Information */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h4 className="font-semibold text-blue-900 mb-3">Filing Information</h4>
             <div className="space-y-2 text-sm text-blue-800">
               <p><strong>Filed By:</strong> {returnData.filedBy || 'HR Admin'}</p>
@@ -818,14 +818,14 @@ export default function PFReturnsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">PF Returns (ECR)</h1>
         <p className="text-sm text-gray-600 mt-1">Electronic Challan cum Return filing and tracking</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Returns</p>
@@ -835,7 +835,7 @@ export default function PFReturnsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Accepted</p>
@@ -845,7 +845,7 @@ export default function PFReturnsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Filed</p>
@@ -855,7 +855,7 @@ export default function PFReturnsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -866,8 +866,8 @@ export default function PFReturnsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between items-center">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Financial Year</label>
             <select
@@ -899,10 +899,10 @@ export default function PFReturnsPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredReturns.map(returnData => (
-          <div key={returnData.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={returnData.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{returnData.monthYear}</h3>
@@ -928,8 +928,8 @@ export default function PFReturnsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">Coverage</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -943,7 +943,7 @@ export default function PFReturnsPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">EPF Wages</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -957,7 +957,7 @@ export default function PFReturnsPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h4 className="text-xs font-semibold text-purple-900 mb-3">EPS Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -971,7 +971,7 @@ export default function PFReturnsPage() {
                 </div>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="text-xs font-semibold text-orange-900 mb-3">Other Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -986,8 +986,8 @@ export default function PFReturnsPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-4 border border-gray-200 mb-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200 mb-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <p className="text-xs text-gray-600 mb-1">Due Date</p>
                   <p className="text-sm font-bold text-gray-900 flex items-center gap-2">
@@ -1079,7 +1079,7 @@ export default function PFReturnsPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">ECR Filing Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>ECR (Electronic Challan cum Return):</strong> Combined challan and return filed online via EPFO portal</li>

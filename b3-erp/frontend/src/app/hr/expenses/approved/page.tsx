@@ -290,8 +290,8 @@ export default function ApprovedExpensesPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <CheckCircle className="h-7 w-7 text-green-600" />
           Approved Expenses
@@ -300,8 +300,8 @@ export default function ApprovedExpensesPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Approved</p>
@@ -311,7 +311,7 @@ export default function ApprovedExpensesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Amount</p>
@@ -321,7 +321,7 @@ export default function ApprovedExpensesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Paid</p>
@@ -331,7 +331,7 @@ export default function ApprovedExpensesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending Payment</p>
@@ -343,8 +343,8 @@ export default function ApprovedExpensesPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div className="md:col-span-2">
             <input
               type="text"
@@ -388,7 +388,7 @@ export default function ApprovedExpensesPage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">From Date</label>
             <input
@@ -411,16 +411,16 @@ export default function ApprovedExpensesPage() {
       </div>
 
       {/* Expenses List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredExpenses.length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-            <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <CheckCircle className="h-12 w-12 text-gray-400 mb-2" />
             <p className="text-gray-600">No approved expenses found</p>
           </div>
         ) : (
           filteredExpenses.map(expense => (
-            <div key={expense.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-              <div className="flex items-start justify-between mb-4">
+            <div key={expense.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{expense.title}</h3>
@@ -431,7 +431,7 @@ export default function ApprovedExpensesPage() {
                       {expense.paymentStatus.toUpperCase()}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <User className="h-4 w-4" />
                       {expense.employeeName} ({expense.employeeId})
@@ -459,7 +459,7 @@ export default function ApprovedExpensesPage() {
               </div>
 
               {/* Expense Items Preview */}
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3 mb-2">
                 <h4 className="text-sm font-semibold text-gray-900 mb-3">Expense Breakdown:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {expense.items.map((item, idx) => (
@@ -503,8 +503,8 @@ export default function ApprovedExpensesPage() {
       {/* Details Modal */}
       {selectedExpense && showDetailsModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-green-50">
+          <div className="bg-white rounded-lg shadow-xl  w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-green-50">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6 text-green-600" />
                 <h2 className="text-xl font-bold text-gray-900">Approved Expense Details</h2>
@@ -521,9 +521,9 @@ export default function ApprovedExpensesPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6">
+              <div className="mb-3">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">{selectedExpense.title}</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Expense ID:</span>
                     <span className="ml-2 font-medium">{selectedExpense.id}</span>
@@ -569,11 +569,11 @@ export default function ApprovedExpensesPage() {
                 </div>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-3">
                 <h4 className="font-semibold text-gray-900 mb-3">Expense Items:</h4>
                 <div className="space-y-3">
                   {selectedExpense.items.map((item, idx) => (
-                    <div key={item.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={item.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
                           <h5 className="font-medium text-gray-900">Item {idx + 1}: {item.category}</h5>
@@ -594,7 +594,7 @@ export default function ApprovedExpensesPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-semibold text-green-900">Total Approved Amount:</span>
                   <span className="text-2xl font-bold text-green-900">
@@ -604,7 +604,7 @@ export default function ApprovedExpensesPage() {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50">
               <button
                 onClick={() => {
                   setShowDetailsModal(false);

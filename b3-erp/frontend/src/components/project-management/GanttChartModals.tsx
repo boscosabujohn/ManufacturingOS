@@ -87,10 +87,10 @@ export function AddMilestoneModal({ isOpen, onClose, onAdd }: AddMilestoneModalP
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Flag className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Add Milestone</h2>
@@ -101,9 +101,9 @@ export function AddMilestoneModal({ isOpen, onClose, onAdd }: AddMilestoneModalP
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Basic Info */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Milestone Name *
@@ -118,7 +118,7 @@ export function AddMilestoneModal({ isOpen, onClose, onAdd }: AddMilestoneModalP
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Target Date *
@@ -165,7 +165,7 @@ export function AddMilestoneModal({ isOpen, onClose, onAdd }: AddMilestoneModalP
           </div>
 
           {/* Linked Tasks */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Link to Tasks</h3>
             <div className="space-y-2">
               {availableTasks.map((task) => (
@@ -210,7 +210,7 @@ export function AddMilestoneModal({ isOpen, onClose, onAdd }: AddMilestoneModalP
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -284,10 +284,10 @@ export function EditDependenciesModal({ isOpen, onClose, task, onUpdate }: EditD
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <GitBranch className="w-6 h-6 text-white" />
             <div>
@@ -301,7 +301,7 @@ export function EditDependenciesModal({ isOpen, onClose, task, onUpdate }: EditD
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Dependency Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -335,7 +335,7 @@ export function EditDependenciesModal({ isOpen, onClose, task, onUpdate }: EditD
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Lag Time (days)
             </label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <input
                 type="number"
                 value={lag}
@@ -349,7 +349,7 @@ export function EditDependenciesModal({ isOpen, onClose, task, onUpdate }: EditD
           </div>
 
           {/* Predecessor Tasks */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Predecessor Tasks</h3>
             <p className="text-sm text-gray-600 mb-3">
               Select tasks that must be completed before this task can start
@@ -373,7 +373,7 @@ export function EditDependenciesModal({ isOpen, onClose, task, onUpdate }: EditD
           </div>
 
           {/* Visual Diagram */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="font-semibold text-blue-900 mb-2">Dependency Chain Preview</h4>
             <div className="flex items-center gap-2 text-sm text-blue-800">
               <div className="px-3 py-2 bg-white rounded border border-blue-300">
@@ -388,7 +388,7 @@ export function EditDependenciesModal({ isOpen, onClose, task, onUpdate }: EditD
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -445,10 +445,10 @@ export function ResourceLoadingModal({ isOpen, onClose }: ResourceLoadingModalPr
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <TrendingUp className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Resource Loading Analysis</h2>
@@ -459,8 +459,8 @@ export function ResourceLoadingModal({ isOpen, onClose }: ResourceLoadingModalPr
         </div>
 
         {/* Controls */}
-        <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-          <div className="flex items-center gap-4">
+        <div className="bg-gray-50 px-3 py-2 border-b border-gray-200">
+          <div className="flex items-center gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-1 block">Period</label>
               <select
@@ -493,28 +493,28 @@ export function ResourceLoadingModal({ isOpen, onClose }: ResourceLoadingModalPr
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-red-50 p-4 rounded-lg">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-red-50 p-3 rounded-lg">
               <p className="text-sm text-red-600 mb-1">Overloaded</p>
               <p className="text-2xl font-bold text-red-900">
                 {resources.filter(r => r.overloaded).length}
               </p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-sm text-green-600 mb-1">Available</p>
               <p className="text-2xl font-bold text-green-900">
                 {resources.filter(r => !r.overloaded).length}
               </p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-sm text-blue-600 mb-1">Total Capacity</p>
               <p className="text-2xl font-bold text-blue-900">
                 {resources.reduce((sum, r) => sum + r.capacity, 0)}h
               </p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
+            <div className="bg-purple-50 p-3 rounded-lg">
               <p className="text-sm text-purple-600 mb-1">Total Allocated</p>
               <p className="text-2xl font-bold text-purple-900">
                 {resources.reduce((sum, r) => sum + r.allocation, 0)}h
@@ -523,9 +523,9 @@ export function ResourceLoadingModal({ isOpen, onClose }: ResourceLoadingModalPr
           </div>
 
           {/* Resource List */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {resources.map((resource) => (
-              <div key={resource.name} className="bg-white border border-gray-200 rounded-lg p-4">
+              <div key={resource.name} className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h4 className="font-semibold text-gray-900">{resource.name}</h4>
@@ -570,7 +570,7 @@ export function ResourceLoadingModal({ isOpen, onClose }: ResourceLoadingModalPr
           </div>
 
           {/* Recommendations */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
@@ -586,7 +586,7 @@ export function ResourceLoadingModal({ isOpen, onClose }: ResourceLoadingModalPr
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -667,10 +667,10 @@ export function TimelineFilterModal({ isOpen, onClose, onApply }: TimelineFilter
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Filter className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Timeline Zoom & Filters</h2>
@@ -681,7 +681,7 @@ export function TimelineFilterModal({ isOpen, onClose, onApply }: TimelineFilter
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Zoom Level */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Zoom Level</label>
@@ -745,7 +745,7 @@ export function TimelineFilterModal({ isOpen, onClose, onApply }: TimelineFilter
               </label>
 
               {dateRange === 'custom' && (
-                <div className="ml-6 grid grid-cols-2 gap-4">
+                <div className="ml-6 grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Start Date</label>
                     <input
@@ -770,7 +770,7 @@ export function TimelineFilterModal({ isOpen, onClose, onApply }: TimelineFilter
           </div>
 
           {/* Filter by Status */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Filter by Status</h3>
             <div className="grid grid-cols-2 gap-2">
               {statuses.map((status) => (
@@ -788,7 +788,7 @@ export function TimelineFilterModal({ isOpen, onClose, onApply }: TimelineFilter
           </div>
 
           {/* Filter by Phase */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Filter by Phase</h3>
             <div className="grid grid-cols-2 gap-2">
               {phases.map((phase) => (
@@ -843,7 +843,7 @@ export function TimelineFilterModal({ isOpen, onClose, onApply }: TimelineFilter
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -908,10 +908,10 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Export Gantt Chart</h2>
@@ -922,7 +922,7 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
@@ -942,7 +942,7 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
                   onChange={(e) => setExportFormat(e.target.value)}
                   className="sr-only"
                 />
-                <FileText className="w-8 h-8 text-red-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-red-600 mb-2" />
                 <span className="font-medium text-gray-900">PDF</span>
               </label>
 
@@ -961,7 +961,7 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
                   onChange={(e) => setExportFormat(e.target.value)}
                   className="sr-only"
                 />
-                <FileText className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-blue-600 mb-2" />
                 <span className="font-medium text-gray-900">PNG</span>
               </label>
 
@@ -980,14 +980,14 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
                   onChange={(e) => setExportFormat(e.target.value)}
                   className="sr-only"
                 />
-                <FileText className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-green-600 mb-2" />
                 <span className="font-medium text-gray-900">Excel</span>
               </label>
             </div>
           </div>
 
           {/* Include Options */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Include in Export</h3>
             <div className="space-y-2">
               {Object.entries(includeOptions).map(([key, value]) => (
@@ -1008,7 +1008,7 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
 
           {/* Page Settings (for PDF) */}
           {exportFormat === 'pdf' && (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Page Size</label>
                 <select
@@ -1054,7 +1054,7 @@ export function ExportGanttModal({ isOpen, onClose, onExport }: ExportGanttModal
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1103,10 +1103,10 @@ export function BaselineComparisonModal({ isOpen, onClose }: BaselineComparisonM
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Layers className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Baseline Comparison</h2>
@@ -1117,7 +1117,7 @@ export function BaselineComparisonModal({ isOpen, onClose }: BaselineComparisonM
         </div>
 
         {/* Baseline Selector */}
-        <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 border-b border-gray-200">
           <label className="block text-sm font-medium text-gray-700 mb-2">Compare Against</label>
           <select
             value={selectedBaseline}
@@ -1133,20 +1133,20 @@ export function BaselineComparisonModal({ isOpen, onClose }: BaselineComparisonM
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-green-50 p-4 rounded-lg">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-sm text-green-600 mb-1">On Track</p>
               <p className="text-2xl font-bold text-green-900">2</p>
               <p className="text-xs text-green-700 mt-1">0 days variance</p>
             </div>
-            <div className="bg-red-50 p-4 rounded-lg">
+            <div className="bg-red-50 p-3 rounded-lg">
               <p className="text-sm text-red-600 mb-1">Delayed</p>
               <p className="text-2xl font-bold text-red-900">1</p>
               <p className="text-xs text-red-700 mt-1">+3 days variance</p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-sm text-blue-600 mb-1">Ahead</p>
               <p className="text-2xl font-bold text-blue-900">1</p>
               <p className="text-xs text-blue-700 mt-1">-2 days variance</p>
@@ -1205,7 +1205,7 @@ export function BaselineComparisonModal({ isOpen, onClose }: BaselineComparisonM
           </div>
 
           {/* Analysis */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
               <div>
@@ -1220,7 +1220,7 @@ export function BaselineComparisonModal({ isOpen, onClose }: BaselineComparisonM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1251,18 +1251,18 @@ export function BaselineComparisonModal({ isOpen, onClose }: BaselineComparisonM
 export function CriticalPathModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Critical Path Analysis</h2>
           <button onClick={onClose} className="text-white hover:bg-red-700 p-2 rounded-lg">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <p className="text-gray-600">Critical path visualization and analysis will be displayed here.</p>
         </div>
-        <div className="bg-gray-50 px-6 py-4 border-t flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 border-t flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
             Close
           </button>
@@ -1280,15 +1280,15 @@ export function AddTaskLinkModal({ isOpen, onClose, onAdd }: { isOpen: boolean; 
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Add Task Link</h2>
           <button onClick={onClose} className="text-white hover:bg-teal-700 p-2 rounded-lg">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">From Task</label>
             <select value={fromTask} onChange={(e) => setFromTask(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -1314,7 +1314,7 @@ export function AddTaskLinkModal({ isOpen, onClose, onAdd }: { isOpen: boolean; 
             </select>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onAdd({ fromTask, toTask, linkType })} className="px-4 py-2 bg-teal-600 text-white rounded-lg">
             Add Link
@@ -1333,20 +1333,20 @@ export function EditDurationModal({ isOpen, onClose, task, onUpdate }: { isOpen:
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Edit Task Duration</h2>
           <button onClick={onClose} className="text-white hover:bg-yellow-700 p-2 rounded-lg">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Duration (days)</label>
             <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
               <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
@@ -1357,7 +1357,7 @@ export function EditDurationModal({ isOpen, onClose, task, onUpdate }: { isOpen:
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onUpdate({ duration, startDate, endDate })} className="px-4 py-2 bg-yellow-600 text-white rounded-lg">
             Update Duration
@@ -1376,15 +1376,15 @@ export function RescheduleModal({ isOpen, onClose, onReschedule }: { isOpen: boo
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Reschedule Tasks</h2>
           <button onClick={onClose} className="text-white hover:bg-purple-700 p-2 rounded-lg">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Reschedule From Date</label>
             <input type="date" value={rescheduleFrom} onChange={(e) => setRescheduleFrom(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
@@ -1398,7 +1398,7 @@ export function RescheduleModal({ isOpen, onClose, onReschedule }: { isOpen: boo
             <span className="text-sm text-gray-700">Update dependent tasks automatically</span>
           </label>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onReschedule({ rescheduleFrom, shiftDays, updateDependents })} className="px-4 py-2 bg-purple-600 text-white rounded-lg">
             Reschedule
@@ -1418,16 +1418,16 @@ export function PrintSetupModal({ isOpen, onClose, onPrint }: { isOpen: boolean;
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Print Setup</h2>
           <button onClick={onClose} className="text-white hover:bg-gray-700 p-2 rounded-lg">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Page Size</label>
               <select value={pageSize} onChange={(e) => setPageSize(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -1455,7 +1455,7 @@ export function PrintSetupModal({ isOpen, onClose, onPrint }: { isOpen: boolean;
             </label>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onPrint({ pageSize, orientation, includeHeader, includeFooter })} className="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center gap-2">
             <Printer className="w-4 h-4" />
@@ -1479,17 +1479,17 @@ export function TimelineTemplatesModal({ isOpen, onClose, onApply }: { isOpen: b
 
   if (!isOpen) return null
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 p-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 p-3 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-white">Timeline Templates</h2>
           <button onClick={onClose} className="text-white hover:bg-pink-700 p-2 rounded-lg">
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {templates.map((template) => (
-            <label key={template.id} className={`block p-4 border-2 rounded-lg cursor-pointer ${selectedTemplate === template.id ? 'border-pink-500 bg-pink-50' : 'border-gray-200'}`}>
+            <label key={template.id} className={`block p-3 border-2 rounded-lg cursor-pointer ${selectedTemplate === template.id ? 'border-pink-500 bg-pink-50' : 'border-gray-200'}`}>
               <input type="radio" name="template" value={template.id} checked={selectedTemplate === template.id} onChange={(e) => setSelectedTemplate(e.target.value)} className="sr-only" />
               <div className="flex justify-between">
                 <div>
@@ -1501,7 +1501,7 @@ export function TimelineTemplatesModal({ isOpen, onClose, onApply }: { isOpen: b
             </label>
           ))}
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg">Cancel</button>
           <button onClick={() => onApply(selectedTemplate)} disabled={!selectedTemplate} className="px-4 py-2 bg-pink-600 text-white rounded-lg disabled:opacity-50">
             Apply Template

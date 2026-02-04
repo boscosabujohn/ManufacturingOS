@@ -119,7 +119,7 @@ export const UnifiedInbox: React.FC<UnifiedInboxProps> = ({
   return (
     <div className={`flex flex-col h-full bg-white rounded-lg border border-gray-200 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex items-center justify-between p-3 border-b border-gray-200">
         <h2 className="text-lg font-semibold text-gray-900">Unified Inbox</h2>
         <div className="flex items-center gap-2">
           <button
@@ -158,7 +158,7 @@ export const UnifiedInbox: React.FC<UnifiedInboxProps> = ({
       <div className="flex-1 overflow-y-auto">
         {conversations.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-            <MessageCircle className="h-12 w-12 text-gray-400 mb-4" />
+            <MessageCircle className="h-12 w-12 text-gray-400 mb-2" />
             <p className="text-gray-600 font-medium">No conversations</p>
             <p className="text-sm text-gray-500 mt-1">
               {searchQuery ? 'Try adjusting your search' : 'All caught up!'}
@@ -175,7 +175,7 @@ export const UnifiedInbox: React.FC<UnifiedInboxProps> = ({
                   key={conversation.id}
                   onClick={() => onConversationSelect?.(conversation.id)}
                   className={`
-                    p-4 cursor-pointer transition-colors relative
+                    p-3 cursor-pointer transition-colors relative
                     ${isSelected ? 'bg-blue-50 border-l-4 border-l-blue-600' : 'hover:bg-gray-50 border-l-4 border-l-transparent'}
                   `}
                 >

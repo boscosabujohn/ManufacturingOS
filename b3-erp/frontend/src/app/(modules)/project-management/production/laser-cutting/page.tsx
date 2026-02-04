@@ -92,7 +92,7 @@ export default function LaserCuttingPage() {
       </div>
 
       <Card className="border-l-4 border-l-red-500 bg-red-50">
-        <CardContent className="pt-6 flex items-start gap-4">
+        <CardContent className="pt-6 flex items-start gap-2">
           <AlertTriangle className="h-6 w-6 text-red-600 mt-1" />
           <div>
             <h3 className="font-bold text-red-700">CRITICAL PROCESS RULE</h3>

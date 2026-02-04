@@ -116,8 +116,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Users className="h-6 w-6 text-teal-600" />
           Identify Talent (HiPo)
@@ -125,33 +125,33 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">High potential employee identification and tracking</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Total Talent</p>
           <p className="text-2xl font-bold text-blue-900">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center gap-2 mb-1">
             <Star className="h-5 w-5 text-green-600" />
             <p className="text-sm font-medium text-green-600">Stars</p>
           </div>
           <p className="text-2xl font-bold text-green-900">{stats.stars}</p>
         </div>
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center gap-2 mb-1">
             <TrendingUp className="h-5 w-5 text-teal-600" />
             <p className="text-sm font-medium text-teal-600">High Potential</p>
           </div>
           <p className="text-2xl font-bold text-teal-900">{stats.highPotential}</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Core Players</p>
           <p className="text-2xl font-bold text-blue-900">{stats.corePlayers}</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Classification</label>
             <select value={selectedClassification} onChange={(e) => setSelectedClassification(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
@@ -180,10 +180,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredTalent.map(emp => (
-          <div key={emp.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={emp.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{emp.name}</h3>
@@ -207,7 +207,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Award className="h-4 w-4 text-purple-600" />

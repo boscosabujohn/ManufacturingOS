@@ -35,9 +35,9 @@ export default function PurchaseBillDetailPage() {
     };
 
     return (
-        <div className="w-full p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -69,21 +69,21 @@ export default function PurchaseBillDetailPage() {
             </div>
 
             {/* Bill Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 <div className="lg:col-span-2">
                     <Card>
                         <CardHeader>
                             <CardTitle>Bill Details</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="mb-6 pb-6 border-b">
+                            <div className="mb-3 pb-6 border-b">
                                 <h3 className="font-semibold mb-2">Vendor Details:</h3>
                                 <p className="font-medium">{bill.vendor.name}</p>
                                 <p className="text-sm text-gray-600">{bill.vendor.address}</p>
                                 <p className="text-sm text-gray-600">ID: {bill.vendor.id}</p>
                             </div>
 
-                            <table className="w-full mb-6">
+                            <table className="w-full mb-3">
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Description</th>
@@ -124,7 +124,7 @@ export default function PurchaseBillDetailPage() {
                     </Card>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-3">
                     <Card>
                         <CardHeader>
                             <CardTitle>Payment Status</CardTitle>

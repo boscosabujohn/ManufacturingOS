@@ -366,7 +366,7 @@ const SystemHealthPage = () => {
       )}
 
       {/* Header Section */}
-      <div className="flex-none p-6 pb-4 space-y-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-sky-100 rounded-lg">
@@ -410,7 +410,7 @@ const SystemHealthPage = () => {
         </div>
 
         {/* Overall Health Score */}
-        <div className="bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl shadow-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold mb-2 opacity-90">Overall System Health</h2>
@@ -426,8 +426,8 @@ const SystemHealthPage = () => {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Healthy</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -435,7 +435,7 @@ const SystemHealthPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.healthyServices}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Degraded</span>
             <AlertTriangle className="w-4 h-4 text-yellow-600" />
@@ -443,7 +443,7 @@ const SystemHealthPage = () => {
           <div className="text-2xl font-bold text-yellow-600">{stats.degradedServices}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Down</span>
             <XCircle className="w-4 h-4 text-red-600" />
@@ -451,7 +451,7 @@ const SystemHealthPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.downServices}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Response</span>
             <Zap className="w-4 h-4 text-blue-600" />
@@ -461,7 +461,7 @@ const SystemHealthPage = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Services</span>
             <Server className="w-4 h-4 text-purple-600" />
@@ -469,7 +469,7 @@ const SystemHealthPage = () => {
           <div className="text-2xl font-bold text-gray-900">{services.length}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Servers</span>
             <Database className="w-4 h-4 text-indigo-600" />
@@ -487,7 +487,7 @@ const SystemHealthPage = () => {
         <div className="flex">
           <button
             onClick={() => setActiveTab('services')}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors ${
               activeTab === 'services'
                 ? 'text-sky-600 border-b-2 border-sky-600 bg-sky-50'
                 : 'text-gray-600 hover:text-gray-900'
@@ -500,7 +500,7 @@ const SystemHealthPage = () => {
           </button>
           <button
             onClick={() => setActiveTab('servers')}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors ${
               activeTab === 'servers'
                 ? 'text-sky-600 border-b-2 border-sky-600 bg-sky-50'
                 : 'text-gray-600 hover:text-gray-900'
@@ -515,14 +515,14 @@ const SystemHealthPage = () => {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 overflow-auto p-4">
+      <div className="flex-1 overflow-auto p-3">
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <Filter className="w-5 h-5 text-sky-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
@@ -765,9 +765,9 @@ const SystemHealthPage = () => {
 
       {/* Details Modal */}
       {selectedItem && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200">
               <h3 className="text-xl font-bold text-gray-900">
                 {'service' in selectedItem ? 'Service Details' : 'Server Details'}
               </h3>
@@ -782,12 +782,12 @@ const SystemHealthPage = () => {
 
             <div className="p-6">
               {'service' in selectedItem ? (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">Service Name</label>
                     <div className="bg-gray-50 rounded-lg p-3 font-medium text-gray-900">{selectedItem.service}</div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-1">Status</label>
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(selectedItem.status)}`}>
@@ -805,7 +805,7 @@ const SystemHealthPage = () => {
                       <code className="block bg-gray-50 rounded-lg p-3 text-sm text-gray-900 break-all">{selectedItem.endpoint}</code>
                     </div>
                   )}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-1">Uptime</label>
                       <div className="bg-green-50 rounded-lg p-3 font-bold text-green-800">{selectedItem.uptime}</div>
@@ -819,12 +819,12 @@ const SystemHealthPage = () => {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">Server Name</label>
                     <div className="bg-gray-50 rounded-lg p-3 font-medium text-gray-900">{selectedItem.serverName}</div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-1">Status</label>
                       <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(selectedItem.status)}`}>
@@ -836,7 +836,7 @@ const SystemHealthPage = () => {
                       <div className="bg-gray-50 rounded-lg p-3 text-gray-900">{selectedItem.type}</div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-1">CPU Usage</label>
                       <div className="bg-gray-50 rounded-lg p-3">
@@ -866,7 +866,7 @@ const SystemHealthPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-600 mb-1">Uptime</label>
                       <div className="bg-green-50 rounded-lg p-3 font-bold text-green-800">{selectedItem.uptime}</div>
@@ -880,7 +880,7 @@ const SystemHealthPage = () => {
               )}
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200">
               <button
                 onClick={handleCloseDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"

@@ -58,9 +58,9 @@ export function ApproveModal({ isOpen, onClose, onApprove, request }: ApproveMod
   if (!isOpen || !request) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -77,8 +77,8 @@ export function ApproveModal({ isOpen, onClose, onApprove, request }: ApproveMod
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Request Summary */}
-          <div className="bg-green-50 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Customer</p>
                 <p className="font-semibold text-gray-900">{request.customerName}</p>
@@ -99,13 +99,13 @@ export function ApproveModal({ isOpen, onClose, onApprove, request }: ApproveMod
           </div>
 
           {/* Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Approval Reason</label>
             <p className="text-sm text-gray-600 bg-gray-50 rounded p-3">{request.reason}</p>
           </div>
 
           {/* Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Approval Comments <span className="text-red-500">*</span>
             </label>
@@ -119,7 +119,7 @@ export function ApproveModal({ isOpen, onClose, onApprove, request }: ApproveMod
           </div>
 
           {/* Conditional Approval */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -141,7 +141,7 @@ export function ApproveModal({ isOpen, onClose, onApprove, request }: ApproveMod
           </div>
 
           {/* Confirmation */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -152,7 +152,7 @@ export function ApproveModal({ isOpen, onClose, onApprove, request }: ApproveMod
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -195,9 +195,9 @@ export function RejectModal({ isOpen, onClose, onReject, request }: RejectModalP
   if (!isOpen || !request) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <XCircle className="h-6 w-6 text-white" />
@@ -214,8 +214,8 @@ export function RejectModal({ isOpen, onClose, onReject, request }: RejectModalP
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Request Summary */}
-          <div className="bg-red-50 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="bg-red-50 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Customer</p>
                 <p className="font-semibold text-gray-900">{request.customerName}</p>
@@ -236,7 +236,7 @@ export function RejectModal({ isOpen, onClose, onReject, request }: RejectModalP
           </div>
 
           {/* Rejection Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Rejection Reason <span className="text-red-500">*</span>
             </label>
@@ -259,7 +259,7 @@ export function RejectModal({ isOpen, onClose, onReject, request }: RejectModalP
           </div>
 
           {/* Detailed Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Detailed Comments <span className="text-red-500">*</span>
             </label>
@@ -273,7 +273,7 @@ export function RejectModal({ isOpen, onClose, onReject, request }: RejectModalP
           </div>
 
           {/* Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-red-800">
@@ -284,7 +284,7 @@ export function RejectModal({ isOpen, onClose, onReject, request }: RejectModalP
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -327,9 +327,9 @@ export function AddCommentModal({ isOpen, onClose, onAddComment, request }: AddC
   if (!isOpen || !request) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <MessageSquare className="h-6 w-6 text-white" />
@@ -346,7 +346,7 @@ export function AddCommentModal({ isOpen, onClose, onAddComment, request }: AddC
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Request Info */}
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Customer</p>
@@ -360,9 +360,9 @@ export function AddCommentModal({ isOpen, onClose, onAddComment, request }: AddC
           </div>
 
           {/* Comment Type */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Comment Visibility</label>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -385,7 +385,7 @@ export function AddCommentModal({ isOpen, onClose, onAddComment, request }: AddC
           </div>
 
           {/* Comment */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Comment <span className="text-red-500">*</span>
             </label>
@@ -399,7 +399,7 @@ export function AddCommentModal({ isOpen, onClose, onAddComment, request }: AddC
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -431,9 +431,9 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
   if (!isOpen || !request) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -450,8 +450,8 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Document Header */}
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 mb-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-indigo-600 mb-1">Document Number</p>
                 <p className="font-bold text-indigo-900">{request.documentNumber}</p>
@@ -472,9 +472,9 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
           </div>
 
           {/* Customer Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h3>
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Customer Name</p>
                 <p className="font-semibold text-gray-900">{request.customerName}</p>
@@ -494,10 +494,10 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
           </div>
 
           {/* Request Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Request Details</h3>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <div className="grid grid-cols-2 gap-4 mb-3">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Request Details</h3>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+              <div className="grid grid-cols-2 gap-2 mb-3">
                 <div>
                   <p className="text-sm text-gray-600">Requested By</p>
                   <p className="font-semibold text-gray-900">{request.requestedBy}</p>
@@ -523,11 +523,11 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
           </div>
 
           {/* Approval Chain */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Chain</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Chain</h3>
             <div className="space-y-3">
               {request.approvalChain.map((step) => (
-                <div key={step.level} className="bg-white border border-gray-200 rounded-lg p-4">
+                <div key={step.level} className="bg-white border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
@@ -571,7 +571,7 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
           </div>
 
           {/* SLA Status */}
-          <div className={`rounded-lg p-4 ${
+          <div className={`rounded-lg p-3 ${
             request.slaStatus === 'on-time' ? 'bg-green-50 border border-green-200' :
             request.slaStatus === 'at-risk' ? 'bg-yellow-50 border border-yellow-200' :
             'bg-red-50 border border-red-200'
@@ -590,7 +590,7 @@ export function ViewDocumentModal({ isOpen, onClose, request }: ViewDocumentModa
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

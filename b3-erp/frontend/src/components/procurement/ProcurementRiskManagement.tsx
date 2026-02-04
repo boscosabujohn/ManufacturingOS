@@ -1373,10 +1373,10 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Shield className="w-8 h-8 text-red-600" />
@@ -1417,8 +1417,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-red-600 text-sm font-medium">Critical Risks</span>
               <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -1427,7 +1427,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             <div className="text-sm text-gray-600">Immediate action</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-orange-600 text-sm font-medium">High Risks</span>
               <AlertCircle className="w-5 h-5 text-orange-600" />
@@ -1436,7 +1436,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             <div className="text-sm text-gray-600">Active monitoring</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total Risks</span>
               <Shield className="w-5 h-5 text-blue-600" />
@@ -1448,7 +1448,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Risk Exposure</span>
               <DollarSign className="w-5 h-5 text-purple-600" />
@@ -1457,7 +1457,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             <div className="text-sm text-gray-600">Total financial impact</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Mitigation Rate</span>
               <CheckCircle className="w-5 h-5 text-green-600" />
@@ -1470,8 +1470,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
 
       {/* Real-Time Monitoring Dashboard */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Activity className="h-5 w-5 text-indigo-600" />
               Real-Time Risk Monitoring
@@ -1495,8 +1495,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">New Risks (24h)</span>
                 <AlertTriangle className="h-5 w-5 text-red-600" />
@@ -1505,7 +1505,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
               <div className="text-xs text-red-600 mt-1">1 critical</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Escalated Risks</span>
                 <TrendingUp className="h-5 w-5 text-amber-600" />
@@ -1514,7 +1514,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
               <div className="text-xs text-amber-600 mt-1">This week</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Mitigated</span>
                 <CheckCircle className="h-5 w-5 text-green-600" />
@@ -1523,7 +1523,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
               <div className="text-xs text-green-600 mt-1">Past 7 days</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Reviews Due</span>
                 <Clock className="h-5 w-5 text-purple-600" />
@@ -1533,7 +1533,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Live Risk Activity Feed</h4>
             <div className="space-y-2 max-h-32 overflow-y-auto">
               <div className="flex items-center gap-3 text-sm">
@@ -1563,8 +1563,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
 
       {/* AI-Powered Insights */}
       {showAIInsights && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Zap className="h-5 w-5 text-purple-600" />
               AI-Powered Risk Intelligence
@@ -1577,8 +1577,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="h-5 w-5 text-blue-600" />
                 <span className="text-sm font-semibold text-gray-900">Emerging Risk</span>
@@ -1587,7 +1587,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
               <p className="text-xs text-gray-600">Geopolitical tensions may impact 3 critical suppliers in Asia-Pacific region within 30 days</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="h-5 w-5 text-amber-600" />
                 <span className="text-sm font-semibold text-gray-900">Risk Trend</span>
@@ -1596,7 +1596,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
               <p className="text-xs text-gray-600">Supply chain risk exposure increasing due to commodity price volatility and logistics constraints</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-green-600" />
                 <span className="text-sm font-semibold text-gray-900">Cost Avoidance</span>
@@ -1606,7 +1606,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Risk Recommendations</h4>
             <div className="space-y-2">
               <div className="flex items-start gap-3 p-2 bg-red-50 rounded">
@@ -1655,11 +1655,11 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Risk Trends */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Trends by Severity</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Trends by Severity</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <ComposedChart data={riskTrends}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -1675,8 +1675,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Distribution by Category</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Distribution by Category</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RePieChart>
                       <Pie
@@ -1700,8 +1700,8 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
               </div>
 
               {/* Risk Matrix Scatter */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Impact Matrix</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Impact Matrix</h3>
                 <ResponsiveContainer width="100%" height={400}>
                   <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -1732,7 +1732,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
                 </div>
                 <div className="p-4">
                   {mitigationProgress.map((item, index) => (
-                    <div key={index} className="mb-4 last:mb-0">
+                    <div key={index} className="mb-2 last:mb-0">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium text-gray-900">{item.name}</span>
                         <div className="flex items-center gap-2">
@@ -1758,20 +1758,20 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
           )}
 
 {activeTab === 'risks' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Risk Cards */}
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-2">
                 {risks.map((risk) => (
                   <div
                     key={risk.id}
-                    className={`border-l-4 bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition ${
+                    className={`border-l-4 bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition ${
                       risk.severity === 'critical' ? 'border-red-600' :
                       risk.severity === 'high' ? 'border-orange-500' :
                       risk.severity === 'medium' ? 'border-yellow-500' :
                       'border-green-500'
                     }`}
                   >
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
                           <h4 className="text-lg font-semibold text-gray-900">{risk.title}</h4>
@@ -1793,7 +1793,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
                             {risk.status}
                           </span>
                         </div>
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
                           <span className="flex items-center gap-1">
                             <Package className="w-4 h-4" />
                             {risk.category}
@@ -1816,7 +1816,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 mb-4">
+                    <div className="grid grid-cols-3 gap-2 mb-2">
                       <div>
                         <div className="text-xs text-gray-500 mb-1">Likelihood</div>
                         <div className="flex items-center gap-2">
@@ -1863,7 +1863,7 @@ Next automated scan: ${new Date(Date.now() + 60 * 60 * 1000).toLocaleTimeString(
                     )}
 
                     <div className="flex items-center justify-between pt-3 border-t border-gray-200">
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <span>Identified: {risk.identifiedDate}</span>
                         <span>Last Review: {risk.lastReviewDate}</span>
                       </div>

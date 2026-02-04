@@ -310,7 +310,7 @@ const IPWhitelistPage = () => {
   return (
     <div className="p-6 max-w-[1600px]">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-green-100 rounded-lg">
@@ -348,8 +348,8 @@ const IPWhitelistPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Entries</span>
             <Shield className="w-4 h-4 text-blue-600" />
@@ -357,7 +357,7 @@ const IPWhitelistPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.totalEntries}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -365,7 +365,7 @@ const IPWhitelistPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.activeEntries}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Expiring Soon</span>
             <Clock className="w-4 h-4 text-yellow-600" />
@@ -373,7 +373,7 @@ const IPWhitelistPage = () => {
           <div className="text-2xl font-bold text-yellow-600">{stats.expiringEntries}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Access Today</span>
             <Globe className="w-4 h-4 text-purple-600" />
@@ -381,7 +381,7 @@ const IPWhitelistPage = () => {
           <div className="text-2xl font-bold text-purple-600">{stats.totalAccessToday}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Allowed Today</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -389,7 +389,7 @@ const IPWhitelistPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.allowedToday}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Blocked Today</span>
             <XCircle className="w-4 h-4 text-red-600" />
@@ -399,9 +399,9 @@ const IPWhitelistPage = () => {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="border-b border-gray-200">
-          <div className="flex gap-4 px-6">
+          <div className="flex gap-2 px-6">
             <button
               onClick={() => setActiveTab('whitelist')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
@@ -429,7 +429,7 @@ const IPWhitelistPage = () => {
         {activeTab === 'whitelist' && (
           <div className="p-6">
             {/* Filters */}
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-2 mb-3">
               <div className="flex-1 min-w-[300px]">
                 <input
                   type="text"
@@ -592,7 +592,7 @@ const IPWhitelistPage = () => {
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200">
               <h3 className="text-xl font-bold text-gray-900">Add IP Whitelist Entry</h3>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -603,7 +603,7 @@ const IPWhitelistPage = () => {
             </div>
 
             <form onSubmit={handleSaveEntry} className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     IP Address or Range *

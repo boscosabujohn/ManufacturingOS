@@ -212,7 +212,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <AlertTriangle className="h-8 w-8 text-red-600" />
           Safety Incident Tracking
@@ -221,8 +221,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-4 mb-6">
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-8 gap-2 mb-3">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Incidents</p>
@@ -231,7 +231,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-rose-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-rose-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Critical</p>
@@ -240,7 +240,7 @@ export default function Page() {
             <XCircle className="h-10 w-10 text-rose-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Serious</p>
@@ -249,7 +249,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Investigating</p>
@@ -258,7 +258,7 @@ export default function Page() {
             <Clock className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Resolved</p>
@@ -267,7 +267,7 @@ export default function Page() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Days Lost</p>
@@ -276,7 +276,7 @@ export default function Page() {
             <Calendar className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Medical</p>
@@ -285,7 +285,7 @@ export default function Page() {
             <Users className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">LTIR</p>
@@ -297,8 +297,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Severity:</label>
             <select
@@ -350,9 +350,9 @@ export default function Page() {
       <DataTable data={filteredIncidents} columns={columns} />
 
       {/* Severity Classification */}
-      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Incident Severity Classification</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Incident Severity Classification</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
             <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="w-3 h-3 bg-yellow-600 rounded-full"></span>
@@ -385,7 +385,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+      <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-red-900 mb-2">Safety Incident Response Protocol</h3>
         <ul className="text-sm text-red-800 space-y-1">
           <li>• All incidents must be reported within 2 hours of occurrence</li>

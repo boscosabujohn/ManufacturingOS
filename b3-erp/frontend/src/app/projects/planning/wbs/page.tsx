@@ -475,7 +475,7 @@ export default function WorkBreakdownStructurePage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Network className="h-8 w-8 text-teal-600" />
           Work Breakdown Structure
@@ -484,8 +484,8 @@ export default function WorkBreakdownStructurePage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -518,8 +518,8 @@ export default function WorkBreakdownStructurePage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-sm font-medium">Work Packages</p>
@@ -529,7 +529,7 @@ export default function WorkBreakdownStructurePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">WBS Levels</p>
@@ -539,7 +539,7 @@ export default function WorkBreakdownStructurePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Completed</p>
@@ -549,7 +549,7 @@ export default function WorkBreakdownStructurePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-600 text-sm font-medium">In Progress</p>
@@ -559,7 +559,7 @@ export default function WorkBreakdownStructurePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm font-medium">Not Started</p>
@@ -569,7 +569,7 @@ export default function WorkBreakdownStructurePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Total Budget</p>
@@ -593,10 +593,10 @@ export default function WorkBreakdownStructurePage() {
       </div>
 
       {/* Guidelines Section */}
-      <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">WBS Management Guidelines</h2>
+      <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">WBS Management Guidelines</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-medium text-gray-700 mb-2">WBS Principles</h3>
             <ul className="space-y-2 text-sm text-gray-600">
@@ -648,7 +648,7 @@ export default function WorkBreakdownStructurePage() {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="font-medium text-blue-800 mb-2">WBS Coding Structure</h3>
           <p className="text-sm text-blue-700 mb-2">
             Use hierarchical numbering to uniquely identify each WBS element:
@@ -718,7 +718,7 @@ function WbsTree({
 
         return (
           <div key={node.id} className="mb-3">
-            <div className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors border border-gray-200">
               <div className="flex items-start gap-3 mb-3">
                 {hasChildren ? (
                   <button
@@ -751,7 +751,7 @@ function WbsTree({
 
                   <p className="text-sm text-gray-600 mb-3">{node.description}</p>
 
-                  <div className="grid grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-4 gap-2 text-sm">
                     <div>
                       <p className="text-xs text-gray-500 mb-1">WBS Code</p>
                       <p className="font-medium text-gray-900">{node.wbsCode}</p>

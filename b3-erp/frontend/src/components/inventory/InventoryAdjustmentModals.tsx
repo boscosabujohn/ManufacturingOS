@@ -176,10 +176,10 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <TrendingUp className="w-6 h-6" />
             <div>
@@ -193,9 +193,9 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
           {/* Adjustment Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Adjustment Type *
@@ -249,7 +249,7 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
           </div>
 
           {/* Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Adjustment Reason *
             </label>
@@ -266,13 +266,13 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
           </div>
 
           {/* Add Item Section */}
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 mb-6">
-            <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 mb-3">
+            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
               <Plus className="w-5 h-5" />
               Add Item to Adjustment
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Item Code</label>
                 <input
@@ -316,7 +316,7 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Zone</label>
                 <input
@@ -375,7 +375,7 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
 
           {/* Items List */}
           {formData.items.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-3">
               <h3 className="font-semibold text-gray-700 mb-3">Adjustment Items ({formData.items.length})</h3>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse border border-gray-300">
@@ -439,7 +439,7 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
           )}
 
           {/* Notes */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Additional Notes
             </label>
@@ -454,7 +454,7 @@ export const CreateAdjustmentModal: React.FC<CreateAdjustmentModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -531,10 +531,10 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Upload className="w-6 h-6" />
             <div>
@@ -548,7 +548,7 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           <div className={`flex items-center gap-2 ${step >= 1 ? 'text-purple-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step >= 1 ? 'bg-purple-600 text-white' : 'bg-gray-300'}`}>1</div>
             <span className="font-medium">Upload File</span>
@@ -561,11 +561,11 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {step === 1 && (
             <div>
               {/* Details */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Warehouse *
@@ -599,7 +599,7 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
                 </div>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Reason *
                 </label>
@@ -617,9 +617,9 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
 
               {/* File Upload */}
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <Upload className="w-12 h-12 text-gray-400 mb-2" />
                 <p className="text-gray-700 font-medium mb-2">Upload Adjustment File</p>
-                <p className="text-sm text-gray-500 mb-4">CSV or Excel file with item codes and adjusted quantities</p>
+                <p className="text-sm text-gray-500 mb-2">CSV or Excel file with item codes and adjusted quantities</p>
                 <input
                   type="file"
                   accept=".csv,.xlsx,.xls"
@@ -654,21 +654,21 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
 
           {step === 2 && (
             <div>
-              <h3 className="font-semibold text-gray-700 mb-4">Review Adjustments ({formData.items.length} items)</h3>
+              <h3 className="font-semibold text-gray-700 mb-2">Review Adjustments ({formData.items.length} items)</h3>
 
               {/* Summary Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm text-blue-600 font-medium">Total Items</p>
                   <p className="text-2xl font-bold text-blue-700">{formData.items.length}</p>
                 </div>
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <p className="text-sm text-green-600 font-medium">Increases</p>
                   <p className="text-2xl font-bold text-green-700">
                     {formData.items.filter(i => i.difference > 0).length}
                   </p>
                 </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <p className="text-sm text-red-600 font-medium">Decreases</p>
                   <p className="text-2xl font-bold text-red-700">
                     {formData.items.filter(i => i.difference < 0).length}
@@ -716,7 +716,7 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             type="button"
             onClick={onClose}
@@ -779,10 +779,10 @@ export const ViewAdjustmentDetailsModal: React.FC<ViewAdjustmentDetailsModalProp
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -796,39 +796,39 @@ export const ViewAdjustmentDetailsModal: React.FC<ViewAdjustmentDetailsModalProp
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Adjustment Type</p>
               <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${getTypeColor(adjustment.adjustmentType)}`}>
                 {adjustment.adjustmentType.toUpperCase()}
               </span>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Date</p>
               <p className="text-lg font-bold text-gray-800">{adjustment.adjustmentDate}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Warehouse</p>
               <p className="text-lg font-bold text-gray-800">{adjustment.warehouse}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Total Items</p>
               <p className="text-lg font-bold text-gray-800">{adjustment.items.length}</p>
             </div>
           </div>
 
           {/* Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Adjustment Reason</label>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <p className="text-gray-700">{adjustment.reason}</p>
             </div>
           </div>
 
           {/* Items Table */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">Adjusted Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -883,9 +883,9 @@ export const ViewAdjustmentDetailsModal: React.FC<ViewAdjustmentDetailsModalProp
 
           {/* Notes */}
           {adjustment.notes && (
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                 <p className="text-gray-700">{adjustment.notes}</p>
               </div>
             </div>
@@ -893,7 +893,7 @@ export const ViewAdjustmentDetailsModal: React.FC<ViewAdjustmentDetailsModalProp
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1020,10 +1020,10 @@ export const ReconciliationModal: React.FC<ReconciliationModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <CheckCircle className="w-6 h-6" />
             <div>
@@ -1037,9 +1037,9 @@ export const ReconciliationModal: React.FC<ReconciliationModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
           {/* Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Warehouse *
@@ -1090,16 +1090,16 @@ export const ReconciliationModal: React.FC<ReconciliationModalProps> = ({
 
           {/* Variance Summary */}
           {formData.items.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-sm text-blue-600 font-medium">System Total</p>
                 <p className="text-2xl font-bold text-blue-700">{formData.systemTotal}</p>
               </div>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                 <p className="text-sm text-green-600 font-medium">Physical Total</p>
                 <p className="text-2xl font-bold text-green-700">{formData.physicalTotal}</p>
               </div>
-              <div className={`border rounded-lg p-4 ${
+              <div className={`border rounded-lg p-3 ${
                 formData.variance > 0 ? 'bg-yellow-50 border-yellow-200' :
                 formData.variance < 0 ? 'bg-red-50 border-red-200' : 'bg-gray-50 border-gray-200'
               }`}>
@@ -1114,7 +1114,7 @@ export const ReconciliationModal: React.FC<ReconciliationModalProps> = ({
                   {formData.variance > 0 ? '+' : ''}{formData.variance}
                 </p>
               </div>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <p className="text-sm text-purple-600 font-medium">Variance %</p>
                 <p className="text-2xl font-bold text-purple-700">{formData.variancePercentage.toFixed(2)}%</p>
               </div>
@@ -1122,7 +1122,7 @@ export const ReconciliationModal: React.FC<ReconciliationModalProps> = ({
           )}
 
           {/* Items */}
-          <div className="mb-6">
+          <div className="mb-3">
             <div className="flex justify-between items-center mb-3">
               <h3 className="font-semibold text-gray-700">Reconciliation Items</h3>
               <button
@@ -1232,7 +1232,7 @@ export const ReconciliationModal: React.FC<ReconciliationModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -1283,10 +1283,10 @@ export const ExportAdjustmentReportModal: React.FC<ExportAdjustmentReportModalPr
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <h2 className="text-xl font-bold">Export Adjustment Report</h2>
@@ -1299,7 +1299,7 @@ export const ExportAdjustmentReportModal: React.FC<ExportAdjustmentReportModalPr
         {/* Content */}
         <div className="p-6">
           {/* Format Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
               {['pdf', 'excel', 'csv'].map((fmt) => (
@@ -1319,8 +1319,8 @@ export const ExportAdjustmentReportModal: React.FC<ExportAdjustmentReportModalPr
           </div>
 
           {/* Filters */}
-          <div className="space-y-4 mb-6">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2 mb-3">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
                 <input
@@ -1395,7 +1395,7 @@ export const ExportAdjustmentReportModal: React.FC<ExportAdjustmentReportModalPr
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

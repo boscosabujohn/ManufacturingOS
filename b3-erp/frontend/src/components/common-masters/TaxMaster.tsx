@@ -312,8 +312,8 @@ export default function TaxMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Calculator className="w-8 h-8 text-blue-600" />
@@ -340,7 +340,7 @@ export default function TaxMaster() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -393,19 +393,19 @@ export default function TaxMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tax</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate & Components</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applicability</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compliance</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statistics</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tax</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate & Components</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applicability</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compliance</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statistics</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredTaxes.map((tax) => (
                   <tr key={tax.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{tax.taxName}</div>
                         <div className="text-sm text-gray-500">{tax.taxCode}</div>
@@ -414,7 +414,7 @@ export default function TaxMaster() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
                         {tax.rate}{tax.rateType === 'percentage' ? '%' : ' Fixed'}
                       </div>
@@ -427,7 +427,7 @@ export default function TaxMaster() {
                         {tax.calculation.method}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         {tax.applicability.applicableOn}
                       </div>
@@ -440,7 +440,7 @@ export default function TaxMaster() {
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {tax.compliance.reportingRequired && (
                         <div className="text-sm text-gray-900">
                           Filing: {tax.compliance.filingFrequency}
@@ -452,7 +452,7 @@ export default function TaxMaster() {
                         </div>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         {tax.statistics.totalTransactions} txns
                       </div>
@@ -463,12 +463,12 @@ export default function TaxMaster() {
                         Paid: {formatCurrency(tax.statistics.totalTaxPaid)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(tax.status)}>
                         {tax.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditTax(tax)}
@@ -497,10 +497,10 @@ export default function TaxMaster() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredTaxes.map((tax) => (
-            <div key={tax.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
-              <div className="flex justify-between items-start mb-4">
+            <div key={tax.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-3">
+              <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">{tax.taxName}</h3>
                   <p className="text-sm text-gray-500">{tax.taxCode}</p>
@@ -523,7 +523,7 @@ export default function TaxMaster() {
                   </button>
                 </div>
               </div>
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Rate:</span>
                   <span className="font-medium">
@@ -664,8 +664,8 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {tax ? 'Edit Tax' : 'Add New Tax'}
           </h2>
@@ -694,9 +694,9 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tax Code</label>
                   <input
@@ -806,10 +806,10 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
             )}
 
             {activeTab === 'components' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <h3 className="text-sm font-medium text-gray-700 mb-2">Tax Components</h3>
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-2 mb-2">
                     {formData.taxComponents.map((component, index) => (
                       <div key={index} className="flex items-center gap-2 p-2 bg-gray-50 rounded">
                         <span className="flex-1">{component.componentName}</span>
@@ -864,7 +864,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
             )}
 
             {activeTab === 'applicability' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Applicable On</label>
                   <select
@@ -922,7 +922,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Min Amount</label>
                     <input
@@ -946,7 +946,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
             )}
 
             {activeTab === 'calculation' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Calculation Method</label>
                   <select
@@ -1007,7 +1007,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
             )}
 
             {activeTab === 'compliance' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tax Registration Number</label>
                   <input
@@ -1063,7 +1063,7 @@ function TaxModal({ tax, onSave, onClose, activeTab, setActiveTab }: TaxModalPro
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

@@ -291,7 +291,7 @@ export function ShortcutsHelpDialog({ className = '' }: ShortcutsHelpDialogProps
       role="dialog"
       aria-modal="true"
       aria-labelledby="shortcuts-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/50"
       onClick={() => setShowHelp(false)}
     >
       <div
@@ -299,7 +299,7 @@ export function ShortcutsHelpDialog({ className = '' }: ShortcutsHelpDialogProps
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
           <h2 id="shortcuts-title" className="text-xl font-semibold text-gray-900 dark:text-white">
             Keyboard Shortcuts
           </h2>
@@ -317,12 +317,12 @@ export function ShortcutsHelpDialog({ className = '' }: ShortcutsHelpDialogProps
         {/* Content */}
         <div className="p-4 overflow-y-auto max-h-[calc(80vh-120px)]">
           {/* Help shortcut hint */}
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
             Press <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono">?</kbd> to toggle this help dialog
           </p>
 
           {/* Shortcut groups */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {Array.from(groupedShortcuts.entries()).map(([category, categoryShortcuts]) => (
               <div key={category}>
                 <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">

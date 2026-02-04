@@ -179,14 +179,14 @@ export default function TDSCalculationPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">TDS Calculation & Deduction</h1>
         <p className="text-sm text-gray-600 mt-1">Monthly Tax Deducted at Source (TDS) computation for {selectedMonth}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-blue-700">Total Employees</p>
@@ -196,7 +196,7 @@ export default function TDSCalculationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-green-700">With TDS</p>
@@ -206,7 +206,7 @@ export default function TDSCalculationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-purple-700">Monthly TDS</p>
@@ -216,7 +216,7 @@ export default function TDSCalculationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-orange-700">TDS Till Date</p>
@@ -226,7 +226,7 @@ export default function TDSCalculationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg shadow-sm border border-cyan-200 p-4">
+        <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg shadow-sm border border-cyan-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-cyan-700">Taxable Income</p>
@@ -237,8 +237,8 @@ export default function TDSCalculationPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -278,10 +278,10 @@ export default function TDSCalculationPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredData.map(record => (
-          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{record.employeeName}</h3>
@@ -317,8 +317,8 @@ export default function TDSCalculationPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">Monthly Salary Breakdown</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -346,7 +346,7 @@ export default function TDSCalculationPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">Annual Projection</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -371,7 +371,7 @@ export default function TDSCalculationPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h4 className="text-xs font-semibold text-purple-900 mb-3">TDS Computation</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -409,7 +409,7 @@ export default function TDSCalculationPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">TDS Calculation Guidelines (FY 2025-26)</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
           <div className="bg-white p-3 rounded">

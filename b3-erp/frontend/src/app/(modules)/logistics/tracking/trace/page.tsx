@@ -117,8 +117,8 @@ export default function TraceTrackingPage() {
   return (
     <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-3 bg-white border-b border-gray-200 flex items-center justify-between flex-shrink-0">
-        <div className="flex items-center gap-4">
+      <div className="px-3 py-2 bg-white border-b border-gray-200 flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -170,7 +170,7 @@ export default function TraceTrackingPage() {
           {/* Shipment Details */}
           <div className="flex-1 overflow-y-auto">
             {shipmentTrace ? (
-              <div className="p-4 space-y-4">
+              <div className="p-4 space-y-2">
                 {/* Status Header */}
                 <div className="flex items-center justify-between">
                   <div>
@@ -183,7 +183,7 @@ export default function TraceTrackingPage() {
                 </div>
 
                 {/* Progress Bar */}
-                <div className="bg-gray-100 rounded-xl p-4">
+                <div className="bg-gray-100 rounded-xl p-3">
                   <div className="flex justify-between text-[10px] font-black text-gray-500 uppercase mb-2">
                     <span>Origin</span>
                     <span>Destination</span>
@@ -265,7 +265,7 @@ export default function TraceTrackingPage() {
 
                 {/* Timeline */}
                 <div className="pt-4 border-t border-gray-100">
-                  <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-2 flex items-center gap-2">
                     <Route className="w-4 h-4 text-orange-600" /> Tracking History
                   </h4>
                   <div className="relative">
@@ -295,7 +295,7 @@ export default function TraceTrackingPage() {
             ) : (
               <div className="flex-1 flex items-center justify-center p-8">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-2">
                     <Navigation className="w-10 h-10 text-gray-400" />
                   </div>
                   <p className="text-gray-500 font-bold mb-1">Enter tracking number</p>
@@ -313,7 +313,7 @@ export default function TraceTrackingPage() {
               {/* Map Placeholder with Route Visualization */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="relative mb-6">
+                  <div className="relative mb-3">
                     {/* Origin Point */}
                     <div className="absolute -top-20 left-1/2 -translate-x-1/2">
                       <div className="p-3 bg-blue-500 rounded-full shadow-lg">
@@ -344,7 +344,7 @@ export default function TraceTrackingPage() {
               </div>
 
               {/* Map Info Overlay */}
-              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Live Tracking</p>
                 <p className="text-lg font-black text-gray-900">{shipmentTrace.progress}% Complete</p>
                 <div className="w-32 bg-gray-200 h-1.5 rounded-full mt-2 overflow-hidden">
@@ -359,7 +359,7 @@ export default function TraceTrackingPage() {
             </div>
           ) : (
             <div className="text-center p-8">
-              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-4">
+              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-2">
                 <MapPin className="w-12 h-12 text-gray-400" />
               </div>
               <p className="text-gray-500 font-bold mb-1">Map View</p>

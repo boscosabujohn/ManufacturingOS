@@ -297,7 +297,7 @@ export function SkillMatrixVisualization({
                       }}
                     >
                       <div
-                        className={`w-10 h-10 mx-auto rounded-lg flex items-center justify-center text-white font-bold cursor-pointer transition-transform hover:scale-110 ${getSkillCellColor(level, skill.requiredLevel)}`}
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold cursor-pointer transition-transform hover:scale-110 ${getSkillCellColor(level, skill.requiredLevel)}`}
                         title={`${skill.name}: ${getLevelLabel(level)} (Required: ${skill.requiredLevel})`}
                       >
                         {level}
@@ -327,17 +327,17 @@ export function SkillMatrixVisualization({
   );
 
   const renderGaps = () => (
-    <div className="space-y-4">
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="bg-red-900/30 border border-red-700 rounded-lg p-4">
+    <div className="space-y-2">
+      <div className="grid grid-cols-3 gap-2 mb-3">
+        <div className="bg-red-900/30 border border-red-700 rounded-lg p-3">
           <p className="text-3xl font-bold text-red-400">{skillGaps.filter(g => g.gap >= 3).length}</p>
           <p className="text-sm text-gray-400">Critical Gaps (3+ levels)</p>
         </div>
-        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-4">
+        <div className="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3">
           <p className="text-3xl font-bold text-yellow-400">{skillGaps.filter(g => g.gap === 2).length}</p>
           <p className="text-sm text-gray-400">Moderate Gaps (2 levels)</p>
         </div>
-        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4">
+        <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-3">
           <p className="text-3xl font-bold text-blue-400">{skillGaps.filter(g => g.gap === 1).length}</p>
           <p className="text-sm text-gray-400">Minor Gaps (1 level)</p>
         </div>
@@ -417,10 +417,10 @@ export function SkillMatrixVisualization({
     const employeeSkillMap = new Map(selectedEmployee.skills.map(s => [s.skillId, s]));
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Employee Header */}
-        <div className="bg-gray-800 rounded-lg p-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="bg-gray-800 rounded-lg p-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
               {selectedEmployee.name.split(' ').map(n => n[0]).join('')}
             </div>
@@ -441,9 +441,9 @@ export function SkillMatrixVisualization({
         </div>
 
         {/* Skills Radar Chart (simplified) */}
-        <div className="grid grid-cols-2 gap-6">
-          <div className="bg-gray-800 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-white mb-4">Skill Levels</h4>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-gray-800 rounded-lg p-3">
+            <h4 className="text-lg font-semibold text-white mb-2">Skill Levels</h4>
             <div className="space-y-3">
               {filteredSkills.map(skill => {
                 const empSkill = employeeSkillMap.get(skill.id);
@@ -477,8 +477,8 @@ export function SkillMatrixVisualization({
             </div>
           </div>
 
-          <div className="bg-gray-800 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-white mb-4">Certifications</h4>
+          <div className="bg-gray-800 rounded-lg p-3">
+            <h4 className="text-lg font-semibold text-white mb-2">Certifications</h4>
             <div className="space-y-3">
               {selectedEmployee.certifications.map(cert => (
                 <div
@@ -514,9 +514,9 @@ export function SkillMatrixVisualization({
         </div>
 
         {/* Training Recommendations */}
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h4 className="text-lg font-semibold text-white mb-4">Recommended Training</h4>
-          <div className="grid grid-cols-3 gap-4">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h4 className="text-lg font-semibold text-white mb-2">Recommended Training</h4>
+          <div className="grid grid-cols-3 gap-2">
             {filteredSkills
               .filter(skill => {
                 const empSkill = employeeSkillMap.get(skill.id);
@@ -524,7 +524,7 @@ export function SkillMatrixVisualization({
               })
               .slice(0, 6)
               .map(skill => (
-                <div key={skill.id} className="bg-gray-700 rounded-lg p-4">
+                <div key={skill.id} className="bg-gray-700 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xl">{skillCategories[skill.category].icon}</span>
                     <span className="text-white font-medium">{skill.name}</span>
@@ -547,15 +547,15 @@ export function SkillMatrixVisualization({
   };
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div>
           <h2 className="text-2xl font-bold text-white">Skill Matrix</h2>
           <p className="text-gray-400">Employee skills vs. required skills gap analysis</p>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {/* Category Filter */}
           <select
             value={selectedCategory}
@@ -592,7 +592,7 @@ export function SkillMatrixVisualization({
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-6 mb-4 p-3 bg-gray-800 rounded-lg">
+      <div className="flex items-center gap-3 mb-2 p-3 bg-gray-800 rounded-lg">
         <span className="text-gray-400 text-sm">Skill Level:</span>
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 bg-green-600 rounded" />
@@ -613,7 +613,7 @@ export function SkillMatrixVisualization({
       </div>
 
       {/* Content */}
-      <div className="bg-gray-800/50 rounded-lg p-4">
+      <div className="bg-gray-800/50 rounded-lg p-3">
         {view === 'matrix' && renderMatrix()}
         {view === 'gaps' && renderGaps()}
         {view === 'individual' && renderIndividual()}
@@ -621,10 +621,10 @@ export function SkillMatrixVisualization({
 
       {/* Training Request Modal */}
       {showTrainingModal && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-md">
-            <h3 className="text-xl font-bold text-white mb-4">Request Training</h3>
-            <div className="space-y-4 mb-6">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-md">
+            <h3 className="text-xl font-bold text-white mb-2">Request Training</h3>
+            <div className="space-y-2 mb-3">
               <div>
                 <label className="text-gray-400 text-sm">Employee</label>
                 <p className="text-white font-medium">{showTrainingModal.employee.name}</p>

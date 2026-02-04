@@ -119,7 +119,7 @@ export default function SupportDashboard() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -152,7 +152,7 @@ export default function SupportDashboard() {
       </div>
 
       {/* Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         {isLoading ? (
           <>
             <CardSkeleton />
@@ -227,7 +227,7 @@ export default function SupportDashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Recent Tickets */}
         <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
@@ -254,7 +254,7 @@ export default function SupportDashboard() {
                       </span>
                     </div>
                     <h3 className="text-sm font-medium text-gray-900 mb-1">{ticket.subject}</h3>
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
                       <span className="flex items-center gap-1">
                         <Users className="h-3 w-3" />
                         {ticket.assignee}
@@ -291,7 +291,7 @@ export default function SupportDashboard() {
             </div>
           </div>
 
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {slaMetrics.map((sla, index) => (
               <div key={index}>
                 <div className="flex items-center justify-between mb-2">
@@ -337,7 +337,7 @@ export default function SupportDashboard() {
       </div>
 
       {/* Ticket Categories and Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Ticket Categories */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
@@ -369,16 +369,16 @@ export default function SupportDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Zap className="h-5 w-5 text-yellow-600" />
             <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <Link
               href="/support/tickets/create"
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-4 hover:from-blue-700 hover:to-cyan-700 text-left block"
+              className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-3 hover:from-blue-700 hover:to-cyan-700 text-left block"
             >
               <Ticket className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Create Ticket</h3>
@@ -387,7 +387,7 @@ export default function SupportDashboard() {
 
             <Link
               href="/support/tickets/create?type=incident"
-              className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-4 hover:from-red-700 hover:to-pink-700 text-left block"
+              className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-3 hover:from-red-700 hover:to-pink-700 text-left block"
             >
               <AlertCircle className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Report Incident</h3>
@@ -396,7 +396,7 @@ export default function SupportDashboard() {
 
             <Link
               href="/support/knowledge-base"
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg p-4 hover:from-purple-700 hover:to-indigo-700 text-left block"
+              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg p-3 hover:from-purple-700 hover:to-indigo-700 text-left block"
             >
               <MessageSquare className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Knowledge Base</h3>
@@ -405,7 +405,7 @@ export default function SupportDashboard() {
 
             <Link
               href="/it-administration/monitoring/system"
-              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-4 hover:from-green-700 hover:to-emerald-700 text-left block"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-3 hover:from-green-700 hover:to-emerald-700 text-left block"
             >
               <Activity className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">System Status</h3>
@@ -414,7 +414,7 @@ export default function SupportDashboard() {
 
             <Link
               href="/support/changes/create"
-              className="bg-gradient-to-r from-orange-600 to-yellow-600 text-white rounded-lg p-4 hover:from-orange-700 hover:to-yellow-700 text-left block"
+              className="bg-gradient-to-r from-orange-600 to-yellow-600 text-white rounded-lg p-3 hover:from-orange-700 hover:to-yellow-700 text-left block"
             >
               <Settings className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Request Change</h3>
@@ -423,7 +423,7 @@ export default function SupportDashboard() {
 
             <Link
               href="/support/assets/hardware"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg p-4 hover:from-indigo-700 hover:to-purple-700 text-left block"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg p-3 hover:from-indigo-700 hover:to-purple-700 text-left block"
             >
               <Shield className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Asset Request</h3>

@@ -330,8 +330,8 @@ export default function WorkflowAutomationPage() {
   return (
     <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
       {/* Header */}
-      <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
               <Bot className="w-5 h-5 text-white" />
@@ -354,10 +354,10 @@ export default function WorkflowAutomationPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-3 space-y-3">
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Rules</p>
@@ -369,7 +369,7 @@ export default function WorkflowAutomationPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-green-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-green-600 uppercase tracking-widest">Active</p>
@@ -381,7 +381,7 @@ export default function WorkflowAutomationPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-yellow-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-yellow-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Paused</p>
@@ -393,7 +393,7 @@ export default function WorkflowAutomationPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-red-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-red-600 uppercase tracking-widest">Errors</p>
@@ -405,7 +405,7 @@ export default function WorkflowAutomationPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-purple-100 shadow-sm">
+          <div className="bg-white p-3 rounded-xl border border-purple-100 shadow-sm">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Executions</p>
@@ -417,7 +417,7 @@ export default function WorkflowAutomationPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900 p-4 rounded-xl text-white shadow-xl">
+          <div className="bg-gray-900 p-3 rounded-xl text-white shadow-xl">
             <div className="flex justify-between items-start">
               <div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Success Rate</p>
@@ -431,8 +431,8 @@ export default function WorkflowAutomationPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="mb-6 space-y-4">
-          <div className="flex gap-4">
+        <div className="mb-3 space-y-2">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -454,7 +454,7 @@ export default function WorkflowAutomationPage() {
           </div>
 
           {showFilters && (
-            <div className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
@@ -495,14 +495,14 @@ export default function WorkflowAutomationPage() {
         </div>
 
         {/* Automation Rules Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
           {paginatedAutomations.map((automation) => (
             <div
               key={automation.id}
-              className="bg-white rounded-lg border-2 border-gray-200 p-6 hover:shadow-lg transition-all"
+              className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:shadow-lg transition-all"
             >
               {/* Automation Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-1">
                     <h3 className="text-lg font-semibold text-gray-900">{automation.name}</h3>
@@ -524,7 +524,7 @@ export default function WorkflowAutomationPage() {
               </div>
 
               {/* Trigger and Action Info */}
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-2">
                 <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div className="flex items-center space-x-2 mb-1">
                     {getTriggerIcon(automation.trigger)}
@@ -544,7 +544,7 @@ export default function WorkflowAutomationPage() {
               </div>
 
               {/* Execution Stats */}
-              <div className="grid grid-cols-4 gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
+              <div className="grid grid-cols-4 gap-3 mb-2 p-3 bg-gray-50 rounded-lg">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Executions</p>
                   <div className="flex items-center space-x-1">
@@ -572,7 +572,7 @@ export default function WorkflowAutomationPage() {
               </div>
 
               {/* Execution Timeline */}
-              <div className="flex items-center justify-between mb-4 text-xs text-gray-500">
+              <div className="flex items-center justify-between mb-2 text-xs text-gray-500">
                 <div className="flex items-center space-x-1">
                   <Clock className="h-3 w-3" />
                   <span>Last: {automation.lastRun}</span>
@@ -638,7 +638,7 @@ export default function WorkflowAutomationPage() {
         </div>
 
         {/* Pagination */}
-        <div className="bg-white rounded-lg border border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="bg-white rounded-lg border border-gray-200 px-3 py-2 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredAutomations.length)} of {filteredAutomations.length} automation rules
           </div>

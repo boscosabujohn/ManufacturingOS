@@ -262,11 +262,11 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -305,28 +305,28 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+        <div className="grid grid-cols-5 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <Package className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{carrier.totalShipments.toLocaleString()}</div>
             <div className="text-blue-100 text-sm">Total Shipments</div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <CheckCircle2 className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{carrier.onTimePercentage}%</div>
             <div className="text-green-100 text-sm">On-Time Delivery</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
             <Star className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{carrier.performanceRating.toFixed(1)}</div>
             <div className="text-purple-100 text-sm">Rating (out of 5)</div>
           </div>
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
             <DollarSign className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">₹{(carrier.totalRevenue / 1000).toFixed(0)}K</div>
             <div className="text-orange-100 text-sm">Total Revenue</div>
           </div>
-          <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 rounded-xl text-white">
             <Clock className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{carrier.averageTransitTime.toFixed(1)}</div>
             <div className="text-indigo-100 text-sm">Avg Transit Days</div>
@@ -334,7 +334,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -379,14 +379,14 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
           <div className="p-6">
             {/* Overview Tab */}
             {activeTab === 'overview' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Contact Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <User className="w-5 h-5 text-blue-600" />
                     Contact Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-3">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="flex items-center gap-3 text-gray-600 mb-2">
                         <User className="w-4 h-4" />
@@ -420,7 +420,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Address Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-green-600" />
                     Address Information
                   </h3>
@@ -435,11 +435,11 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Service Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Truck className="w-5 h-5 text-purple-600" />
                     Service Information
                   </h3>
-                  <div className="grid grid-cols-3 gap-6">
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm font-medium text-gray-600 mb-2">Service Types</div>
                       <div className="flex flex-wrap gap-2">
@@ -469,11 +469,11 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Features */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Award className="w-5 h-5 text-orange-600" />
                     Features & Capabilities
                   </h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div className={`p-4 rounded-lg border-2 ${carrier.insuranceCoverage ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-300'}`}>
                       <div className="flex items-center gap-2">
                         {carrier.insuranceCoverage ? (
@@ -514,9 +514,9 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
                 </div>
 
                 {/* Tax & Bank Information */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <FileText className="w-5 h-5 text-indigo-600" />
                       Tax Information
                     </h3>
@@ -532,7 +532,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Building2 className="w-5 h-5 text-purple-600" />
                       Bank Information
                     </h3>
@@ -556,7 +556,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
                 {/* Remarks */}
                 {carrier.remarks && (
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Remarks</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Remarks</h3>
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <p className="text-gray-700">{carrier.remarks}</p>
                     </div>
@@ -565,7 +565,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Metadata */}
                 <div className="pt-6 border-t border-gray-200">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-sm">
                     <div className="flex items-center gap-2 text-gray-600">
                       <Calendar className="w-4 h-4" />
                       <span>Created: {new Date(carrier.createdDate).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
@@ -582,7 +582,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
             {/* Shipments Tab */}
             {activeTab === 'shipments' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Shipment History</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Shipment History</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b border-gray-200">
@@ -653,16 +653,16 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
             {/* Performance Tab */}
             {activeTab === 'performance' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Performance Analytics</h3>
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Performance Analytics</h3>
 
                 {/* Delivery Performance */}
                 <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-blue-600" />
                     Delivery Performance
                   </h4>
-                  <div className="grid grid-cols-3 gap-6">
+                  <div className="grid grid-cols-3 gap-3">
                     <div>
                       <div className="text-sm text-gray-600 mb-2">On-Time Deliveries</div>
                       <div className="text-3xl font-bold text-green-600 mb-2">{carrier.onTimeDeliveries}</div>
@@ -709,7 +709,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Performance Rating */}
                 <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Star className="w-5 h-5 text-purple-600" />
                     Overall Rating
                   </h4>
@@ -746,11 +746,11 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Transit Time */}
                 <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Clock className="w-5 h-5 text-green-600" />
                     Transit Time Analysis
                   </h4>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
                       <div className="text-sm text-gray-600 mb-2">Average Transit Time</div>
                       <div className="text-4xl font-bold text-green-600">{carrier.averageTransitTime.toFixed(1)} days</div>
@@ -779,11 +779,11 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
                 {/* Revenue Analysis */}
                 <div className="p-6 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border border-orange-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <DollarSign className="w-5 h-5 text-orange-600" />
                     Revenue Analysis
                   </h4>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
                       <div className="text-sm text-gray-600 mb-2">Total Revenue Generated</div>
                       <div className="text-4xl font-bold text-orange-600">
@@ -806,10 +806,10 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
             {/* Activity Tab */}
             {activeTab === 'activity' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Activity Timeline</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Activity Timeline</h3>
+                <div className="space-y-2">
                   {activities.map((activity, index) => (
-                    <div key={index} className="flex gap-4">
+                    <div key={index} className="flex gap-2">
                       <div className="flex flex-col items-center">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${activity.type === 'success' ? 'bg-green-100' :
                             activity.type === 'update' ? 'bg-blue-100' :

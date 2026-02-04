@@ -60,9 +60,9 @@ export default function CostsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <BarChart3 className="h-8 w-8 text-purple-600" />
@@ -88,9 +88,9 @@ export default function CostsPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-gray-500 text-sm font-medium">Avg. Cost per Employee</h3>
             <div className="p-2 bg-purple-50 rounded-lg">
               <Users className="w-5 h-5 text-purple-600" />
@@ -105,8 +105,8 @@ export default function CostsPage() {
           <p className="text-xs text-gray-400 mt-2">Industry Avg: $1,100</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-gray-500 text-sm font-medium">Cost per Training Hour</h3>
             <div className="p-2 bg-blue-50 rounded-lg">
               <DollarSign className="w-5 h-5 text-blue-600" />
@@ -121,8 +121,8 @@ export default function CostsPage() {
           <p className="text-xs text-gray-400 mt-2">Previous Year: $51</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-gray-500 text-sm font-medium">Potential Savings</h3>
             <div className="p-2 bg-amber-50 rounded-lg">
               <Lightbulb className="w-5 h-5 text-amber-600" />
@@ -138,10 +138,10 @@ export default function CostsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Cost Trend Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Cost per Employee Trend</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Cost per Employee Trend</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={costPerEmployeeData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -162,7 +162,7 @@ export default function CostsPage() {
         </div>
 
         {/* Vendor Spend Breakdown */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col sm:flex-row items-center gap-8">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col sm:flex-row items-center gap-8">
           <div className="w-full sm:w-1/2 h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -204,7 +204,7 @@ export default function CostsPage() {
             Cost Optimization Insights
           </h3>
         </div>
-        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-3">
           {optimizationInsights.map((insight) => (
             <div key={insight.id} className="p-4 border rounded-xl bg-gray-50 border-gray-200 hover:border-purple-300 transition-colors">
               <div className="flex justify-between items-start mb-3">

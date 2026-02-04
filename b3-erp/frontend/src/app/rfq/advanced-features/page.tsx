@@ -48,8 +48,8 @@ export default function RFQAdvancedFeatures() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
-      <div className="space-y-6">
-        <div className="bg-white shadow-lg p-6">
+      <div className="space-y-3">
+        <div className="bg-white shadow-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-3">
@@ -71,7 +71,7 @@ export default function RFQAdvancedFeatures() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-4 font-medium transition-all whitespace-nowrap border-b-2 ${
+                  className={`flex items-center gap-2 px-3 py-2 font-medium transition-all whitespace-nowrap border-b-2 ${
                     activeTab === tab.id
                       ? 'border-blue-600 text-blue-600 bg-blue-50'
                       : 'border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -89,7 +89,7 @@ export default function RFQAdvancedFeatures() {
           <ActiveComponent />
         </div>
 
-        <div className="bg-white shadow-lg p-6 text-center">
+        <div className="bg-white shadow-lg p-3 text-center">
           <p className="text-sm text-gray-600">
             RFQ Advanced Features • Vendor portals, weighted scoring, bid analytics, multi-level approvals, audit logging, sourcing events, and contract automation
           </p>

@@ -444,10 +444,10 @@ export function Customer360Unified({
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Customer Header */}
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className=" px-6 py-2">
           <div className="flex items-start justify-between">
             {/* Customer Info */}
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-2">
               {/* Logo */}
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-2xl font-bold">
                 {customer.name.charAt(0)}
@@ -464,7 +464,7 @@ export function Customer360Unified({
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <span className="flex items-center gap-1">
                     <Briefcase className="w-4 h-4" />
                     {customer.industry}
@@ -525,7 +525,7 @@ export function Customer360Unified({
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-6 gap-4 mt-6">
+          <div className="grid grid-cols-6 gap-2 mt-6">
             <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-gray-500">Health Score</span>
@@ -582,10 +582,10 @@ export function Customer360Unified({
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="grid grid-cols-3 gap-6">
+      <div className=" px-6 py-2">
+        <div className="grid grid-cols-3 gap-3">
           {/* Left Column - Contacts */}
-          <div className="col-span-1 space-y-6">
+          <div className="col-span-1 space-y-3">
             {/* Contacts Card */}
             <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
               <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
@@ -656,8 +656,8 @@ export function Customer360Unified({
             </div>
 
             {/* Quick Stats */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Quick Stats</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Quick Stats</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600 dark:text-gray-400">Total Orders</span>
@@ -686,7 +686,7 @@ export function Customer360Unified({
           {/* Right Column - Timeline & Tabs */}
           <div className="col-span-2">
             {/* Tab Navigation */}
-            <div className="flex items-center gap-1 mb-4 bg-white dark:bg-gray-800 rounded-lg p-1 border border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-1 mb-2 bg-white dark:bg-gray-800 rounded-lg p-1 border border-gray-200 dark:border-gray-700">
               {[
                 { id: 'timeline', label: 'Timeline', icon: Activity },
                 { id: 'opportunities', label: 'Opportunities', icon: Target, count: opportunities.length },
@@ -751,20 +751,20 @@ export function Customer360Unified({
                     <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" />
 
                     {/* Activities */}
-                    <div className="space-y-6">
+                    <div className="space-y-3">
                       {filteredActivities.map((activity, idx) => {
                         const Icon = getActivityIcon(activity.type);
                         const colorClass = getActivityColor(activity.type);
 
                         return (
-                          <div key={activity.id} className="relative flex gap-4">
+                          <div key={activity.id} className="relative flex gap-2">
                             {/* Icon */}
                             <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center ${colorClass}`}>
                               <Icon className="w-5 h-5" />
                             </div>
 
                             {/* Content */}
-                            <div className="flex-1 bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4">
+                            <div className="flex-1 bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
                               <div className="flex items-start justify-between mb-2">
                                 <div>
                                   <h4 className="font-medium text-gray-900 dark:text-white">{activity.title}</h4>

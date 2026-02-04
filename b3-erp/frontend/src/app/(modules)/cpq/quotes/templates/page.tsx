@@ -269,9 +269,9 @@ export default function CPQQuotesTemplatesPage() {
   const totalUsage = filteredTemplates.reduce((sum, t) => sum + t.usageCount, 0)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button onClick={() => setIsFilterModalOpen(true)} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -289,7 +289,7 @@ export default function CPQQuotesTemplatesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -338,7 +338,7 @@ export default function CPQQuotesTemplatesPage() {
       </div>
 
       {/* Category Filter */}
-      <div className="mb-6 flex gap-3 overflow-x-auto pb-2">
+      <div className="mb-3 flex gap-3 overflow-x-auto pb-2">
         <button onClick={() => handleCategoryFilter(null)} className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
           selectedCategoryFilter === null
             ? 'bg-blue-100 text-blue-700 border border-blue-200'
@@ -377,7 +377,7 @@ export default function CPQQuotesTemplatesPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -391,12 +391,12 @@ export default function CPQQuotesTemplatesPage() {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {filteredTemplates.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <FileText className="h-16 w-16 text-gray-300 mb-4" />
+            <FileText className="h-16 w-16 text-gray-300 mb-2" />
             <p className="text-lg font-medium text-gray-500 mb-2">No templates found</p>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 mb-2">
               {searchQuery || selectedCategoryFilter || appliedFilters
                 ? 'Try adjusting your search or filter criteria'
                 : 'Get started by creating your first quote template'}
@@ -432,9 +432,9 @@ export default function CPQQuotesTemplatesPage() {
                 </span>
               </div>
 
-              <p className="text-sm text-gray-600 mb-4 line-clamp-2">{template.description}</p>
+              <p className="text-sm text-gray-600 mb-2 line-clamp-2">{template.description}</p>
 
-              <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
+              <div className="grid grid-cols-2 gap-3 mb-2 text-xs">
                 <div className="bg-gray-50 rounded p-2">
                   <p className="text-gray-500">Sections</p>
                   <p className="font-semibold text-gray-900">{template.sections}</p>
@@ -445,7 +445,7 @@ export default function CPQQuotesTemplatesPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mb-4 text-xs text-gray-600">
+              <div className="flex items-center justify-between mb-2 text-xs text-gray-600">
                 <span>Last used: {new Date(template.lastUsed).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</span>
                 <span className={`px-2 py-0.5 rounded-full border ${getStatusColor(template.status)}`}>
                   {template.status}
@@ -485,7 +485,7 @@ export default function CPQQuotesTemplatesPage() {
       </div>
 
       {/* Template Info */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Quote Template Features:</h3>
         <ul className="text-xs text-blue-700 space-y-1">
           <li><strong>Pre-configured Sections:</strong> Standard sections like customer info, line items, terms & conditions</li>

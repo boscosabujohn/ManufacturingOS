@@ -240,14 +240,14 @@ export function BrandingCustomizer({
         <div className="p-6 border-r border-gray-200 dark:border-gray-700">
           {/* Logo Tab */}
           {activeTab === 'logo' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Main Logo */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Company Logo
                 </label>
                 <div
-                  className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                  className={`border-2 border-dashed rounded-lg p-3 text-center transition-colors ${
                     isDragging
                       ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                       : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
@@ -264,7 +264,7 @@ export function BrandingCustomizer({
                       <img
                         src={branding.logoUrl}
                         alt={branding.logoAlt || 'Logo'}
-                        className="max-h-24 max-w-full mx-auto"
+                        className="max-h-24 max-w-full"
                       />
                       <button
                         onClick={() => updateBranding({ logoUrl: undefined })}
@@ -275,7 +275,7 @@ export function BrandingCustomizer({
                     </div>
                   ) : (
                     <>
-                      <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                      <Upload className="w-8 h-8 text-gray-400 mb-2" />
                       <p className="text-sm text-gray-600 dark:text-gray-400">
                         Drag and drop or{' '}
                         <button
@@ -323,7 +323,7 @@ export function BrandingCustomizer({
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Favicon (Optional)
                 </label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   {branding.faviconUrl ? (
                     <div className="relative">
                       <img
@@ -366,7 +366,7 @@ export function BrandingCustomizer({
 
           {/* Colors Tab */}
           {activeTab === 'colors' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Primary Color */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -468,7 +468,7 @@ export function BrandingCustomizer({
 
           {/* Company Tab */}
           {activeTab === 'company' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Company Name
@@ -502,7 +502,7 @@ export function BrandingCustomizer({
         {/* Preview Panel */}
         {showPreview && (
           <div className="p-6 bg-gray-50 dark:bg-gray-800">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</h3>
               <div className="flex items-center gap-2">
                 <button

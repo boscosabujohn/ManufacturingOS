@@ -263,10 +263,10 @@ export default function IncidentsPage() {
   };
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 ">
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+    <div className="w-full min-h-screen px-3 py-2 ">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Incidents</p>
@@ -276,7 +276,7 @@ export default function IncidentsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-600">Critical</p>
@@ -286,7 +286,7 @@ export default function IncidentsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Open</p>
@@ -296,7 +296,7 @@ export default function IncidentsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">Downtime (min)</p>
@@ -306,7 +306,7 @@ export default function IncidentsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Affected Users</p>
@@ -326,8 +326,8 @@ export default function IncidentsPage() {
         </button>
       </div>
 
-      <div className="mb-6">
-        <div className="flex gap-4 mb-4">
+      <div className="mb-3">
+        <div className="flex gap-2 mb-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -355,7 +355,7 @@ export default function IncidentsPage() {
         </div>
 
         {showAdvancedFilters && (
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Severity</label>
               <select
@@ -523,7 +523,7 @@ export default function IncidentsPage() {
           </table>
         </div>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredIncidents.length)} of {filteredIncidents.length} incidents
           </div>

@@ -35,10 +35,10 @@ export function ApproveJournalEntryModal({ isOpen, onClose, entryId, onApprove }
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -53,8 +53,8 @@ export function ApproveJournalEntryModal({ isOpen, onClose, entryId, onApprove }
         {/* Content */}
         <div className="p-6">
           {/* Entry Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-600">Voucher Number</label>
                 <p className="text-gray-900 font-mono">{entryData.voucherNumber}</p>
@@ -79,7 +79,7 @@ export function ApproveJournalEntryModal({ isOpen, onClose, entryId, onApprove }
           </div>
 
           {/* Approval Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Approval Comments (Optional)
             </label>
@@ -93,7 +93,7 @@ export function ApproveJournalEntryModal({ isOpen, onClose, entryId, onApprove }
           </div>
 
           {/* Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -109,7 +109,7 @@ export function ApproveJournalEntryModal({ isOpen, onClose, entryId, onApprove }
           </div>
 
           {/* Approval Checklist */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h4 className="text-green-800 font-medium mb-3">✓ Pre-Approval Checklist</h4>
             <div className="space-y-2 text-sm text-green-700">
               <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export function ApproveJournalEntryModal({ isOpen, onClose, entryId, onApprove }
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -179,10 +179,10 @@ export function RejectJournalEntryModal({ isOpen, onClose, entryId, onReject }: 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <XCircle className="w-5 h-5 text-white" />
@@ -196,7 +196,7 @@ export function RejectJournalEntryModal({ isOpen, onClose, entryId, onReject }: 
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-900 font-medium mb-2">
               Entry ID: <span className="font-mono">{entryId || 'JE-2025-0456'}</span>
             </p>
@@ -206,7 +206,7 @@ export function RejectJournalEntryModal({ isOpen, onClose, entryId, onReject }: 
           </div>
 
           {/* Rejection Category */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Rejection Category *</label>
             <select
               value={rejectionCategory}
@@ -225,7 +225,7 @@ export function RejectJournalEntryModal({ isOpen, onClose, entryId, onReject }: 
           </div>
 
           {/* Rejection Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Detailed Reason for Rejection *
             </label>
@@ -242,7 +242,7 @@ export function RejectJournalEntryModal({ isOpen, onClose, entryId, onReject }: 
           </div>
 
           {/* Warning */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <h4 className="text-red-800 font-medium mb-2">⚠️ Rejection Impact</h4>
             <ul className="text-sm text-red-700 space-y-1">
               <li>• Entry status will be changed to "Rejected"</li>
@@ -254,7 +254,7 @@ export function RejectJournalEntryModal({ isOpen, onClose, entryId, onReject }: 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -303,10 +303,10 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Send className="w-5 h-5 text-white" />
@@ -320,7 +320,7 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-900 font-medium mb-2">
               Entry ID: <span className="font-mono">{entryId || 'JE-2025-0456'}</span>
             </p>
@@ -330,7 +330,7 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
           </div>
 
           {/* Select Approver */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Approver *</label>
             <select
               value={approver}
@@ -346,7 +346,7 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
           </div>
 
           {/* Priority */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
             <div className="grid grid-cols-3 gap-3">
               <button
@@ -386,7 +386,7 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
           </div>
 
           {/* Notes */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Notes to Approver (Optional)
             </label>
@@ -400,7 +400,7 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
           </div>
 
           {/* Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-blue-800 font-medium mb-2">📋 Approval Workflow</h4>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Approver will receive email notification</li>
@@ -412,7 +412,7 @@ export function SubmitForApprovalModal({ isOpen, onClose, entryId, onSubmit }: S
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -456,10 +456,10 @@ export function BatchPostJournalEntriesModal({ isOpen, onClose, selectedEntries 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -474,12 +474,12 @@ export function BatchPostJournalEntriesModal({ isOpen, onClose, selectedEntries 
         {/* Content */}
         <div className="p-6">
           {/* Summary */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-6">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-3">
             <div className="flex items-center gap-3 mb-3">
               <FileText className="w-5 h-5 text-teal-600" />
               <h3 className="font-semibold text-teal-900">Batch Summary</h3>
             </div>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-teal-700">Selected Entries:</span>
                 <span className="ml-2 font-semibold text-teal-900">{selectedEntries.length}</span>
@@ -492,7 +492,7 @@ export function BatchPostJournalEntriesModal({ isOpen, onClose, selectedEntries 
           </div>
 
           {/* Post Date */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Posting Date *</label>
             <input
               type="date"
@@ -506,7 +506,7 @@ export function BatchPostJournalEntriesModal({ isOpen, onClose, selectedEntries 
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -534,7 +534,7 @@ export function BatchPostJournalEntriesModal({ isOpen, onClose, selectedEntries 
           </div>
 
           {/* Warning */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -548,7 +548,7 @@ export function BatchPostJournalEntriesModal({ isOpen, onClose, selectedEntries 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -612,10 +612,10 @@ export function JournalEntryCommentsModal({ isOpen, onClose, entryId }: JournalE
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <MessageSquare className="w-5 h-5 text-white" />
@@ -633,9 +633,9 @@ export function JournalEntryCommentsModal({ isOpen, onClose, entryId }: JournalE
         {/* Content */}
         <div className="p-6">
           {/* Comments List */}
-          <div className="mb-6 max-h-96 overflow-y-auto space-y-4">
+          <div className="mb-3 max-h-96 overflow-y-auto space-y-2">
             {comments.map((comment) => (
-              <div key={comment.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={comment.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between mb-2">
                   <div>
                     <div className="font-semibold text-gray-900">{comment.user}</div>
@@ -669,7 +669,7 @@ export function JournalEntryCommentsModal({ isOpen, onClose, entryId }: JournalE
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -738,10 +738,10 @@ export function JournalEntryAuditTrailModal({ isOpen, onClose, entryId }: Journa
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Clock className="w-5 h-5 text-white" />
@@ -761,13 +761,13 @@ export function JournalEntryAuditTrailModal({ isOpen, onClose, entryId }: Journa
           {/* Timeline */}
           <div className="relative">
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {auditEvents.map((event, index) => (
-                <div key={event.id} className="relative flex gap-4">
+                <div key={event.id} className="relative flex gap-2">
                   <div className="flex-shrink-0 w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center text-2xl border-4 border-white shadow-sm z-10">
                     {event.icon}
                   </div>
-                  <div className="flex-1 bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                  <div className="flex-1 bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <h3 className="font-semibold text-gray-900">{event.action}</h3>
@@ -783,8 +783,8 @@ export function JournalEntryAuditTrailModal({ isOpen, onClose, entryId }: Journa
           </div>
 
           {/* Summary */}
-          <div className="mt-6 bg-slate-50 border border-slate-200 rounded-lg p-4">
-            <div className="grid grid-cols-3 gap-4 text-center">
+          <div className="mt-6 bg-slate-50 border border-slate-200 rounded-lg p-3">
+            <div className="grid grid-cols-3 gap-2 text-center">
               <div>
                 <div className="text-2xl font-bold text-slate-900">{auditEvents.length}</div>
                 <div className="text-sm text-slate-600">Total Events</div>
@@ -802,7 +802,7 @@ export function JournalEntryAuditTrailModal({ isOpen, onClose, entryId }: Journa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition-colors"

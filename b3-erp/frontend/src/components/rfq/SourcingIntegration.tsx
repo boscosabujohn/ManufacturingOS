@@ -26,8 +26,8 @@ export default function SourcingIntegration() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <Gavel className="h-8 w-8 text-teal-600" />
           Sourcing Event Integration
@@ -35,11 +35,11 @@ export default function SourcingIntegration() {
         <p className="text-gray-600 mt-1">Link RFQs to auctions and bidding events</p>
       </div>
 
-      <div className="bg-white shadow-lg border border-gray-200 p-6">
-        <div className="space-y-4">
+      <div className="bg-white shadow-lg border border-gray-200 p-3">
+        <div className="space-y-2">
           {events.map((event, idx) => (
             <div key={idx} className="p-5 border border-gray-200 rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <div>
                   <h4 className="font-bold text-gray-900">{event.rfqId}</h4>
                   <p className="text-sm text-gray-600 capitalize">{event.eventType.replace('-', ' ')}</p>
@@ -49,8 +49,8 @@ export default function SourcingIntegration() {
                 </span>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="grid grid-cols-3 items-center gap-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="grid grid-cols-3 items-center gap-2">
                   <div className="flex items-center gap-3">
                     <FileText className="h-8 w-8 text-blue-600" />
                     <div>
@@ -73,7 +73,7 @@ export default function SourcingIntegration() {
                 </div>
               </div>
 
-              <div className="mt-4 grid grid-cols-2 gap-4">
+              <div className="mt-4 grid grid-cols-2 gap-2">
                 <div className="p-3 bg-blue-50 rounded-lg">
                   <p className="text-xs text-blue-600 font-medium">Participants</p>
                   <p className="text-2xl font-bold text-blue-900">{event.participants}</p>

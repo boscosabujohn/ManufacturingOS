@@ -272,7 +272,7 @@ export function AccessibleModal({
       />
 
       {/* Modal container */}
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-3">
         <FocusTrap
           active={isOpen}
           onEscape={closeOnEscape ? onClose : undefined}
@@ -294,7 +294,7 @@ export function AccessibleModal({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
               <h2
                 id={titleId}
                 className="text-xl font-semibold text-gray-900 dark:text-white"

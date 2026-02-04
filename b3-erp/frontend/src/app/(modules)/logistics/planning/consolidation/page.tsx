@@ -301,7 +301,7 @@ export default function ConsolidationPlanningPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -320,8 +320,8 @@ export default function ConsolidationPlanningPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between mb-2">
             <Layers className="w-8 h-8 text-teal-600" />
             <span className="text-2xl font-bold text-teal-900">{totalOpportunities}</span>
@@ -330,7 +330,7 @@ export default function ConsolidationPlanningPage() {
           <div className="text-xs text-teal-600 mt-1">All Status</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{activeOpportunities}</span>
@@ -339,7 +339,7 @@ export default function ConsolidationPlanningPage() {
           <div className="text-xs text-blue-600 mt-1">Ready to Consolidate</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">₹{(totalPotentialSavings / 1000).toFixed(0)}K</span>
@@ -348,7 +348,7 @@ export default function ConsolidationPlanningPage() {
           <div className="text-xs text-green-600 mt-1">Cost Reduction</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingDown className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{avgUtilization}%</span>
@@ -359,8 +359,8 @@ export default function ConsolidationPlanningPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -406,26 +406,26 @@ export default function ConsolidationPlanningPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Consolidation Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipments</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost Savings</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Consolidation Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipments</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost Savings</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredOpportunities.map((opportunity) => (
                 <tr key={opportunity.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{opportunity.consolidationId}</div>
                     <div className="text-sm text-gray-600">{opportunity.opportunityName}</div>
                     <div className="text-xs text-gray-500 mt-1">By: {opportunity.createdBy}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2 text-sm text-gray-900">
                       <MapPin className="w-4 h-4 text-green-500" />
                       <span>{opportunity.origin}</span>
@@ -435,13 +435,13 @@ export default function ConsolidationPlanningPage() {
                       <span>{opportunity.destination}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2 text-sm text-gray-900">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <span>{new Date(opportunity.targetDate).toLocaleDateString()}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className="flex items-center justify-center space-x-1 mb-1">
                       <Package className="w-4 h-4 text-gray-400" />
                       <span className="text-sm font-bold text-gray-900">{opportunity.numberOfShipments}</span>
@@ -449,7 +449,7 @@ export default function ConsolidationPlanningPage() {
                     <div className="text-xs text-gray-600">{(opportunity.totalWeight / 1000).toFixed(1)}T</div>
                     <div className="text-xs text-gray-600">{opportunity.totalVolume}m³</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2 text-sm font-medium text-gray-900">
                       <Truck className="w-4 h-4 text-gray-400" />
                       <span>{opportunity.estimatedVehicleType}</span>
@@ -458,7 +458,7 @@ export default function ConsolidationPlanningPage() {
                       Cap: {(opportunity.vehicleCapacityWeight / 1000).toFixed(1)}T / {opportunity.vehicleCapacityVolume}m³
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 bg-gray-200 rounded-full h-2 w-20">
                         <div
@@ -475,7 +475,7 @@ export default function ConsolidationPlanningPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1 text-sm font-bold text-green-600">
                       <TrendingDown className="w-4 h-4" />
                       <span>₹{(opportunity.potentialSavings / 1000).toFixed(1)}K</span>
@@ -487,7 +487,7 @@ export default function ConsolidationPlanningPage() {
                       {((opportunity.potentialSavings / opportunity.currentCost) * 100).toFixed(0)}% reduction
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       {getStatusIcon(opportunity.status)}
                       <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(opportunity.status)}`}>
@@ -495,7 +495,7 @@ export default function ConsolidationPlanningPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
@@ -515,9 +515,9 @@ export default function ConsolidationPlanningPage() {
       </div>
 
       {/* Consolidation Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-teal-100 rounded-lg">
               <Layers className="w-6 h-6 text-teal-600" />
             </div>
@@ -533,8 +533,8 @@ export default function ConsolidationPlanningPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
@@ -550,8 +550,8 @@ export default function ConsolidationPlanningPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Package className="w-6 h-6 text-blue-600" />
             </div>

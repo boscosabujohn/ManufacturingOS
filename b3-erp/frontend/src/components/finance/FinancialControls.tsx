@@ -522,10 +522,10 @@ const FinancialControls: React.FC = () => {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <ShieldCheckIcon className="h-8 w-8 text-blue-600" />
@@ -539,7 +539,7 @@ const FinancialControls: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <AlertTriangle className="h-8 w-8 text-orange-600" />
@@ -556,7 +556,7 @@ const FinancialControls: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <CheckCircleIcon className="h-8 w-8 text-green-600" />
@@ -570,7 +570,7 @@ const FinancialControls: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <FileText className="h-8 w-8 text-purple-600" />
@@ -585,9 +585,9 @@ const FinancialControls: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Control Effectiveness & Compliance</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Control Effectiveness & Compliance</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={controlEffectivenessData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -601,8 +601,8 @@ const FinancialControls: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Exception Trends</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Exception Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={exceptionTrendsData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -619,9 +619,9 @@ const FinancialControls: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Level Distribution</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Level Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -643,8 +643,8 @@ const FinancialControls: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Compliance Status</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Compliance Status</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -669,15 +669,15 @@ const FinancialControls: React.FC = () => {
 
       {/* Recent Activity */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Recent Control Activities</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {controlExceptions.slice(0, 3).map((exception) => {
               const control = financialControls.find(c => c.id === exception.controlId);
               return (
-                <div key={exception.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={exception.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div className="flex-1">
                     <h4 className="font-medium text-gray-900">{control?.name}</h4>
                     <p className="text-sm text-gray-600">{exception.description}</p>
@@ -701,7 +701,7 @@ const FinancialControls: React.FC = () => {
   );
 
   const renderControls = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Financial Controls</h3>
         <button
@@ -713,10 +713,10 @@ const FinancialControls: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {financialControls.map((control) => (
-          <div key={control.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={control.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900">{control.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{control.description}</p>
@@ -825,7 +825,7 @@ const FinancialControls: React.FC = () => {
   );
 
   const renderExceptions = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Control Exceptions</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -833,25 +833,25 @@ const FinancialControls: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Control
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Description
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Severity
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Assigned To
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Detected
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -861,10 +861,10 @@ const FinancialControls: React.FC = () => {
                 const control = financialControls.find(c => c.id === exception.controlId);
                 return (
                   <tr key={exception.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       {control?.name}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-3 py-2 text-sm text-gray-900">
                       <div className="max-w-xs">
                         {exception.description}
                         {exception.impact && (
@@ -872,21 +872,21 @@ const FinancialControls: React.FC = () => {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRiskLevelColor(exception.severity)}`}>
                         {exception.severity.charAt(0).toUpperCase() + exception.severity.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {getExceptionStatusBadge(exception.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {exception.assignedTo}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {formatDate(exception.detectedDate)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
                           onClick={() => setSelectedException(exception)}
@@ -917,7 +917,7 @@ const FinancialControls: React.FC = () => {
   );
 
   const renderAuditTrail = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Audit Trail</h3>
         <div className="flex space-x-2">
@@ -928,8 +928,8 @@ const FinancialControls: React.FC = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">From Date</label>
             <input
@@ -996,25 +996,25 @@ const FinancialControls: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Timestamp
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   User
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Action
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Entity
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Result
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Risk Score
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -1022,31 +1022,31 @@ const FinancialControls: React.FC = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {auditRecords.map((record) => (
                 <tr key={record.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatDateTime(record.timestamp)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{record.userName}</div>
                       <div className="text-sm text-gray-500">{record.userId}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {record.action.replace('_', ' ')}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{record.entityType}</div>
                       <div className="text-sm text-gray-500">{record.entityId}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {getAuditResultBadge(record.result)}
                     {record.reason && (
                       <div className="text-xs text-gray-500 mt-1">{record.reason}</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {record.riskScore && (
                       <div className="flex items-center">
                         <div className={`w-3 h-3 rounded-full mr-2 ${
@@ -1057,7 +1057,7 @@ const FinancialControls: React.FC = () => {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                       <FileSearch className="w-4 h-4 text-gray-600" />
                       <span className="text-gray-700">Review</span>
@@ -1073,7 +1073,7 @@ const FinancialControls: React.FC = () => {
   );
 
   const renderWorkflows = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Approval Workflows</h3>
         <button
@@ -1085,10 +1085,10 @@ const FinancialControls: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {approvalWorkflows.map((workflow) => (
-          <div key={workflow.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={workflow.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <h4 className="font-semibold text-gray-900">{workflow.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{workflow.description}</p>
@@ -1170,20 +1170,20 @@ const FinancialControls: React.FC = () => {
   );
 
   const renderCompliance = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Compliance Monitoring</h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Overall Compliance Score</h4>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Overall Compliance Score</h4>
           <div className="text-center">
             <div className="text-4xl font-bold text-green-600 mb-2">92%</div>
             <div className="text-sm text-gray-600">4 of 4 controls compliant</div>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Control Effectiveness</h4>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Control Effectiveness</h4>
           <div className="space-y-3">
             {financialControls.map((control) => (
               <div key={control.id} className="flex items-center justify-between">
@@ -1202,8 +1202,8 @@ const FinancialControls: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Risk Assessment</h4>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Risk Assessment</h4>
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Critical Risks:</span>
@@ -1227,17 +1227,17 @@ const FinancialControls: React.FC = () => {
 
       {/* Compliance Reports */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h4 className="font-medium text-gray-900">Compliance Reports</h4>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {[
               { name: 'SOX Compliance Report', period: 'Q1 2024', score: 95 },
               { name: 'Internal Controls Assessment', period: 'January 2024', score: 88 },
               { name: 'Risk Management Review', period: 'Q1 2024', score: 92 }
             ].map((report, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-4">
+              <div key={index} className="border border-gray-200 rounded-lg p-3">
                 <h5 className="font-medium text-gray-900">{report.name}</h5>
                 <p className="text-sm text-gray-600 mt-1">{report.period}</p>
                 <div className="mt-3 flex items-center justify-between">
@@ -1255,14 +1255,14 @@ const FinancialControls: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Financial Controls & Audit</h1>
         <p className="text-gray-600 mt-2">Monitor financial controls, track exceptions, and maintain comprehensive audit trails</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },

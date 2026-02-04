@@ -96,21 +96,21 @@ export const UploadDocumentModal: React.FC<UploadDocumentModalProps> = ({ isOpen
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">Upload Document for E-Signature</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded p-1">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Document Upload */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Document Information</h3>
-            <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Document Information</h3>
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Document File *</label>
                 <div className="flex items-center space-x-3">
@@ -158,7 +158,7 @@ export const UploadDocumentModal: React.FC<UploadDocumentModalProps> = ({ isOpen
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Document Type *</label>
                   <select
@@ -193,7 +193,7 @@ export const UploadDocumentModal: React.FC<UploadDocumentModalProps> = ({ isOpen
 
           {/* Signers */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Signers</h3>
               <button
                 type="button"
@@ -295,8 +295,8 @@ export const UploadDocumentModal: React.FC<UploadDocumentModalProps> = ({ isOpen
 
           {/* Security Options */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Security Options</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Security Options</h3>
+            <div className="grid grid-cols-2 gap-2">
               <label className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer">
                 <input
                   type="checkbox"
@@ -439,10 +439,10 @@ export const ViewDocumentDetailModal: React.FC<ViewDocumentDetailModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">{document.title}</h2>
             <span className={`inline-block mt-1 px-2 py-1 rounded text-xs font-semibold ${getStatusColor(document.status)}`}>
@@ -454,11 +454,11 @@ export const ViewDocumentDetailModal: React.FC<ViewDocumentDetailModalProps> = (
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Document Info */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Document Information</h3>
-            <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-600">File:</span>
                 <span className="text-sm font-medium">{document.fileName}</span>
@@ -493,7 +493,7 @@ export const ViewDocumentDetailModal: React.FC<ViewDocumentDetailModalProps> = (
             <h3 className="text-lg font-semibold text-gray-900 mb-3">Signers ({document.signers.length})</h3>
             <div className="space-y-3">
               {document.signers.map((signer) => (
-                <div key={signer.id} className="bg-gray-50 rounded-lg p-4 border-l-4 border-blue-500">
+                <div key={signer.id} className="bg-gray-50 rounded-lg p-3 border-l-4 border-blue-500">
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <p className="font-semibold text-gray-900">{signer.name}</p>
@@ -574,7 +574,7 @@ export const ViewDocumentDetailModal: React.FC<ViewDocumentDetailModalProps> = (
           {document.auditTrail.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Audit Trail</h3>
-              <div className="bg-gray-50 rounded-lg p-4 max-h-64 overflow-y-auto space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 max-h-64 overflow-y-auto space-y-3">
                 {document.auditTrail.map((entry, idx) => (
                   <div key={idx} className="border-l-2 border-blue-500 pl-3">
                     <p className="text-sm font-semibold text-gray-900">{entry.action}</p>
@@ -628,10 +628,10 @@ export const ViewAuditTrailModal: React.FC<ViewAuditTrailModalProps> = ({ isOpen
   if (!isOpen || !document) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">Complete Audit Trail</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded p-1">
             <X className="h-5 w-5" />
@@ -639,13 +639,13 @@ export const ViewAuditTrailModal: React.FC<ViewAuditTrailModalProps> = ({ isOpen
         </div>
 
         <div className="p-6">
-          <div className="mb-4">
+          <div className="mb-2">
             <h3 className="text-lg font-semibold text-gray-900">{document.title}</h3>
             <p className="text-sm text-gray-600">Complete chronological record of all document activities</p>
           </div>
 
           {/* Timeline */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {document.auditTrail.map((entry, idx) => (
               <div key={idx} className="relative pl-8 pb-4">
                 {/* Timeline line */}
@@ -657,7 +657,7 @@ export const ViewAuditTrailModal: React.FC<ViewAuditTrailModalProps> = ({ isOpen
                 <div className="absolute left-0 top-1 w-4 h-4 rounded-full bg-blue-500 border-2 border-white" />
 
                 {/* Content */}
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-start justify-between mb-2">
                     <p className="font-semibold text-gray-900">{entry.action}</p>
                     <span className="text-xs text-gray-500">{new Date(entry.timestamp).toLocaleString()}</span>
@@ -677,7 +677,7 @@ export const ViewAuditTrailModal: React.FC<ViewAuditTrailModalProps> = ({ isOpen
 
           {document.auditTrail.length === 0 && (
             <div className="text-center py-8 text-gray-500">
-              <Clock className="h-12 w-12 mx-auto mb-2 opacity-50" />
+              <Clock className="h-12 w-12 mb-2 opacity-50" />
               <p>No audit trail entries yet</p>
             </div>
           )}

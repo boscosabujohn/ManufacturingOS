@@ -79,10 +79,10 @@ export default function ProductionSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -102,15 +102,15 @@ export default function ProductionSettingsPage() {
       </div>
 
       {/* Settings Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
         {settingsCategories.map((category) => (
           <button
             key={category.id}
             onClick={() => handleNavigate(category.path)}
-            className={`${category.bgColor} ${category.hoverColor} border-2 border-gray-200 rounded-xl p-6 text-left transition-all hover:shadow-lg hover:border-${category.color.split('-')[1]}-300 group`}
+            className={`${category.bgColor} ${category.hoverColor} border-2 border-gray-200 rounded-xl p-3 text-left transition-all hover:shadow-lg hover:border-${category.color.split('-')[1]}-300 group`}
           >
-            <div className="flex items-start gap-4">
-              <div className={`${category.color} ${category.bgColor} p-4 rounded-lg group-hover:scale-110 transition-transform`}>
+            <div className="flex items-start gap-2">
+              <div className={`${category.color} ${category.bgColor} p-3 rounded-lg group-hover:scale-110 transition-transform`}>
                 {category.icon}
               </div>
               <div className="flex-1">
@@ -128,12 +128,12 @@ export default function ProductionSettingsPage() {
       </div>
 
       {/* Additional Settings Section */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <Database className="w-5 h-5 text-blue-600" />
           Additional Configuration Options
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="p-4 bg-gray-50 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
               <Shield className="w-5 h-5 text-green-600" />
@@ -161,8 +161,8 @@ export default function ProductionSettingsPage() {
       </div>
 
       {/* System Information */}
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white">
-        <div className="flex items-start gap-4">
+      <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-3 text-white">
+        <div className="flex items-start gap-2">
           <div className="p-3 bg-white bg-opacity-20 rounded-lg">
             <Zap className="w-6 h-6" />
           </div>
@@ -179,8 +179,8 @@ export default function ProductionSettingsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mt-6">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Work Centers</p>
@@ -190,7 +190,7 @@ export default function ProductionSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Production Lines</p>
@@ -200,7 +200,7 @@ export default function ProductionSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Shifts</p>
@@ -210,7 +210,7 @@ export default function ProductionSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Routing Templates</p>

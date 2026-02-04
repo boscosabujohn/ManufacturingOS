@@ -182,10 +182,10 @@ export default function MarkAttendancePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button onClick={handleCancel} className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
               <span className="text-gray-700">Back</span>
@@ -225,38 +225,38 @@ export default function MarkAttendancePage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+        <div className="grid grid-cols-5 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <Users className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{stats.total}</div>
             <div className="text-blue-100 text-sm">Total Employees</div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <CheckCircle2 className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{stats.present}</div>
             <div className="text-green-100 text-sm">Present</div>
           </div>
-          <div className="bg-gradient-to-br from-red-500 to-red-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-xl text-white">
             <X className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{stats.absent}</div>
             <div className="text-red-100 text-sm">Absent</div>
           </div>
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 p-3 rounded-xl text-white">
             <AlertTriangle className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{stats.halfDay}</div>
             <div className="text-yellow-100 text-sm">Half Day</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
             <Calendar className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{stats.leave}</div>
             <div className="text-purple-100 text-sm">On Leave</div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Date and Bulk Actions */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="grid grid-cols-3 gap-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Date <span className="text-red-500">*</span>
@@ -317,8 +317,8 @@ export default function MarkAttendancePage() {
           </div>
 
           {/* Attendance Entries */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Employee Attendance</h2>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Employee Attendance</h2>
 
             <div className="space-y-3">
               {filteredEntries.map((entry, index) => {
@@ -327,7 +327,7 @@ export default function MarkAttendancePage() {
 
                 return (
                   <div key={entry.employeeId} className={`p-4 border-2 rounded-lg ${statusConfig.color}`}>
-                    <div className="grid grid-cols-12 gap-4 items-center">
+                    <div className="grid grid-cols-12 gap-2 items-center">
                       <div className="col-span-2">
                         <div className="font-bold text-gray-900">{entry.employeeName}</div>
                         <div className="text-sm text-gray-600">{entry.employeeId}</div>

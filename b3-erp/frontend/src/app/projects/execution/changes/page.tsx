@@ -311,7 +311,7 @@ export default function ChangeRequestsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <GitBranch className="h-8 w-8 text-teal-600" />
           Change Requests
@@ -320,8 +320,8 @@ export default function ChangeRequestsPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -346,43 +346,43 @@ export default function ChangeRequestsPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <p className="text-teal-600 text-xs font-medium">Total</p>
           <p className="text-2xl font-bold text-teal-900 mt-1">{stats.totalRequests}</p>
         </div>
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <p className="text-gray-600 text-xs font-medium">Draft</p>
           <p className="text-2xl font-bold text-gray-900 mt-1">{stats.draftCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-blue-600 text-xs font-medium">Submitted</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{stats.submittedCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <p className="text-yellow-600 text-xs font-medium">Review</p>
           <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.underReviewCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <p className="text-green-600 text-xs font-medium">Approved</p>
           <p className="text-2xl font-bold text-green-900 mt-1">{stats.approvedCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <p className="text-purple-600 text-xs font-medium">Implemented</p>
           <p className="text-2xl font-bold text-purple-900 mt-1">{stats.implementedCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <p className="text-red-600 text-xs font-medium">Rejected</p>
           <p className="text-2xl font-bold text-red-900 mt-1">{stats.rejectedCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <p className="text-orange-600 text-xs font-medium">Cost Impact</p>
           <p className="text-lg font-bold text-orange-900 mt-1">₹{(stats.totalCostImpact / 100000).toFixed(1)}L</p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex items-center gap-3 flex-wrap">
           <Filter className="h-4 w-4 text-gray-500" />
 
@@ -433,10 +433,10 @@ export default function ChangeRequestsPage() {
       </div>
 
       {/* Change Requests List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredChanges.map((change) => (
-          <div key={change.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
+          <div key={change.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">{change.title}</h3>
@@ -451,7 +451,7 @@ export default function ChangeRequestsPage() {
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">{change.description}</p>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <span className="font-medium">{change.changeNumber}</span>
                   <span>•</span>
                   <span>{change.projectName}</span>
@@ -464,7 +464,7 @@ export default function ChangeRequestsPage() {
             </div>
 
             {/* Impact Analysis */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2 p-3 bg-orange-50 border border-orange-200 rounded-lg">
               <div>
                 <p className="text-xs text-orange-700 font-medium mb-1 flex items-center gap-1">
                   <DollarSign className="h-3 w-3" />
@@ -497,7 +497,7 @@ export default function ChangeRequestsPage() {
             </div>
 
             {/* Justification */}
-            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-xs text-blue-700 font-medium mb-1">Justification</p>
               <p className="text-sm text-blue-900">{change.justification}</p>
             </div>
@@ -535,7 +535,7 @@ export default function ChangeRequestsPage() {
 
         {filteredChanges.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-            <GitBranch className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+            <GitBranch className="h-16 w-16 mb-2 text-gray-400" />
             <h3 className="text-lg font-semibold text-gray-700 mb-2">No Change Requests Found</h3>
             <p className="text-gray-600">No change requests match your current filters</p>
           </div>
@@ -543,10 +543,10 @@ export default function ChangeRequestsPage() {
       </div>
 
       {/* Guidelines Section */}
-      <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Change Management Guidelines</h2>
+      <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">Change Management Guidelines</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-medium text-gray-700 mb-2">Change Request Process</h3>
             <ul className="space-y-2 text-sm text-gray-600">
@@ -598,12 +598,12 @@ export default function ChangeRequestsPage() {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="font-medium text-blue-800 mb-2">Change Control Board (CCB)</h3>
           <p className="text-sm text-blue-700 mb-2">
             The CCB is responsible for reviewing, approving, or rejecting change requests. Members typically include:
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-blue-700">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-blue-700">
             <div>
               <p className="font-medium">Project Manager</p>
               <p>Chairs the CCB, manages process</p>

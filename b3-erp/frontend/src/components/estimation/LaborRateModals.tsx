@@ -86,9 +86,9 @@ export function AddLaborRateModal({ isOpen, onClose, onSave }: AddLaborRateModal
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Users className="h-6 w-6 text-white" />
@@ -104,7 +104,7 @@ export function AddLaborRateModal({ isOpen, onClose, onSave }: AddLaborRateModal
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Skill Code */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -274,7 +274,7 @@ export function AddLaborRateModal({ isOpen, onClose, onSave }: AddLaborRateModal
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -350,9 +350,9 @@ export function EditLaborRateModal({ isOpen, onClose, onSave, rate }: EditLaborR
   if (!isOpen || !rate) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Users className="h-6 w-6 text-white" />
@@ -369,8 +369,8 @@ export function EditLaborRateModal({ isOpen, onClose, onSave, rate }: EditLaborR
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Labor Info */}
-          <div className="bg-purple-50 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-purple-50 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Skill Code</p>
                 <p className="font-semibold text-gray-900">{rate.skillCode}</p>
@@ -388,7 +388,7 @@ export function EditLaborRateModal({ isOpen, onClose, onSave, rate }: EditLaborR
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {/* Standard Rate */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -483,7 +483,7 @@ export function EditLaborRateModal({ isOpen, onClose, onSave, rate }: EditLaborR
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -514,9 +514,9 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
   if (!isOpen || !labor) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Award className="h-6 w-6 text-white" />
@@ -533,9 +533,9 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4 bg-gray-50 rounded-lg p-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded-lg p-3">
               <div>
                 <p className="text-sm text-gray-600">Skill Code</p>
                 <p className="font-semibold text-gray-900">{labor.skillCode}</p>
@@ -558,10 +558,10 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
           </div>
 
           {/* Rate Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Rate Information</h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Rate Information</h3>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="h-5 w-5 text-green-600" />
                   <p className="text-sm font-medium text-green-600">Standard Rate</p>
@@ -570,7 +570,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
                 <p className="text-xs text-green-700 mt-1">per hour</p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="h-5 w-5 text-orange-600" />
                   <p className="text-sm font-medium text-orange-600">Overtime Rate</p>
@@ -579,7 +579,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
                 <p className="text-xs text-orange-700 mt-1">per hour</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-5 w-5 text-purple-600" />
                   <p className="text-sm font-medium text-purple-600">Holiday Rate</p>
@@ -591,16 +591,16 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
           </div>
 
           {/* Additional Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Additional Details</h3>
-            <div className="space-y-4">
-              <div className="bg-gray-50 rounded-lg p-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Additional Details</h3>
+            <div className="space-y-2">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm font-medium text-gray-700 mb-2">Certifications Required</p>
                 <p className="text-sm text-gray-900">{labor.certificationsRequired || 'None specified'}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Effective From</p>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-gray-400" />
@@ -608,7 +608,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Status</p>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                     labor.status === 'active'
@@ -620,13 +620,13 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Last Updated</p>
                   <p className="font-semibold text-gray-900">{labor.lastUpdated}</p>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Updated By</p>
                   <p className="font-semibold text-gray-900">{labor.updatedBy}</p>
                 </div>
@@ -635,7 +635,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, labor }: ViewLaborDetai
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -691,9 +691,9 @@ export function CompareLaborRatesModal({ isOpen, onClose }: CompareLaborRatesMod
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Users className="h-6 w-6 text-white" />
@@ -713,39 +713,39 @@ export function CompareLaborRatesModal({ isOpen, onClose }: CompareLaborRatesMod
             <table className="w-full">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Skill Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Level</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Standard Rate</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Overtime Rate</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Holiday Rate</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Availability</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Skill Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Level</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Standard Rate</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Overtime Rate</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Holiday Rate</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Availability</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {laborRates.map((labor) => (
                   <tr key={labor.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="font-medium text-gray-900">{labor.skillName}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
                         {labor.skillLevel}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="text-sm text-gray-900">{labor.department}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="font-bold text-gray-900">₹{labor.standardRate}/hr</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="font-bold text-orange-600">₹{labor.overtimeRate}/hr</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <p className="font-bold text-purple-600">₹{labor.holidayRate}/hr</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
                           <div
@@ -763,7 +763,7 @@ export function CompareLaborRatesModal({ isOpen, onClose }: CompareLaborRatesMod
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

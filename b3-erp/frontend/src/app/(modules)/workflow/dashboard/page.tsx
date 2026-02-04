@@ -233,7 +233,7 @@ export default function WorkflowDashboardPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full px-3 py-2">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Workflow Dashboard</h1>
@@ -253,10 +253,10 @@ export default function WorkflowDashboardPage() {
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-3 py-2">
         {/* Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Total Orders</p>
@@ -268,7 +268,7 @@ export default function WorkflowDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">In Production</p>
@@ -280,7 +280,7 @@ export default function WorkflowDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Pending QC</p>
@@ -292,7 +292,7 @@ export default function WorkflowDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Ready to Ship</p>
@@ -304,7 +304,7 @@ export default function WorkflowDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Overdue</p>
@@ -316,7 +316,7 @@ export default function WorkflowDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Completed Today</p>
@@ -330,8 +330,8 @@ export default function WorkflowDashboardPage() {
         </div>
 
         {/* Workflow Pipeline Visualization */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Workflow Pipeline</h2>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Workflow Pipeline</h2>
           <div className="flex items-center justify-between overflow-x-auto pb-2">
             {[
               { status: 'order_confirmed', count: 5 },
@@ -403,7 +403,7 @@ export default function WorkflowDashboardPage() {
                   onClick={() => router.push(`/workflow/orders/${order.id}`)}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div className={`p-2 rounded-lg ${config.bgColor}`}>
                         <Icon className={`h-5 w-5 ${config.color}`} />
                       </div>
@@ -418,7 +418,7 @@ export default function WorkflowDashboardPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3">
                       <div className="text-right">
                         <p className="text-sm font-medium text-gray-900">{formatCurrency(order.totalAmount)}</p>
                         <p className="text-xs text-gray-500">{order.itemCount} items</p>
@@ -477,8 +477,8 @@ export default function WorkflowDashboardPage() {
         </div>
 
         {/* Recent Notifications */}
-        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Bell className="h-5 w-5 text-gray-400" />
             Recent Workflow Events
           </h2>

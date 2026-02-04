@@ -4103,7 +4103,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
             })
           ) : searchQuery && (
             <div className="px-6 py-10 text-center">
-              <Search className="h-8 w-8 text-brand-blue/30 mx-auto mb-3" />
+              <Search className="h-8 w-8 text-brand-blue/30 mb-3" />
               <p className="text-sm text-brand-lightBlue/60 font-medium">No modules found matching "{searchQuery}"</p>
             </div>
           )}

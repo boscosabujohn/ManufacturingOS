@@ -171,8 +171,8 @@ export default function ResignationsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="flex items-center justify-between mb-3">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Resignation Requests</h1>
           <p className="text-sm text-gray-600 mt-1">Manage employee resignation submissions</p>
@@ -186,8 +186,8 @@ export default function ResignationsPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total</p>
@@ -197,7 +197,7 @@ export default function ResignationsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Submitted</p>
@@ -206,7 +206,7 @@ export default function ResignationsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Under Review</p>
@@ -215,7 +215,7 @@ export default function ResignationsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Accepted</p>
@@ -224,7 +224,7 @@ export default function ResignationsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Rejected</p>
@@ -235,10 +235,10 @@ export default function ResignationsPage() {
       </div>
 
       {showSubmitForm && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Submit Resignation</h2>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Submit Resignation</h2>
           <form onSubmit={handleSubmitResignation}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Resignation Date <span className="text-red-500">*</span></label>
                 <input
@@ -293,7 +293,7 @@ export default function ResignationsPage() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Status</label>
         <select
           value={selectedStatus}
@@ -309,10 +309,10 @@ export default function ResignationsPage() {
         </select>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredResignations.map(resignation => (
-          <div key={resignation.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={resignation.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{resignation.employeeName}</h3>
@@ -325,7 +325,7 @@ export default function ResignationsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Resignation Date</p>
                 <p className="text-sm font-semibold text-gray-900">
@@ -350,13 +350,13 @@ export default function ResignationsPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded p-3 mb-4">
+            <div className="bg-gray-50 border border-gray-200 rounded p-3 mb-2">
               <p className="text-xs text-gray-500 uppercase font-medium mb-1">Reason</p>
               <p className="text-sm text-gray-900">{resignation.reason}</p>
             </div>
 
             {resignation.reviewedBy && (
-              <div className="bg-blue-50 border border-blue-200 rounded p-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded p-3 mb-2">
                 <p className="text-xs text-blue-500 uppercase font-medium mb-1">Review Details</p>
                 <p className="text-sm text-blue-900">
                   Reviewed by {resignation.reviewedBy} on {new Date(resignation.reviewedOn!).toLocaleDateString('en-IN')}
@@ -398,9 +398,9 @@ export default function ResignationsPage() {
 
       {/* View Details Modal */}
       {showDetailsModal && selectedResignation && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <User className="h-6 w-6 text-blue-600" />
                 <div>
@@ -416,9 +416,9 @@ export default function ResignationsPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status Banner */}
-              <div className={`rounded-lg p-4 ${
+              <div className={`rounded-lg p-3 ${
                 selectedResignation.status === 'accepted' ? 'bg-green-50 border border-green-200' :
                 selectedResignation.status === 'rejected' ? 'bg-red-50 border border-red-200' :
                 selectedResignation.status === 'under-review' ? 'bg-yellow-50 border border-yellow-200' :
@@ -440,7 +440,7 @@ export default function ResignationsPage() {
                   <Briefcase className="h-4 w-4 text-gray-600" />
                   Employee Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4 bg-gray-50 rounded-lg p-4">
+                <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded-lg p-3">
                   <div>
                     <p className="text-xs text-gray-600">Employee ID</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedResignation.employeeId}</p>
@@ -466,7 +466,7 @@ export default function ResignationsPage() {
                   <Calendar className="h-4 w-4 text-gray-600" />
                   Resignation Details
                 </h3>
-                <div className="grid grid-cols-2 gap-4 bg-gray-50 rounded-lg p-4">
+                <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded-lg p-3">
                   <div>
                     <p className="text-xs text-gray-600">Joining Date</p>
                     <p className="text-sm font-semibold text-gray-900">{new Date(selectedResignation.joiningDate).toLocaleDateString('en-IN')}</p>
@@ -497,7 +497,7 @@ export default function ResignationsPage() {
               {/* Reason */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-2">Reason for Resignation</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-900">{selectedResignation.reason}</p>
                 </div>
               </div>
@@ -506,8 +506,8 @@ export default function ResignationsPage() {
               {selectedResignation.reviewedBy && (
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-3">Review Information</h3>
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                    <div className="grid grid-cols-2 gap-4 mb-3">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                    <div className="grid grid-cols-2 gap-2 mb-3">
                       <div>
                         <p className="text-xs text-blue-600">Reviewed By</p>
                         <p className="text-sm font-semibold text-blue-900">{selectedResignation.reviewedBy}</p>
@@ -565,9 +565,9 @@ export default function ResignationsPage() {
 
       {/* Accept Resignation Modal */}
       {showAcceptModal && selectedResignation && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-            <div className="bg-green-50 border-b border-green-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="bg-green-50 border-b border-green-200 px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6 text-green-600" />
                 <div>
@@ -583,11 +583,11 @@ export default function ResignationsPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitAccept} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitAccept} className="p-6 space-y-3">
               {/* Employee Summary */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Employee Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-gray-600">Employee ID</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedResignation.employeeId}</p>
@@ -648,7 +648,7 @@ export default function ResignationsPage() {
               </div>
 
               {/* Info Box */}
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <div className="flex gap-3">
                   <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                   <div>
@@ -687,9 +687,9 @@ export default function ResignationsPage() {
 
       {/* Reject Resignation Modal */}
       {showRejectModal && selectedResignation && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-            <div className="bg-red-50 border-b border-red-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="bg-red-50 border-b border-red-200 px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div className="flex items-center gap-3">
                 <XCircle className="h-6 w-6 text-red-600" />
                 <div>
@@ -705,11 +705,11 @@ export default function ResignationsPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitReject} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitReject} className="p-6 space-y-3">
               {/* Employee Summary */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Employee Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-gray-600">Employee ID</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedResignation.employeeId}</p>
@@ -765,7 +765,7 @@ export default function ResignationsPage() {
               </div>
 
               {/* Warning Box */}
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <div className="flex gap-3">
                   <XCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                   <div>

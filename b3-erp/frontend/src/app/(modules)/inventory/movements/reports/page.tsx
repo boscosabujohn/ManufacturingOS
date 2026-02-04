@@ -84,7 +84,7 @@ export default function MovementReportsPage() {
   const totalClosingStock = warehouseData.reduce((sum, w) => sum + w.closingStock, 0);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -103,8 +103,8 @@ export default function MovementReportsPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <PackageCheck className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalReceipts}</span>
@@ -113,7 +113,7 @@ export default function MovementReportsPage() {
           <div className="text-xs text-blue-600 mt-1">All Warehouses</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <PackageMinus className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{totalIssues}</span>
@@ -122,7 +122,7 @@ export default function MovementReportsPage() {
           <div className="text-xs text-orange-600 mt-1">All Warehouses</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{totalTransfers}</span>
@@ -131,7 +131,7 @@ export default function MovementReportsPage() {
           <div className="text-xs text-purple-600 mt-1">Inter-Warehouse</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{totalClosingStock.toLocaleString()}</span>
@@ -142,8 +142,8 @@ export default function MovementReportsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -185,59 +185,59 @@ export default function MovementReportsPage() {
 
       {/* Movement Summary by Warehouse */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Movement Summary by Warehouse</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receipts</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Issues</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transfers</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Movement</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opening Stock</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Closing Stock</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receipts</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Issues</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transfers</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Movement</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Opening Stock</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Closing Stock</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {warehouseData.map((data, index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div className="flex items-center space-x-2">
                       <Warehouse className="w-5 h-5 text-gray-400" />
                       <span>{data.warehouse}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-1 text-blue-600">
                       <PackageCheck className="w-4 h-4" />
                       <span className="font-medium">{data.receipts}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-1 text-orange-600">
                       <PackageMinus className="w-4 h-4" />
                       <span className="font-medium">{data.issues}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-1 text-purple-600">
                       <TrendingUp className="w-4 h-4" />
                       <span className="font-medium">{data.transfers}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className={`flex items-center space-x-1 font-bold ${data.netMovement >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                       {data.netMovement >= 0 ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
                       <span>{data.netMovement >= 0 ? '+' : ''}{data.netMovement}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 font-medium">
                     {data.openingStock.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 font-bold">
                     {data.closingStock.toLocaleString()}
                   </td>
                 </tr>
@@ -245,25 +245,25 @@ export default function MovementReportsPage() {
             </tbody>
             <tfoot className="bg-gray-50">
               <tr>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-gray-900">
                   Total
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-blue-600">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-blue-600">
                   {totalReceipts}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-orange-600">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-orange-600">
                   {totalIssues}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-purple-600">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-purple-600">
                   {totalTransfers}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-600">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-green-600">
                   {totalReceipts - totalIssues >= 0 ? '+' : ''}{totalReceipts - totalIssues}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-gray-900">
                   {warehouseData.reduce((sum, w) => sum + w.openingStock, 0).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-gray-900">
                   {totalClosingStock.toLocaleString()}
                 </td>
               </tr>
@@ -273,9 +273,9 @@ export default function MovementReportsPage() {
       </div>
 
       {/* Movement Type Distribution */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900">Receipt Breakdown</h3>
             <PackageCheck className="w-6 h-6 text-blue-600" />
           </div>
@@ -299,8 +299,8 @@ export default function MovementReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900">Issue Breakdown</h3>
             <PackageMinus className="w-6 h-6 text-orange-600" />
           </div>
@@ -324,8 +324,8 @@ export default function MovementReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900">Top Movers</h3>
             <BarChart3 className="w-6 h-6 text-purple-600" />
           </div>

@@ -80,11 +80,11 @@ const quickSettings = [
 
 export default function SettingsPage() {
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Settings className="w-6 h-6 text-purple-600" />
             </div>
@@ -97,13 +97,13 @@ export default function SettingsPage() {
 
         {/* Quick Settings */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Access</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Quick Access</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {quickSettings.map((setting) => (
               <Link
                 key={setting.name}
                 href={setting.href}
-                className="bg-white rounded-lg shadow border border-gray-200 p-4 hover:shadow-lg transition-all text-center"
+                className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all text-center"
               >
                 <h3 className="font-medium text-gray-900">{setting.name}</h3>
               </Link>
@@ -113,18 +113,18 @@ export default function SettingsPage() {
 
         {/* Settings Categories */}
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">All Settings</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">All Settings</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {settingsCategories.map((category) => {
               const Icon = category.icon;
               return (
                 <Link
                   key={category.id}
                   href={category.href}
-                  className="bg-white rounded-lg shadow border border-gray-200 p-6 hover:shadow-lg transition-all group"
+                  className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all group"
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-2">
                       <div className={`${category.color} w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform`}>
                         <Icon className="w-6 h-6 text-white" />
                       </div>
@@ -144,9 +144,9 @@ export default function SettingsPage() {
         </div>
 
         {/* System Info */}
-        <div className="mt-12 bg-white rounded-lg shadow border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">System Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-12 bg-white rounded-lg shadow border border-gray-200 p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">System Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <p className="text-sm text-gray-600 mb-1">Version</p>
               <p className="font-semibold text-gray-900">ManufacturingOS v2.5.0</p>

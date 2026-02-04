@@ -135,7 +135,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
       )}
 
       <div className={`
-        ${orientation === 'vertical' ? 'space-y-3' : 'flex flex-wrap gap-4'}
+        ${orientation === 'vertical' ? 'space-y-3' : 'flex flex-wrap gap-2'}
       `}>
         {options.map((option) => (
           <Radio

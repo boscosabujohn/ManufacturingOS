@@ -215,7 +215,7 @@ export function BarcodeScanner({
   return (
     <div className="fixed inset-0 z-50 bg-black flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 bg-black/80 backdrop-blur-sm">
+      <div className="flex items-center justify-between p-3 bg-black/80 backdrop-blur-sm">
         <div>
           <h2 className="text-xl font-bold text-white">{title}</h2>
           <p className="text-sm text-gray-400">{instructions}</p>
@@ -235,12 +235,12 @@ export function BarcodeScanner({
       <div className="flex-1 relative overflow-hidden">
         {hasPermission === false ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-            <CameraOff className="w-16 h-16 text-gray-500 mb-4" />
+            <CameraOff className="w-16 h-16 text-gray-500 mb-2" />
             <h3 className="text-xl font-semibold text-white mb-2">Camera Access Required</h3>
-            <p className="text-gray-400 mb-6">{error}</p>
+            <p className="text-gray-400 mb-3">{error}</p>
             <button
               onClick={startCamera}
-              className="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors"
+              className="px-3 py-2 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors"
             >
               Try Again
             </button>
@@ -281,7 +281,7 @@ export function BarcodeScanner({
 
             {/* Last scan feedback */}
             {lastScan && (
-              <div className="absolute top-4 left-4 right-4 bg-green-500 text-white p-4 rounded-xl flex items-center gap-3 animate-fade-in">
+              <div className="absolute top-4 left-4 right-4 bg-green-500 text-white p-3 rounded-xl flex items-center gap-3 animate-fade-in">
                 <Check className="w-6 h-6 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold truncate">{lastScan.rawValue}</p>
@@ -292,7 +292,7 @@ export function BarcodeScanner({
 
             {/* Error feedback */}
             {error && (
-              <div className="absolute top-4 left-4 right-4 bg-red-500 text-white p-4 rounded-xl flex items-center gap-3">
+              <div className="absolute top-4 left-4 right-4 bg-red-500 text-white p-3 rounded-xl flex items-center gap-3">
                 <AlertCircle className="w-6 h-6 flex-shrink-0" />
                 <p>{error}</p>
               </div>
@@ -303,7 +303,7 @@ export function BarcodeScanner({
 
       {/* Controls */}
       <div className="p-4 bg-black/80 backdrop-blur-sm">
-        <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center justify-center gap-2 mb-2">
           {/* Torch toggle */}
           <button
             onClick={toggleTorch}
@@ -343,7 +343,7 @@ export function BarcodeScanner({
         </div>
 
         {/* Secondary controls */}
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-2">
           {showManualEntry && (
             <button
               onClick={() => setShowManual(true)}
@@ -370,9 +370,9 @@ export function BarcodeScanner({
 
       {/* Manual Entry Modal */}
       {showManual && (
-        <div className="fixed inset-0 z-60 bg-black/80 flex items-end sm:items-center justify-center p-4">
+        <div className="fixed inset-0 z-60 bg-black/80 flex items-end sm:items-center justify-center p-3">
           <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 Manual Entry
               </h3>
@@ -384,7 +384,7 @@ export function BarcodeScanner({
               </button>
             </div>
 
-            <form onSubmit={handleManualSubmit} className="p-4 space-y-4">
+            <form onSubmit={handleManualSubmit} className="p-4 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Enter barcode or code value

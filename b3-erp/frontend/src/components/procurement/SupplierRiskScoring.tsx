@@ -283,9 +283,9 @@ const SupplierRiskScoring: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Shield className="h-8 w-8" />
@@ -340,8 +340,8 @@ const SupplierRiskScoring: React.FC = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Low Risk</p>
@@ -353,7 +353,7 @@ const SupplierRiskScoring: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Medium Risk</p>
@@ -365,7 +365,7 @@ const SupplierRiskScoring: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-orange-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-orange-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">High Risk</p>
@@ -377,7 +377,7 @@ const SupplierRiskScoring: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Critical Risk</p>
@@ -389,7 +389,7 @@ const SupplierRiskScoring: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Spend at Risk</p>
@@ -404,37 +404,37 @@ const SupplierRiskScoring: React.FC = () => {
 
       {/* Supplier Risk Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Supplier Risk Profiles</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Overall Score</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Risk Level</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Financial</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Operational</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Compliance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Geopolitical</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Cyber</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Total Spend</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Spend at Risk</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Mitigations</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Overall Score</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Risk Level</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Financial</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Operational</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Compliance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Geopolitical</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Cyber</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Total Spend</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Spend at Risk</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Mitigations</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {suppliers.map((supplier) => (
                 <tr key={supplier.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{supplier.supplierName}</div>
                       <div className="text-xs text-gray-500">{supplier.code}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -451,38 +451,38 @@ const SupplierRiskScoring: React.FC = () => {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getRiskLevelColor(supplier.riskLevel)}`}>
                       {supplier.riskLevel}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm ${getRiskScoreColor(supplier.financialRisk)}`}>{supplier.financialRisk}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm ${getRiskScoreColor(supplier.operationalRisk)}`}>{supplier.operationalRisk}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm ${getRiskScoreColor(supplier.complianceRisk)}`}>{supplier.complianceRisk}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm ${getRiskScoreColor(supplier.geopoliticalRisk)}`}>{supplier.geopoliticalRisk}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm ${getRiskScoreColor(supplier.cyberSecurityRisk)}`}>{supplier.cyberSecurityRisk}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(supplier.totalSpend / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-red-600">
                     ${(supplier.spendAtRisk / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="px-2 py-1 text-xs font-semibold rounded bg-blue-100 text-blue-800">
                       {supplier.mitigationActions} actions
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() => handleAssessRisk(supplier)}
@@ -543,14 +543,14 @@ const SupplierRiskScoring: React.FC = () => {
 
       {/* Risk Factors Breakdown */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Risk Factors Analysis</h3>
           <p className="text-sm text-gray-600 mt-1">Example: Global Components Ltd. (GCL-002)</p>
         </div>
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {riskFactors.map((factor, idx) => (
             <div key={idx} className="border-b pb-6 last:border-b-0 last:pb-0">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-3">
                   <Award className="h-5 w-5 text-purple-600" />
                   <div>
@@ -568,7 +568,7 @@ const SupplierRiskScoring: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
                 <div
                   className={`h-2 rounded-full ${
                     factor.score <= 30 ? 'bg-green-500' :
@@ -592,8 +592,8 @@ const SupplierRiskScoring: React.FC = () => {
       </div>
 
       {/* Risk Distribution Chart (Text-based) */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Distribution by Category</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Distribution by Category</h3>
         <div className="space-y-3">
           {[
             { name: 'Low Risk (0-30)', count: suppliers.filter(s => s.overallRiskScore <= 30).length, color: 'bg-green-500' },

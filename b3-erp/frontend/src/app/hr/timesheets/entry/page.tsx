@@ -91,7 +91,7 @@ export default function TimesheetEntryPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-blue-600" />
           Timesheet Entry
@@ -100,8 +100,8 @@ export default function TimesheetEntryPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Hours</p>
@@ -110,7 +110,7 @@ export default function TimesheetEntryPage() {
             <Clock className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Regular Hours</p>
@@ -119,7 +119,7 @@ export default function TimesheetEntryPage() {
             <Clock className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overtime Hours</p>
@@ -128,7 +128,7 @@ export default function TimesheetEntryPage() {
             <Clock className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Projects</p>
@@ -140,8 +140,8 @@ export default function TimesheetEntryPage() {
       </div>
 
       {/* Week Selector & Actions */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
           <div className="flex items-center gap-3">
             <Calendar className="h-5 w-5 text-gray-500" />
             <select
@@ -176,7 +176,7 @@ export default function TimesheetEntryPage() {
 
       {/* Alert for incomplete entries */}
       {weekTotal < 40 && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-yellow-600" />
             <div>
@@ -190,18 +190,18 @@ export default function TimesheetEntryPage() {
       )}
 
       {/* Timesheet Grid */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto mb-2">
         <table className="w-full">
           <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase w-64">Project / Task</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase w-64">Project / Task</th>
               {weekDays.map(day => (
                 <th key={day.key} className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">
                   <div>{day.label}</div>
                   <div className="text-gray-400">{day.date}</div>
                 </th>
               ))}
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Total</th>
+              <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase">Total</th>
               <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Actions</th>
             </tr>
           </thead>
@@ -210,7 +210,7 @@ export default function TimesheetEntryPage() {
               const rowTotal = Object.values(entry.hours).reduce((sum, h) => sum + h, 0);
               return (
                 <tr key={entry.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="space-y-2">
                       <input
                         type="text"
@@ -250,7 +250,7 @@ export default function TimesheetEntryPage() {
                       />
                     </td>
                   ))}
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className={`text-sm font-bold ${rowTotal > 0 ? 'text-blue-700' : 'text-gray-400'}`}>
                       {rowTotal}
                     </div>
@@ -268,7 +268,7 @@ export default function TimesheetEntryPage() {
               );
             })}
             <tr className="bg-blue-50 font-semibold border-t-2 border-blue-200">
-              <td className="px-6 py-4 text-sm text-gray-900">Daily Totals</td>
+              <td className="px-3 py-2 text-sm text-gray-900">Daily Totals</td>
               {weekDays.map(day => (
                 <td key={day.key} className="px-4 py-4 text-center">
                   <div className={`text-sm font-bold ${
@@ -281,7 +281,7 @@ export default function TimesheetEntryPage() {
                   </div>
                 </td>
               ))}
-              <td className="px-6 py-4 text-center">
+              <td className="px-3 py-2 text-center">
                 <div className="text-sm font-bold text-blue-900">{weekTotal}</div>
               </td>
               <td className="px-4 py-4"></td>
@@ -302,7 +302,7 @@ export default function TimesheetEntryPage() {
       </div>
 
       {/* Help Text */}
-      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-2">Timesheet Guidelines</h3>
         <ul className="text-sm text-gray-700 space-y-1">
           <li>• Enter hours in 0.5 hour increments (e.g., 4.5, 8, 8.5)</li>

@@ -130,10 +130,10 @@ const CreditTermsMaster: React.FC = () => {
   const avgCreditPeriod = terms.reduce((sum, t) => sum + t.creditPeriod, 0) / terms.length;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <CreditCard className="w-8 h-8 text-indigo-600" />
@@ -147,7 +147,7 @@ const CreditTermsMaster: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -172,8 +172,8 @@ const CreditTermsMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Terms</p>
@@ -182,7 +182,7 @@ const CreditTermsMaster: React.FC = () => {
               <CreditCard className="w-12 h-12 text-indigo-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Credit Limit</p>
@@ -193,7 +193,7 @@ const CreditTermsMaster: React.FC = () => {
               <DollarSign className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Credit Period</p>
@@ -202,7 +202,7 @@ const CreditTermsMaster: React.FC = () => {
               <TrendingUp className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Approval Required</p>
@@ -216,10 +216,10 @@ const CreditTermsMaster: React.FC = () => {
         </div>
 
         {/* Credit Terms List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredTerms.map(term => (
-            <div key={term.id} className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={term.id} className="bg-white rounded-lg shadow-sm p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{term.termName}</h3>
@@ -259,9 +259,9 @@ const CreditTermsMaster: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {/* Credit Limits */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Credit Limits</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -286,7 +286,7 @@ const CreditTermsMaster: React.FC = () => {
                 </div>
 
                 {/* Interest & Payment */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Interest & Payment</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -313,7 +313,7 @@ const CreditTermsMaster: React.FC = () => {
                 </div>
 
                 {/* Requirements */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Requirements</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">

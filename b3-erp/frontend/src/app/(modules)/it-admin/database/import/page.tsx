@@ -230,8 +230,8 @@ export default function DatabaseImportPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2 w-full max-w-full">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -242,8 +242,8 @@ export default function DatabaseImportPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <Database className="w-6 h-6 text-blue-600" />
@@ -255,7 +255,7 @@ export default function DatabaseImportPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-50 rounded-lg">
               <CheckCircle className="w-6 h-6 text-green-600" />
@@ -267,7 +267,7 @@ export default function DatabaseImportPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <Clock className="w-6 h-6 text-blue-600" />
@@ -279,7 +279,7 @@ export default function DatabaseImportPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-red-50 rounded-lg">
               <XCircle className="w-6 h-6 text-red-600" />
@@ -292,10 +292,10 @@ export default function DatabaseImportPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Import Configuration */}
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">New Import</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">New Import</h2>
 
           {/* File Upload */}
           <div
@@ -303,14 +303,14 @@ export default function DatabaseImportPage() {
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
             onDrop={handleDrop}
-            className={`mb-6 border-2 border-dashed rounded-lg p-8 text-center transition-colors ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+            className={`mb-3 border-2 border-dashed rounded-lg p-8 text-center transition-colors ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
               }`}
           >
             <Upload className="w-12 h-12 text-gray-400 mb-3" />
             <p className="text-sm font-medium text-gray-900 mb-1">
               Drop your file here or click to browse
             </p>
-            <p className="text-xs text-gray-500 mb-4">
+            <p className="text-xs text-gray-500 mb-2">
               CSV, Excel, JSON, SQL, XML (Max 100MB)
             </p>
             <input
@@ -340,7 +340,7 @@ export default function DatabaseImportPage() {
           </div>
 
           {/* Import Settings */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Target Table</label>
               <select
@@ -436,10 +436,10 @@ export default function DatabaseImportPage() {
         </div>
 
         {/* Import Jobs */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Import Jobs</h2>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Import Jobs</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {importJobs.map((job) => (
               <div key={job.id} className="border border-gray-200 rounded-lg p-5">
                 <div className="flex items-start justify-between mb-3">
@@ -555,7 +555,7 @@ export default function DatabaseImportPage() {
             ))}
           </div>
 
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Import Best Practices:</h3>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Always validate data before importing to production</li>

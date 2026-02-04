@@ -38,9 +38,9 @@ export default function MyCoursesPage() {
   const [filterType, setFilterType] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <BookOpen className="h-8 w-8 text-purple-600" />
@@ -64,9 +64,9 @@ export default function MyCoursesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Content: Active Courses */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold text-gray-900">Pick up where you left off</h2>
             <button className="text-sm text-purple-600 font-medium hover:text-purple-800 flex items-center">
@@ -74,9 +74,9 @@ export default function MyCoursesPage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {activeCourses.map((course) => (
-              <div key={course.id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:border-purple-200 transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              <div key={course.id} className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm hover:border-purple-200 transition-colors flex flex-col sm:flex-row gap-2 items-start sm:items-center">
                 <div className={`w-16 h-16 rounded-lg ${course.image} flex items-center justify-center text-3xl shadow-inner flex-shrink-0`}>
                   {course.icon}
                 </div>
@@ -85,7 +85,7 @@ export default function MyCoursesPage() {
                     <h3 className="text-base font-bold text-gray-900 truncate">{course.title}</h3>
                     <span className="text-xs text-gray-500 flex-shrink-0">{course.lastAccessed}</span>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
                     <span className="flex items-center"><Clock className="w-3 h-3 mr-1" /> {course.timeLeft} left</span>
                     <span>{course.completedModules}/{course.totalModules} Modules</span>
                   </div>
@@ -108,11 +108,11 @@ export default function MyCoursesPage() {
           </div>
 
           {/* Recommended For You Section */}
-          <div className="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-xl p-6 text-white shadow-md relative overflow-hidden mt-8">
-            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="bg-gradient-to-r from-purple-800 to-indigo-900 rounded-xl p-3 text-white shadow-md relative overflow-hidden mt-8">
+            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div>
                 <h2 className="text-xl font-bold mb-2">Master Communication Skills</h2>
-                <p className="text-purple-200 text-sm max-w-md mb-4">Unlock your potential with our new advanced communication workshop. Recommended based on your role.</p>
+                <p className="text-purple-200 text-sm max-w-md mb-2">Unlock your potential with our new advanced communication workshop. Recommended based on your role.</p>
                 <button className="px-4 py-2 bg-white text-purple-900 text-sm font-bold rounded-lg hover:bg-purple-50 transition-colors">
                   Enroll Now
                 </button>
@@ -124,10 +124,10 @@ export default function MyCoursesPage() {
         </div>
 
         {/* Sidebar: Learning Path & Deadlines */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Deadlines Widget */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-            <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="w-4 h-4 text-amber-500" />
               Upcoming Deadlines
             </h3>
@@ -147,11 +147,11 @@ export default function MyCoursesPage() {
 
           {/* Learning Path Timeline */}
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-            <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
               <Award className="w-4 h-4 text-purple-600" />
               My Learning Path
             </h3>
-            <div className="relative border-l-2 border-dashed border-gray-200 ml-3 space-y-6 pl-6 pb-2">
+            <div className="relative border-l-2 border-dashed border-gray-200 ml-3 space-y-3 pl-6 pb-2">
               {assignedPath.map((item) => (
                 <div key={item.id} className="relative">
                   <div className={`absolute -left-[31px] w-6 h-6 rounded-full border-2 flex items-center justify-center bg-white ${item.status === 'Completed' ? 'border-green-500 text-green-500' :

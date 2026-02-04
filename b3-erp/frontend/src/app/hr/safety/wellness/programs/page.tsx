@@ -79,9 +79,9 @@ export default function WellnessProgramsPage() {
   const [filter, setFilter] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Heart className="h-8 w-8 text-orange-600" />
@@ -96,8 +96,8 @@ export default function WellnessProgramsPage() {
       </div>
 
       {/* Engagement Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Total Enrollment</p>
@@ -112,7 +112,7 @@ export default function WellnessProgramsPage() {
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Active Challenges</p>
@@ -125,7 +125,7 @@ export default function WellnessProgramsPage() {
           <p className="text-[10px] text-gray-400 mt-4 italic font-medium">Next starting in 4 days</p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Avg Participation</p>
@@ -140,7 +140,7 @@ export default function WellnessProgramsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-purple-100 border-2 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-purple-100 border-2 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Site Wellness Points</p>
@@ -154,13 +154,13 @@ export default function WellnessProgramsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Featured Hero: Active Challenge */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-gray-900 p-8 rounded-2xl text-white shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[400px]">
             <div className="relative z-10">
-              <div className="inline-flex items-center px-2 py-0.5 rounded bg-orange-600 text-[10px] font-black uppercase tracking-widest mb-6">Featured Challenge</div>
-              <h2 className="text-4xl font-black italic tracking-tighter leading-tight uppercase max-w-lg mb-4">
+              <div className="inline-flex items-center px-2 py-0.5 rounded bg-orange-600 text-[10px] font-black uppercase tracking-widest mb-3">Featured Challenge</div>
+              <h2 className="text-4xl font-black italic tracking-tighter leading-tight uppercase max-w-lg mb-2">
                 The 30-Day <span className="text-orange-500 underline decoration-white">Ergo-Active</span> Industrial Sprint
               </h2>
               <p className="text-gray-400 text-sm max-w-sm font-medium leading-relaxed italic">
@@ -169,7 +169,7 @@ export default function WellnessProgramsPage() {
             </div>
 
             <div className="relative z-10 mt-10">
-              <div className="flex items-center gap-8 mb-6">
+              <div className="flex items-center gap-8 mb-3">
                 <div className="flex flex-col">
                   <span className="text-[10px] font-bold text-gray-500 uppercase">Participants</span>
                   <span className="text-xl font-bold tracking-tighter">1,240+</span>
@@ -200,7 +200,7 @@ export default function WellnessProgramsPage() {
             <div className="divide-y divide-gray-50">
               {activePrograms.map((prg) => (
                 <div key={prg.id} className="p-6 flex items-center justify-between hover:bg-gray-50 transition-colors group cursor-pointer">
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div className={`p-4 rounded-xl ${prg.bgColor} ${prg.color}`}>
                       <prg.icon className="w-7 h-7" />
                     </div>
@@ -209,13 +209,13 @@ export default function WellnessProgramsPage() {
                         <h4 className="font-black text-gray-900 uppercase tracking-tighter text-base group-hover:text-orange-600 transition-colors underline decoration-transparent group-hover:decoration-orange-200">{prg.title}</h4>
                         <span className="text-[9px] bg-gray-100 text-gray-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-widest">{prg.category}</span>
                       </div>
-                      <div className="flex items-center gap-4 text-[10px] text-gray-400 font-bold uppercase tracking-tighter italic">
+                      <div className="flex items-center gap-2 text-[10px] text-gray-400 font-bold uppercase tracking-tighter italic">
                         <span className="flex items-center gap-1.5"><Users className="w-3 h-3" /> {prg.participants} Enrolled</span>
                         <span className="flex items-center gap-1.5"><TrendingUp className={`w-3 h-3 ${prg.impact === 'Extreme' ? 'text-red-500' : 'text-blue-400'}`} /> {prg.impact} Impact</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="text-right">
                       <span className={`text-[10px] font-black uppercase tracking-widest ${prg.status === 'In Progress' ? 'text-green-600' : 'text-orange-500'}`}>{prg.status}</span>
                       <p className="text-[9px] text-gray-400 mt-1 italic">Starts: June 15</p>
@@ -232,9 +232,9 @@ export default function WellnessProgramsPage() {
         </div>
 
         {/* Impact Analysis & Upcoming */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
-            <h3 className="font-bold text-gray-900 mb-6 text-xs uppercase tracking-widest flex items-center justify-between">
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
+            <h3 className="font-bold text-gray-900 mb-3 text-xs uppercase tracking-widest flex items-center justify-between">
               Wellness Impact Score <TrendingUp className="w-4 h-4 text-green-500" />
             </h3>
             <div className="flex justify-center mb-8">
@@ -249,7 +249,7 @@ export default function WellnessProgramsPage() {
                 </div>
               </div>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {[
                 { label: 'Psychological Safety', score: 88, color: 'bg-purple-500' },
                 { label: 'Physical Vitality', score: 72, color: 'bg-blue-500' },
@@ -268,17 +268,17 @@ export default function WellnessProgramsPage() {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-6 text-xs uppercase tracking-widest flex items-center gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-3 text-xs uppercase tracking-widest flex items-center gap-2">
               <Calendar className="w-3.5 h-3.5 text-orange-400" />
               Upcoming Sessions
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {[
                 { time: '14:00', title: 'Ergonomic Workshop', room: 'Conf Room C' },
                 { time: '16:30', title: 'Weekly Yoga Flow', room: 'Gym Suite' }
               ].map((sesh, i) => (
-                <div key={i} className="flex gap-4 group cursor-pointer">
+                <div key={i} className="flex gap-2 group cursor-pointer">
                   <div className="flex flex-col items-center">
                     <span className="text-xs font-black text-gray-900 italic tracking-tighter leading-none">{sesh.time}</span>
                     <div className="w-px h-full bg-gray-100 my-1 group-last:hidden"></div>

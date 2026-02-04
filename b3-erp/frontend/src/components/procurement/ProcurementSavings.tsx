@@ -218,7 +218,7 @@ const ProcurementSavings: React.FC = () => {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-2xl font-bold mb-2">Procurement Savings Tracker</h2>
@@ -270,8 +270,8 @@ const ProcurementSavings: React.FC = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="h-8 w-8 text-green-500" />
             <span className="text-sm text-gray-500">YTD</span>
@@ -279,7 +279,7 @@ const ProcurementSavings: React.FC = () => {
           <p className="text-2xl font-bold">${(totalActualSavings / 1000).toFixed(0)}K</p>
           <p className="text-sm text-gray-600">Actual Savings</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <Target className="h-8 w-8 text-blue-500" />
             <span className="text-sm text-gray-500">Annual</span>
@@ -287,7 +287,7 @@ const ProcurementSavings: React.FC = () => {
           <p className="text-2xl font-bold">${(totalTargetSavings / 1000).toFixed(0)}K</p>
           <p className="text-sm text-gray-600">Target Savings</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="h-8 w-8 text-purple-500" />
             <span className="text-sm text-gray-500">Rate</span>
@@ -295,7 +295,7 @@ const ProcurementSavings: React.FC = () => {
           <p className="text-2xl font-bold">{((totalActualSavings / totalTargetSavings) * 100).toFixed(0)}%</p>
           <p className="text-sm text-gray-600">Achievement</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <Zap className="h-8 w-8 text-orange-500" />
             <span className="text-sm text-gray-500">Active</span>
@@ -307,8 +307,8 @@ const ProcurementSavings: React.FC = () => {
 
       {/* Real-Time Tracking Dashboard */}
       {showRealTimeTracking && (
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-lg p-6 mb-6 border border-green-200">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-lg p-3 mb-3 border border-green-200">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-green-600 rounded-lg">
                 <Activity className="w-6 h-6 text-white" />
@@ -345,8 +345,8 @@ const ProcurementSavings: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-green-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Today's Progress</span>
                 <Clock className="w-5 h-5 text-green-600" />
@@ -361,7 +361,7 @@ const ProcurementSavings: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">This Week</span>
                 <TrendingUp className="w-5 h-5 text-blue-600" />
@@ -376,7 +376,7 @@ const ProcurementSavings: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-purple-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">This Month</span>
                 <Target className="w-5 h-5 text-purple-600" />
@@ -391,7 +391,7 @@ const ProcurementSavings: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-amber-500">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Pending Validation</span>
                 <AlertCircle className="w-5 h-5 text-amber-600" />
@@ -434,8 +434,8 @@ const ProcurementSavings: React.FC = () => {
 
       {/* Forecasting Dashboard */}
       {showForecast && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg shadow-lg p-6 mb-6 border border-indigo-200">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg shadow-lg p-3 mb-3 border border-indigo-200">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-indigo-600 rounded-lg">
                 <TrendingUp className="w-6 h-6 text-white" />
@@ -453,8 +453,8 @@ const ProcurementSavings: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-white rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Calendar className="w-5 h-5 text-indigo-600" />
                 <span className="text-sm font-medium text-gray-600">Q2 Forecast</span>
@@ -464,7 +464,7 @@ const ProcurementSavings: React.FC = () => {
               <div className="text-xs text-gray-500 mt-1">Based on 12 initiatives</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4">
+            <div className="bg-white rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="w-5 h-5 text-green-600" />
                 <span className="text-sm font-medium text-gray-600">EOY Projection</span>
@@ -474,7 +474,7 @@ const ProcurementSavings: React.FC = () => {
               <div className="text-xs text-gray-500 mt-1">High confidence (92%)</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4">
+            <div className="bg-white rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Zap className="w-5 h-5 text-purple-600" />
                 <span className="text-sm font-medium text-gray-600">Quick Wins</span>
@@ -484,7 +484,7 @@ const ProcurementSavings: React.FC = () => {
               <div className="text-xs text-gray-500 mt-1">6 opportunities identified</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4">
+            <div className="bg-white rounded-lg p-3">
               <div className="flex items-center gap-2 mb-2">
                 <Award className="w-5 h-5 text-amber-600" />
                 <span className="text-sm font-medium text-gray-600">Risk-Adjusted</span>
@@ -498,7 +498,7 @@ const ProcurementSavings: React.FC = () => {
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['overview', 'initiatives', 'tracking', 'analytics'].map((tab) => (
           <button
             key={tab}
@@ -517,7 +517,7 @@ const ProcurementSavings: React.FC = () => {
       {/* Initiatives Table */}
       {activeTab === 'initiatives' && (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+          <div className="px-3 py-2 border-b border-gray-200 flex justify-between items-center">
             <h3 className="text-lg font-semibold text-gray-900">Savings Initiatives</h3>
             <div className="flex space-x-2">
               <button
@@ -550,46 +550,46 @@ const ProcurementSavings: React.FC = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Initiative</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Achievement</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Owner</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Initiative</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Target</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Achievement</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Owner</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {savingsInitiatives.map((initiative) => (
                   <tr key={initiative.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{initiative.name}</div>
                         <div className="text-xs text-gray-500">{initiative.id}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{initiative.category}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{initiative.category}</td>
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getSavingsTypeColor(initiative.type)}`}>
                         {initiative.type.toUpperCase().replace(/-/g, ' ')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       ${(initiative.targetSavings / 1000).toFixed(0)}K
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       ${(initiative.actualSavings / 1000).toFixed(0)}K
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className={`text-sm font-medium ${
                         initiative.actualSavings >= initiative.targetSavings ? 'text-green-600' : 'text-orange-600'
                       }`}>
                         {((initiative.actualSavings / initiative.targetSavings) * 100).toFixed(0)}%
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
                           <div
@@ -606,8 +606,8 @@ const ProcurementSavings: React.FC = () => {
                         <span className="text-sm text-gray-700">{initiative.progress}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{initiative.owner}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{initiative.owner}</td>
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(initiative.status)}`}>
                         {initiative.status}
                       </span>
@@ -622,9 +622,9 @@ const ProcurementSavings: React.FC = () => {
 
       {/* Charts */}
       {(activeTab === 'overview' || activeTab === 'analytics') && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Monthly Savings Trend</h4>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Monthly Savings Trend</h4>
             <ResponsiveContainer width="100%" height={300}>
               <ComposedChart data={monthlySavings}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -639,8 +639,8 @@ const ProcurementSavings: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Savings by Type</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Savings by Type</h4>
             <ResponsiveContainer width="100%" height={300}>
               <RePieChart>
                 <Pie
@@ -665,8 +665,8 @@ const ProcurementSavings: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Savings by Category</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Savings by Category</h4>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={savingsByCategory}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -680,8 +680,8 @@ const ProcurementSavings: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Target Achievement by Category</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Target Achievement by Category</h4>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={savingsByCategory} layout="horizontal">
                 <CartesianGrid strokeDasharray="3 3" />
@@ -698,9 +698,9 @@ const ProcurementSavings: React.FC = () => {
 
       {/* Tracking Tab */}
       {activeTab === 'tracking' && (
-        <div className="space-y-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex justify-between items-center mb-4">
+        <div className="space-y-3">
+          <div className="bg-white rounded-lg shadow p-3">
+            <div className="flex justify-between items-center mb-2">
               <h4 className="font-semibold">Initiative Progress Tracking</h4>
               <button
                 onClick={handleAnalyzeTrends}
@@ -710,7 +710,7 @@ const ProcurementSavings: React.FC = () => {
                 <span className="text-purple-700">Analyze Trends</span>
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {savingsInitiatives.filter(i => i.status === 'active').map((initiative) => (
                 <div key={initiative.id} className="border-b pb-4 last:border-b-0">
                   <div className="flex justify-between items-start mb-2">
@@ -755,9 +755,9 @@ const ProcurementSavings: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Completed Initiatives</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Completed Initiatives</h4>
               <div className="space-y-3">
                 {savingsInitiatives.filter(i => i.status === 'completed').map((init) => (
                   <div key={init.id} className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
@@ -777,8 +777,8 @@ const ProcurementSavings: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Performance Summary</h4>
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Performance Summary</h4>
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                   <div className="flex items-center">
@@ -815,10 +815,10 @@ const ProcurementSavings: React.FC = () => {
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="space-y-6 mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Top Performers</h4>
+        <div className="space-y-3 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Top Performers</h4>
               <div className="space-y-3">
                 {savingsInitiatives
                   .sort((a, b) => (b.actualSavings / b.targetSavings) - (a.actualSavings / a.targetSavings))
@@ -842,8 +842,8 @@ const ProcurementSavings: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Savings by Type</h4>
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Savings by Type</h4>
               <div className="space-y-2">
                 {savingsByType.slice(0, 3).map((type) => (
                   <div key={type.type} className="flex justify-between items-center">
@@ -857,8 +857,8 @@ const ProcurementSavings: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Quick Actions</h4>
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Quick Actions</h4>
               <div className="space-y-2">
                 <button
                   onClick={handleCalculateSavings}
@@ -885,8 +885,8 @@ const ProcurementSavings: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Recent Activity</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Recent Activity</h4>
             <div className="space-y-3">
               <div className="flex items-start p-3 bg-gray-50 rounded-lg">
                 <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />

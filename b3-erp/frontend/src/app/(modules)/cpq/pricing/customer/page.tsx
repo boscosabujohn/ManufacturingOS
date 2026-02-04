@@ -234,9 +234,9 @@ export default function CPQPricingCustomerPage() {
     : 0
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button onClick={() => setIsFilterModalOpen(true)} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -254,7 +254,7 @@ export default function CPQPricingCustomerPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -305,7 +305,7 @@ export default function CPQPricingCustomerPage() {
       </div>
 
       {/* Tier Filter */}
-      <div className="mb-6 flex gap-3">
+      <div className="mb-3 flex gap-3">
         <button onClick={() => handleTierFilter(null)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
           selectedTierFilter === null
             ? 'bg-blue-100 text-blue-700 border border-blue-200'
@@ -344,7 +344,7 @@ export default function CPQPricingCustomerPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -438,7 +438,7 @@ export default function CPQPricingCustomerPage() {
       </div>
 
       {/* Customer Tier Info */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Customer Tier Benefits:</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-purple-700">
           <div>

@@ -428,7 +428,7 @@ export default function AssetDepreciation() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -442,8 +442,8 @@ export default function AssetDepreciation() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Scheduled</p>
@@ -453,7 +453,7 @@ export default function AssetDepreciation() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Upcoming</p>
@@ -463,7 +463,7 @@ export default function AssetDepreciation() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -473,7 +473,7 @@ export default function AssetDepreciation() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue</p>
@@ -483,7 +483,7 @@ export default function AssetDepreciation() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">This Month</p>
@@ -493,7 +493,7 @@ export default function AssetDepreciation() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Est. Cost</p>
@@ -505,8 +505,8 @@ export default function AssetDepreciation() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -545,11 +545,11 @@ export default function AssetDepreciation() {
       </div>
 
       {/* Maintenance Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredSchedules.map((schedule) => (
-          <div key={schedule.id} className="bg-white rounded-lg shadow-sm border p-6">
+          <div key={schedule.id} className="bg-white rounded-lg shadow-sm border p-3">
             {/* Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
                   <Wrench className="h-6 w-6 text-blue-600" />
@@ -567,7 +567,7 @@ export default function AssetDepreciation() {
             </div>
 
             {/* Type & Priority */}
-            <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b">
+            <div className="grid grid-cols-2 gap-3 mb-2 pb-4 border-b">
               <div>
                 <p className="text-xs text-gray-600">Maintenance Type</p>
                 <p className="text-sm font-medium">{schedule.maintenanceType}</p>
@@ -589,7 +589,7 @@ export default function AssetDepreciation() {
             </div>
 
             {/* Schedule Info */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-2 gap-3 mb-2">
               <div>
                 <p className="text-xs text-gray-600">Last Maintenance</p>
                 <p className="text-sm font-medium">{schedule.schedule.lastMaintenance}</p>
@@ -613,7 +613,7 @@ export default function AssetDepreciation() {
             </div>
 
             {/* Assignment */}
-            <div className="mb-4 pb-4 border-b">
+            <div className="mb-2 pb-4 border-b">
               <p className="text-xs text-gray-600 mb-1">Assigned To</p>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4 text-gray-400" />
@@ -625,7 +625,7 @@ export default function AssetDepreciation() {
             </div>
 
             {/* Description */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-xs text-gray-600 mb-1">Description</p>
               <p className="text-sm text-gray-700 line-clamp-2">{schedule.details.description}</p>
             </div>
@@ -675,7 +675,7 @@ export default function AssetDepreciation() {
       {showDetailModal && selectedMaintenance && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-semibold">{selectedMaintenance.assetName}</h2>
                 <p className="text-sm text-gray-600">{selectedMaintenance.assetTag}</p>
@@ -688,11 +688,11 @@ export default function AssetDepreciation() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Maintenance Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Maintenance Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Type</p>
                     <p className="font-medium">{selectedMaintenance.maintenanceType}</p>
@@ -719,7 +719,7 @@ export default function AssetDepreciation() {
               {/* Schedule Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Schedule Information</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Last Maintenance</p>
                     <p className="font-medium">{selectedMaintenance.schedule.lastMaintenance}</p>
@@ -742,7 +742,7 @@ export default function AssetDepreciation() {
               {/* Cost Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Cost Information</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Estimated Cost</p>
                     <p className="font-medium">${selectedMaintenance.details.estimatedCost}</p>
@@ -759,7 +759,7 @@ export default function AssetDepreciation() {
               {/* Assignment Details */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Assignment Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Technician</p>
                     <p className="font-medium">{selectedMaintenance.assignment.technician}</p>
@@ -778,7 +778,7 @@ export default function AssetDepreciation() {
               {/* Location */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Location</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Building</p>
                     <p className="font-medium">{selectedMaintenance.location.building}</p>
@@ -803,7 +803,7 @@ export default function AssetDepreciation() {
               {/* Warranty Information */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Warranty Information</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Coverage Status</p>
                     <p className={`font-medium ${selectedMaintenance.warranty.covered ? 'text-green-600' : 'text-red-600'}`}>
@@ -824,7 +824,7 @@ export default function AssetDepreciation() {
               {/* Service History */}
               <div>
                 <h3 className="text-lg font-semibold mb-3">Service History</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Total Services</p>
                     <p className="font-medium">{selectedMaintenance.history.totalServices}</p>

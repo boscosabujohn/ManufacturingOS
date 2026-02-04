@@ -18,9 +18,9 @@ export default function PortalDocumentsPage() {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 p-6">
-            <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center gap-4">
+        <div className="w-full min-h-screen bg-gray-50 p-3">
+            <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
                     <Link href="/portal" className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <ArrowLeft className="w-5 h-5 text-gray-600" />
                         <span className="text-gray-700">Back</span>
@@ -39,7 +39,7 @@ export default function PortalDocumentsPage() {
             </div>
 
             {/* Toolbar */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6 flex items-center justify-between">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3 flex items-center justify-between">
                 <div className="relative w-96">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
@@ -70,16 +70,16 @@ export default function PortalDocumentsPage() {
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Name</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Date Modified</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Size / Items</th>
-                                <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-right">Actions</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Name</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Date Modified</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase">Size / Items</th>
+                                <th className="px-3 py-2 text-xs font-medium text-gray-500 uppercase text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {files.map((file) => (
                                 <tr key={file.id} className="hover:bg-gray-50 group">
-                                    <td className="px-6 py-4 flex items-center gap-3">
+                                    <td className="px-3 py-2 flex items-center gap-3">
                                         {file.type === 'folder' ? (
                                             <div className="p-2 bg-blue-50 text-blue-600 rounded">
                                                 <Folder className="w-5 h-5" />
@@ -91,9 +91,9 @@ export default function PortalDocumentsPage() {
                                         )}
                                         <span className="font-medium text-gray-900">{file.name}</span>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">{file.date}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-500">{file.type === 'folder' ? file.items : file.size}</td>
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-3 py-2 text-sm text-gray-500">{file.date}</td>
+                                    <td className="px-3 py-2 text-sm text-gray-500">{file.type === 'folder' ? file.items : file.size}</td>
+                                    <td className="px-3 py-2 text-right">
                                         <button className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
                                             <Download className="w-4 h-4" />
                                         </button>
@@ -104,10 +104,10 @@ export default function PortalDocumentsPage() {
                     </table>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     {files.map((file) => (
-                        <div key={file.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow group cursor-pointer">
-                            <div className="flex justify-between items-start mb-4">
+                        <div key={file.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow group cursor-pointer">
+                            <div className="flex justify-between items-start mb-2">
                                 {file.type === 'folder' ? (
                                     <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
                                         <Folder className="w-8 h-8" />

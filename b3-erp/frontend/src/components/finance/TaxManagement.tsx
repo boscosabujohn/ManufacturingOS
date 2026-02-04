@@ -503,10 +503,10 @@ const TaxManagement: React.FC = () => {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <DollarSign className="h-8 w-8 text-blue-600" />
@@ -520,7 +520,7 @@ const TaxManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <FileText className="h-8 w-8 text-green-600" />
@@ -534,7 +534,7 @@ const TaxManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <AlertTriangle className="h-8 w-8 text-orange-600" />
@@ -551,7 +551,7 @@ const TaxManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <CalendarIcon className="h-8 w-8 text-red-600" />
@@ -568,9 +568,9 @@ const TaxManagement: React.FC = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Tax Liability by Jurisdiction</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Tax Liability by Jurisdiction</h3>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={taxLiabilityData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -586,8 +586,8 @@ const TaxManagement: React.FC = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Filing Status Distribution</h3>
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Filing Status Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -612,13 +612,13 @@ const TaxManagement: React.FC = () => {
 
       {/* Compliance Alerts */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Compliance Alerts</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {complianceAlerts.filter(a => !a.isResolved).slice(0, 5).map((alert) => (
-              <div key={alert.id} className={`flex items-start justify-between p-4 rounded-lg border ${
+              <div key={alert.id} className={`flex items-start justify-between p-3 rounded-lg border ${
                 !alert.isRead ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-200'
               }`}>
                 <div className="flex-1">
@@ -649,7 +649,7 @@ const TaxManagement: React.FC = () => {
   );
 
   const renderJurisdictions = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Tax Jurisdictions</h3>
         <button
@@ -661,10 +661,10 @@ const TaxManagement: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         {jurisdictions.map((jurisdiction) => (
-          <div key={jurisdiction.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={jurisdiction.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center">
                 {getJurisdictionTypeIcon(jurisdiction.type)}
                 <div className="ml-3">
@@ -736,7 +736,7 @@ const TaxManagement: React.FC = () => {
   );
 
   const renderFilings = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Tax Filings</h3>
         <button
@@ -753,25 +753,25 @@ const TaxManagement: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Filing Period
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Jurisdiction
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tax Type
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Due Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tax Owed
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -779,25 +779,25 @@ const TaxManagement: React.FC = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {taxFilings.map((filing) => (
                 <tr key={filing.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {filing.filingPeriod}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {filing.jurisdictionName}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {filing.taxTypeName}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatDate(filing.dueDate)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatCurrency(filing.taxOwed)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {getStatusBadge(filing.status)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => setSelectedFiling(filing)}
@@ -827,7 +827,7 @@ const TaxManagement: React.FC = () => {
   );
 
   const renderCalculations = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Tax Calculations</h3>
 
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -835,25 +835,25 @@ const TaxManagement: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Transaction
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Type
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Taxable Amount
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tax Rate
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tax Amount
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
               </tr>
@@ -861,25 +861,25 @@ const TaxManagement: React.FC = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {taxCalculations.map((calc) => (
                 <tr key={calc.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">
                     {calc.transactionId}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatDate(calc.transactionDate)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900 capitalize">
                     {calc.transactionType}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {formatCurrency(calc.taxableAmount)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {calc.taxRate}%
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {formatCurrency(calc.taxAmount)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       calc.isReversed ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
                     }`}>
@@ -896,14 +896,14 @@ const TaxManagement: React.FC = () => {
   );
 
   const renderCompliance = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <h3 className="text-lg font-semibold text-gray-900">Compliance Management</h3>
 
       {/* Compliance Overview */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <div className="lg:col-span-2">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h4 className="font-medium text-gray-900 mb-4">Compliance Status Overview</h4>
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+            <h4 className="font-medium text-gray-900 mb-2">Compliance Status Overview</h4>
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
                 <Pie
@@ -926,9 +926,9 @@ const TaxManagement: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h4 className="font-medium text-gray-900 mb-4">Quick Stats</h4>
-          <div className="space-y-4">
+        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+          <h4 className="font-medium text-gray-900 mb-2">Quick Stats</h4>
+          <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-sm text-gray-600">Total Alerts:</span>
               <span className="text-sm font-medium text-gray-900">{complianceAlerts.length}</span>
@@ -957,13 +957,13 @@ const TaxManagement: React.FC = () => {
 
       {/* Alerts List */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h4 className="font-medium text-gray-900">Compliance Alerts</h4>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {complianceAlerts.map((alert) => (
-              <div key={alert.id} className={`border rounded-lg p-4 ${
+              <div key={alert.id} className={`border rounded-lg p-3 ${
                 alert.isResolved ? 'border-gray-200 bg-gray-50' :
                 alert.severity === 'critical' ? 'border-red-200 bg-red-50' :
                 alert.severity === 'high' ? 'border-orange-200 bg-orange-50' :
@@ -1011,7 +1011,7 @@ const TaxManagement: React.FC = () => {
   );
 
   const renderReports = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Tax Reports</h3>
         <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
@@ -1020,15 +1020,15 @@ const TaxManagement: React.FC = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {[
           { name: 'Tax Liability Summary', type: 'liability', period: 'Q1 2024', generated: '2024-04-01' },
           { name: 'Sales Tax Report', type: 'payment', period: 'March 2024', generated: '2024-03-31' },
           { name: 'Compliance Status Report', type: 'compliance', period: 'Q1 2024', generated: '2024-04-01' },
           { name: 'International Tax Summary', type: 'summary', period: 'Q1 2024', generated: '2024-04-01' }
         ].map((report, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div>
                 <h4 className="font-semibold text-gray-900">{report.name}</h4>
                 <p className="text-sm text-gray-600">{report.period}</p>
@@ -1068,14 +1068,14 @@ const TaxManagement: React.FC = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 ">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Tax Management</h1>
         <p className="text-gray-600 mt-2">Manage tax compliance, filings, and calculations across multiple jurisdictions</p>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-gray-200 mb-3">
         <nav className="-mb-px flex space-x-8">
           {[
             { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },

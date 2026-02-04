@@ -72,10 +72,10 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -95,12 +95,12 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Employee Information */}
-          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="mb-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <User className="w-4 h-4" />
               Employee Details
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-xs text-gray-600">Name</p>
                 <p className="font-semibold text-gray-900">{employee.name}</p>
@@ -127,7 +127,7 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
           </div>
 
           {/* Select New Shift */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">
               <Clock className="w-4 h-4 inline mr-1" />
               Select New Shift *
@@ -136,7 +136,7 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
               {availableShifts.map(shift => (
                 <label
                   key={shift.id}
-                  className={`relative border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                  className={`relative border-2 rounded-lg p-3 cursor-pointer transition-all ${
                     selectedShift === shift.id
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -171,7 +171,7 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
           </div>
 
           {/* Effective Date and Reason */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <Calendar className="w-4 h-4 inline mr-1" />
@@ -211,7 +211,7 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
           </div>
 
           {/* Additional Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
               <input
                 type="checkbox"
@@ -245,7 +245,7 @@ export function ChangeShiftModal({ isOpen, onClose, onSubmit, employee, availabl
 
           {/* Summary */}
           {selectedShift && effectiveDate && (
-            <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6">
+            <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div className="flex-1">

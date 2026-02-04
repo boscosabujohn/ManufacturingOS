@@ -56,7 +56,7 @@ const TouchButton = React.forwardRef<HTMLButtonElement, TouchButtonProps>(
     const sizes: Record<string, string> = {
       sm: 'min-h-[44px] min-w-[44px] px-4 py-2 text-sm',
       md: 'min-h-[48px] min-w-[48px] px-5 py-2.5 text-base',
-      lg: 'min-h-[52px] min-w-[52px] px-6 py-3 text-lg',
+      lg: 'min-h-[52px] min-w-[52px] px-3 py-2 text-lg',
       xl: 'min-h-[60px] min-w-[60px] px-8 py-4 text-xl', // Extra large for shop floor
       icon: 'min-h-[44px] min-w-[44px] w-11 h-11 p-2',
       'icon-lg': 'min-h-[56px] min-w-[56px] w-14 h-14 p-3', // Large icon for shop floor

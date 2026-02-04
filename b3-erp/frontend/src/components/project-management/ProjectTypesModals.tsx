@@ -28,10 +28,10 @@ export function CreateProjectTypeModal({ isOpen, onClose, onCreate }: CreateProj
   const isValid = formData.typeName && formData.typeCode && formData.description && formData.industry;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FolderKanban className="w-5 h-5 text-white" />
@@ -47,8 +47,8 @@ export function CreateProjectTypeModal({ isOpen, onClose, onCreate }: CreateProj
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-4">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Type Name *</label>
               <input
@@ -60,7 +60,7 @@ export function CreateProjectTypeModal({ isOpen, onClose, onCreate }: CreateProj
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Type Code *</label>
                 <input
@@ -108,7 +108,7 @@ export function CreateProjectTypeModal({ isOpen, onClose, onCreate }: CreateProj
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Default Duration</label>
                 <input
@@ -158,7 +158,7 @@ export function CreateProjectTypeModal({ isOpen, onClose, onCreate }: CreateProj
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -194,9 +194,9 @@ export function EditProjectTypeModal({ isOpen, onClose, onSave, type }: EditProj
   if (!isOpen || !type) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -211,11 +211,11 @@ export function EditProjectTypeModal({ isOpen, onClose, onSave, type }: EditProj
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <p className="text-gray-600">Edit project type details, workflow, and custom fields.</p>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -245,9 +245,9 @@ export function DuplicateProjectTypeModal({ isOpen, onClose, onDuplicate, type }
   if (!isOpen || !type) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Copy className="w-5 h-5 text-white" />
@@ -262,7 +262,7 @@ export function DuplicateProjectTypeModal({ isOpen, onClose, onDuplicate, type }
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Create a copy of "{type.typeName}"</p>
+          <p className="text-gray-600 mb-2">Create a copy of "{type.typeName}"</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">New Type Name</label>
             <input
@@ -275,7 +275,7 @@ export function DuplicateProjectTypeModal({ isOpen, onClose, onDuplicate, type }
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -304,9 +304,9 @@ export function DeleteProjectTypeModal({ isOpen, onClose, onDelete, type }: Dele
   if (!isOpen || !type) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Trash2 className="w-5 h-5 text-white" />
@@ -321,17 +321,17 @@ export function DeleteProjectTypeModal({ isOpen, onClose, onDelete, type }: Dele
         </div>
 
         <div className="p-6">
-          <p className="text-gray-700 mb-4">
+          <p className="text-gray-700 mb-2">
             Are you sure you want to delete <strong>{type.typeName}</strong>?
           </p>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <p className="text-sm text-red-800">
               <strong>Warning:</strong> This action cannot be undone. {type.projectCount} projects are using this type.
             </p>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -356,9 +356,9 @@ export function ManageCustomFieldsModal({ isOpen, onClose, onSave, type }: Manag
   if (!isOpen || !type) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Settings className="w-5 h-5 text-white" />
@@ -373,10 +373,10 @@ export function ManageCustomFieldsModal({ isOpen, onClose, onSave, type }: Manag
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-4">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-2">
             {type.customFields.map((field: any, idx: number) => (
-              <div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={idx} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
@@ -401,7 +401,7 @@ export function ManageCustomFieldsModal({ isOpen, onClose, onSave, type }: Manag
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-between bg-gray-50">
           <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
             + Add Field
           </button>
@@ -433,9 +433,9 @@ export function ViewTypeDetailsModal({ isOpen, onClose, type }: ViewTypeDetailsM
   if (!isOpen || !type) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -450,16 +450,16 @@ export function ViewTypeDetailsModal({ isOpen, onClose, type }: ViewTypeDetailsM
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Overview</h3>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-gray-700">{type.description}</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <h4 className="text-sm font-medium text-gray-700 mb-2">Industry</h4>
                 <p className="text-gray-900">{type.industry}</p>
@@ -480,7 +480,7 @@ export function ViewTypeDetailsModal({ isOpen, onClose, type }: ViewTypeDetailsM
 
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Performance Metrics</h3>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-2">
                 <div className="bg-blue-50 rounded-lg p-3 text-center">
                   <p className="text-2xl font-bold text-blue-600">{type.projectCount}</p>
                   <p className="text-xs text-gray-600">Total Projects</p>
@@ -502,7 +502,7 @@ export function ViewTypeDetailsModal({ isOpen, onClose, type }: ViewTypeDetailsM
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -532,9 +532,9 @@ export function CreateCategoryModal({ isOpen, onClose, onCreate }: CreateCategor
   const isValid = formData.categoryName && formData.categoryCode && formData.description;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Tag className="w-5 h-5 text-white" />
@@ -549,7 +549,7 @@ export function CreateCategoryModal({ isOpen, onClose, onCreate }: CreateCategor
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Category Name *</label>
             <input
@@ -561,7 +561,7 @@ export function CreateCategoryModal({ isOpen, onClose, onCreate }: CreateCategor
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Category Code *</label>
               <input
@@ -596,7 +596,7 @@ export function CreateCategoryModal({ isOpen, onClose, onCreate }: CreateCategor
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -629,9 +629,9 @@ export function EditCategoryModal({ isOpen, onClose, onSave, category }: EditCat
   if (!isOpen || !category) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -650,7 +650,7 @@ export function EditCategoryModal({ isOpen, onClose, onSave, category }: EditCat
           <p className="text-gray-600">Edit category details and linked project types.</p>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>

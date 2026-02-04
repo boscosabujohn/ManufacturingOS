@@ -32,9 +32,9 @@ export function AddLaborEntryModal({ isOpen, onClose, onAdd }: AddLaborEntryModa
   const isValid = formData.date && formData.projectId && formData.workPackage && formData.workersDeployed && formData.hoursWorked;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Plus className="w-5 h-5 text-white" />
@@ -49,8 +49,8 @@ export function AddLaborEntryModal({ isOpen, onClose, onAdd }: AddLaborEntryModa
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Date *</label>
               <input
@@ -201,7 +201,7 @@ export function AddLaborEntryModal({ isOpen, onClose, onAdd }: AddLaborEntryModa
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -234,9 +234,9 @@ export function EditLaborEntryModal({ isOpen, onClose, onSave, entry }: EditLabo
   if (!isOpen || !entry) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Edit className="w-5 h-5 text-white" />
@@ -255,7 +255,7 @@ export function EditLaborEntryModal({ isOpen, onClose, onSave, entry }: EditLabo
           <p className="text-gray-600">Edit labor entry details, hours, and costs.</p>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -282,9 +282,9 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
   if (!isOpen || !entry) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -299,9 +299,9 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600 mb-1">Project</p>
                 <p className="text-sm font-medium text-gray-900">{entry.projectName}</p>
@@ -312,7 +312,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
               </div>
             </div>
 
-            <div className="grid grid-cols-5 gap-4">
+            <div className="grid grid-cols-5 gap-2">
               <div className="bg-blue-50 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-blue-600">{entry.workersDeployed}</p>
                 <p className="text-xs text-gray-600">Workers</p>
@@ -335,7 +335,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600 mb-1">Category</p>
                 <p className="text-sm font-medium text-gray-900">{entry.laborCategory}</p>
@@ -352,7 +352,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
 
             <div>
               <h4 className="text-sm font-semibold text-gray-700 mb-2">Work Description</h4>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-700">{entry.workDescription}</p>
               </div>
             </div>
@@ -360,7 +360,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
             {entry.remarks && (
               <div>
                 <h4 className="text-sm font-semibold text-gray-700 mb-2">Remarks</h4>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{entry.remarks}</p>
                 </div>
               </div>
@@ -368,7 +368,7 @@ export function ViewLaborDetailsModal({ isOpen, onClose, entry }: ViewLaborDetai
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -392,9 +392,9 @@ export function ApproveHoursModal({ isOpen, onClose, onApprove, entry }: Approve
   if (!isOpen || !entry) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -409,8 +409,8 @@ export function ApproveHoursModal({ isOpen, onClose, onApprove, entry }: Approve
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Approve {entry.totalManhours} manhours for {entry.projectName}</p>
-          <div className="bg-gray-50 rounded-lg p-3 mb-4">
+          <p className="text-gray-600 mb-2">Approve {entry.totalManhours} manhours for {entry.projectName}</p>
+          <div className="bg-gray-50 rounded-lg p-3 mb-2">
             <p className="text-sm text-gray-600">Regular: {entry.hoursWorked}h | OT: {entry.overtimeHours}h</p>
             <p className="text-sm font-medium text-gray-900 mt-1">Cost: ₹{entry.totalCost.toLocaleString('en-IN')}</p>
           </div>
@@ -426,7 +426,7 @@ export function ApproveHoursModal({ isOpen, onClose, onApprove, entry }: Approve
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -456,9 +456,9 @@ export function RejectHoursModal({ isOpen, onClose, onReject, entry }: RejectHou
   if (!isOpen || !entry) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-red-500 to-red-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <XCircle className="w-5 h-5 text-white" />
@@ -473,7 +473,7 @@ export function RejectHoursModal({ isOpen, onClose, onReject, entry }: RejectHou
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Reject hours entry for {entry.projectName}</p>
+          <p className="text-gray-600 mb-2">Reject hours entry for {entry.projectName}</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Reason for Rejection *</label>
             <textarea
@@ -486,7 +486,7 @@ export function RejectHoursModal({ isOpen, onClose, onReject, entry }: RejectHou
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -523,9 +523,9 @@ export function CalculateEfficiencyModal({ isOpen, onClose, onCalculate, entry }
     : '0';
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -539,7 +539,7 @@ export function CalculateEfficiencyModal({ isOpen, onClose, onCalculate, entry }
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Planned Manhours</label>
             <input
@@ -570,13 +570,13 @@ export function CalculateEfficiencyModal({ isOpen, onClose, onCalculate, entry }
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
             />
           </div>
-          <div className="bg-orange-50 rounded-lg p-4">
+          <div className="bg-orange-50 rounded-lg p-3">
             <p className="text-sm text-gray-600">Calculated Efficiency</p>
             <p className="text-3xl font-bold text-orange-600">{efficiency}%</p>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -606,9 +606,9 @@ export function BulkUploadModal({ isOpen, onClose, onUpload }: BulkUploadModalPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Upload className="w-5 h-5 text-white" />
@@ -623,9 +623,9 @@ export function BulkUploadModal({ isOpen, onClose, onUpload }: BulkUploadModalPr
         </div>
 
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Upload multiple labor entries from file</p>
+          <p className="text-gray-600 mb-2">Upload multiple labor entries from file</p>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="w-12 h-12 text-gray-400 mb-2" />
             <p className="text-sm text-gray-600 mb-2">Drop your file here or click to browse</p>
             <input
               type="file"
@@ -637,7 +637,7 @@ export function BulkUploadModal({ isOpen, onClose, onUpload }: BulkUploadModalPr
           {file && <p className="text-sm text-gray-600 mt-2">Selected: {file.name}</p>}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -668,9 +668,9 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-500 to-teal-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Download className="w-5 h-5 text-white" />
@@ -684,7 +684,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Report Type</label>
             <select
@@ -713,7 +713,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -751,9 +751,9 @@ export function AssignWorkersModal({ isOpen, onClose, onAssign }: AssignWorkersM
   const isValid = formData.projectId && formData.workPackage && formData.numberOfWorkers;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Users className="w-5 h-5 text-white" />
@@ -768,8 +768,8 @@ export function AssignWorkersModal({ isOpen, onClose, onAssign }: AssignWorkersM
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Project</label>
               <input
@@ -836,7 +836,7 @@ export function AssignWorkersModal({ isOpen, onClose, onAssign }: AssignWorkersM
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -873,9 +873,9 @@ export function CalculateCostModal({ isOpen, onClose, onCalculate, entry }: Calc
   const totalCost = regularCost + overtimeCost;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <DollarSign className="w-5 h-5 text-white" />
@@ -889,8 +889,8 @@ export function CalculateCostModal({ isOpen, onClose, onCalculate, entry }: Calc
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+        <div className="p-6 space-y-2">
+          <div className="bg-gray-50 rounded-lg p-3 space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-600">Regular Hours:</span>
               <span className="font-medium">{entry.hoursWorked}h @ ₹{entry.hourlyRate}/h</span>
@@ -916,7 +916,7 @@ export function CalculateCostModal({ isOpen, onClose, onCalculate, entry }: Calc
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -954,9 +954,9 @@ export function ShiftScheduleModal({ isOpen, onClose, onSchedule }: ShiftSchedul
   const isValid = formData.date && formData.projectId && formData.workers;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-500 to-pink-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
@@ -971,8 +971,8 @@ export function ShiftScheduleModal({ isOpen, onClose, onSchedule }: ShiftSchedul
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
               <input
@@ -1035,7 +1035,7 @@ export function ShiftScheduleModal({ isOpen, onClose, onSchedule }: ShiftSchedul
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -1076,9 +1076,9 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnal
   const entriesWithHighOvertime = entries.filter(e => e.overtimeHours > 4); // Threshold for alert
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-violet-500 to-violet-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-500 to-violet-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Clock className="w-5 h-5 text-white" />
@@ -1093,8 +1093,8 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnal
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="grid grid-cols-3 gap-4">
+        <div className="p-6 space-y-2">
+          <div className="grid grid-cols-3 gap-2">
             <div className="bg-blue-50 rounded-lg p-3 text-center">
               <p className="text-2xl font-bold text-blue-600">{totalRegularHours}h</p>
               <p className="text-xs text-gray-600">Total Regular Hours</p>
@@ -1109,7 +1109,7 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnal
             </div>
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <h4 className="font-medium text-yellow-800 mb-2">Total Overtime Cost Impact</h4>
             <p className="text-sm text-yellow-700">
               Additional Cost: ₹{totalOvertimeCost.toLocaleString('en-IN')}
@@ -1120,7 +1120,7 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnal
           </div>
 
           {entriesWithHighOvertime.length > 0 && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="flex items-start gap-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                 <div>
@@ -1140,7 +1140,7 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnal
           )}
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -1170,9 +1170,9 @@ export function GenerateTimesheetModal({ isOpen, onClose, onGenerate }: Generate
   const isValid = formData.startDate && formData.endDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -1186,8 +1186,8 @@ export function GenerateTimesheetModal({ isOpen, onClose, onGenerate }: Generate
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
               <input
@@ -1237,7 +1237,7 @@ export function GenerateTimesheetModal({ isOpen, onClose, onGenerate }: Generate
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -1272,9 +1272,9 @@ export function LaborProductivityReportModal({ isOpen, onClose, onGenerate }: La
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -1288,7 +1288,7 @@ export function LaborProductivityReportModal({ isOpen, onClose, onGenerate }: La
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
             <select
@@ -1318,7 +1318,7 @@ export function LaborProductivityReportModal({ isOpen, onClose, onGenerate }: La
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -1357,9 +1357,9 @@ export function MarkAttendanceModal({ isOpen, onClose, onMark }: MarkAttendanceM
   const isValid = formData.date && formData.projectId && formData.present;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-rose-500 to-rose-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-rose-500 to-rose-600 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-white" />
@@ -1374,8 +1374,8 @@ export function MarkAttendanceModal({ isOpen, onClose, onMark }: MarkAttendanceM
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="p-6 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
               <input
@@ -1452,7 +1452,7 @@ export function MarkAttendanceModal({ isOpen, onClose, onMark }: MarkAttendanceM
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex justify-end gap-3 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex justify-end gap-3 bg-gray-50">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>

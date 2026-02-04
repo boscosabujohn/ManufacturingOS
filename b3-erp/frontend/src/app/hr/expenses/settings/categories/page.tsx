@@ -222,16 +222,16 @@ export default function ExpenseCategoriesPage() {
   };
 
   const CategoryModal = ({ title, onSave, onClose }: { title: string; onSave: () => void; onClose: () => void }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900">{title}</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Category Name*</label>
             <input
@@ -265,7 +265,7 @@ export default function ExpenseCategoriesPage() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -298,7 +298,7 @@ export default function ExpenseCategoriesPage() {
           </label>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex gap-3 justify-end">
+        <div className="border-t border-gray-200 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
@@ -318,8 +318,8 @@ export default function ExpenseCategoriesPage() {
   );
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex justify-between items-start">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <List className="h-7 w-7 text-purple-600" />
@@ -337,20 +337,20 @@ export default function ExpenseCategoriesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="text-sm text-purple-700">Total Categories</div>
           <div className="text-3xl font-bold text-purple-900 mt-1">{categories.length}</div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="text-sm text-green-700">Active</div>
           <div className="text-3xl font-bold text-green-900 mt-1">{categories.filter(c => c.isActive).length}</div>
         </div>
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-700">Inactive</div>
           <div className="text-3xl font-bold text-gray-900 mt-1">{categories.filter(c => !c.isActive).length}</div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="text-sm text-blue-700">Total Usage</div>
           <div className="text-3xl font-bold text-blue-900 mt-1">{categories.reduce((sum, c) => sum + c.usageCount, 0)}</div>
         </div>
@@ -362,30 +362,30 @@ export default function ExpenseCategoriesPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Max Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rules</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Usage</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Max Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rules</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Usage</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {categories.map((category) => (
                 <tr key={category.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{category.name}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-700 max-w-xs truncate">{category.description}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">
                       {category.maxAmount ? `₹${category.maxAmount.toLocaleString('en-IN')}` : 'No limit'}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex gap-2">
                       {category.requiresReceipt && (
                         <span className="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded">Receipt</span>
@@ -395,10 +395,10 @@ export default function ExpenseCategoriesPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-700">{category.usageCount} expenses</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <button
                       onClick={() => toggleActive(category)}
                       className={`px-2 py-1 text-xs font-semibold rounded ${
@@ -410,7 +410,7 @@ export default function ExpenseCategoriesPage() {
                       {category.isActive ? 'Active' : 'Inactive'}
                     </button>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEdit(category)}
@@ -437,7 +437,7 @@ export default function ExpenseCategoriesPage() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-2">
           <AlertCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
           <div>
@@ -472,7 +472,7 @@ export default function ExpenseCategoriesPage() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && selectedCategory && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6">
               <div className="flex items-start gap-3">
@@ -493,7 +493,7 @@ export default function ExpenseCategoriesPage() {
                 </div>
               </div>
             </div>
-            <div className="border-t border-gray-200 px-6 py-4 flex gap-3 justify-end">
+            <div className="border-t border-gray-200 px-3 py-2 flex gap-3 justify-end">
               <button
                 onClick={() => setShowDeleteModal(false)}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"

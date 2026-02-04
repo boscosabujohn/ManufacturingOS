@@ -345,14 +345,14 @@ export default function ESIReturnsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">ESI Returns</h1>
         <p className="text-sm text-gray-600 mt-1">Half-yearly ESI return filing and tracking</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-4 border border-pink-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-3 border border-pink-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-pink-600">Total Returns</p>
@@ -362,7 +362,7 @@ export default function ESIReturnsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Accepted</p>
@@ -372,7 +372,7 @@ export default function ESIReturnsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Filed</p>
@@ -382,7 +382,7 @@ export default function ESIReturnsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -393,8 +393,8 @@ export default function ESIReturnsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between items-center">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Financial Year</label>
             <select
@@ -426,10 +426,10 @@ export default function ESIReturnsPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredReturns.map(returnData => (
-          <div key={returnData.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={returnData.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{returnData.returnPeriod}</h3>
@@ -461,8 +461,8 @@ export default function ESIReturnsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">Coverage</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -476,7 +476,7 @@ export default function ESIReturnsPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">Employee Share</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -490,7 +490,7 @@ export default function ESIReturnsPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h4 className="text-xs font-semibold text-purple-900 mb-3">Employer Share</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -504,7 +504,7 @@ export default function ESIReturnsPage() {
                 </div>
               </div>
 
-              <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+              <div className="bg-pink-50 rounded-lg p-3 border border-pink-200">
                 <h4 className="text-xs font-semibold text-pink-900 mb-3">Total Payable</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -525,8 +525,8 @@ export default function ESIReturnsPage() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-gray-50 to-pink-50 rounded-lg p-4 border border-gray-200 mb-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-gradient-to-r from-gray-50 to-pink-50 rounded-lg p-3 border border-gray-200 mb-2">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <p className="text-xs text-gray-600 mb-1">Due Date</p>
                   <p className="text-sm font-bold text-gray-900 flex items-center gap-2">
@@ -609,7 +609,7 @@ export default function ESIReturnsPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-pink-50 border border-pink-200 rounded-lg p-4">
+      <div className="mt-6 bg-pink-50 border border-pink-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-pink-900 mb-2">ESI Return Filing Guidelines</h3>
         <ul className="text-sm text-pink-800 space-y-1">
           <li>• <strong>Filing Frequency:</strong> Half-yearly returns (April-September & October-March)</li>

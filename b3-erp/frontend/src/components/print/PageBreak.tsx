@@ -333,7 +333,7 @@ export function PrintSection({
   return (
     <section
       className={`
-        print-section mb-6
+        print-section mb-3
         ${pageBreakBefore ? 'page-break-before' : ''}
         ${keepTogether ? 'keep-together' : ''}
         ${className}
@@ -484,7 +484,7 @@ export function PrintList({
   const columnClasses = {
     1: '',
     2: 'columns-2 gap-8',
-    3: 'columns-3 gap-6',
+    3: 'columns-3 gap-3',
   };
 
   // Split into pages if needed

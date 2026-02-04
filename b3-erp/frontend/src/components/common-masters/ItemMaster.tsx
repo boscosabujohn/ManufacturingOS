@@ -336,8 +336,8 @@ const ItemMaster: React.FC = () => {
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center p-6 border-b">
+        <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
+          <div className="flex justify-between items-center p-3 border-b">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Package className="h-5 w-5" />
               {modalMode === 'create' ? 'Create Item' : modalMode === 'edit' ? 'Edit Item' : 'Item Details'}
@@ -350,9 +350,9 @@ const ItemMaster: React.FC = () => {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="p-6 space-y-3">
             {/* Basic Information */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium mb-1">Item Code *</label>
                 <input
@@ -397,7 +397,7 @@ const ItemMaster: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium mb-1">Item Name *</label>
                 <input
@@ -438,7 +438,7 @@ const ItemMaster: React.FC = () => {
             {/* Classification */}
             <div className="border-t pt-4">
               <h3 className="text-lg font-medium mb-3">Classification</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Category</label>
                   <input
@@ -485,7 +485,7 @@ const ItemMaster: React.FC = () => {
             {/* Units & Measurements */}
             <div className="border-t pt-4">
               <h3 className="text-lg font-medium mb-3">Units & Measurements</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Primary UOM *</label>
                   <select
@@ -536,7 +536,7 @@ const ItemMaster: React.FC = () => {
             {/* Inventory Settings */}
             <div className="border-t pt-4">
               <h3 className="text-lg font-medium mb-3">Inventory Settings</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 <div className="space-y-2">
                   <label className="flex items-center gap-2">
                     <input
@@ -624,7 +624,7 @@ const ItemMaster: React.FC = () => {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
@@ -661,8 +661,8 @@ const ItemMaster: React.FC = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4 mb-6">
-        <div className="flex flex-wrap gap-4 items-center">
+      <div className="bg-white rounded-lg shadow p-3 mb-3">
+        <div className="flex flex-wrap gap-2 items-center">
           <div className="flex items-center border rounded-lg px-3 py-2 flex-1 min-w-64">
             <Search className="h-4 w-4 text-gray-400 mr-2" />
             <input
@@ -713,16 +713,16 @@ const ItemMaster: React.FC = () => {
       {isLoading ? (
         <div className="bg-white rounded-lg shadow p-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mb-2"></div>
             <p className="text-gray-500">Loading items...</p>
           </div>
         </div>
       ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
           {filteredItems.map((item) => (
             <div key={item.id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
               <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                       <Package className="h-6 w-6 text-blue-600" />
@@ -742,9 +742,9 @@ const ItemMaster: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-2">
                   <p className="text-sm text-gray-700 line-clamp-2">{item.description}</p>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span>{item.category}</span>
                     <span>•</span>
                     <span>{item.primaryUOM}</span>
@@ -853,9 +853,9 @@ const ItemMaster: React.FC = () => {
       {filteredItems.length === 0 && !isLoading && (
         <div className="bg-white rounded-lg shadow p-8">
           <div className="text-center">
-            <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Package className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No items found</h3>
-            <p className="text-gray-500 mb-4">
+            <p className="text-gray-500 mb-2">
               {searchTerm || filterCategory !== 'all' || filterType !== 'all' || filterStatus !== 'all'
                 ? 'Try adjusting your search or filters'
                 : 'Get started by creating your first item'
@@ -864,7 +864,7 @@ const ItemMaster: React.FC = () => {
             {!searchTerm && filterCategory === 'all' && filterType === 'all' && filterStatus === 'all' && (
               <button
                 onClick={handleCreateItem}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center gap-2 mx-auto"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center gap-2"
               >
                 <Plus className="h-4 w-4" />
                 Add Item

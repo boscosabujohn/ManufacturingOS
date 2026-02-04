@@ -52,13 +52,13 @@ function ExpenseClaimsStatusContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -67,14 +67,14 @@ function ExpenseClaimsStatusContent() {
                                     key={claim.id}
                                     onClick={() => router.push(`/accounts/expenses/${claim.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{claim.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{claim.employee}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{claim.dept}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{claim.category}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{claim.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{claim.employee}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{claim.dept}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{claim.category}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right font-medium text-gray-900">
                                         ${claim.amount.toLocaleString()}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                    <td className="px-3 py-2 whitespace-nowrap text-center">
                                         <Badge variant={
                                             claim.status === 'Paid' ? 'default' :
                                                 claim.status === 'Approved' ? 'secondary' :
@@ -83,7 +83,7 @@ function ExpenseClaimsStatusContent() {
                                             {claim.status}
                                         </Badge>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{claim.date}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{claim.date}</td>
                                 </ClickableTableRow>
                             ))}
                         </tbody>

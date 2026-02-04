@@ -320,10 +320,10 @@ export default function InProgressWorkOrdersPage() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -340,8 +340,8 @@ export default function InProgressWorkOrdersPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">In Progress</span>
             <Activity className="h-5 w-5 text-blue-600" />
@@ -350,7 +350,7 @@ export default function InProgressWorkOrdersPage() {
           <div className="text-xs text-blue-700 mt-1">Active work orders</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">On Track</span>
             <CheckCircle2 className="h-5 w-5 text-green-600" />
@@ -359,7 +359,7 @@ export default function InProgressWorkOrdersPage() {
           <div className="text-xs text-green-700 mt-1">Meeting schedule</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-yellow-900">At Risk</span>
             <AlertCircle className="h-5 w-5 text-yellow-600" />
@@ -368,7 +368,7 @@ export default function InProgressWorkOrdersPage() {
           <div className="text-xs text-yellow-700 mt-1">Need attention</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-red-900">Delayed</span>
             <TrendingDown className="h-5 w-5 text-red-600" />
@@ -379,8 +379,8 @@ export default function InProgressWorkOrdersPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -417,7 +417,7 @@ export default function InProgressWorkOrdersPage() {
       </div>
 
       {/* Work Orders List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredOrders.map((order) => {
           const statusInfo = getStatusBadge(order.status);
           const StatusIcon = statusInfo.icon;
@@ -428,7 +428,7 @@ export default function InProgressWorkOrdersPage() {
             <div key={order.id} className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
               <div className="p-5">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-lg font-semibold text-gray-900">{order.workOrderNumber}</h3>
@@ -437,7 +437,7 @@ export default function InProgressWorkOrdersPage() {
                         {statusInfo.label}
                       </span>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span className="flex items-center gap-1">
                         <User className="h-4 w-4" />
                         {order.customerName}
@@ -455,12 +455,12 @@ export default function InProgressWorkOrdersPage() {
                 </div>
 
                 {/* Product Info */}
-                <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                <div className="bg-blue-50 rounded-lg p-3 mb-2">
                   <div className="flex items-start gap-3">
                     <Package className="h-5 w-5 text-blue-600 mt-1" />
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-900">{order.productName}</h4>
-                      <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+                      <div className="flex items-center gap-2 mt-1 text-sm text-gray-600">
                         <span>{order.productCode}</span>
                         <span>•</span>
                         <span className="font-medium">Target: {order.quantity} {order.unit}</span>
@@ -472,9 +472,9 @@ export default function InProgressWorkOrdersPage() {
                 </div>
 
                 {/* Progress Section */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                   {/* Completion Progress */}
-                  <div className="bg-gray-50 rounded-lg p-4 col-span-2">
+                  <div className="bg-gray-50 rounded-lg p-3 col-span-2">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-gray-700">Overall Progress</span>
                       <span className="text-2xl font-bold text-blue-900">{order.completionPercentage}%</span>
@@ -506,7 +506,7 @@ export default function InProgressWorkOrdersPage() {
                   </div>
 
                   {/* Current Status */}
-                  <div className="bg-purple-50 rounded-lg p-4">
+                  <div className="bg-purple-50 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-3">
                       <Settings className="h-5 w-5 text-purple-600" />
                       <span className="text-sm font-medium text-purple-900">Current Station</span>
@@ -526,7 +526,7 @@ export default function InProgressWorkOrdersPage() {
                 </div>
 
                 {/* Timeline */}
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                <div className="bg-gray-50 rounded-lg p-3 mb-2">
                   <div className="grid grid-cols-3 gap-3 text-sm">
                     <div>
                       <div className="text-gray-600">Started</div>
@@ -545,7 +545,7 @@ export default function InProgressWorkOrdersPage() {
 
                 {/* Issues */}
                 {order.issues.length > 0 && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-2">
                     <div className="flex items-start gap-2">
                       <AlertCircle className="h-4 w-4 text-red-600 mt-0.5" />
                       <div className="flex-1">

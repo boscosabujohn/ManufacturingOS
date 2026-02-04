@@ -434,16 +434,16 @@ export default function CostCenterMaster() {
   const costCenterTree = buildCostCenterTree(filteredCostCenters);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold mb-2">Cost Center Master</h2>
         <p className="text-gray-600">Manage cost allocation centers and budgets</p>
       </div>
 
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-1 gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+            <div className="flex flex-1 gap-2">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
@@ -518,25 +518,25 @@ export default function CostCenterMaster() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Cost Center
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Type & Category
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Manager & Dept
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Budget
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Performance
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -544,19 +544,19 @@ export default function CostCenterMaster() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredCostCenters.map((cc) => (
                     <tr key={cc.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="text-sm font-medium text-gray-900">{cc.name}</div>
                           <div className="text-sm text-gray-500">{cc.code}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="space-y-1">
                           {getTypeBadge(cc.type)}
                           {getCategoryBadge(cc.category)}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm">
                           <div className="flex items-center gap-1">
                             <Users className="h-3 w-3 text-gray-400" />
@@ -567,7 +567,7 @@ export default function CostCenterMaster() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="w-48">
                           <div className="text-sm font-medium mb-1">
                             ${(cc.budget.annual / 1000000).toFixed(1)}M Annual
@@ -575,7 +575,7 @@ export default function CostCenterMaster() {
                           {getBudgetUtilization(cc.budget)}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm">
                           <div className="flex items-center gap-1">
                             <Activity className="h-3 w-3 text-gray-400" />
@@ -586,10 +586,10 @@ export default function CostCenterMaster() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         {getStatusBadge(cc.status)}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleEdit(cc)}
@@ -616,7 +616,7 @@ export default function CostCenterMaster() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden">
             <div className="p-4 border-b border-gray-200">
               <h3 className="text-lg font-semibold">
                 {selectedCostCenter ? 'Edit Cost Center' : 'Add New Cost Center'}
@@ -641,8 +641,8 @@ export default function CostCenterMaster() {
 
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
               {currentTab === 'basic' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Cost Center Code *
@@ -667,7 +667,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Type *
@@ -695,7 +695,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Parent Cost Center
@@ -721,7 +721,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Department
@@ -760,8 +760,8 @@ export default function CostCenterMaster() {
               )}
 
               {currentTab === 'budget' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Annual Budget *
@@ -786,7 +786,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Quarterly Budget
@@ -809,7 +809,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Allocated
@@ -845,7 +845,7 @@ export default function CostCenterMaster() {
 
                   <div className="border-t pt-4">
                     <h4 className="font-medium mb-3">Expense Breakdown</h4>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Direct Expenses
@@ -892,8 +892,8 @@ export default function CostCenterMaster() {
               )}
 
               {currentTab === 'allocation' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Allocation Method *
@@ -946,8 +946,8 @@ export default function CostCenterMaster() {
               )}
 
               {currentTab === 'accounting' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         GL Account
@@ -970,7 +970,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Business Unit
@@ -1007,7 +1007,7 @@ export default function CostCenterMaster() {
               )}
 
               {currentTab === 'controls' && (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Approval Limit
@@ -1044,7 +1044,7 @@ export default function CostCenterMaster() {
                     </label>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Over-budget Action
@@ -1072,8 +1072,8 @@ export default function CostCenterMaster() {
               )}
 
               {currentTab === 'performance' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Efficiency (%)
@@ -1098,7 +1098,7 @@ export default function CostCenterMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Utilization Rate (%)

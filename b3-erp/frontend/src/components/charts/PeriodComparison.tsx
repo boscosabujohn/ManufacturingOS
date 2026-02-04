@@ -272,7 +272,7 @@ export function PeriodComparison({
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-4 gap-4 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50">
+      <div className="grid grid-cols-4 gap-2 px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50">
         {/* Current Period */}
         <div>
           <div className="flex items-center gap-2 mb-1">
@@ -338,7 +338,7 @@ export function PeriodComparison({
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <label className="text-sm text-gray-600 dark:text-gray-400">Current:</label>
               <input
@@ -367,7 +367,7 @@ export function PeriodComparison({
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-center gap-6 px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+      <div className="flex items-center justify-center gap-3 px-4 py-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: currentColor }} />
           <span className="text-sm text-gray-600 dark:text-gray-400">

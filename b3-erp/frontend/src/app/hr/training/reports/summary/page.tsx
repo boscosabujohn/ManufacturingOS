@@ -109,7 +109,7 @@ export default function TrainingSummaryPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-emerald-600" />
           Training Summary Report
@@ -118,8 +118,8 @@ export default function TrainingSummaryPage() {
       </div>
 
       {/* Period Selector */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Report Period:</label>
           <select
             value={selectedPeriod}
@@ -136,8 +136,8 @@ export default function TrainingSummaryPage() {
       </div>
 
       {/* Overall Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-emerald-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-emerald-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Employees Trained</p>
@@ -146,7 +146,7 @@ export default function TrainingSummaryPage() {
             <Users className="h-10 w-10 text-emerald-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Programs Completed</p>
@@ -155,7 +155,7 @@ export default function TrainingSummaryPage() {
             <BookOpen className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -164,7 +164,7 @@ export default function TrainingSummaryPage() {
             <TrendingUp className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Completion</p>
@@ -176,8 +176,8 @@ export default function TrainingSummaryPage() {
       </div>
 
       {/* Secondary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Training Hours</p>
@@ -186,7 +186,7 @@ export default function TrainingSummaryPage() {
             <Clock className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Certifications Earned</p>
@@ -195,7 +195,7 @@ export default function TrainingSummaryPage() {
             <Award className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Budget Utilized</p>
@@ -205,7 +205,7 @@ export default function TrainingSummaryPage() {
             <IndianRupee className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Hours/Employee</p>
@@ -219,21 +219,21 @@ export default function TrainingSummaryPage() {
       </div>
 
       {/* Department-wise Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-3">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Department-wise Training Summary</h3>
         </div>
         <DataTable data={mockDepartmentData} columns={columns} />
       </div>
 
       {/* Top Programs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-emerald-600" />
             Top Training Programs
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {topTrainings.map((training, idx) => (
               <div key={idx} className="border-b border-gray-200 pb-3 last:border-0">
                 <div className="flex items-start justify-between mb-2">
@@ -259,12 +259,12 @@ export default function TrainingSummaryPage() {
         </div>
 
         {/* Budget Analysis */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <IndianRupee className="h-5 w-5 text-indigo-600" />
             Budget Analysis
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="p-4 bg-indigo-50 rounded-lg">
               <p className="text-sm text-gray-600 mb-1">Total Budget Allocated</p>
               <p className="text-2xl font-bold text-indigo-900">
@@ -303,10 +303,10 @@ export default function TrainingSummaryPage() {
       </div>
 
       {/* Key Insights */}
-      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-emerald-900 mb-4">Key Insights & Recommendations</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-emerald-200">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-emerald-900 mb-2">Key Insights & Recommendations</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-emerald-200">
             <h4 className="font-semibold text-gray-900 mb-2">✓ Strengths</h4>
             <ul className="text-sm text-gray-700 space-y-1">
               <li>• Safety & Compliance dept has highest completion rate (92%)</li>
@@ -315,7 +315,7 @@ export default function TrainingSummaryPage() {
               <li>• Budget utilization is on track at {Math.round((overallStats.totalBudgetSpent / overallStats.totalBudget) * 100)}%</li>
             </ul>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-orange-200">
+          <div className="bg-white rounded-lg p-3 border border-orange-200">
             <h4 className="font-semibold text-gray-900 mb-2">⚠ Areas for Improvement</h4>
             <ul className="text-sm text-gray-700 space-y-1">
               <li>• Warehouse & Logistics has lowest completion rate (78%)</li>

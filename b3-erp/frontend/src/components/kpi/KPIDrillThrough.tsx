@@ -255,13 +255,13 @@ export function KPIDrillThrough({
       {/* Modal */}
       <div className="fixed inset-4 md:inset-8 z-50 flex items-center justify-center">
         <div
-          className={`w-full max-w-4xl max-h-full bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col ${className}`}
+          className={`w-full  max-h-full bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col ${className}`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-start justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-start justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
             <div className="flex-1">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                     {kpiName}
@@ -284,7 +284,7 @@ export function KPIDrillThrough({
               </div>
 
               {/* KPI Value */}
-              <div className="flex items-end gap-4 mt-3">
+              <div className="flex items-end gap-2 mt-3">
                 <div className="text-3xl font-bold text-gray-900 dark:text-white">
                   {typeof kpiValue === 'number' ? valueFormatter(kpiValue) : kpiValue}
                   {kpiUnit && <span className="text-lg text-gray-500 ml-1">{kpiUnit}</span>}
@@ -413,7 +413,7 @@ export function KPIDrillThrough({
                         <span className="font-medium text-gray-900 dark:text-white">
                           {factor.name}
                         </span>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                           <span className="text-gray-600 dark:text-gray-400">
                             {valueFormatter(factor.value)}
                           </span>
@@ -436,7 +436,7 @@ export function KPIDrillThrough({
           </div>
 
           {/* Footer */}
-          <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500">
+          <div className="px-3 py-2 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500">
             {factors.length} contributing factors • Click on a row to explore further
           </div>
         </div>

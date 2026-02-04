@@ -311,10 +311,10 @@ export default function GanttChartPage() {
   const avgProgress = tasks.reduce((sum, t) => sum + t.progress, 0) / totalTasks;
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -347,8 +347,8 @@ export default function GanttChartPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Tasks</span>
             <Package className="h-5 w-5 text-blue-600" />
@@ -357,7 +357,7 @@ export default function GanttChartPage() {
           <div className="text-xs text-blue-700 mt-1">Scheduled</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">In Progress</span>
             <Clock className="h-5 w-5 text-green-600" />
@@ -366,7 +366,7 @@ export default function GanttChartPage() {
           <div className="text-xs text-green-700 mt-1">Active now</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-red-900">Delayed</span>
             <Calendar className="h-5 w-5 text-red-600" />
@@ -375,7 +375,7 @@ export default function GanttChartPage() {
           <div className="text-xs text-red-700 mt-1">Need attention</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Avg Progress</span>
             <Users className="h-5 w-5 text-purple-600" />
@@ -386,8 +386,8 @@ export default function GanttChartPage() {
       </div>
 
       {/* Controls */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
           <div className="flex items-center gap-2">
             <Filter className="h-4 w-4 text-gray-600" />
             <select
@@ -450,7 +450,7 @@ export default function GanttChartPage() {
           <div className="min-w-[1200px]">
             {/* Timeline Header */}
             <div className="flex border-b border-gray-200 bg-gray-50">
-              <div className="w-64 p-4 font-medium text-sm text-gray-700 border-r border-gray-200">
+              <div className="w-64 p-3 font-medium text-sm text-gray-700 border-r border-gray-200">
                 Work Order / Product
               </div>
               <div className="flex-1 flex">
@@ -524,9 +524,9 @@ export default function GanttChartPage() {
       </div>
 
       {/* Legend */}
-      <div className="mt-6 bg-gray-50 rounded-lg p-4">
+      <div className="mt-6 bg-gray-50 rounded-lg p-3">
         <h3 className="text-sm font-medium text-gray-700 mb-3">Legend</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-gray-400"></div>
             <span className="text-sm text-gray-600">Not Started</span>
@@ -544,7 +544,7 @@ export default function GanttChartPage() {
             <span className="text-sm text-gray-600">Delayed</span>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3">
           <div className="flex items-center gap-2">
             <div className="w-4 h-1 bg-red-500"></div>
             <span className="text-sm text-gray-600">Urgent Priority</span>

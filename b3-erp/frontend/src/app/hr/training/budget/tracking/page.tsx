@@ -56,9 +56,9 @@ export default function BudgetTrackingPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <TrendingUp className="h-8 w-8 text-purple-600" />
@@ -84,8 +84,8 @@ export default function BudgetTrackingPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-gray-500 text-sm font-medium">Total Spent (YTD)</p>
           <div className="flex items-center gap-2 mt-2">
             <h2 className="text-3xl font-bold text-gray-900">{formatCurrency(140000)}</h2>
@@ -95,7 +95,7 @@ export default function BudgetTrackingPage() {
           </div>
           <p className="text-xs text-gray-400 mt-2">Budget: {formatCurrency(150000)}</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-gray-500 text-sm font-medium">Projected End-Year</p>
           <div className="flex items-center gap-2 mt-2">
             <h2 className="text-3xl font-bold text-gray-900">{formatCurrency(290000)}</h2>
@@ -105,7 +105,7 @@ export default function BudgetTrackingPage() {
           </div>
           <p className="text-xs text-gray-400 mt-2">Annual Budget: {formatCurrency(300000)}</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-gray-500 text-sm font-medium">Avg. Cost per Employee</p>
           <div className="flex items-center gap-2 mt-2">
             <h2 className="text-3xl font-bold text-gray-900">$850</h2>
@@ -117,10 +117,10 @@ export default function BudgetTrackingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Burn Rate Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Budget Burn Rate</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Budget Burn Rate</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={burnRateData} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
@@ -137,8 +137,8 @@ export default function BudgetTrackingPage() {
         </div>
 
         {/* Category Breakdown */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Spend by Category</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Spend by Category</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={categoryData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
@@ -172,25 +172,25 @@ export default function BudgetTrackingPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Date</th>
-                <th className="px-6 py-4">Description</th>
-                <th className="px-6 py-4">Category</th>
-                <th className="px-6 py-4">Department</th>
-                <th className="px-6 py-4 text-right">Amount</th>
+                <th className="px-3 py-2">Date</th>
+                <th className="px-3 py-2">Description</th>
+                <th className="px-3 py-2">Category</th>
+                <th className="px-3 py-2">Department</th>
+                <th className="px-3 py-2 text-right">Amount</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {expenses.map((expense) => (
                 <tr key={expense.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium">{expense.date}</td>
-                  <td className="px-6 py-4 text-gray-900">{expense.description}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 font-medium">{expense.date}</td>
+                  <td className="px-3 py-2 text-gray-900">{expense.description}</td>
+                  <td className="px-3 py-2">
                     <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
                       {expense.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-gray-500">{expense.department}</td>
-                  <td className="px-6 py-4 text-right font-medium text-gray-900">{formatCurrency(expense.amount)}</td>
+                  <td className="px-3 py-2 text-gray-500">{expense.department}</td>
+                  <td className="px-3 py-2 text-right font-medium text-gray-900">{formatCurrency(expense.amount)}</td>
                 </tr>
               ))}
             </tbody>

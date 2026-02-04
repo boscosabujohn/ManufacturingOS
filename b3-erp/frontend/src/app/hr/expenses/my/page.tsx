@@ -195,8 +195,8 @@ export default function MyExpensesPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex justify-between items-start">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Wallet className="h-7 w-7 text-purple-600" />
@@ -214,8 +214,8 @@ export default function MyExpensesPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-3">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Total Claims</p>
@@ -224,7 +224,7 @@ export default function MyExpensesPage() {
             <Receipt className="h-8 w-8 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Draft</p>
@@ -233,7 +233,7 @@ export default function MyExpensesPage() {
             <Clock className="h-8 w-8 text-gray-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Pending</p>
@@ -242,7 +242,7 @@ export default function MyExpensesPage() {
             <AlertTriangle className="h-8 w-8 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Approved</p>
@@ -251,7 +251,7 @@ export default function MyExpensesPage() {
             <CheckCircle className="h-8 w-8 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Rejected</p>
@@ -260,7 +260,7 @@ export default function MyExpensesPage() {
             <XCircle className="h-8 w-8 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-emerald-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-emerald-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Paid</p>
@@ -269,7 +269,7 @@ export default function MyExpensesPage() {
             <CheckCircle className="h-8 w-8 text-emerald-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Total Amt</p>
@@ -278,7 +278,7 @@ export default function MyExpensesPage() {
             <Wallet className="h-8 w-8 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs text-gray-600">Approved</p>
@@ -290,8 +290,8 @@ export default function MyExpensesPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status:</label>
             <select
@@ -331,7 +331,7 @@ export default function MyExpensesPage() {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         {filteredExpenses.length === 0 ? (
           <div className="p-12 text-center">
-            <Wallet className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+            <Wallet className="h-12 w-12 text-gray-300 mb-3" />
             <p className="text-gray-500">No expenses found</p>
           </div>
         ) : (
@@ -339,51 +339,51 @@ export default function MyExpensesPage() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claim No.</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receipt</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claim No.</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receipt</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredExpenses.map((expense) => (
                   <tr key={expense.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-semibold text-gray-900">{expense.claimNumber}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-700">
                         {expense.submissionDate ? new Date(expense.submissionDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
                         {getCategoryLabel(expense.category)}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="text-sm text-gray-900">{expense.description}</div>
                         <div className="text-xs text-gray-500">Bill Date: {new Date(expense.billDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-semibold text-gray-900">₹{expense.amount.toLocaleString('en-IN')}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {expense.receiptAttached ? <Receipt className="h-5 w-5 text-green-600" /> : <Receipt className="h-5 w-5 text-gray-300" />}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`px-2 py-1 inline-flex items-center gap-1 text-xs leading-5 font-semibold rounded-full ${getStatusColor(expense.status)}`}>
                         {getStatusIcon(expense.status)}
                         {expense.status.toUpperCase()}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleViewDetails(expense)}
@@ -413,9 +413,9 @@ export default function MyExpensesPage() {
 
       {/* Details Modal */}
       {showDetailsModal && selectedExpense && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900">Expense Details</h2>
               <button
                 onClick={() => setShowDetailsModal(false)}
@@ -425,7 +425,7 @@ export default function MyExpensesPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               {/* Status Badge */}
               <div className="flex items-center justify-between">
                 <span className={`px-3 py-1 inline-flex items-center gap-2 text-sm font-semibold rounded-full ${getStatusColor(selectedExpense.status)}`}>
@@ -437,7 +437,7 @@ export default function MyExpensesPage() {
 
               {/* Rejection Alert */}
               {selectedExpense.status === 'rejected' && selectedExpense.rejectionReason && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-start gap-2">
                     <XCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                     <div>
@@ -449,7 +449,7 @@ export default function MyExpensesPage() {
               )}
 
               {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700">Claim Number</label>
                   <p className="text-sm text-gray-900 mt-1">{selectedExpense.claimNumber}</p>
@@ -545,7 +545,7 @@ export default function MyExpensesPage() {
       )}
 
       {/* Info Box */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Expense Claim Guidelines</h3>
         <ul className="text-sm text-purple-800 space-y-1">
           <li>• All expense claims must be submitted within 30 days of bill date</li>

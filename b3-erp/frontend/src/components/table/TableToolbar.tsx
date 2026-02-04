@@ -121,7 +121,7 @@ export function TableToolbar({
   if (selectedCount > 0 && bulkActions.length > 0) {
     return (
       <div className={`flex items-center justify-between px-4 py-3 bg-blue-50 dark:bg-blue-900/20 border-b border-blue-200 dark:border-blue-800 ${className}`}>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <span className="font-medium text-blue-700 dark:text-blue-300">
             {selectedCount} selected
           </span>
@@ -156,7 +156,7 @@ export function TableToolbar({
   return (
     <div className={`space-y-3 ${className}`}>
       {/* Main Toolbar */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-2">
         {/* Left Side */}
         <div className="flex items-center gap-3 flex-1">
           {/* Search */}

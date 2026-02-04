@@ -130,8 +130,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Plus className="h-6 w-6 text-teal-600" />
           Create Succession Plan
@@ -140,7 +140,7 @@ export default function Page() {
       </div>
 
       {errors.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-3">
           <div className="flex items-start gap-2">
             <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
             <div>
@@ -155,14 +155,14 @@ export default function Page() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Position Information */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Briefcase className="h-5 w-5 text-teal-600" />
             <h2 className="text-lg font-bold text-gray-900">Position Information</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Position Title *</label>
               <input
@@ -268,14 +268,14 @@ export default function Page() {
         </div>
 
         {/* Successors */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <User className="h-5 w-5 text-teal-600" />
             <h2 className="text-lg font-bold text-gray-900">Identified Successors *</h2>
           </div>
 
           {/* Add Successor Form */}
-          <div className="bg-gray-50 rounded-lg p-4 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3 mb-2">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Add Successor</h3>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
               <input
@@ -333,7 +333,7 @@ export default function Page() {
           {formData.successors.length > 0 ? (
             <div className="space-y-3">
               {formData.successors.map((successor, idx) => (
-                <div key={idx} className="bg-white rounded-lg border border-gray-200 p-4">
+                <div key={idx} className="bg-white rounded-lg border border-gray-200 p-3">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -369,13 +369,13 @@ export default function Page() {
         </div>
 
         {/* Development Needs */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Target className="h-5 w-5 text-teal-600" />
             <h2 className="text-lg font-bold text-gray-900">Development Needs</h2>
           </div>
 
-          <div className="flex gap-2 mb-4">
+          <div className="flex gap-2 mb-2">
             <input
               type="text"
               value={newDevelopmentNeed}
@@ -412,12 +412,12 @@ export default function Page() {
         </div>
 
         {/* Timeline and Notes */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Calendar className="h-5 w-5 text-teal-600" />
             <h2 className="text-lg font-bold text-gray-900">Timeline & Additional Notes</h2>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Implementation Timeline *</label>
               <input

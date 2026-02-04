@@ -719,9 +719,9 @@ const MRPPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Material Requirements Planning (MRP)</h1>
@@ -769,8 +769,8 @@ const MRPPage: React.FC = () => {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow p-3 border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Requirements</p>
@@ -783,7 +783,7 @@ const MRPPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border-l-4 border-red-500">
+        <div className="bg-white rounded-lg shadow p-3 border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Shortages</p>
@@ -794,7 +794,7 @@ const MRPPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+        <div className="bg-white rounded-lg shadow p-3 border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Purchase Suggestions</p>
@@ -805,7 +805,7 @@ const MRPPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6 border-l-4 border-yellow-500">
+        <div className="bg-white rounded-lg shadow p-3 border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Excess Stock</p>
@@ -818,12 +818,12 @@ const MRPPage: React.FC = () => {
       </div>
 
       {/* MRP Configuration */}
-      <div className="bg-white rounded-lg shadow mb-6 p-6">
-        <div className="flex items-center mb-4">
+      <div className="bg-white rounded-lg shadow mb-3 p-3">
+        <div className="flex items-center mb-2">
           <Settings className="w-5 h-5 text-gray-600 mr-2" />
           <h2 className="text-lg font-semibold text-gray-900">MRP Run Configuration</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Planning Horizon (weeks)
@@ -871,7 +871,7 @@ const MRPPage: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <div className="flex space-x-8 px-6">
             {[
@@ -900,7 +900,7 @@ const MRPPage: React.FC = () => {
         {/* Material Requirements Tab */}
         {activeTab === 'requirements' && (
           <div className="p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <input
@@ -1030,14 +1030,14 @@ const MRPPage: React.FC = () => {
             </div>
 
             {selectedItem && (
-              <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="text-sm font-semibold text-gray-900 mb-2">Additional Details</h3>
                     {(() => {
                       const item = mrpRequirements.find((r) => r.id === selectedItem);
                       return item ? (
-                        <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="grid grid-cols-2 gap-2 text-sm">
                           <div>
                             <span className="text-gray-600">Preferred Vendor:</span>
                             <span className="ml-2 font-medium">{item.preferredVendor}</span>
@@ -1073,18 +1073,18 @@ const MRPPage: React.FC = () => {
         {/* Shortage Analysis Tab */}
         {activeTab === 'shortages' && (
           <div className="p-6">
-            <div className="mb-4">
+            <div className="mb-2">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Critical Shortages</h3>
               <p className="text-sm text-gray-600">
                 Items that will stop production if not procured immediately
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {shortages.map((shortage) => (
                 <div
                   key={shortage.id}
-                  className={`border-l-4 rounded-lg p-4 ${
+                  className={`border-l-4 rounded-lg p-3 ${
                     shortage.severity === 'Critical'
                       ? 'bg-red-50 border-red-500'
                       : shortage.severity === 'High'
@@ -1116,7 +1116,7 @@ const MRPPage: React.FC = () => {
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
                         <div>
                           <p className="text-xs text-gray-600">Shortage Quantity</p>
                           <p className="text-sm font-semibold text-red-600">
@@ -1167,7 +1167,7 @@ const MRPPage: React.FC = () => {
         {/* Purchase Suggestions Tab */}
         {activeTab === 'purchases' && (
           <div className="p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-1">Purchase Suggestions</h3>
                 <p className="text-sm text-gray-600">
@@ -1291,7 +1291,7 @@ const MRPPage: React.FC = () => {
         {/* Excess Stock Tab */}
         {activeTab === 'excess' && (
           <div className="p-6">
-            <div className="mb-4">
+            <div className="mb-2">
               <h3 className="text-lg font-semibold text-gray-900 mb-1">Excess Stock Alerts</h3>
               <p className="text-sm text-gray-600">
                 Slow moving, obsolete, and excess inventory requiring action
@@ -1348,7 +1348,7 @@ const MRPPage: React.FC = () => {
               </table>
             </div>
 
-            <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="mt-6 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
               <div className="flex items-start">
                 <AlertCircle className="w-5 h-5 text-yellow-600 mr-2 mt-0.5" />
                 <div>
@@ -1370,7 +1370,7 @@ const MRPPage: React.FC = () => {
         {/* Time-Phased View Tab */}
         {activeTab === 'timephased' && (
           <div className="p-6">
-            <div className="mb-4">
+            <div className="mb-2">
               <h3 className="text-lg font-semibold text-gray-900 mb-1">Time-Phased Material View</h3>
               <p className="text-sm text-gray-600">
                 Weekly projection of material requirements and availability
@@ -1445,7 +1445,7 @@ const MRPPage: React.FC = () => {
               </table>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <div className="flex items-center mb-2">
                   <BarChart3 className="w-5 h-5 text-blue-600 mr-2" />

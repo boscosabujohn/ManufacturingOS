@@ -32,13 +32,13 @@ export default function BrowseRepositoryPage() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Browse Repository</h1>
         <p className="text-sm text-gray-600 mt-1">Browse and access document repository</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex items-center gap-2 text-sm text-gray-600">
           {currentPath.map((path, index) => (
             <div key={index} className="flex items-center gap-2">
@@ -54,14 +54,14 @@ export default function BrowseRepositoryPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Folders</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Folders</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {folders.map((folder) => (
             <div
               key={folder.id}
               onClick={() => navigateToFolder(folder.name)}
-              className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200 hover:border-blue-400 hover:shadow-md cursor-pointer transition-all"
+              className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200 hover:border-blue-400 hover:shadow-md cursor-pointer transition-all"
             >
               <FolderOpen className="h-8 w-8 text-blue-600 flex-shrink-0" />
               <div className="flex-1 min-w-0">
@@ -73,11 +73,11 @@ export default function BrowseRepositoryPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Files</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Files</h2>
         <div className="space-y-3">
           {files.map((file) => (
-            <div key={file.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors">
+            <div key={file.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors">
               <div className="flex items-center gap-3 flex-1">
                 <File className="h-6 w-6 text-gray-600" />
                 <div className="flex-1 min-w-0">

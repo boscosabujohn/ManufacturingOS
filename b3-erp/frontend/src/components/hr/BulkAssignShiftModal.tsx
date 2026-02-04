@@ -94,10 +94,10 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -117,8 +117,8 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Step 1: Select Employees */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
                 Select Employees
@@ -129,7 +129,7 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
             </div>
 
             {/* Search and Filter */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <input
@@ -170,7 +170,7 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
             <div className="border border-gray-200 rounded-lg max-h-64 overflow-y-auto">
               {filteredEmployees.length === 0 ? (
                 <div className="p-8 text-center text-gray-500">
-                  <Users className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+                  <Users className="w-12 h-12 mb-2 text-gray-300" />
                   <p>No employees found</p>
                 </div>
               ) : (
@@ -205,17 +205,17 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
           </div>
 
           {/* Step 2: Select Shift */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">2</span>
               Select Shift Template
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {availableShifts.map(shift => (
                 <label
                   key={shift.id}
-                  className={`relative border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                  className={`relative border-2 rounded-lg p-3 cursor-pointer transition-all ${
                     selectedShift === shift.id
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -253,13 +253,13 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
           </div>
 
           {/* Step 3: Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">3</span>
               Assignment Details
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Calendar className="w-4 h-4 inline mr-1" />
@@ -291,7 +291,7 @@ export function BulkAssignShiftModal({ isOpen, onClose, onSubmit, availableEmplo
 
           {/* Summary */}
           {selectedEmployees.length > 0 && selectedShift && effectiveDate && (
-            <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6">
+            <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
                 <div className="flex-1">

@@ -112,9 +112,9 @@ export default function CPQAnalyticsSalesCyclePage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Sales Cycle Analytics</h2>
           <p className="text-sm text-gray-600 mt-1">Comprehensive analysis of deal velocity and bottlenecks</p>
@@ -142,7 +142,7 @@ export default function CPQAnalyticsSalesCyclePage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-medium text-blue-600">Avg Sales Cycle</p>
@@ -185,10 +185,10 @@ export default function CPQAnalyticsSalesCyclePage() {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Sales Cycle Trend */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Sales Cycle Trend</h3>
               <p className="text-sm text-gray-600">Average days to close over time</p>
@@ -214,8 +214,8 @@ export default function CPQAnalyticsSalesCyclePage() {
         </div>
 
         {/* Stage Duration */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Stage Duration Breakdown</h3>
               <p className="text-sm text-gray-600">Average time spent in each stage</p>
@@ -237,15 +237,15 @@ export default function CPQAnalyticsSalesCyclePage() {
       </div>
 
       {/* Conversion Funnel */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Deal Conversion Funnel</h3>
             <p className="text-sm text-gray-600">Stage-by-stage conversion analysis</p>
           </div>
           <TrendingUp className="h-6 w-6 text-green-600" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={conversionFunnel} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" />
@@ -266,7 +266,7 @@ export default function CPQAnalyticsSalesCyclePage() {
               const dropOff = ((prevValue - stage.value) / prevValue * 100).toFixed(1)
               const conversion = (stage.value / conversionFunnel[0].value * 100).toFixed(1)
               return (
-                <div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div key={idx} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full" style={{ backgroundColor: stage.fill }}></div>
@@ -288,8 +288,8 @@ export default function CPQAnalyticsSalesCyclePage() {
       </div>
 
       {/* Cycle Time by Deal Size */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Cycle Time by Deal Size</h3>
             <p className="text-sm text-gray-600">Correlation between deal value and sales cycle</p>
@@ -351,8 +351,8 @@ export default function CPQAnalyticsSalesCyclePage() {
       </div>
 
       {/* Bottleneck Analysis */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Bottleneck Analysis</h3>
             <p className="text-sm text-gray-600">Stages causing the most delays</p>
@@ -405,10 +405,10 @@ export default function CPQAnalyticsSalesCyclePage() {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Velocity by Product */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Velocity by Product Category</h3>
               <p className="text-sm text-gray-600">Average cycle time per category</p>
@@ -429,16 +429,16 @@ export default function CPQAnalyticsSalesCyclePage() {
         </div>
 
         {/* Key Insights */}
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md border border-blue-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md border border-blue-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-blue-900">Optimization Insights</h3>
               <p className="text-sm text-blue-700">Actionable recommendations</p>
             </div>
             <Target className="h-6 w-6 text-blue-600" />
           </div>
-          <div className="space-y-4">
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-green-100 rounded-lg">
                   <CheckCircle className="h-5 w-5 text-green-600" />
@@ -449,7 +449,7 @@ export default function CPQAnalyticsSalesCyclePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-red-100 rounded-lg">
                   <AlertTriangle className="h-5 w-5 text-red-600" />
@@ -460,7 +460,7 @@ export default function CPQAnalyticsSalesCyclePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-orange-100 rounded-lg">
                   <Clock className="h-5 w-5 text-orange-600" />
@@ -471,7 +471,7 @@ export default function CPQAnalyticsSalesCyclePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <Zap className="h-5 w-5 text-purple-600" />

@@ -320,10 +320,10 @@ export default function MRPResultsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -348,8 +348,8 @@ export default function MRPResultsPage() {
       </div>
 
       {/* Run Selector */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Calendar className="w-5 h-5 text-gray-400" />
           <select
             value={selectedRun}
@@ -366,8 +366,8 @@ export default function MRPResultsPage() {
       </div>
 
       {/* Run Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Materials Analyzed</p>
@@ -379,7 +379,7 @@ export default function MRPResultsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">With Shortages</p>
@@ -391,7 +391,7 @@ export default function MRPResultsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Planned Orders</p>
@@ -403,7 +403,7 @@ export default function MRPResultsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Critical Issues</p>
@@ -417,9 +417,9 @@ export default function MRPResultsPage() {
       </div>
 
       {/* Run Details Card */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Run Details</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Run Details</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           <div>
             <p className="text-sm text-gray-500">Run Number</p>
             <p className="text-sm font-semibold text-gray-900 mt-1">{currentRun.runNumber}</p>
@@ -454,8 +454,8 @@ export default function MRPResultsPage() {
       </div>
 
       {/* Action Messages Section */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-bold text-gray-900">Action Messages</h3>
           <div className="flex items-center gap-2">
             <Filter className="w-5 h-5 text-gray-400" />
@@ -490,7 +490,7 @@ export default function MRPResultsPage() {
           {filteredMessages.map((message) => (
             <div
               key={message.id}
-              className={`border-2 rounded-lg p-4 cursor-pointer hover:shadow-md transition-shadow ${getPriorityColor(message.priority)}`}
+              className={`border-2 rounded-lg p-3 cursor-pointer hover:shadow-md transition-shadow ${getPriorityColor(message.priority)}`}
               onClick={() => handleViewAction(message)}
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-3">
@@ -511,7 +511,7 @@ export default function MRPResultsPage() {
                     <p className="text-sm text-gray-700">{message.materialName}</p>
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{message.reason}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
                     <span>Qty: {message.quantity.toLocaleString()} {message.uom}</span>
                     {message.suggestedDate !== '-' && (
                       <>

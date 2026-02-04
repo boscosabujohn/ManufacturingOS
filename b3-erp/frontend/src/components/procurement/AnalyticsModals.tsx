@@ -131,9 +131,9 @@ export const CreateCustomReportModal: React.FC<CreateCustomReportModalProps> = (
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <BarChart3 className="w-6 h-6" />
             <div>
@@ -146,10 +146,10 @@ export const CreateCustomReportModal: React.FC<CreateCustomReportModalProps> = (
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: Basic Info */}
           {currentStep === 1 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Report Name *</label>
                 <input
@@ -207,8 +207,8 @@ export const CreateCustomReportModal: React.FC<CreateCustomReportModalProps> = (
 
           {/* Step 2: Metrics Selection */}
           {currentStep === 2 && (
-            <div className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="space-y-2">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="font-semibold text-blue-900">Select Metrics to Include</p>
                 <p className="text-sm text-blue-700 mt-1">Choose the metrics you want to track in this report</p>
               </div>
@@ -238,7 +238,7 @@ export const CreateCustomReportModal: React.FC<CreateCustomReportModalProps> = (
 
           {/* Step 3: Filters & Visualization */}
           {currentStep === 3 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
                 <select
@@ -332,7 +332,7 @@ export const CreateCustomReportModal: React.FC<CreateCustomReportModalProps> = (
           )}
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>
@@ -400,9 +400,9 @@ export const ExportReportModal: React.FC<ExportReportModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <div>
@@ -415,7 +415,7 @@ export const ExportReportModal: React.FC<ExportReportModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
@@ -508,7 +508,7 @@ export const ExportReportModal: React.FC<ExportReportModalProps> = ({
           )}
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>
@@ -588,9 +588,9 @@ export const ScheduleReportModal: React.FC<ScheduleReportModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Clock className="w-6 h-6" />
             <div>
@@ -603,8 +603,8 @@ export const ScheduleReportModal: React.FC<ScheduleReportModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Frequency</label>
               <select
@@ -745,7 +745,7 @@ export const ScheduleReportModal: React.FC<ScheduleReportModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>
@@ -815,9 +815,9 @@ export const DashboardCustomizationModal: React.FC<DashboardCustomizationModalPr
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Settings className="w-6 h-6" />
             <div>
@@ -830,13 +830,13 @@ export const DashboardCustomizationModal: React.FC<DashboardCustomizationModalPr
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-3">
             <p className="font-semibold text-teal-900">Available Widgets</p>
             <p className="text-sm text-teal-700 mt-1">Select the widgets you want to display on your dashboard</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {availableWidgets.map(widget => {
               const Icon = widget.icon
               const isSelected = selectedWidgets.some(w => w.id === widget.id)
@@ -869,7 +869,7 @@ export const DashboardCustomizationModal: React.FC<DashboardCustomizationModalPr
           </div>
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>

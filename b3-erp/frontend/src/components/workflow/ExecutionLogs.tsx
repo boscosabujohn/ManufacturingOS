@@ -327,9 +327,9 @@ export default function ExecutionLogs() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
-        <div className="flex items-center justify-between mb-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
               <FileText className="h-8 w-8 text-blue-600" />
@@ -358,7 +358,7 @@ export default function ExecutionLogs() {
       </div>
 
       {/* Logs List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredLogs.map((log) => {
           const isExpanded = expandedLogs.has(log.id);
           return (
@@ -455,7 +455,7 @@ export default function ExecutionLogs() {
 
       {filteredLogs.length === 0 && (
         <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-12 text-center">
-          <FileText className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <FileText className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No execution logs found for the selected filter.</p>
         </div>
       )}

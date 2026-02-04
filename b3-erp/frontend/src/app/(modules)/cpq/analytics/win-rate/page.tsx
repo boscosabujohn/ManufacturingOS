@@ -114,9 +114,9 @@ export default function CPQAnalyticsWinRatePage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Win Rate Analytics</h2>
           <p className="text-sm text-gray-600 mt-1">Comprehensive win/loss analysis and competitive insights</p>
@@ -144,7 +144,7 @@ export default function CPQAnalyticsWinRatePage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200">
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-medium text-green-600">Overall Win Rate</p>
@@ -183,10 +183,10 @@ export default function CPQAnalyticsWinRatePage() {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Win/Loss Trend */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Win/Loss Trend</h3>
               <p className="text-sm text-gray-600">Monthly win rate progression</p>
@@ -209,8 +209,8 @@ export default function CPQAnalyticsWinRatePage() {
         </div>
 
         {/* Loss Reasons */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Top Loss Reasons</h3>
               <p className="text-sm text-gray-600">Why deals were lost</p>
@@ -219,7 +219,7 @@ export default function CPQAnalyticsWinRatePage() {
           </div>
           <div className="space-y-3">
             {lossReasons.map((reason, idx) => (
-              <div key={idx} className="flex items-center gap-4">
+              <div key={idx} className="flex items-center gap-2">
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-gray-700">{reason.reason}</span>
@@ -242,8 +242,8 @@ export default function CPQAnalyticsWinRatePage() {
       </div>
 
       {/* Competitor Analysis */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Competitor Analysis</h3>
             <p className="text-sm text-gray-600">Win/loss record against key competitors</p>
@@ -300,10 +300,10 @@ export default function CPQAnalyticsWinRatePage() {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Win Rate by Product Category */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Win Rate by Product Category</h3>
               <p className="text-sm text-gray-600">Category performance comparison</p>
@@ -323,15 +323,15 @@ export default function CPQAnalyticsWinRatePage() {
         </div>
 
         {/* Win Rate by Customer Segment */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Win Rate by Customer Segment</h3>
               <p className="text-sm text-gray-600">Segment performance analysis</p>
             </div>
             <Users className="h-6 w-6 text-purple-600" />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <ResponsiveContainer width="50%" height={250}>
               <PieChart>
                 <Pie
@@ -370,10 +370,10 @@ export default function CPQAnalyticsWinRatePage() {
       </div>
 
       {/* Charts Row 3 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Competitive Positioning Radar */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Competitive Positioning</h3>
               <p className="text-sm text-gray-600">Us vs average competitor</p>
@@ -394,16 +394,16 @@ export default function CPQAnalyticsWinRatePage() {
         </div>
 
         {/* Key Insights */}
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md border border-blue-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-md border border-blue-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-blue-900">Strategic Insights</h3>
               <p className="text-sm text-blue-700">Actionable recommendations</p>
             </div>
             <TrendingUp className="h-6 w-6 text-blue-600" />
           </div>
-          <div className="space-y-4">
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+          <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-green-100 rounded-lg">
                   <CheckCircle className="h-5 w-5 text-green-600" />
@@ -414,7 +414,7 @@ export default function CPQAnalyticsWinRatePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-red-100 rounded-lg">
                   <AlertTriangle className="h-5 w-5 text-red-600" />
@@ -425,7 +425,7 @@ export default function CPQAnalyticsWinRatePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <Users className="h-5 w-5 text-purple-600" />
@@ -436,7 +436,7 @@ export default function CPQAnalyticsWinRatePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-blue-200">
+            <div className="bg-white rounded-lg p-3 border border-blue-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-orange-100 rounded-lg">
                   <Target className="h-5 w-5 text-orange-600" />

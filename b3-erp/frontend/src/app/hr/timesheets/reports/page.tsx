@@ -232,7 +232,7 @@ export default function TimesheetReportsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <BarChart3 className="h-8 w-8 text-blue-600" />
           Timesheet Reports & Analytics
@@ -241,8 +241,8 @@ export default function TimesheetReportsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Total Employees</p>
@@ -253,7 +253,7 @@ export default function TimesheetReportsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Total Hours</p>
@@ -264,7 +264,7 @@ export default function TimesheetReportsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Overtime Hours</p>
@@ -275,7 +275,7 @@ export default function TimesheetReportsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600 mb-1">Avg Hours/Employee</p>
@@ -288,8 +288,8 @@ export default function TimesheetReportsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Report Type
@@ -377,7 +377,7 @@ export default function TimesheetReportsPage() {
 
         {reportType === 'project' && (
           <div className="p-8 text-center text-gray-500">
-            <BarChart3 className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+            <BarChart3 className="w-16 h-16 mb-2 text-gray-400" />
             <p className="text-lg font-medium">Project Hours Report</p>
             <p className="text-sm mt-2">Project-wise hour allocation will be displayed here</p>
           </div>
@@ -385,8 +385,8 @@ export default function TimesheetReportsPage() {
       </div>
 
       {/* Insights */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <h3 className="text-sm font-semibold text-blue-900 mb-3">Key Insights</h3>
           <ul className="text-sm text-blue-800 space-y-2">
             <li>• Production has the highest overtime at {departmentData[0].overtimeHours} hours</li>
@@ -396,7 +396,7 @@ export default function TimesheetReportsPage() {
           </ul>
         </div>
 
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
           <h3 className="text-sm font-semibold text-green-900 mb-3">Report Features</h3>
           <ul className="text-sm text-green-800 space-y-2">
             <li>• <strong>Factory Workers:</strong> Punch in/out time tracking with break management</li>

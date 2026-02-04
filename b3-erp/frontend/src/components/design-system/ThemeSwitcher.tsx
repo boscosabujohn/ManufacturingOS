@@ -179,9 +179,9 @@ export function ThemeSwitcher({
   // Inline variant - expanded view
   if (variant === 'inline') {
     return (
-      <div className={`bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4 ${className}`}>
+      <div className={`bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-3 ${className}`}>
         {/* Mode Selection */}
-        <div className="mb-4">
+        <div className="mb-2">
           <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Appearance</h4>
           <div className="grid grid-cols-3 gap-2">
             {themeModes.map(({ mode, label, icon }) => (
@@ -207,7 +207,7 @@ export function ThemeSwitcher({
 
         {/* Color Theme Selection */}
         {showColorThemes && (
-          <div className="mb-4">
+          <div className="mb-2">
             <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Color Theme</h4>
             <div className="flex items-center gap-3">
               {colorThemes.map(({ theme, label, primary }) => (

@@ -218,7 +218,7 @@ export default function ScheduleGanttPage() {
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
    <div className="px-3 py-2 space-y-3">
     {/* Header Actions */}
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center mb-2">
      <div className="flex items-center gap-3">
       <button
        onClick={() => setShowAddMilestone(true)}
@@ -275,9 +275,9 @@ export default function ScheduleGanttPage() {
     </div>
 
     {/* Controls */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
     <div className="flex items-center justify-between">
-     <div className="flex items-center gap-4">
+     <div className="flex items-center gap-2">
       {/* View Mode Toggle */}
       <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
        <button
@@ -339,7 +339,7 @@ export default function ScheduleGanttPage() {
       {/* Timeline Header */}
       <div className="flex border-b border-gray-200 bg-gray-50">
        {/* Task Name Column */}
-       <div className="w-80 p-4 border-r border-gray-200 flex-shrink-0">
+       <div className="w-80 p-3 border-r border-gray-200 flex-shrink-0">
         <p className="text-xs font-medium text-gray-600 uppercase tracking-wider">Task Name</p>
        </div>
 
@@ -365,7 +365,7 @@ export default function ScheduleGanttPage() {
        {filteredTasks.map((task, index) => (
         <div key={task.id} className="flex border-b border-gray-200 hover:bg-gray-50 transition-colors">
          {/* Task Info Column */}
-         <div className="w-80 p-4 border-r border-gray-200 flex-shrink-0">
+         <div className="w-80 p-3 border-r border-gray-200 flex-shrink-0">
           <div>
            <p className="text-sm font-medium text-gray-900">{task.name}</p>
            <div className="flex items-center gap-2 mt-1">
@@ -440,7 +440,7 @@ export default function ScheduleGanttPage() {
     </div>
 
     {/* Legend */}
-    <div className="bg-gray-50 p-4 border-t border-gray-200">
+    <div className="bg-gray-50 p-3 border-t border-gray-200">
      <div className="flex items-center gap-3 text-sm">
       <div className="flex items-center gap-2">
        <div className="w-4 h-4 bg-green-500 rounded"></div>
@@ -467,24 +467,24 @@ export default function ScheduleGanttPage() {
    </div>
 
    {/* Summary Stats */}
-   <div className="grid grid-cols-4 gap-4">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+   <div className="grid grid-cols-4 gap-2">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <p className="text-sm text-gray-600">Total Tasks</p>
      <p className="text-2xl font-bold text-gray-900 mt-1">{mockTasks.length}</p>
     </div>
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <p className="text-sm text-gray-600">Completed</p>
      <p className="text-2xl font-bold text-green-900 mt-1">
       {mockTasks.filter(t => t.status === 'Completed').length}
      </p>
     </div>
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <p className="text-sm text-gray-600">In Progress</p>
      <p className="text-2xl font-bold text-blue-900 mt-1">
       {mockTasks.filter(t => t.status === 'In Progress').length}
      </p>
     </div>
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <p className="text-sm text-gray-600">Overall Progress</p>
      <p className="text-2xl font-bold text-purple-900 mt-1">
       {Math.round(mockTasks.reduce((sum, t) => sum + t.progress, 0) / mockTasks.length)}%

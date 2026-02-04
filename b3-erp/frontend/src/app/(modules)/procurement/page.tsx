@@ -389,7 +389,7 @@ export default function ProcurementDashboard() {
 
   if (isLoading) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-3 py-2 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-green-600" />
           <p className="mt-4 text-gray-600">Loading procurement data...</p>
@@ -399,8 +399,8 @@ export default function ProcurementDashboard() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -435,7 +435,7 @@ export default function ProcurementDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -482,10 +482,10 @@ export default function ProcurementDashboard() {
         </div>
 
         {/* Charts Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
           {/* Spending Trend Chart */}
-          <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Spending Trend Analysis</h3>
                 <p className="text-sm text-gray-500 mt-1">Budget vs Actual Spending</p>
@@ -549,8 +549,8 @@ export default function ProcurementDashboard() {
           </div>
 
           {/* Category Spend Pie Chart */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Category Spend</h3>
               <PieChart className="h-5 w-5 text-gray-500" />
             </div>
@@ -588,10 +588,10 @@ export default function ProcurementDashboard() {
         </div>
 
         {/* Second Row of Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* PO Status Distribution */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">PO Status Distribution</h3>
               <BarChart3 className="h-5 w-5 text-gray-500" />
             </div>
@@ -607,8 +607,8 @@ export default function ProcurementDashboard() {
           </div>
 
           {/* Vendor Performance Radar */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Vendor Performance</h3>
               <Activity className="h-5 w-5 text-gray-500" />
             </div>
@@ -631,8 +631,8 @@ export default function ProcurementDashboard() {
           </div>
 
           {/* Quick Metrics */}
-          <div className="space-y-4">
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 text-white">
+          <div className="space-y-2">
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-3 text-white">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-blue-100 text-sm">Avg Processing Time</p>
@@ -646,7 +646,7 @@ export default function ProcurementDashboard() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-4 text-white">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-3 text-white">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-green-100 text-sm">Cost Savings Rate</p>
@@ -660,7 +660,7 @@ export default function ProcurementDashboard() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-4 text-white">
+            <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-3 text-white">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-purple-100 text-sm">Compliance Rate</p>
@@ -674,7 +674,7 @@ export default function ProcurementDashboard() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Recent Purchase Orders */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200">
             <div className="p-6 border-b border-gray-200">
@@ -687,7 +687,7 @@ export default function ProcurementDashboard() {
               </div>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {recentPOs.map((po) => (
                   <div key={po.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
@@ -729,7 +729,7 @@ export default function ProcurementDashboard() {
               </div>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {topVendors.map((vendor) => (
                   <div key={vendor.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
@@ -764,7 +764,7 @@ export default function ProcurementDashboard() {
         </div>
 
         {/* Additional Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>

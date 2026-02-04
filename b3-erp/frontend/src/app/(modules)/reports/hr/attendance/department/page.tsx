@@ -95,13 +95,13 @@ function AttendanceByDepartmentContent() {
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                             <tr>
-                                <th className="px-6 py-3">Employee ID</th>
-                                <th className="px-6 py-3">Name</th>
-                                <th className="px-6 py-3">Department</th>
-                                <th className="px-6 py-3">Check In</th>
-                                <th className="px-6 py-3">Check Out</th>
-                                <th className="px-6 py-3">Hours</th>
-                                <th className="px-6 py-3">Status</th>
+                                <th className="px-3 py-2">Employee ID</th>
+                                <th className="px-3 py-2">Name</th>
+                                <th className="px-3 py-2">Department</th>
+                                <th className="px-3 py-2">Check In</th>
+                                <th className="px-3 py-2">Check Out</th>
+                                <th className="px-3 py-2">Hours</th>
+                                <th className="px-3 py-2">Status</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -111,13 +111,13 @@ function AttendanceByDepartmentContent() {
                                     id={record.id}
                                     basePath="/hr/attendance/view"
                                 >
-                                    <td className="px-6 py-4 font-medium text-gray-900">{record.employeeId}</td>
-                                    <td className="px-6 py-4">{record.name}</td>
-                                    <td className="px-6 py-4">{record.department}</td>
-                                    <td className="px-6 py-4">{record.checkIn}</td>
-                                    <td className="px-6 py-4">{record.checkOut}</td>
-                                    <td className="px-6 py-4">{record.hours}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2 font-medium text-gray-900">{record.employeeId}</td>
+                                    <td className="px-3 py-2">{record.name}</td>
+                                    <td className="px-3 py-2">{record.department}</td>
+                                    <td className="px-3 py-2">{record.checkIn}</td>
+                                    <td className="px-3 py-2">{record.checkOut}</td>
+                                    <td className="px-3 py-2">{record.hours}</td>
+                                    <td className="px-3 py-2">
                                         <Badge className={getStatusColor(record.status)}>
                                             {record.status}
                                         </Badge>

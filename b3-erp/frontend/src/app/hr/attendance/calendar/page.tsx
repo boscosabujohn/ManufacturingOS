@@ -111,7 +111,7 @@ export default function AttendanceCalendarPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Calendar className="h-8 w-8 text-blue-600" />
           Attendance Calendar
@@ -120,8 +120,8 @@ export default function AttendanceCalendarPage() {
       </div>
 
       {/* Employee Selector */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <select
@@ -140,8 +140,8 @@ export default function AttendanceCalendarPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Present</p>
@@ -150,7 +150,7 @@ export default function AttendanceCalendarPage() {
             <CheckCircle className="h-8 w-8 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Absent</p>
@@ -159,7 +159,7 @@ export default function AttendanceCalendarPage() {
             <XCircle className="h-8 w-8 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Leave</p>
@@ -168,7 +168,7 @@ export default function AttendanceCalendarPage() {
             <AlertCircle className="h-8 w-8 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Late</p>
@@ -180,9 +180,9 @@ export default function AttendanceCalendarPage() {
       </div>
 
       {/* Calendar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         {/* Calendar Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <button
             onClick={previousMonth}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -244,9 +244,9 @@ export default function AttendanceCalendarPage() {
       </div>
 
       {/* Legend */}
-      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Legend</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Legend</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
           <div className="flex items-center gap-2">
             <span className="w-8 h-8 rounded bg-green-100 border-2 border-green-300 text-green-800 text-xs font-bold flex items-center justify-center">P</span>
             <span className="text-sm text-gray-700">Present</span>

@@ -474,9 +474,9 @@ export default function ProductionFloorEditPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
@@ -492,7 +492,7 @@ export default function ProductionFloorEditPage() {
           </div>
           <button
             onClick={handleSave}
-            className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Save className="w-5 h-5" />
             <span>Save Production Entry</span>
@@ -500,14 +500,14 @@ export default function ProductionFloorEditPage() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Work Center & Shift Selection */}
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Factory className="w-6 h-6 text-blue-600" />
             <span>Work Center & Shift</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Work Center <span className="text-red-500">*</span>
@@ -546,13 +546,13 @@ export default function ProductionFloorEditPage() {
         </div>
 
         {/* Production Entry Section */}
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <ClipboardList className="w-6 h-6 text-green-600" />
             <span>Production Entry</span>
           </h2>
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Work Order <span className="text-red-500">*</span>
@@ -589,7 +589,7 @@ export default function ProductionFloorEditPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Start Time</label>
                 <input
@@ -629,7 +629,7 @@ export default function ProductionFloorEditPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Quantity Produced
@@ -718,7 +718,7 @@ export default function ProductionFloorEditPage() {
               </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Operator <span className="text-red-500">*</span>
@@ -750,8 +750,8 @@ export default function ProductionFloorEditPage() {
         </div>
 
         {/* Downtime Logging */}
-        <div className="bg-white rounded-lg border p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
               <AlertTriangle className="w-6 h-6 text-red-600" />
               <span>Downtime Logging</span>
@@ -771,10 +771,10 @@ export default function ProductionFloorEditPage() {
               <p>No downtime entries. Click "Add Downtime" to log downtime.</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {downtimeEntries.map((entry, index) => (
-                <div key={entry.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={entry.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold text-gray-900">Downtime Entry #{index + 1}</h3>
                     <button
                       onClick={() => removeDowntimeEntry(entry.id)}
@@ -784,7 +784,7 @@ export default function ProductionFloorEditPage() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Downtime Type
@@ -826,7 +826,7 @@ export default function ProductionFloorEditPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Start Time</label>
                       <input
@@ -858,7 +858,7 @@ export default function ProductionFloorEditPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Responsible Person
@@ -904,8 +904,8 @@ export default function ProductionFloorEditPage() {
         </div>
 
         {/* Material Consumption Entry */}
-        <div className="bg-white rounded-lg border p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
               <Package className="w-6 h-6 text-purple-600" />
               <span>Material Consumption Entry</span>
@@ -939,10 +939,10 @@ export default function ProductionFloorEditPage() {
               <p>No material entries. Enable backflush or add manually.</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {materialEntries.map((entry, index) => (
-                <div key={entry.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={entry.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold text-gray-900">Material Entry #{index + 1}</h3>
                     <button
                       onClick={() => removeMaterialEntry(entry.id)}
@@ -952,7 +952,7 @@ export default function ProductionFloorEditPage() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Material Code
@@ -979,7 +979,7 @@ export default function ProductionFloorEditPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Required Qty
@@ -1019,7 +1019,7 @@ export default function ProductionFloorEditPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Scrap Reason
@@ -1067,8 +1067,8 @@ export default function ProductionFloorEditPage() {
         </div>
 
         {/* Tool Change Logging */}
-        <div className="bg-white rounded-lg border p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
               <Wrench className="w-6 h-6 text-orange-600" />
               <span>Tool Change Logging</span>
@@ -1088,10 +1088,10 @@ export default function ProductionFloorEditPage() {
               <p>No tool changes logged. Click "Add Tool Change" if any tools were changed.</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {toolChangeEntries.map((entry, index) => (
-                <div key={entry.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={entry.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold text-gray-900">Tool Change #{index + 1}</h3>
                     <button
                       onClick={() => removeToolChangeEntry(entry.id)}
@@ -1101,7 +1101,7 @@ export default function ProductionFloorEditPage() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Old Tool ID
@@ -1130,7 +1130,7 @@ export default function ProductionFloorEditPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Reason for Change
@@ -1191,8 +1191,8 @@ export default function ProductionFloorEditPage() {
         </div>
 
         {/* Operator Performance / Labor Entry */}
-        <div className="bg-white rounded-lg border p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
               <User className="w-6 h-6 text-blue-600" />
               <span>Multiple Operator / Labor Entry</span>
@@ -1212,10 +1212,10 @@ export default function ProductionFloorEditPage() {
               <p>No labor entries. Add operators if multiple operators worked on this WO.</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {laborEntries.map((entry, index) => (
-                <div key={entry.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                  <div className="flex items-center justify-between mb-4">
+                <div key={entry.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold text-gray-900">Operator #{index + 1}</h3>
                     <button
                       onClick={() => removeLaborEntry(entry.id)}
@@ -1225,7 +1225,7 @@ export default function ProductionFloorEditPage() {
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Operator ID
@@ -1256,7 +1256,7 @@ export default function ProductionFloorEditPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Skill Level
@@ -1310,8 +1310,8 @@ export default function ProductionFloorEditPage() {
         </div>
 
         {/* Notes and Remarks */}
-        <div className="bg-white rounded-lg border p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border p-3">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Info className="w-6 h-6 text-gray-600" />
             <span>Notes and Remarks</span>
           </h2>
@@ -1328,13 +1328,13 @@ export default function ProductionFloorEditPage() {
         <div className="flex justify-end space-x-4">
           <button
             onClick={() => router.push(`/production/floor/view/${floorId}`)}
-            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
-            className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Save className="w-5 h-5" />
             <span>Save Production Entry</span>

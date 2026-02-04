@@ -410,7 +410,7 @@ export default function ProjectCostingPage() {
     </div>
 
     {/* Header Actions */}
-    <div className="flex justify-end gap-3 mb-4">
+    <div className="flex justify-end gap-3 mb-2">
      <button
       onClick={() => setShowCostComparisonModal(true)}
       className="flex items-center space-x-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
@@ -439,8 +439,8 @@ export default function ProjectCostingPage() {
     </div>
 
     {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+   <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Projects</p>
@@ -449,7 +449,7 @@ export default function ProjectCostingPage() {
       <BarChart3 className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Active</p>
@@ -458,7 +458,7 @@ export default function ProjectCostingPage() {
       <TrendingUp className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Completed</p>
@@ -467,7 +467,7 @@ export default function ProjectCostingPage() {
       <CheckCircle className="h-8 w-8 text-green-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Over Budget</p>
@@ -476,7 +476,7 @@ export default function ProjectCostingPage() {
       <AlertTriangle className="h-8 w-8 text-red-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Budget</p>
@@ -485,7 +485,7 @@ export default function ProjectCostingPage() {
       <DollarSign className="h-8 w-8 text-purple-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Actual Cost</p>
@@ -494,7 +494,7 @@ export default function ProjectCostingPage() {
       <DollarSign className="h-8 w-8 text-cyan-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Variance</p>
@@ -512,8 +512,8 @@ export default function ProjectCostingPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg border border-gray-200">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+   <div className="bg-white p-3 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
      <div className="md:col-span-2">
       <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
       <input
@@ -545,7 +545,7 @@ export default function ProjectCostingPage() {
     {paginatedProjects.map((project) => (
      <div key={project.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
       {/* Card Header */}
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-2">
        <div className="flex-1">
         <div className="flex items-center space-x-2 mb-1">
          <h3 className="text-lg font-bold text-gray-900">{project.projectId}</h3>
@@ -565,7 +565,7 @@ export default function ProjectCostingPage() {
       </div>
 
       {/* Progress Bar */}
-      <div className="mb-4">
+      <div className="mb-2">
        <div className="flex justify-between items-center mb-1">
         <span className="text-xs text-gray-600">Progress</span>
         <span className="text-xs font-semibold text-gray-900">{project.progress}%</span>
@@ -579,7 +579,7 @@ export default function ProjectCostingPage() {
       </div>
 
       {/* Budget Overview */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-2 gap-2 mb-2">
        <div className="bg-gray-50 p-3 rounded-lg">
         <p className="text-xs text-gray-500">Total Budget</p>
         <p className="text-lg font-bold text-gray-900">₹{(project.totalBudget / 100000).toFixed(2)}L</p>
@@ -604,7 +604,7 @@ export default function ProjectCostingPage() {
       </div>
 
       {/* Cost Utilization Bar */}
-      <div className="mb-4">
+      <div className="mb-2">
        <p className="text-xs text-gray-600 mb-2">Budget Utilization</p>
        <div className="relative h-8 bg-gray-100 rounded-lg overflow-hidden">
         <div
@@ -624,7 +624,7 @@ export default function ProjectCostingPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-3 gap-2 text-xs mb-4">
+      <div className="grid grid-cols-3 gap-2 text-xs mb-2">
        <div className="text-center p-2 bg-blue-50 rounded">
         <p className="text-gray-600">Committed</p>
         <p className="font-semibold text-gray-900">₹{(project.committedCost / 100000).toFixed(1)}L</p>

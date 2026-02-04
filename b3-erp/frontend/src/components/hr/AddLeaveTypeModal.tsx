@@ -70,10 +70,10 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
   const leaveIcons = ['🏖️', '🏥', '👶', '🎉', '⚰️', '📚', '🏠', '💼', '🔄', '🌴'];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-2">
             <Calendar className="w-6 h-6" />
             <h2 className="text-xl font-bold">{editData ? 'Edit' : 'Add New'} Leave Type</h2>
@@ -87,11 +87,11 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Leave Code <span className="text-red-500">*</span>
@@ -159,8 +159,8 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
 
           {/* Entitlement */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Entitlement & Limits</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Entitlement & Limits</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Max Days Per Year <span className="text-red-500">*</span>
@@ -193,8 +193,8 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
 
           {/* Accrual */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Accrual Settings</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Accrual Settings</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Accrual Type
@@ -230,8 +230,8 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
 
           {/* Features */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Leave Features</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Leave Features</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="flex items-start gap-3">
                 <input
                   type="checkbox"
@@ -346,8 +346,8 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
 
           {/* Applicability */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Applicability</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Applicability</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Applicable For
@@ -381,7 +381,7 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -398,7 +398,7 @@ export function AddLeaveTypeModal({ isOpen, onClose, onSubmit, editData }: AddLe
         </div>
 
         {/* Footer */}
-        <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200 rounded-b-lg">
+        <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 font-medium transition-colors"

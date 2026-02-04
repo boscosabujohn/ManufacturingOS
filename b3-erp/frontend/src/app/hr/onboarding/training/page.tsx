@@ -318,7 +318,7 @@ export default function TrainingSchedulePage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <GraduationCap className="h-8 w-8 text-blue-600" />
           Onboarding Training Schedule
@@ -327,7 +327,7 @@ export default function TrainingSchedulePage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-7 gap-3 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-7 gap-3 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
@@ -400,8 +400,8 @@ export default function TrainingSchedulePage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -428,7 +428,7 @@ export default function TrainingSchedulePage() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
               <select
@@ -484,7 +484,7 @@ export default function TrainingSchedulePage() {
       </div>
 
       {/* Training Schedules Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-3">
         <DataTable
           data={filteredSchedules}
           columns={columns}
@@ -492,18 +492,18 @@ export default function TrainingSchedulePage() {
       </div>
 
       {/* Training Programs List */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-blue-600" />
           Training Programs
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {trainingPrograms.map((training) => {
             const ModeIcon = getModeIcon(training.mode);
             return (
               <div
                 key={training.id}
-                className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <training.icon className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
@@ -536,7 +536,7 @@ export default function TrainingSchedulePage() {
       </div>
 
       {/* Training Guidelines */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-blue-600" />
           Training Schedule Guidelines

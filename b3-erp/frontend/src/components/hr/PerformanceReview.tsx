@@ -71,16 +71,16 @@ export default function PerformanceReview() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-orange-50 to-amber-50 p-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-orange-50 to-amber-50 p-3">
       <div>
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Performance Review Management</h1>
           <p className="text-gray-600">Goal-based performance reviews and feedback</p>
         </div>
 
         {reviews.map((review) => (
-          <div key={review.id} className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 mb-6">
-            <div className="flex items-center justify-between mb-6">
+          <div key={review.id} className="bg-white rounded-xl shadow-lg p-3 border border-gray-200 mb-3">
+            <div className="flex items-center justify-between mb-3">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{review.employeeName}</h2>
                 <p className="text-gray-600">{review.reviewPeriod} • Due: {review.dueDate}</p>
@@ -91,7 +91,7 @@ export default function PerformanceReview() {
             </div>
 
             {review.overallSelfRating && (
-              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-4 mb-6 border border-yellow-200">
+              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-3 mb-3 border border-yellow-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-700 mb-2">Overall Self-Assessment</p>
@@ -104,14 +104,14 @@ export default function PerformanceReview() {
               </div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <Target className="w-5 h-5 text-blue-600" />
                 Performance Goals
               </h3>
 
               {review.goals.map((goal) => (
-                <div key={goal.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div key={goal.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
@@ -132,7 +132,7 @@ export default function PerformanceReview() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {goal.selfRating && (
                       <div className="bg-white rounded p-3">
                         <p className="text-xs text-gray-600 mb-2">Self Rating</p>

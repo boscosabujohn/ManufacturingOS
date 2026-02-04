@@ -77,9 +77,9 @@ export function PlanModal({ isOpen, onClose, plan, onSave }: PlanModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">{plan ? 'Edit Production Plan' : 'Create New Production Plan'}</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -88,12 +88,12 @@ export function PlanModal({ isOpen, onClose, plan, onSave }: PlanModalProps) {
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Info className="h-5 w-5 mr-2 text-blue-600" />
               Basic Information
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Plan Number *</label>
                 <input
@@ -149,12 +149,12 @@ export function PlanModal({ isOpen, onClose, plan, onSave }: PlanModalProps) {
           </div>
 
           {/* Schedule Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <Calendar className="h-5 w-5 mr-2 text-blue-600" />
               Schedule & Capacity
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Start Date *</label>
                 <input
@@ -225,12 +225,12 @@ export function PlanModal({ isOpen, onClose, plan, onSave }: PlanModalProps) {
           </div>
 
           {/* Additional Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center">
               <FileText className="h-5 w-5 mr-2 text-blue-600" />
               Additional Information
             </h3>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Planner *</label>
                 <input
@@ -306,9 +306,9 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
   const completionPercentage = Math.round((plan.workOrdersCompleted / plan.workOrdersTotal) * 100);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">{plan.planNumber}</h2>
             <p className="text-sm opacity-90">{plan.planName}</p>
@@ -367,10 +367,10 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
         <div className="p-6">
           {/* Overview Tab */}
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Key Metrics */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-blue-700">Capacity Utilization</span>
                     <TrendingUp className="h-5 w-5 text-blue-600" />
@@ -384,7 +384,7 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-green-700">Materials Readiness</span>
                     <Package className="h-5 w-5 text-green-600" />
@@ -398,7 +398,7 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-purple-700">Work Orders Progress</span>
                     <Activity className="h-5 w-5 text-purple-600" />
@@ -414,9 +414,9 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
               </div>
 
               {/* Plan Details */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Plan Details</h3>
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Plan Details</h3>
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="text-sm font-medium text-gray-500">Product Line</label>
                     <p className="text-base font-semibold text-gray-900 mt-1">{plan.productLine}</p>
@@ -446,7 +446,7 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
 
               {/* Notes */}
               {plan.notes && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <h3 className="text-sm font-semibold text-yellow-900 mb-2">Notes</h3>
                   <p className="text-sm text-yellow-800">{plan.notes}</p>
                 </div>
@@ -457,10 +457,10 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
           {/* Work Orders Tab */}
           {activeTab === 'workorders' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Work Orders</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Work Orders</h3>
               <div className="space-y-3">
                 {mockWorkOrders.map((wo) => (
-                  <div key={wo.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50">
+                  <div key={wo.id} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
@@ -494,10 +494,10 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
           {/* Materials Tab */}
           {activeTab === 'materials' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Materials Requirement</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Materials Requirement</h3>
               <div className="space-y-3">
                 {mockMaterials.map((material) => (
-                  <div key={material.id} className="border border-gray-200 rounded-lg p-4">
+                  <div key={material.id} className="border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="flex items-center space-x-3">
@@ -536,8 +536,8 @@ export function ViewPlanModal({ isOpen, onClose, plan }: ViewPlanModalProps) {
           {/* Timeline Tab */}
           {activeTab === 'timeline' && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Production Timeline</h3>
-              <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Production Timeline</h3>
+              <div className="space-y-2">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 mt-1">
                     <div className="h-8 w-8 bg-green-500 rounded-full flex items-center justify-center">
@@ -626,9 +626,9 @@ export function ExportModal({ isOpen, onClose, onExport }: ExportModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <h2 className="text-xl font-bold">Export Production Plans</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
             <X className="h-5 w-5" />
@@ -637,7 +637,7 @@ export function ExportModal({ isOpen, onClose, onExport }: ExportModalProps) {
 
         <div className="p-6">
           {/* Export Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="space-y-2">
               <label className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
@@ -683,7 +683,7 @@ export function ExportModal({ isOpen, onClose, onExport }: ExportModalProps) {
           </div>
 
           {/* Filter Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Include Status</label>
             <div className="space-y-2">
               <label className="flex items-center space-x-2">

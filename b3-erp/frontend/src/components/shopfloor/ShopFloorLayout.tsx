@@ -90,7 +90,7 @@ export function ShopFloorLayout({
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Left side */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               {showBackButton && (
                 <button
                   onClick={onBack || (() => window.history.back())}
@@ -116,7 +116,7 @@ export function ShopFloorLayout({
             </div>
 
             {/* Right side - Status bar */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               {/* Connection status */}
               <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
                 isOnline
@@ -176,7 +176,7 @@ export function ShopFloorLayout({
       </header>
 
       {/* Main content area */}
-      <main className="flex-1 p-4 overflow-auto">
+      <main className="flex-1 p-3 overflow-auto">
         {children}
       </main>
 

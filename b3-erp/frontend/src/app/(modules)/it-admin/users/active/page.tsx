@@ -96,7 +96,7 @@ export default function ActiveUsersPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -109,7 +109,7 @@ export default function ActiveUsersPage() {
           </div>
           <button 
             onClick={() => router.push('/it-admin/users/create')}
-            className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 flex items-center gap-2 font-medium"
+            className="px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 flex items-center gap-2 font-medium"
           >
             <Plus className="w-5 h-5" />
             Add New User
@@ -117,8 +117,8 @@ export default function ActiveUsersPage() {
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-3 mb-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
@@ -160,11 +160,11 @@ export default function ActiveUsersPage() {
         </div>
 
         {/* Users Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredUsers.map(user => (
-            <div key={user.id} className="bg-white rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition p-6">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-4">
+            <div key={user.id} className="bg-white rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition p-3">
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center gap-2">
                   <div className="text-4xl">{user.avatar}</div>
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900">{user.name}</h3>
@@ -176,7 +176,7 @@ export default function ActiveUsersPage() {
                 </button>
               </div>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <p className="text-sm text-slate-600">{user.email}</p>
                 <p className="text-sm text-slate-600">{user.phone}</p>
                 <p className="text-sm text-slate-600">
@@ -187,7 +187,7 @@ export default function ActiveUsersPage() {
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 mb-4 p-3 bg-green-50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2 p-3 bg-green-50 rounded-lg">
                 <CheckCircle className="w-4 h-4 text-green-600" />
                 <span className="text-sm font-medium text-green-700">Active</span>
               </div>
@@ -211,7 +211,7 @@ export default function ActiveUsersPage() {
 
         {filteredUsers.length === 0 && (
           <div className="text-center py-12">
-            <Users className="w-12 h-12 text-slate-400 mb-4" />
+            <Users className="w-12 h-12 text-slate-400 mb-2" />
             <p className="text-slate-600">No active users found matching your filters</p>
           </div>
         )}

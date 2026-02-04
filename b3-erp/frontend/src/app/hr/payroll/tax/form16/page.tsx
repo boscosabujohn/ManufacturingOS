@@ -229,14 +229,14 @@ export default function Form16Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Form 16 (Part A & B)</h1>
         <p className="text-sm text-gray-600 mt-1">TDS Certificate for salary income - Financial Year {selectedFinancialYear}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-blue-700">Total Employees</p>
@@ -246,7 +246,7 @@ export default function Form16Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg shadow-sm border border-cyan-200 p-4">
+        <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-lg shadow-sm border border-cyan-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-cyan-700">Generated</p>
@@ -256,7 +256,7 @@ export default function Form16Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-green-700">Issued</p>
@@ -266,7 +266,7 @@ export default function Form16Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg shadow-sm border border-yellow-200 p-4">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg shadow-sm border border-yellow-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-yellow-700">Draft</p>
@@ -276,7 +276,7 @@ export default function Form16Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-purple-700">Total TDS</p>
@@ -287,8 +287,8 @@ export default function Form16Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -342,13 +342,13 @@ export default function Form16Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map(record => {
           const StatusIcon = statusIcons[record.status];
 
           return (
-            <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{record.employeeName}</h3>
@@ -368,7 +368,7 @@ export default function Form16Page() {
                   <p className="text-sm text-gray-600">
                     {record.designation} • {record.department}
                   </p>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
                     <span>PAN: {record.pan}</span>
                     <span>TAN: {record.tanNumber}</span>
                     <span>FY: {record.financialYear}</span>
@@ -382,8 +382,8 @@ export default function Form16Page() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="text-xs font-semibold text-blue-900 mb-3">Income Details</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
@@ -403,7 +403,7 @@ export default function Form16Page() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <h4 className="text-xs font-semibold text-green-900 mb-3">TDS Details</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-xs">
@@ -423,7 +423,7 @@ export default function Form16Page() {
                   </div>
                 </div>
 
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h4 className="text-xs font-semibold text-purple-900 mb-3">Form 16 Parts</h4>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-xs">
@@ -442,7 +442,7 @@ export default function Form16Page() {
                   </div>
                 </div>
 
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                   <h4 className="text-xs font-semibold text-orange-900 mb-3">Actions</h4>
                   <div className="space-y-2">
                     {record.status === 'draft' && (
@@ -492,7 +492,7 @@ export default function Form16Page() {
         })}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Form 16 Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>Form 16:</strong> TDS certificate issued by employer to employee for salary income (as per Section 203 of Income Tax Act)</li>
@@ -583,9 +583,9 @@ interface Form16DetailsModalProps {
 
 function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between sticky top-0">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between sticky top-0">
           <h2 className="text-xl font-bold text-white">Form 16 - Complete Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -594,7 +594,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
 
         <div className="p-6">
           {/* Header Section */}
-          <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
+          <div className="text-center mb-3 pb-4 border-b-2 border-gray-200">
             <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
             <p className="text-sm text-gray-600">Solution to manufacturers System</p>
             <p className="text-xs text-gray-500 mt-1">TDS Certificate - Form 16</p>
@@ -602,8 +602,8 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           </div>
 
           {/* Certificate Details */}
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-xs text-blue-700">Certificate Number</p>
                 <p className="font-semibold text-blue-900">{record.form16Number}</p>
@@ -630,14 +630,14 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           </div>
 
           {/* Part A - Deductor & Deductee Details */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-lg font-bold text-gray-900 mb-3 bg-gray-100 px-4 py-2 rounded">
               Part A - Certificate Details
             </h3>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               {/* Deductor (Employer) Details */}
-              <div className="bg-green-50 rounded-lg p-4">
+              <div className="bg-green-50 rounded-lg p-3">
                 <h4 className="font-semibold text-green-900 mb-3">Deductor (Employer) Details</h4>
                 <div className="space-y-2 text-sm">
                   <div>
@@ -656,7 +656,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
               </div>
 
               {/* Deductee (Employee) Details */}
-              <div className="bg-purple-50 rounded-lg p-4">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <h4 className="font-semibold text-purple-900 mb-3">Deductee (Employee) Details</h4>
                 <div className="space-y-2 text-sm">
                   <div>
@@ -681,13 +681,13 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           </div>
 
           {/* Part B - Income & Tax Computation */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-lg font-bold text-gray-900 mb-3 bg-gray-100 px-4 py-2 rounded">
               Part B - Salary Details & Tax Computation
             </h3>
 
             {/* Income Details */}
-            <div className="bg-blue-50 rounded-lg p-4 mb-4">
+            <div className="bg-blue-50 rounded-lg p-3 mb-2">
               <h4 className="font-semibold text-blue-900 mb-3">Income from Salary</h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -708,7 +708,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
             </div>
 
             {/* Tax Computation */}
-            <div className="bg-green-50 rounded-lg p-4">
+            <div className="bg-green-50 rounded-lg p-3">
               <h4 className="font-semibold text-green-900 mb-3">Tax Computation</h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -730,7 +730,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           </div>
 
           {/* Quarterly TDS Summary */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-lg font-bold text-gray-900 mb-3 bg-gray-100 px-4 py-2 rounded">
               Quarterly TDS Summary
             </h3>
@@ -780,7 +780,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           </div>
 
           {/* Verification */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <p className="text-xs text-yellow-800 text-center">
               <strong>Verification:</strong> I, on behalf of ManufacturingOS Private Limited, hereby certify that the information given above is true and correct and is based on the books of account, documents, TDS statements, and other available records.
             </p>
@@ -790,7 +790,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={() => window.print()}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center gap-2"
@@ -823,9 +823,9 @@ function EmailForm16Modal({ record, onClose }: EmailForm16ModalProps) {
   const [message, setMessage] = useState(`Dear ${record.employeeName},\n\nPlease find attached your Form 16 for Financial Year ${record.financialYear}.\n\nThis is a digitally signed certificate and can be used for filing your Income Tax Return.\n\nRegards,\nHR Department\nManufacturingOS`);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Send Form 16 via Email</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -833,12 +833,12 @@ function EmailForm16Modal({ record, onClose }: EmailForm16ModalProps) {
         </div>
 
         <div className="p-6">
-          <div className="mb-4">
+          <div className="mb-2">
             <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
             <p className="text-sm text-gray-600">{record.form16Number} • FY {record.financialYear}</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 To Email Address *
@@ -885,7 +885,7 @@ function EmailForm16Modal({ record, onClose }: EmailForm16ModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
@@ -918,9 +918,9 @@ function BulkDownloadModal({ records, onClose }: BulkDownloadModalProps) {
   const issuedRecords = records.filter(r => ['issued', 'downloaded'].includes(r.status));
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Bulk Download Form 16</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -928,11 +928,11 @@ function BulkDownloadModal({ records, onClose }: BulkDownloadModalProps) {
         </div>
 
         <div className="p-6">
-          <p className="text-sm text-gray-600 mb-6">
+          <p className="text-sm text-gray-600 mb-3">
             Download Form 16 for multiple employees in a single ZIP file
           </p>
 
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-blue-900">Available for Download</span>
               <span className="text-2xl font-bold text-blue-900">{issuedRecords.length}</span>
@@ -960,7 +960,7 @@ function BulkDownloadModal({ records, onClose }: BulkDownloadModalProps) {
                     </td>
                     <td className="p-3 text-gray-700">{record.form16Number}</td>
                     <td className="p-3 text-center">
-                      <CheckCircle className="h-4 w-4 text-green-600 mx-auto" />
+                      <CheckCircle className="h-4 w-4 text-green-600" />
                     </td>
                   </tr>
                 ))}
@@ -975,7 +975,7 @@ function BulkDownloadModal({ records, onClose }: BulkDownloadModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
@@ -1007,9 +1007,9 @@ interface GenerateForm16ModalProps {
 
 function GenerateForm16Modal({ record, onClose, formatCurrency }: GenerateForm16ModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Generate Form 16</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -1017,14 +1017,14 @@ function GenerateForm16Modal({ record, onClose, formatCurrency }: GenerateForm16
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
             <p className="text-sm text-gray-600">{record.employeeId} • {record.designation}</p>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
             <h4 className="font-semibold text-blue-900 mb-3">Form 16 Summary</h4>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-xs text-blue-700">Financial Year</p>
                 <p className="font-semibold text-blue-900">{record.financialYear}</p>
@@ -1052,7 +1052,7 @@ function GenerateForm16Modal({ record, onClose, formatCurrency }: GenerateForm16
             </div>
           </div>
 
-          <div className="bg-green-50 rounded-lg p-4 mb-6">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
             <h4 className="font-semibold text-green-900 mb-3">Generation Process</h4>
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
@@ -1081,7 +1081,7 @@ function GenerateForm16Modal({ record, onClose, formatCurrency }: GenerateForm16
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
@@ -1115,9 +1115,9 @@ function IssueForm16Modal({ record, onClose }: IssueForm16ModalProps) {
   const [emailAddress, setEmailAddress] = useState('');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Issue Form 16 to Employee</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -1125,12 +1125,12 @@ function IssueForm16Modal({ record, onClose }: IssueForm16ModalProps) {
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
             <p className="text-sm text-gray-600">{record.form16Number} • FY {record.financialYear}</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 Issue Method
@@ -1193,7 +1193,7 @@ function IssueForm16Modal({ record, onClose }: IssueForm16ModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
@@ -1227,9 +1227,9 @@ function DownloadPDFModal({ record, onClose }: DownloadPDFModalProps) {
   const [includeWatermark, setIncludeWatermark] = useState(false);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Download Form 16 PDF</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200">
             <X className="h-6 w-6" />
@@ -1237,12 +1237,12 @@ function DownloadPDFModal({ record, onClose }: DownloadPDFModalProps) {
         </div>
 
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
             <p className="text-sm text-gray-600">{record.form16Number} • FY {record.financialYear}</p>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
             <h4 className="font-semibold text-blue-900 mb-3">Download Options</h4>
             <div className="space-y-3">
               <label className="flex items-center">
@@ -1273,7 +1273,7 @@ function DownloadPDFModal({ record, onClose }: DownloadPDFModalProps) {
             </div>
           </div>
 
-          <div className="bg-green-50 rounded-lg p-4 mb-6">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
             <h4 className="font-semibold text-green-900 mb-2">PDF Contents</h4>
             <div className="space-y-1 text-xs text-green-800">
               <div className="flex items-center gap-2">
@@ -1304,7 +1304,7 @@ function DownloadPDFModal({ record, onClose }: DownloadPDFModalProps) {
           </div>
         </div>
 
-        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"

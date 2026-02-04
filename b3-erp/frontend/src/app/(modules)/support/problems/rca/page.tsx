@@ -199,7 +199,7 @@ export default function RootCauseAnalysis() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -213,8 +213,8 @@ export default function RootCauseAnalysis() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Total RCAs</p>
@@ -224,7 +224,7 @@ export default function RootCauseAnalysis() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Completed</p>
@@ -234,7 +234,7 @@ export default function RootCauseAnalysis() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">In Progress</p>
@@ -244,7 +244,7 @@ export default function RootCauseAnalysis() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100 text-sm">Under Review</p>
@@ -254,7 +254,7 @@ export default function RootCauseAnalysis() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-100 text-sm">Avg Duration</p>
@@ -264,7 +264,7 @@ export default function RootCauseAnalysis() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-100 text-sm">Success Rate</p>
@@ -276,12 +276,12 @@ export default function RootCauseAnalysis() {
       </div>
 
       {/* RCA Methods Info */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6">
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <BookOpen className="h-6 w-6 text-indigo-600 mt-0.5 flex-shrink-0" />
           <div>
             <h3 className="text-sm font-semibold text-indigo-900 mb-3">RCA Methodologies Available</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               <div className="bg-white rounded-lg p-3 border border-indigo-100">
                 <div className="flex items-center gap-2 mb-2">
                   <Target className="h-4 w-4 text-purple-600" />
@@ -316,8 +316,8 @@ export default function RootCauseAnalysis() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -355,11 +355,11 @@ export default function RootCauseAnalysis() {
       </div>
 
       {/* RCA Records */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRCAs.map((rca) => (
           <div key={rca.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-start gap-3 flex-1">
                   <div className="p-2 bg-purple-100 rounded-lg">
                     {getMethodIcon(rca.method)}
@@ -381,7 +381,7 @@ export default function RootCauseAnalysis() {
                       </span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">{rca.problemTitle}</h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span className="flex items-center gap-1">
                         <User className="h-3 w-3" />
                         {rca.analyst}
@@ -416,7 +416,7 @@ export default function RootCauseAnalysis() {
               </div>
 
               {/* Root Cause Summary (always visible) */}
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <div className="flex items-start gap-2">
                   <Target className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -429,7 +429,7 @@ export default function RootCauseAnalysis() {
 
             {/* Expanded Details */}
             {expandedRCA === rca.id && (
-              <div className="border-t border-gray-200 bg-gray-50 p-6 space-y-6">
+              <div className="border-t border-gray-200 bg-gray-50 p-3 space-y-3">
                 {/* Contributing Factors */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
@@ -484,7 +484,7 @@ export default function RootCauseAnalysis() {
       </div>
 
       {/* Guidelines */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <BookOpen className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
           <div>
@@ -503,7 +503,7 @@ export default function RootCauseAnalysis() {
 
       {filteredRCAs.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <FileText className="h-12 w-12 text-gray-400 mb-4" />
+          <FileText className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No RCA records found matching your filters.</p>
         </div>
       )}

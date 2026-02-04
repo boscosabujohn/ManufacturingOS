@@ -350,8 +350,8 @@ export default function UOMMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Scale className="w-8 h-8 text-blue-600" />
@@ -378,7 +378,7 @@ export default function UOMMaster() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <div className="flex border border-gray-300 rounded-lg">
             <button
               onClick={() => setViewMode('list')}
@@ -402,7 +402,7 @@ export default function UOMMaster() {
         </div>
 
         {viewMode === 'list' && (
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row gap-2 mb-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
@@ -453,19 +453,19 @@ export default function UOMMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">UOM</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Settings</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usage</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statistics</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">UOM</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Settings</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usage</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statistics</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredUOMs.map((uom) => (
                   <tr key={uom.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
                           {uom.uomName}
@@ -479,19 +479,19 @@ export default function UOMMaster() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getTypeBadge(uom.uomType)}>
                         {uom.uomType}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">Precision: {uom.precision}</div>
                       <div className="text-sm text-gray-500">Rounding: {uom.rounding}</div>
                       <div className="text-sm text-gray-500">
                         {uom.conversionRules.allowFractional ? 'Fractional' : 'Whole numbers'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex flex-wrap gap-1">
                         {uom.usage.purchasing && (
                           <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Purchase</span>
@@ -507,17 +507,17 @@ export default function UOMMaster() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{uom.statistics.itemCount} items</div>
                       <div className="text-sm text-gray-500">{uom.statistics.conversionCount} conversions</div>
                       <div className="text-sm text-gray-500">Last: {uom.statistics.lastUsed}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(uom.status)}>
                         {uom.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditUOM(uom)}
@@ -547,7 +547,7 @@ export default function UOMMaster() {
         </div>
       ) : (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+          <div className="px-3 py-2 border-b border-gray-200 flex justify-between items-center">
             <h3 className="text-lg font-medium text-gray-900">UOM Conversions</h3>
             <button
               onClick={handleAddConversion}
@@ -561,24 +561,24 @@ export default function UOMMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From UOM</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">To UOM</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Conversion</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validity</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From UOM</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">To UOM</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Conversion</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validity</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {conversions.map((conversion) => (
                   <tr key={conversion.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{getUOMName(conversion.fromUOM)}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{getUOMName(conversion.toUOM)}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">1 : {conversion.factor}</div>
                       {conversion.formula && (
                         <div className="text-sm text-gray-500">{conversion.formula}</div>
@@ -587,18 +587,18 @@ export default function UOMMaster() {
                         <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Reversible</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">From: {conversion.validFrom}</div>
                       {conversion.validTo && (
                         <div className="text-sm text-gray-500">To: {conversion.validTo}</div>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(conversion.status)}>
                         {conversion.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditConversion(conversion)}
@@ -701,7 +701,7 @@ function UOMModal({ uom, onSave, onClose, activeTab, setActiveTab }: UOMModalPro
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {uom ? 'Edit UOM' : 'Add New UOM'}
           </h2>
@@ -730,9 +730,9 @@ function UOMModal({ uom, onSave, onClose, activeTab, setActiveTab }: UOMModalPro
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">UOM Code</label>
                   <input
@@ -809,7 +809,7 @@ function UOMModal({ uom, onSave, onClose, activeTab, setActiveTab }: UOMModalPro
             )}
 
             {activeTab === 'conversion' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Precision</label>
                   <input
@@ -866,7 +866,7 @@ function UOMModal({ uom, onSave, onClose, activeTab, setActiveTab }: UOMModalPro
             )}
 
             {activeTab === 'display' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Symbol Position</label>
                   <select
@@ -904,8 +904,8 @@ function UOMModal({ uom, onSave, onClose, activeTab, setActiveTab }: UOMModalPro
             )}
 
             {activeTab === 'usage' && (
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <label className="flex items-center">
                     <input
                       type="checkbox"
@@ -948,7 +948,7 @@ function UOMModal({ uom, onSave, onClose, activeTab, setActiveTab }: UOMModalPro
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -994,14 +994,14 @@ function ConversionModal({ conversion, uoms, onSave, onClose }: ConversionModalP
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {conversion ? 'Edit Conversion' : 'Add New Conversion'}
           </h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="px-6 py-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="px-3 py-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">From UOM</label>
               <select
@@ -1095,7 +1095,7 @@ function ConversionModal({ conversion, uoms, onSave, onClose }: ConversionModalP
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

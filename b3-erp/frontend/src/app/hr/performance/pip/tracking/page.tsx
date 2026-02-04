@@ -64,7 +64,7 @@ export default function PIPTrackingPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -75,19 +75,19 @@ export default function PIPTrackingPage() {
         </div>
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-3">
         {activePIPs.map((pip) => (
           <div key={pip.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-6">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="flex items-start gap-4">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <div className="flex items-start gap-2">
                   <div className="h-12 w-12 bg-red-50 rounded-full flex items-center justify-center">
                     <AlertTriangle className="h-6 w-6 text-red-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">{pip.employee}</h3>
                     <p className="text-gray-500">{pip.role}</p>
-                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                    <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
                         {new Date(pip.startDate).toLocaleDateString()} - {new Date(pip.endDate).toLocaleDateString()}
@@ -100,7 +100,7 @@ export default function PIPTrackingPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
                   <div className="text-right">
                     <p className="text-sm font-medium text-gray-700 mb-1">Overall Progress</p>
                     <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export default function PIPTrackingPage() {
 
               {expandedId === pip.id && (
                 <div className="mt-6 pt-6 border-t border-gray-100">
-                  <h4 className="font-medium text-gray-900 mb-4">Action Items & Milestones</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">Action Items & Milestones</h4>
                   <div className="space-y-3">
                     {pip.actionItems.map((item) => (
                       <div
@@ -156,7 +156,7 @@ export default function PIPTrackingPage() {
 
         {activePIPs.length === 0 && (
           <div className="text-center py-12 bg-white rounded-xl border border-dashed border-gray-200">
-            <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+            <CheckCircle className="h-12 w-12 text-green-500 mb-2" />
             <h3 className="text-lg font-medium text-gray-900">No Active PIPs</h3>
             <p className="text-gray-500">There are currently no active performance improvement plans.</p>
           </div>

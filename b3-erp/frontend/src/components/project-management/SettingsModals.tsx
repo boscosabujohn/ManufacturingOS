@@ -5,13 +5,13 @@ import { X, Shield, Users, Lock, Key, Eye, EyeOff, Edit2, Trash2, Plus, Smartpho
 export function GeneralSettingsModal({ isOpen, onClose, onSave }: any) {
   const [settings, setSettings] = useState({ projectName: '', defaultCurrency: 'INR', timezone: 'IST' });
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">General Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-4"><div><label className="block text-sm font-medium mb-1">Project Name</label><input type="text" value={settings.projectName} onChange={(e) => setSettings({ ...settings, projectName: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div><div><label className="block text-sm font-medium mb-1">Default Currency</label><select value={settings.defaultCurrency} onChange={(e) => setSettings({ ...settings, defaultCurrency: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option>INR</option><option>USD</option><option>EUR</option></select></div><div><label className="block text-sm font-medium mb-1">Timezone</label><select value={settings.timezone} onChange={(e) => setSettings({ ...settings, timezone: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option>IST</option><option>UTC</option><option>EST</option></select></div></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave(settings)} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">General Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-2"><div><label className="block text-sm font-medium mb-1">Project Name</label><input type="text" value={settings.projectName} onChange={(e) => setSettings({ ...settings, projectName: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div><div><label className="block text-sm font-medium mb-1">Default Currency</label><select value={settings.defaultCurrency} onChange={(e) => setSettings({ ...settings, defaultCurrency: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option>INR</option><option>USD</option><option>EUR</option></select></div><div><label className="block text-sm font-medium mb-1">Timezone</label><select value={settings.timezone} onChange={(e) => setSettings({ ...settings, timezone: e.target.value })} className="w-full px-3 py-2 border rounded-lg"><option>IST</option><option>UTC</option><option>EST</option></select></div></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave(settings)} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function NotificationSettingsModal({ isOpen, onClose, onSave }: any) {
   const [settings, setSettings] = useState({ emailNotifs: true, smsNotifs: false, pushNotifs: true });
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-md"><div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Notification Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-3"><label className="flex items-center"><input type="checkbox" checked={settings.emailNotifs} onChange={(e) => setSettings({ ...settings, emailNotifs: e.target.checked })} className="mr-2" /><span>Email Notifications</span></label><label className="flex items-center"><input type="checkbox" checked={settings.smsNotifs} onChange={(e) => setSettings({ ...settings, smsNotifs: e.target.checked })} className="mr-2" /><span>SMS Notifications</span></label><label className="flex items-center"><input type="checkbox" checked={settings.pushNotifs} onChange={(e) => setSettings({ ...settings, pushNotifs: e.target.checked })} className="mr-2" /><span>Push Notifications</span></label></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave(settings)} className="px-4 py-2 bg-green-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-md"><div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Notification Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 space-y-3"><label className="flex items-center"><input type="checkbox" checked={settings.emailNotifs} onChange={(e) => setSettings({ ...settings, emailNotifs: e.target.checked })} className="mr-2" /><span>Email Notifications</span></label><label className="flex items-center"><input type="checkbox" checked={settings.smsNotifs} onChange={(e) => setSettings({ ...settings, smsNotifs: e.target.checked })} className="mr-2" /><span>SMS Notifications</span></label><label className="flex items-center"><input type="checkbox" checked={settings.pushNotifs} onChange={(e) => setSettings({ ...settings, pushNotifs: e.target.checked })} className="mr-2" /><span>Push Notifications</span></label></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave(settings)} className="px-4 py-2 bg-green-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function AccessControlModal({ isOpen, onClose, onSave }: any) {
@@ -33,9 +33,9 @@ export function AccessControlModal({ isOpen, onClose, onSave }: any) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl h-[80vh] flex flex-col">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  h-[80vh] flex flex-col">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center rounded-t-lg">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Shield className="w-5 h-5" />
             Access Control & Permissions
@@ -45,7 +45,7 @@ export function AccessControlModal({ isOpen, onClose, onSave }: any) {
 
         <div className="flex flex-1 overflow-hidden">
           {/* Sidebar */}
-          <div className="w-64 border-r border-gray-200 bg-gray-50 p-4 flex flex-col gap-2">
+          <div className="w-64 border-r border-gray-200 bg-gray-50 p-3 flex flex-col gap-2">
             <div className="flex justify-between items-center mb-2 px-2">
               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Roles</h3>
               <button className="text-purple-600 hover:bg-purple-100 p-1 rounded"><Plus className="w-4 h-4" /></button>
@@ -65,8 +65,8 @@ export function AccessControlModal({ isOpen, onClose, onSave }: any) {
           </div>
 
           {/* Content */}
-          <div className="flex-1 p-6 overflow-y-auto">
-            <div className="flex justify-between items-start mb-6">
+          <div className="flex-1 p-3 overflow-y-auto">
+            <div className="flex justify-between items-start mb-3">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">Project Manager Permissions</h3>
                 <p className="text-sm text-gray-600">Manage permissions for project managers across the organization.</p>
@@ -77,11 +77,11 @@ export function AccessControlModal({ isOpen, onClose, onSave }: any) {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {permissions.map((group, idx) => (
-                <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4">
+                <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3">
                   <h4 className="font-medium text-gray-900 mb-3 pb-2 border-b border-gray-100">{group.category}</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {group.items.map((perm, pIdx) => (
                       <label key={pIdx} className="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" defaultChecked={Math.random() > 0.3} className="rounded text-purple-600 focus:ring-purple-500" />
@@ -95,7 +95,7 @@ export function AccessControlModal({ isOpen, onClose, onSave }: any) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t rounded-b-lg">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
           <button onClick={() => onSave()} className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Save Changes</button>
         </div>
@@ -115,9 +115,9 @@ export function IntegrationSettingsModal({ isOpen, onClose, onSave }: any) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex justify-between items-center rounded-t-lg">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Globe className="w-5 h-5" />
             Third-Party Integrations
@@ -126,9 +126,9 @@ export function IntegrationSettingsModal({ isOpen, onClose, onSave }: any) {
         </div>
 
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {integrations.map((app) => (
-              <div key={app.id} className="border border-gray-200 rounded-lg p-4 flex items-center justify-between hover:shadow-md transition-shadow">
+              <div key={app.id} className="border border-gray-200 rounded-lg p-3 flex items-center justify-between hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center p-2">
                     {/* Using text fallback if image fails, but usually these are SVGs */}
@@ -151,7 +151,7 @@ export function IntegrationSettingsModal({ isOpen, onClose, onSave }: any) {
             ))}
           </div>
 
-          <div className="mt-6 p-4 bg-orange-50 border border-orange-100 rounded-lg flex items-start gap-3">
+          <div className="mt-6 p-3 bg-orange-50 border border-orange-100 rounded-lg flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="text-sm font-semibold text-orange-800">API Access Required</h4>
@@ -160,7 +160,7 @@ export function IntegrationSettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t rounded-b-lg">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">Close</button>
         </div>
       </div>
@@ -170,27 +170,27 @@ export function IntegrationSettingsModal({ isOpen, onClose, onSave }: any) {
 
 export function WorkflowSettingsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-3xl"><div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Workflow Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Configure approval workflows</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-3xl"><div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Workflow Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Configure approval workflows</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function CustomFieldsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Custom Fields</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Add custom fields to projects</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Custom Fields</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Add custom fields to projects</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function EmailTemplatesModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden"><div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Email Templates</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]"><p className="text-gray-600">Customize email templates</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-yellow-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden"><div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Email Templates</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]"><p className="text-gray-600">Customize email templates</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-yellow-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function ReportSettingsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Report Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Configure report preferences</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-emerald-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Report Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Configure report preferences</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-emerald-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function BudgetSettingsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Budget Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Configure budget tracking settings</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-cyan-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-2xl"><div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Budget Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Configure budget tracking settings</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-cyan-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
@@ -200,9 +200,9 @@ export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-3 py-2 flex justify-between items-center rounded-t-lg">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Shield className="w-5 h-5" />
             Security Configuration
@@ -210,9 +210,9 @@ export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
           <button onClick={onClose} className="text-white hover:bg-pink-600/50 p-1 rounded-full"><X className="h-5 w-5" /></button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* 2FA Section */}
-          <div className="flex items-start justify-between p-4 bg-blue-50 border border-blue-100 rounded-lg">
+          <div className="flex items-start justify-between p-3 bg-blue-50 border border-blue-100 rounded-lg">
             <div className="flex gap-3">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <Smartphone className="w-6 h-6 text-blue-600" />
@@ -229,12 +229,12 @@ export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
 
           {/* Password Policy */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="font-medium text-gray-900 flex items-center gap-2">
               <Key className="w-4 h-4 text-gray-500" />
               Password Policy
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm text-gray-600 mb-1">Minimum Length</label>
                 <select className="w-full border border-gray-300 rounded-lg px-3 py-2">
@@ -255,12 +255,12 @@ export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
 
           {/* Session Settings */}
-          <div className="space-y-4 border-t border-gray-100 pt-4">
+          <div className="space-y-2 border-t border-gray-100 pt-4">
             <h3 className="font-medium text-gray-900 flex items-center gap-2">
               <Lock className="w-4 h-4 text-gray-500" />
               Session Management
             </h3>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-2">
               <div>
                 <label className="block text-sm text-gray-600 mb-1">Session Timeout (Inactivity)</label>
                 <select
@@ -278,7 +278,7 @@ export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
 
           {/* IP Whitelist */}
-          <div className="space-y-4 border-t border-gray-100 pt-4">
+          <div className="space-y-2 border-t border-gray-100 pt-4">
             <h3 className="font-medium text-gray-900 flex items-center gap-2">
               <Globe className="w-4 h-4 text-gray-500" />
               IP Restrictions
@@ -296,7 +296,7 @@ export function SecuritySettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t rounded-b-lg">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
           <button onClick={() => onSave()} className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">Update Security Settings</button>
         </div>
@@ -318,9 +318,9 @@ export function BackupSettingsModal({ isOpen, onClose, onSave }: any) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-3 py-2 flex justify-between items-center rounded-t-lg">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Edit2 className="w-5 h-5" />
             Backup & Restoration
@@ -328,10 +328,10 @@ export function BackupSettingsModal({ isOpen, onClose, onSave }: any) {
           <button onClick={onClose} className="text-white hover:bg-amber-600/50 p-1 rounded-full"><X className="h-5 w-5" /></button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Configuration */}
-          <div className="bg-amber-50 rounded-lg p-4 border border-amber-100">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-amber-50 rounded-lg p-3 border border-amber-100">
+            <div className="flex items-center justify-between mb-2">
               <div>
                 <h3 className="font-semibold text-gray-900">Automatic Backups</h3>
                 <p className="text-sm text-gray-600">Schedule regular system backups</p>
@@ -343,7 +343,7 @@ export function BackupSettingsModal({ isOpen, onClose, onSave }: any) {
             </div>
 
             {autoBackup && (
-              <div className="flex items-center gap-4 animate-in fade-in slide-in-from-top-1 duration-200">
+              <div className="flex items-center gap-2 animate-in fade-in slide-in-from-top-1 duration-200">
                 <div className="flex-1">
                   <label className="block text-xs font-semibold uppercase text-gray-500 mb-1">Frequency</label>
                   <select value={frequency} onChange={(e) => setFrequency(e.target.value)} className="w-full border border-gray-300 rounded px-3 py-1.5 text-sm">
@@ -404,7 +404,7 @@ export function BackupSettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t rounded-b-lg">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">Close</button>
           <button onClick={() => onSave()} className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700">Save Configuration</button>
         </div>
@@ -420,9 +420,9 @@ export function APISettingsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex justify-between items-center rounded-t-lg">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Code className="w-5 h-5" />
             API Configuration
@@ -430,7 +430,7 @@ export function APISettingsModal({ isOpen, onClose, onSave }: any) {
           <button onClick={onClose} className="text-white hover:bg-red-600/50 p-1 rounded-full"><X className="h-5 w-5" /></button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* API Keys */}
           <div className="space-y-3">
             <h3 className="font-semibold text-gray-900">API Keys</h3>
@@ -488,7 +488,7 @@ export function APISettingsModal({ isOpen, onClose, onSave }: any) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t rounded-b-lg">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">Close</button>
           <button onClick={() => onSave()} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Save Changes</button>
         </div>
@@ -499,7 +499,7 @@ export function APISettingsModal({ isOpen, onClose, onSave }: any) {
 
 export function AdvancedSettingsModal({ isOpen, onClose, onSave }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-3xl"><div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Advanced Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Advanced configuration options</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-violet-600 text-white rounded-lg">Save</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-3xl"><div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Advanced Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-600">Advanced configuration options</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onSave()} className="px-4 py-2 bg-violet-600 text-white rounded-lg">Save</button></div></div></div>);
 }
 
 export function ImportExportModal({ isOpen, onClose }: any) {
@@ -508,9 +508,9 @@ export function ImportExportModal({ isOpen, onClose }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-3 py-2 flex justify-between items-center rounded-t-lg">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Upload className="w-5 h-5" />
             Import / Export Data
@@ -520,7 +520,7 @@ export function ImportExportModal({ isOpen, onClose }: any) {
 
         <div className="p-6">
           {/* Tabs */}
-          <div className="flex border-b border-gray-200 mb-6">
+          <div className="flex border-b border-gray-200 mb-3">
             <button
               onClick={() => setActiveTab('export')}
               className={`px-4 py-2 font-medium text-sm ${activeTab === 'export' ? 'text-rose-600 border-b-2 border-rose-600' : 'text-gray-500 hover:text-gray-700'}`}
@@ -536,7 +536,7 @@ export function ImportExportModal({ isOpen, onClose }: any) {
           </div>
 
           {activeTab === 'export' ? (
-            <div className="space-y-4 animate-in fade-in slide-in-from-left-2 duration-200">
+            <div className="space-y-2 animate-in fade-in slide-in-from-left-2 duration-200">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Data Scope</label>
                 <div className="space-y-2">
@@ -562,13 +562,13 @@ export function ImportExportModal({ isOpen, onClose }: any) {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <input type="date" className="border border-gray-300 rounded-lg px-3 py-2" />
                   <input type="date" className="border border-gray-300 rounded-lg px-3 py-2" />
                 </div>
               </div>
 
-              <div className="bg-gray-50 p-4 rounded-lg flex items-center justify-between border border-gray-200 mt-2">
+              <div className="bg-gray-50 p-3 rounded-lg flex items-center justify-between border border-gray-200 mt-2">
                 <div>
                   <p className="font-semibold text-gray-900">Ready to Export</p>
                   <p className="text-xs text-gray-500">Estimated file size: 24 MB</p>
@@ -579,9 +579,9 @@ export function ImportExportModal({ isOpen, onClose }: any) {
               </div>
             </div>
           ) : (
-            <div className="space-y-6 animate-in fade-in slide-in-from-right-2 duration-200">
+            <div className="space-y-3 animate-in fade-in slide-in-from-right-2 duration-200">
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-rose-400 transition-colors cursor-pointer bg-gray-50">
-                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                <Upload className="w-8 h-8 text-gray-400 mb-2" />
                 <p className="text-sm font-medium text-gray-900">Click to upload or drag and drop</p>
                 <p className="text-xs text-gray-500 mt-1">JSON or CSV files only (Max 50MB)</p>
               </div>
@@ -603,7 +603,7 @@ export function ImportExportModal({ isOpen, onClose }: any) {
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t rounded-b-lg">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">Close</button>
         </div>
       </div>
@@ -613,5 +613,5 @@ export function ImportExportModal({ isOpen, onClose }: any) {
 
 export function ResetSettingsModal({ isOpen, onClose, onReset }: any) {
   if (!isOpen) return null;
-  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"><div className="bg-white rounded-lg shadow-xl w-full max-w-md"><div className="bg-gradient-to-r from-slate-600 to-slate-700 px-6 py-4 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Reset Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-700">Are you sure you want to reset all settings to default?</p><p className="text-sm text-red-600 mt-2">This action cannot be undone.</p></div><div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onReset()} className="px-4 py-2 bg-red-600 text-white rounded-lg">Reset</button></div></div></div>);
+  return (<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3"><div className="bg-white rounded-lg shadow-xl w-full max-w-md"><div className="bg-gradient-to-r from-slate-600 to-slate-700 px-3 py-2 flex justify-between items-center"><h2 className="text-xl font-bold text-white">Reset Settings</h2><button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button></div><div className="p-6"><p className="text-gray-700">Are you sure you want to reset all settings to default?</p><p className="text-sm text-red-600 mt-2">This action cannot be undone.</p></div><div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t"><button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button><button onClick={() => onReset()} className="px-4 py-2 bg-red-600 text-white rounded-lg">Reset</button></div></div></div>);
 }

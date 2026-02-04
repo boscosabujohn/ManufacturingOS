@@ -325,11 +325,11 @@ export default function AddPayrollPage() {
   const overtimePay = calculateOvertimePay();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -344,8 +344,8 @@ export default function AddPayrollPage() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
             </div>
@@ -353,7 +353,7 @@ export default function AddPayrollPage() {
             <div className="text-green-100 text-sm mt-1">Gross Salary</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
             </div>
@@ -361,7 +361,7 @@ export default function AddPayrollPage() {
             <div className="text-red-100 text-sm mt-1">Total Deductions</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
             </div>
@@ -370,15 +370,15 @@ export default function AddPayrollPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Employee Selection */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <User className="w-5 h-5 text-blue-600" />
               Employee Selection
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Select Employee *
@@ -458,7 +458,7 @@ export default function AddPayrollPage() {
               </div>
 
               {selectedEmployee && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div>
                     <label className="text-xs text-blue-700 font-medium">Bank</label>
                     <p className="text-sm font-semibold text-blue-900 mt-1">
@@ -484,12 +484,12 @@ export default function AddPayrollPage() {
           </div>
 
           {/* Payment Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               Payment Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Pay Period *
@@ -533,12 +533,12 @@ export default function AddPayrollPage() {
           </div>
 
           {/* Attendance Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Clock className="w-5 h-5 text-blue-600" />
               Attendance Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Working Days *
@@ -619,8 +619,8 @@ export default function AddPayrollPage() {
           </div>
 
           {/* Earnings Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-green-600" />
                 Earnings
@@ -634,7 +634,7 @@ export default function AddPayrollPage() {
                 Auto HRA (40%)
               </button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Basic Salary *
@@ -724,8 +724,8 @@ export default function AddPayrollPage() {
           </div>
 
           {/* Deductions Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <TrendingDown className="w-5 h-5 text-red-600" />
                 Deductions
@@ -749,7 +749,7 @@ export default function AddPayrollPage() {
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Provident Fund (PF)
@@ -831,8 +831,8 @@ export default function AddPayrollPage() {
           </div>
 
           {/* Remarks */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Remarks</h3>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Remarks</h3>
             <textarea
               value={formData.remarks}
               onChange={(e) => handleInputChange('remarks', e.target.value)}
@@ -843,7 +843,7 @@ export default function AddPayrollPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-end">
+          <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => router.back()}

@@ -78,12 +78,12 @@ export default function WorkflowAdvancedFeaturesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Header */}
-        <div className="bg-white shadow-lg p-6">
+        <div className="bg-white shadow-lg p-3">
           <button
             onClick={() => router.push('/workflow/automation')}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4"
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-2"
           >
             <ArrowLeft className="h-5 w-5" />
             Back to Workflow Automation
@@ -104,7 +104,7 @@ export default function WorkflowAdvancedFeaturesPage() {
                 <button
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  className={`px-6 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
+                  className={`px-3 py-2 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                     activeTab === tab.id
                       ? 'border-blue-600 text-blue-600'
                       : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300'

@@ -221,8 +221,8 @@ export default function ApprovalMatrixPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Network className="h-7 w-7 text-purple-600" />
           Approval Matrix
@@ -231,7 +231,7 @@ export default function ApprovalMatrixPage() {
       </div>
 
       {/* Info Alert */}
-      <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <div className="flex items-start gap-2">
           <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
@@ -245,27 +245,27 @@ export default function ApprovalMatrixPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Rules</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Active Rules</div>
           <div className="text-2xl font-bold text-green-600">{stats.active}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Inactive Rules</div>
           <div className="text-2xl font-bold text-gray-600">{stats.inactive}</div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Categories</div>
           <div className="text-2xl font-bold text-purple-600">{stats.categories}</div>
         </div>
       </div>
 
       {/* Filters and Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="mb-3 flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
         <div className="flex gap-2 items-center">
           <label className="text-sm font-medium text-gray-700">Category:</label>
           <select
@@ -289,10 +289,10 @@ export default function ApprovalMatrixPage() {
       </div>
 
       {/* Rules List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRules.map((rule) => (
           <div key={rule.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className={`px-6 py-4 border-b border-gray-200 flex items-center justify-between ${
+            <div className={`px-3 py-2 border-b border-gray-200 flex items-center justify-between ${
               rule.isActive ? 'bg-gradient-to-r from-purple-50 to-purple-100' : 'bg-gray-50'
             }`}>
               <div className="flex items-center gap-3">
@@ -336,7 +336,7 @@ export default function ApprovalMatrixPage() {
             </div>
 
             <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {/* Amount Range */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Amount Range</h4>
@@ -368,7 +368,7 @@ export default function ApprovalMatrixPage() {
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Approval Hierarchy</h4>
                   <div className="space-y-2">
                     {rule.approvers.map((approver, index) => (
-                      <div key={index} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                      <div key={index} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
                         <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
                           L{approver.level}
                         </div>
@@ -393,7 +393,7 @@ export default function ApprovalMatrixPage() {
 
       {/* Add Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">Add Approval Rule</h2>
@@ -424,13 +424,13 @@ export default function ApprovalMatrixPage() {
 
       {/* Edit Modal */}
       {showEditModal && selectedRule && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">Edit Approval Rule</h2>
             </div>
             <div className="p-6">
-              <div className="mb-4">
+              <div className="mb-2">
                 <h3 className="font-semibold text-gray-900 mb-2">{selectedRule.name}</h3>
                 <p className="text-sm text-gray-600">
                   Edit approval rule functionality will include form fields for all rule parameters.
@@ -468,10 +468,10 @@ export default function ApprovalMatrixPage() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && selectedRule && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             <div className="p-6">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-2">
                 <div className="p-3 bg-red-100 rounded-full">
                   <AlertCircle className="h-6 w-6 text-red-600" />
                 </div>
@@ -507,7 +507,7 @@ export default function ApprovalMatrixPage() {
       )}
 
       {/* Guidelines Box */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Best Practices</h3>
         <ul className="space-y-1 text-sm text-purple-800">
           <li className="flex items-start gap-2">

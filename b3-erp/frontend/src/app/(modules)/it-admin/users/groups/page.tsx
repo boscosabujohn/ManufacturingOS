@@ -119,11 +119,11 @@ export default function UserGroupsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-slate-200 rounded-lg text-slate-600"
@@ -137,7 +137,7 @@ export default function UserGroupsPage() {
           </div>
           <button
             onClick={() => router.push('/it-admin/users/groups/new')}
-            className="flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium"
+            className="flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium"
           >
             <Plus className="w-5 h-5" />
             New Group
@@ -145,7 +145,7 @@ export default function UserGroupsPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="flex gap-4 mb-6">
+        <div className="flex gap-2 mb-3">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
             <input
@@ -171,7 +171,7 @@ export default function UserGroupsPage() {
         </div>
 
         {/* Groups Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredGroups.map(group => (
             <div key={group.id} className="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow">
               {/* Group Header */}
@@ -192,7 +192,7 @@ export default function UserGroupsPage() {
                 </div>
 
                 {/* Permissions */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {group.permissions.map(perm => (
                     <span
                       key={perm}
@@ -204,7 +204,7 @@ export default function UserGroupsPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="flex gap-4 text-sm text-slate-600">
+                <div className="flex gap-2 text-sm text-slate-600">
                   <span className="flex items-center gap-2">
                     <Users className="w-4 h-4" />
                     {group.memberCount} members
@@ -215,7 +215,7 @@ export default function UserGroupsPage() {
 
               {/* Members Preview */}
               <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium text-slate-900">Members ({group.members.length})</h4>
                   <button
                     onClick={() => {
@@ -253,7 +253,7 @@ export default function UserGroupsPage() {
 
         {/* Members Detail Modal */}
         {showDetails && selectedGroup && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
             <div className="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
               {/* Header */}
               <div className="p-6 border-b border-slate-200 sticky top-0 bg-white flex items-center justify-between">
@@ -273,7 +273,7 @@ export default function UserGroupsPage() {
               <div className="p-6">
                 <div className="space-y-3">
                   {selectedGroup.members.map(member => (
-                    <div key={member.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50">
+                    <div key={member.id} className="flex items-center justify-between p-3 border border-slate-200 rounded-lg hover:bg-slate-50">
                       <div>
                         <p className="font-medium text-slate-900">{member.name}</p>
                         <p className="text-sm text-slate-600">{member.email}</p>

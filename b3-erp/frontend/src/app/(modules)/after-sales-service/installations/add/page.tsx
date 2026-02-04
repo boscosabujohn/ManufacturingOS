@@ -203,7 +203,7 @@ export default function AddInstallationPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -239,9 +239,9 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Basic Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Job Number</label>
               <input
@@ -291,10 +291,10 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Customer Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Search Customer <span className="text-red-500">*</span>
             </label>
@@ -346,7 +346,7 @@ export default function AddInstallationPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Contact Person <span className="text-red-500">*</span>
@@ -389,9 +389,9 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Schedule */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Schedule</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Schedule</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Scheduled Date <span className="text-red-500">*</span>
@@ -435,8 +435,8 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Installation Team */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Installation Team</h2>
             <button
               type="button"
@@ -493,8 +493,8 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Equipment to Install */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Equipment to Install</h2>
             <button
               type="button"
@@ -567,10 +567,10 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Site Survey */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Site Survey</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Site Survey</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="flex items-center gap-2">
                 <input
@@ -584,7 +584,7 @@ export default function AddInstallationPage() {
             </div>
 
             {requiresSiteSurvey && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ml-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ml-6">
                 <div>
                   <label className="flex items-center gap-2 mb-2">
                     <input
@@ -613,10 +613,10 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Additional Details */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Additional Details</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Additional Details</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Site Requirements</label>
               <textarea
@@ -653,7 +653,7 @@ export default function AddInstallationPage() {
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-blue-600 mt-0.5" />
             <div className="text-sm text-blue-900">
@@ -689,9 +689,9 @@ export default function AddInstallationPage() {
 
       {/* Preview Modal */}
       {showPreviewModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setShowPreviewModal(false)}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50" onClick={() => setShowPreviewModal(false)}>
           <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
                   <Eye className="h-7 w-7" />
@@ -708,11 +708,11 @@ export default function AddInstallationPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Job Information */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Job Information</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Job Number</p>
                     <p className="text-base font-medium text-gray-900">{jobNumber}</p>
@@ -735,7 +735,7 @@ export default function AddInstallationPage() {
               </div>
 
               {/* Customer Information */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Users className="h-5 w-5 text-blue-600" />
                   Customer Information
@@ -746,7 +746,7 @@ export default function AddInstallationPage() {
                     <p className="text-base font-medium text-gray-900">{customerName || 'Not selected'}</p>
                     {customerId && <p className="text-xs text-gray-500">ID: {customerId}</p>}
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm text-gray-600">Contact Person</p>
                       <p className="text-base font-medium text-gray-900">{contactPerson || '-'}</p>
@@ -770,12 +770,12 @@ export default function AddInstallationPage() {
               </div>
 
               {/* Schedule */}
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-purple-600" />
                   Schedule
                 </h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Date</p>
                     <p className="text-base font-medium text-gray-900">
@@ -801,7 +801,7 @@ export default function AddInstallationPage() {
               </div>
 
               {/* Installation Team */}
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Users className="h-5 w-5 text-green-600" />
                   Installation Team ({teamMembers.length} members)
@@ -835,7 +835,7 @@ export default function AddInstallationPage() {
               </div>
 
               {/* Equipment */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Wrench className="h-5 w-5 text-orange-600" />
                   Equipment to Install ({equipment.length} items)
@@ -865,7 +865,7 @@ export default function AddInstallationPage() {
 
               {/* Site Survey */}
               {requiresSiteSurvey && (
-                <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <Info className="h-5 w-5 text-yellow-600" />
                     Site Survey
@@ -888,7 +888,7 @@ export default function AddInstallationPage() {
 
               {/* Additional Details */}
               {(siteRequirements || specialInstructions || internalNotes) && (
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Additional Details</h3>
                   <div className="space-y-3">
                     {siteRequirements && (

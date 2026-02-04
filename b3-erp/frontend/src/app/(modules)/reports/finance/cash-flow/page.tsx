@@ -20,8 +20,8 @@ export default function CashFlowReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Cash Flow Statement</h1>
                     <p className="text-gray-600">Analysis of cash inflows and outflows</p>
@@ -30,7 +30,7 @@ export default function CashFlowReport() {
             </div>
 
             {/* Summary KPIs */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Operating Activities"
                     value={`₹${(data.operatingCashFlow / 1000).toFixed(0)}K`}
@@ -66,8 +66,8 @@ export default function CashFlowReport() {
                     <table className="w-full">
                         <tbody>
                             <tr className="bg-green-50 cursor-pointer hover:bg-green-100" onClick={() => router.push('/reports/finance/cash-flow/operating')}>
-                                <td className="px-6 py-3 font-bold text-green-900">Cash Flow from Operating Activities</td>
-                                <td className="px-6 py-3 text-right font-bold text-green-900">
+                                <td className="px-3 py-2 font-bold text-green-900">Cash Flow from Operating Activities</td>
+                                <td className="px-3 py-2 text-right font-bold text-green-900">
                                     ₹{data.operatingCashFlow.toLocaleString()}
                                 </td>
                             </tr>
@@ -85,8 +85,8 @@ export default function CashFlowReport() {
                             </tr>
 
                             <tr className="bg-blue-50 cursor-pointer hover:bg-blue-100" onClick={() => router.push('/reports/finance/cash-flow/investing')}>
-                                <td className="px-6 py-3 font-bold text-blue-900">Cash Flow from Investing Activities</td>
-                                <td className="px-6 py-3 text-right font-bold text-blue-900">
+                                <td className="px-3 py-2 font-bold text-blue-900">Cash Flow from Investing Activities</td>
+                                <td className="px-3 py-2 text-right font-bold text-blue-900">
                                     ₹{data.investingCashFlow.toLocaleString()}
                                 </td>
                             </tr>
@@ -100,8 +100,8 @@ export default function CashFlowReport() {
                             </tr>
 
                             <tr className="bg-orange-50 cursor-pointer hover:bg-orange-100" onClick={() => router.push('/reports/finance/cash-flow/financing')}>
-                                <td className="px-6 py-3 font-bold text-orange-900">Cash Flow from Financing Activities</td>
-                                <td className="px-6 py-3 text-right font-bold text-orange-900">
+                                <td className="px-3 py-2 font-bold text-orange-900">Cash Flow from Financing Activities</td>
+                                <td className="px-3 py-2 text-right font-bold text-orange-900">
                                     ₹{data.financingCashFlow.toLocaleString()}
                                 </td>
                             </tr>
@@ -111,16 +111,16 @@ export default function CashFlowReport() {
                             </tr>
 
                             <tr className="bg-gray-100 font-bold border-t-2 border-gray-300">
-                                <td className="px-6 py-3">Net Increase in Cash</td>
-                                <td className="px-6 py-3 text-right">₹{data.netCashFlow.toLocaleString()}</td>
+                                <td className="px-3 py-2">Net Increase in Cash</td>
+                                <td className="px-3 py-2 text-right">₹{data.netCashFlow.toLocaleString()}</td>
                             </tr>
                             <tr className="bg-gray-50">
-                                <td className="px-6 py-3">Cash at Beginning of Period</td>
-                                <td className="px-6 py-3 text-right">₹{data.beginningCash.toLocaleString()}</td>
+                                <td className="px-3 py-2">Cash at Beginning of Period</td>
+                                <td className="px-3 py-2 text-right">₹{data.beginningCash.toLocaleString()}</td>
                             </tr>
                             <tr className="bg-gray-50 font-bold">
-                                <td className="px-6 py-3">Cash at End of Period</td>
-                                <td className="px-6 py-3 text-right text-blue-600">₹{data.endingCash.toLocaleString()}</td>
+                                <td className="px-3 py-2">Cash at End of Period</td>
+                                <td className="px-3 py-2 text-right text-blue-600">₹{data.endingCash.toLocaleString()}</td>
                             </tr>
                         </tbody>
                     </table>

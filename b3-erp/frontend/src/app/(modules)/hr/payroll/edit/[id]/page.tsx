@@ -209,11 +209,11 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
   const overtimePay = calculateOvertimePay();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -228,8 +228,8 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
             </div>
@@ -237,7 +237,7 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
             <div className="text-green-100 text-sm mt-1">Gross Salary</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <TrendingDown className="w-8 h-8 opacity-80" />
             </div>
@@ -245,7 +245,7 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
             <div className="text-red-100 text-sm mt-1">Total Deductions</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
             </div>
@@ -255,12 +255,12 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
         </div>
 
         {/* Employee Info Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <User className="w-5 h-5 text-blue-600" />
             Employee Information
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="text-sm text-gray-600">Employee ID</label>
               <p className="font-semibold text-gray-900">{payroll.employeeId}</p>
@@ -280,14 +280,14 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Payment Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               Payment Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Pay Period
@@ -322,12 +322,12 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Attendance Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Clock className="w-5 h-5 text-blue-600" />
               Attendance Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Working Days *
@@ -422,12 +422,12 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Earnings Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-green-600" />
               Earnings
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Basic Salary *
@@ -517,8 +517,8 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Deductions Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <TrendingDown className="w-5 h-5 text-red-600" />
                 Deductions
@@ -542,7 +542,7 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Provident Fund (PF)
@@ -624,8 +624,8 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Remarks */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-blue-600" />
               Remarks
             </h3>
@@ -639,7 +639,7 @@ export default function EditPayrollPage({ params }: { params: { id: string } }) 
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-end">
+          <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => router.back()}

@@ -78,9 +78,9 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Eye className="w-6 h-6" />
@@ -95,9 +95,9 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-2">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="w-5 h-5 text-blue-600" />
@@ -140,14 +140,14 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
           </div>
 
           {/* Utilization Progress */}
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Budget Utilization</h3>
               <span className={`px-3 py-1 rounded-full text-sm font-medium border ${statusBadge(budget?.status)}`}>
                 {budget?.status?.toUpperCase()}
               </span>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <div className="flex items-center justify-between text-sm mb-2">
                   <span className="text-gray-600">Overall Utilization</span>
@@ -169,7 +169,7 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
               </div>
 
               {/* Breakdown */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+              <div className="grid grid-cols-3 gap-2 pt-4 border-t">
                 <div>
                   <div className="text-xs text-gray-600 mb-1">Spent</div>
                   <div className="flex items-center gap-2">
@@ -202,9 +202,9 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
           </div>
 
           {/* Budget Information */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div className="bg-white rounded-lg p-5 border border-gray-200">
-              <h4 className="text-sm font-semibold text-gray-700 mb-4 flex items-center gap-2">
+              <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                 <Info className="w-4 h-4" />
                 Budget Information
               </h4>
@@ -233,7 +233,7 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
             </div>
 
             <div className="bg-white rounded-lg p-5 border border-gray-200">
-              <h4 className="text-sm font-semibold text-gray-700 mb-4 flex items-center gap-2">
+              <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4" />
                 Variance Analysis
               </h4>
@@ -268,7 +268,7 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
 
           {/* Action Required */}
           {(budget?.status === 'critical' || budget?.status === 'overspent') && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex gap-3">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex gap-3">
               <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <h4 className="text-sm font-semibold text-red-900">Action Required</h4>
@@ -284,7 +284,7 @@ export function ViewBudgetDetailsModal({ isOpen, onClose, budget }: BudgetModalP
           <div className="flex justify-end pt-4 border-t">
             <button
               onClick={onClose}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 font-medium transition-all shadow-lg hover:shadow-xl"
+              className="px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 font-medium transition-all shadow-lg hover:shadow-xl"
             >
               Close
             </button>
@@ -331,9 +331,9 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
     : (budget?.budgetAmount || 0) * (1 + (adjustmentType === 'increase' ? 1 : -1) * (parseFloat(adjustmentPercent) || 0) / 100)
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Edit className="w-6 h-6" />
@@ -348,11 +348,11 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Current Budget Info */}
           <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-5 border border-purple-200">
             <h3 className="text-sm font-semibold text-purple-900 mb-3">Current Budget Status</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Current Budget:</span>
                 <p className="font-bold text-gray-900 text-lg">${budget?.budgetAmount?.toLocaleString()}</p>
@@ -373,9 +373,9 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Adjustment Type <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <label
-                className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                className={`flex items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all ${
                   adjustmentType === 'increase'
                     ? 'border-green-600 bg-green-50'
                     : 'border-gray-200 hover:border-green-300'
@@ -389,13 +389,13 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
                   className="sr-only"
                 />
                 <div className="text-center">
-                  <ArrowUpRight className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                  <ArrowUpRight className="w-8 h-8 mb-2 text-green-600" />
                   <span className="text-sm font-medium text-gray-900">Increase Budget</span>
                 </div>
               </label>
 
               <label
-                className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                className={`flex items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all ${
                   adjustmentType === 'decrease'
                     ? 'border-red-600 bg-red-50'
                     : 'border-gray-200 hover:border-red-300'
@@ -409,7 +409,7 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
                   className="sr-only"
                 />
                 <div className="text-center">
-                  <ArrowDownRight className="w-8 h-8 mx-auto mb-2 text-red-600" />
+                  <ArrowDownRight className="w-8 h-8 mb-2 text-red-600" />
                   <span className="text-sm font-medium text-gray-900">Decrease Budget</span>
                 </div>
               </label>
@@ -418,7 +418,7 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
 
           {/* Adjustment Amount/Percent */}
           <div>
-            <div className="flex items-center gap-4 mb-3">
+            <div className="flex items-center gap-2 mb-3">
               <label className="text-sm font-medium text-gray-700">
                 Adjustment Value <span className="text-red-500">*</span>
               </label>
@@ -478,7 +478,7 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
 
           {/* Calculated New Budget */}
           {(adjustmentAmount || adjustmentPercent) && (
-            <div className={`rounded-lg p-4 border-2 ${
+            <div className={`rounded-lg p-3 border-2 ${
               adjustmentType === 'increase'
                 ? 'bg-green-50 border-green-300'
                 : 'bg-red-50 border-red-300'
@@ -537,7 +537,7 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
           </div>
 
           {/* Approval Required */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -554,7 +554,7 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
 
           {/* Warning for Decreases */}
           {adjustmentType === 'decrease' && (
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 flex gap-3">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 flex gap-3">
               <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <h4 className="text-sm font-semibold text-orange-900">Budget Decrease Warning</h4>
@@ -571,13 +571,13 @@ export function AdjustBudgetModal({ isOpen, onClose, budget, onSubmit }: BudgetM
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <Edit className="w-4 h-4" />
               {requiresApproval ? 'Submit for Approval' : 'Adjust Budget'}
@@ -621,9 +621,9 @@ export function BudgetForecastModal({ isOpen, onClose, budget, onSubmit }: Budge
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <TrendingUp className="w-6 h-6" />
@@ -638,11 +638,11 @@ export function BudgetForecastModal({ isOpen, onClose, budget, onSubmit }: Budge
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Current Status */}
           <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl p-5 border border-cyan-200">
             <h3 className="text-sm font-semibold text-cyan-900 mb-3">Current Budget Status</h3>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               <div>
                 <span className="text-xs text-gray-600">Total Budget</span>
                 <p className="text-lg font-bold text-gray-900">${budget?.budgetAmount?.toLocaleString()}</p>
@@ -687,7 +687,7 @@ export function BudgetForecastModal({ isOpen, onClose, budget, onSubmit }: Budge
               {['historical', 'linear', 'custom'].map((method) => (
                 <label
                   key={method}
-                  className={`flex flex-col items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                  className={`flex flex-col items-center p-3 border-2 rounded-lg cursor-pointer transition-all ${
                     forecastMethod === method
                       ? 'border-cyan-600 bg-cyan-50'
                       : 'border-gray-200 hover:border-cyan-300'
@@ -759,12 +759,12 @@ export function BudgetForecastModal({ isOpen, onClose, budget, onSubmit }: Budge
 
           {/* Forecast Results Preview */}
           <div className="bg-white rounded-lg p-5 border-2 border-cyan-300">
-            <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Activity className="w-4 h-4 text-cyan-600" />
               Forecast Preview
             </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <span className="text-xs text-blue-700">Projected Total Spend</span>
                 <p className="text-2xl font-bold text-blue-900">${forecastData.projectedTotal.toLocaleString()}</p>
                 <div className="mt-2 flex items-center gap-2">
@@ -777,7 +777,7 @@ export function BudgetForecastModal({ isOpen, onClose, budget, onSubmit }: Budge
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4">
+              <div className="bg-green-50 rounded-lg p-3">
                 <span className="text-xs text-green-700">Budget Remaining</span>
                 <p className="text-2xl font-bold text-green-900">${forecastData.budgetRemaining.toLocaleString()}</p>
                 <p className="text-xs text-green-700 mt-2">
@@ -802,13 +802,13 @@ export function BudgetForecastModal({ isOpen, onClose, budget, onSubmit }: Budge
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg hover:from-cyan-700 hover:to-blue-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg hover:from-cyan-700 hover:to-blue-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <TrendingUp className="w-4 h-4" />
               Generate Forecast Report
@@ -851,9 +851,9 @@ export function BudgetAlertSetupModal({ isOpen, onClose, budget, onSubmit }: Bud
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Bell className="w-6 h-6" />
@@ -868,7 +868,7 @@ export function BudgetAlertSetupModal({ isOpen, onClose, budget, onSubmit }: Bud
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Alert Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
@@ -882,7 +882,7 @@ export function BudgetAlertSetupModal({ isOpen, onClose, budget, onSubmit }: Bud
               ].map((type) => (
                 <label
                   key={type.value}
-                  className={`flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                  className={`flex items-start p-3 border-2 rounded-lg cursor-pointer transition-all ${
                     alertType === type.value
                       ? 'border-orange-600 bg-orange-50'
                       : 'border-gray-200 hover:border-orange-300'
@@ -984,7 +984,7 @@ export function BudgetAlertSetupModal({ isOpen, onClose, budget, onSubmit }: Bud
           </div>
 
           {/* Escalation */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <label className="flex items-start gap-3 cursor-pointer mb-3">
               <input
                 type="checkbox"
@@ -1018,7 +1018,7 @@ export function BudgetAlertSetupModal({ isOpen, onClose, budget, onSubmit }: Bud
           </div>
 
           {/* Preview */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-orange-900 mb-2">Alert Preview</h4>
             <p className="text-sm text-orange-800">
               <strong>Trigger:</strong> When {alertType === 'utilization' ? `budget utilization reaches ${alertThreshold}%` : alertType === 'remaining' ? `remaining budget falls below $${alertThreshold}` : `spending exceeds budget by $${alertThreshold}`}
@@ -1036,13 +1036,13 @@ export function BudgetAlertSetupModal({ isOpen, onClose, budget, onSubmit }: Bud
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg hover:from-orange-700 hover:to-red-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg hover:from-orange-700 hover:to-red-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <Bell className="w-4 h-4" />
               Configure Alerts
@@ -1079,9 +1079,9 @@ export function ExportBudgetModal({ isOpen, onClose, onSubmit }: Omit<BudgetModa
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-lg">
               <Download className="w-6 h-6" />
@@ -1096,7 +1096,7 @@ export function ExportBudgetModal({ isOpen, onClose, onSubmit }: Omit<BudgetModa
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1106,7 +1106,7 @@ export function ExportBudgetModal({ isOpen, onClose, onSubmit }: Omit<BudgetModa
               {['excel', 'pdf', 'csv'].map((format) => (
                 <label
                   key={format}
-                  className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                  className={`flex items-center justify-center p-3 border-2 rounded-lg cursor-pointer transition-all ${
                     exportFormat === format
                       ? 'border-green-600 bg-green-50'
                       : 'border-gray-200 hover:border-green-300'
@@ -1120,7 +1120,7 @@ export function ExportBudgetModal({ isOpen, onClose, onSubmit }: Omit<BudgetModa
                     className="sr-only"
                   />
                   <div className="text-center">
-                    <FileText className="w-6 h-6 mx-auto mb-1 text-gray-600" />
+                    <FileText className="w-6 h-6 mb-1 text-gray-600" />
                     <span className="text-sm font-medium text-gray-900 uppercase">{format}</span>
                   </div>
                 </label>
@@ -1208,7 +1208,7 @@ export function ExportBudgetModal({ isOpen, onClose, onSubmit }: Omit<BudgetModa
           </div>
 
           {/* Export Preview */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-blue-900 mb-2">Export Preview</h4>
             <div className="text-sm text-blue-700 space-y-1">
               <p>Format: <span className="font-medium uppercase">{exportFormat}</span></p>
@@ -1223,13 +1223,13 @@ export function ExportBudgetModal({ isOpen, onClose, onSubmit }: Omit<BudgetModa
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <Download className="w-4 h-4" />
               Export Report

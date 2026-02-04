@@ -124,8 +124,8 @@ export default function Page() {
   const totalReadyNow = mockCoverageData.reduce((sum, d) => sum + d.readyNow, 0);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <PieChart className="h-6 w-6 text-teal-600" />
           Succession Coverage
@@ -133,8 +133,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Succession planning coverage and readiness metrics</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Critical Positions</p>
@@ -145,7 +145,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Covered</p>
@@ -156,7 +156,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-red-600 uppercase tracking-wide">Uncovered</p>
@@ -167,7 +167,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-4">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">Ready Now</p>
@@ -179,10 +179,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">Overall Coverage</h3>
-          <div className="flex items-center justify-center mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-sm font-bold text-gray-900 mb-2">Overall Coverage</h3>
+          <div className="flex items-center justify-center mb-2">
             <div className="relative">
               <svg className="transform -rotate-90 w-32 h-32">
                 <circle cx="64" cy="64" r="56" stroke="#E5E7EB" strokeWidth="12" fill="none" />
@@ -225,8 +225,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">Coverage by Department</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-sm font-bold text-gray-900 mb-2">Coverage by Department</h3>
           <div className="space-y-3">
             {mockCoverageData.map((dept, idx) => (
               <div key={idx}>
@@ -243,7 +243,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Department</label>
         <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} className="w-full md:w-96 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
           <option value="all">All Departments</option>
@@ -253,8 +253,8 @@ export default function Page() {
         </select>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Detailed Coverage Analysis</h3>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Detailed Coverage Analysis</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

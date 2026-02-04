@@ -349,9 +349,9 @@ const QualityInspectionAddPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+      <div className="bg-white rounded-lg shadow-md p-3 mb-3">
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2">
@@ -404,12 +404,12 @@ const QualityInspectionAddPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-12 gap-3">
         {/* Left Panel - Basic Info */}
-        <div className="col-span-4 space-y-6">
+        <div className="col-span-4 space-y-3">
           {/* Inspection Type */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <Beaker className="w-5 h-5" />
               Inspection Type Selection
             </h3>
@@ -458,8 +458,8 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Work Order Selection */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <Package className="w-5 h-5" />
               Work Order Selection
             </h3>
@@ -477,7 +477,7 @@ const QualityInspectionAddPage = () => {
               </div>
 
               {showWOSelector && (
-                <div className="absolute z-10 bg-white border border-gray-300 rounded-lg shadow-lg p-4 w-96">
+                <div className="absolute z-10 bg-white border border-gray-300 rounded-lg shadow-lg p-3 w-96">
                   <div className="flex justify-between items-center mb-3">
                     <h4 className="font-medium text-gray-900">
                       Select Work Order
@@ -524,8 +524,8 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Inspector Details */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <User className="w-5 h-5" />
               Inspector Details
             </h3>
@@ -576,8 +576,8 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Sample Selection */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <Target className="w-5 h-5" />
               Sample Selection
             </h3>
@@ -677,8 +677,8 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Equipment Calibration */}
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <Wrench className="w-5 h-5" />
               Equipment Calibration Check
             </h3>
@@ -707,10 +707,10 @@ const QualityInspectionAddPage = () => {
         </div>
 
         {/* Middle & Right Panel - Test Parameters */}
-        <div className="col-span-8 space-y-6">
+        <div className="col-span-8 space-y-3">
           {/* Quality Parameters Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="font-semibold text-gray-800 flex items-center gap-2">
                 <Ruler className="w-5 h-5" />
                 Quality Parameters Entry
@@ -735,7 +735,7 @@ const QualityInspectionAddPage = () => {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {testParameters.length === 0 ? (
                 <div className="text-center py-12 text-gray-500">
                   <Ruler className="w-12 h-12 mb-3 opacity-50" />
@@ -748,7 +748,7 @@ const QualityInspectionAddPage = () => {
                 testParameters.map((param) => (
                   <div
                     key={param.id}
-                    className="border border-gray-300 rounded-lg p-4 bg-gray-50"
+                    className="border border-gray-300 rounded-lg p-3 bg-gray-50"
                   >
                     <div className="flex justify-between items-start mb-3">
                       <h4 className="font-medium text-gray-900">
@@ -959,7 +959,7 @@ const QualityInspectionAddPage = () => {
 
                     {/* Auto-calculated Result */}
                     {param.result && (
-                      <div className="mt-3 flex items-center gap-4">
+                      <div className="mt-3 flex items-center gap-2">
                         <div className="flex items-center gap-2">
                           {param.result === "pass" ? (
                             <CheckCircle className="w-5 h-5 text-green-600" />
@@ -1000,8 +1000,8 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Visual Inspection Checklist */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <Eye className="w-5 h-5" />
               Visual Inspection Checklist (15 items)
             </h3>
@@ -1035,12 +1035,12 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Functional Testing */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <Activity className="w-5 h-5" />
               Functional Testing
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Rotation Test
@@ -1088,11 +1088,11 @@ const QualityInspectionAddPage = () => {
           </div>
 
           {/* Overall Result */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="font-semibold text-gray-800 mb-4">
+          <div className="bg-white rounded-lg shadow-md p-3">
+            <h3 className="font-semibold text-gray-800 mb-2">
               Overall Result & Disposition
             </h3>
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Overall Disposition
@@ -1148,14 +1148,14 @@ const QualityInspectionAddPage = () => {
 
           {/* NCR Creation (if failed) */}
           {showNCR && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <h3 className="font-semibold text-red-900 mb-4 flex items-center gap-2">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <h3 className="font-semibold text-red-900 mb-2 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5" />
                 Create Non-Conformance Report (NCR) Inline
               </h3>
 
               {/* Defects */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex justify-between items-center mb-3">
                   <h4 className="font-medium text-red-900">Defect Details</h4>
                   <button
@@ -1285,7 +1285,7 @@ const QualityInspectionAddPage = () => {
                   <label className="block text-sm font-medium text-red-900 mb-1">
                     Photos & Evidence Upload
                   </label>
-                  <div className="border-2 border-dashed border-red-300 rounded-lg p-6 text-center hover:border-red-400 cursor-pointer bg-white">
+                  <div className="border-2 border-dashed border-red-300 rounded-lg p-3 text-center hover:border-red-400 cursor-pointer bg-white">
                     <Camera className="w-8 h-8 text-red-400 mb-2" />
                     <p className="text-sm text-red-800">
                       Click to upload defect photos

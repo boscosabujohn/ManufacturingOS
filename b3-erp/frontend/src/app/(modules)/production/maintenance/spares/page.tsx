@@ -291,10 +291,10 @@ export default function SparePartsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -325,8 +325,8 @@ export default function SparePartsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Parts</p>
@@ -335,7 +335,7 @@ export default function SparePartsPage() {
             <Package className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Critical/Out of Stock</p>
@@ -344,7 +344,7 @@ export default function SparePartsPage() {
             <AlertTriangle className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Low Stock</p>
@@ -353,7 +353,7 @@ export default function SparePartsPage() {
             <TrendingUp className="w-8 h-8 text-yellow-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Value</p>
@@ -365,8 +365,8 @@ export default function SparePartsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -416,35 +416,35 @@ export default function SparePartsPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Part Number</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Part Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Min/Reorder</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Unit Cost</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Lead Time</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Part Number</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Part Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Stock</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Min/Reorder</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Unit Cost</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Lead Time</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredParts.map((part) => (
                 <tr key={part.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-medium text-gray-900">{part.partNumber}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-sm text-gray-900">{part.partName}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">
                       {getCategoryIcon(part.category)} {part.category}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-semibold ${
                       part.quantityInStock === 0 ? 'text-red-600' :
                       part.quantityInStock < part.reorderPoint ? 'text-orange-600' :
@@ -453,34 +453,34 @@ export default function SparePartsPage() {
                       {part.quantityInStock} {part.unit}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-600">
                       {part.minimumStock} / {part.reorderPoint}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">₹{part.unitCost.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-semibold text-gray-900">
                       ₹{(part.quantityInStock * part.unitCost).toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-sm text-gray-600">{part.location}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-sm text-gray-900">{part.supplier}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-600">{part.leadTime} days</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(part.status)}`}>
                       {part.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleViewPart(part)}
@@ -516,9 +516,9 @@ export default function SparePartsPage() {
 
       {/* View Part Modal */}
       {selectedPart && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <h2 className="text-xl font-bold text-gray-900">Spare Part Details - {selectedPart.partNumber}</h2>
               <button
                 onClick={() => setSelectedPart(null)}
@@ -527,8 +527,8 @@ export default function SparePartsPage() {
                 ✕
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700">Part Number</label>
                   <p className="text-gray-900 font-semibold">{selectedPart.partNumber}</p>
@@ -624,10 +624,10 @@ export default function SparePartsPage() {
 
       {/* Add Modal Placeholder */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Add New Spare Part</h2>
-            <p className="text-gray-600 mb-4">Form fields will be added here...</p>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Add New Spare Part</h2>
+            <p className="text-gray-600 mb-2">Form fields will be added here...</p>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowAddModal(false)}

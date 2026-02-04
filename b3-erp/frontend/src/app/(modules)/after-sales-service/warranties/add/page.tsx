@@ -139,7 +139,7 @@ export default function AddWarrantyPage() {
 
   return (
     <div className="p-6">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -167,9 +167,9 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Basic Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Warranty Type <span className="text-red-500">*</span>
@@ -218,7 +218,7 @@ export default function AddWarrantyPage() {
           </div>
 
           {warrantyType === 'Extended' && (
-            <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
               <div className="flex items-start gap-3">
                 <Info className="w-5 h-5 text-blue-600 mt-0.5" />
                 <div className="flex-1">
@@ -256,10 +256,10 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Customer Information */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Search Customer <span className="text-red-500">*</span>
             </label>
@@ -297,7 +297,7 @@ export default function AddWarrantyPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Customer ID</label>
               <input
@@ -339,9 +339,9 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Warranty Period */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Warranty Period</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Warranty Period</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Start Date <span className="text-red-500">*</span>
@@ -392,10 +392,10 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Coverage Details */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Coverage Details</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Coverage Details</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Coverage Type <span className="text-red-500">*</span>
@@ -446,8 +446,8 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Covered Products */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Covered Products</h2>
             <button
               type="button"
@@ -459,9 +459,9 @@ export default function AddWarrantyPage() {
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {coveredProducts.map((product, index) => (
-              <div key={product.id} className="border border-gray-200 rounded-md p-4">
+              <div key={product.id} className="border border-gray-200 rounded-md p-3">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Package className="w-5 h-5 text-gray-400" />
@@ -552,10 +552,10 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Coverage Terms */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Coverage Terms & Conditions</h2>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Coverage Terms & Conditions</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Coverage Inclusions</label>
               <textarea
@@ -603,7 +603,7 @@ export default function AddWarrantyPage() {
         </div>
 
         {/* Info Banner */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-blue-600 mt-0.5" />
             <div className="text-sm text-blue-900">

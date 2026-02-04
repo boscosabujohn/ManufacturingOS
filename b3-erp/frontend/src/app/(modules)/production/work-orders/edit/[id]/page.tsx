@@ -458,12 +458,12 @@ export default function EditWorkOrderPage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6">
+          <div className="mb-3">
             <button
               onClick={() => router.back()}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
             >
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Back to Work Order</span>
@@ -481,15 +481,15 @@ export default function EditWorkOrderPage() {
           </div>
 
           {/* Form */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Basic WO Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Factory className="h-5 w-5 mr-2 text-orange-600" />
                 Work Order Details
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     WO Number <span className="text-red-500">*</span>
@@ -532,13 +532,13 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Product Selection */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Package className="h-5 w-5 mr-2 text-orange-600" />
                 Product Selection
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Product <span className="text-red-500">*</span>
@@ -616,13 +616,13 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Dates & Priority */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Calendar className="h-5 w-5 mr-2 text-orange-600" />
                 Dates & Priority
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Due Date <span className="text-red-500">*</span>
@@ -683,13 +683,13 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Work Centers & Personnel */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Settings className="h-5 w-5 mr-2 text-orange-600" />
                 Work Centers & Personnel
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Primary Work Center <span className="text-red-500">*</span>
@@ -806,8 +806,8 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Material Requirements */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-bold text-gray-900 flex items-center">
                   <Box className="h-5 w-5 mr-2 text-orange-600" />
                   Material Requirements
@@ -823,7 +823,7 @@ export default function EditWorkOrderPage() {
 
               {/* Material Shortage Alert */}
               {formData.materialRequirements.some(m => m.stockStatus === 'shortage' || m.stockStatus === 'critical') && (
-                <div className="mb-4 bg-orange-50 border-l-4 border-orange-500 p-4">
+                <div className="mb-2 bg-orange-50 border-l-4 border-orange-500 p-3">
                   <div className="flex">
                     <AlertCircle className="h-5 w-5 text-orange-600" />
                     <div className="ml-3">
@@ -836,10 +836,10 @@ export default function EditWorkOrderPage() {
                 </div>
               )}
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {formData.materialRequirements.map((material, index) => (
-                  <div key={material.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                    <div className="grid grid-cols-12 gap-4">
+                  <div key={material.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                    <div className="grid grid-cols-12 gap-2">
                       <div className="col-span-3">
                         <label className="block text-xs font-medium text-gray-700 mb-1">Item Code</label>
                         <input
@@ -897,7 +897,7 @@ export default function EditWorkOrderPage() {
                         </button>
                       </div>
 
-                      <div className="col-span-12 grid grid-cols-3 gap-4 mt-2">
+                      <div className="col-span-12 grid grid-cols-3 gap-2 mt-2">
                         <div>
                           <label className="block text-xs font-medium text-gray-700 mb-1">Stock Available</label>
                           <input
@@ -935,8 +935,8 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Operations */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-bold text-gray-900 flex items-center">
                   <Wrench className="h-5 w-5 mr-2 text-orange-600" />
                   Operations / Routing
@@ -950,10 +950,10 @@ export default function EditWorkOrderPage() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {formData.operations.map((operation, index) => (
-                  <div key={operation.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                    <div className="grid grid-cols-12 gap-4">
+                  <div key={operation.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                    <div className="grid grid-cols-12 gap-2">
                       <div className="col-span-1">
                         <label className="block text-xs font-medium text-gray-700 mb-1">Seq</label>
                         <input
@@ -1061,13 +1061,13 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Cost Estimation */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <IndianRupee className="h-5 w-5 mr-2 text-orange-600" />
                 Cost Estimation
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Material Cost</label>
                   <div className="relative">
@@ -1111,7 +1111,7 @@ export default function EditWorkOrderPage() {
                 </div>
               </div>
 
-              <div className="mt-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+              <div className="mt-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                 <div className="flex justify-between items-center">
                   <span className="text-base font-bold text-gray-900">Total Estimated Cost:</span>
                   <span className="text-2xl font-bold text-blue-900">
@@ -1122,8 +1122,8 @@ export default function EditWorkOrderPage() {
             </div>
 
             {/* Special Instructions */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <FileText className="h-5 w-5 mr-2 text-orange-600" />
                 Special Instructions
               </h2>
@@ -1140,7 +1140,7 @@ export default function EditWorkOrderPage() {
       </div>
 
       {/* Fixed Footer */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}

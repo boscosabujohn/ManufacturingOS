@@ -167,9 +167,9 @@ export default function CPQSettingsNotificationsPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Notification Settings</h2>
           <p className="text-sm text-gray-600 mt-1">Configure email templates, alerts, and escalation rules</p>
@@ -210,15 +210,15 @@ export default function CPQSettingsNotificationsPage() {
 
       {/* Success Banner */}
       {saveStatus === 'success' && (
-        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
+        <div className="mb-3 bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3">
           <CheckCircle className="h-5 w-5 text-green-600" />
           <p className="text-sm text-green-800 font-medium">Notification settings saved successfully!</p>
         </div>
       )}
 
       {/* Email Templates */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Mail className="h-6 w-6 text-blue-600" />
@@ -238,11 +238,11 @@ export default function CPQSettingsNotificationsPage() {
           {emailTemplates.map((template) => (
             <div
               key={template.id}
-              className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-blue-300 cursor-pointer"
+              className="bg-gray-50 rounded-lg p-3 border border-gray-200 hover:border-blue-300 cursor-pointer"
               onClick={() => setSelectedTemplate(selectedTemplate === template.id.toString() ? null : template.id.toString())}
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4 flex-1">
+                <div className="flex items-center gap-2 flex-1">
                   <div className={`w-2 h-2 rounded-full ${template.active ? 'bg-green-500' : 'bg-gray-400'}`}></div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3">
@@ -296,8 +296,8 @@ export default function CPQSettingsNotificationsPage() {
       </div>
 
       {/* Notification Preferences */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="p-2 bg-purple-100 rounded-lg">
             <Bell className="h-6 w-6 text-purple-600" />
           </div>
@@ -366,8 +366,8 @@ export default function CPQSettingsNotificationsPage() {
       </div>
 
       {/* Escalation Rules */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-orange-100 rounded-lg">
               <AlertTriangle className="h-6 w-6 text-orange-600" />
@@ -450,8 +450,8 @@ export default function CPQSettingsNotificationsPage() {
       </div>
 
       {/* Alert Thresholds */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-        <div className="flex items-center gap-3 mb-6">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="p-2 bg-red-100 rounded-lg">
             <Clock className="h-6 w-6 text-red-600" />
           </div>
@@ -461,7 +461,7 @@ export default function CPQSettingsNotificationsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Approval Delay (Hours)</label>
             <input

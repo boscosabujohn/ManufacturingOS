@@ -303,7 +303,7 @@ export function SavedViewsDropdown({
             {/* Views List */}
             <div className="max-h-64 overflow-y-auto">
               {filteredViews.length === 0 ? (
-                <div className="px-4 py-6 text-center text-sm text-gray-500">
+                <div className="px-4 py-2 text-center text-sm text-gray-500">
                   No saved views
                 </div>
               ) : (
@@ -561,7 +561,7 @@ export function SavedViewsPanel({
 
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         {views.length === 0 ? (
-          <div className="px-4 py-6 text-center text-sm text-gray-500">
+          <div className="px-4 py-2 text-center text-sm text-gray-500">
             No saved views yet
           </div>
         ) : (

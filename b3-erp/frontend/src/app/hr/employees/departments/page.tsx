@@ -214,7 +214,7 @@ export default function DepartmentsPage() {
   const activeFilterCount = [filterStatus !== 'all', searchTerm !== ''].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -232,31 +232,31 @@ export default function DepartmentsPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Departments</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Employees</div>
           <div className="text-2xl font-bold text-blue-600">{stats.totalEmployees}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Active Employees</div>
           <div className="text-2xl font-bold text-green-600">{stats.totalActive}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Contract Employees</div>
           <div className="text-2xl font-bold text-orange-600">{stats.totalContract}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Avg Budget Util</div>
           <div className="text-2xl font-bold text-purple-600">{stats.avgBudgetUtil.toFixed(0)}%</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input type="text" placeholder="Search departments..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -294,10 +294,10 @@ export default function DepartmentsPage() {
       </div>
 
       {viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredData.map(dept => (
-            <div key={dept.id} className="bg-white border-2 border-indigo-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
-              <div className="flex items-start justify-between mb-4">
+            <div key={dept.id} className="bg-white border-2 border-indigo-200 rounded-lg p-3 hover:shadow-lg transition-shadow">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
                     <Building2 className="w-6 h-6 text-indigo-600" />
@@ -310,7 +310,7 @@ export default function DepartmentsPage() {
                 <StatusBadge status={dept.status === 'active' ? 'success' : 'error'} text={dept.status === 'active' ? 'Active' : 'Inactive'} />
               </div>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="text-sm">
                   <span className="text-gray-600">Head:</span>
                   <span className="ml-2 font-medium text-gray-900">{dept.headOfDepartment}</span>
@@ -321,7 +321,7 @@ export default function DepartmentsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+              <div className="grid grid-cols-2 gap-2 pt-4 border-t">
                 <div>
                   <div className="text-xs text-gray-600">Employees</div>
                   <div className="text-xl font-bold text-blue-600">{dept.employeeCount}</div>
@@ -342,7 +342,7 @@ export default function DepartmentsPage() {
         </div>
       )}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <Building2 className="w-5 h-5 inline mr-2" />
           Department Management

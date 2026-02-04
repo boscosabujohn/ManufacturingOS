@@ -34,7 +34,7 @@ export default function GatePassManagerPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-6">
+        <div className="w-full py-2 space-y-3">
             <h1 className="text-3xl font-bold">Gate Pass Management</h1>
 
             <Card>
@@ -42,8 +42,8 @@ export default function GatePassManagerPage() {
                     <CardTitle>Create New Gate Pass</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={handleCreatePass} className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <form onSubmit={handleCreatePass} className="space-y-2">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                             <div className="space-y-2">
                                 <Label>Type</Label>
                                 <Select value={type} onValueChange={setType}>

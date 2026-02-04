@@ -130,7 +130,7 @@ export default function FileUploadModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-3 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">{title}</h2>
           <button
             onClick={handleClose}
@@ -165,11 +165,11 @@ export default function FileUploadModal({
 
             {!selectedFile ? (
               <>
-                <Upload className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+                <Upload className="h-12 w-12 mb-2 text-gray-400" />
                 <p className="text-lg font-medium text-gray-700 mb-2">
                   Drag and drop your file here
                 </p>
-                <p className="text-sm text-gray-500 mb-4">or</p>
+                <p className="text-sm text-gray-500 mb-2">or</p>
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   disabled={isUploading}
@@ -208,7 +208,7 @@ export default function FileUploadModal({
           {/* Upload Result */}
           {uploadResult && (
             <div
-              className={`mt-4 p-4 rounded-lg ${
+              className={`mt-4 p-3 rounded-lg ${
                 uploadResult.success
                   ? 'bg-green-50 border border-green-200'
                   : 'bg-red-50 border border-red-200'
@@ -245,7 +245,7 @@ export default function FileUploadModal({
           )}
 
           {/* Instructions */}
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">
               Upload Instructions:
             </h3>
@@ -260,7 +260,7 @@ export default function FileUploadModal({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+        <div className="flex justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50">
           <button
             onClick={handleClose}
             disabled={isUploading}

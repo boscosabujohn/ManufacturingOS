@@ -18,15 +18,15 @@ export default function TalentAnalytics() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50 p-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50 p-3">
       <div>
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Talent Analytics & Insights</h1>
           <p className="text-gray-600">Data-driven insights on workforce trends and performance</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
             <div className="flex items-center gap-3 mb-3">
               <Users className="w-6 h-6 text-blue-600" />
               <h3 className="font-semibold text-gray-900">Total Headcount</h3>
@@ -35,7 +35,7 @@ export default function TalentAnalytics() {
             <p className="text-sm text-green-600 mt-2">↑ {metrics.headcount.growth}% growth</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
             <div className="flex items-center gap-3 mb-3">
               <TrendingUp className="w-6 h-6 text-green-600" />
               <h3 className="font-semibold text-gray-900">Retention Rate</h3>
@@ -44,7 +44,7 @@ export default function TalentAnalytics() {
             <p className="text-sm text-gray-600 mt-2">Avg tenure: {metrics.retention.avgTenure}y</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
             <div className="flex items-center gap-3 mb-3">
               <Award className="w-6 h-6 text-purple-600" />
               <h3 className="font-semibold text-gray-900">Top Performers</h3>
@@ -53,7 +53,7 @@ export default function TalentAnalytics() {
             <p className="text-sm text-gray-600 mt-2">11% of workforce</p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
             <div className="flex items-center gap-3 mb-3">
               <TrendingDown className="w-6 h-6 text-orange-600" />
               <h3 className="font-semibold text-gray-900">Turnover Rate</h3>
@@ -63,10 +63,10 @@ export default function TalentAnalytics() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Skills Distribution</h3>
-            <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Skills Distribution</h3>
+            <div className="space-y-2">
               {metrics.skills.map((skill, index) => (
                 <div key={index}>
                   <div className="flex justify-between mb-2">
@@ -81,18 +81,18 @@ export default function TalentAnalytics() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Diversity Metrics</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg">
+          <div className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Diversity Metrics</h3>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-3 bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg">
                 <span className="font-medium text-gray-700">Female</span>
                 <span className="text-2xl font-bold text-pink-600">{metrics.diversity.female}%</span>
               </div>
-              <div className="flex items-center justify-between p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg">
+              <div className="flex items-center justify-between p-3 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg">
                 <span className="font-medium text-gray-700">Male</span>
                 <span className="text-2xl font-bold text-blue-600">{metrics.diversity.male}%</span>
               </div>
-              <div className="flex items-center justify-between p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg">
+              <div className="flex items-center justify-between p-3 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg">
                 <span className="font-medium text-gray-700">Average Age</span>
                 <span className="text-2xl font-bold text-gray-700">{metrics.diversity.avgAge} years</span>
               </div>

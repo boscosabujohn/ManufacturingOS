@@ -232,7 +232,7 @@ export default function StockAgingPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -262,8 +262,8 @@ export default function StockAgingPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">₹{(totalValue / 100000).toFixed(1)}L</span>
@@ -272,7 +272,7 @@ export default function StockAgingPage() {
           <div className="text-xs text-blue-600 mt-1">{agingItems.length} Items</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <Archive className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">₹{(deadStockValue / 100000).toFixed(1)}L</span>
@@ -281,7 +281,7 @@ export default function StockAgingPage() {
           <div className="text-xs text-red-600 mt-1">No Movement {'>'} 180 Days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingDown className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">₹{(slowMovingValue / 100000).toFixed(1)}L</span>
@@ -290,7 +290,7 @@ export default function StockAgingPage() {
           <div className="text-xs text-orange-600 mt-1">Requires Attention</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <AlertCircle className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">₹{(over180DaysValue / 100000).toFixed(1)}L</span>
@@ -301,30 +301,30 @@ export default function StockAgingPage() {
       </div>
 
       {/* Aging Buckets Distribution */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Aging Buckets Distribution</h3>
-        <div className="grid grid-cols-5 gap-4">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Aging Buckets Distribution</h3>
+        <div className="grid grid-cols-5 gap-2">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-green-900">{bucketDistribution['0-30']}</div>
             <div className="text-sm text-green-700 font-medium mt-1">0-30 Days</div>
             <div className="text-xs text-green-600 mt-1">Fresh Stock</div>
           </div>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-blue-900">{bucketDistribution['31-60']}</div>
             <div className="text-sm text-blue-700 font-medium mt-1">31-60 Days</div>
             <div className="text-xs text-blue-600 mt-1">Normal</div>
           </div>
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-yellow-900">{bucketDistribution['61-90']}</div>
             <div className="text-sm text-yellow-700 font-medium mt-1">61-90 Days</div>
             <div className="text-xs text-yellow-600 mt-1">Watch List</div>
           </div>
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-orange-900">{bucketDistribution['91-180']}</div>
             <div className="text-sm text-orange-700 font-medium mt-1">91-180 Days</div>
             <div className="text-xs text-orange-600 mt-1">Slow Moving</div>
           </div>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="text-2xl font-bold text-red-900">{bucketDistribution['180+']}</div>
             <div className="text-sm text-red-700 font-medium mt-1">180+ Days</div>
             <div className="text-xs text-red-600 mt-1">Dead Stock</div>
@@ -333,8 +333,8 @@ export default function StockAgingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -379,50 +379,50 @@ export default function StockAgingPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Code</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Movement</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aging Days</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aging Bucket</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommendation</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Code</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Movement</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aging Days</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aging Bucket</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Velocity</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommendation</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredItems.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.itemCode}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{item.itemName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{item.category}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{item.itemCode}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{item.itemName}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{item.category}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {item.quantity} {item.uom}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">
                     ₹{item.totalValue.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     <div className="flex items-center space-x-1">
                       <Calendar className="w-4 h-4 text-gray-400" />
                       <span>{item.lastMovementDate}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-semibold text-orange-600">{item.agingDays} days</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getBucketColor(item.agingBucket)}`}>
                       {item.agingBucket} days
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getVelocityColor(item.movementVelocity)}`}>
                       <span className="capitalize">{item.movementVelocity}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{item.recommendation}</td>
+                  <td className="px-3 py-2 text-sm text-gray-700">{item.recommendation}</td>
                 </tr>
               ))}
             </tbody>
@@ -431,17 +431,17 @@ export default function StockAgingPage() {
 
         {filteredItems.length === 0 && (
           <div className="text-center py-12">
-            <Package className="w-12 h-12 text-gray-400 mb-4" />
+            <Package className="w-12 h-12 text-gray-400 mb-2" />
             <p className="text-gray-500">No aging items found matching your filters</p>
           </div>
         )}
       </div>
 
       {/* Action Recommendations */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Recommended Actions</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Recommended Actions</h3>
         <div className="space-y-3">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-start space-x-3">
             <Archive className="w-5 h-5 text-red-600 mt-0.5" />
             <div>
               <h4 className="font-semibold text-red-900">Dead Stock (180+ days)</h4>
@@ -451,7 +451,7 @@ export default function StockAgingPage() {
             </div>
           </div>
 
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 flex items-start space-x-3">
             <TrendingDown className="w-5 h-5 text-orange-600 mt-0.5" />
             <div>
               <h4 className="font-semibold text-orange-900">Slow Moving Items (91-180 days)</h4>
@@ -461,7 +461,7 @@ export default function StockAgingPage() {
             </div>
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start space-x-3">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start space-x-3">
             <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
             <div>
               <h4 className="font-semibold text-yellow-900">Watch List (61-90 days)</h4>

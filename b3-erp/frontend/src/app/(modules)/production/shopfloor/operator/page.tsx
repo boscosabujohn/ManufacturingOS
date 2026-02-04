@@ -411,10 +411,10 @@ export default function ShopFloorOperatorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -438,8 +438,8 @@ export default function ShopFloorOperatorPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Operators</p>
@@ -451,7 +451,7 @@ export default function ShopFloorOperatorPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Now</p>
@@ -463,7 +463,7 @@ export default function ShopFloorOperatorPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Quality Score</p>
@@ -475,7 +475,7 @@ export default function ShopFloorOperatorPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Today Produced</p>
@@ -489,11 +489,11 @@ export default function ShopFloorOperatorPage() {
       </div>
 
       {/* Shift Summaries */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
         {shiftSummaries.map((shift) => (
-          <div key={shift.shift} className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">{shift.shift} Shift</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div key={shift.shift} className="bg-white rounded-xl border border-gray-200 p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{shift.shift} Shift</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-3 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-600">Total Operators</p>
                 <p className="text-2xl font-bold text-blue-900">{shift.totalOperators}</p>
@@ -524,8 +524,8 @@ export default function ShopFloorOperatorPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-400" />
           <select
             value={filterDepartment}
@@ -570,15 +570,15 @@ export default function ShopFloorOperatorPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operator</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Shift</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Assignment</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Today</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Efficiency</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Quality</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Skill</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operator</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Shift</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Assignment</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Today</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Efficiency</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Quality</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Skill</th>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -588,19 +588,19 @@ export default function ShopFloorOperatorPage() {
                   className="hover:bg-gray-50 cursor-pointer transition-all hover:shadow-md"
                   onClick={() => handleViewOperator(operator)}
                 >
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{operator.operatorName}</div>
                       <div className="text-sm text-gray-500">{operator.employeeId}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-700">{operator.department}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className="text-sm text-gray-700 capitalize">{operator.shift}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {operator.status === 'active' && operator.currentWO ? (
                       <div>
                         <div className="text-sm font-medium text-blue-600">{operator.currentWO}</div>
@@ -611,13 +611,13 @@ export default function ShopFloorOperatorPage() {
                       <span className="text-sm text-gray-400">Not assigned</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-3 py-2 whitespace-nowrap text-right">
                     <div className="text-sm font-medium text-gray-900">{operator.todayProduced}</div>
                     {operator.todayRejected > 0 && (
                       <div className="text-xs text-red-600">{operator.todayRejected} rejected</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     {operator.status === 'active' ? (
                       <span className={`text-sm font-bold ${getEfficiencyColor(operator.todayEfficiency)}`}>
                         {operator.todayEfficiency}%
@@ -626,18 +626,18 @@ export default function ShopFloorOperatorPage() {
                       <span className="text-sm text-gray-400">-</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <div className="flex items-center justify-center gap-1">
                       <Award className={`w-4 h-4 ${operator.qualityScore >= 95 ? 'text-green-600' : 'text-yellow-600'}`} />
                       <span className="text-sm font-medium text-gray-900">{operator.qualityScore.toFixed(1)}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getSkillColor(operator.skillLevel)}`}>
                       {operator.skillLevel}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 py-2 whitespace-nowrap text-center">
                     <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(operator.status)}`}>
                       {operator.status}
                     </span>

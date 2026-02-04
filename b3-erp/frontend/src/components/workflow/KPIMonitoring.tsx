@@ -163,8 +163,8 @@ export default function KPIMonitoring() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -181,8 +181,8 @@ export default function KPIMonitoring() {
       </div>
 
       {/* System-wide Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-3">
             <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
               <Zap className="h-6 w-6 text-blue-600" />
@@ -196,7 +196,7 @@ export default function KPIMonitoring() {
           </div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-3">
             <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="h-6 w-6 text-green-600" />
@@ -210,7 +210,7 @@ export default function KPIMonitoring() {
           </div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-3">
             <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
               <Clock className="h-6 w-6 text-purple-600" />
@@ -224,7 +224,7 @@ export default function KPIMonitoring() {
           </div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-3">
             <div className="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center">
               <XCircle className="h-6 w-6 text-red-600" />
@@ -250,25 +250,25 @@ export default function KPIMonitoring() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Workflow Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Total Executions
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Success Rate
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Avg Duration
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Last Execution
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                   Trend
                 </th>
               </tr>
@@ -276,17 +276,17 @@ export default function KPIMonitoring() {
             <tbody className="bg-white divide-y divide-gray-200">
               {workflowKPIs.map((kpi) => (
                 <tr key={kpi.workflowId} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="font-medium text-gray-900">{kpi.workflowName}</div>
                     <div className="text-xs text-gray-500">{kpi.workflowId}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="font-medium text-gray-900">{kpi.totalExecutions.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">
                       {kpi.failureCount} failures • {kpi.warningCount} warnings
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className={`text-2xl font-bold ${getSuccessRateColor(kpi.successRate)}`}>
                       {kpi.successRate}%
                     </div>
@@ -299,13 +299,13 @@ export default function KPIMonitoring() {
                       />
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="font-medium text-gray-900">{kpi.averageDuration}s</div>
                     <div className="text-xs text-gray-500">
                       {kpi.minDuration}s - {kpi.maxDuration}s
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1 text-xs">
                         <CheckCircle className="h-3 w-3 text-green-600" />
@@ -319,10 +319,10 @@ export default function KPIMonitoring() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     {kpi.lastExecution}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-1">
                       {getTrendIcon(kpi.trend)}
                       <span className="text-sm text-gray-700 capitalize">{kpi.trend}</span>
@@ -336,10 +336,10 @@ export default function KPIMonitoring() {
       </div>
 
       {/* Performance Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Success Rate Distribution</h3>
-          <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Rate Distribution</h3>
+          <div className="space-y-2">
             {workflowKPIs.slice(0, 5).map((kpi) => (
               <div key={kpi.workflowId}>
                 <div className="flex items-center justify-between mb-1">
@@ -363,9 +363,9 @@ export default function KPIMonitoring() {
           </div>
         </div>
 
-        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Execution Time Comparison</h3>
-          <div className="space-y-4">
+        <div className="bg-white shadow-lg border border-gray-200 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Execution Time Comparison</h3>
+          <div className="space-y-2">
             {workflowKPIs.slice(0, 5).map((kpi) => (
               <div key={kpi.workflowId}>
                 <div className="flex items-center justify-between mb-1">

@@ -373,27 +373,27 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
   const avgFlexibility = resources.reduce((sum, r) => sum + r.flexibilityScore, 0) / resources.length;
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Avg Utilization</div>
           <div className="text-3xl font-bold" style={{ color: avgUtilization > 95 ? '#dc2626' : avgUtilization > 85 ? '#f59e0b' : '#22c55e' }}>
             {avgUtilization.toFixed(0)}%
           </div>
           <div className="text-xs text-gray-500 mt-1">Across all resources</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Flexibility Score</div>
           <div className="text-3xl font-bold text-blue-600">{avgFlexibility.toFixed(0)}</div>
           <div className="text-xs text-gray-500 mt-1">Average capacity flexibility</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Active Surge Alerts</div>
           <div className="text-3xl font-bold text-amber-600">{surgeIndicators.length}</div>
           <div className="text-xs text-gray-500 mt-1">Upcoming capacity constraints</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="text-sm text-gray-600 mb-1">Resources at Risk</div>
           <div className="text-3xl font-bold text-red-600">{statusCounts.strained + statusCounts.overloaded}</div>
           <div className="text-xs text-gray-500 mt-1">Strained or overloaded</div>
@@ -401,9 +401,9 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
       </div>
 
       {/* Status Distribution */}
-      <div className="grid grid-cols-2 gap-6">
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">Capacity Status Distribution</h3>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Capacity Status Distribution</h3>
           <div className="space-y-3">
             {(['optimal', 'strained', 'overloaded', 'underutilized'] as CapacityStatus[]).map(status => {
               const count = statusCounts[status];
@@ -430,8 +430,8 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
         </div>
 
         {/* Resource Types */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">Resource Types Capacity</h3>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Resource Types Capacity</h3>
           <div className="grid grid-cols-2 gap-3">
             {(['machine', 'labor', 'material', 'tooling'] as ResourceType[]).map(type => {
               const typeResources = resources.filter(r => r.type === type);
@@ -456,8 +456,8 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
       </div>
 
       {/* Surge Alerts */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-sm font-semibold text-gray-700">Upcoming Surge Indicators</h3>
           <span className="text-xs text-gray-500">Next 30 days</span>
         </div>
@@ -494,7 +494,7 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
   );
 
   const renderResources = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Filter */}
       <div className="flex gap-2">
         {(['all', 'machine', 'labor', 'material', 'tooling'] as const).map(type => (
@@ -514,11 +514,11 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
       </div>
 
       {/* Resources Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredResources.map(resource => (
           <div
             key={resource.id}
-            className="bg-white border border-gray-200 rounded-lg p-4"
+            className="bg-white border border-gray-200 rounded-lg p-3"
           >
             <div className="flex justify-between items-start mb-3">
               <div className="flex items-center gap-2">
@@ -537,7 +537,7 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
             </div>
 
             {/* Capacity Bar */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between text-xs text-gray-600 mb-1">
                 <span>Capacity Utilization</span>
                 <span className="font-medium">{resource.utilizationRate}%</span>
@@ -613,12 +613,12 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
     const chartHeight = 200;
 
     return (
-      <div className="space-y-4">
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">30-Day Demand vs Capacity Forecast</h3>
+      <div className="space-y-2">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">30-Day Demand vs Capacity Forecast</h3>
 
           {/* Chart Legend */}
-          <div className="flex gap-4 mb-4">
+          <div className="flex gap-2 mb-2">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded bg-blue-500"></div>
               <span className="text-xs text-gray-600">Demand</span>
@@ -690,22 +690,22 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
         </div>
 
         {/* Forecast Summary */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="grid grid-cols-3 gap-2">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="text-sm text-gray-600 mb-1">Days Over Capacity</div>
             <div className="text-3xl font-bold text-amber-600">
               {forecast.filter(f => f.demand > f.capacity).length}
             </div>
             <div className="text-xs text-gray-500 mt-1">Requiring surge capacity</div>
           </div>
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="text-sm text-gray-600 mb-1">Days Over Surge</div>
             <div className="text-3xl font-bold text-red-600">
               {forecast.filter(f => f.demand > f.surgeCapacity).length}
             </div>
             <div className="text-xs text-gray-500 mt-1">Capacity exceeded</div>
           </div>
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="text-sm text-gray-600 mb-1">Peak Demand</div>
             <div className="text-3xl font-bold text-blue-600">
               {Math.max(...forecast.map(f => f.demand)).toLocaleString()}
@@ -718,14 +718,14 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
   };
 
   const renderOptions = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <p className="text-sm text-gray-600">Available flexibility options to address capacity constraints</p>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {flexibilityOptions.map(option => (
           <div
             key={option.id}
-            className="bg-white border border-gray-200 rounded-lg p-4"
+            className="bg-white border border-gray-200 rounded-lg p-3"
           >
             <div className="flex justify-between items-start mb-3">
               <div>
@@ -792,8 +792,8 @@ const CapacityFlexibilityView: React.FC<CapacityFlexibilityViewProps> = ({ class
   );
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="flex justify-between items-center mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="flex justify-between items-center mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Capacity Flexibility View</h2>
           <p className="text-sm text-gray-600">Monitor available capacity vs demand with surge indicators</p>

@@ -448,7 +448,7 @@ export default function EmployeeProfilesPage() {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <User className="h-8 w-8 text-indigo-600" />
           Employee Profiles
@@ -457,8 +457,8 @@ export default function EmployeeProfilesPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Profiles</p>
@@ -467,7 +467,7 @@ export default function EmployeeProfilesPage() {
             <Users className="w-8 h-8 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Employees</p>
@@ -476,7 +476,7 @@ export default function EmployeeProfilesPage() {
             <Award className="w-8 h-8 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">On Probation</p>
@@ -485,7 +485,7 @@ export default function EmployeeProfilesPage() {
             <Clock className="w-8 h-8 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Remote Workers</p>
@@ -497,8 +497,8 @@ export default function EmployeeProfilesPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-semibold text-gray-700">All Employee Profiles</h2>
             <span className="text-sm text-gray-500">({filteredData.length} profiles)</span>
@@ -524,8 +524,8 @@ export default function EmployeeProfilesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -553,7 +553,7 @@ export default function EmployeeProfilesPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4 pt-4 border-t">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
               <select
@@ -600,8 +600,8 @@ export default function EmployeeProfilesPage() {
 
       {/* Profile Details Modal */}
       {selectedProfile && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
             {/* Header with gradient */}
             <div className="relative">
               <div className="h-32 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
@@ -621,23 +621,23 @@ export default function EmployeeProfilesPage() {
             {/* Profile Content */}
             <div className="pt-20 px-8 pb-8">
               {/* Name and Title */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <h2 className="text-3xl font-bold text-gray-900 mb-1">{selectedProfile.name}</h2>
                 <p className="text-xl text-gray-600">{selectedProfile.designation}</p>
                 <p className="text-sm text-gray-500">{selectedProfile.department} Department</p>
-                <div className="flex items-center gap-4 mt-3">
+                <div className="flex items-center gap-2 mt-3">
                   <StatusBadge status={selectedProfile.status} />
                   <span className="text-sm text-gray-500">Employee Code: {selectedProfile.employeeCode}</span>
                 </div>
               </div>
 
               {/* Grid Layout */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Left Column - Contact & Personal */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {/* Contact Information */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Mail className="w-5 h-5 text-indigo-600" />
                       Contact Information
                     </h3>
@@ -661,8 +661,8 @@ export default function EmployeeProfilesPage() {
                   </div>
 
                   {/* Personal Information */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Personal Information</h3>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Personal Information</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Date of Birth:</span>
@@ -686,7 +686,7 @@ export default function EmployeeProfilesPage() {
                   </div>
 
                   {/* Emergency Contact */}
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                     <h3 className="text-lg font-bold text-red-900 mb-3">Emergency Contact</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
@@ -706,10 +706,10 @@ export default function EmployeeProfilesPage() {
                 </div>
 
                 {/* Middle Column - Employment & Education */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {/* Employment Details */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Briefcase className="w-5 h-5 text-indigo-600" />
                       Employment Details
                     </h3>
@@ -748,8 +748,8 @@ export default function EmployeeProfilesPage() {
                   </div>
 
                   {/* Education */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Education</h3>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Education</h3>
                     <div className="space-y-3">
                       {selectedProfile.education.map((edu, idx) => (
                         <div key={idx} className="border-l-4 border-indigo-500 pl-3">
@@ -763,8 +763,8 @@ export default function EmployeeProfilesPage() {
 
                   {/* Previous Experience */}
                   {selectedProfile.experience.length > 0 && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h3 className="text-lg font-bold text-gray-900 mb-4">Previous Experience</h3>
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">Previous Experience</h3>
                       <div className="space-y-3">
                         {selectedProfile.experience.map((exp, idx) => (
                           <div key={idx} className="border-l-4 border-blue-500 pl-3">
@@ -779,10 +779,10 @@ export default function EmployeeProfilesPage() {
                 </div>
 
                 {/* Right Column - Skills & Statutory */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                   {/* Skills */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Skills</h3>
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Skills</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedProfile.skills.map((skill, idx) => (
                         <span key={idx} className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">
@@ -794,8 +794,8 @@ export default function EmployeeProfilesPage() {
 
                   {/* Certifications */}
                   {selectedProfile.certifications.length > 0 && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                         <Award className="w-5 h-5 text-indigo-600" />
                         Certifications
                       </h3>
@@ -812,8 +812,8 @@ export default function EmployeeProfilesPage() {
 
                   {/* Statutory Information */}
                   {(selectedProfile.aadharNumber || selectedProfile.panNumber) && (
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h3 className="text-lg font-bold text-gray-900 mb-4">Statutory Information</h3>
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">Statutory Information</h3>
                       <div className="space-y-2 text-sm">
                         {selectedProfile.aadharNumber && (
                           <div className="flex justify-between">
@@ -845,7 +845,7 @@ export default function EmployeeProfilesPage() {
 
                   {/* Bank Details */}
                   {selectedProfile.bankAccount && (
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                       <h3 className="text-lg font-bold text-green-900 mb-3">Bank Account</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">

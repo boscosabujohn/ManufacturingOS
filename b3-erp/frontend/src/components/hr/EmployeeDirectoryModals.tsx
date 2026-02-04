@@ -24,9 +24,9 @@ export function ExportEmployeesModal({ isOpen, onClose, onExport }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Download className="h-5 w-5" />
             Export Employee Data
@@ -36,7 +36,7 @@ export function ExportEmployeesModal({ isOpen, onClose, onExport }: any) {
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onExport(formData); }} className="p-6 space-y-6">
+        <form onSubmit={(e) => { e.preventDefault(); onExport(formData); }} className="p-6 space-y-3">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
@@ -119,7 +119,7 @@ export function ExportEmployeesModal({ isOpen, onClose, onExport }: any) {
 
           {/* Custom Filters (shown when custom is selected) */}
           {formData.scope === 'custom' && (
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3">
               <h3 className="font-medium text-gray-900 flex items-center gap-2">
                 <Filter className="h-4 w-4" />
                 Custom Filters
@@ -213,7 +213,7 @@ export function ExportEmployeesModal({ isOpen, onClose, onExport }: any) {
           </div>
 
           {/* Summary */}
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
             <h3 className="font-medium text-emerald-900 mb-2">Export Summary</h3>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
@@ -273,9 +273,9 @@ export function BulkActionsModal({ isOpen, onClose, selectedEmployees, onAction 
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Users className="h-5 w-5" />
             Bulk Actions ({selectedEmployees?.length || 0} selected)
@@ -285,7 +285,7 @@ export function BulkActionsModal({ isOpen, onClose, selectedEmployees, onAction 
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Action</label>
             <select
@@ -366,7 +366,7 @@ export function BulkActionsModal({ isOpen, onClose, selectedEmployees, onAction 
             </div>
           )}
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-blue-800">
               <strong>Note:</strong> This action will be applied to {selectedEmployees?.length || 0} selected employee(s).
               Please review before confirming.

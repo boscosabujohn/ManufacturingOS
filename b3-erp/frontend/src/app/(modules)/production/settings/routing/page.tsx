@@ -244,10 +244,10 @@ export default function RoutingSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -268,8 +268,8 @@ export default function RoutingSettingsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Routings</p>
@@ -281,7 +281,7 @@ export default function RoutingSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Routings</p>
@@ -295,7 +295,7 @@ export default function RoutingSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Operations</p>
@@ -309,7 +309,7 @@ export default function RoutingSettingsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Cycle Time</p>
@@ -326,8 +326,8 @@ export default function RoutingSettingsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
@@ -353,7 +353,7 @@ export default function RoutingSettingsPage() {
       </div>
 
       {/* Routings List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRoutings.map((routing) => (
           <div key={routing.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             {/* Routing Header */}
@@ -370,7 +370,7 @@ export default function RoutingSettingsPage() {
                     </span>
                     <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">{routing.version}</span>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mt-4">
                     <div>
                       <p className="text-xs text-gray-500">Routing Code</p>
                       <p className="text-sm font-mono font-bold text-gray-900">{routing.code}</p>
@@ -414,16 +414,16 @@ export default function RoutingSettingsPage() {
 
             {/* Expanded Operations */}
             {expandedRouting === routing.id && (
-              <div className="border-t border-gray-200 bg-gray-50 p-6">
-                <h4 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="border-t border-gray-200 bg-gray-50 p-3">
+                <h4 className="text-sm font-bold text-gray-900 mb-2 flex items-center gap-2">
                   <Layers className="w-4 h-4" />
                   Operations Sequence
                 </h4>
                 <div className="space-y-2">
                   {routing.operations.map((op, idx) => (
-                    <div key={idx} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={idx} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                           <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-700 font-bold rounded-full text-sm">
                             {op.sequence}
                           </div>
@@ -432,7 +432,7 @@ export default function RoutingSettingsPage() {
                             <p className="text-xs text-gray-500">{op.workCenter}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-3">
                           <div className="text-right">
                             <p className="text-xs text-gray-500">Setup Time</p>
                             <p className="text-sm font-semibold text-gray-900">{op.setupTime}m</p>
@@ -450,8 +450,8 @@ export default function RoutingSettingsPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <div className="grid grid-cols-3 gap-4">
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <p className="text-xs text-blue-600 font-medium">Total Setup Time</p>
                       <p className="text-lg font-bold text-blue-900">{routing.totalSetupTime}m</p>

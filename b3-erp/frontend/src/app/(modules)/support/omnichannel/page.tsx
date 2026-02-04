@@ -283,7 +283,7 @@ function OmnichannelSupportPageContent() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       {/* Page Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+      <div className="bg-white border-b border-gray-200 px-3 py-2">
         <PageToolbar
          
           subtitle="Unified inbox across all communication channels"
@@ -295,7 +295,7 @@ function OmnichannelSupportPageContent() {
       </div>
 
       {/* Channel Selector */}
-      <div className="bg-white border-b border-gray-200 px-6 py-3">
+      <div className="bg-white border-b border-gray-200 px-3 py-2">
         <ChannelSelector
           selectedChannel={selectedChannel}
           onChannelChange={setSelectedChannel}
@@ -323,7 +323,7 @@ function OmnichannelSupportPageContent() {
         </div>
 
         {/* Tab Content */}
-        <div className="flex-1 overflow-hidden p-6">
+        <div className="flex-1 overflow-hidden p-3">
           <TabContent activeTab={activeTab} tabId="inbox">
             <div className="h-full">
               <UnifiedInbox
@@ -392,9 +392,9 @@ function OmnichannelSupportPageContent() {
         size="xl"
       >
         {selectedConvData && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Customer Info */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-gray-900">Customer Information</h3>
                 <User className="h-5 w-5 text-gray-400" />
@@ -416,7 +416,7 @@ function OmnichannelSupportPageContent() {
             </div>
 
             {/* Ticket Info */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-gray-900">Ticket Details</h3>
                 <TagIcon className="h-5 w-5 text-gray-400" />
@@ -476,7 +476,7 @@ function OmnichannelSupportPageContent() {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Quick Actions</h3>
               <div className="grid grid-cols-2 gap-2">
                 <button className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -491,7 +491,7 @@ function OmnichannelSupportPageContent() {
             </div>
 
             {/* Reply Section */}
-            <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Send Reply</h3>
               <div className="space-y-3">
                 <Select value="reply">

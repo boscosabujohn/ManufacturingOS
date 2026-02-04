@@ -41,10 +41,10 @@ export function TrialBalanceAnalyticsModal({ isOpen, onClose }: TrialBalanceAnal
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <BarChart2 className="w-5 h-5 text-white" />
@@ -59,23 +59,23 @@ export function TrialBalanceAnalyticsModal({ isOpen, onClose }: TrialBalanceAnal
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg border border-blue-200">
               <div className="text-sm text-blue-600 mb-1">Total Assets</div>
               <div className="text-2xl font-bold text-blue-900">₹2.85M</div>
               <div className="text-xs text-blue-700 mt-1">↑ 8.5% vs last month</div>
             </div>
-            <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg border border-red-200">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 rounded-lg border border-red-200">
               <div className="text-sm text-red-600 mb-1">Total Liabilities</div>
               <div className="text-2xl font-bold text-red-900">₹1.25M</div>
               <div className="text-xs text-red-700 mt-1">↑ 3.2% vs last month</div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg border border-green-200">
               <div className="text-sm text-green-600 mb-1">Total Equity</div>
               <div className="text-2xl font-bold text-green-900">₹1.00M</div>
               <div className="text-xs text-green-700 mt-1">↑ 1.5% vs last month</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg border border-purple-200">
               <div className="text-sm text-purple-600 mb-1">Net Position</div>
               <div className="text-2xl font-bold text-purple-900">₹1.60M</div>
               <div className="text-xs text-purple-700 mt-1">Assets - Liabilities</div>
@@ -83,10 +83,10 @@ export function TrialBalanceAnalyticsModal({ isOpen, onClose }: TrialBalanceAnal
           </div>
 
           {/* Charts Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
             {/* Account Type Distribution */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Type Distribution</h3>
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Account Type Distribution</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie
@@ -109,8 +109,8 @@ export function TrialBalanceAnalyticsModal({ isOpen, onClose }: TrialBalanceAnal
             </div>
 
             {/* 6-Month Trend */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">6-Month Trend</h3>
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">6-Month Trend</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={trendData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -127,8 +127,8 @@ export function TrialBalanceAnalyticsModal({ isOpen, onClose }: TrialBalanceAnal
           </div>
 
           {/* Top Accounts by Balance */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Accounts by Balance</h3>
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Accounts by Balance</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50">
@@ -173,7 +173,7 @@ export function TrialBalanceAnalyticsModal({ isOpen, onClose }: TrialBalanceAnal
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
@@ -212,10 +212,10 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Mail className="w-5 h-5 text-white" />
@@ -230,7 +230,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Recipients */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">To *</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {recipients.map((email, index) => (
@@ -259,7 +259,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
           </div>
 
           {/* CC Recipients */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">CC (Optional)</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {ccRecipients.map((email, index) => (
@@ -288,7 +288,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
           </div>
 
           {/* Subject */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
             <input
               type="text"
@@ -299,7 +299,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
           </div>
 
           {/* Message */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
             <textarea
               value={message}
@@ -310,7 +310,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
           </div>
 
           {/* Attachment Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Attachment Format</label>
             <div className="grid grid-cols-3 gap-3">
               {['pdf', 'excel', 'csv'].map((fmt) => (
@@ -330,7 +330,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
           </div>
 
           {/* Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -346,7 +346,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
           </div>
 
           {/* Preview */}
-          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3">
             <h4 className="text-cyan-800 font-medium mb-2">📧 Email Preview</h4>
             <div className="text-sm text-cyan-700 space-y-1">
               <p>• Recipients: {recipients.length}</p>
@@ -358,7 +358,7 @@ export function EmailTrialBalanceModal({ isOpen, onClose, onSend }: EmailTrialBa
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -403,10 +403,10 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
@@ -421,7 +421,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
         {/* Content */}
         <div className="p-6">
           {/* Frequency */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Frequency *</label>
             <div className="grid grid-cols-4 gap-3">
               {['daily', 'weekly', 'monthly', 'quarterly'].map((freq) => (
@@ -442,7 +442,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
 
           {/* Day Selection */}
           {frequency === 'monthly' && (
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">Day of Month</label>
               <select
                 value={dayOfMonth}
@@ -457,7 +457,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
           )}
 
           {/* Recipients */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Recipients *</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {recipients.map((email, index) => (
@@ -486,7 +486,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
           </div>
 
           {/* Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Report Format</label>
             <div className="grid grid-cols-3 gap-3">
               {['pdf', 'excel', 'csv'].map((fmt) => (
@@ -506,7 +506,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
           </div>
 
           {/* Status */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -522,7 +522,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
           </div>
 
           {/* Schedule Preview */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h4 className="text-green-800 font-medium mb-3">📅 Schedule Preview</h4>
             <ul className="text-sm text-green-700 space-y-1">
               <li>• Frequency: {frequency.charAt(0).toUpperCase() + frequency.slice(1)}</li>
@@ -535,7 +535,7 @@ export function ScheduleTrialBalanceReportModal({ isOpen, onClose, onSchedule }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -608,10 +608,10 @@ export function TrialBalanceVarianceAnalysisModal({ isOpen, onClose }: TrialBala
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertCircle className="w-5 h-5 text-white" />
@@ -626,11 +626,11 @@ export function TrialBalanceVarianceAnalysisModal({ isOpen, onClose }: TrialBala
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Controls */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Variance Threshold (%)
             </label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <input
                 type="range"
                 min="0"
@@ -647,18 +647,18 @@ export function TrialBalanceVarianceAnalysisModal({ isOpen, onClose }: TrialBala
           </div>
 
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg border border-red-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 rounded-lg border border-red-200">
               <div className="text-sm text-red-600 mb-1">Significant Concerns</div>
               <div className="text-2xl font-bold text-red-900">2</div>
               <div className="text-xs text-red-700 mt-1">Variance &gt; 10%</div>
             </div>
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-3 rounded-lg border border-yellow-200">
               <div className="text-sm text-yellow-600 mb-1">Warnings</div>
               <div className="text-2xl font-bold text-yellow-900">2</div>
               <div className="text-xs text-yellow-700 mt-1">Variance 5-10%</div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg border border-green-200">
               <div className="text-sm text-green-600 mb-1">Within Tolerance</div>
               <div className="text-2xl font-bold text-green-900">230</div>
               <div className="text-xs text-green-700 mt-1">Variance &lt; 5%</div>
@@ -730,7 +730,7 @@ export function TrialBalanceVarianceAnalysisModal({ isOpen, onClose }: TrialBala
           </div>
 
           {/* Analysis Notes */}
-          <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h4 className="text-orange-800 font-medium mb-3">📊 Analysis Summary</h4>
             <ul className="text-sm text-orange-700 space-y-2">
               <li className="flex items-start gap-2">
@@ -750,7 +750,7 @@ export function TrialBalanceVarianceAnalysisModal({ isOpen, onClose }: TrialBala
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
             Export Analysis
           </button>
@@ -800,10 +800,10 @@ export function TrialBalanceSettingsModal({ isOpen, onClose, onSave }: TrialBala
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Settings className="w-5 h-5 text-white" />
@@ -818,7 +818,7 @@ export function TrialBalanceSettingsModal({ isOpen, onClose, onSave }: TrialBala
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Default Period */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Default Period</label>
             <select
               value={defaultPeriod}
@@ -834,7 +834,7 @@ export function TrialBalanceSettingsModal({ isOpen, onClose, onSave }: TrialBala
           </div>
 
           {/* Display Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Display Options</label>
             <div className="space-y-3">
               <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
@@ -850,7 +850,7 @@ export function TrialBalanceSettingsModal({ isOpen, onClose, onSave }: TrialBala
           </div>
 
           {/* Grouping & Sorting */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Group By</label>
               <select
@@ -880,7 +880,7 @@ export function TrialBalanceSettingsModal({ isOpen, onClose, onSave }: TrialBala
           </div>
 
           {/* Number Formatting */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Decimal Places</label>
               <select
@@ -909,7 +909,7 @@ export function TrialBalanceSettingsModal({ isOpen, onClose, onSave }: TrialBala
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -955,10 +955,10 @@ export function RefreshTrialBalanceModal({ isOpen, onClose, onRefresh }: Refresh
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <RefreshCw className="w-5 h-5 text-white" />
@@ -974,10 +974,10 @@ export function RefreshTrialBalanceModal({ isOpen, onClose, onRefresh }: Refresh
         <div className="p-6">
           {!isRefreshing ? (
             <>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 mb-2">
                 This will recalculate all account balances from the general ledger and update the trial balance.
               </p>
-              <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-4">
+              <div className="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-2">
                 <h4 className="text-teal-800 font-medium mb-2">🔄 Refresh Process</h4>
                 <ul className="text-sm text-teal-700 space-y-1">
                   <li>• Recalculate opening balances</li>
@@ -993,7 +993,7 @@ export function RefreshTrialBalanceModal({ isOpen, onClose, onRefresh }: Refresh
             </>
           ) : (
             <div className="py-8">
-              <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-2">
                 <RefreshCw className="w-12 h-12 text-teal-600 animate-spin" />
                 <p className="text-gray-700 font-medium">Refreshing trial balance...</p>
                 <p className="text-sm text-gray-600">Please wait while we recalculate all balances</p>
@@ -1003,7 +1003,7 @@ export function RefreshTrialBalanceModal({ isOpen, onClose, onRefresh }: Refresh
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             disabled={isRefreshing}

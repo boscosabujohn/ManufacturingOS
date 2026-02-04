@@ -284,11 +284,11 @@ export default function PerformancePage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+    <div className="w-full h-full px-3 py-2 w-full max-w-full">
       {/* Stats */}
-      <div className="mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Pending Reviews</p>
@@ -298,7 +298,7 @@ export default function PerformancePage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Completed This Quarter</p>
@@ -308,7 +308,7 @@ export default function PerformancePage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Avg Rating</p>
@@ -318,7 +318,7 @@ export default function PerformancePage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">High Performers</p>
@@ -331,7 +331,7 @@ export default function PerformancePage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -380,45 +380,45 @@ export default function PerformancePage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Review ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Review Period</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Review Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reviewer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Review ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Review Period</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Review Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Reviewer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {paginatedReviews.map((review) => (
                 <tr key={review.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-semibold text-gray-900">{review.reviewId}</div>
                     <div className="text-xs text-gray-500">Employee: {review.employeeId}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{review.employeeName}</div>
                     <div className="text-xs text-gray-500 mt-1">
                       Goals: {review.goalsAchieved}/{review.goalsSet} achieved
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{review.department}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{review.reviewPeriod}</div>
                     <div className="text-xs text-gray-500 mt-1">
                       Review: {review.reviewDate}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${reviewTypeColors[review.reviewType]}`}>
                       {reviewTypeLabels[review.reviewType]}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <div className={`flex ${getRatingColor(review.rating)}`}>
                         {getRatingStars(review.rating)}
@@ -428,7 +428,7 @@ export default function PerformancePage() {
                       {review.rating.toFixed(1)} - {review.ratingLabel}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full border ${statusColors[review.status]}`}>
                       {statusLabels[review.status]}
                     </span>
@@ -439,13 +439,13 @@ export default function PerformancePage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{review.reviewer}</div>
                     <div className="text-xs text-gray-500 mt-1">
                       Next: {review.nextReviewDate}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <button
                         onClick={() => router.push(`/hr/performance/view/${review.id}`)}
@@ -472,7 +472,7 @@ export default function PerformancePage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredReviews.length)} of{' '}
             {filteredReviews.length} items

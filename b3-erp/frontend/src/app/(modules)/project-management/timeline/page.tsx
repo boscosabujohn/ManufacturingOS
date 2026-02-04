@@ -147,8 +147,8 @@ export default function DrawingTimelinePage() {
    <div className="px-3 py-2 space-y-3">
     {/* Header */}
     <div className="bg-white rounded-lg border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-4">
-      <div className="flex items-center gap-4">
+     <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center gap-2">
        <Link
         href="/project-management"
         className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -177,8 +177,8 @@ export default function DrawingTimelinePage() {
     {/* Calculator Panel */}
     {showCalculator && (
      <div className="bg-white rounded-lg border border-gray-200 p-3">
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Timeline Calculator</h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+      <h2 className="text-xl font-semibold text-gray-900 mb-2">Timeline Calculator</h2>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
        <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
          Number of Drawings
@@ -229,7 +229,7 @@ export default function DrawingTimelinePage() {
       </div>
 
       {calcEstimatedDays > 0 && (
-       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+       <div className="bg-green-50 border border-green-200 rounded-lg p-3">
         <div className="flex items-center gap-3">
          <CheckCircle className="w-6 h-6 text-green-600" />
          <div>
@@ -249,8 +249,8 @@ export default function DrawingTimelinePage() {
     )}
 
     {/* Statistics */}
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Projects</p>
@@ -259,7 +259,7 @@ export default function DrawingTimelinePage() {
        <FileText className="w-8 h-8 text-gray-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">In Progress</p>
@@ -268,7 +268,7 @@ export default function DrawingTimelinePage() {
        <TrendingUp className="w-8 h-8 text-yellow-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Not Started</p>
@@ -277,7 +277,7 @@ export default function DrawingTimelinePage() {
        <Clock className="w-8 h-8 text-gray-600" />
       </div>
      </div>
-     <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="bg-white p-3 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Avg Duration</p>
@@ -290,7 +290,7 @@ export default function DrawingTimelinePage() {
 
     {/* Timelines List */}
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-     <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+     <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
       <h2 className="text-lg font-semibold text-gray-900">Active Drawing Timelines</h2>
      </div>
      <div className="divide-y divide-gray-200">
@@ -305,7 +305,7 @@ export default function DrawingTimelinePage() {
            <p className="text-sm text-gray-600">{timeline.projectName}</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-3 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3 text-sm">
            <div>
             <p className="text-xs text-gray-500">Quantity</p>
             <p className="font-medium text-gray-900">{timeline.quantity} drawings</p>
@@ -365,7 +365,7 @@ export default function DrawingTimelinePage() {
     </div>
 
     {/* Info Box */}
-    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
      <div className="flex items-start gap-3">
       <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
       <div>

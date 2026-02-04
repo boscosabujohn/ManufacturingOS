@@ -421,10 +421,10 @@ const SupplierPortal: React.FC = () => {
   };
 
   const renderSuppliers = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Suppliers</p>
@@ -436,7 +436,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Spend (YTD)</p>
@@ -448,7 +448,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Orders</p>
@@ -460,7 +460,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg. On-Time Delivery</p>
@@ -479,22 +479,22 @@ const SupplierPortal: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Rating</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Total Spend</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Active Orders</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">On-Time %</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Quality Score</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contact</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Rating</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Total Spend</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Active Orders</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">On-Time %</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Quality Score</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Contact</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {suppliers.map((supplier) => (
                 <tr key={supplier.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <Building2 className="h-5 w-5 text-gray-400 mr-2" />
                       <div>
@@ -503,37 +503,37 @@ const SupplierPortal: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{supplier.category}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{supplier.category}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(supplier.status)}`}>
                       {supplier.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <span className="text-yellow-500 mr-1">★</span>
                       <span className="text-sm font-medium text-gray-900">{supplier.rating}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(supplier.totalSpend / 1000000).toFixed(2)}M
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{supplier.activeOrders}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{supplier.activeOrders}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${supplier.onTimeDelivery >= 95 ? 'text-green-600' : supplier.onTimeDelivery >= 90 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {supplier.onTimeDelivery}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${supplier.qualityScore >= 95 ? 'text-green-600' : supplier.qualityScore >= 90 ? 'text-yellow-600' : 'text-red-600'}`}>
                       {supplier.qualityScore}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     <div>{supplier.contact.name}</div>
                     <div className="text-xs">{supplier.contact.email}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleViewPOs(supplier)}
@@ -592,10 +592,10 @@ const SupplierPortal: React.FC = () => {
   );
 
   const renderCollaboration = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Message Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Unread Messages</p>
@@ -607,7 +607,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Responded</p>
@@ -619,7 +619,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">High Priority</p>
@@ -673,10 +673,10 @@ const SupplierPortal: React.FC = () => {
   );
 
   const renderDocuments = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Document Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Valid Documents</p>
@@ -688,7 +688,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -700,7 +700,7 @@ const SupplierPortal: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expired</p>
@@ -719,36 +719,36 @@ const SupplierPortal: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Document Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">File Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Uploaded</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Expiry Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Size</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Supplier</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Document Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">File Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Uploaded</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Expiry Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Size</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {documents.map((doc) => (
                 <tr key={doc.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{doc.supplierName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{doc.documentType}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{doc.supplierName}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{doc.documentType}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center text-sm text-blue-600 hover:text-blue-800">
                       <FileText className="h-4 w-4 mr-1" />
                       {doc.fileName}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{doc.uploadedAt}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{doc.uploadedAt}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     {doc.expiryDate || 'N/A'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getDocumentStatusColor(doc.status)}`}>
                       {doc.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{doc.size}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{doc.size}</td>
                 </tr>
               ))}
             </tbody>
@@ -759,9 +759,9 @@ const SupplierPortal: React.FC = () => {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Users className="h-8 w-8" />

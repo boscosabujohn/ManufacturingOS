@@ -206,7 +206,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Shield className="h-8 w-8 text-blue-600" />
           Document Verification
@@ -215,8 +215,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Candidates</p>
@@ -225,7 +225,7 @@ export default function Page() {
             <FileText className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending</p>
@@ -234,7 +234,7 @@ export default function Page() {
             <Clock className="h-10 w-10 text-gray-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -243,7 +243,7 @@ export default function Page() {
             <AlertTriangle className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -252,7 +252,7 @@ export default function Page() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Rejected</p>
@@ -261,7 +261,7 @@ export default function Page() {
             <XCircle className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-emerald-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-emerald-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completion Rate</p>
@@ -273,8 +273,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status:</label>
             <select
@@ -296,9 +296,9 @@ export default function Page() {
       <DataTable data={filteredVerifications} columns={columns} />
 
       {/* Document Checklist */}
-      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Required Documents Checklist</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Required Documents Checklist</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="flex items-center gap-3 p-3 bg-gray-50 rounded">
             <FileText className="h-5 w-5 text-blue-600" />
             <div>
@@ -359,7 +359,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Document Verification Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• All documents must be verified before the candidate's joining date</li>

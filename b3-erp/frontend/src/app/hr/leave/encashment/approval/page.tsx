@@ -244,7 +244,7 @@ export default function EncashmentApprovalPage() {
   const activeFilterCount = [filterDepartment !== 'All Departments', filterStatus !== 'pending_approval', searchTerm !== ''].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -255,39 +255,39 @@ export default function EncashmentApprovalPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <Clock className="w-4 h-4" /> Pending
           </div>
           <div className="text-2xl font-bold text-orange-600">{stats.pending}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Approved</div>
           <div className="text-2xl font-bold text-green-600">{stats.approved}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Rejected</div>
           <div className="text-2xl font-bold text-red-600">{stats.rejected}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
             <AlertCircle className="w-3 h-3" /> Eligibility Issues
           </div>
           <div className="text-2xl font-bold text-red-600">{stats.eligibilityIssues}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Pending Amount</div>
           <div className="text-2xl font-bold text-blue-600">₹{(stats.pendingAmount / 1000).toFixed(0)}K</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Approved Amount</div>
           <div className="text-2xl font-bold text-purple-600">₹{(stats.approvedAmount / 1000).toFixed(0)}K</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input type="text" placeholder="Search by employee name, code, or request ID..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
@@ -305,7 +305,7 @@ export default function EncashmentApprovalPage() {
           )}
         </div>
         {showFilters && (
-          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t grid md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
               <select value={filterDepartment} onChange={(e) => setFilterDepartment(e.target.value)} className="w-full px-3 py-2 border rounded-lg">
@@ -329,7 +329,7 @@ export default function EncashmentApprovalPage() {
         <DataTable data={filteredData} columns={columns} pagination={{ enabled: true, pageSize: 10 }} sorting={{ enabled: true, defaultSort: { column: 'request', direction: 'desc' } }} emptyMessage="No encashment requests pending approval" />
       </div>
 
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
         <h3 className="font-semibold text-yellow-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-5 h-5" />
           Approval Guidelines
@@ -344,7 +344,7 @@ export default function EncashmentApprovalPage() {
         </ul>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <CheckCircle className="w-5 h-5 inline mr-2" />
           Approval Process
@@ -417,10 +417,10 @@ function ApprovalActionModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Modal Header */}
-        <div className={`sticky top-0 p-6 rounded-t-lg flex items-center justify-between ${
+        <div className={`sticky top-0 p-3 rounded-t-lg flex items-center justify-between ${
           isApprove ? 'bg-gradient-to-r from-green-600 to-emerald-600' : 'bg-gradient-to-r from-red-600 to-rose-600'
         } text-white`}>
           <div>
@@ -440,9 +440,9 @@ function ApprovalActionModal({
         </div>
 
         {/* Modal Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Workflow Progress */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-semibold text-blue-900">Approval Workflow</h3>
               <span className="text-xs text-blue-700">Step {currentStep} of 3</span>
@@ -467,8 +467,8 @@ function ApprovalActionModal({
           </div>
 
           {/* Employee & Request Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-gray-50 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="bg-gray-50 rounded-lg p-3">
               <h4 className="text-sm font-semibold text-gray-700 mb-3">Employee Details</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -490,7 +490,7 @@ function ApprovalActionModal({
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-3">
               <h4 className="text-sm font-semibold text-gray-700 mb-3">Request Details</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -514,7 +514,7 @@ function ApprovalActionModal({
           </div>
 
           {/* Eligibility Check */}
-          <div className={`rounded-lg p-4 border-2 ${
+          <div className={`rounded-lg p-3 border-2 ${
             request.eligibility.isEligible
               ? 'bg-green-50 border-green-200'
               : 'bg-red-50 border-red-200'

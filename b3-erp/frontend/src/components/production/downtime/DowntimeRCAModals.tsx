@@ -286,10 +286,10 @@ export const CreateRCAModal: React.FC<CreateRCAModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <AlertCircle className="w-6 h-6" />
             <h2 className="text-xl font-semibold">Create RCA Investigation</h2>
@@ -303,8 +303,8 @@ export const CreateRCAModal: React.FC<CreateRCAModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Downtime Event Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -423,7 +423,7 @@ export const CreateRCAModal: React.FC<CreateRCAModalProps> = ({
             </div>
 
             {/* Priority and Target Close Date */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Priority <span className="text-red-500">*</span>
@@ -485,7 +485,7 @@ export const CreateRCAModal: React.FC<CreateRCAModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-between bg-gray-50">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
@@ -562,10 +562,10 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
     : 0
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-3">
               <FileText className="w-6 h-6" />
@@ -590,15 +590,15 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Investigation Info */}
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+            <div className="bg-gray-50 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                 <AlertCircle className="w-5 h-5 mr-2 text-indigo-600" />
                 Investigation Information
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-600">Downtime Event</label>
                   <div className="flex items-center space-x-2 mt-1">
@@ -635,7 +635,7 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
             </div>
 
             {/* Problem Statement */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                 <AlertTriangle className="w-5 h-5 mr-2 text-yellow-600" />
                 Problem Statement
@@ -645,7 +645,7 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
 
             {/* Immediate Actions */}
             {investigation.immediateActions.length > 0 && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
                   <Zap className="w-5 h-5 mr-2 text-blue-600" />
                   Immediate Actions Taken
@@ -837,12 +837,12 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
             </div>
 
             {/* Cost Tracking */}
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-gray-200 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-gray-200 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                 <DollarSign className="w-5 h-5 mr-2 text-green-600" />
                 Cost Tracking
               </h3>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <label className="text-sm font-medium text-gray-600">Estimated Cost</label>
                   <p className="text-2xl font-bold text-gray-900 mt-1">
@@ -873,12 +873,12 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
             </div>
 
             {/* Timeline */}
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+            <div className="bg-gray-50 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                 <Calendar className="w-5 h-5 mr-2 text-indigo-600" />
                 Timeline
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-600">Target Close Date</label>
                   <p className="text-gray-900 mt-1 flex items-center">
@@ -923,8 +923,8 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
                   />
                 </button>
                 {expandedSections.verification && (
-                  <div className="p-4 space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="text-sm font-medium text-gray-600">Verified By</label>
                         <p className="text-gray-900 mt-1">{investigation.verifiedBy}</p>
@@ -979,7 +979,7 @@ export const ViewRCADetailsModal: React.FC<ViewRCADetailsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50">
           <div className="flex items-center justify-between">
             <button
               onClick={onClose}
@@ -1142,10 +1142,10 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
   ]
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-6 py-4">
+        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white px-3 py-2">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-3">
               <Lightbulb className="w-6 h-6" />
@@ -1187,8 +1187,8 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="mb-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="mb-3">
             <h3 className="text-lg font-semibold text-gray-800 mb-1">
               {steps[currentStep].label}
             </h3>
@@ -1197,7 +1197,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
 
           {/* Display all previous whys */}
           {currentStep > 0 && currentStep < 5 && (
-            <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="mb-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <h4 className="text-sm font-semibold text-gray-700 mb-3">Previous Analysis:</h4>
               <div className="space-y-2">
                 {whyLevels.slice(0, currentStep).map((why, index) => (
@@ -1259,7 +1259,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   Select Root Cause Category <span className="text-red-500">*</span>
                 </label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   {categories.map((cat) => {
                     const Icon = cat.icon
                     return (
@@ -1273,7 +1273,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
                         }`}
                       >
                         <Icon
-                          className={`w-8 h-8 mx-auto mb-2 ${
+                          className={`w-8 h-8 mb-2 ${
                             category === cat.value ? 'text-orange-600' : 'text-gray-400'
                           }`}
                         />
@@ -1288,7 +1288,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
                     )
                   })}
                 </div>
-                <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Root Cause Summary:</h4>
                   <p className="text-sm text-gray-700">{whyLevels[4]}</p>
                 </div>
@@ -1298,7 +1298,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   Contribution Percentage <span className="text-red-500">*</span>
                 </label>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="flex items-center space-x-4">
                     <input
                       type="range"
@@ -1321,7 +1321,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
                     <span>100% - Complete</span>
                   </div>
                 </div>
-                <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Complete Analysis:</h4>
                   <div className="space-y-2">
                     <p className="text-sm">
@@ -1346,7 +1346,7 @@ export const AddRootCauseModal: React.FC<AddRootCauseModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-between bg-gray-50">
           <div className="flex items-center space-x-3">
             <button
               onClick={handleClose}
@@ -1473,10 +1473,10 @@ export const AddCorrectiveActionModal: React.FC<AddCorrectiveActionModalProps> =
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Settings className="w-6 h-6" />
             <h2 className="text-xl font-semibold">Add Corrective Action</h2>
@@ -1490,7 +1490,7 @@ export const AddCorrectiveActionModal: React.FC<AddCorrectiveActionModalProps> =
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <div className="space-y-5">
             {/* Action Description */}
             <div>
@@ -1538,7 +1538,7 @@ export const AddCorrectiveActionModal: React.FC<AddCorrectiveActionModalProps> =
             </div>
 
             {/* Priority and Target Date */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Priority <span className="text-red-500">*</span>
@@ -1611,7 +1611,7 @@ export const AddCorrectiveActionModal: React.FC<AddCorrectiveActionModalProps> =
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-between bg-gray-50">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
@@ -1738,10 +1738,10 @@ export const AddPreventiveActionModal: React.FC<AddPreventiveActionModalProps> =
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Shield className="w-6 h-6" />
             <h2 className="text-xl font-semibold">Add Preventive Action</h2>
@@ -1755,7 +1755,7 @@ export const AddPreventiveActionModal: React.FC<AddPreventiveActionModalProps> =
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <div className="space-y-5">
             {/* Action Description */}
             <div>
@@ -1803,7 +1803,7 @@ export const AddPreventiveActionModal: React.FC<AddPreventiveActionModalProps> =
             </div>
 
             {/* Priority and Target Date */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Priority <span className="text-red-500">*</span>
@@ -1937,7 +1937,7 @@ export const AddPreventiveActionModal: React.FC<AddPreventiveActionModalProps> =
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-between bg-gray-50">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
@@ -2066,10 +2066,10 @@ export const UpdateActionStatusModal: React.FC<UpdateActionStatusModalProps> = (
   if (!isOpen || !action) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-6 h-6" />
             <h2 className="text-xl font-semibold">Update Action Status</h2>
@@ -2083,10 +2083,10 @@ export const UpdateActionStatusModal: React.FC<UpdateActionStatusModalProps> = (
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <div className="space-y-5">
             {/* Action Description (Read-only) */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Action Description
               </label>
@@ -2184,7 +2184,7 @@ export const UpdateActionStatusModal: React.FC<UpdateActionStatusModalProps> = (
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Evidence / Attachments
               </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 hover:border-blue-400 transition-colors">
                 <input
                   type="file"
                   onChange={handleFileChange}
@@ -2237,7 +2237,7 @@ export const UpdateActionStatusModal: React.FC<UpdateActionStatusModalProps> = (
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-between bg-gray-50">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors"
@@ -2362,10 +2362,10 @@ export const VerifyRCAModal: React.FC<VerifyRCAModalProps> = ({
   const ratingLabels = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Award className="w-6 h-6" />
             <h2 className="text-xl font-semibold">Verify & Close RCA Investigation</h2>
@@ -2379,11 +2379,11 @@ export const VerifyRCAModal: React.FC<VerifyRCAModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Prerequisites Check */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Prerequisites Check</h3>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">Prerequisites Check</h3>
               <div className="space-y-2">
                 <div className="flex items-center space-x-3">
                   {allRootCausesIdentified ? (
@@ -2535,7 +2535,7 @@ export const VerifyRCAModal: React.FC<VerifyRCAModalProps> = ({
             </div>
 
             {/* Verified By and Date */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Verified By <span className="text-red-500">*</span>
@@ -2572,7 +2572,7 @@ export const VerifyRCAModal: React.FC<VerifyRCAModalProps> = ({
             </div>
 
             {/* Warning */}
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
                 <div>
@@ -2588,7 +2588,7 @@ export const VerifyRCAModal: React.FC<VerifyRCAModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-between bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-between bg-gray-50">
           <div className="flex items-center space-x-3">
             <button
               onClick={handleClose}

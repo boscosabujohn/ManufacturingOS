@@ -142,14 +142,14 @@ export default function CertificateStatusPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Certificate Request Status</h1>
         <p className="text-sm text-gray-600 mt-1">Track all your certificate requests</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Requests</p>
@@ -159,7 +159,7 @@ export default function CertificateStatusPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -169,7 +169,7 @@ export default function CertificateStatusPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Approved</p>
@@ -179,7 +179,7 @@ export default function CertificateStatusPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Generated</p>
@@ -188,7 +188,7 @@ export default function CertificateStatusPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Delivered</p>
@@ -198,8 +198,8 @@ export default function CertificateStatusPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-1">Certificate Type</label>
             <select
@@ -231,10 +231,10 @@ export default function CertificateStatusPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRequests.map(request => (
-          <div key={request.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={request.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{typeLabels[request.type]}</h3>
@@ -246,7 +246,7 @@ export default function CertificateStatusPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Request Date</p>
                 <p className="text-sm font-semibold text-gray-900">
@@ -275,7 +275,7 @@ export default function CertificateStatusPage() {
             </div>
 
             {request.status === 'pending' && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded p-3 mb-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded p-3 mb-2">
                 <div className="flex items-start gap-2">
                   <Clock className="h-5 w-5 text-yellow-600 mt-0.5" />
                   <div>
@@ -287,7 +287,7 @@ export default function CertificateStatusPage() {
             )}
 
             {request.status === 'approved' && (
-              <div className="bg-blue-50 border border-blue-200 rounded p-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded p-3 mb-2">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
@@ -299,7 +299,7 @@ export default function CertificateStatusPage() {
             )}
 
             {request.status === 'generated' && (
-              <div className="bg-green-50 border border-green-200 rounded p-3 mb-4">
+              <div className="bg-green-50 border border-green-200 rounded p-3 mb-2">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
                   <div>
@@ -315,7 +315,7 @@ export default function CertificateStatusPage() {
             )}
 
             {request.status === 'delivered' && (
-              <div className="bg-purple-50 border border-purple-200 rounded p-3 mb-4">
+              <div className="bg-purple-50 border border-purple-200 rounded p-3 mb-2">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 text-purple-600 mt-0.5" />
                   <div>
@@ -329,7 +329,7 @@ export default function CertificateStatusPage() {
             )}
 
             {request.rejectedReason && (
-              <div className="bg-red-50 border border-red-200 rounded p-3 mb-4">
+              <div className="bg-red-50 border border-red-200 rounded p-3 mb-2">
                 <div className="flex items-start gap-2">
                   <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
                   <div>
@@ -362,13 +362,13 @@ export default function CertificateStatusPage() {
 
       {filteredRequests.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
-          <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <FileText className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No requests found</h3>
           <p className="text-gray-600">No certificate requests match the selected filters</p>
         </div>
       )}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-6">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <AlertCircle className="h-5 w-5" />
           Request Processing Timeline

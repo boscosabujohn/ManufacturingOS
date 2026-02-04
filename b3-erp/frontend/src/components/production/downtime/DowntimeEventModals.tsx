@@ -322,10 +322,10 @@ export const LogDowntimeModal: React.FC<LogDowntimeModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-3">
         <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="sticky top-0 z-10 bg-gradient-to-r from-red-600 to-orange-600 px-6 py-4 rounded-t-lg">
+          <div className="sticky top-0 z-10 bg-gradient-to-r from-red-600 to-orange-600 px-3 py-2 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -350,7 +350,7 @@ export const LogDowntimeModal: React.FC<LogDowntimeModalProps> = ({
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="p-6 space-y-3">
             {/* Equipment Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -376,7 +376,7 @@ export const LogDowntimeModal: React.FC<LogDowntimeModalProps> = ({
             </div>
 
             {/* Category and Severity */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Category <span className="text-red-500">*</span>
@@ -425,7 +425,7 @@ export const LogDowntimeModal: React.FC<LogDowntimeModalProps> = ({
             </div>
 
             {/* Start Time and Duration */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Start Time <span className="text-red-500">*</span>
@@ -578,10 +578,10 @@ export const ViewDowntimeDetailsModal: React.FC<
         onClick={onClose}
       />
 
-      <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="flex min-h-full items-center justify-center p-3">
+        <div className="relative bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="sticky top-0 z-10 bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 rounded-t-lg">
+          <div className="sticky top-0 z-10 bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -604,9 +604,9 @@ export const ViewDowntimeDetailsModal: React.FC<
           </div>
 
           {/* Content */}
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Header Section - Status and Severity */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
               <div className="flex items-center space-x-4">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Status</p>
@@ -645,7 +645,7 @@ export const ViewDowntimeDetailsModal: React.FC<
             </div>
 
             {/* Equipment & Location */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <Zap className="w-5 h-5 text-blue-600" />
@@ -668,12 +668,12 @@ export const ViewDowntimeDetailsModal: React.FC<
             </div>
 
             {/* Timing Details */}
-            <div className="border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="border border-gray-200 rounded-lg p-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <Clock className="w-5 h-5 text-indigo-600" />
                 <h3 className="font-semibold text-gray-900">Timing Details</h3>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Start Time</p>
                   <p className="font-medium text-gray-900">
@@ -698,12 +698,12 @@ export const ViewDowntimeDetailsModal: React.FC<
             </div>
 
             {/* Impact Metrics */}
-            <div className="border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="border border-gray-200 rounded-lg p-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <TrendingDown className="w-5 h-5 text-red-600" />
                 <h3 className="font-semibold text-gray-900">Impact Metrics</h3>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                   <p className="text-sm text-gray-600 mb-1">Production Loss</p>
                   <p className="text-2xl font-bold text-red-600">
@@ -748,7 +748,7 @@ export const ViewDowntimeDetailsModal: React.FC<
             </div>
 
             {/* Description */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-gray-200 rounded-lg p-3">
               <div className="flex items-center space-x-2 mb-3">
                 <FileText className="w-5 h-5 text-gray-600" />
                 <h3 className="font-semibold text-gray-900">Description</h3>
@@ -760,7 +760,7 @@ export const ViewDowntimeDetailsModal: React.FC<
 
             {/* Resolution Details (if resolved) */}
             {event.status === 'resolved' && event.resolutionDescription && (
-              <div className="border border-green-200 bg-green-50 rounded-lg p-4">
+              <div className="border border-green-200 bg-green-50 rounded-lg p-3">
                 <div className="flex items-center space-x-2 mb-3">
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   <h3 className="font-semibold text-gray-900">
@@ -791,12 +791,12 @@ export const ViewDowntimeDetailsModal: React.FC<
             )}
 
             {/* Assignment */}
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-gray-200 rounded-lg p-3">
               <div className="flex items-center space-x-2 mb-3">
                 <Users className="w-5 h-5 text-gray-600" />
                 <h3 className="font-semibold text-gray-900">Assignment</h3>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-gray-600 mb-1">Reported By</p>
                   <p className="font-medium text-gray-900">{event.reportedBy}</p>
@@ -821,8 +821,8 @@ export const ViewDowntimeDetailsModal: React.FC<
             </div>
 
             {/* Status Timeline */}
-            <div className="border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="border border-gray-200 rounded-lg p-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <Calendar className="w-5 h-5 text-gray-600" />
                 <h3 className="font-semibold text-gray-900">Status Timeline</h3>
               </div>
@@ -890,7 +890,7 @@ export const ViewDowntimeDetailsModal: React.FC<
           </div>
 
           {/* Action Buttons */}
-          <div className="sticky bottom-0 bg-gray-50 px-6 py-4 border-t flex justify-between rounded-b-lg">
+          <div className="sticky bottom-0 bg-gray-50 px-3 py-2 border-t flex justify-between rounded-b-lg">
             <div className="flex space-x-3">
               {event.status === 'ongoing' && onEdit && (
                 <button
@@ -1023,10 +1023,10 @@ export const EditDowntimeEventModal: React.FC<EditDowntimeEventModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-3">
         <div className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 rounded-t-lg">
+          <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -1049,7 +1049,7 @@ export const EditDowntimeEventModal: React.FC<EditDowntimeEventModalProps> = ({
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <form onSubmit={handleSubmit} className="p-6 space-y-3">
             {/* Event Info */}
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <div className="flex items-center justify-between">
@@ -1067,7 +1067,7 @@ export const EditDowntimeEventModal: React.FC<EditDowntimeEventModalProps> = ({
             </div>
 
             {/* Category and Severity */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Category <span className="text-red-500">*</span>
@@ -1340,10 +1340,10 @@ export const ResolveDowntimeModal: React.FC<ResolveDowntimeModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-3">
         <div className="relative bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 rounded-t-lg">
+          <div className="sticky top-0 z-10 bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -1368,13 +1368,13 @@ export const ResolveDowntimeModal: React.FC<ResolveDowntimeModalProps> = ({
           </div>
 
           {/* Form */}
-          <form className="p-6 space-y-6">
+          <form className="p-6 space-y-3">
             {/* Summary Section */}
             <div className="p-4 bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-3">
                 Event Summary
               </h3>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Event Number</p>
                   <p className="font-medium text-gray-900">
@@ -1481,7 +1481,7 @@ export const ResolveDowntimeModal: React.FC<ResolveDowntimeModalProps> = ({
             </div>
 
             {/* Impact Metrics */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Production Loss (units)
@@ -1536,7 +1536,7 @@ export const ResolveDowntimeModal: React.FC<ResolveDowntimeModalProps> = ({
             </div>
 
             {/* Require RCA Checkbox */}
-            <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <input
                 type="checkbox"
                 id="requireRCA"
@@ -1632,10 +1632,10 @@ export const DeleteDowntimeModal: React.FC<DeleteDowntimeModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="flex min-h-full items-center justify-center p-4">
+      <div className="flex min-h-full items-center justify-center p-3">
         <div className="relative bg-white rounded-lg shadow-xl max-w-lg w-full">
           {/* Header */}
-          <div className="bg-gradient-to-r from-red-700 to-red-800 px-6 py-4 rounded-t-lg">
+          <div className="bg-gradient-to-r from-red-700 to-red-800 px-3 py-2 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -1660,7 +1660,7 @@ export const DeleteDowntimeModal: React.FC<DeleteDowntimeModalProps> = ({
           </div>
 
           {/* Content */}
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Event Details Summary */}
             <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-3">
@@ -1743,7 +1743,7 @@ export const DeleteDowntimeModal: React.FC<DeleteDowntimeModalProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="bg-gray-50 px-6 py-4 border-t flex justify-end space-x-3 rounded-b-lg">
+          <div className="bg-gray-50 px-3 py-2 border-t flex justify-end space-x-3 rounded-b-lg">
             <button
               onClick={onClose}
               className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-white transition-colors"

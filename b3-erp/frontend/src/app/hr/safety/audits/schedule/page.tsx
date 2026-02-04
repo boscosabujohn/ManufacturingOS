@@ -66,9 +66,9 @@ export default function AuditSchedulePage() {
   const [activeType, setActiveType] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Calendar className="h-8 w-8 text-orange-600" />
@@ -83,11 +83,11 @@ export default function AuditSchedulePage() {
       </div>
 
       {/* Quick Type Filter Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {auditTypes.map((type, idx) => (
           <div
             key={idx}
-            className={`bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center gap-4 cursor-pointer hover:border-orange-200 transition-all ${activeType === type.name ? 'ring-2 ring-orange-100 border-orange-200' : ''}`}
+            className={`bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center gap-2 cursor-pointer hover:border-orange-200 transition-all ${activeType === type.name ? 'ring-2 ring-orange-100 border-orange-200' : ''}`}
             onClick={() => setActiveType(type.name)}
           >
             <div className={`p-3 rounded-lg bg-gray-50 bg-opacity-50`}>
@@ -101,12 +101,12 @@ export default function AuditSchedulePage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Timeline / Calendar List View */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
             <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <h2 className="font-bold text-gray-900 text-lg">Upcoming Timeline</h2>
                 <div className="flex bg-gray-100 rounded-lg p-1">
                   <button className="px-3 py-1 text-[10px] font-bold bg-white text-gray-900 rounded shadow-sm">List</button>
@@ -120,7 +120,7 @@ export default function AuditSchedulePage() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {upcomingAudits.map((audit, idx) => (
                 <div key={audit.id} className="relative pl-8 pb-6 last:pb-0 border-l-2 border-gray-100 group">
                   {/* Timeline Bullet */}
@@ -128,13 +128,13 @@ export default function AuditSchedulePage() {
                       audit.priority === 'High' ? 'bg-orange-500' : 'bg-blue-500'
                     }`}></div>
 
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-orange-200 hover:bg-white transition-all group-hover:shadow-md">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 p-3 bg-gray-50 rounded-xl border border-gray-100 hover:border-orange-200 hover:bg-white transition-all group-hover:shadow-md">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-gray-900">{audit.title}</h3>
                         <span className="text-[10px] bg-white border border-gray-200 px-1.5 py-0.5 rounded text-gray-500 font-mono">{audit.id}</span>
                       </div>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <span className="flex items-center gap-1.5">
                           <Clock className="w-3.5 h-3.5 opacity-60" /> {audit.date}
                         </span>
@@ -161,10 +161,10 @@ export default function AuditSchedulePage() {
         </div>
 
         {/* Calendar Sidebar / Stats */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-6">Compliance Status</h3>
-            <div className="space-y-4">
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-3">Compliance Status</h3>
+            <div className="space-y-2">
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-bold text-gray-500">
                   <span>Regulatory Readiness</span>
@@ -185,7 +185,7 @@ export default function AuditSchedulePage() {
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-orange-50 rounded-xl border border-orange-100">
+            <div className="mt-8 p-3 bg-orange-50 rounded-xl border border-orange-100">
               <p className="text-xs font-bold text-orange-800 flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4" />
                 Action Required

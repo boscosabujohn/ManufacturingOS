@@ -273,7 +273,7 @@ export function WorkflowQuickActions({
               <div key={phase.id}>
                 <button
                   onClick={() => togglePhase(phase.id)}
-                  className="w-full flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="w-full flex items-center gap-2 p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   <div className={`w-10 h-10 rounded-lg ${colors.bg} text-white flex items-center justify-center`}>
                     {showPhaseNumbers ? (
@@ -331,24 +331,24 @@ export function WorkflowQuickActions({
 
   // Default grid variant
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 ${className}`}>
-      <div className="flex items-center justify-between mb-6">
+    <div className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-3 ${className}`}>
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-yellow-500" />
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Workflow Quick Actions</h2>
         </div>
         <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">FormUX Enhanced</span>
       </div>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
         Quick access to enhanced forms with auto-save, draft recovery, and step-by-step wizards
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         {phases.map(phase => {
           const colors = colorClasses[phase.color];
           const PhaseIcon = phase.icon;
 
           return (
-            <div key={phase.id} className={`rounded-lg border ${colors.border} ${colors.light} p-4`}>
+            <div key={phase.id} className={`rounded-lg border ${colors.border} ${colors.light} p-3`}>
               <div className="flex items-center gap-2 mb-3">
                 <div className={`w-8 h-8 rounded-full ${colors.bg} text-white flex items-center justify-center text-sm font-bold`}>
                   {phase.number}

@@ -47,10 +47,10 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Calendar className="w-5 h-5 text-white" />
@@ -65,7 +65,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Schedule Name */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Schedule Name *</label>
             <input
               type="text"
@@ -77,7 +77,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Report Type */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Report Type</label>
             <input
               type="text"
@@ -88,7 +88,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Frequency */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Frequency *</label>
             <div className="grid grid-cols-4 gap-3">
               {['daily', 'weekly', 'monthly', 'quarterly'].map((freq) => (
@@ -108,7 +108,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Schedule Details */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             {frequency === 'weekly' && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Day of Week</label>
@@ -151,7 +151,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Duration */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
               <input
@@ -173,7 +173,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Recipients */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Recipients *</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {recipients.map((email, index) => (
@@ -202,7 +202,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Report Format</label>
             <div className="grid grid-cols-3 gap-3">
               {['pdf', 'excel', 'csv'].map((fmt) => (
@@ -222,7 +222,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Status */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -238,7 +238,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
           </div>
 
           {/* Preview */}
-          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3">
             <h4 className="text-cyan-800 font-medium mb-3">📅 Schedule Summary</h4>
             <ul className="text-sm text-cyan-700 space-y-1">
               <li>• Frequency: {frequency.charAt(0).toUpperCase() + frequency.slice(1)}</li>
@@ -253,7 +253,7 @@ export function ScheduleReportModal({ isOpen, onClose, reportType, onSchedule }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -300,10 +300,10 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Mail className="w-5 h-5 text-white" />
@@ -318,7 +318,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* To Recipients */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">To *</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {recipients.map((email, index) => (
@@ -347,7 +347,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
           </div>
 
           {/* CC Recipients */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">CC (Optional)</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {ccRecipients.map((email, index) => (
@@ -376,7 +376,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
           </div>
 
           {/* Subject */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
             <input
               type="text"
@@ -387,7 +387,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
           </div>
 
           {/* Message */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
             <textarea
               value={message}
@@ -398,7 +398,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
           </div>
 
           {/* Format & Priority */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Attachment Format</label>
               <select
@@ -426,7 +426,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
           </div>
 
           {/* Preview */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h4 className="text-green-800 font-medium mb-2">📧 Email Preview</h4>
             <div className="text-sm text-green-700 space-y-1">
               <p>• To: {recipients.length} recipient{recipients.length !== 1 ? 's' : ''}</p>
@@ -438,7 +438,7 @@ export function EmailReportModal({ isOpen, onClose, reportName, onSend }: EmailR
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -492,10 +492,10 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Save className="w-5 h-5 text-white" />
@@ -510,7 +510,7 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
         {/* Content */}
         <div className="p-6">
           {/* Template Name */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Template Name *</label>
             <input
               type="text"
@@ -522,7 +522,7 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
           </div>
 
           {/* Description */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
             <textarea
               value={description}
@@ -534,7 +534,7 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
           </div>
 
           {/* Category */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
             <select
               value={category}
@@ -550,7 +550,7 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -578,7 +578,7 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
           </div>
 
           {/* Configuration Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-blue-800 font-medium mb-2">📋 Template Configuration</h4>
             <p className="text-sm text-blue-700">
               This template will save your current report settings including columns, filters, grouping, and formatting options.
@@ -587,7 +587,7 @@ export function SaveReportTemplateModal({ isOpen, onClose, reportConfig, onSave 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -679,10 +679,10 @@ export function LoadReportTemplateModal({ isOpen, onClose, onLoad }: LoadReportT
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FolderOpen className="w-5 h-5 text-white" />
@@ -697,7 +697,7 @@ export function LoadReportTemplateModal({ isOpen, onClose, onLoad }: LoadReportT
         {/* Content */}
         <div className="p-6">
           {/* Search & Filter */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <input
                 type="text"
@@ -728,7 +728,7 @@ export function LoadReportTemplateModal({ isOpen, onClose, onLoad }: LoadReportT
             {filteredTemplates.map((template) => (
               <div
                 key={template.id}
-                className="border border-gray-200 rounded-lg p-4 hover:bg-purple-50 hover:border-purple-300 transition-colors"
+                className="border border-gray-200 rounded-lg p-3 hover:bg-purple-50 hover:border-purple-300 transition-colors"
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
@@ -755,7 +755,7 @@ export function LoadReportTemplateModal({ isOpen, onClose, onLoad }: LoadReportT
                     Load
                   </button>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-gray-500">
                   <span>ID: {template.id}</span>
                   <span>Created by: {template.createdBy}</span>
                   <span>Last used: {template.lastUsed}</span>
@@ -773,7 +773,7 @@ export function LoadReportTemplateModal({ isOpen, onClose, onLoad }: LoadReportT
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between items-center">
           <div className="text-sm text-gray-600">
             {filteredTemplates.length} template{filteredTemplates.length !== 1 ? 's' : ''} found
           </div>
@@ -814,10 +814,10 @@ export function DuplicateReportModal({ isOpen, onClose, reportName, onDuplicate 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Copy className="w-5 h-5 text-white" />
@@ -831,14 +831,14 @@ export function DuplicateReportModal({ isOpen, onClose, reportName, onDuplicate 
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-700 mb-2">
               Duplicating: <span className="font-semibold">{reportName}</span>
             </p>
           </div>
 
           {/* New Name */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">New Report Name *</label>
             <input
               type="text"
@@ -849,7 +849,7 @@ export function DuplicateReportModal({ isOpen, onClose, reportName, onDuplicate 
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -889,7 +889,7 @@ export function DuplicateReportModal({ isOpen, onClose, reportName, onDuplicate 
           </div>
 
           {/* Info */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h4 className="text-teal-800 font-medium mb-2">📋 What Will Be Copied</h4>
             <ul className="text-sm text-teal-700 space-y-1">
               <li>• Report configuration and parameters</li>
@@ -902,7 +902,7 @@ export function DuplicateReportModal({ isOpen, onClose, reportName, onDuplicate 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -948,10 +948,10 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Share2 className="w-5 h-5 text-white" />
@@ -965,14 +965,14 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-700">
               Sharing: <span className="font-semibold">{reportName}</span>
             </p>
           </div>
 
           {/* Share With */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Share With *</label>
             <div className="flex flex-wrap gap-2 mb-2">
               {shareWith.map((email, index) => (
@@ -1001,7 +1001,7 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
           </div>
 
           {/* Permissions */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Permissions</label>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -1025,7 +1025,7 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
           </div>
 
           {/* Expiry Date */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Access Expires (Optional)</label>
             <input
               type="date"
@@ -1036,7 +1036,7 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
           </div>
 
           {/* Message */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 mb-3">
               <input
                 type="checkbox"
@@ -1057,7 +1057,7 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
           </div>
 
           {/* Info */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h4 className="text-orange-800 font-medium mb-2">🔒 Privacy & Access</h4>
             <p className="text-sm text-orange-700">
               Shared users will receive an email notification with access to this report. You can revoke access at any time from the report settings.
@@ -1066,7 +1066,7 @@ export function ShareReportModal({ isOpen, onClose, reportName, onShare }: Share
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

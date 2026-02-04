@@ -43,7 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
   const sizes = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg'
+    lg: 'px-3 py-2 text-lg'
   }
 
   return (
@@ -78,7 +78,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div className={`bg-white rounded-lg shadow-sm border border-gray-200 ${className}`}>
       {(title || actions) && (
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <div className="flex justify-between items-center">
             <div>
               {title && <h3 className="text-lg font-semibold text-gray-900">{title}</h3>}
@@ -180,18 +180,18 @@ export const Modal: React.FC<ModalProps> = ({
   const sizes = {
     sm: 'max-w-md',
     md: 'max-w-2xl',
-    lg: 'max-w-4xl',
-    xl: 'max-w-6xl'
+    lg: '',
+    xl: ''
   }
 
   if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="flex min-h-screen items-center justify-center p-3">
         <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose} />
         <div className={`relative bg-white rounded-lg shadow-xl ${sizes[size]} w-full`}>
-          <div className="px-6 py-4 border-b">
+          <div className="px-3 py-2 border-b">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
               <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg">
@@ -199,9 +199,9 @@ export const Modal: React.FC<ModalProps> = ({
               </button>
             </div>
           </div>
-          <div className="px-6 py-4">{children}</div>
+          <div className="px-3 py-2">{children}</div>
           {footer && (
-            <div className="px-6 py-4 border-t flex justify-end gap-3">
+            <div className="px-3 py-2 border-t flex justify-end gap-3">
               {footer}
             </div>
           )}
@@ -442,12 +442,12 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   return (
     <div className="text-center py-12">
       {icon && (
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-2">
           <div className="p-3 bg-gray-100 rounded-full">{icon}</div>
         </div>
       )}
       <h3 className="text-lg font-medium text-gray-900 mb-2">{title}</h3>
-      {description && <p className="text-sm text-gray-600 mb-4">{description}</p>}
+      {description && <p className="text-sm text-gray-600 mb-2">{description}</p>}
       {action && <div className="flex justify-center">{action}</div>}
     </div>
   )

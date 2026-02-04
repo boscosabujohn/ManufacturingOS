@@ -84,10 +84,10 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl my-8">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-2xl w-full  my-8">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -102,7 +102,7 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
         {/* Content */}
         <div className="p-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
           {/* Header Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Entry Date *</label>
               <input
@@ -141,7 +141,7 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
           </div>
 
           {/* Currency */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
               <select
@@ -168,7 +168,7 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
           </div>
 
           {/* Description */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
             <textarea
               value={description}
@@ -180,8 +180,8 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
           </div>
 
           {/* Journal Lines */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Journal Lines</h3>
               <button
                 onClick={addLine}
@@ -316,7 +316,7 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
           </div>
 
           {/* Tags */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Tags (Optional)</label>
             <div className="flex gap-2 flex-wrap">
               {['Month-End', 'Year-End', 'Adjustment', 'Depreciation', 'Accrual', 'Prepayment'].map((tag) => (
@@ -337,7 +337,7 @@ export function CreateJournalEntryModal({ isOpen, onClose, onSave }: CreateJourn
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex justify-between items-center">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex justify-between items-center">
           <div className="text-sm text-gray-600">
             {isBalanced ? (
               <span className="text-green-600 font-medium">✓ Entry is balanced and ready to save</span>
@@ -434,10 +434,10 @@ export function EditJournalEntryModal({ isOpen, onClose, entryId, onSave }: Edit
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl my-8">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-2xl w-full  my-8">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -455,7 +455,7 @@ export function EditJournalEntryModal({ isOpen, onClose, entryId, onSave }: Edit
         {/* Content */}
         <div className="p-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
           {/* Status Badge */}
-          <div className="mb-6 flex items-center gap-3">
+          <div className="mb-3 flex items-center gap-3">
             <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
               {status}
             </span>
@@ -463,7 +463,7 @@ export function EditJournalEntryModal({ isOpen, onClose, entryId, onSave }: Edit
           </div>
 
           {/* Header Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Entry Date *</label>
               <input
@@ -498,7 +498,7 @@ export function EditJournalEntryModal({ isOpen, onClose, entryId, onSave }: Edit
           </div>
 
           {/* Description */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
             <textarea
               value={description}
@@ -509,8 +509,8 @@ export function EditJournalEntryModal({ isOpen, onClose, entryId, onSave }: Edit
           </div>
 
           {/* Journal Lines */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Journal Lines</h3>
               <button
                 onClick={addLine}
@@ -630,7 +630,7 @@ export function EditJournalEntryModal({ isOpen, onClose, entryId, onSave }: Edit
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex justify-between items-center">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex justify-between items-center">
           <div className="text-sm text-gray-600">
             Last modified: Jan 15, 2025 at 10:30 AM by John Doe
           </div>
@@ -689,10 +689,10 @@ export function ViewJournalEntryModal({ isOpen, onClose, entryId }: ViewJournalE
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -710,29 +710,29 @@ export function ViewJournalEntryModal({ isOpen, onClose, entryId }: ViewJournalE
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg border border-blue-200">
               <div className="text-sm text-blue-600 mb-1">Status</div>
               <div className="text-xl font-bold text-blue-900">{entryData.status}</div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg border border-green-200">
               <div className="text-sm text-green-600 mb-1">Total Debit</div>
               <div className="text-xl font-bold text-green-900">₹{entryData.totalDebit.toLocaleString()}</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg border border-purple-200">
               <div className="text-sm text-purple-600 mb-1">Total Credit</div>
               <div className="text-xl font-bold text-purple-900">₹{entryData.totalCredit.toLocaleString()}</div>
             </div>
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-3 rounded-lg border border-gray-200">
               <div className="text-sm text-gray-600 mb-1">Currency</div>
               <div className="text-xl font-bold text-gray-900">{entryData.currency}</div>
             </div>
           </div>
 
           {/* Entry Information */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Entry Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Entry Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-600">Entry Date</label>
                 <p className="text-gray-900">{entryData.entryDate}</p>
@@ -763,8 +763,8 @@ export function ViewJournalEntryModal({ isOpen, onClose, entryId }: ViewJournalE
           </div>
 
           {/* Journal Lines */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Journal Lines</h3>
+          <div className="bg-white border border-gray-200 rounded-lg p-3 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Journal Lines</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50">
@@ -809,8 +809,8 @@ export function ViewJournalEntryModal({ isOpen, onClose, entryId }: ViewJournalE
           </div>
 
           {/* Audit Trail */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Audit Trail</h3>
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Audit Trail</h3>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
@@ -831,7 +831,7 @@ export function ViewJournalEntryModal({ isOpen, onClose, entryId }: ViewJournalE
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
@@ -866,10 +866,10 @@ export function DeleteJournalEntryModal({ isOpen, onClose, entryId, onConfirm }:
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Trash2 className="w-5 h-5 text-white" />
@@ -883,14 +883,14 @@ export function DeleteJournalEntryModal({ isOpen, onClose, entryId, onConfirm }:
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-900 font-medium mb-2">
               Are you sure you want to delete this journal entry?
             </p>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-gray-600 text-sm mb-2">
               Entry ID: <span className="font-mono">{entryId || 'JE-2025-0123'}</span>
             </p>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <h4 className="text-red-800 font-medium mb-2">⚠️ Warning</h4>
               <ul className="text-sm text-red-700 space-y-1">
                 <li>• This action cannot be undone</li>
@@ -901,7 +901,7 @@ export function DeleteJournalEntryModal({ isOpen, onClose, entryId, onConfirm }:
             </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Reason for Deletion *
             </label>
@@ -916,7 +916,7 @@ export function DeleteJournalEntryModal({ isOpen, onClose, entryId, onConfirm }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -966,10 +966,10 @@ export function PostJournalEntryModal({ isOpen, onClose, entryId, onConfirm }: P
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -983,7 +983,7 @@ export function PostJournalEntryModal({ isOpen, onClose, entryId, onConfirm }: P
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-900 font-medium mb-2">
               Entry ID: <span className="font-mono">{entryId || 'JE-2025-0123'}</span>
             </p>
@@ -993,7 +993,7 @@ export function PostJournalEntryModal({ isOpen, onClose, entryId, onConfirm }: P
           </div>
 
           {/* Post Date */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Post Date *</label>
             <input
               type="date"
@@ -1004,7 +1004,7 @@ export function PostJournalEntryModal({ isOpen, onClose, entryId, onConfirm }: P
           </div>
 
           {/* Validation Checks */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-medium text-gray-700 mb-3">Pre-Post Validation</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
@@ -1038,7 +1038,7 @@ export function PostJournalEntryModal({ isOpen, onClose, entryId, onConfirm }: P
           </div>
 
           {/* Impact Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-blue-800 font-medium mb-2">📊 Impact Summary</h4>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• 2 accounts will be updated</li>
@@ -1050,7 +1050,7 @@ export function PostJournalEntryModal({ isOpen, onClose, entryId, onConfirm }: P
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -1094,10 +1094,10 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -1111,7 +1111,7 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
 
         {/* Content */}
         <div className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <p className="text-gray-900 font-medium mb-2">
               Original Entry: <span className="font-mono">{entryId || 'JE-2025-0123'}</span>
             </p>
@@ -1121,7 +1121,7 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
           </div>
 
           {/* Reversal Details */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Reversal Date *</label>
             <input
               type="date"
@@ -1132,7 +1132,7 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
             <p className="text-sm text-gray-500 mt-1">The reversal entry will be dated on this date</p>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Reason for Reversal *</label>
             <textarea
               value={reversalReason}
@@ -1144,7 +1144,7 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
           </div>
 
           {/* Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -1160,7 +1160,7 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
           </div>
 
           {/* Preview */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h4 className="text-orange-800 font-medium mb-3">📋 Reversal Preview</h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
@@ -1185,7 +1185,7 @@ export function ReverseJournalEntryModal({ isOpen, onClose, entryId, onConfirm }
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

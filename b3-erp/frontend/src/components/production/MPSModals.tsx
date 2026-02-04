@@ -50,10 +50,10 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <RefreshCw className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Run MRP Cascade</h2>
@@ -65,7 +65,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
 
         <div className="p-6">
           {/* Info Banner */}
-          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertTriangle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -79,12 +79,12 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
 
           {/* MRP Processing Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <Settings className="h-4 w-4" />
               Processing Options
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">MRP Type</label>
                 <select
@@ -128,7 +128,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
 
           {/* Scope Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <Package className="h-4 w-4" />
               Scope & Inclusions
@@ -198,7 +198,7 @@ export function RunMRPModal({ isOpen, onClose, onRun }: RunMRPModalProps) {
           </div>
 
           {/* Expected Output */}
-          <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="mb-3 bg-green-50 border border-green-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-green-900 mb-2 flex items-center gap-2">
               <CheckCircle className="h-4 w-4" />
               Expected Output
@@ -268,10 +268,10 @@ export function ExportMPSModal({ isOpen, onClose, onExport }: ExportMPSModalProp
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Export Master Production Schedule</h2>
@@ -283,7 +283,7 @@ export function ExportMPSModal({ isOpen, onClose, onExport }: ExportMPSModalProp
 
         <div className="p-6">
           {/* Export Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
               <button
@@ -326,7 +326,7 @@ export function ExportMPSModal({ isOpen, onClose, onExport }: ExportMPSModalProp
           </div>
 
           {/* Period Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Planning Horizon
@@ -364,7 +364,7 @@ export function ExportMPSModal({ isOpen, onClose, onExport }: ExportMPSModalProp
           </div>
 
           {/* MPS Data Sections */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <FileText className="h-4 w-4" />
               Include MPS Data
@@ -419,7 +419,7 @@ export function ExportMPSModal({ isOpen, onClose, onExport }: ExportMPSModalProp
           </div>
 
           {/* Additional Data */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Additional Data</h3>
             <div className="space-y-2">
               <label className="flex items-center gap-2 cursor-pointer">
@@ -501,10 +501,10 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Edit className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Adjust Production Plan</h2>
@@ -516,13 +516,13 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Product Info */}
-          <div className="mb-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="mb-3 bg-purple-50 border border-purple-200 rounded-lg p-3">
             <p className="text-sm font-medium text-purple-900">{product.productName}</p>
             <p className="text-xs text-purple-700 mt-1">Product Code: {product.productCode}</p>
           </div>
 
           {/* Adjustment Type */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Adjustment Type</label>
             <div className="grid grid-cols-2 gap-3">
               <button
@@ -553,7 +553,7 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
           </div>
 
           {/* Period Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">Period to Adjust</label>
             <select
               value={selectedPeriod}
@@ -570,7 +570,7 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
 
           {/* Adjustment Value */}
           {adjustmentType === 'adjust' ? (
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-2 mb-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Adjust by Units</label>
                 <input
@@ -593,7 +593,7 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
               </div>
             </div>
           ) : (
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-1">New Planned Quantity</label>
               <input
                 type="number"
@@ -607,7 +607,7 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
           )}
 
           {/* Reason */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-1">Reason for Adjustment *</label>
             <textarea
               value={reason}
@@ -620,7 +620,7 @@ export function AdjustPlanModal({ isOpen, onClose, product, onSave }: AdjustPlan
           </div>
 
           {/* Warning */}
-          <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mb-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-4 w-4 text-yellow-600 flex-shrink-0 mt-0.5" />
               <p className="text-xs text-yellow-800">

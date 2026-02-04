@@ -326,20 +326,20 @@ export default function ViewRequisitionPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/procurement/requisitions')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Requisitions</span>
         </button>
 
         {/* Requisition Header Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-start justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <ShoppingCart className="h-8 w-8 text-white" />
@@ -416,8 +416,8 @@ export default function ViewRequisitionPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Package className="h-5 w-5 text-blue-600" />
                 <p className="text-xs font-medium text-blue-600 uppercase">Total Items</p>
@@ -426,7 +426,7 @@ export default function ViewRequisitionPage() {
               <p className="text-xs text-blue-600 mt-1">Items requested</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <DollarSign className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Total Value</p>
@@ -435,7 +435,7 @@ export default function ViewRequisitionPage() {
               <p className="text-xs text-green-600 mt-1">Estimated cost</p>
             </div>
 
-            <div className={`bg-gradient-to-br rounded-lg p-4 border ${requisition.priority === 'urgent' ? 'from-red-50 to-red-100 border-red-200' :
+            <div className={`bg-gradient-to-br rounded-lg p-3 border ${requisition.priority === 'urgent' ? 'from-red-50 to-red-100 border-red-200' :
                 requisition.priority === 'high' ? 'from-orange-50 to-orange-100 border-orange-200' :
                   requisition.priority === 'medium' ? 'from-yellow-50 to-yellow-100 border-yellow-200' :
                     'from-green-50 to-green-100 border-green-200'
@@ -464,7 +464,7 @@ export default function ViewRequisitionPage() {
                 }`}>Priority level</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Clock className="h-5 w-5 text-purple-600" />
                 <p className="text-xs font-medium text-purple-600 uppercase">Days Pending</p>
@@ -475,7 +475,7 @@ export default function ViewRequisitionPage() {
           </div>
 
           {/* Progress Tracker */}
-          <div className="mt-6 bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="mt-6 bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Approval Progress</h3>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -563,7 +563,7 @@ export default function ViewRequisitionPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -587,15 +587,15 @@ export default function ViewRequisitionPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Requisition Overview</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Requisition Overview</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Requester Information */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <User className="h-5 w-5 mr-2 text-blue-600" />
                   Requester Information
                 </h3>
@@ -624,8 +624,8 @@ export default function ViewRequisitionPage() {
               </div>
 
               {/* Budget & Cost Center */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
                   Budget & Cost Center
                 </h3>
@@ -654,12 +654,12 @@ export default function ViewRequisitionPage() {
               </div>
 
               {/* Purpose & Justification */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Purpose & Justification
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-2">Purpose</p>
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
@@ -677,8 +677,8 @@ export default function ViewRequisitionPage() {
 
               {/* Approver Details */}
               {requisition.approverName && (
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <div className="border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                     <FileSignature className="h-5 w-5 mr-2 text-blue-600" />
                     Approver Details
                   </h3>
@@ -702,8 +702,8 @@ export default function ViewRequisitionPage() {
               )}
 
               {/* Linked Documents */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileCheck className="h-5 w-5 mr-2 text-blue-600" />
                   Linked Documents
                 </h3>
@@ -739,8 +739,8 @@ export default function ViewRequisitionPage() {
 
               {/* Notes */}
               {requisition.notes && (
-                <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                     <MessageSquare className="h-5 w-5 mr-2 text-blue-600" />
                     Notes
                   </h3>
@@ -752,8 +752,8 @@ export default function ViewRequisitionPage() {
 
               {/* Attachments */}
               {requisition.attachments.length > 0 && (
-                <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                     <FileText className="h-5 w-5 mr-2 text-blue-600" />
                     Attachments ({requisition.attachments.length})
                   </h3>
@@ -774,7 +774,7 @@ export default function ViewRequisitionPage() {
         {/* Line Items Tab */}
         {activeTab === 'items' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Line Items ({requisition.items.length})</h3>
               <div className="text-right">
                 <p className="text-sm text-gray-600">Total Value</p>
@@ -835,12 +835,12 @@ export default function ViewRequisitionPage() {
         {/* Approval History Tab */}
         {activeTab === 'approvals' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Approval History</h3>
               <span className="text-sm text-gray-600">Multi-level approval workflow</span>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {requisition.approvalHistory.map((history, index) => {
                 const isLast = index === requisition.approvalHistory.length - 1;
 
@@ -862,7 +862,7 @@ export default function ViewRequisitionPage() {
                         {history.action === 'pending' && <Clock className="h-5 w-5" />}
                       </div>
 
-                      <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200">
+                      <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <div className="flex items-center space-x-2 mb-1">
@@ -894,9 +894,9 @@ export default function ViewRequisitionPage() {
 
             {/* Approval Action Panel */}
             {requisition.status === 'pending_approval' && (
-              <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Approval Action</h4>
-                <div className="space-y-4">
+              <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <h4 className="text-lg font-bold text-gray-900 mb-2">Approval Action</h4>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Comments (Optional)
@@ -910,11 +910,11 @@ export default function ViewRequisitionPage() {
                     />
                   </div>
                   <div className="flex items-center space-x-3">
-                    <button className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                    <button className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold">
                       <ThumbsUp className="h-5 w-5" />
                       <span>Approve</span>
                     </button>
-                    <button className="flex items-center space-x-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold">
+                    <button className="flex items-center space-x-2 px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold">
                       <ThumbsDown className="h-5 w-5" />
                       <span>Reject</span>
                     </button>

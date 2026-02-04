@@ -300,7 +300,7 @@ export default function DailyProgressPage() {
    <div className="px-3 py-2 space-y-3">
     {/* Enhanced Header Section */}
     <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg p-3 mb-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <div>
        <h1 className="text-2xl font-bold text-white mb-1">Daily Progress Tracking</h1>
        <p className="text-blue-100">Monitor and manage daily project progress with comprehensive tracking</p>
@@ -376,8 +376,8 @@ export default function DailyProgressPage() {
     </div>
 
     {/* Statistics Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Entries</p>
       <FileText className="w-5 h-5 text-blue-600" />
@@ -386,7 +386,7 @@ export default function DailyProgressPage() {
      <p className="text-xs text-gray-500 mt-1">{stats.todayEntries} today</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Avg Completion</p>
       <CheckCircle className="w-5 h-5 text-green-600" />
@@ -394,7 +394,7 @@ export default function DailyProgressPage() {
      <p className="text-2xl font-bold text-green-900">{stats.avgCompletion}%</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Labor</p>
       <Users className="w-5 h-5 text-purple-600" />
@@ -403,7 +403,7 @@ export default function DailyProgressPage() {
      <p className="text-xs text-gray-500 mt-1">person-days</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Hours</p>
       <Clock className="w-5 h-5 text-orange-600" />
@@ -412,7 +412,7 @@ export default function DailyProgressPage() {
      <p className="text-xs text-gray-500 mt-1">manhours</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Safety</p>
       <AlertCircle className={`w-5 h-5 ${stats.safetyIncidents === 0 ? 'text-green-600' : 'text-red-600'}`} />
@@ -423,7 +423,7 @@ export default function DailyProgressPage() {
      <p className="text-xs text-gray-500 mt-1">incidents</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Photos</p>
       <Camera className="w-5 h-5 text-blue-600" />
@@ -436,8 +436,8 @@ export default function DailyProgressPage() {
    </div>
 
    {/* Date Filter */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-    <div className="flex items-center gap-4">
+   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+    <div className="flex items-center gap-2">
      <Calendar className="w-5 h-5 text-gray-400" />
      <input
       type="date"
@@ -457,7 +457,7 @@ export default function DailyProgressPage() {
      .filter(entry => !selectedDate || entry.date === selectedDate)
      .map((entry) => (
       <div key={entry.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-       <div className="flex items-start justify-between mb-4">
+       <div className="flex items-start justify-between mb-2">
         <div className="flex-1">
          <div className="flex items-center gap-3 mb-2">
           <h3 className="text-lg font-semibold text-gray-900">{entry.activity}</h3>
@@ -468,7 +468,7 @@ export default function DailyProgressPage() {
            {entry.workPackage}
           </span>
          </div>
-         <div className="flex items-center gap-4 text-sm text-gray-600">
+         <div className="flex items-center gap-2 text-sm text-gray-600">
           <div className="flex items-center gap-1">
            <Calendar className="w-4 h-4" />
            {formatDate(entry.date)}
@@ -501,18 +501,18 @@ export default function DailyProgressPage() {
         </div>
        </div>
 
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+        <div className="bg-blue-50 rounded-lg p-3">
          <p className="text-xs font-medium text-blue-900 mb-2">Planned Work</p>
          <p className="text-sm text-gray-700">{entry.plannedWork}</p>
         </div>
-        <div className="bg-green-50 rounded-lg p-4">
+        <div className="bg-green-50 rounded-lg p-3">
          <p className="text-xs font-medium text-green-900 mb-2">Actual Work</p>
          <p className="text-sm text-gray-700">{entry.actualWork}</p>
         </div>
        </div>
 
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
         <div>
          <p className="text-xs font-medium text-gray-600 mb-1">Materials Used</p>
          <p className="text-sm text-gray-900">{entry.materialUsed}</p>
@@ -524,7 +524,7 @@ export default function DailyProgressPage() {
        </div>
 
        {entry.issues && entry.issues !== 'None' && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-2">
          <div className="flex items-start gap-2">
           <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
           <div>
@@ -536,7 +536,7 @@ export default function DailyProgressPage() {
        )}
 
        <div className="pt-4 border-t border-gray-200">
-        <div className="flex items-center gap-3 text-sm mb-4">
+        <div className="flex items-center gap-3 text-sm mb-2">
          <div>
           <span className="text-gray-600">Weather: </span>
           <span className="font-medium text-gray-900">{entry.weather}</span>
@@ -598,14 +598,14 @@ export default function DailyProgressPage() {
 
    {/* Add Entry Modal */}
    {showAddModal && (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
       <div className="p-6 border-b border-gray-200 sticky top-0 bg-white">
        <h2 className="text-xl font-semibold text-gray-900">Add Daily Progress Entry</h2>
       </div>
 
       <div className="p-6 space-y-2">
-       <div className="grid grid-cols-2 gap-4">
+       <div className="grid grid-cols-2 gap-2">
         <div>
          <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
          <input
@@ -651,7 +651,7 @@ export default function DailyProgressPage() {
         />
        </div>
 
-       <div className="grid grid-cols-3 gap-4">
+       <div className="grid grid-cols-3 gap-2">
         <div>
          <label className="block text-sm font-medium text-gray-700 mb-2">Completion %</label>
          <input
@@ -707,7 +707,7 @@ export default function DailyProgressPage() {
         />
        </div>
 
-       <div className="grid grid-cols-2 gap-4">
+       <div className="grid grid-cols-2 gap-2">
         <div>
          <label className="block text-sm font-medium text-gray-700 mb-2">Weather Conditions</label>
          <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">

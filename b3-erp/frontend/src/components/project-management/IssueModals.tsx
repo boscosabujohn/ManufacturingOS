@@ -91,10 +91,10 @@ export function LogIssueModal({ isOpen, onClose, onSubmit }: LogIssueModalProps)
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertCircle className="w-6 h-6" />
@@ -110,14 +110,14 @@ export function LogIssueModal({ isOpen, onClose, onSubmit }: LogIssueModalProps)
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-red-600" />
               Issue Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Issue Title <span className="text-red-500">*</span>
@@ -184,12 +184,12 @@ export function LogIssueModal({ isOpen, onClose, onSubmit }: LogIssueModalProps)
           </div>
 
           {/* Impact Assessment */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-red-600" />
               Impact Assessment
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Impact Level <span className="text-red-500">*</span>
@@ -252,12 +252,12 @@ export function LogIssueModal({ isOpen, onClose, onSubmit }: LogIssueModalProps)
           </div>
 
           {/* Assignment */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Users className="w-5 h-5 text-red-600" />
               Assignment & Timeline
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Assign To <span className="text-red-500">*</span>
@@ -348,10 +348,10 @@ export function EditIssueModal({ isOpen, onClose, issue, onSubmit }: EditIssueMo
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <AlertCircle className="w-6 h-6" />
@@ -367,8 +367,8 @@ export function EditIssueModal({ isOpen, onClose, issue, onSubmit }: EditIssueMo
         </div>
 
         {/* Body - Similar fields to Log Issue Modal */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Issue Title</label>
               <input
@@ -497,10 +497,10 @@ export function AssignIssueModal({ isOpen, onClose, issue, onSubmit }: AssignIss
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Users className="w-6 h-6" />
@@ -516,7 +516,7 @@ export function AssignIssueModal({ isOpen, onClose, issue, onSubmit }: AssignIss
         </div>
 
         {/* Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Assign To <span className="text-red-500">*</span>
@@ -563,7 +563,7 @@ export function AssignIssueModal({ isOpen, onClose, issue, onSubmit }: AssignIss
           </div>
 
           {/* Current Assignment Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm font-medium text-gray-900">Current Assignment</p>
             <p className="text-sm text-gray-600 mt-1">Currently assigned to: {issue.assignedTo}</p>
           </div>
@@ -614,9 +614,9 @@ export function UpdateStatusModal({ isOpen, onClose, issue, onSubmit }: UpdateSt
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Flag className="w-6 h-6" />
@@ -631,7 +631,7 @@ export function UpdateStatusModal({ isOpen, onClose, issue, onSubmit }: UpdateSt
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               New Status <span className="text-red-500">*</span>
@@ -664,7 +664,7 @@ export function UpdateStatusModal({ isOpen, onClose, issue, onSubmit }: UpdateSt
             />
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <p className="text-sm font-medium text-gray-900">Current Status</p>
             <p className="text-sm text-gray-600 mt-1">
               Status: <span className="font-semibold">{issue.status}</span>
@@ -715,9 +715,9 @@ export function AddCommentModal({ isOpen, onClose, issue, onSubmit }: AddComment
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <MessageSquare className="w-6 h-6" />
@@ -732,13 +732,13 @@ export function AddCommentModal({ isOpen, onClose, issue, onSubmit }: AddComment
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Existing Comments */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Previous Comments</h3>
             <div className="space-y-3">
               {mockComments.map(comment => (
-                <div key={comment.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={comment.id} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="text-sm font-semibold text-blue-900">
@@ -757,7 +757,7 @@ export function AddCommentModal({ isOpen, onClose, issue, onSubmit }: AddComment
           </div>
 
           {/* Add New Comment Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Add Comment <span className="text-red-500">*</span>
@@ -832,9 +832,9 @@ export function AttachFilesModal({ isOpen, onClose, issue, onSubmit }: AttachFil
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Paperclip className="w-6 h-6" />
@@ -849,7 +849,7 @@ export function AttachFilesModal({ isOpen, onClose, issue, onSubmit }: AttachFil
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Existing Attachments */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Existing Attachments</h3>
@@ -872,11 +872,11 @@ export function AttachFilesModal({ isOpen, onClose, issue, onSubmit }: AttachFil
           </div>
 
           {/* Upload New Files */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Upload New Files</label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <Paperclip className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center">
+                <Paperclip className="w-12 h-12 text-gray-400 mb-3" />
                 <input
                   type="file"
                   multiple
@@ -952,9 +952,9 @@ export function LinkItemsModal({ isOpen, onClose, issue, onSubmit }: LinkItemsMo
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <LinkIcon className="w-6 h-6" />
@@ -969,7 +969,7 @@ export function LinkItemsModal({ isOpen, onClose, issue, onSubmit }: LinkItemsMo
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Existing Links */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Current Links</h3>
@@ -994,9 +994,9 @@ export function LinkItemsModal({ isOpen, onClose, issue, onSubmit }: LinkItemsMo
           </div>
 
           {/* Add New Link */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900">Add New Link</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Item Type</label>
                 <select
@@ -1081,9 +1081,9 @@ export function EscalateIssueModal({ isOpen, onClose, issue, onSubmit }: Escalat
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <ArrowUp className="w-6 h-6" />
@@ -1098,8 +1098,8 @@ export function EscalateIssueModal({ isOpen, onClose, issue, onSubmit }: Escalat
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5" />
               <div>
@@ -1200,9 +1200,9 @@ export function ResolveIssueModal({ isOpen, onClose, issue, onSubmit }: ResolveI
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-6 h-6" />
@@ -1217,7 +1217,7 @@ export function ResolveIssueModal({ isOpen, onClose, issue, onSubmit }: ResolveI
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Resolution Description <span className="text-red-500">*</span>
@@ -1232,7 +1232,7 @@ export function ResolveIssueModal({ isOpen, onClose, issue, onSubmit }: ResolveI
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Actual Cost Impact (₹)</label>
               <input
@@ -1268,7 +1268,7 @@ export function ResolveIssueModal({ isOpen, onClose, issue, onSubmit }: ResolveI
             />
           </div>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <p className="text-sm font-medium text-green-900">Resolution Summary</p>
             <div className="mt-2 space-y-1 text-sm">
               <p className="text-gray-700">Issue: {issue.title}</p>
@@ -1315,9 +1315,9 @@ export function CloseIssueModal({ isOpen, onClose, issue, onSubmit }: CloseIssue
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <XCircle className="w-6 h-6" />
@@ -1332,8 +1332,8 @@ export function CloseIssueModal({ isOpen, onClose, issue, onSubmit }: CloseIssue
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
@@ -1426,9 +1426,9 @@ export function ImpactAnalysisModal({ isOpen, onClose, issue }: ImpactAnalysisMo
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-amber-600 to-amber-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-amber-600 to-amber-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <BarChart3 className="w-6 h-6" />
@@ -1443,19 +1443,19 @@ export function ImpactAnalysisModal({ isOpen, onClose, issue }: ImpactAnalysisMo
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Schedule Impact */}
           <div className="border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <Clock className="w-5 h-5 text-amber-600" />
               Schedule Impact
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-red-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="bg-red-50 rounded-lg p-3">
                 <p className="text-sm text-gray-600">Estimated Delay</p>
                 <p className="text-2xl font-bold text-red-900">{impactData.schedule.estimatedDelay} days</p>
               </div>
-              <div className="bg-orange-50 rounded-lg p-4">
+              <div className="bg-orange-50 rounded-lg p-3">
                 <p className="text-sm text-gray-600">Critical Path Impact</p>
                 <p className="text-2xl font-bold text-orange-900">{impactData.schedule.criticalPath}</p>
               </div>
@@ -1480,24 +1480,24 @@ export function ImpactAnalysisModal({ isOpen, onClose, issue }: ImpactAnalysisMo
 
           {/* Cost Impact */}
           <div className="border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <TrendingUp className="w-5 h-5 text-amber-600" />
               Financial Impact
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600">Direct Cost</p>
                 <p className="text-lg font-bold text-blue-900">₹{impactData.cost.directCost.toLocaleString()}</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600">Indirect Cost</p>
                 <p className="text-lg font-bold text-purple-900">₹{impactData.cost.indirectCost.toLocaleString()}</p>
               </div>
-              <div className="bg-yellow-50 rounded-lg p-4">
+              <div className="bg-yellow-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600">Contingency Used</p>
                 <p className="text-lg font-bold text-yellow-900">₹{impactData.cost.contingencyUsed.toLocaleString()}</p>
               </div>
-              <div className="bg-red-50 rounded-lg p-4">
+              <div className="bg-red-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600">Total Impact</p>
                 <p className="text-lg font-bold text-red-900">₹{impactData.cost.totalImpact.toLocaleString()}</p>
               </div>
@@ -1506,7 +1506,7 @@ export function ImpactAnalysisModal({ isOpen, onClose, issue }: ImpactAnalysisMo
 
           {/* Resource Impact */}
           <div className="border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <Users className="w-5 h-5 text-amber-600" />
               Resource Impact
             </h3>
@@ -1534,11 +1534,11 @@ export function ImpactAnalysisModal({ isOpen, onClose, issue }: ImpactAnalysisMo
 
           {/* Quality Impact */}
           <div className="border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-2">
               <Shield className="w-5 h-5 text-amber-600" />
               Quality Impact
             </h3>
-            <div className="bg-yellow-50 rounded-lg p-4">
+            <div className="bg-yellow-50 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Risk to Quality</p>
               <p className="text-xl font-bold text-yellow-900 mb-3">{impactData.quality.riskToQuality}</p>
               <p className="text-sm font-medium text-gray-700 mb-2">Mitigation Actions:</p>
@@ -1551,7 +1551,7 @@ export function ImpactAnalysisModal({ isOpen, onClose, issue }: ImpactAnalysisMo
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-end rounded-b-xl">
           <button onClick={onClose} className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700">
             Close
           </button>
@@ -1593,9 +1593,9 @@ export function RootCauseModal({ isOpen, onClose, issue, onSubmit }: RootCauseMo
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-violet-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-violet-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Target className="w-6 h-6" />
@@ -1610,7 +1610,7 @@ export function RootCauseModal({ isOpen, onClose, issue, onSubmit }: RootCauseMo
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* 5 Whys Analysis Example */}
           <div className="bg-violet-50 border border-violet-200 rounded-lg p-5">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">5 Whys Analysis Framework</h3>
@@ -1709,9 +1709,9 @@ export function IssueReportModal({ isOpen, onClose, onSubmit }: IssueReportModal
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-6 h-6" />
@@ -1726,8 +1726,8 @@ export function IssueReportModal({ isOpen, onClose, onSubmit }: IssueReportModal
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
               <select
@@ -1756,7 +1756,7 @@ export function IssueReportModal({ isOpen, onClose, onSubmit }: IssueReportModal
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">From Date</label>
               <input
@@ -1777,7 +1777,7 @@ export function IssueReportModal({ isOpen, onClose, onSubmit }: IssueReportModal
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Status Filter</label>
               <select
@@ -1808,7 +1808,7 @@ export function IssueReportModal({ isOpen, onClose, onSubmit }: IssueReportModal
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Report Will Include:</h4>
             <ul className="text-sm text-gray-700 space-y-1">
               <li>• Issue summary statistics</li>
@@ -1857,9 +1857,9 @@ export function BulkUpdateModal({ isOpen, onClose, selectedIssues, onSubmit }: B
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <CheckCircle className="w-6 h-6" />
@@ -1874,8 +1874,8 @@ export function BulkUpdateModal({ isOpen, onClose, selectedIssues, onSubmit }: B
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="bg-pink-50 border border-pink-200 rounded-lg p-3">
             <p className="text-sm font-medium text-gray-900 mb-2">Selected Issues ({selectedIssues.length})</p>
             <div className="max-h-32 overflow-y-auto space-y-1">
               {selectedIssues.map(issue => (
@@ -1988,9 +1988,9 @@ export function IssueBoardModal({ isOpen, onClose, issues }: IssueBoardModalProp
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-slate-600 to-slate-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-slate-600 to-slate-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <BarChart3 className="w-6 h-6" />
@@ -2006,10 +2006,10 @@ export function IssueBoardModal({ isOpen, onClose, issues }: IssueBoardModalProp
         </div>
 
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             {Object.entries(statusColumns).map(([status, statusIssues]) => (
-              <div key={status} className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-4">
+              <div key={status} className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-gray-900">{status}</h3>
                   <span className="px-2 py-1 bg-gray-200 text-gray-700 rounded text-xs font-medium">
                     {statusIssues.length}
@@ -2048,7 +2048,7 @@ export function IssueBoardModal({ isOpen, onClose, issues }: IssueBoardModalProp
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end rounded-b-xl">
+        <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex justify-end rounded-b-xl">
           <button onClick={onClose} className="px-6 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700">
             Close
           </button>

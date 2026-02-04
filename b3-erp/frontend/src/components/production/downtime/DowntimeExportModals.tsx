@@ -290,10 +290,10 @@ export function ExportDowntimeDataModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-3 rounded-t-lg sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Download className="w-6 h-6" />
@@ -308,13 +308,13 @@ export function ExportDowntimeDataModal({
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Export Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Export Type
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setExportType('events')}
                 className={`p-4 border-2 rounded-lg text-left transition-all ${
@@ -368,7 +368,7 @@ export function ExportDowntimeDataModal({
               <Calendar className="w-4 h-4 inline mr-2" />
               Date Range
             </label>
-            <div className="grid grid-cols-2 gap-4 mb-3">
+            <div className="grid grid-cols-2 gap-2 mb-3">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">From</label>
                 <input
@@ -443,7 +443,7 @@ export function ExportDowntimeDataModal({
             </button>
 
             {showFilters && (
-              <div className="space-y-4 border border-gray-200 rounded-lg p-4">
+              <div className="space-y-2 border border-gray-200 rounded-lg p-3">
                 {/* Equipment */}
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-2">
@@ -564,7 +564,7 @@ export function ExportDowntimeDataModal({
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Export Format
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setFormat('excel')}
                 className={`p-4 border-2 rounded-lg text-center transition-all ${
@@ -573,7 +573,7 @@ export function ExportDowntimeDataModal({
                     : 'border-gray-200 hover:border-green-300'
                 }`}
               >
-                <FileSpreadsheet className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                <FileSpreadsheet className="w-8 h-8 text-green-600 mb-2" />
                 <div className="font-medium text-gray-900">Excel</div>
                 <div className="text-xs text-gray-500">.xlsx</div>
               </button>
@@ -586,7 +586,7 @@ export function ExportDowntimeDataModal({
                     : 'border-gray-200 hover:border-green-300'
                 }`}
               >
-                <FileText className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-green-600 mb-2" />
                 <div className="font-medium text-gray-900">PDF</div>
                 <div className="text-xs text-gray-500">.pdf</div>
               </button>
@@ -599,7 +599,7 @@ export function ExportDowntimeDataModal({
                     : 'border-gray-200 hover:border-green-300'
                 }`}
               >
-                <Database className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                <Database className="w-8 h-8 text-green-600 mb-2" />
                 <div className="font-medium text-gray-900">CSV</div>
                 <div className="text-xs text-gray-500">.csv</div>
               </button>
@@ -671,7 +671,7 @@ export function ExportDowntimeDataModal({
           )}
 
           {/* Preview Section */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start space-x-3">
               <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
@@ -720,7 +720,7 @@ export function ExportDowntimeDataModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50 rounded-b-lg">
+        <div className="border-t border-gray-200 p-3 bg-gray-50 rounded-b-lg">
           <div className="flex justify-between items-center">
             <button
               onClick={onClose}
@@ -930,10 +930,10 @@ export function ExportRCAReportModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-3 rounded-t-lg sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <FileCheck className="w-6 h-6" />
@@ -948,7 +948,7 @@ export function ExportRCAReportModal({
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* RCA Investigations Selection */}
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -1063,7 +1063,7 @@ export function ExportRCAReportModal({
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Export Format
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setFormat('pdf')}
                 className={`p-4 border-2 rounded-lg text-center transition-all ${
@@ -1072,7 +1072,7 @@ export function ExportRCAReportModal({
                     : 'border-gray-200 hover:border-purple-300'
                 }`}
               >
-                <FileText className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-purple-600 mb-2" />
                 <div className="font-medium text-gray-900">PDF Report</div>
                 <div className="text-xs text-gray-500">Formatted with charts</div>
               </button>
@@ -1085,7 +1085,7 @@ export function ExportRCAReportModal({
                     : 'border-gray-200 hover:border-purple-300'
                 }`}
               >
-                <FileText className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-purple-600 mb-2" />
                 <div className="font-medium text-gray-900">Word Document</div>
                 <div className="text-xs text-gray-500">.docx, editable</div>
               </button>
@@ -1098,7 +1098,7 @@ export function ExportRCAReportModal({
                     : 'border-gray-200 hover:border-purple-300'
                 }`}
               >
-                <FileSpreadsheet className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                <FileSpreadsheet className="w-8 h-8 text-purple-600 mb-2" />
                 <div className="font-medium text-gray-900">Excel Workbook</div>
                 <div className="text-xs text-gray-500">.xlsx, data and charts</div>
               </button>
@@ -1157,7 +1157,7 @@ export function ExportRCAReportModal({
           </div>
 
           {/* Preview Section */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start space-x-3">
               <Info className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
@@ -1190,7 +1190,7 @@ export function ExportRCAReportModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50 rounded-b-lg">
+        <div className="border-t border-gray-200 p-3 bg-gray-50 rounded-b-lg">
           <div className="flex justify-between items-center">
             <button
               onClick={onClose}
@@ -1400,10 +1400,10 @@ export function ExportAnalysisReportModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-t-lg sticky top-0 z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <TrendingUp className="w-6 h-6" />
@@ -1418,14 +1418,14 @@ export function ExportAnalysisReportModal({
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Period */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               <Calendar className="w-4 h-4 inline mr-2" />
               Report Period
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">From</label>
                 <input
@@ -1470,7 +1470,7 @@ export function ExportAnalysisReportModal({
               </label>
 
               {enableComparison && (
-                <div className="grid grid-cols-2 gap-4 mt-3">
+                <div className="grid grid-cols-2 gap-2 mt-3">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">
                       Comparison From
@@ -1518,7 +1518,7 @@ export function ExportAnalysisReportModal({
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Report Type
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setReportType('executive')}
                 className={`p-4 border-2 rounded-lg text-left transition-all ${
@@ -1680,7 +1680,7 @@ export function ExportAnalysisReportModal({
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Export Format
             </label>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => setFormat('pdf')}
                 className={`p-4 border-2 rounded-lg text-center transition-all ${
@@ -1689,7 +1689,7 @@ export function ExportAnalysisReportModal({
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <FileText className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                <FileText className="w-8 h-8 text-blue-600 mb-2" />
                 <div className="font-medium text-gray-900">PDF</div>
                 <div className="text-xs text-gray-500">With charts, printable</div>
               </button>
@@ -1702,7 +1702,7 @@ export function ExportAnalysisReportModal({
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <FileSpreadsheet className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                <FileSpreadsheet className="w-8 h-8 text-blue-600 mb-2" />
                 <div className="font-medium text-gray-900">Excel</div>
                 <div className="text-xs text-gray-500">Raw data and pivots</div>
               </button>
@@ -1715,7 +1715,7 @@ export function ExportAnalysisReportModal({
                     : 'border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <Presentation className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                <Presentation className="w-8 h-8 text-blue-600 mb-2" />
                 <div className="font-medium text-gray-900">PowerPoint</div>
                 <div className="text-xs text-gray-500">Presentation slides</div>
               </button>
@@ -1792,7 +1792,7 @@ export function ExportAnalysisReportModal({
           </div>
 
           {/* Preview Section */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start space-x-3">
               <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
               <div className="flex-1">
@@ -1851,7 +1851,7 @@ export function ExportAnalysisReportModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50 rounded-b-lg">
+        <div className="border-t border-gray-200 p-3 bg-gray-50 rounded-b-lg">
           <div className="flex justify-between items-center">
             <button
               onClick={onClose}

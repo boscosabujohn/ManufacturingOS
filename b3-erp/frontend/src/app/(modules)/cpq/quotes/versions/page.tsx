@@ -288,9 +288,9 @@ export default function CPQQuotesVersionsPage() {
   const avgVersionsPerQuote = totalVersions / (Object.keys(groupedVersions).length || 1)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsFilterModalOpen(true)}
@@ -310,7 +310,7 @@ export default function CPQQuotesVersionsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -359,7 +359,7 @@ export default function CPQQuotesVersionsPage() {
       </div>
 
       {/* Status Filter */}
-      <div className="mb-6 flex gap-3">
+      <div className="mb-3 flex gap-3">
         <button
           onClick={() => handleStatusFilter(null)}
           className={`px-4 py-2 ${
@@ -403,7 +403,7 @@ export default function CPQQuotesVersionsPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -417,7 +417,7 @@ export default function CPQQuotesVersionsPage() {
       </div>
 
       {/* Grouped Versions Display */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {Object.keys(groupedVersions).length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
             <GitBranch className="h-12 w-12 text-gray-400 mb-3" />
@@ -434,10 +434,10 @@ export default function CPQQuotesVersionsPage() {
                 {/* Quote Header - Always Visible */}
                 <div
                   onClick={() => toggleQuoteExpansion(quoteNumber)}
-                  className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 cursor-pointer hover:from-blue-100 hover:to-indigo-100 transition-colors border-b border-gray-200"
+                  className="bg-gradient-to-r from-blue-50 to-indigo-50 px-3 py-2 cursor-pointer hover:from-blue-100 hover:to-indigo-100 transition-colors border-b border-gray-200"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
@@ -457,7 +457,7 @@ export default function CPQQuotesVersionsPage() {
                         <p className="text-sm text-gray-600 mt-1">{currentVersion.customerName}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <div className="text-right">
                         <p className="text-sm text-gray-600">Current Version</p>
                         <p className="text-lg font-bold text-gray-900">{currentVersion.version}</p>
@@ -501,10 +501,10 @@ export default function CPQQuotesVersionsPage() {
                       <div
                         key={version.id}
                         onClick={() => handleViewVersion(version)}
-                        className="px-6 py-4 hover:bg-gray-50 transition-colors cursor-pointer"
+                        className="px-3 py-2 hover:bg-gray-50 transition-colors cursor-pointer"
                       >
                         <div className="flex items-start justify-between">
-                          <div className="flex items-start gap-4 flex-1">
+                          <div className="flex items-start gap-2 flex-1">
                             {/* Version Badge */}
                             <div className="flex-shrink-0 mt-1">
                               <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
@@ -535,7 +535,7 @@ export default function CPQQuotesVersionsPage() {
                                   </li>
                                 ))}
                               </ul>
-                              <div className="flex items-center gap-4 text-xs text-gray-600">
+                              <div className="flex items-center gap-2 text-xs text-gray-600">
                                 <span>By {version.createdBy}</span>
                                 <span>•</span>
                                 <span>
@@ -618,7 +618,7 @@ export default function CPQQuotesVersionsPage() {
       </div>
 
       {/* Version Control Info */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2 flex items-center gap-2">
           <AlertCircle className="h-4 w-4" />
           Version Control Benefits:

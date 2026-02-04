@@ -239,7 +239,7 @@ export default function ResourceCapacityPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-2"></div>
           <p className="text-gray-600">Loading resources...</p>
         </div>
       </div>
@@ -267,7 +267,7 @@ export default function ResourceCapacityPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
@@ -324,7 +324,7 @@ export default function ResourceCapacityPage() {
       </div>
 
       {/* View Tabs and Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <button
@@ -390,25 +390,25 @@ export default function ResourceCapacityPage() {
             <table className="min-w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider sticky left-0 bg-gray-50 z-10">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider sticky left-0 bg-gray-50 z-10">
                     Resource
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Role
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Skills
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Projects
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Utilization
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Available
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
                 </tr>
@@ -420,7 +420,7 @@ export default function ResourceCapacityPage() {
 
                   return (
                     <tr key={resource.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap sticky left-0 bg-white z-10">
+                      <td className="px-3 py-2 whitespace-nowrap sticky left-0 bg-white z-10">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
                             <span className="text-blue-600 font-medium">
@@ -436,10 +436,10 @@ export default function ResourceCapacityPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                         {resource.role}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-wrap gap-1">
                           {resource.skills.slice(0, 2).map((skill) => (
                             <span
@@ -456,7 +456,7 @@ export default function ResourceCapacityPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="space-y-2">
                           {resource.allocations.map((alloc) => (
                             <div key={alloc.projectId} className="flex items-center gap-2">
@@ -472,7 +472,7 @@ export default function ResourceCapacityPage() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-[100px]">
                             <div
@@ -488,10 +488,10 @@ export default function ResourceCapacityPage() {
                           <span className="text-sm font-medium text-gray-900">{utilization}%</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                         {Math.max(0, resource.availability - utilization)}%
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span
                           className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${status.color}`}
                         >
@@ -510,7 +510,7 @@ export default function ResourceCapacityPage() {
       {/* Utilization Chart View */}
       {selectedView === 'utilization' && (
         <div className="bg-white p-3 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Resource Utilization Overview</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Resource Utilization Overview</h3>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={utilizationChartData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -536,7 +536,7 @@ export default function ResourceCapacityPage() {
             </BarChart>
           </ResponsiveContainer>
 
-          <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+          <div className="mt-6 grid grid-cols-3 gap-2 text-center">
             <div>
               <p className="text-sm text-gray-500">Available ({'<'} 80%)</p>
               <div className="flex items-center justify-center gap-2 mt-2">
@@ -577,7 +577,7 @@ export default function ResourceCapacityPage() {
         <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <Calendar className="h-16 w-16 text-gray-300 mb-4" />
+              <Calendar className="h-16 w-16 text-gray-300 mb-2" />
               <p className="text-gray-500 font-medium">Calendar View</p>
               <p className="text-sm text-gray-400 mt-2">Timeline allocation view coming soon</p>
             </div>

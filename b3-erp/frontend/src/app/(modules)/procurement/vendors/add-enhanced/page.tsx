@@ -529,7 +529,7 @@ export default function VendorAddEnhancedPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       {/* Draft Recovery Banner */}
       {showDraftBanner && (
         <DraftRecoveryBanner
@@ -540,10 +540,10 @@ export default function VendorAddEnhancedPage() {
       )}
 
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={handleCancel}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Vendors</span>
@@ -569,7 +569,7 @@ export default function VendorAddEnhancedPage() {
       </div>
 
       {/* Form Progress Bar */}
-      <div className="mb-4">
+      <div className="mb-2">
         <FormProgressIndicator
           completedFields={completionPercentage}
           totalFields={100}
@@ -592,18 +592,18 @@ export default function VendorAddEnhancedPage() {
       </div>
 
       {/* Step Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         {/* Step 1: Basic Information */}
         {currentStep === 0 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Basic Information</h3>
-              <p className="text-sm text-gray-600 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Basic Information</h3>
+              <p className="text-sm text-gray-600 mb-3">
                 Enter the vendor's legal and trade information along with registration details.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="md:col-span-2">
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                   Legal Name <span className="text-red-500">*</span>
@@ -719,15 +719,15 @@ export default function VendorAddEnhancedPage() {
 
         {/* Step 2: Contact Details */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Contact Details</h3>
-              <p className="text-sm text-gray-600 mb-6">Add contact persons and addresses for the vendor.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Contact Details</h3>
+              <p className="text-sm text-gray-600 mb-3">Add contact persons and addresses for the vendor.</p>
             </div>
 
             {/* Contact Persons */}
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold text-gray-900">Contact Persons</h4>
                 <button
                   onClick={addContactPerson}
@@ -738,12 +738,12 @@ export default function VendorAddEnhancedPage() {
                 </button>
               </div>
               {errors.contactPersons && (
-                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
+                <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
                   <AlertCircle className="h-5 w-5 text-red-600" />
                   <p className="text-sm text-red-700">{errors.contactPersons}</p>
                 </div>
               )}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {formData.contactPersons.map((contact, index) => (
                   <div key={contact.id} className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-center justify-between mb-3">
@@ -838,7 +838,7 @@ export default function VendorAddEnhancedPage() {
 
             {/* Addresses */}
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h4 className="font-semibold text-gray-900">Addresses</h4>
                 <button
                   onClick={addAddress}
@@ -848,7 +848,7 @@ export default function VendorAddEnhancedPage() {
                   <span>Add Address</span>
                 </button>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {formData.addresses.map((address, index) => (
                   <div key={address.id} className="p-4 border border-gray-200 rounded-lg">
                     <div className="flex items-center justify-between mb-3">
@@ -955,13 +955,13 @@ export default function VendorAddEnhancedPage() {
 
         {/* Step 3: Banking Information */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Banking Information</h3>
-              <p className="text-sm text-gray-600 mb-6">Enter the vendor's bank account details for payments.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Banking Information</h3>
+              <p className="text-sm text-gray-600 mb-3">Enter the vendor's bank account details for payments.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Bank Name</label>
                 <input
@@ -1025,8 +1025,8 @@ export default function VendorAddEnhancedPage() {
             </div>
 
             <div className="border-t border-gray-200 pt-6 mt-6">
-              <h4 className="font-semibold text-gray-900 mb-4">Payment Terms</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h4 className="font-semibold text-gray-900 mb-2">Payment Terms</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
                     Credit Period (Days)
@@ -1073,10 +1073,10 @@ export default function VendorAddEnhancedPage() {
 
         {/* Step 4: Categories & Products */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Categories & Products Supplied</h3>
-              <p className="text-sm text-gray-600 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Categories & Products Supplied</h3>
+              <p className="text-sm text-gray-600 mb-3">
                 Select the categories and specific materials that this vendor supplies.
               </p>
             </div>
@@ -1134,10 +1134,10 @@ export default function VendorAddEnhancedPage() {
 
         {/* Step 5: Certifications & Documents */}
         {currentStep === 4 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Certifications & Documents</h3>
-              <p className="text-sm text-gray-600 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Certifications & Documents</h3>
+              <p className="text-sm text-gray-600 mb-3">
                 Select applicable certifications and upload required documents.
               </p>
             </div>
@@ -1210,7 +1210,7 @@ export default function VendorAddEnhancedPage() {
 
             <div>
               <h4 className="font-semibold text-gray-900 mb-3">Document Upload</h4>
-              <div className="mb-4">
+              <div className="mb-2">
                 <label className="flex flex-col items-center justify-center px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
                   <input
                     type="file"
@@ -1248,7 +1248,7 @@ export default function VendorAddEnhancedPage() {
               )}
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <h4 className="font-semibold text-blue-900 mb-3 flex items-center space-x-2">
                 <CheckCircle className="h-5 w-5" />
                 <span>KYC Document Checklist</span>
@@ -1278,15 +1278,15 @@ export default function VendorAddEnhancedPage() {
 
         {/* Step 6: Review & Submit */}
         {currentStep === 5 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Review & Submit</h3>
-              <p className="text-sm text-gray-600 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Review & Submit</h3>
+              <p className="text-sm text-gray-600 mb-3">
                 Review all the information and submit the vendor for approval.
               </p>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            <div className="bg-gray-50 rounded-lg p-3">
               <h4 className="font-semibold text-gray-900 mb-3">Vendor Summary</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
                 <div>
@@ -1335,7 +1335,7 @@ export default function VendorAddEnhancedPage() {
               />
             </div>
 
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
                 <div>

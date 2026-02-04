@@ -33,10 +33,10 @@ export function AllocateResourceModal({ isOpen, onClose, onAllocate, resource }:
   const isValid = formData.projectId && formData.role && formData.startDate && formData.endDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <UserPlus className="h-5 w-5 text-white" />
@@ -49,9 +49,9 @@ export function AllocateResourceModal({ isOpen, onClose, onAllocate, resource }:
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {resource && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-900">Selected Resource</p>
               <p className="text-lg font-semibold text-blue-700">{resource.name}</p>
               <p className="text-sm text-blue-600">{resource.role} - {resource.dept}</p>
@@ -108,7 +108,7 @@ export function AllocateResourceModal({ isOpen, onClose, onAllocate, resource }:
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
               <input
@@ -171,7 +171,7 @@ export function AllocateResourceModal({ isOpen, onClose, onAllocate, resource }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -228,10 +228,10 @@ export function BulkAllocationModal({ isOpen, onClose, onAllocate }: BulkAllocat
   const isValid = selectedResources.length > 0 && projectId && startDate && endDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Users className="h-5 w-5 text-white" />
@@ -244,10 +244,10 @@ export function BulkAllocationModal({ isOpen, onClose, onAllocate }: BulkAllocat
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Resources *</label>
-            <div className="border border-gray-300 rounded-lg p-4 max-h-64 overflow-y-auto space-y-2">
+            <div className="border border-gray-300 rounded-lg p-3 max-h-64 overflow-y-auto space-y-2">
               {resources.map(resource => (
                 <div
                   key={resource.id}
@@ -293,7 +293,7 @@ export function BulkAllocationModal({ isOpen, onClose, onAllocate }: BulkAllocat
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
               <input
@@ -334,7 +334,7 @@ export function BulkAllocationModal({ isOpen, onClose, onAllocate }: BulkAllocat
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -372,10 +372,10 @@ export function ResourceDetailsModal({ isOpen, onClose, resource }: ResourceDeta
   const skills = ['Project Management', 'AutoCAD', 'Team Leadership', 'Quality Control', 'Electrical Systems'];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Users className="h-5 w-5 text-white" />
@@ -388,9 +388,9 @@ export function ResourceDetailsModal({ isOpen, onClose, resource }: ResourceDeta
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Profile Section */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-2xl font-bold text-purple-900">{resource.name}</h3>
@@ -407,16 +407,16 @@ export function ResourceDetailsModal({ isOpen, onClose, resource }: ResourceDeta
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-600 font-medium">Total Allocation</p>
               <p className="text-2xl font-bold text-blue-900 mt-1">90%</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm text-green-600 font-medium">Active Projects</p>
               <p className="text-2xl font-bold text-green-900 mt-1">2</p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-sm text-orange-600 font-medium">Billable Hours</p>
               <p className="text-2xl font-bold text-orange-900 mt-1">156</p>
             </div>
@@ -427,7 +427,7 @@ export function ResourceDetailsModal({ isOpen, onClose, resource }: ResourceDeta
             <h4 className="text-lg font-semibold text-gray-900 mb-3">Current Allocations</h4>
             <div className="space-y-3">
               {allocations.map((alloc, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                <div key={index} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 transition-colors">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <p className="font-semibold text-gray-900">{alloc.project}</p>
@@ -459,7 +459,7 @@ export function ResourceDetailsModal({ isOpen, onClose, resource }: ResourceDeta
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
@@ -499,10 +499,10 @@ export function EditAllocationModal({ isOpen, onClose, onUpdate, allocation }: E
   const isValid = formData.role && formData.startDate && formData.endDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Calendar className="h-5 w-5 text-white" />
@@ -515,9 +515,9 @@ export function EditAllocationModal({ isOpen, onClose, onUpdate, allocation }: E
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {allocation && (
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-sm font-medium text-orange-900">Allocation Details</p>
               <p className="text-lg font-semibold text-orange-700">{allocation.resourceName} → {allocation.project}</p>
             </div>
@@ -541,7 +541,7 @@ export function EditAllocationModal({ isOpen, onClose, onUpdate, allocation }: E
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
               <input
@@ -604,7 +604,7 @@ export function EditAllocationModal({ isOpen, onClose, onUpdate, allocation }: E
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -647,10 +647,10 @@ export function TransferResourceModal({ isOpen, onClose, onTransfer, resource }:
   const isValid = fromProject && toProject && transferDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <TrendingUp className="h-5 w-5 text-white" />
@@ -663,9 +663,9 @@ export function TransferResourceModal({ isOpen, onClose, onTransfer, resource }:
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {resource && (
-            <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+            <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
               <p className="text-sm font-medium text-indigo-900">Resource to Transfer</p>
               <p className="text-lg font-semibold text-indigo-700">{resource.name}</p>
               <p className="text-sm text-indigo-600">{resource.role} - {resource.dept}</p>
@@ -721,7 +721,7 @@ export function TransferResourceModal({ isOpen, onClose, onTransfer, resource }:
             />
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start space-x-3">
               <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5" />
               <div>
@@ -735,7 +735,7 @@ export function TransferResourceModal({ isOpen, onClose, onTransfer, resource }:
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -774,10 +774,10 @@ export function ResourceAvailabilityModal({ isOpen, onClose, startDate, endDate 
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Calendar className="h-5 w-5 text-white" />
@@ -790,8 +790,8 @@ export function ResourceAvailabilityModal({ isOpen, onClose, startDate, endDate 
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <p className="text-sm font-medium text-teal-900">Date Range</p>
             <p className="text-lg font-semibold text-teal-700">{startDate} to {endDate}</p>
           </div>
@@ -800,7 +800,7 @@ export function ResourceAvailabilityModal({ isOpen, onClose, startDate, endDate 
             <h4 className="text-lg font-semibold text-gray-900 mb-3">Available Resources ({availableResources.length})</h4>
             <div className="space-y-3">
               {availableResources.map(resource => (
-                <div key={resource.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                <div key={resource.id} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 transition-colors">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <p className="font-semibold text-gray-900">{resource.name}</p>
@@ -828,7 +828,7 @@ export function ResourceAvailabilityModal({ isOpen, onClose, startDate, endDate 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
@@ -865,10 +865,10 @@ export function WorkloadBalancingModal({ isOpen, onClose, onBalance }: WorkloadB
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <BarChart3 className="h-5 w-5 text-white" />
@@ -881,8 +881,8 @@ export function WorkloadBalancingModal({ isOpen, onClose, onBalance }: WorkloadB
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start space-x-3">
               <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5" />
               <div>
@@ -910,18 +910,18 @@ export function WorkloadBalancingModal({ isOpen, onClose, onBalance }: WorkloadB
           </div>
 
           {/* Summary Stats */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm text-red-600 font-medium">Over-utilized</p>
               <p className="text-2xl font-bold text-red-900 mt-1">2</p>
               <p className="text-xs text-red-600 mt-1">Above 85%</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm text-green-600 font-medium">Optimal</p>
               <p className="text-2xl font-bold text-green-900 mt-1">8</p>
               <p className="text-xs text-green-600 mt-1">60-85%</p>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-600 font-medium">Under-utilized</p>
               <p className="text-2xl font-bold text-blue-900 mt-1">2</p>
               <p className="text-xs text-blue-600 mt-1">Below 60%</p>
@@ -933,7 +933,7 @@ export function WorkloadBalancingModal({ isOpen, onClose, onBalance }: WorkloadB
             <h4 className="text-lg font-semibold text-gray-900 mb-3">Team Workload</h4>
             <div className="space-y-3">
               {workloadData.map(resource => (
-                <div key={resource.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={resource.id} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div>
                       <p className="font-semibold text-gray-900">{resource.name}</p>
@@ -965,7 +965,7 @@ export function WorkloadBalancingModal({ isOpen, onClose, onBalance }: WorkloadB
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1013,10 +1013,10 @@ export function RequestResourceModal({ isOpen, onClose, onRequest }: RequestReso
   const isValid = formData.projectId && formData.resourceType && formData.startDate && formData.endDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <UserPlus className="h-5 w-5 text-white" />
@@ -1029,7 +1029,7 @@ export function RequestResourceModal({ isOpen, onClose, onRequest }: RequestReso
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Project *</label>
             <select
@@ -1082,7 +1082,7 @@ export function RequestResourceModal({ isOpen, onClose, onRequest }: RequestReso
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Start Date *</label>
               <input
@@ -1148,7 +1148,7 @@ export function RequestResourceModal({ isOpen, onClose, onRequest }: RequestReso
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1193,10 +1193,10 @@ export function ReleaseResourceModal({ isOpen, onClose, onRelease, resource }: R
   const isValid = formData.projectId && formData.releaseDate;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <UserMinus className="h-5 w-5 text-white" />
@@ -1209,9 +1209,9 @@ export function ReleaseResourceModal({ isOpen, onClose, onRelease, resource }: R
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {resource && (
-            <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+            <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3">
               <p className="text-sm font-medium text-cyan-900">Resource to Release</p>
               <p className="text-lg font-semibold text-cyan-700">{resource.name}</p>
               <p className="text-sm text-cyan-600">{resource.role} - {resource.dept}</p>
@@ -1269,7 +1269,7 @@ export function ReleaseResourceModal({ isOpen, onClose, onRelease, resource }: R
             />
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start space-x-3">
               <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
               <div>
@@ -1283,7 +1283,7 @@ export function ReleaseResourceModal({ isOpen, onClose, onRelease, resource }: R
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1341,10 +1341,10 @@ export function ResourceSkillsModal({ isOpen, onClose, onSave, resource }: Resou
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Award className="h-5 w-5 text-white" />
@@ -1357,9 +1357,9 @@ export function ResourceSkillsModal({ isOpen, onClose, onSave, resource }: Resou
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {resource && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-900">Resource</p>
               <p className="text-lg font-semibold text-red-700">{resource.name}</p>
               <p className="text-sm text-red-600">{resource.role} - {resource.dept}</p>
@@ -1409,7 +1409,7 @@ export function ResourceSkillsModal({ isOpen, onClose, onSave, resource }: Resou
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Selected Skills ({selectedSkills.length})
             </label>
-            <div className="border border-gray-300 rounded-lg p-4 min-h-[100px]">
+            <div className="border border-gray-300 rounded-lg p-3 min-h-[100px]">
               {selectedSkills.length === 0 ? (
                 <p className="text-gray-500 text-center">No skills selected</p>
               ) : (
@@ -1435,7 +1435,7 @@ export function ResourceSkillsModal({ isOpen, onClose, onSave, resource }: Resou
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1481,10 +1481,10 @@ export function TimeTrackingModal({ isOpen, onClose, onSubmit, resource }: TimeT
   const isValid = formData.date && formData.project && formData.hours && formData.activity;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Clock className="h-5 w-5 text-white" />
@@ -1497,9 +1497,9 @@ export function TimeTrackingModal({ isOpen, onClose, onSubmit, resource }: TimeT
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {resource && (
-            <div className="bg-violet-50 border border-violet-200 rounded-lg p-4">
+            <div className="bg-violet-50 border border-violet-200 rounded-lg p-3">
               <p className="text-sm font-medium text-violet-900">Resource</p>
               <p className="text-lg font-semibold text-violet-700">{resource.name}</p>
             </div>
@@ -1586,7 +1586,7 @@ export function TimeTrackingModal({ isOpen, onClose, onSubmit, resource }: TimeT
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1632,10 +1632,10 @@ export function ResourceForecastModal({ isOpen, onClose, startDate, endDate }: R
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Zap className="h-5 w-5 text-white" />
@@ -1648,27 +1648,27 @@ export function ResourceForecastModal({ isOpen, onClose, startDate, endDate }: R
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
             <p className="text-sm font-medium text-emerald-900">Forecast Period</p>
             <p className="text-lg font-semibold text-emerald-700">{startDate} to {endDate}</p>
           </div>
 
           {/* Summary Stats */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-600 font-medium">Avg Required</p>
               <p className="text-2xl font-bold text-blue-900 mt-1">44</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm text-green-600 font-medium">Available</p>
               <p className="text-2xl font-bold text-green-900 mt-1">44</p>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm text-red-600 font-medium">Peak Shortage</p>
               <p className="text-2xl font-bold text-red-900 mt-1">8</p>
             </div>
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
               <p className="text-sm text-emerald-600 font-medium">Max Surplus</p>
               <p className="text-2xl font-bold text-emerald-900 mt-1">6</p>
             </div>
@@ -1720,7 +1720,7 @@ export function ResourceForecastModal({ isOpen, onClose, startDate, endDate }: R
             <h4 className="text-lg font-semibold text-gray-900 mb-3">Department-wise Forecast</h4>
             <div className="space-y-3">
               {departmentForecast.map((dept, index) => (
-                <div key={index} className="border border-gray-200 rounded-lg p-4">
+                <div key={index} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-2">
                     <p className="font-semibold text-gray-900">{dept.dept}</p>
                     <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
@@ -1740,7 +1740,7 @@ export function ResourceForecastModal({ isOpen, onClose, startDate, endDate }: R
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"

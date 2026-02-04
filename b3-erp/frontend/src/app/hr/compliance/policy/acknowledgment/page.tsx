@@ -212,8 +212,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <CheckCircle className="h-6 w-6 text-green-600" />
           Policy Acknowledgment Tracking
@@ -221,8 +221,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Track employee acknowledgment of company policies</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Total Assignments</p>
@@ -233,7 +233,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Acknowledged</p>
@@ -244,7 +244,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow-sm border border-yellow-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-yellow-600 uppercase tracking-wide">Pending</p>
@@ -255,7 +255,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg shadow-sm border border-red-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-red-600 uppercase tracking-wide">Overdue</p>
@@ -267,8 +267,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <div className="relative">
@@ -317,15 +317,15 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredAcknowledgments.length > 0 ? (
           filteredAcknowledgments.map((ack) => {
             const StatusIcon = statusIcons[ack.status];
             const daysOverdue = getDaysOverdue(ack.dueDate);
 
             return (
-              <div key={ack.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <div className="flex items-start justify-between mb-4">
+              <div key={ack.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-lg font-bold text-gray-900">{ack.policyName}</h3>
@@ -347,7 +347,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
                   <div className="bg-gray-50 rounded-lg p-3">
                     <p className="text-xs text-gray-600 uppercase font-medium mb-1">Assigned Date</p>
                     <p className="text-sm font-bold text-gray-900">
@@ -375,21 +375,21 @@ export default function Page() {
                 </div>
 
                 {ack.status === 'overdue' && (
-                  <div className="bg-red-50 rounded-lg p-3 border border-red-200 mb-4">
+                  <div className="bg-red-50 rounded-lg p-3 border border-red-200 mb-2">
                     <p className="text-xs text-red-600 uppercase font-medium mb-1">Days Overdue</p>
                     <p className="text-lg font-bold text-red-900">{daysOverdue} days</p>
                   </div>
                 )}
 
                 {ack.acknowledgedVia && (
-                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 mb-4">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 mb-2">
                     <p className="text-xs text-blue-600 uppercase font-medium mb-1">Acknowledged Via</p>
                     <p className="text-sm text-blue-900">{ack.acknowledgedVia.replace('_', ' ').toUpperCase()}</p>
                   </div>
                 )}
 
                 {ack.lastReminderDate && (
-                  <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200 mb-4">
+                  <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200 mb-2">
                     <p className="text-xs text-yellow-600 uppercase font-medium mb-1">Last Reminder Sent</p>
                     <p className="text-sm text-yellow-900">
                       {new Date(ack.lastReminderDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -398,7 +398,7 @@ export default function Page() {
                 )}
 
                 {ack.remarks && (
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2">
                     <p className="text-xs text-gray-600 uppercase font-medium mb-1">Remarks</p>
                     <p className="text-sm text-gray-900">{ack.remarks}</p>
                   </div>
@@ -424,7 +424,7 @@ export default function Page() {
           })
         ) : (
           <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
-            <CheckCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <CheckCircle className="h-12 w-12 text-gray-400 mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No acknowledgments found</h3>
             <p className="text-gray-600">No policy acknowledgments match the selected filters</p>
           </div>

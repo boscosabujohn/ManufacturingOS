@@ -295,11 +295,11 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleCancel}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -341,33 +341,33 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+        <div className="grid grid-cols-4 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <Package className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{totals.totalPackages}</div>
             <div className="text-blue-100 text-sm">Total Items</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
             <Weight className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{totals.totalWeight.toLocaleString()}</div>
             <div className="text-purple-100 text-sm">Total Weight (kg)</div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <Box className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{totals.totalVolume.toFixed(2)}</div>
             <div className="text-green-100 text-sm">Total Volume (m³)</div>
           </div>
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
             <DollarSign className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">₹{totals.totalCharges.toLocaleString()}</div>
             <div className="text-orange-100 text-sm">Total Charges</div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Basic Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                 <Truck className="w-5 h-5 text-blue-600" />
               </div>
@@ -377,7 +377,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Shipment Number <span className="text-red-500">*</span>
@@ -479,8 +479,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* Vehicle and Driver Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                 <User className="w-5 h-5 text-purple-600" />
               </div>
@@ -490,7 +490,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Vehicle Number <span className="text-red-500">*</span>
@@ -574,8 +574,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* From Location */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-green-600" />
               </div>
@@ -585,7 +585,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Warehouse <span className="text-red-500">*</span>
@@ -685,8 +685,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* To Location */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                 <Navigation className="w-5 h-5 text-orange-600" />
               </div>
@@ -696,7 +696,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Customer <span className="text-red-500">*</span>
@@ -796,8 +796,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* Schedule Details */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
                 <Calendar className="w-5 h-5 text-indigo-600" />
               </div>
@@ -807,7 +807,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-4 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Scheduled Pickup Date <span className="text-red-500">*</span>
@@ -912,8 +912,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* Items Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                   <Package className="w-5 h-5 text-green-600" />
@@ -934,16 +934,16 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
             </div>
 
             {errors.items && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+              <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-red-600" />
                 <span className="text-sm text-red-700">{errors.items}</span>
               </div>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {items.map((item, index) => (
                 <div key={item.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">Item {index + 1}</h4>
                     <button
                       type="button"
@@ -954,7 +954,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                     </button>
                   </div>
 
-                  <div className="grid grid-cols-6 gap-4">
+                  <div className="grid grid-cols-6 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Item Code <span className="text-red-500">*</span>
@@ -1071,8 +1071,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* Charges Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                 <DollarSign className="w-5 h-5 text-orange-600" />
               </div>
@@ -1082,7 +1082,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-3 gap-3 mb-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Freight Charges (₹) <span className="text-red-500">*</span>
@@ -1159,7 +1159,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 mb-6">
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 mb-3">
               <div className="flex items-center gap-2 mb-3">
                 <input
                   type="checkbox"
@@ -1174,7 +1174,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
 
               {formData.insuranceRequired && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-blue-900 mb-2">
                       Insurance Value (₹)
@@ -1222,8 +1222,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
           </div>
 
           {/* Additional Information */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5 text-gray-600" />
               </div>
@@ -1233,7 +1233,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Special Instructions

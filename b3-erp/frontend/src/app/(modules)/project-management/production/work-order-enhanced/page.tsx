@@ -331,7 +331,7 @@ export default function ProductionWorkOrderEnhancedPage() {
       case 0:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Package className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Product Information</h2>
             </div>
@@ -427,7 +427,7 @@ export default function ProductionWorkOrderEnhancedPage() {
       case 1:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Clock className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Schedule & Priority</h2>
             </div>
@@ -492,7 +492,7 @@ export default function ProductionWorkOrderEnhancedPage() {
       case 2:
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Cog className="w-5 h-5 text-blue-600" />
                 <h2 className="text-xl font-semibold text-gray-900">Operations Sequence</h2>
@@ -508,7 +508,7 @@ export default function ProductionWorkOrderEnhancedPage() {
               </button>
             </div>
 
-            <div className="bg-blue-50 rounded-lg p-4 mb-4">
+            <div className="bg-blue-50 rounded-lg p-3 mb-2">
               <div className="flex justify-between text-sm">
                 <span>Total Operations: <strong>{totals.operationCount}</strong></span>
                 <span>Setup Time: <strong>{formatTime(totals.totalSetupTime)}</strong></span>
@@ -519,7 +519,7 @@ export default function ProductionWorkOrderEnhancedPage() {
 
             <div className="space-y-3">
               {formData.operations.map((op) => (
-                <div key={op.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border">
+                <div key={op.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg border">
                   <div className="w-16">
                     <label className="block text-xs text-gray-500 mb-1">Seq</label>
                     <input
@@ -584,7 +584,7 @@ export default function ProductionWorkOrderEnhancedPage() {
       case 3:
         return (
           <div className="space-y-3">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Wrench className="w-5 h-5 text-blue-600" />
                 <h2 className="text-xl font-semibold text-gray-900">Material Requirements</h2>
@@ -702,7 +702,7 @@ export default function ProductionWorkOrderEnhancedPage() {
       case 4:
         return (
           <div className="space-y-3">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review Work Order</h2>
             </div>
@@ -710,7 +710,7 @@ export default function ProductionWorkOrderEnhancedPage() {
             <div className="bg-gray-50 rounded-lg p-3 space-y-3">
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Product</h3>
-                <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">WO Number:</span>
                     <p className="font-medium text-gray-900">{formData.woNumber}</p>
@@ -728,7 +728,7 @@ export default function ProductionWorkOrderEnhancedPage() {
 
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Schedule</h3>
-                <div className="grid grid-cols-4 gap-4 text-sm">
+                <div className="grid grid-cols-4 gap-2 text-sm">
                   <div>
                     <span className="text-gray-500">Start:</span>
                     <p className="font-medium text-gray-900">{formData.plannedStart}</p>
@@ -752,7 +752,7 @@ export default function ProductionWorkOrderEnhancedPage() {
 
               <div className="border-t pt-4">
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Summary</h3>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2">
                   <div className="bg-white rounded-lg p-3 border">
                     <p className="text-2xl font-bold text-gray-900">{totals.operationCount}</p>
                     <p className="text-sm text-gray-500">Operations</p>
@@ -782,9 +782,9 @@ export default function ProductionWorkOrderEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+      <div className="w-full px-3 py-2">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
@@ -792,7 +792,7 @@ export default function ProductionWorkOrderEnhancedPage() {
               <h1 className="text-2xl font-bold text-gray-900">Create Production Work Order</h1>
               <p className="text-sm text-gray-600 mt-1">Phase 5: Production</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator fields={formFields} values={formData as unknown as Record<string, unknown>} variant="circular" size="md" />
             </div>

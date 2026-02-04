@@ -119,14 +119,14 @@ export default function PayrollCalendarPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Payroll Calendar</h1>
         <p className="text-sm text-gray-600 mt-1">Monthly payroll processing schedule and deadlines</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Upcoming</p>
@@ -136,7 +136,7 @@ export default function PayrollCalendarPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">In Progress</p>
@@ -146,7 +146,7 @@ export default function PayrollCalendarPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -156,7 +156,7 @@ export default function PayrollCalendarPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Next Disbursement</p>
@@ -169,7 +169,7 @@ export default function PayrollCalendarPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex justify-between items-center">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Year</label>
@@ -193,10 +193,10 @@ export default function PayrollCalendarPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredCalendar.map(event => (
-          <div key={event.id} className={`bg-white rounded-lg shadow-sm border-2 ${statusColors[event.status]} p-6`}>
-            <div className="flex items-start justify-between mb-4">
+          <div key={event.id} className={`bg-white rounded-lg shadow-sm border-2 ${statusColors[event.status]} p-3`}>
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{event.monthYear}</h3>
@@ -213,7 +213,7 @@ export default function PayrollCalendarPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div className="space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-600 mb-1">Attendance Cutoff</p>
@@ -286,7 +286,7 @@ export default function PayrollCalendarPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Payroll Processing Timeline</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>Day 25:</strong> Attendance cutoff - Last day for attendance marking</li>
@@ -344,9 +344,9 @@ function CalendarEntryModal({ event, onSave, onClose }: CalendarEntryModalProps)
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900">
             {event ? 'Edit Calendar Entry' : 'Add Calendar Entry'}
           </h2>
@@ -358,8 +358,8 @@ function CalendarEntryModal({ event, onSave, onClose }: CalendarEntryModalProps)
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Month/Year *
@@ -392,8 +392,8 @@ function CalendarEntryModal({ event, onSave, onClose }: CalendarEntryModalProps)
           </div>
 
           <div className="border-t border-gray-200 pt-4">
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Important Dates</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="text-sm font-semibold text-gray-900 mb-2">Important Dates</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Attendance Cutoff Date *

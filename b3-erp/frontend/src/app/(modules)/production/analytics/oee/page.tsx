@@ -201,10 +201,10 @@ export default function OEEAnalyticsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -225,8 +225,8 @@ export default function OEEAnalyticsPage() {
       </div>
 
       {/* Period Selector */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-400" />
           <select
             value={selectedPeriod}
@@ -242,8 +242,8 @@ export default function OEEAnalyticsPage() {
       </div>
 
       {/* OEE Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">OEE</p>
@@ -259,7 +259,7 @@ export default function OEEAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Availability</p>
@@ -272,7 +272,7 @@ export default function OEEAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Performance</p>
@@ -285,7 +285,7 @@ export default function OEEAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Quality</p>
@@ -300,9 +300,9 @@ export default function OEEAnalyticsPage() {
       </div>
 
       {/* OEE Formula Breakdown */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">OEE Calculation Breakdown</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">OEE Calculation Breakdown</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div className="p-4 bg-green-50 border-2 border-green-200 rounded-lg">
             <div className="flex items-center gap-2 mb-3">
               <Activity className="w-5 h-5 text-green-600" />
@@ -342,7 +342,7 @@ export default function OEEAnalyticsPage() {
             </div>
           </div>
         </div>
-        <div className="mt-6 p-4 bg-purple-50 border-2 border-purple-200 rounded-lg">
+        <div className="mt-6 p-3 bg-purple-50 border-2 border-purple-200 rounded-lg">
           <div className="flex items-center justify-between">
             <div>
               <h4 className="text-md font-bold text-purple-900 mb-1">Overall Equipment Effectiveness (OEE)</h4>
@@ -357,8 +357,8 @@ export default function OEEAnalyticsPage() {
       </div>
 
       {/* Monthly Trend */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Monthly OEE Trend</h3>
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Monthly OEE Trend</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
@@ -400,8 +400,8 @@ export default function OEEAnalyticsPage() {
       </div>
 
       {/* Equipment-wise OEE */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Equipment-wise OEE Performance</h3>
+      <div className="bg-white rounded-xl border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Equipment-wise OEE Performance</h3>
         <div className="space-y-3">
           {equipmentOEE.map((eq, idx) => (
             <div key={idx} className="p-4 bg-gray-50 rounded-lg">

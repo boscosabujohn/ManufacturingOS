@@ -155,8 +155,8 @@ export default function ExpenseSummaryPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex justify-between items-start">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <BarChart3 className="h-7 w-7 text-purple-600" />
@@ -174,8 +174,8 @@ export default function ExpenseSummaryPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-purple-700">Total Claims</p>
             <Receipt className="h-8 w-8 text-purple-400" />
@@ -184,7 +184,7 @@ export default function ExpenseSummaryPage() {
           <p className="text-xs text-purple-600 mt-1">Year to date</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-blue-700">Total Amount</p>
             <DollarSign className="h-8 w-8 text-blue-400" />
@@ -193,7 +193,7 @@ export default function ExpenseSummaryPage() {
           <p className="text-xs text-blue-600 mt-1">All categories</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-green-700">Approval Rate</p>
             <TrendingUp className="h-8 w-8 text-green-400" />
@@ -202,7 +202,7 @@ export default function ExpenseSummaryPage() {
           <p className="text-xs text-green-600 mt-1">₹{(yearlyTotals.approvedAmount / 100000).toFixed(1)}L approved</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-orange-700">Avg Claim</p>
             <Users className="h-8 w-8 text-orange-400" />
@@ -213,8 +213,8 @@ export default function ExpenseSummaryPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Year</label>
             <select
@@ -244,8 +244,8 @@ export default function ExpenseSummaryPage() {
       </div>
 
       {/* Monthly Trend */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <Calendar className="h-5 w-5 text-purple-600" />
           Monthly Expense Trend
         </h2>
@@ -253,33 +253,33 @@ export default function ExpenseSummaryPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claims</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approved</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rejected</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pending</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claims</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approved</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rejected</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pending</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Amount</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {monthlyData.map((month) => (
                 <tr key={month.month} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{month.month}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{month.totalClaims}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{month.month}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-700">{month.totalClaims}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">
                     ₹{(month.totalAmount / 100000).toFixed(1)}L
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">
                     ₹{(month.approvedAmount / 100000).toFixed(1)}L
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-red-600">
                     ₹{(month.rejectedAmount / 1000).toFixed(0)}k
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-orange-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-orange-600">
                     ₹{(month.pendingAmount / 1000).toFixed(0)}k
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-700">
                     ₹{(month.avgClaimAmount / 1000).toFixed(1)}k
                   </td>
                 </tr>
@@ -287,21 +287,21 @@ export default function ExpenseSummaryPage() {
             </tbody>
             <tfoot className="bg-purple-50">
               <tr>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-purple-900">TOTAL</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-purple-900">{yearlyTotals.totalClaims}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-purple-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-purple-900">TOTAL</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-purple-900">{yearlyTotals.totalClaims}</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-purple-900">
                   ₹{(yearlyTotals.totalAmount / 10000000).toFixed(2)}Cr
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-700">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-green-700">
                   ₹{(yearlyTotals.approvedAmount / 10000000).toFixed(2)}Cr
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-red-700">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-red-700">
                   ₹{(yearlyTotals.rejectedAmount / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-orange-700">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-orange-700">
                   ₹{(yearlyTotals.pendingAmount / 100000).toFixed(1)}L
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-purple-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-bold text-purple-900">
                   ₹{(avgClaimAmount / 1000).toFixed(1)}k
                 </td>
               </tr>
@@ -311,12 +311,12 @@ export default function ExpenseSummaryPage() {
       </div>
 
       {/* Category Breakdown */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <BarChart3 className="h-5 w-5 text-purple-600" />
           Expense by Category
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {categoryData.map((cat) => (
             <div key={cat.category}>
               <div className="flex justify-between items-center mb-2">
@@ -341,8 +341,8 @@ export default function ExpenseSummaryPage() {
       </div>
 
       {/* Status Summary */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-semibold text-green-900">Approved</h3>
             <TrendingUp className="h-5 w-5 text-green-600" />
@@ -351,7 +351,7 @@ export default function ExpenseSummaryPage() {
           <p className="text-sm text-green-700 mt-1">{approvalRate}% of total claims</p>
         </div>
 
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-semibold text-red-900">Rejected</h3>
             <TrendingDown className="h-5 w-5 text-red-600" />
@@ -360,7 +360,7 @@ export default function ExpenseSummaryPage() {
           <p className="text-sm text-red-700 mt-1">{rejectionRate}% of total claims</p>
         </div>
 
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-semibold text-orange-900">Pending</h3>
             <Calendar className="h-5 w-5 text-orange-600" />

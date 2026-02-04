@@ -72,9 +72,9 @@ export default function EmergencyPlansPage() {
   const [selectedPlan, setSelectedPlan] = useState<any>(emergencyPlans[0]);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <ShieldAlert className="h-8 w-8 text-orange-600" />
@@ -88,9 +88,9 @@ export default function EmergencyPlansPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Plans Navigation */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -110,7 +110,7 @@ export default function EmergencyPlansPage() {
                     : 'bg-white border-gray-100 hover:border-orange-100'
                   }`}
               >
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <div className={`p-3 rounded-lg ${plan.backgroundColor} ${plan.color}`}>
                     <plan.icon className="w-6 h-6" />
                   </div>
@@ -124,7 +124,7 @@ export default function EmergencyPlansPage() {
             ))}
           </div>
 
-          <div className="bg-blue-600 p-6 rounded-xl text-white shadow-xl relative overflow-hidden">
+          <div className="bg-blue-600 p-3 rounded-xl text-white shadow-xl relative overflow-hidden">
             <div className="relative z-10">
               <h4 className="font-bold text-lg mb-2">Drill Effectiveness</h4>
               <p className="text-xs text-blue-50 text-opacity-80 leading-relaxed font-medium">
@@ -139,10 +139,10 @@ export default function EmergencyPlansPage() {
         </div>
 
         {/* Plan Detail View */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden text-sm">
             <div className="p-6 border-b border-gray-100 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <div className={`p-3 rounded-xl ${selectedPlan.backgroundColor} ${selectedPlan.color}`}>
                   <selectedPlan.icon className="w-8 h-8" />
                 </div>
@@ -162,10 +162,10 @@ export default function EmergencyPlansPage() {
             <div className="p-6 space-y-8">
               {/* Quick Response Steps */}
               <div>
-                <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                   <FileText className="w-3.5 h-3.5" /> Core Response Sequence
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-medium">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 font-medium">
                   {[
                     { step: '1', title: 'Isolation', desc: 'Secure the immediate area and isolate hazards.' },
                     { step: '2', title: 'Activation', desc: 'Trigger the specific alert systems for this plan.' },
@@ -183,7 +183,7 @@ export default function EmergencyPlansPage() {
               {/* Assigned Coordinators */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                     <Users className="w-3.5 h-3.5" /> Plan Leadership
                   </h3>
                   <div className="space-y-3">
@@ -202,7 +202,7 @@ export default function EmergencyPlansPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> Compliance Checklist
                   </h3>
                   <div className="space-y-2">
@@ -222,7 +222,7 @@ export default function EmergencyPlansPage() {
               </div>
             </div>
 
-            <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-between items-center px-8">
+            <div className="bg-gray-50 p-3 border-t border-gray-100 flex justify-between items-center px-8">
               <button className="text-xs font-bold text-orange-600 hover:underline">Download Comprehensive PDF Guide</button>
               <button className="px-6 py-2 bg-gray-900 text-white rounded-lg text-xs font-bold shadow-sm hover:bg-black transition-colors uppercase tracking-widest">Acknowledge Training</button>
             </div>

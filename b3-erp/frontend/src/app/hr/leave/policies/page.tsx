@@ -11,7 +11,7 @@ export default function LeavePoliciesPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -31,7 +31,7 @@ export default function LeavePoliciesPage() {
       </div>
 
       {/* Compliance Banner */}
-      <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+      <div className="bg-green-50 border-2 border-green-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <Scale className="w-6 h-6 text-green-600 mt-0.5" />
           <div>
@@ -45,13 +45,13 @@ export default function LeavePoliciesPage() {
       </div>
 
       {/* Policy Sections */}
-      <div className="space-y-4">
+      <div className="space-y-2">
 
         {/* General Leave Policy */}
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('general')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <FileText className="w-5 h-5 text-blue-600" />
@@ -64,7 +64,7 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'general' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Eligibility</h3>
                 <ul className="text-sm text-gray-700 space-y-1 ml-4">
@@ -100,7 +100,7 @@ export default function LeavePoliciesPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('earned')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">🌴</span>
@@ -113,8 +113,8 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'earned' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-sm text-blue-800"><strong>Legal Basis:</strong> Factories Act 1948 - Section 79</p>
               </div>
               <div>
@@ -150,7 +150,7 @@ export default function LeavePoliciesPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('casual')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">📅</span>
@@ -163,7 +163,7 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'casual' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Entitlement</h3>
                 <ul className="text-sm text-gray-700 space-y-1 ml-4">
@@ -198,7 +198,7 @@ export default function LeavePoliciesPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('sick')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">🏥</span>
@@ -211,7 +211,7 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'sick' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Entitlement</h3>
                 <ul className="text-sm text-gray-700 space-y-1 ml-4">
@@ -246,7 +246,7 @@ export default function LeavePoliciesPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('maternity')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">👶</span>
@@ -259,8 +259,8 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'maternity' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
-              <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
+              <div className="bg-pink-50 border border-pink-200 rounded-lg p-3">
                 <p className="text-sm text-pink-800"><strong>Legal Basis:</strong> Maternity Benefit Act 1961 (Amended 2017)</p>
               </div>
               <div>
@@ -304,7 +304,7 @@ export default function LeavePoliciesPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('comp')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">⏰</span>
@@ -317,7 +317,7 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'comp' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">When Granted</h3>
                 <ul className="text-sm text-gray-700 space-y-1 ml-4">
@@ -352,7 +352,7 @@ export default function LeavePoliciesPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <button
             onClick={() => toggleSection('festival')}
-            className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+            className="w-full p-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl">🎉</span>
@@ -365,7 +365,7 @@ export default function LeavePoliciesPage() {
             )}
           </button>
           {expandedSection === 'festival' && (
-            <div className="p-6 border-t border-gray-200 space-y-4">
+            <div className="p-6 border-t border-gray-200 space-y-2">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Entitlement</h3>
                 <ul className="text-sm text-gray-700 space-y-1 ml-4">
@@ -397,12 +397,12 @@ export default function LeavePoliciesPage() {
       </div>
 
       {/* FAQs */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-blue-600" />
           Frequently Asked Questions
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div>
             <h3 className="font-semibold text-gray-900 text-sm mb-1">Q: What happens to unused leave at year end?</h3>
             <p className="text-sm text-gray-700 ml-4">A: Earned Leave can be carried forward (max 30 days) or encashed. Casual Leave and Sick Leave expire and cannot be carried forward.</p>
@@ -427,7 +427,7 @@ export default function LeavePoliciesPage() {
       </div>
 
       {/* Contact Information */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">Need Help?</h3>
         <p className="text-sm text-blue-800">
           For any queries regarding leave policies, contact HR Department:

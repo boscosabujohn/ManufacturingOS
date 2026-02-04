@@ -237,7 +237,7 @@ function InsightCard({
       {isExpanded && (
         <div className="px-4 pb-4 border-t border-gray-100 dark:border-gray-700 pt-4">
           {/* Prediction */}
-          <div className="mb-4 p-3 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg">
+          <div className="mb-2 p-3 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="w-4 h-4 text-indigo-600" />
               <span className="text-sm font-medium text-indigo-600">AI Prediction</span>
@@ -250,7 +250,7 @@ function InsightCard({
 
           {/* Metrics */}
           {insight.metrics.length > 0 && (
-            <div className="mb-4">
+            <div className="mb-2">
               <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                 Predicted Changes
               </h4>
@@ -263,7 +263,7 @@ function InsightCard({
           )}
 
           {/* Impact */}
-          <div className="mb-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+          <div className="mb-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
             <div className="flex items-center gap-2 mb-1">
               <AlertTriangle className="w-4 h-4 text-amber-600" />
               <span className="text-sm font-medium text-amber-600">Business Impact</span>
@@ -493,7 +493,7 @@ export function AIInsightsPanel({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -530,7 +530,7 @@ export function AIInsightsPanel({
       </div>
 
       {/* Filter Bar */}
-      <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setFilter('all')}
@@ -564,7 +564,7 @@ export function AIInsightsPanel({
       </div>
 
       {/* Insights List */}
-      <div className="p-6 space-y-4 max-h-[700px] overflow-y-auto">
+      <div className="p-6 space-y-2 max-h-[700px] overflow-y-auto">
         {filteredInsights.map(insight => (
           <InsightCard
             key={insight.id}
@@ -580,7 +580,7 @@ export function AIInsightsPanel({
 
         {filteredInsights.length === 0 && (
           <div className="text-center py-12 text-gray-500">
-            <Brain className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+            <Brain className="w-12 h-12 mb-3 text-gray-300" />
             <p>No insights for the selected category</p>
           </div>
         )}

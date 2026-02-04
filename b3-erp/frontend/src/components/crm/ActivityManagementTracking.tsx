@@ -138,7 +138,7 @@ export default function ActivityManagementTracking() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900 flex items-center">
@@ -149,8 +149,8 @@ export default function ActivityManagementTracking() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Activities</p>
@@ -160,7 +160,7 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed Today</p>
@@ -170,7 +170,7 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -180,7 +180,7 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Overdue</p>
@@ -190,7 +190,7 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Calls Made</p>
@@ -200,7 +200,7 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Emails Sent</p>
@@ -210,7 +210,7 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-teal-600">Email Open Rate</p>
@@ -222,7 +222,7 @@ export default function ActivityManagementTracking() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center space-x-3">
           <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
             <Phone className="h-4 w-4" />
@@ -248,7 +248,7 @@ export default function ActivityManagementTracking() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center space-x-4">
           <select
             value={filterType}
@@ -278,13 +278,13 @@ export default function ActivityManagementTracking() {
       </div>
 
       {/* Activity Timeline */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
           <Clock className="h-5 w-5 text-green-600 mr-2" />
           Activity Timeline
         </h3>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredActivities.map((activity, index) => {
             const ActivityIcon = activityIcons[activity.type];
             const isLast = index === filteredActivities.length - 1;
@@ -303,7 +303,7 @@ export default function ActivityManagementTracking() {
                   </div>
 
                   {/* Activity Content */}
-                  <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                  <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
                         <div className="flex items-center space-x-3 mb-1">
@@ -347,9 +347,9 @@ export default function ActivityManagementTracking() {
       </div>
 
       {/* Sales Activity Reports */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
             <Users className="h-5 w-5 text-blue-600 mr-2" />
             Activity by Team Member
           </h3>
@@ -374,8 +374,8 @@ export default function ActivityManagementTracking() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
             <MessageSquare className="h-5 w-5 text-purple-600 mr-2" />
             Activity Type Breakdown
           </h3>

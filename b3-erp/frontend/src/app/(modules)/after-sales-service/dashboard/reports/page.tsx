@@ -269,7 +269,7 @@ export default function ReportsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -292,8 +292,8 @@ export default function ReportsPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Scheduled Reports</span>
             <Calendar className="w-4 h-4 text-blue-600" />
@@ -306,7 +306,7 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Generated Today</span>
             <FileText className="w-4 h-4 text-green-600" />
@@ -315,7 +315,7 @@ export default function ReportsPage() {
           <div className="text-xs text-gray-500 mt-1">+3 from yesterday</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Report Templates</span>
             <FileSpreadsheet className="w-4 h-4 text-purple-600" />
@@ -324,7 +324,7 @@ export default function ReportsPage() {
           <div className="text-xs text-gray-500 mt-1">Available templates</div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">In Progress</span>
             <Clock className="w-4 h-4 text-orange-600" />
@@ -338,7 +338,7 @@ export default function ReportsPage() {
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <button
             onClick={() => setActiveTab('scheduled')}
             className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
@@ -364,7 +364,7 @@ export default function ReportsPage() {
 
       {/* Scheduled Reports Tab */}
       {activeTab === 'scheduled' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {scheduledReports.map((report) => (
             <div key={report.id} className="bg-white p-5 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between">
@@ -380,7 +380,7 @@ export default function ReportsPage() {
                   </div>
                   <p className="text-sm text-gray-600 mb-3">{report.description}</p>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                     <div>
                       <span className="text-gray-500">Type:</span>
                       <span className="ml-2 font-medium text-gray-900">{report.reportType}</span>
@@ -456,14 +456,14 @@ export default function ReportsPage() {
 
       {/* Report Templates Tab */}
       {activeTab === 'templates' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {reportTemplates.map((template) => (
             <div
               key={template.id}
-              className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-all hover:border-blue-300 cursor-pointer"
+              className="bg-white p-3 rounded-lg border border-gray-200 hover:shadow-lg transition-all hover:border-blue-300 cursor-pointer"
               onClick={() => handleGenerateReport(template)}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="bg-gray-50 p-3 rounded-lg">
                   {template.icon}
                 </div>
@@ -473,9 +473,9 @@ export default function ReportsPage() {
               </div>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{template.name}</h3>
-              <p className="text-sm text-gray-600 mb-4">{template.description}</p>
+              <p className="text-sm text-gray-600 mb-2">{template.description}</p>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="text-xs font-medium text-gray-500 mb-2">Includes:</div>
                 <div className="flex flex-wrap gap-1">
                   {template.dataPoints.slice(0, 3).map((point, idx) => (
@@ -528,11 +528,11 @@ export default function ReportsPage() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Date Range */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-xs text-gray-500 mb-1">From</label>
                     <input
@@ -622,7 +622,7 @@ export default function ReportsPage() {
               {/* Data Points Preview */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Data Points Included</label>
-                <div className="bg-gray-50 p-4 rounded-md">
+                <div className="bg-gray-50 p-3 rounded-md">
                   <div className="grid grid-cols-2 gap-2">
                     {selectedTemplate.dataPoints.map((point, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-sm">

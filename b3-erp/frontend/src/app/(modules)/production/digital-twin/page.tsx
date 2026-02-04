@@ -41,7 +41,7 @@ function QuickStats() {
   ];
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
@@ -190,11 +190,11 @@ export default function DigitalTwinPage() {
       default:
         // Overview - show all components in a compact layout
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Factory Floor and Equipment Health */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                   <Box className="w-5 h-5 text-indigo-600" />
                   3D Factory Floor
                 </h3>
@@ -205,7 +205,7 @@ export default function DigitalTwinPage() {
                 />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-emerald-600" />
                   Equipment Health
                 </h3>
@@ -218,7 +218,7 @@ export default function DigitalTwinPage() {
 
             {/* Simulation */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                 <Sliders className="w-5 h-5 text-violet-600" />
                 Production Simulation
               </h3>
@@ -230,7 +230,7 @@ export default function DigitalTwinPage() {
 
             {/* Asset Tracking */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-cyan-600" />
                 Asset Tracking
               </h3>
@@ -246,9 +246,9 @@ export default function DigitalTwinPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6 max-w-full px-4">
+    <div className="w-full py-2 space-y-3 max-w-full px-4">
       {/* Page Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">

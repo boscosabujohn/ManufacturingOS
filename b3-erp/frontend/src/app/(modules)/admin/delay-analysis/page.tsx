@@ -140,7 +140,7 @@ export default function DelayAnalysisPage() {
     const phases = ['all', ...Array.from(new Set(delayData.map((d) => d.phase)))]
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
             {/* Header */}
             <div className="flex justify-between items-start">
                 <div>
@@ -172,8 +172,8 @@ export default function DelayAnalysisPage() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Total Delayed Approvals</p>
@@ -186,7 +186,7 @@ export default function DelayAnalysisPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Average Delay Time</p>
@@ -201,7 +201,7 @@ export default function DelayAnalysisPage() {
                     </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Maximum Delay</p>
@@ -218,7 +218,7 @@ export default function DelayAnalysisPage() {
             </div>
 
             {/* Phase Filter */}
-            <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
                 <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-sm font-medium text-gray-700">Filter by Phase:</span>
                     {phases.map((phase) => (
@@ -237,8 +237,8 @@ export default function DelayAnalysisPage() {
             </div>
 
             {/* Delay Chart */}
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     Delay Comparison by Workflow
                 </h3>
                 <ResponsiveContainer width="100%" height={400}>
@@ -264,25 +264,25 @@ export default function DelayAnalysisPage() {
                     <table className="min-w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Workflow
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Phase
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Delay Count
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Avg Delay (h)
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Max Delay (h)
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Common Reasons
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>
@@ -290,30 +290,30 @@ export default function DelayAnalysisPage() {
                         <tbody className="bg-white divide-y divide-gray-200">
                             {filteredData.map((delay, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <div className="text-sm font-medium text-gray-900">{delay.workflowName}</div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <span className="inline-flex px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
                                             {delay.phase}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <div className="flex items-center">
                                             <span className="text-sm font-semibold text-red-600">
                                                 {delay.delayCount}
                                             </span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <span className="text-sm text-gray-900">{delay.avgDelay.toFixed(1)}</span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <span className="text-sm font-medium text-red-600">
                                             {delay.maxDelay.toFixed(1)}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <div className="text-sm text-gray-600 space-y-1">
                                             {delay.commonReasons.map((reason, idx) => (
                                                 <div key={idx} className="flex items-start gap-1">
@@ -323,7 +323,7 @@ export default function DelayAnalysisPage() {
                                             ))}
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
                                             View Details
                                             <ChevronRight className="h-4 w-4" />
@@ -337,31 +337,31 @@ export default function DelayAnalysisPage() {
             </div>
 
             {/* Recommendations */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <AlertTriangle className="h-5 w-5 text-blue-600" />
                     Recommendations to Reduce Delays
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div className="bg-white p-3 rounded-lg">
                         <h4 className="font-medium text-gray-900 mb-2">Automate Reminders</h4>
                         <p className="text-sm text-gray-600">
                             Set up automatic email reminders 2 hours before SLA deadline to reduce "Approver unavailable" delays.
                         </p>
                     </div>
-                    <div className="bg-white p-4 rounded-lg">
+                    <div className="bg-white p-3 rounded-lg">
                         <h4 className="font-medium text-gray-900 mb-2">Delegate Authority</h4>
                         <p className="text-sm text-gray-600">
                             Allow backup approvers for high-workload periods to prevent bottlenecks.
                         </p>
                     </div>
-                    <div className="bg-white p-4 rounded-lg">
+                    <div className="bg-white p-3 rounded-lg">
                         <h4 className="font-medium text-gray-900 mb-2">Pre-Fill Data</h4>
                         <p className="text-sm text-gray-600">
                             Implement data validation at submission to reduce "Missing information" delays.
                         </p>
                     </div>
-                    <div className="bg-white p-4 rounded-lg">
+                    <div className="bg-white p-3 rounded-lg">
                         <h4 className="font-medium text-gray-900 mb-2">Parallel Approvals</h4>
                         <p className="text-sm text-gray-600">
                             Enable parallel approvals for non-dependent levels to reduce total cycle time.

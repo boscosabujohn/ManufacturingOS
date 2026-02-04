@@ -6,8 +6,8 @@ import { Server, Database, Zap, Activity, Cpu, HardDrive, Network, ArrowRight } 
 
 export default function ScalabilityPage() {
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 {/* Header */}
                 <div className="flex justify-between items-center">
                     <div>
@@ -21,10 +21,10 @@ export default function ScalabilityPage() {
                 </div>
 
                 {/* Quick Links */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <Link href="/it-admin/system/scalability/load-balancing" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-blue-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-blue-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition-colors">
                                     <Network className="w-6 h-6 text-blue-600" />
                                 </div>
@@ -36,8 +36,8 @@ export default function ScalabilityPage() {
                     </Link>
 
                     <Link href="/it-admin/system/scalability/caching" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-purple-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-purple-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-purple-50 rounded-lg group-hover:bg-purple-100 transition-colors">
                                     <Zap className="w-6 h-6 text-purple-600" />
                                 </div>
@@ -49,8 +49,8 @@ export default function ScalabilityPage() {
                     </Link>
 
                     <Link href="/it-admin/system/scalability/sharding" className="block group">
-                        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-all hover:border-orange-500">
-                            <div className="flex items-center justify-between mb-4">
+                        <div className="bg-white rounded-xl border border-gray-200 p-3 hover:shadow-md transition-all hover:border-orange-500">
+                            <div className="flex items-center justify-between mb-2">
                                 <div className="p-3 bg-orange-50 rounded-lg group-hover:bg-orange-100 transition-colors">
                                     <Database className="w-6 h-6 text-orange-600" />
                                 </div>
@@ -63,10 +63,10 @@ export default function ScalabilityPage() {
                 </div>
 
                 {/* System Metrics */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white rounded-xl border border-gray-200 p-6">
-                        <h2 className="text-lg font-bold text-gray-900 mb-6">Resource Usage</h2>
-                        <div className="space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                    <div className="bg-white rounded-xl border border-gray-200 p-3">
+                        <h2 className="text-lg font-bold text-gray-900 mb-3">Resource Usage</h2>
+                        <div className="space-y-3">
                             <div>
                                 <div className="flex justify-between items-center mb-2">
                                     <div className="flex items-center gap-2">
@@ -106,9 +106,9 @@ export default function ScalabilityPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-xl border border-gray-200 p-6">
-                        <h2 className="text-lg font-bold text-gray-900 mb-6">Performance Alerts</h2>
-                        <div className="space-y-4">
+                    <div className="bg-white rounded-xl border border-gray-200 p-3">
+                        <h2 className="text-lg font-bold text-gray-900 mb-3">Performance Alerts</h2>
+                        <div className="space-y-2">
                             {[
                                 { title: 'High Latency Detected', desc: 'API Gateway latency spiked to 250ms', time: '10 mins ago', type: 'warning' },
                                 { title: 'Cache Hit Rate Drop', desc: 'Redis cache hit rate dropped below 85%', time: '1 hour ago', type: 'warning' },

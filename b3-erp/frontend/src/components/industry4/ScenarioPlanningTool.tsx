@@ -282,7 +282,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
   };
 
   const renderScenariosList = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Disruption Type Cards */}
       <div>
         <h3 className="text-sm font-semibold text-gray-700 mb-3">Create New Scenario</h3>
@@ -291,7 +291,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
             <button
               key={type}
               onClick={() => handleCreateScenario(type)}
-              className="bg-white border border-gray-200 rounded-lg p-4 text-left hover:border-blue-500 hover:shadow-md transition-all"
+              className="bg-white border border-gray-200 rounded-lg p-3 text-left hover:border-blue-500 hover:shadow-md transition-all"
             >
               <div className="text-2xl mb-2">{template.icon}</div>
               <div className="font-medium text-sm text-gray-800">{template.name}</div>
@@ -308,7 +308,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
           {scenarios.map(scenario => (
             <div
               key={scenario.id}
-              className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+              className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer"
               onClick={() => {
                 setSelectedScenario(scenario);
                 setActiveView('analyze');
@@ -349,7 +349,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
               </div>
 
               {scenario.status === 'completed' && (
-                <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t">
+                <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t">
                   <div className="text-center">
                     <div className="text-lg font-bold text-red-600">
                       ${(scenario.estimatedLoss / 1000000).toFixed(2)}M
@@ -382,8 +382,8 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
     const template = disruptionTemplates[newScenario.disruptionType!];
 
     return (
-      <div className="space-y-6">
-        <div className="flex items-center gap-4 mb-4">
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 mb-2">
           <button
             onClick={() => {
               setNewScenario(null);
@@ -400,7 +400,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Scenario Name</label>
             <input
@@ -443,9 +443,9 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Scenario Parameters</label>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {newScenario.parameters?.map((param, idx) => (
-                <div key={param.id} className="bg-gray-50 rounded-lg p-4">
+                <div key={param.id} className="bg-gray-50 rounded-lg p-3">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-medium text-sm text-gray-700">{param.name}</span>
                     <span className="text-sm font-bold text-blue-600">
@@ -507,9 +507,9 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
     const template = disruptionTemplates[selectedScenario.disruptionType];
 
     return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-4">
+      <div className="space-y-3">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => {
                 setSelectedScenario(null);
@@ -542,9 +542,9 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
         </div>
 
         {/* Parameters Summary */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <h4 className="text-sm font-semibold text-gray-700 mb-3">Scenario Parameters</h4>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             {selectedScenario.parameters.map(param => (
               <div key={param.id} className="bg-gray-50 rounded-lg p-3 text-center">
                 <div className="text-2xl font-bold text-gray-800">{param.value}</div>
@@ -561,7 +561,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
 
         {/* Impact Analysis */}
         {selectedScenario.impacts.length > 0 && (
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-700 mb-3">Impact Analysis</h4>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -602,14 +602,14 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t">
-              <div className="bg-red-50 rounded-lg p-4 text-center">
+            <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t">
+              <div className="bg-red-50 rounded-lg p-3 text-center">
                 <div className="text-3xl font-bold text-red-600">
                   ${(selectedScenario.estimatedLoss / 1000000).toFixed(2)}M
                 </div>
                 <div className="text-sm text-red-700">Estimated Financial Impact</div>
               </div>
-              <div className="bg-amber-50 rounded-lg p-4 text-center">
+              <div className="bg-amber-50 rounded-lg p-3 text-center">
                 <div className="text-3xl font-bold text-amber-600">
                   {selectedScenario.recoveryTime} days
                 </div>
@@ -621,13 +621,13 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
 
         {/* Mitigation Actions */}
         {selectedScenario.mitigations.length > 0 && (
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-700 mb-3">Recommended Mitigation Actions</h4>
             <div className="space-y-3">
               {selectedScenario.mitigations.map(mitigation => (
                 <div
                   key={mitigation.id}
-                  className="border border-gray-200 rounded-lg p-4"
+                  className="border border-gray-200 rounded-lg p-3"
                 >
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex items-center gap-2">
@@ -640,7 +640,7 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
                       <span className="font-medium text-gray-800">{mitigation.action}</span>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-4 mt-3">
+                  <div className="grid grid-cols-3 gap-2 mt-3">
                     <div className="text-center bg-green-50 rounded p-2">
                       <div className="text-lg font-bold text-green-600">{mitigation.effectiveness}%</div>
                       <div className="text-xs text-green-700">Effectiveness</div>
@@ -664,8 +664,8 @@ const ScenarioPlanningTool: React.FC<ScenarioPlanningToolProps> = ({ className =
   };
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="flex justify-between items-center mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="flex justify-between items-center mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Scenario Planning Tool</h2>
           <p className="text-sm text-gray-600">Interactive what-if analysis for disruption scenarios</p>

@@ -83,10 +83,10 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+      <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div>
             <h2 className="text-2xl font-bold flex items-center gap-2">
               <Briefcase className="w-6 h-6" />
@@ -104,12 +104,12 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Basic Information Section */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-purple-600" />
               Basic Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Designation Title <span className="text-red-500">*</span>
@@ -474,12 +474,12 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
           </div>
 
           {/* Salary Range Section */}
-          <div className="mb-6 bg-green-50 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3 bg-green-50 rounded-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-green-600" />
               Salary Range
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Minimum Salary (Annual) <span className="text-red-500">*</span>
@@ -526,8 +526,8 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
           </div>
 
           {/* Responsibilities Section */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Award className="w-5 h-5 text-blue-600" />
               Key Responsibilities
             </h3>
@@ -564,8 +564,8 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
           </div>
 
           {/* Requirements Section */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Users className="w-5 h-5 text-indigo-600" />
               Qualifications & Requirements
             </h3>
@@ -602,9 +602,9 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
           </div>
 
           {/* Status Section */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Designation Status</h3>
-            <div className="flex gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Designation Status</h3>
+            <div className="flex gap-2">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -642,9 +642,9 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
           </div>
 
           {/* Summary Card */}
-          <div className="mb-6 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-4 border border-purple-200">
+          <div className="mb-3 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-3 border border-purple-200">
             <h3 className="text-sm font-semibold text-purple-900 mb-3">Designation Summary</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-gray-600 text-xs">Designation Code</p>
                 <p className="font-semibold text-gray-900">{formData.code || '-'}</p>
@@ -673,7 +673,7 @@ export function AddDesignationModal({ isOpen, onClose, onSubmit }: AddDesignatio
           </div>
 
           {/* Info Banner */}
-          <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mb-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">

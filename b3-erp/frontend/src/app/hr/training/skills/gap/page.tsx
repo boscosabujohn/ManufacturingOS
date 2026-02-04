@@ -49,9 +49,9 @@ export default function GapAnalysisPage() {
   const [selectedDept, setSelectedDept] = useState('Engineering');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <TrendingDown className="h-8 w-8 text-purple-600" />
@@ -78,11 +78,11 @@ export default function GapAnalysisPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Radar Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col">
           <h2 className="text-lg font-bold text-gray-900 mb-2">Target vs Actual Proficiency ({selectedDept})</h2>
-          <p className="text-sm text-gray-500 mb-6">Comparing required skill levels against current employee assessments.</p>
+          <p className="text-sm text-gray-500 mb-3">Comparing required skill levels against current employee assessments.</p>
           <div className="flex-1 min-h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={gapData}>
@@ -99,7 +99,7 @@ export default function GapAnalysisPage() {
               </RadarChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-4 flex gap-4 text-xs text-gray-500 justify-center">
+          <div className="mt-4 flex gap-2 text-xs text-gray-500 justify-center">
             <div className="flex items-center gap-1">
               <span className="w-3 h-3 rounded-full bg-purple-500/20 border border-purple-500"></span>
               <span>Target</span>
@@ -112,11 +112,11 @@ export default function GapAnalysisPage() {
         </div>
 
         {/* Top Recommendations */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
           <h2 className="text-lg font-bold text-gray-900 mb-2">Recommended Training</h2>
-          <p className="text-sm text-gray-500 mb-6">Suggested programs to bridge top skill gaps.</p>
+          <p className="text-sm text-gray-500 mb-3">Suggested programs to bridge top skill gaps.</p>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {recommendations.map((rec) => (
               <div key={rec.id} className="p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-colors group cursor-pointer">
                 <div className="flex justify-between items-start mb-2">
@@ -136,7 +136,7 @@ export default function GapAnalysisPage() {
             ))}
           </div>
 
-          <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-100">
+          <div className="mt-6 p-3 bg-amber-50 rounded-lg border border-amber-100">
             <div className="flex gap-3">
               <Lightbulb className="w-5 h-5 text-amber-600 flex-shrink-0" />
               <div>
@@ -159,34 +159,34 @@ export default function GapAnalysisPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Skill</th>
-                <th className="px-6 py-4">Department</th>
-                <th className="px-6 py-4 text-center">Expected</th>
-                <th className="px-6 py-4 text-center">Actual</th>
-                <th className="px-6 py-4 text-center">Gap</th>
-                <th className="px-6 py-4 text-center">Affected Employees</th>
-                <th className="px-6 py-4">Impact</th>
+                <th className="px-3 py-2">Skill</th>
+                <th className="px-3 py-2">Department</th>
+                <th className="px-3 py-2 text-center">Expected</th>
+                <th className="px-3 py-2 text-center">Actual</th>
+                <th className="px-3 py-2 text-center">Gap</th>
+                <th className="px-3 py-2 text-center">Affected Employees</th>
+                <th className="px-3 py-2">Impact</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {skillGaps.map((gap) => (
                 <tr key={gap.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900">{gap.skill}</td>
-                  <td className="px-6 py-4">{gap.dept}</td>
-                  <td className="px-6 py-4 text-center">{gap.expected}</td>
-                  <td className="px-6 py-4 text-center text-red-600 font-medium">{gap.actual}</td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 font-medium text-gray-900">{gap.skill}</td>
+                  <td className="px-3 py-2">{gap.dept}</td>
+                  <td className="px-3 py-2 text-center">{gap.expected}</td>
+                  <td className="px-3 py-2 text-center text-red-600 font-medium">{gap.actual}</td>
+                  <td className="px-3 py-2 text-center">
                     <span className="inline-flex items-center text-red-700 bg-red-50 px-2 py-1 rounded-md text-xs font-bold">
                       {gap.gap}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center text-gray-900">
+                  <td className="px-3 py-2 text-center text-gray-900">
                     <div className="flex items-center justify-center gap-2">
                       <Users className="w-4 h-4 text-gray-400" />
                       {gap.employees}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${gap.impact === 'High' ? 'bg-red-100 text-red-700' :
                         gap.impact === 'Medium' ? 'bg-amber-100 text-amber-700' :
                           'bg-green-100 text-green-700'

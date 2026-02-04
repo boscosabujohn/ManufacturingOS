@@ -232,10 +232,10 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6" />
             <div>
@@ -249,7 +249,7 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           {[1, 2, 3, 4].map(step => (
             <div key={step} className={`flex items-center gap-2 ${currentStep >= step ? 'text-purple-600' : 'text-gray-400'}`}>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= step ? 'bg-purple-600 text-white' : 'bg-gray-300'}`}>
@@ -264,11 +264,11 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: Basic Information */}
           {currentStep === 1 && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
                   <select
@@ -398,11 +398,11 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
 
           {/* Step 2: Items/Requirements */}
           {currentStep === 2 && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Add Item Form */}
-              <div className="border border-gray-300 rounded-lg p-4">
+              <div className="border border-gray-300 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-700 mb-3">Add Item/Requirement</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Item Code</label>
                     <input
@@ -486,7 +486,7 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
                   <h4 className="font-semibold text-gray-700 mb-3">Items ({formData.items.length})</h4>
                   <div className="space-y-2">
                     {formData.items.map((item, index) => (
-                      <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                      <div key={index} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
                         <div className="flex justify-between items-start mb-2">
                           <div>
                             <h5 className="font-semibold text-gray-900">{item.itemName}</h5>
@@ -496,7 +496,7 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
                             <X className="w-4 h-4" />
                           </button>
                         </div>
-                        <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div className="grid grid-cols-3 gap-2 text-sm">
                           <div>
                             <p className="text-gray-600">Quantity:</p>
                             <p className="font-semibold">{item.quantity} {item.uom}</p>
@@ -522,13 +522,13 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
 
           {/* Step 3: Evaluation Criteria */}
           {currentStep === 3 && (
-            <div className="space-y-4">
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-4">
+            <div className="space-y-2">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mb-2">
                 <h4 className="font-semibold text-purple-900 mb-2">Evaluation Criteria Weights</h4>
                 <p className="text-sm text-purple-700">Define how bids will be evaluated. Total must equal 100%.</p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {[
                   { key: 'priceWeight', label: 'Price / Commercial', icon: DollarSign },
                   { key: 'qualityWeight', label: 'Quality Standards', icon: Award },
@@ -565,7 +565,7 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
                 ))}
               </div>
 
-              <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 mt-4">
+              <div className="bg-gray-100 border border-gray-300 rounded-lg p-3 mt-4">
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-gray-700">Total Weight:</span>
                   <span className={`text-2xl font-bold ${
@@ -584,8 +584,8 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
 
           {/* Step 4: Suppliers */}
           {currentStep === 4 && (
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 mb-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3 mb-2">
                 <input
                   type="checkbox"
                   checked={formData.openToAll}
@@ -598,7 +598,7 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
               {!formData.openToAll && (
                 <>
                   {/* Add Supplier */}
-                  <div className="border border-gray-300 rounded-lg p-4">
+                  <div className="border border-gray-300 rounded-lg p-3">
                     <h4 className="font-semibold text-gray-700 mb-3">Invite Suppliers</h4>
                     <div className="flex gap-3">
                       <input
@@ -641,9 +641,9 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
               )}
 
               {/* Summary */}
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mt-6">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 mt-6">
                 <h4 className="font-semibold text-purple-900 mb-3">{formData.type} Summary</h4>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-purple-700">Title:</p>
                     <p className="font-semibold text-gray-900">{formData.title || 'N/A'}</p>
@@ -677,7 +677,7 @@ export const CreateRFQModal: React.FC<CreateRFQModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -750,9 +750,9 @@ export const ViewRFQDetailsModal: React.FC<ViewRFQDetailsModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <div>
@@ -765,8 +765,8 @@ export const ViewRFQDetailsModal: React.FC<ViewRFQDetailsModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="flex gap-3 mb-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="flex gap-3 mb-3">
             <span className={`px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(rfq.status)}`}>
               {rfq.status.toUpperCase()}
             </span>
@@ -782,31 +782,31 @@ export const ViewRFQDetailsModal: React.FC<ViewRFQDetailsModalProps> = ({
             </span>
           </div>
 
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">{rfq.title}</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">{rfq.title}</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Category</p>
               <p className="text-lg font-bold text-gray-900">{rfq.category}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Estimated Value</p>
               <p className="text-lg font-bold text-gray-900">{rfq.currency} {rfq.estimatedValue.toLocaleString()}</p>
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Response Deadline</p>
               <p className="text-lg font-bold text-gray-900">{rfq.responseDeadline}</p>
             </div>
           </div>
 
           {rfq.description && (
-            <div className="mb-6">
+            <div className="mb-3">
               <h4 className="font-semibold text-gray-700 mb-2">Description</h4>
               <p className="text-gray-600">{rfq.description}</p>
             </div>
           )}
 
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="font-semibold text-gray-700 mb-3">Items ({rfq.items.length})</h4>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -835,7 +835,7 @@ export const ViewRFQDetailsModal: React.FC<ViewRFQDetailsModalProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <h4 className="font-semibold text-gray-700 mb-3">Evaluation Criteria</h4>
               <div className="space-y-2">
@@ -877,7 +877,7 @@ export const ViewRFQDetailsModal: React.FC<ViewRFQDetailsModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Close
           </button>
@@ -959,9 +959,9 @@ export const SendRFQToSuppliersModal: React.FC<SendRFQToSuppliersModalProps> = (
   if (!isOpen || !rfq) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Send className="w-6 h-6" />
             <div>
@@ -974,8 +974,8 @@ export const SendRFQToSuppliersModal: React.FC<SendRFQToSuppliersModalProps> = (
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="font-semibold text-blue-900">Recipients</p>
             <p className="text-sm text-blue-700 mt-1">
               {rfq.openToAll ? 'All qualified suppliers in the portal' : `${rfq.invitedSuppliers.length} invited suppliers`}
@@ -1074,7 +1074,7 @@ export const SendRFQToSuppliersModal: React.FC<SendRFQToSuppliersModalProps> = (
           </div>
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>
@@ -1121,9 +1121,9 @@ export const CompareBidsModal: React.FC<CompareBidsModalProps> = ({
   const selectedBidData = bids.filter(bid => selectedBids.includes(bid.id))
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <GitCompare className="w-6 h-6" />
             <div>
@@ -1136,9 +1136,9 @@ export const CompareBidsModal: React.FC<CompareBidsModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {selectedBids.length === 0 && (
-            <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-4">
+            <div className="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-2">
               <p className="text-teal-900 font-semibold">Select bids to compare</p>
               <p className="text-sm text-teal-700 mt-1">Choose up to 4 bids for side-by-side comparison</p>
             </div>
@@ -1269,7 +1269,7 @@ export const CompareBidsModal: React.FC<CompareBidsModalProps> = ({
           )}
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Close
           </button>
@@ -1338,9 +1338,9 @@ export const AwardBidModal: React.FC<AwardBidModalProps> = ({
   if (!isOpen || !bid || !rfq) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Award className="w-6 h-6" />
             <div>
@@ -1353,10 +1353,10 @@ export const AwardBidModal: React.FC<AwardBidModalProps> = ({
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <p className="font-semibold text-purple-900">Winning Supplier</p>
-            <div className="grid grid-cols-2 gap-4 mt-2 text-sm">
+            <div className="grid grid-cols-2 gap-2 mt-2 text-sm">
               <div>
                 <p className="text-purple-700">Supplier:</p>
                 <p className="font-semibold text-gray-900">{bid.supplier}</p>
@@ -1376,7 +1376,7 @@ export const AwardBidModal: React.FC<AwardBidModalProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Award Date</label>
               <input
@@ -1492,7 +1492,7 @@ export const AwardBidModal: React.FC<AwardBidModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>
@@ -1542,9 +1542,9 @@ export const ExportRFQModal: React.FC<ExportRFQModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <h2 className="text-xl font-bold">Export RFQ/RFP Data</h2>
@@ -1554,7 +1554,7 @@ export const ExportRFQModal: React.FC<ExportRFQModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
@@ -1616,7 +1616,7 @@ export const ExportRFQModal: React.FC<ExportRFQModalProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date Range</label>
               <select
@@ -1650,7 +1650,7 @@ export const ExportRFQModal: React.FC<ExportRFQModalProps> = ({
           </div>
         </div>
 
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
             Cancel
           </button>

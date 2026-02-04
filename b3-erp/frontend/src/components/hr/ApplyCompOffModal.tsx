@@ -50,10 +50,10 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-3 z-10">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -73,7 +73,7 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
 
         <form onSubmit={handleSubmit} className="p-6">
           {/* Available Credits Summary */}
-          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="mb-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Available Comp-Off</p>
@@ -84,14 +84,14 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
           </div>
 
           {/* Select Credit */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">1</span>
               Select Comp-Off Credit
             </h3>
             {availableCredits.length === 0 ? (
               <div className="p-8 text-center border border-gray-200 rounded-lg">
-                <AlertCircle className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                <AlertCircle className="w-12 h-12 mb-3 text-gray-300" />
                 <p className="text-gray-500">You don't have any available comp-off credits.</p>
                 <p className="text-sm text-gray-400 mt-1">Comp-off will be credited for approved overtime work.</p>
               </div>
@@ -100,7 +100,7 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
                 {availableCredits.map((credit) => (
                   <label
                     key={credit.id}
-                    className={`block border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                    className={`block border-2 rounded-lg p-3 cursor-pointer transition-all ${
                       formData.selectedCreditId === credit.id
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-gray-200 hover:border-gray-300'
@@ -147,12 +147,12 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
           {/* Leave Details */}
           {availableCredits.length > 0 && (
             <>
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">2</span>
                   Leave Details
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Leave Date *
@@ -194,8 +194,8 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
               </div>
 
               {/* Reason */}
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <span className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white text-sm font-bold">3</span>
                   Reason (Optional)
                 </h3>
@@ -209,7 +209,7 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
               </div>
 
               {/* Notification Option */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <label className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
                   <input
                     type="checkbox"
@@ -228,7 +228,7 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
 
               {/* Summary */}
               {formData.selectedCreditId && formData.leaveDate && formData.leaveDays && (
-                <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-4 mb-6">
+                <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-3 mb-3">
                   <div className="flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-sm">
@@ -244,7 +244,7 @@ export function ApplyCompOffModal({ isOpen, onClose, onSubmit, availableCredits 
               )}
 
               {/* Info Alert */}
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+              <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
                   <div className="flex-1 text-sm">

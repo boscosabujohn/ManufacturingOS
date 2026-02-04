@@ -171,16 +171,16 @@ export default function OffboardingDashboard() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Offboarding Dashboard</h1>
         <p className="text-sm text-gray-600 mt-1">Manage employee exits and final settlements</p>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Exits</p>
@@ -190,7 +190,7 @@ export default function OffboardingDashboard() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Active Cases</p>
@@ -200,7 +200,7 @@ export default function OffboardingDashboard() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Clearance Pending</p>
@@ -210,7 +210,7 @@ export default function OffboardingDashboard() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">F&F Pending</p>
@@ -220,7 +220,7 @@ export default function OffboardingDashboard() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -230,7 +230,7 @@ export default function OffboardingDashboard() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Avg Notice</p>
@@ -240,7 +240,7 @@ export default function OffboardingDashboard() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Exit Interview</p>
@@ -252,14 +252,14 @@ export default function OffboardingDashboard() {
       </div>
 
       {/* Quick Access Modules */}
-      <div className="mb-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">Offboarding Modules</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+      <div className="mb-3">
+        <h2 className="text-lg font-bold text-gray-900 mb-2">Offboarding Modules</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
           {offboardingModules.map(module => (
             <button
               key={module.id}
               onClick={() => router.push(module.path)}
-              className={`bg-gradient-to-br from-${module.color}-50 to-${module.color}-100 hover:from-${module.color}-100 hover:to-${module.color}-200 rounded-lg p-4 border border-${module.color}-200 transition-all hover:shadow-md text-left`}
+              className={`bg-gradient-to-br from-${module.color}-50 to-${module.color}-100 hover:from-${module.color}-100 hover:to-${module.color}-200 rounded-lg p-3 border border-${module.color}-200 transition-all hover:shadow-md text-left`}
             >
               <module.icon className={`h-6 w-6 text-${module.color}-600 mb-2`} />
               <p className={`text-sm font-semibold text-${module.color}-900`}>{module.name}</p>
@@ -270,8 +270,8 @@ export default function OffboardingDashboard() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-1">Offboarding Status</label>
             <select
@@ -310,25 +310,25 @@ export default function OffboardingDashboard() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Employee
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Resignation Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Notice Period
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Clearance
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Exit Interview
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Action
                 </th>
               </tr>
@@ -336,14 +336,14 @@ export default function OffboardingDashboard() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredEmployees.map(emp => (
                 <tr key={emp.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="font-semibold text-gray-900">{emp.employeeName}</div>
                       <div className="text-sm text-gray-600">{emp.designation}</div>
                       <div className="text-xs text-gray-500">{emp.department} • {emp.employeeCode}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm text-gray-900">
                         <span className="text-xs text-gray-500">Resigned:</span> {emp.resignationDate}
@@ -364,7 +364,7 @@ export default function OffboardingDashboard() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-semibold text-gray-900">{emp.noticePeriod} days</div>
                       <span className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded ${
@@ -379,7 +379,7 @@ export default function OffboardingDashboard() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-sm font-semibold text-gray-900">
@@ -399,7 +399,7 @@ export default function OffboardingDashboard() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 text-xs font-semibold rounded ${
                       emp.exitInterviewStatus === 'completed' ? 'bg-green-100 text-green-700' :
                       emp.exitInterviewStatus === 'scheduled' ? 'bg-blue-100 text-blue-700' :
@@ -409,7 +409,7 @@ export default function OffboardingDashboard() {
                        emp.exitInterviewStatus === 'scheduled' ? 'Scheduled' : 'Pending'}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(emp.offboardingStatus)}`}>
                       {emp.offboardingStatus === 'in_progress' ? 'In Progress' :
                        emp.offboardingStatus === 'clearance_pending' ? 'Clearance Pending' :
@@ -417,7 +417,7 @@ export default function OffboardingDashboard() {
                        emp.offboardingStatus.charAt(0).toUpperCase() + emp.offboardingStatus.slice(1)}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <button
                       onClick={() => handleViewDetails(emp)}
                       className="text-blue-600 hover:text-blue-800 font-medium text-sm"
@@ -434,9 +434,9 @@ export default function OffboardingDashboard() {
 
       {/* Employee Details Modal */}
       {showDetailsModal && selectedEmployee && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <User className="h-6 w-6 text-blue-600" />
                 <div>
@@ -452,9 +452,9 @@ export default function OffboardingDashboard() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status Banner */}
-              <div className={`rounded-lg p-4 ${
+              <div className={`rounded-lg p-3 ${
                 selectedEmployee.offboardingStatus === 'completed' ? 'bg-green-50 border border-green-200' :
                 selectedEmployee.offboardingStatus === 'fnf_pending' ? 'bg-purple-50 border border-purple-200' :
                 selectedEmployee.offboardingStatus === 'clearance_pending' ? 'bg-orange-50 border border-orange-200' :
@@ -481,7 +481,7 @@ export default function OffboardingDashboard() {
                   <Briefcase className="h-4 w-4 text-gray-600" />
                   Employee Information
                 </h3>
-                <div className="grid grid-cols-2 gap-4 bg-gray-50 rounded-lg p-4">
+                <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded-lg p-3">
                   <div>
                     <p className="text-xs text-gray-600">Employee Code</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedEmployee.employeeCode}</p>
@@ -507,7 +507,7 @@ export default function OffboardingDashboard() {
                   <Calendar className="h-4 w-4 text-gray-600" />
                   Offboarding Timeline
                 </h3>
-                <div className="grid grid-cols-3 gap-4 bg-gray-50 rounded-lg p-4">
+                <div className="grid grid-cols-3 gap-2 bg-gray-50 rounded-lg p-3">
                   <div>
                     <p className="text-xs text-gray-600">Resignation Date</p>
                     <p className="text-sm font-semibold text-gray-900">{selectedEmployee.resignationDate}</p>
@@ -529,8 +529,8 @@ export default function OffboardingDashboard() {
                   <ClipboardCheck className="h-4 w-4 text-gray-600" />
                   Progress Summary
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs text-gray-600 mb-2">Clearance Progress</p>
                       <div className="flex items-center gap-2">
@@ -559,7 +559,7 @@ export default function OffboardingDashboard() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                  <div className="grid grid-cols-2 gap-2 pt-4 border-t border-gray-200">
                     <div>
                       <p className="text-xs text-gray-600 mb-1">Notice Period Status</p>
                       <span className={`inline-block px-3 py-1 text-xs font-semibold rounded ${

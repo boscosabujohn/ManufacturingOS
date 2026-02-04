@@ -182,10 +182,10 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Warehouse className="w-6 h-6" />
             <div>
@@ -199,14 +199,14 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-3">
           {/* Basic Information */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
               <Building2 className="w-5 h-5" />
               Basic Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Warehouse Name *
@@ -259,12 +259,12 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
           </div>
 
           {/* Location */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
               <MapPin className="w-5 h-5" />
               Location Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Address *
@@ -328,12 +328,12 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
           </div>
 
           {/* Contact Information */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
               <User className="w-5 h-5" />
               Contact Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Manager Name *
@@ -380,12 +380,12 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
           </div>
 
           {/* Capacity */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
               <Package className="w-5 h-5" />
               Capacity Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Total Area
@@ -427,8 +427,8 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
           </div>
 
           {/* Features */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-700 mb-4">Warehouse Features</h3>
+          <div className="mb-3">
+            <h3 className="font-semibold text-gray-700 mb-2">Warehouse Features</h3>
             <div className="flex gap-2 mb-3">
               <select
                 value={selectedFeature}
@@ -470,7 +470,7 @@ export const CreateWarehouseModal: React.FC<CreateWarehouseModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -539,10 +539,10 @@ export const CreateZoneModal: React.FC<CreateZoneModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <Grid3x3 className="w-6 h-6" />
             <div>
@@ -556,9 +556,9 @@ export const CreateZoneModal: React.FC<CreateZoneModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Zone Name *
@@ -664,7 +664,7 @@ export const CreateZoneModal: React.FC<CreateZoneModalProps> = ({
             </label>
 
             {temperatureControlled && (
-              <div className="grid grid-cols-2 gap-4 ml-6">
+              <div className="grid grid-cols-2 gap-2 ml-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Min Temperature (°F)
@@ -701,7 +701,7 @@ export const CreateZoneModal: React.FC<CreateZoneModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             type="button"
             onClick={onClose}
@@ -772,10 +772,10 @@ export const CreateBinModal: React.FC<CreateBinModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <Package className="w-6 h-6" />
             <div>
@@ -789,7 +789,7 @@ export const CreateBinModal: React.FC<CreateBinModalProps> = ({
         </div>
 
         {/* Content */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Zone Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -812,7 +812,7 @@ export const CreateBinModal: React.FC<CreateBinModalProps> = ({
           </div>
 
           {/* Location Details */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Row *
@@ -879,7 +879,7 @@ export const CreateBinModal: React.FC<CreateBinModalProps> = ({
           </div>
 
           {/* Capacity & Status */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Capacity
@@ -929,7 +929,7 @@ export const CreateBinModal: React.FC<CreateBinModalProps> = ({
             </label>
 
             {includeDimensions && (
-              <div className="grid grid-cols-4 gap-4 ml-6">
+              <div className="grid grid-cols-4 gap-2 ml-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Length</label>
                   <input
@@ -986,7 +986,7 @@ export const CreateBinModal: React.FC<CreateBinModalProps> = ({
         </form>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
           <button
             type="button"
             onClick={onClose}
@@ -1039,10 +1039,10 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
     : 0
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Warehouse className="w-6 h-6" />
             <div>
@@ -1056,9 +1056,9 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status & Type */}
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-3">
             <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getStatusColor(warehouse.status)}`}>
               {warehouse.status.toUpperCase()}
             </span>
@@ -1068,8 +1068,8 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
           </div>
 
           {/* Capacity Card */}
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 mb-6">
-            <h3 className="font-semibold text-blue-900 mb-4">Capacity Utilization</h3>
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 mb-3">
+            <h3 className="font-semibold text-blue-900 mb-2">Capacity Utilization</h3>
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-blue-700">Total Area:</span>
@@ -1093,12 +1093,12 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
           </div>
 
           {/* Location */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <MapPin className="w-5 h-5" />
               Location
             </h3>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-gray-800">{warehouse.location.address}</p>
               <p className="text-gray-600">
                 {warehouse.location.city}, {warehouse.location.state} {warehouse.location.zipCode}
@@ -1108,12 +1108,12 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
           </div>
 
           {/* Contact */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <User className="w-5 h-5" />
               Contact Information
             </h3>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 space-y-2">
               <div className="flex justify-between">
                 <span className="text-gray-600">Manager:</span>
                 <span className="font-semibold text-gray-800">{warehouse.contact.managerName}</span>
@@ -1131,7 +1131,7 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
 
           {/* Features */}
           {warehouse.features.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-3">
               <h3 className="font-semibold text-gray-700 mb-3">Features</h3>
               <div className="flex flex-wrap gap-2">
                 {warehouse.features.map((feature, index) => (
@@ -1165,13 +1165,13 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
               <div className="grid grid-cols-3 gap-3">
                 {warehouse.zones.map((zone, index) => (
                   <div key={index} className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
-                    <Grid3x3 className="w-5 h-5 text-gray-500 mx-auto mb-2" />
+                    <Grid3x3 className="w-5 h-5 text-gray-500 mb-2" />
                     <p className="text-sm font-medium text-gray-800">{zone}</p>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center text-gray-500">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center text-gray-500">
                 No zones configured
               </div>
             )}
@@ -1179,7 +1179,7 @@ export const ViewWarehouseDetailsModal: React.FC<ViewWarehouseDetailsModalProps>
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

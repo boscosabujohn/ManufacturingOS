@@ -540,8 +540,8 @@ export default function LaborTrackingPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Entries</p>
@@ -550,7 +550,7 @@ export default function LaborTrackingPage() {
             <Calendar className="h-8 w-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Workers</p>
@@ -559,7 +559,7 @@ export default function LaborTrackingPage() {
             <Users className="h-8 w-8 text-green-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Manhours</p>
@@ -568,7 +568,7 @@ export default function LaborTrackingPage() {
             <Clock className="h-8 w-8 text-purple-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overtime</p>
@@ -577,7 +577,7 @@ export default function LaborTrackingPage() {
             <AlertTriangle className="h-8 w-8 text-orange-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Cost</p>
@@ -586,7 +586,7 @@ export default function LaborTrackingPage() {
             <DollarSign className="h-8 w-8 text-cyan-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Efficiency</p>
@@ -595,7 +595,7 @@ export default function LaborTrackingPage() {
             <TrendingUp className="h-8 w-8 text-indigo-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Variance</p>
@@ -609,8 +609,8 @@ export default function LaborTrackingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <input

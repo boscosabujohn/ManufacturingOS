@@ -275,10 +275,10 @@ export default function MaintenanceDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -307,8 +307,8 @@ export default function MaintenanceDashboardPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Operational</p>
@@ -321,7 +321,7 @@ export default function MaintenanceDashboardPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Breakdown</p>
@@ -334,7 +334,7 @@ export default function MaintenanceDashboardPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Avg Utilization</p>
@@ -347,7 +347,7 @@ export default function MaintenanceDashboardPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Overdue Maintenance</p>
@@ -362,8 +362,8 @@ export default function MaintenanceDashboardPage() {
       </div>
 
       {/* Maintenance Alerts */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-orange-600" />
           Active Maintenance Alerts ({maintenanceAlerts.length})
         </h3>
@@ -383,7 +383,7 @@ export default function MaintenanceDashboardPage() {
                     </span>
                   </div>
                   <p className="text-sm text-gray-700 mb-2">{alert.message}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
                     <span>Equipment: {alert.equipmentName}</span>
                     <span>Due: {alert.dueDate}</span>
                     {alert.assignedTo && <span>Assigned: {alert.assignedTo}</span>}
@@ -396,8 +396,8 @@ export default function MaintenanceDashboardPage() {
       </div>
 
       {/* Equipment Status Filter */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Wrench className="w-5 h-5 text-gray-400" />
           <select
             value={filterStatus}
@@ -414,10 +414,10 @@ export default function MaintenanceDashboardPage() {
       </div>
 
       {/* Equipment Status Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
         {filteredEquipment.map((equipment) => (
-          <div key={equipment.id} className={`bg-white rounded-xl border-2 p-6 ${getStatusColor(equipment.status)}`}>
-            <div className="flex items-start justify-between mb-4">
+          <div key={equipment.id} className={`bg-white rounded-xl border-2 p-3 ${getStatusColor(equipment.status)}`}>
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-lg font-bold text-gray-900">{equipment.equipmentCode}</h3>
@@ -437,7 +437,7 @@ export default function MaintenanceDashboardPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-2">
               <div className="p-3 bg-gray-50 rounded-lg">
                 <p className="text-xs text-gray-500">Last Maintenance</p>
                 <p className="text-sm font-semibold text-gray-900">{equipment.lastMaintenance}</p>
@@ -474,7 +474,7 @@ export default function MaintenanceDashboardPage() {
       </div>
 
       {/* Quick Links */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-2">
         <button
           onClick={() => router.push('/production/maintenance/preventive')}
           className="p-4 bg-white border-2 border-blue-200 rounded-xl hover:bg-blue-50 transition-colors text-left"

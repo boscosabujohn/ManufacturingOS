@@ -202,11 +202,11 @@ const ItemGroupMaster: React.FC = () => {
     status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800';
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Boxes className="w-8 h-8 text-blue-600" />
@@ -231,7 +231,7 @@ const ItemGroupMaster: React.FC = () => {
           </div>
 
           {/* Search and Filters */}
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -269,8 +269,8 @@ const ItemGroupMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Groups</p>
@@ -279,7 +279,7 @@ const ItemGroupMaster: React.FC = () => {
               <Boxes className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Groups</p>
@@ -290,7 +290,7 @@ const ItemGroupMaster: React.FC = () => {
               <CheckCircle className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Items</p>
@@ -301,7 +301,7 @@ const ItemGroupMaster: React.FC = () => {
               <Package className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Revenue</p>
@@ -316,10 +316,10 @@ const ItemGroupMaster: React.FC = () => {
 
         {/* Groups List/Grid */}
         {viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredGroups.map(group => (
-              <div key={group.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-lg transition">
-                <div className="flex items-start justify-between mb-4">
+              <div key={group.id} className="bg-white rounded-lg shadow-sm p-3 hover:shadow-lg transition">
+                <div className="flex items-start justify-between mb-2">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                     <Boxes className="w-6 h-6 text-blue-600" />
                   </div>
@@ -329,7 +329,7 @@ const ItemGroupMaster: React.FC = () => {
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-1">{group.groupName}</h3>
                 <p className="text-xs text-gray-500 mb-2">{group.groupCode}</p>
-                <p className="text-sm text-gray-600 mb-4">{group.description}</p>
+                <p className="text-sm text-gray-600 mb-2">{group.description}</p>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Items:</span>
@@ -366,34 +366,34 @@ const ItemGroupMaster: React.FC = () => {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Group</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Items</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Markup</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Group</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Items</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Markup</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredGroups.map(group => (
                   <tr key={group.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div>
                         <div className="font-medium text-gray-900">{group.groupName}</div>
                         <div className="text-sm text-gray-500">{group.groupCode}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{group.category}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{group.statistics.itemCount}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-3 py-2 text-sm text-gray-600">{group.category}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">{group.statistics.itemCount}</td>
+                    <td className="px-3 py-2 text-sm text-gray-900">
                       {group.pricingRules.defaultMarkup ? `${group.pricingRules.defaultMarkup}%` : '-'}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(group.status)}`}>
                         {group.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex gap-2">
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Eye className="w-4 h-4 text-gray-600" />

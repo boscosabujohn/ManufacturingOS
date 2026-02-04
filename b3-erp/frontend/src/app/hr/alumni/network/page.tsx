@@ -237,16 +237,16 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Alumni Network</h1>
         <p className="text-sm text-gray-600 mt-1">Stay connected, share experiences, and grow together</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Network Size</p>
@@ -256,7 +256,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Members</p>
@@ -266,7 +266,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Upcoming Events</p>
@@ -276,7 +276,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Opportunities</p>
@@ -288,11 +288,11 @@ export default function Page() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-3">
         <div className="flex border-b border-gray-200">
           <button
             onClick={() => setSelectedTab('feed')}
-            className={`flex-1 px-6 py-3 text-sm font-medium ${
+            className={`flex-1 px-3 py-2 text-sm font-medium ${
               selectedTab === 'feed'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -302,7 +302,7 @@ export default function Page() {
           </button>
           <button
             onClick={() => setSelectedTab('events')}
-            className={`flex-1 px-6 py-3 text-sm font-medium ${
+            className={`flex-1 px-3 py-2 text-sm font-medium ${
               selectedTab === 'events'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -312,7 +312,7 @@ export default function Page() {
           </button>
           <button
             onClick={() => setSelectedTab('opportunities')}
-            className={`flex-1 px-6 py-3 text-sm font-medium ${
+            className={`flex-1 px-3 py-2 text-sm font-medium ${
               selectedTab === 'opportunities'
                 ? 'text-blue-600 border-b-2 border-blue-600'
                 : 'text-gray-600 hover:text-gray-900'
@@ -325,9 +325,9 @@ export default function Page() {
 
       {/* Content based on selected tab */}
       {selectedTab === 'feed' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {/* Create Post */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <textarea
               value={postContent}
               onChange={(e) => setPostContent(e.target.value)}
@@ -347,9 +347,9 @@ export default function Page() {
 
           {/* Posts Feed */}
           {mockPosts.map(post => (
-            <div key={post.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div key={post.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
               {/* Post Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-start gap-3">
                   <div className="h-12 w-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
                     {post.author.split(' ').map(n => n[0]).join('')}
@@ -366,10 +366,10 @@ export default function Page() {
               </div>
 
               {/* Post Content */}
-              <p className="text-gray-800 mb-4">{post.content}</p>
+              <p className="text-gray-800 mb-2">{post.content}</p>
 
               {/* Post Actions */}
-              <div className="flex items-center gap-6 pt-4 border-t border-gray-200">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
                 <button
                   onClick={() => handleLikePost(post.id)}
                   className="flex items-center gap-2 text-gray-600 hover:text-red-600 transition-colors"
@@ -398,10 +398,10 @@ export default function Page() {
       )}
 
       {selectedTab === 'events' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {mockEvents.map(event => (
-            <div key={event.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={event.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <span className={`px-3 py-1 text-xs font-semibold rounded-full ${eventTypeColors[event.type]}`}>
                   {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
                 </span>
@@ -415,9 +415,9 @@ export default function Page() {
               </div>
 
               <h3 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h3>
-              <p className="text-sm text-gray-600 mb-4">{event.description}</p>
+              <p className="text-sm text-gray-600 mb-2">{event.description}</p>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center gap-2 text-sm text-gray-700">
                   <Calendar className="h-4 w-4 text-gray-400" />
                   {event.date} at {event.time}
@@ -432,7 +432,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
                 <div
                   className="bg-blue-600 h-2 rounded-full"
                   style={{ width: `${(event.registrations / event.capacity) * 100}%` }}
@@ -461,14 +461,14 @@ export default function Page() {
 
       {selectedTab === 'opportunities' && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <Briefcase className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+          <Briefcase className="h-16 w-16 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Job Opportunities</h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-3">
             Browse and share job opportunities within the alumni network
           </p>
           <button
             onClick={() => setShowPostJobModal(true)}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2 mx-auto"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
           >
             <UserPlus className="h-4 w-4" />
             Post an Opportunity
@@ -478,10 +478,10 @@ export default function Page() {
 
       {/* Event Details Modal */}
       {showEventDetailsModal && selectedEvent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold">{selectedEvent.title}</h2>
                 <p className="text-sm text-purple-100 mt-1">Event Details</p>
@@ -495,7 +495,7 @@ export default function Page() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Event Type and Mode */}
               <div className="flex items-center gap-3">
                 <span className={`px-4 py-2 text-sm font-semibold rounded-full ${eventTypeColors[selectedEvent.type]}`}>
@@ -518,14 +518,14 @@ export default function Page() {
               </div>
 
               {/* Event Description */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="font-bold text-gray-900 mb-2">About This Event</h3>
                 <p className="text-gray-700">{selectedEvent.description}</p>
               </div>
 
               {/* Event Details Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-start gap-3">
                     <Calendar className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
@@ -536,7 +536,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
                     <div>
@@ -546,7 +546,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-start gap-3">
                     <Users className="h-5 w-5 text-purple-600 mt-0.5" />
                     <div>
@@ -564,7 +564,7 @@ export default function Page() {
                   </div>
                 </div>
 
-                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                   <div className="flex items-start gap-3">
                     <Briefcase className="h-5 w-5 text-orange-600 mt-0.5" />
                     <div>
@@ -577,7 +577,7 @@ export default function Page() {
 
               {/* Registration Info */}
               {selectedEvent.registrations < selectedEvent.capacity && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-start gap-3">
                     <Users className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                     <div>
@@ -591,7 +591,7 @@ export default function Page() {
               )}
 
               {selectedEvent.registrations >= selectedEvent.capacity && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-start gap-3">
                     <Users className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                     <div>
@@ -606,7 +606,7 @@ export default function Page() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowEventDetailsModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
@@ -643,10 +643,10 @@ export default function Page() {
 
       {/* Post Job Modal */}
       {showPostJobModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div>
                 <h2 className="text-xl font-bold">Post Job Opportunity</h2>
                 <p className="text-sm text-blue-100 mt-1">Share opportunities with the alumni network</p>
@@ -660,8 +660,8 @@ export default function Page() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Job Title <span className="text-red-500">*</span>
@@ -691,7 +691,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Location <span className="text-red-500">*</span>
@@ -783,7 +783,7 @@ export default function Page() {
               </div>
 
               {/* Info Box */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <Briefcase className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
                   <div>
@@ -800,7 +800,7 @@ export default function Page() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowPostJobModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"

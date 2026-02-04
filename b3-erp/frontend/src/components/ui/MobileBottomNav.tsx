@@ -139,7 +139,7 @@ export function MobileBottomNav({
                   <Link
                     key={item.id}
                     href={item.href}
-                    className={`flex items-center gap-4 px-4 py-4 transition-colors touch-target ${
+                    className={`flex items-center gap-2 px-4 py-4 transition-colors touch-target ${
                       isActive
                         ? 'bg-blue-50 text-blue-600'
                         : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'

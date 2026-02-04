@@ -83,9 +83,9 @@ export function PreviewModal({ isOpen, onClose, proposal }: PreviewModalProps) {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Eye className="w-5 h-5 text-white" />
@@ -102,7 +102,7 @@ export function PreviewModal({ isOpen, onClose, proposal }: PreviewModalProps) {
 
         <div className="flex-1 overflow-y-auto p-8 bg-gray-50">
           <div
-            className="max-w-4xl mx-auto bg-white shadow-lg"
+            className=" bg-white shadow-lg"
             style={{
               minHeight: '800px',
               padding: '60px'
@@ -111,7 +111,7 @@ export function PreviewModal({ isOpen, onClose, proposal }: PreviewModalProps) {
             {/* Header with branding */}
             <div className="mb-8 pb-6 border-b-2" style={{ borderColor: proposal.branding?.primaryColor || '#6366f1' }}>
               {proposal.branding?.logo && (
-                <img src={proposal.branding.logo} alt="Logo" className="h-16 mb-4" />
+                <img src={proposal.branding.logo} alt="Logo" className="h-16 mb-2" />
               )}
               <h1 className="text-4xl font-bold mb-2" style={{ color: proposal.branding?.primaryColor || '#6366f1' }}>
                 Proposal
@@ -139,7 +139,7 @@ export function PreviewModal({ isOpen, onClose, proposal }: PreviewModalProps) {
             {visibleSections.map((section) => (
               <div key={section.id} className="mb-8">
                 <h2
-                  className="text-2xl font-bold mb-4"
+                  className="text-2xl font-bold mb-2"
                   style={{ color: proposal.branding?.primaryColor || '#6366f1' }}
                 >
                   {section.title}
@@ -157,7 +157,7 @@ export function PreviewModal({ isOpen, onClose, proposal }: PreviewModalProps) {
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -241,9 +241,9 @@ export function SendProposalModal({ isOpen, onClose, onSend, proposal }: SendPro
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
               <Send className="w-5 h-5 text-white" />
@@ -258,8 +258,8 @@ export function SendProposalModal({ isOpen, onClose, onSend, proposal }: SendPro
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Delivery Method */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -298,7 +298,7 @@ export function SendProposalModal({ isOpen, onClose, onSend, proposal }: SendPro
             </div>
 
             {/* Recipient Information */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Recipient Name *
@@ -387,7 +387,7 @@ export function SendProposalModal({ isOpen, onClose, onSend, proposal }: SendPro
             </div>
 
             {/* Settings */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Expiry Date *
@@ -424,7 +424,7 @@ export function SendProposalModal({ isOpen, onClose, onSend, proposal }: SendPro
             </div>
 
             {/* Options */}
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+            <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
               <label className="flex items-center space-x-3">
                 <input
                   type="checkbox"
@@ -478,7 +478,7 @@ export function SendProposalModal({ isOpen, onClose, onSend, proposal }: SendPro
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -551,9 +551,9 @@ export function ExportPDFModal({ isOpen, onClose, onExport, proposal }: ExportPD
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-lg flex items-center justify-center">
               <FileDown className="w-5 h-5 text-white" />
@@ -568,12 +568,12 @@ export function ExportPDFModal({ isOpen, onClose, onExport, proposal }: ExportPD
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Page Settings */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Page Settings</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Page Size
@@ -607,7 +607,7 @@ export function ExportPDFModal({ isOpen, onClose, onExport, proposal }: ExportPD
             {/* Content Options */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Content Options</h3>
-              <div className="space-y-2 bg-gray-50 p-4 rounded-lg">
+              <div className="space-y-2 bg-gray-50 p-3 rounded-lg">
                 <label className="flex items-center space-x-3">
                   <input
                     type="checkbox"
@@ -643,7 +643,7 @@ export function ExportPDFModal({ isOpen, onClose, onExport, proposal }: ExportPD
             {/* Header & Footer */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Header & Footer</h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Header Text
@@ -702,7 +702,7 @@ export function ExportPDFModal({ isOpen, onClose, onExport, proposal }: ExportPD
             {/* Security */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Security</h3>
-              <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+              <div className="space-y-3 bg-gray-50 p-3 rounded-lg">
                 <label className="flex items-center space-x-3">
                   <input
                     type="checkbox"
@@ -774,7 +774,7 @@ export function ExportPDFModal({ isOpen, onClose, onExport, proposal }: ExportPD
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -856,9 +856,9 @@ export function SaveDraftModal({ isOpen, onClose, onSave, proposal }: SaveDraftM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
               <Save className="w-5 h-5 text-white" />
@@ -873,8 +873,8 @@ export function SaveDraftModal({ isOpen, onClose, onSave, proposal }: SaveDraftM
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Draft Name *
@@ -934,7 +934,7 @@ export function SaveDraftModal({ isOpen, onClose, onSave, proposal }: SaveDraftM
 
             {/* Save as Template */}
             <div className="border-t pt-4">
-              <label className="flex items-center space-x-3 mb-4">
+              <label className="flex items-center space-x-3 mb-2">
                 <input
                   type="checkbox"
                   checked={formData.saveAsTemplate}
@@ -947,7 +947,7 @@ export function SaveDraftModal({ isOpen, onClose, onSave, proposal }: SaveDraftM
               </label>
 
               {formData.saveAsTemplate && (
-                <div className="space-y-4 ml-7">
+                <div className="space-y-2 ml-7">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Template Name *
@@ -988,7 +988,7 @@ export function SaveDraftModal({ isOpen, onClose, onSave, proposal }: SaveDraftM
             </div>
 
             {/* Info Box */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start space-x-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start space-x-3">
               <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-700">
                 <p className="font-medium mb-1">Draft will be saved with:</p>
@@ -1003,7 +1003,7 @@ export function SaveDraftModal({ isOpen, onClose, onSave, proposal }: SaveDraftM
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -1091,9 +1091,9 @@ export function SettingsModal({ isOpen, onClose, onSave, proposal }: SettingsMod
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
               <Settings className="w-5 h-5 text-white" />
@@ -1108,20 +1108,20 @@ export function SettingsModal({ isOpen, onClose, onSave, proposal }: SettingsMod
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           <div className="grid grid-cols-2 gap-8">
             {/* Left Column - Settings */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Logo Upload */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Company Logo</h3>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center">
                   {logoPreview ? (
                     <div className="space-y-3">
                       <img
                         src={logoPreview}
                         alt="Logo preview"
-                        className="h-20 mx-auto object-contain"
+                        className="h-20 object-contain"
                       />
                       <label className="inline-flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg cursor-pointer transition-colors">
                         <Upload className="w-4 h-4" />
@@ -1136,7 +1136,7 @@ export function SettingsModal({ isOpen, onClose, onSave, proposal }: SettingsMod
                     </div>
                   ) : (
                     <label className="cursor-pointer">
-                      <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                      <Upload className="w-8 h-8 text-gray-400 mb-2" />
                       <p className="text-sm text-gray-600 mb-1">Click to upload logo</p>
                       <p className="text-xs text-gray-400">PNG, JPG up to 5MB</p>
                       <input
@@ -1351,11 +1351,11 @@ export function SettingsModal({ isOpen, onClose, onSave, proposal }: SettingsMod
             {/* Right Column - Preview */}
             <div>
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Preview</h3>
-              <div className="border border-gray-300 rounded-lg p-6 bg-white shadow-sm">
-                <div className="space-y-4">
+              <div className="border border-gray-300 rounded-lg p-3 bg-white shadow-sm">
+                <div className="space-y-2">
                   {/* Logo Preview */}
                   {logoPreview && (
-                    <img src={logoPreview} alt="Logo" className="h-12 mb-4" />
+                    <img src={logoPreview} alt="Logo" className="h-12 mb-2" />
                   )}
 
                   {/* Heading Preview */}
@@ -1372,7 +1372,7 @@ export function SettingsModal({ isOpen, onClose, onSave, proposal }: SettingsMod
 
                   {/* Divider */}
                   <div
-                    className="h-1 w-24 mb-4"
+                    className="h-1 w-24 mb-2"
                     style={{ backgroundColor: settings.branding.accentColor }}
                   />
 
@@ -1417,7 +1417,7 @@ export function SettingsModal({ isOpen, onClose, onSave, proposal }: SettingsMod
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
@@ -1483,9 +1483,9 @@ export function SectionEditorModal({ isOpen, onClose, onSave, section }: Section
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-6 border-b">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between p-3 border-b">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -1502,8 +1502,8 @@ export function SectionEditorModal({ isOpen, onClose, onSave, section }: Section
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-3">
+          <div className="space-y-3">
             {/* Section Type */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1590,7 +1590,7 @@ export function SectionEditorModal({ isOpen, onClose, onSave, section }: Section
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                   rows={12}
-                  className={`w-full p-4 focus:outline-none ${
+                  className={`w-full p-3 focus:outline-none ${
                     errors.content ? 'border-red-500' : ''
                   }`}
                   placeholder="Enter section content..."
@@ -1616,7 +1616,7 @@ export function SectionEditorModal({ isOpen, onClose, onSave, section }: Section
           </div>
         </div>
 
-        <div className="flex justify-end space-x-3 p-6 border-t bg-white">
+        <div className="flex justify-end space-x-3 p-3 border-t bg-white">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"

@@ -67,9 +67,9 @@ export default function AssessmentPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <ClipboardCheck className="h-8 w-8 text-purple-600" />
@@ -93,10 +93,10 @@ export default function AssessmentPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         {assessmentStats.map((stat, index) => (
-          <div key={index} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between mb-4">
+          <div key={index} className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-2">
               <div className={`p-2 rounded-lg ${stat.bg}`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
               </div>
@@ -111,10 +111,10 @@ export default function AssessmentPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Table Section */}
         <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm">
-          <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h2 className="text-lg font-bold text-gray-900">Recent Assessments</h2>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -129,17 +129,17 @@ export default function AssessmentPage() {
             <table className="w-full text-left text-sm text-gray-600">
               <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
                 <tr>
-                  <th className="px-6 py-4">Employee</th>
-                  <th className="px-6 py-4">Skill Evaluated</th>
-                  <th className="px-6 py-4">Score</th>
-                  <th className="px-6 py-4">Status</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
+                  <th className="px-3 py-2">Employee</th>
+                  <th className="px-3 py-2">Skill Evaluated</th>
+                  <th className="px-3 py-2">Score</th>
+                  <th className="px-3 py-2">Status</th>
+                  <th className="px-3 py-2 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {mockAssessments.map((assessment) => (
                   <tr key={assessment.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-3">
                         <div className="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs ring-2 ring-white">
                           {assessment.employee.split(' ').map(n => n[0]).join('')}
@@ -150,21 +150,21 @@ export default function AssessmentPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-medium text-gray-900">{assessment.skill}</span>
                       <p className="text-xs text-gray-500">Evaluator: {assessment.reviewer}</p>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getScoreColor(assessment.score)}`}>
                         {assessment.score} / 5.0
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${getStatusColor(assessment.status)}`}>
                         {assessment.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <button className="text-gray-400 hover:text-gray-600">
                         <MoreVertical className="h-4 w-4" />
                       </button>
@@ -177,8 +177,8 @@ export default function AssessmentPage() {
         </div>
 
         {/* Skill Distribution Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6">Proficiency Distribution</h2>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">Proficiency Distribution</h2>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={skillDistribution} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
@@ -209,7 +209,7 @@ export default function AssessmentPage() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-6 space-y-4">
+          <div className="mt-6 space-y-2">
             <h3 className="text-sm font-semibold text-gray-900">Recommended Actions</h3>
             <div className="p-3 bg-purple-50 rounded-lg border border-purple-100 flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
@@ -232,8 +232,8 @@ export default function AssessmentPage() {
       {/* New Assessment Modal (Mock) */}
       {showNewAssessmentModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 m-4">
-            <div className="flex justify-between items-center mb-6">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-lg p-3 m-4">
+            <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-bold text-gray-900">New Skill Assessment</h2>
               <button
                 onClick={() => setShowNewAssessmentModal(false)}
@@ -243,7 +243,7 @@ export default function AssessmentPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Employee</label>
                 <select className="w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">

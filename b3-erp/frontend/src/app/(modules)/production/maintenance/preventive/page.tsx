@@ -237,10 +237,10 @@ export default function PreventiveMaintenancePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -271,8 +271,8 @@ export default function PreventiveMaintenancePage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Tasks</p>
@@ -281,7 +281,7 @@ export default function PreventiveMaintenancePage() {
             <Calendar className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Scheduled</p>
@@ -290,7 +290,7 @@ export default function PreventiveMaintenancePage() {
             <Clock className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue</p>
@@ -299,7 +299,7 @@ export default function PreventiveMaintenancePage() {
             <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -311,8 +311,8 @@ export default function PreventiveMaintenancePage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -361,61 +361,61 @@ export default function PreventiveMaintenancePage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Task ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Equipment</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Task Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Frequency</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Done</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Next Due</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Task ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Equipment</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Task Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Frequency</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Last Done</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Next Due</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredTasks.map((task) => (
                 <tr key={task.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-medium text-gray-900">{task.id}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{task.equipmentCode}</div>
                     <div className="text-sm text-gray-500">{task.equipmentName}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">
                       {getTaskTypeIcon(task.taskType)} {task.taskType}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900 capitalize">{task.frequency}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{task.lastCompleted}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{task.nextDue}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{task.estimatedDuration}h</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{task.assignedTo}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(task.status)}`}>
                       {task.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(task.priority)}`}>
                       {task.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <div className="w-20 bg-gray-200 rounded-full h-2">
                         <div
@@ -428,7 +428,7 @@ export default function PreventiveMaintenancePage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       {task.status === 'scheduled' && (
                         <button
@@ -465,9 +465,9 @@ export default function PreventiveMaintenancePage() {
       {/* Add Modal Placeholder */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Add New Preventive Maintenance Schedule</h2>
-            <p className="text-gray-600 mb-4">Form fields will be added here...</p>
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Add New Preventive Maintenance Schedule</h2>
+            <p className="text-gray-600 mb-2">Form fields will be added here...</p>
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowAddModal(false)}

@@ -345,14 +345,14 @@ export default function ServiceBillingPage() {
   return (
     <div className="p-6 w-full">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Service Billing</h1>
         <p className="text-gray-600">Manage invoices and payment tracking</p>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-4 mb-6">
-        <button onClick={() => setStatusFilter('all')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 transition-all text-left">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-2 mb-3">
+        <button onClick={() => setStatusFilter('all')} className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-blue-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total</p>
@@ -363,7 +363,7 @@ export default function ServiceBillingPage() {
           </div>
         </button>
 
-        <button onClick={() => setStatusFilter('draft')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-gray-500 transition-all text-left">
+        <button onClick={() => setStatusFilter('draft')} className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-gray-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Draft</p>
@@ -374,7 +374,7 @@ export default function ServiceBillingPage() {
           </div>
         </button>
 
-        <button onClick={() => setStatusFilter('sent')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 transition-all text-left">
+        <button onClick={() => setStatusFilter('sent')} className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-blue-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Sent</p>
@@ -385,7 +385,7 @@ export default function ServiceBillingPage() {
           </div>
         </button>
 
-        <button onClick={() => setStatusFilter('paid')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-green-500 transition-all text-left">
+        <button onClick={() => setStatusFilter('paid')} className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-green-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Paid</p>
@@ -396,7 +396,7 @@ export default function ServiceBillingPage() {
           </div>
         </button>
 
-        <button onClick={() => setStatusFilter('overdue')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-red-500 transition-all text-left">
+        <button onClick={() => setStatusFilter('overdue')} className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-red-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue</p>
@@ -407,8 +407,8 @@ export default function ServiceBillingPage() {
           </div>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4 col-span-1 lg:col-span-3">
-          <div className="grid grid-cols-3 gap-4 h-full">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 col-span-1 lg:col-span-3">
+          <div className="grid grid-cols-3 gap-2 h-full">
             <div className="flex flex-col justify-center">
               <p className="text-xs text-gray-600">Invoiced</p>
               <p className="text-lg font-bold text-purple-600">{formatCurrency(stats.totalInvoiced)}</p>
@@ -426,9 +426,9 @@ export default function ServiceBillingPage() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-          <div className="flex-1 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col lg:flex-row gap-2 items-start lg:items-center justify-between">
+          <div className="flex-1 flex flex-col sm:flex-row gap-2 w-full lg:w-auto">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -500,28 +500,28 @@ export default function ServiceBillingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Invoice Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Type
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Dates
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Amount
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Payment
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Balance
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -531,7 +531,7 @@ export default function ServiceBillingPage() {
                 const StatusIcon = statusIcons[invoice.status];
                 return (
                   <tr key={invoice.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{invoice.invoiceNumber}</span>
                         <span className="text-sm text-gray-600">{invoice.customerName}</span>
@@ -543,12 +543,12 @@ export default function ServiceBillingPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${invoiceTypeColors[invoice.invoiceType]}`}>
                         {invoice.invoiceType}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col gap-1">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit ${statusColors[invoice.status]}`}>
                           <StatusIcon className="h-3 w-3" />
@@ -561,7 +561,7 @@ export default function ServiceBillingPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col text-sm">
                         <span className="text-gray-600 text-xs">Issued:</span>
                         <span className="text-gray-900">
@@ -581,13 +581,13 @@ export default function ServiceBillingPage() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{formatCurrency(invoice.totalAmount)}</span>
                         <span className="text-xs text-gray-500">Tax: {formatCurrency(invoice.totalTax)}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       {invoice.paidAmount > 0 ? (
                         <div className="flex flex-col">
                           <span className="text-sm font-medium text-green-600">{formatCurrency(invoice.paidAmount)}</span>
@@ -597,14 +597,14 @@ export default function ServiceBillingPage() {
                         <span className="text-sm text-gray-400">No payment</span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       {invoice.balanceAmount > 0 ? (
                         <span className="text-sm font-medium text-red-600">{formatCurrency(invoice.balanceAmount)}</span>
                       ) : (
                         <span className="text-sm text-green-600">-</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => handleViewDetails(invoice)}
@@ -642,7 +642,7 @@ export default function ServiceBillingPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+          <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
             <div className="text-sm text-gray-700">
               Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredInvoices.length)} of {filteredInvoices.length} invoices
             </div>
@@ -668,10 +668,10 @@ export default function ServiceBillingPage() {
 
       {/* Invoice Details Modal */}
       {showDetailsModal && selectedInvoice && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">{selectedInvoice.invoiceNumber}</h2>
                 <p className="text-blue-100 text-sm">Invoice Details & Summary</p>
@@ -682,9 +682,9 @@ export default function ServiceBillingPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status Banner */}
-              <div className={`rounded-lg p-4 border-2 ${selectedInvoice.status === 'paid' ? 'bg-green-50 border-green-200' :
+              <div className={`rounded-lg p-3 border-2 ${selectedInvoice.status === 'paid' ? 'bg-green-50 border-green-200' :
                   selectedInvoice.status === 'overdue' ? 'bg-red-50 border-red-200' :
                     selectedInvoice.status === 'sent' ? 'bg-blue-50 border-blue-200' :
                       selectedInvoice.status === 'partial_paid' ? 'bg-yellow-50 border-yellow-200' :
@@ -729,8 +729,8 @@ export default function ServiceBillingPage() {
               </div>
 
               {/* Customer & Date Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
                     <User className="h-5 w-5" />
                     Customer Information
@@ -759,7 +759,7 @@ export default function ServiceBillingPage() {
                   </div>
                 </div>
 
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                     <Calendar className="h-5 w-5" />
                     Date Information
@@ -787,7 +787,7 @@ export default function ServiceBillingPage() {
 
               {/* Amount Breakdown */}
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-5 border border-emerald-200">
-                <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+                <h4 className="font-bold text-emerald-900 mb-2 flex items-center gap-2">
                   <DollarSign className="h-5 w-5" />
                   Amount Breakdown
                 </h4>
@@ -820,7 +820,7 @@ export default function ServiceBillingPage() {
               </div>
 
               {/* Payment Status */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="font-bold text-orange-900 mb-3">Payment Status</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
@@ -843,7 +843,7 @@ export default function ServiceBillingPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+            <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
               <button onClick={() => setShowDetailsModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                 Close
               </button>
@@ -858,10 +858,10 @@ export default function ServiceBillingPage() {
 
       {/* Send Invoice Modal */}
       {showSendModal && selectedInvoice && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 rounded-t-lg">
+            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 py-2 rounded-t-lg">
               <h2 className="text-xl font-bold flex items-center gap-2">
                 <Send className="h-6 w-6" />
                 Send Invoice
@@ -870,10 +870,10 @@ export default function ServiceBillingPage() {
 
             {/* Modal Body */}
             <div className="p-6">
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 mb-2">
                 Are you sure you want to send invoice <strong>{selectedInvoice.invoiceNumber}</strong> to <strong>{selectedInvoice.customerName}</strong>?
               </p>
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-sm text-blue-900 mb-2"><strong>Invoice Details:</strong></p>
                 <ul className="text-sm text-blue-800 space-y-1">
                   <li>• Amount: {formatCurrency(selectedInvoice.totalAmount)}</li>
@@ -887,7 +887,7 @@ export default function ServiceBillingPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t rounded-b-lg">
+            <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t rounded-b-lg">
               <button
                 onClick={() => {
                   setShowSendModal(false);

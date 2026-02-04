@@ -56,10 +56,10 @@ export function ExportWorkOrdersModal({ isOpen, onClose, onExport }: ExportWorkO
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Export Work Orders</h2>
@@ -71,7 +71,7 @@ export function ExportWorkOrdersModal({ isOpen, onClose, onExport }: ExportWorkO
 
         <div className="p-6">
           {/* Export Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
               <button
@@ -114,7 +114,7 @@ export function ExportWorkOrdersModal({ isOpen, onClose, onExport }: ExportWorkO
           </div>
 
           {/* Date Range */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Date Range
@@ -158,7 +158,7 @@ export function ExportWorkOrdersModal({ isOpen, onClose, onExport }: ExportWorkO
           </div>
 
           {/* Status Filters */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
               <Filter className="h-4 w-4" />
               Include Work Order Statuses
@@ -222,7 +222,7 @@ export function ExportWorkOrdersModal({ isOpen, onClose, onExport }: ExportWorkO
           </div>
 
           {/* Data Sections */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
               <FileText className="h-4 w-4" />
               Include Data Sections

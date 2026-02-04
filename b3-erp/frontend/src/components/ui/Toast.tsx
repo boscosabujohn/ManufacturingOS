@@ -135,7 +135,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   return (
     <div
       className={`
-        flex items-start gap-3 p-4 rounded-lg border shadow-lg
+        flex items-start gap-3 p-3 rounded-lg border shadow-lg
         ${config.bgColor} ${config.borderColor}
         animate-in slide-in-from-right-full duration-300
       `}

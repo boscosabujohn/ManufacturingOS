@@ -240,7 +240,7 @@ export default function ProductionPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mb-2" />
           <p className="text-gray-600">Loading production data...</p>
         </div>
       </div>
@@ -252,7 +252,7 @@ export default function ProductionPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+          <AlertTriangle className="w-12 h-12 text-red-600 mb-2" />
           <p className="text-gray-900 font-semibold mb-2">Error Loading Data</p>
           <p className="text-gray-600">{error}</p>
           <button
@@ -268,10 +268,10 @@ export default function ProductionPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="px-4 sm:px-6 lg:px-8 py-8">
+      <div className="px-3 py-8">
         {/* Header */}
-        <div className="mb-6">
-          <Link href="/" className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 mb-4">
+        <div className="mb-3">
+          <Link href="/" className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 mb-2">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Dashboard
           </Link>
@@ -306,8 +306,8 @@ export default function ProductionPage() {
         </div>
 
         {/* View Tabs */}
-        <div className="mb-6 border-b border-gray-200">
-          <div className="flex gap-4">
+        <div className="mb-3 border-b border-gray-200">
+          <div className="flex gap-2">
             <button
               onClick={() => setSelectedView('overview')}
               className={`px-4 py-2 border-b-2 font-medium transition-colors ${
@@ -345,8 +345,8 @@ export default function ProductionPage() {
         {selectedView === 'overview' && (
           <>
             {/* KPI Cards - Row 1: Production Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Total Orders</h3>
                   <Package className="w-5 h-5 text-blue-600" />
@@ -365,7 +365,7 @@ export default function ProductionPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Production Output</h3>
                   <Target className="w-5 h-5 text-green-600" />
@@ -384,7 +384,7 @@ export default function ProductionPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Production Efficiency</h3>
                   <Activity className="w-5 h-5 text-purple-600" />
@@ -403,7 +403,7 @@ export default function ProductionPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Delayed Orders</h3>
                   <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -424,8 +424,8 @@ export default function ProductionPage() {
             </div>
 
             {/* KPI Cards - Row 2: Machine & Quality Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Machine Status</h3>
                   <Zap className="w-5 h-5 text-green-600" />
@@ -443,7 +443,7 @@ export default function ProductionPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Average OEE</h3>
                   <BarChart3 className="w-5 h-5 text-blue-600" />
@@ -462,7 +462,7 @@ export default function ProductionPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">First Pass Yield</h3>
                   <CheckCircle className="w-5 h-5 text-green-600" />
@@ -481,7 +481,7 @@ export default function ProductionPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+              <div className="bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-sm font-medium text-gray-600">Defect Rate</h3>
                   <AlertTriangle className="w-5 h-5 text-orange-600" />
@@ -502,7 +502,7 @@ export default function ProductionPage() {
             </div>
 
             {/* Production Orders Summary & Quality by Shift */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
               {/* Active Production Orders */}
               <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
                 <div className="p-6 border-b border-gray-200">
@@ -510,12 +510,12 @@ export default function ProductionPage() {
                   <p className="text-sm text-gray-500">Current orders in progress</p>
                 </div>
                 <div className="p-6">
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {productionOrders
                       .filter(o => o.status === 'in-progress' || o.status === 'delayed' || o.status === 'paused')
                       .slice(0, 4)
                       .map((order) => (
-                        <div key={order.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div key={order.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
                               <span className="font-semibold text-gray-900">{order.orderNumber}</span>
@@ -527,7 +527,7 @@ export default function ProductionPage() {
                               </span>
                             </div>
                             <p className="text-sm text-gray-600">{order.productName}</p>
-                            <div className="mt-2 flex items-center gap-4 text-xs text-gray-500">
+                            <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
                               <span>WC: {order.workCenter}</span>
                               <span>Due: {order.dueDate}</span>
                             </div>
@@ -563,7 +563,7 @@ export default function ProductionPage() {
                   <p className="text-sm text-gray-500">Today's production quality</p>
                 </div>
                 <div className="p-6">
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {qualityMetrics.map((metric, idx) => (
                       <div key={idx} className="p-4 bg-gray-50 rounded-lg">
                         <div className="flex items-center justify-between mb-3">
@@ -608,7 +608,7 @@ export default function ProductionPage() {
                 <p className="text-sm text-gray-500">Real-time machine monitoring</p>
               </div>
               <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                   {workCenters.map((wc) => (
                     <div key={wc.id} className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
                       <div className="flex items-start justify-between mb-3">
@@ -683,38 +683,38 @@ export default function ProductionPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Order #</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Work Center</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Operator</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quantity</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Efficiency</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Due Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Order #</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Work Center</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Operator</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Quantity</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Efficiency</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Due Date</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {productionOrders.map((order) => (
                     <tr key={order.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm font-medium text-gray-900">{order.orderNumber}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm font-medium text-gray-900">{order.productName}</div>
                         <div className="text-sm text-gray-500">{order.productCode}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{order.workCenter}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{order.operator}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="text-sm font-semibold text-gray-900">{order.producedQty}/{order.quantity}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <div className="w-24 bg-gray-200 rounded-full h-2">
                             <div
@@ -730,7 +730,7 @@ export default function ProductionPage() {
                           <span className="text-xs text-gray-600">{Math.round((order.producedQty / order.quantity) * 100)}%</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`text-sm font-semibold ${
                           order.efficiency >= 85 ? 'text-green-600' :
                           order.efficiency >= 70 ? 'text-yellow-600' :
@@ -740,15 +740,15 @@ export default function ProductionPage() {
                           {order.efficiency > 0 ? `${order.efficiency}%` : '-'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{order.dueDate}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`px-2 py-1 text-xs font-medium rounded-full ${getPriorityColor(order.priority)}`}>
                           {order.priority}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(order.status)} w-fit`}>
                           {getStatusIcon(order.status)}
                           {order.status}
@@ -773,36 +773,36 @@ export default function ProductionPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Code</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Work Center Name</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Current Job</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Utilization</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">OEE</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Availability</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quality</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Code</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Work Center Name</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Current Job</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Utilization</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">OEE</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Availability</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Quality</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {workCenters.map((wc) => (
                     <tr key={wc.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm font-medium text-gray-900">{wc.code}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm text-gray-900">{wc.name}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm text-gray-900">{wc.currentJob}</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(wc.status)} w-fit`}>
                           {getStatusIcon(wc.status)}
                           {wc.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                           <div className="w-20 bg-gray-200 rounded-full h-2">
                             <div
@@ -813,7 +813,7 @@ export default function ProductionPage() {
                           <span className="text-sm font-semibold text-gray-900">{wc.utilizationRate}%</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className={`text-sm font-semibold ${
                           wc.oee >= 75 ? 'text-green-600' :
                           wc.oee >= 60 ? 'text-yellow-600' :
@@ -822,13 +822,13 @@ export default function ProductionPage() {
                           {wc.oee}%
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{wc.availability}%</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{wc.performance}%</span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <span className="text-sm text-gray-900">{wc.quality}%</span>
                       </td>
                     </tr>

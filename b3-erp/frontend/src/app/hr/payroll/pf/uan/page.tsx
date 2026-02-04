@@ -33,18 +33,18 @@ function EditUANModal({ employee, onClose }: { employee: EmployeeUAN; onClose: (
   });
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Edit UAN Details - {employee.employeeName}</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Employee Info */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h4 className="font-semibold text-blue-900 mb-2">Employee Information</h4>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -183,19 +183,19 @@ function GenerateUANModal({ employee, onClose }: { employee: EmployeeUAN; onClos
   });
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50 overflow-y-auto">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Generate UAN - {employee.employeeName}</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {step === 'form' && (
             <>
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="font-semibold text-blue-900 mb-2">Employee Information</h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
@@ -209,7 +209,7 @@ function GenerateUANModal({ employee, onClose }: { employee: EmployeeUAN; onClos
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Aadhar Number <span className="text-red-600">*</span>
@@ -313,7 +313,7 @@ function GenerateUANModal({ employee, onClose }: { employee: EmployeeUAN; onClos
                 </div>
               </div>
 
-              <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-yellow-800">
@@ -349,19 +349,19 @@ function GenerateUANModal({ employee, onClose }: { employee: EmployeeUAN; onClos
           {step === 'success' && (
             <>
               <div className="text-center py-8">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
                   <CheckCircle className="h-10 w-10 text-green-600" />
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 mb-2">UAN Generated Successfully!</h4>
-                <p className="text-gray-600 mb-6">UAN request has been submitted to EPFO portal</p>
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 text-left max-w-md mx-auto">
+                <p className="text-gray-600 mb-3">UAN request has been submitted to EPFO portal</p>
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 text-left max-w-md">
                   <p className="text-sm text-blue-800 mb-2"><strong>Generated UAN:</strong></p>
                   <p className="text-2xl font-mono font-bold text-blue-900 mb-3">101234567899</p>
                   <p className="text-xs text-blue-700">UAN activation link sent to employee's mobile and email</p>
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="font-semibold text-green-900 mb-2">Next Steps</h4>
                 <ul className="space-y-1 text-sm text-green-800 list-disc list-inside">
                   <li>Employee will receive OTP on registered mobile number</li>
@@ -395,17 +395,17 @@ function CompleteKYCModal({ employee, onClose }: { employee: EmployeeUAN; onClos
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Complete KYC - {employee.employeeName}</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+        <div className="p-6 space-y-3">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h4 className="font-semibold text-blue-900 mb-3">Employee UAN Details</h4>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -420,14 +420,14 @@ function CompleteKYCModal({ employee, onClose }: { employee: EmployeeUAN; onClos
           </div>
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">KYC Requirements</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">KYC Requirements</h4>
             <div className="space-y-3">
               {kycStatus.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={index}
-                    className={`flex items-center justify-between p-4 rounded-lg border ${
+                    className={`flex items-center justify-between p-3 rounded-lg border ${
                       item.completed
                         ? 'bg-green-50 border-green-200'
                         : 'bg-yellow-50 border-yellow-200'
@@ -450,7 +450,7 @@ function CompleteKYCModal({ employee, onClose }: { employee: EmployeeUAN; onClos
             </div>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <FileText className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -467,7 +467,7 @@ function CompleteKYCModal({ employee, onClose }: { employee: EmployeeUAN; onClos
             </div>
           </div>
 
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-start gap-3">
               <AlertTriangle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -500,17 +500,17 @@ function CompleteKYCModal({ employee, onClose }: { employee: EmployeeUAN; onClos
 
 function ViewUANPortalModal({ employee, onClose }: { employee: EmployeeUAN; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">UAN Portal Access - {employee.employeeName}</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
-          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+        <div className="p-6 space-y-3">
+          <div className="bg-green-50 rounded-lg p-3 border border-green-200">
             <div className="flex items-center gap-3 mb-3">
               <CheckCircle className="h-6 w-6 text-green-600" />
               <h4 className="font-semibold text-green-900">KYC Complete - Portal Access Enabled</h4>
@@ -553,7 +553,7 @@ function ViewUANPortalModal({ employee, onClose }: { employee: EmployeeUAN; onCl
             </div>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-start gap-3">
               <FileText className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -604,16 +604,16 @@ function ExportReportModal({ onClose }: { onClose: () => void }) {
   const [includeKYC, setIncludeKYC] = useState(true);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+        <div className="border-b border-gray-200 px-3 py-2 flex justify-between items-center">
           <h3 className="text-xl font-bold text-gray-900">Export UAN Report</h3>
           <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="space-y-2">
@@ -672,7 +672,7 @@ function ExportReportModal({ onClose }: { onClose: () => void }) {
             </label>
           </div>
 
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <p className="text-sm text-blue-800">
               <strong>Report will include:</strong> Employee details, UAN numbers, PF account numbers, KYC status, and last updated dates for all employees.
             </p>
@@ -847,14 +847,14 @@ export default function UANManagementPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">UAN Management</h1>
         <p className="text-sm text-gray-600 mt-1">Universal Account Number management and KYC tracking</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Employees</p>
@@ -864,7 +864,7 @@ export default function UANManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active UAN</p>
@@ -874,7 +874,7 @@ export default function UANManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending UAN</p>
@@ -884,7 +884,7 @@ export default function UANManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">KYC Complete</p>
@@ -895,8 +895,8 @@ export default function UANManagementPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -938,10 +938,10 @@ export default function UANManagementPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredEmployees.map(employee => (
-          <div key={employee.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={employee.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{employee.employeeName}</h3>
@@ -973,8 +973,8 @@ export default function UANManagementPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">UAN Details</h4>
                 <div className="space-y-2">
                   <div>
@@ -996,7 +996,7 @@ export default function UANManagementPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">KYC Status</h4>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
@@ -1034,7 +1034,7 @@ export default function UANManagementPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h4 className="text-xs font-semibold text-purple-900 mb-3">Actions</h4>
                 <div className="space-y-2">
                   <div>
@@ -1099,7 +1099,7 @@ export default function UANManagementPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">UAN Management Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>UAN (Universal Account Number):</strong> Single lifelong account number for PF across all employments</li>

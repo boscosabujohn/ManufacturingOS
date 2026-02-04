@@ -396,7 +396,7 @@ function VendorRow({
 }) {
   return (
     <div className={`p-4 rounded-lg border ${getRiskBgColor(vendor.overallRisk)} border-gray-200 dark:border-gray-700`}>
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-2">
         {/* Vendor Info */}
         <div className="flex-shrink-0 w-48">
           <div className="flex items-center gap-2 mb-1">
@@ -420,7 +420,7 @@ function VendorRow({
 
         {/* Overall Risk Score */}
         <div className="flex-shrink-0 w-20 text-center">
-          <div className={`w-14 h-14 mx-auto rounded-full ${getRiskColor(vendor.overallRisk)} flex items-center justify-center`}>
+          <div className={`w-14 h-14 rounded-full ${getRiskColor(vendor.overallRisk)} flex items-center justify-center`}>
             <span className="text-white font-bold text-xl">{vendor.riskScore}</span>
           </div>
           <p className="text-xs text-gray-500 mt-1">Overall</p>
@@ -512,7 +512,7 @@ function RiskSummary({ vendors }: { vendors: Vendor[] }) {
   }, [vendors]);
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
       <Card>
         <CardContent className="pt-4">
           <div className="flex items-center gap-3">
@@ -656,10 +656,10 @@ export function VendorRiskHeatmap({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <Card>
         <CardHeader className="pb-2">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+          <div className="flex items-center justify-between flex-wrap gap-2">
             <CardTitle className="flex items-center gap-2">
               <Shield className="w-5 h-5 text-purple-600" />
               Vendor Risk Heatmap
@@ -712,7 +712,7 @@ export function VendorRiskHeatmap({
           <RiskSummary vendors={vendors} />
 
           {/* Legend */}
-          <div className="flex items-center gap-6 mb-6 text-sm">
+          <div className="flex items-center gap-3 mb-3 text-sm">
             <span className="text-gray-500 font-medium">Risk Score:</span>
             <div className="flex items-center gap-1">
               <div className="w-4 h-4 rounded bg-green-500" />
@@ -733,12 +733,12 @@ export function VendorRiskHeatmap({
           </div>
 
           {/* Category Labels */}
-          <div className="flex items-center gap-3 mb-4 ml-[270px]">
+          <div className="flex items-center gap-3 mb-2 ml-[270px]">
             {['Overall', 'Delivery', 'Quality', 'Financial', 'Compliance', 'Capacity'].map((cat, i) => {
               const Icon = i === 0 ? Shield : getCategoryIcon(['delivery', 'quality', 'financial', 'compliance', 'capacity'][i - 1] as RiskCategory);
               return (
                 <div key={cat} className={`text-center ${i === 0 ? 'w-20' : 'w-16'}`}>
-                  <Icon className="w-4 h-4 mx-auto text-gray-400 mb-1" />
+                  <Icon className="w-4 h-4 text-gray-400 mb-1" />
                   <span className="text-xs text-gray-500 font-medium">{cat}</span>
                 </div>
               );

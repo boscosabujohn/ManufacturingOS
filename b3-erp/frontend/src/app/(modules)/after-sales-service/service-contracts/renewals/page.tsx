@@ -353,7 +353,7 @@ export default function ServiceContractRenewalsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -379,8 +379,8 @@ export default function ServiceContractRenewalsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-white p-4 rounded-lg border">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Renewals</p>
@@ -390,7 +390,7 @@ export default function ServiceContractRenewalsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Current Value</p>
@@ -400,7 +400,7 @@ export default function ServiceContractRenewalsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Proposed Value</p>
@@ -410,7 +410,7 @@ export default function ServiceContractRenewalsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Avg Probability</p>
@@ -422,7 +422,7 @@ export default function ServiceContractRenewalsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">High Priority</p>
@@ -432,7 +432,7 @@ export default function ServiceContractRenewalsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Won/Lost</p>
@@ -444,8 +444,8 @@ export default function ServiceContractRenewalsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="space-y-4">
-        <div className="flex gap-4">
+      <div className="space-y-2">
+        <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
             <input
@@ -475,7 +475,7 @@ export default function ServiceContractRenewalsPage() {
         </div>
 
         {showFilters && (
-          <div className="bg-gray-50 p-4 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 p-3 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-2">
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedStatus}
@@ -525,25 +525,25 @@ export default function ServiceContractRenewalsPage() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Contract Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Customer & Manager
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Renewal Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Financial Impact
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Timeline & Risk
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Performance
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -555,7 +555,7 @@ export default function ServiceContractRenewalsPage() {
                   className="hover:bg-gray-50 cursor-pointer"
                   onClick={() => handleRenewalDetails(renewal)}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">{renewal.contractNumber}</div>
                       <div className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getContractTypeColor(renewal.contractType)}`}>
@@ -564,7 +564,7 @@ export default function ServiceContractRenewalsPage() {
                       <div className="text-xs text-gray-500">Renewal #{renewal.renewalCount + 1}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">{renewal.customerName}</div>
                       <div className="flex items-center text-xs text-gray-500">
@@ -574,7 +574,7 @@ export default function ServiceContractRenewalsPage() {
                       <div className="text-xs text-gray-500">AM: {renewal.accountManager}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(renewal.renewalStatus)}`}>
                         {renewal.renewalStatus.replace('_', ' ').toUpperCase()}
@@ -587,7 +587,7 @@ export default function ServiceContractRenewalsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Current: ₹{(renewal.currentValue / 100000).toFixed(1)}L
@@ -604,7 +604,7 @@ export default function ServiceContractRenewalsPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm text-gray-900">
                         Deadline: {new Date(renewal.decisionDeadline).toLocaleDateString()}
@@ -617,7 +617,7 @@ export default function ServiceContractRenewalsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Health: {renewal.healthScore}%
@@ -631,7 +631,7 @@ export default function ServiceContractRenewalsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={(e) => {
@@ -684,9 +684,9 @@ export default function ServiceContractRenewalsPage() {
 
       {/* Renewal Details Modal */}
       {showRenewalModal && selectedRenewal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 w-full  max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg p-3 w-full  max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-bold text-gray-900">Renewal Details</h2>
               <button
                 onClick={() => setShowRenewalModal(false)}
@@ -696,11 +696,11 @@ export default function ServiceContractRenewalsPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
               {/* Contract Information */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Contract Information</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Contract:</span>
                     <span className="font-medium">{selectedRenewal.contractNumber}</span>
@@ -727,9 +727,9 @@ export default function ServiceContractRenewalsPage() {
               </div>
 
               {/* Financial Details */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Financial Details</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Current Value:</span>
                     <span className="font-medium">₹{(selectedRenewal.currentValue / 100000).toFixed(1)}L</span>
@@ -758,9 +758,9 @@ export default function ServiceContractRenewalsPage() {
               </div>
 
               {/* Status & Timeline */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Status & Timeline</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Status:</span>
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(selectedRenewal.renewalStatus)}`}>
@@ -786,9 +786,9 @@ export default function ServiceContractRenewalsPage() {
 
               {/* Key Changes */}
               {selectedRenewal.keyChanges.length > 0 && (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-gray-900">Key Changes</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
                       {selectedRenewal.keyChanges.map((change, index) => (
                         <li key={index}>{change}</li>
@@ -800,9 +800,9 @@ export default function ServiceContractRenewalsPage() {
 
               {/* Customer Feedback */}
               {selectedRenewal.customerFeedback && (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-gray-900">Customer Feedback</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <p className="text-gray-700">{selectedRenewal.customerFeedback}</p>
                   </div>
                 </div>
@@ -810,9 +810,9 @@ export default function ServiceContractRenewalsPage() {
 
               {/* Internal Notes */}
               {selectedRenewal.internalNotes && (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-gray-900">Internal Notes</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-gray-50 p-3 rounded-lg">
                     <p className="text-gray-700">{selectedRenewal.internalNotes}</p>
                   </div>
                 </div>

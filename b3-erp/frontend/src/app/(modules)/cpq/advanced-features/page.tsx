@@ -1193,9 +1193,9 @@ export default function CPQAdvancedFeaturesPage() {
   const activeFeature = features.find((f) => f.id === activeTab);
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center space-x-3 mb-2">
           <Sparkles className="h-8 w-8 text-blue-600" />
           <h1 className="text-3xl font-bold text-gray-900">CPQ Advanced Features</h1>
@@ -1206,7 +1206,7 @@ export default function CPQAdvancedFeaturesPage() {
       </div>
 
       {/* Feature Navigation */}
-      <div className="bg-white rounded-lg border border-gray-200 mb-6 overflow-hidden">
+      <div className="bg-white rounded-lg border border-gray-200 mb-3 overflow-hidden">
         <div className="grid grid-cols-7 divide-x divide-gray-200">
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -1238,7 +1238,7 @@ export default function CPQAdvancedFeaturesPage() {
 
       {/* Feature Description */}
       {activeFeature && (
-        <div className={`mb-6 ${activeFeature.bg} rounded-lg border border-gray-200 p-4`}>
+        <div className={`mb-3 ${activeFeature.bg} rounded-lg border border-gray-200 p-3`}>
           <div className="flex items-start space-x-3">
             <div className="p-2 bg-white rounded-lg">
               <activeFeature.icon className={`h-6 w-6 ${activeFeature.color}`} />

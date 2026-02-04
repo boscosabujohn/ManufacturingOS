@@ -102,9 +102,9 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <FileText className="h-6 w-6" />
             <h2 className="text-xl font-bold">Generate Report</h2>
@@ -114,7 +114,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Name */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Report Name *</label>
@@ -167,7 +167,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
 
           {/* Custom Date Range */}
           {dateRange === 'Custom Range' && (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Start Date</label>
                 <input
@@ -190,7 +190,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
           )}
 
           {/* Output Format and Project Scope */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Output Format *</label>
               <select
@@ -223,7 +223,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
           </div>
 
           {/* Report Options */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Report Options</h4>
             <div className="space-y-2">
               <label className="flex items-center space-x-2">
@@ -257,7 +257,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
           </div>
 
           {/* Preview Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Report Preview</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><span className="font-medium">Template:</span> {selectedTemplate}</p>
@@ -268,7 +268,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, template }: G
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -337,9 +337,9 @@ export function ScheduleReportModal({ isOpen, onClose, onSchedule }: ScheduleRep
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Clock className="h-6 w-6" />
             <h2 className="text-xl font-bold">Schedule Report</h2>
@@ -349,9 +349,9 @@ export function ScheduleReportModal({ isOpen, onClose, onSchedule }: ScheduleRep
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Details */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Report Name *</label>
               <input
@@ -393,7 +393,7 @@ export function ScheduleReportModal({ isOpen, onClose, onSchedule }: ScheduleRep
             </select>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 {frequency === 'Monthly' ? 'Day of Month' : frequency === 'Weekly' ? 'Day of Week' : 'Time'}
@@ -484,7 +484,7 @@ export function ScheduleReportModal({ isOpen, onClose, onSchedule }: ScheduleRep
           </div>
 
           {/* Auto Deliver Option */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
@@ -497,7 +497,7 @@ export function ScheduleReportModal({ isOpen, onClose, onSchedule }: ScheduleRep
           </div>
 
           {/* Schedule Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Schedule Summary</h4>
             <p className="text-sm text-gray-700">
               Report will be generated <span className="font-medium">{frequency.toLowerCase()}</span>{' '}
@@ -509,7 +509,7 @@ export function ScheduleReportModal({ isOpen, onClose, onSchedule }: ScheduleRep
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -588,9 +588,9 @@ export function CustomizeTemplateModal({ isOpen, onClose, template, onSave }: Cu
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Settings className="h-6 w-6" />
             <h2 className="text-xl font-bold">Customize Report Template</h2>
@@ -600,9 +600,9 @@ export function CustomizeTemplateModal({ isOpen, onClose, template, onSave }: Cu
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Template Info */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Template Name *</label>
               <input
@@ -666,7 +666,7 @@ export function CustomizeTemplateModal({ isOpen, onClose, template, onSave }: Cu
           </div>
 
           {/* Header and Footer */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Custom Header Text</label>
               <textarea
@@ -690,7 +690,7 @@ export function CustomizeTemplateModal({ isOpen, onClose, template, onSave }: Cu
           </div>
 
           {/* Additional Options */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Display Options</h4>
             <div className="space-y-2">
               <label className="flex items-center space-x-2">
@@ -706,7 +706,7 @@ export function CustomizeTemplateModal({ isOpen, onClose, template, onSave }: Cu
           </div>
 
           {/* Template Preview */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Template Configuration</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><span className="font-medium">Data Points:</span> {selectedDataPoints.length} selected</p>
@@ -717,7 +717,7 @@ export function CustomizeTemplateModal({ isOpen, onClose, template, onSave }: Cu
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -751,9 +751,9 @@ export function ReportPreviewModal({ isOpen, onClose, report }: ReportPreviewMod
   if (!isOpen || !report) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Eye className="h-6 w-6" />
             <h2 className="text-xl font-bold">Report Preview</h2>
@@ -763,9 +763,9 @@ export function ReportPreviewModal({ isOpen, onClose, report }: ReportPreviewMod
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Header */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-3">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">{report.reportName}</h1>
             <div className="flex items-center space-x-4 text-sm text-gray-600">
               <span>Generated on {new Date(report.lastGenerated).toLocaleDateString()}</span>
@@ -777,22 +777,22 @@ export function ReportPreviewModal({ isOpen, onClose, report }: ReportPreviewMod
           </div>
 
           {/* Mock Report Content - Executive Summary */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Executive Summary</h3>
-            <div className="grid grid-cols-4 gap-4 mb-6">
-              <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Executive Summary</h3>
+            <div className="grid grid-cols-4 gap-2 mb-3">
+              <div className="bg-blue-50 p-3 rounded-lg">
                 <p className="text-sm text-gray-600 mb-1">Total Projects</p>
                 <p className="text-2xl font-bold text-blue-700">{report.projectCount}</p>
               </div>
-              <div className="bg-green-50 p-4 rounded-lg">
+              <div className="bg-green-50 p-3 rounded-lg">
                 <p className="text-sm text-gray-600 mb-1">On Track</p>
                 <p className="text-2xl font-bold text-green-700">{Math.floor(report.projectCount * 0.7)}</p>
               </div>
-              <div className="bg-yellow-50 p-4 rounded-lg">
+              <div className="bg-yellow-50 p-3 rounded-lg">
                 <p className="text-sm text-gray-600 mb-1">At Risk</p>
                 <p className="text-2xl font-bold text-yellow-700">{Math.floor(report.projectCount * 0.2)}</p>
               </div>
-              <div className="bg-red-50 p-4 rounded-lg">
+              <div className="bg-red-50 p-3 rounded-lg">
                 <p className="text-sm text-gray-600 mb-1">Behind</p>
                 <p className="text-2xl font-bold text-red-700">{Math.floor(report.projectCount * 0.1)}</p>
               </div>
@@ -805,16 +805,16 @@ export function ReportPreviewModal({ isOpen, onClose, report }: ReportPreviewMod
           </div>
 
           {/* Mock Charts */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 className="text-sm font-semibold text-gray-900 mb-4">Budget Performance</h4>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Budget Performance</h4>
               <div className="h-48 bg-gradient-to-br from-blue-100 to-blue-50 rounded-lg flex items-center justify-center">
                 <BarChart3 className="h-16 w-16 text-blue-400" />
               </div>
               <p className="text-xs text-gray-500 mt-2 text-center">Bar Chart - Budget vs Actual</p>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 className="text-sm font-semibold text-gray-900 mb-4">Project Status Distribution</h4>
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Project Status Distribution</h4>
               <div className="h-48 bg-gradient-to-br from-green-100 to-green-50 rounded-lg flex items-center justify-center">
                 <PieChart className="h-16 w-16 text-green-400" />
               </div>
@@ -824,27 +824,27 @@ export function ReportPreviewModal({ isOpen, onClose, report }: ReportPreviewMod
 
           {/* Mock Data Table */}
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <div className="bg-gray-50 px-6 py-3 border-b border-gray-200">
+            <div className="bg-gray-50 px-3 py-2 border-b border-gray-200">
               <h4 className="text-sm font-semibold text-gray-900">Project Details</h4>
             </div>
             <table className="w-full text-sm">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Project</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Budget</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Project</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Progress</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Budget</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {[1, 2, 3].map((i) => (
                   <tr key={i}>
-                    <td className="px-6 py-4 text-gray-900">Sample Project {i}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-gray-900">Sample Project {i}</td>
+                    <td className="px-3 py-2">
                       <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">On Track</span>
                     </td>
-                    <td className="px-6 py-4 text-gray-900">75%</td>
-                    <td className="px-6 py-4 text-gray-900">₹{(Math.random() * 100).toFixed(1)}L</td>
+                    <td className="px-3 py-2 text-gray-900">75%</td>
+                    <td className="px-3 py-2 text-gray-900">₹{(Math.random() * 100).toFixed(1)}L</td>
                   </tr>
                 ))}
               </tbody>
@@ -852,14 +852,14 @@ export function ReportPreviewModal({ isOpen, onClose, report }: ReportPreviewMod
           </div>
 
           {/* Report Footer */}
-          <div className="bg-gray-50 border-t border-gray-200 rounded-lg p-4 text-center">
+          <div className="bg-gray-50 border-t border-gray-200 rounded-lg p-3 text-center">
             <p className="text-xs text-gray-500">
               This is a preview. Download the full report for complete data and analysis.
             </p>
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -922,9 +922,9 @@ export function ShareReportModal({ isOpen, onClose, report, onShare }: ShareRepo
   if (!isOpen || !report) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Share2 className="h-6 w-6" />
             <h2 className="text-xl font-bold">Share Report</h2>
@@ -934,9 +934,9 @@ export function ShareReportModal({ isOpen, onClose, report, onShare }: ShareRepo
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900">{report.reportName}</h4>
             <p className="text-xs text-gray-600 mt-1">
               {report.format} • {report.fileSize} • Generated {new Date(report.lastGenerated).toLocaleDateString()}
@@ -955,7 +955,7 @@ export function ShareReportModal({ isOpen, onClose, report, onShare }: ShareRepo
                     : 'border-gray-200 bg-white hover:bg-gray-50'
                 }`}
               >
-                <Mail className="h-6 w-6 mx-auto mb-2 text-indigo-600" />
+                <Mail className="h-6 w-6 mb-2 text-indigo-600" />
                 <span className="text-sm font-medium">Email</span>
               </button>
               <button
@@ -966,7 +966,7 @@ export function ShareReportModal({ isOpen, onClose, report, onShare }: ShareRepo
                     : 'border-gray-200 bg-white hover:bg-gray-50'
                 }`}
               >
-                <Share2 className="h-6 w-6 mx-auto mb-2 text-indigo-600" />
+                <Share2 className="h-6 w-6 mb-2 text-indigo-600" />
                 <span className="text-sm font-medium">Share Link</span>
               </button>
             </div>
@@ -1046,7 +1046,7 @@ export function ShareReportModal({ isOpen, onClose, report, onShare }: ShareRepo
                 )}
               </div>
 
-              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
                 <p className="text-sm text-gray-700 mb-2 font-medium">Shareable Link:</p>
                 <div className="flex gap-2">
                   <input
@@ -1077,7 +1077,7 @@ export function ShareReportModal({ isOpen, onClose, report, onShare }: ShareRepo
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1151,9 +1151,9 @@ export function ExportMultipleReportsModal({ isOpen, onClose, reports, onExport 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export Multiple Reports</h2>
@@ -1163,9 +1163,9 @@ export function ExportMultipleReportsModal({ isOpen, onClose, reports, onExport 
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Export Options */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Export Format</label>
               <select
@@ -1255,7 +1255,7 @@ export function ExportMultipleReportsModal({ isOpen, onClose, reports, onExport 
           </div>
 
           {/* Export Summary */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Export Summary</h4>
             <p className="text-sm text-gray-700">
               {selectedReports.length} report(s) will be exported as{' '}
@@ -1264,7 +1264,7 @@ export function ExportMultipleReportsModal({ isOpen, onClose, reports, onExport 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1306,9 +1306,9 @@ export function ReportComparisonModal({ isOpen, onClose, reports }: ReportCompar
   const selectedReport2 = reports.find(r => r.id === report2);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <BarChart3 className="h-6 w-6" />
             <h2 className="text-xl font-bold">Compare Reports</h2>
@@ -1318,9 +1318,9 @@ export function ReportComparisonModal({ isOpen, onClose, reports }: ReportCompar
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Selection */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Report 1 *</label>
               <select
@@ -1363,10 +1363,10 @@ export function ReportComparisonModal({ isOpen, onClose, reports }: ReportCompar
 
           {/* Comparison View */}
           {selectedReport1 && selectedReport2 && (
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               {/* Report 1 */}
               <div className="bg-white border border-gray-200 rounded-lg p-5">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-2">
                   <h4 className="text-sm font-semibold text-gray-900">{selectedReport1.reportName}</h4>
                   <p className="text-xs text-gray-600 mt-1">
                     {selectedReport1.reportType} • {new Date(selectedReport1.lastGenerated).toLocaleDateString()}
@@ -1394,7 +1394,7 @@ export function ReportComparisonModal({ isOpen, onClose, reports }: ReportCompar
 
               {/* Report 2 */}
               <div className="bg-white border border-gray-200 rounded-lg p-5">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
                   <h4 className="text-sm font-semibold text-gray-900">{selectedReport2.reportName}</h4>
                   <p className="text-xs text-gray-600 mt-1">
                     {selectedReport2.reportType} • {new Date(selectedReport2.lastGenerated).toLocaleDateString()}
@@ -1429,7 +1429,7 @@ export function ReportComparisonModal({ isOpen, onClose, reports }: ReportCompar
           ) : null}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700"
@@ -1498,9 +1498,9 @@ export function AdvancedFilterModal({ isOpen, onClose, onApplyFilters }: Advance
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Filter className="h-6 w-6" />
             <h2 className="text-xl font-bold">Advanced Filters</h2>
@@ -1510,7 +1510,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApplyFilters }: Advance
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Type */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-3">Report Type</label>
@@ -1550,7 +1550,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApplyFilters }: Advance
           {/* Date Range */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Generated Date Range</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">From</label>
                 <input
@@ -1587,7 +1587,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApplyFilters }: Advance
           {/* File Size */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">File Size (MB)</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">Min</label>
                 <input
@@ -1630,7 +1630,7 @@ export function AdvancedFilterModal({ isOpen, onClose, onApplyFilters }: Advance
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-between rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between rounded-b-lg">
           <button
             onClick={handleReset}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 font-medium"
@@ -1681,9 +1681,9 @@ export function ReportAnalyticsModal({ isOpen, onClose, reports }: ReportAnalyti
   }, {} as Record<string, number>);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <TrendingUp className="h-6 w-6" />
             <h2 className="text-xl font-bold">Report Analytics</h2>
@@ -1693,9 +1693,9 @@ export function ReportAnalyticsModal({ isOpen, onClose, reports }: ReportAnalyti
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Overview Stats */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-2">
             <div className="bg-blue-50 p-5 rounded-lg">
               <p className="text-sm text-gray-600 mb-1">Total Reports</p>
               <p className="text-3xl font-bold text-blue-700">{totalReports}</p>
@@ -1718,7 +1718,7 @@ export function ReportAnalyticsModal({ isOpen, onClose, reports }: ReportAnalyti
 
           {/* By Type */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Reports by Type</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Reports by Type</h3>
             <div className="space-y-3">
               {Object.entries(byType).map(([type, count]) => {
                 const percentage = (count / totalReports) * 100;
@@ -1742,8 +1742,8 @@ export function ReportAnalyticsModal({ isOpen, onClose, reports }: ReportAnalyti
 
           {/* By Format */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Reports by Format</h3>
-            <div className="grid grid-cols-4 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Reports by Format</h3>
+            <div className="grid grid-cols-4 gap-2">
               {Object.entries(byFormat).map(([format, count]) => (
                 <div key={format} className="text-center">
                   <p className="text-2xl font-bold text-gray-900">{count}</p>
@@ -1758,7 +1758,7 @@ export function ReportAnalyticsModal({ isOpen, onClose, reports }: ReportAnalyti
 
           {/* Top Generators */}
           <div className="bg-white border border-gray-200 rounded-lg p-5">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Report Generators</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Report Generators</h3>
             <div className="space-y-2">
               {['Rajesh Kumar', 'Priya Sharma', 'Amit Patel'].map((name, index) => (
                 <div key={name} className="flex items-center justify-between bg-gray-50 px-4 py-3 rounded-lg">
@@ -1777,7 +1777,7 @@ export function ReportAnalyticsModal({ isOpen, onClose, reports }: ReportAnalyti
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
@@ -1817,9 +1817,9 @@ export function CreateTemplateModal({ isOpen, onClose, onSave }: CreateTemplateM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Plus className="h-6 w-6" />
             <h2 className="text-xl font-bold">Create New Template</h2>
@@ -1829,7 +1829,7 @@ export function CreateTemplateModal({ isOpen, onClose, onSave }: CreateTemplateM
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Template Name *</label>
             <input
@@ -1870,7 +1870,7 @@ export function CreateTemplateModal({ isOpen, onClose, onSave }: CreateTemplateM
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1910,9 +1910,9 @@ export function ReportHistoryModal({ isOpen, onClose, report }: ReportHistoryMod
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-violet-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-violet-600 to-violet-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Clock className="h-6 w-6" />
             <h2 className="text-xl font-bold">Report History</h2>
@@ -1922,9 +1922,9 @@ export function ReportHistoryModal({ isOpen, onClose, report }: ReportHistoryMod
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Report Info */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900">{report.reportName}</h4>
             <p className="text-xs text-gray-600 mt-1">
               {report.reportType} • {report.format} • {report.fileSize}
@@ -1932,13 +1932,13 @@ export function ReportHistoryModal({ isOpen, onClose, report }: ReportHistoryMod
           </div>
 
           {/* History Timeline */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900">Activity Timeline</h3>
-            <div className="relative border-l-2 border-violet-200 ml-3 pl-6 space-y-6">
+            <div className="relative border-l-2 border-violet-200 ml-3 pl-6 space-y-3">
               {historyEntries.map((entry, index) => (
                 <div key={index} className="relative">
                   <div className="absolute -left-[29px] top-1 w-4 h-4 bg-violet-600 rounded-full border-2 border-white" />
-                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="text-sm font-semibold text-gray-900">{entry.action}</h4>
                       <span className="text-xs text-gray-500">{entry.date}</span>
@@ -1952,7 +1952,7 @@ export function ReportHistoryModal({ isOpen, onClose, report }: ReportHistoryMod
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700"
@@ -2000,9 +2000,9 @@ export function NotificationSettingsModal({ isOpen, onClose, onSave }: Notificat
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Bell className="h-6 w-6" />
             <h2 className="text-xl font-bold">Notification Settings</h2>
@@ -2012,9 +2012,9 @@ export function NotificationSettingsModal({ isOpen, onClose, onSave }: Notificat
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Master Toggle */}
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3">
             <label className="flex items-center space-x-3">
               <input
                 type="checkbox"
@@ -2045,7 +2045,7 @@ export function NotificationSettingsModal({ isOpen, onClose, onSave }: Notificat
 
           {/* Notification Preferences */}
           {emailNotifications && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className="text-sm font-semibold text-gray-900">Notification Preferences</h3>
               <div className="space-y-3">
                 <label className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
@@ -2117,7 +2117,7 @@ export function NotificationSettingsModal({ isOpen, onClose, onSave }: Notificat
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"

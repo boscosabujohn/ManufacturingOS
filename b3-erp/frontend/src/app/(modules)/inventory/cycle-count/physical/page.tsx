@@ -148,7 +148,7 @@ export default function PhysicalCountPage() {
   const completionRate = (countedItems / totalItems) * 100;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -171,8 +171,8 @@ export default function PhysicalCountPage() {
       </div>
 
       {/* Progress Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{totalItems}</span>
@@ -181,7 +181,7 @@ export default function PhysicalCountPage() {
           <div className="text-xs text-blue-600 mt-1">To Count</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{countedItems}</span>
@@ -190,7 +190,7 @@ export default function PhysicalCountPage() {
           <div className="text-xs text-green-600 mt-1">{completionRate.toFixed(0)}% Complete</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <AlertCircle className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">{varianceItems}</span>
@@ -199,7 +199,7 @@ export default function PhysicalCountPage() {
           <div className="text-xs text-red-600 mt-1">Needs Review</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <BarChart3 className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">
@@ -212,8 +212,8 @@ export default function PhysicalCountPage() {
       </div>
 
       {/* Scan Mode Toggle */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold text-gray-900">Count Mode</h3>
           <div className="flex items-center space-x-3">
             <button
@@ -242,7 +242,7 @@ export default function PhysicalCountPage() {
         </div>
 
         {scanMode === 'barcode' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center space-x-3">
               <Scan className="w-8 h-8 text-blue-600" />
               <div className="flex-1">
@@ -266,45 +266,45 @@ export default function PhysicalCountPage() {
 
       {/* Count Items Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Items to Count</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Code</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Batch/Serial</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">System Qty</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Physical Count</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Code</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Name</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Batch/Serial</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">System Qty</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Physical Count</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Variance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {countItems.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {item.itemCode}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{item.itemName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                  <td className="px-3 py-2 text-sm text-gray-900">{item.itemName}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                     <div className="flex items-center space-x-1">
                       <MapPin className="w-4 h-4 text-gray-400" />
                       <span>{item.location}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-3 py-2 text-sm text-gray-600">
                     {item.batchNumber && <div className="text-xs">Batch: {item.batchNumber}</div>}
                     {item.serialNumber && <div className="text-xs">S/N: {item.serialNumber}</div>}
                     {!item.batchNumber && !item.serialNumber && <span className="text-gray-400">-</span>}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">
                     {item.systemQty} {item.uom}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => decrementQty(item.id)}
@@ -328,7 +328,7 @@ export default function PhysicalCountPage() {
                       <span className="text-xs text-gray-500">{item.uom}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {item.physicalQty !== null ? (
                       <span className={`text-sm font-semibold ${
                         item.variance === 0 ? 'text-green-600' :
@@ -340,7 +340,7 @@ export default function PhysicalCountPage() {
                       <span className="text-sm text-gray-400">-</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(item.status)}`}>
                       {item.status === 'pending' && 'Pending'}
                       {item.status === 'counted' && 'Counted'}
@@ -355,7 +355,7 @@ export default function PhysicalCountPage() {
       </div>
 
       {/* Instructions */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h4 className="font-semibold text-blue-900 mb-2">Counting Instructions:</h4>
         <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
           <li>Count all items in the assigned zone carefully</li>

@@ -1212,10 +1212,10 @@ export default function MilestoneTemplatesPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-2">
+    <div className="px-3 py-2">
      {/* Action Bar */}
      <div className="mb-3">
-      <div className="flex items-center justify-end gap-3 mb-4">
+      <div className="flex items-center justify-end gap-3 mb-2">
        <button
         onClick={() => setShowImportModal(true)}
         className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
@@ -1233,8 +1233,8 @@ export default function MilestoneTemplatesPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Templates</p>
@@ -1247,7 +1247,7 @@ export default function MilestoneTemplatesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Milestones</p>
@@ -1262,7 +1262,7 @@ export default function MilestoneTemplatesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Most Used</p>
@@ -1279,7 +1279,7 @@ export default function MilestoneTemplatesPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Usage</p>
@@ -1297,8 +1297,8 @@ export default function MilestoneTemplatesPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
-    <div className="flex flex-col md:flex-row gap-4">
+   <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+    <div className="flex flex-col md:flex-row gap-2">
      <div className="flex-1">
       <input
        type="text"
@@ -1325,7 +1325,7 @@ export default function MilestoneTemplatesPage() {
    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {filteredTemplates.map((template) => (
      <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-2">
        <div className="flex-1">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">{template.templateName}</h3>
         <p className="text-sm text-gray-600">{template.description}</p>
@@ -1341,7 +1341,7 @@ export default function MilestoneTemplatesPage() {
        </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-2 gap-2 mb-2">
        <div className="bg-gray-50 rounded-lg p-3">
         <p className="text-xs text-gray-600 mb-1">Project Type</p>
         <p className="text-sm font-medium text-gray-900">{template.projectType}</p>
@@ -1354,7 +1354,7 @@ export default function MilestoneTemplatesPage() {
        </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+      <div className="grid grid-cols-3 gap-2 mb-2 text-center">
        <div className="bg-blue-50 rounded-lg p-2">
         <p className="text-lg font-bold text-blue-600">{template.totalMilestones}</p>
         <p className="text-xs text-gray-600">Milestones</p>

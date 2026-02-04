@@ -516,7 +516,7 @@ export default function FieldServicePage() {
   if (loading) {
     return (
       <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading field service jobs...</p>
         </div>
@@ -528,7 +528,7 @@ export default function FieldServicePage() {
   if (error) {
     return (
       <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <AlertCircle className="h-12 w-12 text-red-500" />
           <p className="text-gray-900 font-medium">{error}</p>
           <button
@@ -558,7 +558,7 @@ export default function FieldServicePage() {
       )}
 
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Field Service Jobs</h1>
           <p className="text-gray-600">Manage engineer dispatch and on-site service operations</p>
@@ -566,14 +566,14 @@ export default function FieldServicePage() {
         <div className="flex gap-3">
           <button
             onClick={() => setShowCreateJobModal(true)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
+            className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
           >
             <Plus className="w-5 h-5" />
             Create Job
           </button>
           <button
             onClick={() => setShowAnalyticsModal(true)}
-            className="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-lg"
+            className="bg-emerald-600 text-white px-3 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-lg"
           >
             <BarChart3 className="w-5 h-5" />
             Analytics
@@ -582,10 +582,10 @@ export default function FieldServicePage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-2 mb-3">
         <button
           onClick={() => handleStatsCardClick('total')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-blue-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -599,7 +599,7 @@ export default function FieldServicePage() {
 
         <button
           onClick={() => handleStatsCardClick('scheduled')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-blue-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -613,7 +613,7 @@ export default function FieldServicePage() {
 
         <button
           onClick={() => handleStatsCardClick('dispatched')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-cyan-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-cyan-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -627,7 +627,7 @@ export default function FieldServicePage() {
 
         <button
           onClick={() => handleStatsCardClick('in_progress')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-purple-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -641,7 +641,7 @@ export default function FieldServicePage() {
 
         <button
           onClick={() => handleStatsCardClick('completed')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-green-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -655,7 +655,7 @@ export default function FieldServicePage() {
 
         <button
           onClick={() => handleStatsCardClick('avgtime')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-orange-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-orange-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -669,7 +669,7 @@ export default function FieldServicePage() {
 
         <button
           onClick={() => handleStatsCardClick('parts')}
-          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+          className="bg-white rounded-lg border-2 border-gray-200 p-3 hover:border-purple-500 hover:shadow-lg transition-all text-left"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -683,10 +683,10 @@ export default function FieldServicePage() {
       </div>
 
       {/* Filters, View Mode Toggle, and Bulk Actions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col gap-2">
           {/* Top Row: Search, View Toggle, Bulk Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -743,7 +743,7 @@ export default function FieldServicePage() {
 
           {/* Advanced Filters Row */}
           {showAdvancedFilters && (
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-2 pt-4 border-t border-gray-200">
               {/* Status Filter */}
               <select
                 value={statusFilter}
@@ -814,7 +814,7 @@ export default function FieldServicePage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left">
+                    <th className="px-3 py-2 text-left">
                       <input
                         type="checkbox"
                         checked={selectedJobs.size === paginatedJobs.length && paginatedJobs.length > 0}
@@ -822,28 +822,28 @@ export default function FieldServicePage() {
                         className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                       />
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Job Details
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Priority & Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Equipment & Issue
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Schedule
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Engineer
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Location & Contact
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Parts & Report
                     </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -857,7 +857,7 @@ export default function FieldServicePage() {
                         onClick={() => handleJobRowClick(job)}
                         className="hover:bg-blue-50 transition-colors cursor-pointer"
                       >
-                        <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                        <td className="px-3 py-2" onClick={(e) => e.stopPropagation()}>
                           <input
                             type="checkbox"
                             checked={selectedJobs.has(job.id)}
@@ -865,13 +865,13 @@ export default function FieldServicePage() {
                             className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                           />
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex flex-col">
                             <span className="text-sm font-medium text-gray-900">{job.jobNumber}</span>
                             <span className="text-sm text-gray-600">{job.customerName}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex flex-col gap-1">
                             <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border w-fit ${priorityColors[job.priority]}`}>
                               {job.priority}
@@ -882,13 +882,13 @@ export default function FieldServicePage() {
                             </span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex flex-col">
                             <span className="text-sm text-gray-900">{job.equipmentModel}</span>
                             <span className="text-xs text-gray-600">{job.issueType}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex flex-col text-sm">
                             <span className="text-gray-900">
                               {new Date(job.scheduledDate).toLocaleDateString('en-IN', {
@@ -902,7 +902,7 @@ export default function FieldServicePage() {
                             )}
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           {job.engineerName ? (
                             <div className="flex flex-col">
                               <div className="flex items-center gap-1">
@@ -920,7 +920,7 @@ export default function FieldServicePage() {
                             <span className="text-sm text-gray-400">Unassigned</span>
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex flex-col max-w-xs">
                             <div className="flex items-start gap-1">
                               <MapPin className="h-3 w-3 text-gray-400 mt-0.5 flex-shrink-0" />
@@ -935,7 +935,7 @@ export default function FieldServicePage() {
                             )}
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 py-2">
                           <div className="flex flex-col">
                             {job.partsConsumed > 0 ? (
                               <span className="text-sm text-gray-900">{job.partsConsumed} parts</span>
@@ -955,7 +955,7 @@ export default function FieldServicePage() {
                             ) : null}
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-3 py-2 text-right">
                           <div className="flex items-center justify-end gap-2">
                             <button
                               onClick={(e) => {
@@ -988,7 +988,7 @@ export default function FieldServicePage() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+              <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
                 <div className="text-sm text-gray-700">
                   Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredJobs.length)} of {filteredJobs.length} jobs
                 </div>
@@ -1014,9 +1014,9 @@ export default function FieldServicePage() {
         </>
       ) : (
         /* Calendar View */
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* Calendar Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-2xl font-bold text-gray-900">
               {calendarDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
             </h2>
@@ -1100,7 +1100,7 @@ export default function FieldServicePage() {
           {/* Calendar Legend */}
           <div className="mt-6 pt-6 border-t border-gray-200">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Legend</h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-2">
               {Object.entries(statusColors).map(([status, colorClass]) => (
                 <div key={status} className="flex items-center gap-2">
                   <div className={`w-4 h-4 rounded ${colorClass}`}></div>
@@ -1114,13 +1114,13 @@ export default function FieldServicePage() {
 
       {/* Job Details Modal */}
       {selectedJob && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedJob(null)}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50" onClick={() => setSelectedJob(null)}>
           <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className={`sticky top-0 bg-gradient-to-r ${selectedJob.status === 'completed' ? 'from-green-600 to-emerald-600' :
                 selectedJob.status === 'in_progress' ? 'from-purple-600 to-pink-600' :
                   selectedJob.status === 'dispatched' ? 'from-cyan-600 to-blue-600' :
                     'from-blue-600 to-indigo-600'
-              } px-6 py-4 flex items-center justify-between`}>
+              } px-3 py-2 flex items-center justify-between`}>
               <div>
                 <h2 className="text-2xl font-bold text-white">{selectedJob.jobNumber}</h2>
                 <p className="text-sm text-white/90">{selectedJob.customerName}</p>
@@ -1133,9 +1133,9 @@ export default function FieldServicePage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status and Priority */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium ${statusColors[selectedJob.status]}`}>
                   {(() => {
                     const StatusIcon = statusIcons[selectedJob.status];
@@ -1149,9 +1149,9 @@ export default function FieldServicePage() {
               </div>
 
               {/* Equipment and Issue */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Equipment & Issue</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Equipment Model</p>
                     <p className="text-base font-medium text-gray-900">{selectedJob.equipmentModel}</p>
@@ -1164,12 +1164,12 @@ export default function FieldServicePage() {
               </div>
 
               {/* Schedule Information */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Clock className="h-5 w-5 text-blue-600" />
                   Schedule Information
                 </h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Scheduled Date</p>
                     <p className="text-base font-medium text-gray-900">
@@ -1195,12 +1195,12 @@ export default function FieldServicePage() {
 
               {/* Engineer Information */}
               {selectedJob.engineerName && (
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                     <User className="h-5 w-5 text-purple-600" />
                     Engineer Details
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm text-gray-600">Assigned Engineer</p>
                       <p className="text-base font-medium text-gray-900">{selectedJob.engineerName}</p>
@@ -1237,7 +1237,7 @@ export default function FieldServicePage() {
               )}
 
               {/* Site Information */}
-              <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+              <div className="bg-emerald-50 rounded-lg p-3 border border-emerald-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-emerald-600" />
                   Site Information
@@ -1247,7 +1247,7 @@ export default function FieldServicePage() {
                     <p className="text-sm text-gray-600">Site Address</p>
                     <p className="text-base font-medium text-gray-900">{selectedJob.siteAddress}</p>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-sm text-gray-600">Contact Person</p>
                       <p className="text-base font-medium text-gray-900">{selectedJob.siteContactPerson}</p>
@@ -1264,12 +1264,12 @@ export default function FieldServicePage() {
               </div>
 
               {/* Parts and Service Report */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Package className="h-5 w-5 text-orange-600" />
                   Parts & Service Report
                 </h3>
-                <div className="grid grid-cols-3 gap-4 mb-3">
+                <div className="grid grid-cols-3 gap-2 mb-3">
                   <div>
                     <p className="text-sm text-gray-600">Parts Consumed</p>
                     <p className="text-2xl font-bold text-orange-600">{selectedJob.partsConsumed}</p>
@@ -1329,9 +1329,9 @@ export default function FieldServicePage() {
 
       {/* Create Job Modal */}
       {showCreateJobModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white">Create New Field Service Job</h2>
                 <p className="text-sm text-blue-100">Fill in the details to create a new service job</p>
@@ -1345,11 +1345,11 @@ export default function FieldServicePage() {
             </div>
 
             <div className="p-6">
-              <form className="space-y-6">
+              <form className="space-y-3">
                 {/* Customer Information */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h3>
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Customer Name *</label>
                       <input
@@ -1380,8 +1380,8 @@ export default function FieldServicePage() {
 
                 {/* Schedule Information */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Schedule Information</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Schedule Information</h3>
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Scheduled Date *</label>
                       <input
@@ -1408,8 +1408,8 @@ export default function FieldServicePage() {
 
                 {/* Equipment & Issue */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Equipment & Issue</h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Equipment & Issue</h3>
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Equipment Model *</label>
                       <input
@@ -1437,8 +1437,8 @@ export default function FieldServicePage() {
 
                 {/* Site Information */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Site Information</h3>
-                  <div className="space-y-4">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Site Information</h3>
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Site Address *</label>
                       <textarea
@@ -1450,7 +1450,7 @@ export default function FieldServicePage() {
                         required
                       />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
                         <input
@@ -1479,7 +1479,7 @@ export default function FieldServicePage() {
 
                 {/* Engineer Assignment */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Engineer Assignment</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Engineer Assignment</h3>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Assign Engineer (Optional)</label>
                     <select
@@ -1521,9 +1521,9 @@ export default function FieldServicePage() {
 
       {/* Bulk Actions Modal */}
       {showBulkActionsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-md w-full shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-white">Bulk Actions</h2>
                 <p className="text-sm text-purple-100">{selectedJobs.size} jobs selected</p>
@@ -1570,7 +1570,7 @@ export default function FieldServicePage() {
               </button>
             </div>
 
-            <div className="px-6 py-4 bg-gray-50 border-t flex justify-end">
+            <div className="px-3 py-2 bg-gray-50 border-t flex justify-end">
               <button
                 onClick={() => setShowBulkActionsModal(false)}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
@@ -1584,9 +1584,9 @@ export default function FieldServicePage() {
 
       {/* Analytics Modal - Keep existing implementation */}
       {showAnalyticsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
                   <BarChart3 className="h-7 w-7" />
@@ -1602,29 +1602,29 @@ export default function FieldServicePage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Overview Stats */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
                   Overview
                 </h3>
-                <div className="grid grid-cols-4 gap-4">
-                  <div className="bg-white rounded-lg p-4 border border-blue-200">
+                <div className="grid grid-cols-4 gap-2">
+                  <div className="bg-white rounded-lg p-3 border border-blue-200">
                     <div className="text-sm text-gray-600 mb-1">Total Jobs</div>
                     <div className="text-3xl font-bold text-gray-900">{stats.totalJobs}</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
                     <div className="text-sm text-gray-600 mb-1">Completion Rate</div>
                     <div className="text-3xl font-bold text-green-600">
                       {((stats.completedJobs / stats.totalJobs) * 100).toFixed(0)}%
                     </div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-orange-200">
+                  <div className="bg-white rounded-lg p-3 border border-orange-200">
                     <div className="text-sm text-gray-600 mb-1">Avg Duration</div>
                     <div className="text-3xl font-bold text-orange-600">{stats.avgJobDuration.toFixed(1)}h</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-purple-200">
+                  <div className="bg-white rounded-lg p-3 border border-purple-200">
                     <div className="text-sm text-gray-600 mb-1">Parts Value</div>
                     <div className="text-2xl font-bold text-purple-600">{formatCurrency(stats.totalPartsValue)}</div>
                   </div>
@@ -1632,9 +1632,9 @@ export default function FieldServicePage() {
               </div>
 
               {/* Status Distribution */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Status Distribution</h3>
-                <div className="grid grid-cols-4 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Status Distribution</h3>
+                <div className="grid grid-cols-4 gap-2">
                   {[
                     { label: 'Scheduled', count: stats.scheduledJobs, color: 'blue', icon: Clock },
                     { label: 'Dispatched', count: stats.dispatchedJobs, color: 'cyan', icon: Navigation },
@@ -1643,7 +1643,7 @@ export default function FieldServicePage() {
                   ].map((item) => {
                     const Icon = item.icon;
                     return (
-                      <div key={item.label} className="bg-gray-50 rounded-lg p-4 text-center">
+                      <div key={item.label} className="bg-gray-50 rounded-lg p-3 text-center">
                         <Icon className={`h-8 w-8 text-${item.color}-600 mb-2`} />
                         <div className={`text-3xl font-bold text-${item.color}-600 mb-1`}>{item.count}</div>
                         <div className="text-sm text-gray-600">{item.label}</div>
@@ -1663,9 +1663,9 @@ export default function FieldServicePage() {
               </div>
 
               {/* Priority Analysis */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Priority Breakdown</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Priority Breakdown</h3>
                   <div className="space-y-3">
                     {['P1 - Critical', 'P2 - High', 'P3 - Medium', 'P4 - Low'].map((priority) => {
                       const count = fieldServiceJobs.filter(j => j.priority === priority).length;
@@ -1694,8 +1694,8 @@ export default function FieldServicePage() {
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Engineer Performance</h3>
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Engineer Performance</h3>
                   <div className="space-y-3">
                     {Array.from(new Set(fieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName))).map((engineer) => {
                       const engineerJobs = fieldServiceJobs.filter(j => j.engineerName === engineer);
@@ -1723,29 +1723,29 @@ export default function FieldServicePage() {
               </div>
 
               {/* Parts Consumption Analysis */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Package className="h-5 w-5 text-purple-600" />
                   Parts Consumption Analysis
                 </h3>
-                <div className="grid grid-cols-4 gap-4 mb-4">
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                <div className="grid grid-cols-4 gap-2 mb-2">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Total Parts Used</div>
                     <div className="text-3xl font-bold text-purple-600">
                       {fieldServiceJobs.reduce((sum, j) => sum + j.partsConsumed, 0)}
                     </div>
                   </div>
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Jobs with Parts</div>
                     <div className="text-3xl font-bold text-purple-600">
                       {fieldServiceJobs.filter(j => j.partsConsumed > 0).length}
                     </div>
                   </div>
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Total Value</div>
                     <div className="text-2xl font-bold text-purple-600">{formatCurrency(stats.totalPartsValue)}</div>
                   </div>
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Avg Value/Job</div>
                     <div className="text-2xl font-bold text-purple-600">
                       {formatCurrency(stats.totalPartsValue / fieldServiceJobs.filter(j => j.partsConsumed > 0).length || 0)}
@@ -1755,10 +1755,10 @@ export default function FieldServicePage() {
               </div>
 
               {/* Service Report Status */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Service Report Status</h3>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Service Report Status</h3>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                     <div className="text-sm text-gray-600 mb-2">Reports Submitted</div>
                     <div className="text-3xl font-bold text-green-600">
                       {fieldServiceJobs.filter(j => j.serviceReportSubmitted).length}
@@ -1767,14 +1767,14 @@ export default function FieldServicePage() {
                       {((fieldServiceJobs.filter(j => j.serviceReportSubmitted).length / stats.completedJobs) * 100).toFixed(0)}% of completed
                     </div>
                   </div>
-                  <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                  <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                     <div className="text-sm text-gray-600 mb-2">Reports Pending</div>
                     <div className="text-3xl font-bold text-orange-600">
                       {fieldServiceJobs.filter(j => j.status === 'completed' && !j.serviceReportSubmitted).length}
                     </div>
                     <div className="text-xs text-orange-600 mt-1">Awaiting submission</div>
                   </div>
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                     <div className="text-sm text-gray-600 mb-2">Customer Signatures</div>
                     <div className="text-3xl font-bold text-blue-600">
                       {fieldServiceJobs.filter(j => j.customerSignature).length}

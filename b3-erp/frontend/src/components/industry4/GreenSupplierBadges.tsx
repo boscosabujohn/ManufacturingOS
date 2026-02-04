@@ -212,10 +212,10 @@ export function GreenSupplierBadges({
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Summary Stats */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">🏢</span>
             <span className="text-xs text-gray-400">Total</span>
@@ -223,7 +223,7 @@ export function GreenSupplierBadges({
           <p className="text-3xl font-bold text-white">{suppliers.length}</p>
           <p className="text-sm text-gray-400">Suppliers Tracked</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">📊</span>
             <span className="text-xs text-green-400">+3 vs last quarter</span>
@@ -231,14 +231,14 @@ export function GreenSupplierBadges({
           <p className="text-3xl font-bold text-green-400">{avgScore}</p>
           <p className="text-sm text-gray-400">Avg Sustainability Score</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">🏆</span>
           </div>
           <p className="text-3xl font-bold text-cyan-400">{suppliersByTier.platinum + suppliersByTier.gold}</p>
           <p className="text-sm text-gray-400">Top Tier Suppliers</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">✅</span>
           </div>
@@ -250,16 +250,16 @@ export function GreenSupplierBadges({
       </div>
 
       {/* Tier Distribution */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Supplier Tier Distribution</h3>
-        <div className="grid grid-cols-5 gap-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Supplier Tier Distribution</h3>
+        <div className="grid grid-cols-5 gap-2">
           {Object.entries(tierConfig).map(([tier, config]) => {
             const count = suppliersByTier[tier as SupplierTier];
             const percentage = (count / suppliers.length) * 100;
             const colors = getColorClass(config.color);
 
             return (
-              <div key={tier} className={`bg-gray-700 rounded-lg p-4 text-center border-t-4 ${colors.border}`}>
+              <div key={tier} className={`bg-gray-700 rounded-lg p-3 text-center border-t-4 ${colors.border}`}>
                 <span className="text-3xl mb-2 block">{config.icon}</span>
                 <p className="text-2xl font-bold text-white">{count}</p>
                 <p className={`text-sm ${colors.text}`}>{config.name}</p>
@@ -271,8 +271,8 @@ export function GreenSupplierBadges({
       </div>
 
       {/* Top Performers */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Top Green Suppliers</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Top Green Suppliers</h3>
         <div className="space-y-3">
           {suppliers
             .sort((a, b) => b.sustainabilityScore - a.sustainabilityScore)
@@ -284,10 +284,10 @@ export function GreenSupplierBadges({
               return (
                 <div
                   key={supplier.id}
-                  className={`flex items-center justify-between p-4 bg-gray-700 rounded-lg border-l-4 ${colors.border} cursor-pointer hover:bg-gray-650`}
+                  className={`flex items-center justify-between p-3 bg-gray-700 rounded-lg border-l-4 ${colors.border} cursor-pointer hover:bg-gray-650`}
                   onClick={() => handleSupplierClick(supplier)}
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <span className="text-2xl font-bold text-gray-400">#{i + 1}</span>
                     <div>
                       <p className="text-white font-medium flex items-center gap-2">
@@ -297,7 +297,7 @@ export function GreenSupplierBadges({
                       <p className="text-sm text-gray-400">{supplier.category}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       {supplier.certifications.slice(0, 3).map((cert, j) => (
                         <span key={j} className="text-lg" title={certificationConfig[cert.type].name}>
@@ -322,7 +322,7 @@ export function GreenSupplierBadges({
   );
 
   const renderSuppliers = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Tier Filter */}
       <div className="flex gap-2">
         <button
@@ -348,7 +348,7 @@ export function GreenSupplierBadges({
       </div>
 
       {/* Supplier Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredSuppliers.map(supplier => {
           const tierConf = tierConfig[supplier.tier];
           const colors = getColorClass(tierConf.color);
@@ -356,7 +356,7 @@ export function GreenSupplierBadges({
           return (
             <div
               key={supplier.id}
-              className={`bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
+              className={`bg-gray-800 rounded-lg p-3 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border}`}
               onClick={() => handleSupplierClick(supplier)}
             >
               <div className="flex items-start justify-between mb-3">
@@ -418,9 +418,9 @@ export function GreenSupplierBadges({
 
       {/* Supplier Detail Modal */}
       {selectedSupplier && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{tierConfig[selectedSupplier.tier].icon}</span>
                 <div>
@@ -437,7 +437,7 @@ export function GreenSupplierBadges({
             </div>
 
             {/* Score Gauge */}
-            <div className="flex items-center gap-6 mb-6 p-4 bg-gray-700 rounded-lg">
+            <div className="flex items-center gap-3 mb-3 p-3 bg-gray-700 rounded-lg">
               <div className="relative w-24 h-24">
                 <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
                   <circle cx="50" cy="50" r="40" fill="none" stroke="#374151" strokeWidth="10" />
@@ -488,7 +488,7 @@ export function GreenSupplierBadges({
             </div>
 
             {/* Certifications */}
-            <div className="mb-6">
+            <div className="mb-3">
               <h4 className="text-lg font-medium text-white mb-3">Certifications</h4>
               <div className="grid grid-cols-2 gap-3">
                 {selectedSupplier.certifications.map((cert, i) => {
@@ -514,7 +514,7 @@ export function GreenSupplierBadges({
             </div>
 
             {/* Audit Info */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-4 bg-gray-700 rounded-lg">
                 <p className="text-gray-400 text-sm">Last Audit</p>
                 <p className="text-white font-medium">
@@ -542,15 +542,15 @@ export function GreenSupplierBadges({
     }));
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Certification Overview */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2">
           {certsByType.filter(c => c.count > 0).map(({ type, count }) => {
             const config = certificationConfig[type];
             const colors = getColorClass(config.color);
 
             return (
-              <div key={type} className={`bg-gray-800 rounded-lg p-4 border-l-4 ${colors.border}`}>
+              <div key={type} className={`bg-gray-800 rounded-lg p-3 border-l-4 ${colors.border}`}>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-2xl">{config.icon}</span>
                   <span className="text-white font-medium">{config.name}</span>
@@ -563,8 +563,8 @@ export function GreenSupplierBadges({
         </div>
 
         {/* All Certifications List */}
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">All Active Certifications</h3>
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">All Active Certifications</h3>
           <div className="space-y-3">
             {allCerts.map((cert, i) => {
               const config = certificationConfig[cert.type];
@@ -596,9 +596,9 @@ export function GreenSupplierBadges({
   };
 
   const renderCompare = () => (
-    <div className="space-y-6">
-      <div className="bg-gray-800 rounded-lg p-6 overflow-x-auto">
-        <h3 className="text-lg font-semibold text-white mb-4">Supplier Comparison</h3>
+    <div className="space-y-3">
+      <div className="bg-gray-800 rounded-lg p-3 overflow-x-auto">
+        <h3 className="text-lg font-semibold text-white mb-2">Supplier Comparison</h3>
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-700">
@@ -664,9 +664,9 @@ export function GreenSupplierBadges({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center">
             <span className="text-2xl">🌿</span>

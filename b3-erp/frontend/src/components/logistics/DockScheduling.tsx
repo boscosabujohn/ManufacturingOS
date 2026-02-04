@@ -11,38 +11,38 @@ export default function DockScheduling() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-yellow-50 to-amber-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-yellow-50 to-amber-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Dock Scheduling Management</h1>
           <p className="text-gray-600">Optimize dock utilization and reduce wait times</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow-lg p-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+          <div className="bg-white rounded-xl shadow-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Today's Appointments</p>
             <p className="text-3xl font-bold text-blue-600">12</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4">
+          <div className="bg-white rounded-xl shadow-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Active Docks</p>
             <p className="text-3xl font-bold text-green-600">6/8</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4">
+          <div className="bg-white rounded-xl shadow-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Avg Turnaround</p>
             <p className="text-3xl font-bold text-purple-600">85 min</p>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-4">
+          <div className="bg-white rounded-xl shadow-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Utilization</p>
             <p className="text-3xl font-bold text-orange-600">87%</p>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Scheduled Appointments</h2>
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Scheduled Appointments</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {dockAppointments.map((appt) => (
-              <div key={appt.id} className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-6 border border-yellow-200">
+              <div key={appt.id} className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-3 border border-yellow-200">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <Warehouse className="w-6 h-6 text-yellow-600" />
@@ -60,7 +60,7 @@ export default function DockScheduling() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-gray-600" />
                     <span>{appt.scheduled}</span>

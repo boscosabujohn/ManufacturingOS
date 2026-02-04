@@ -34,8 +34,8 @@ export default function BidComparison() {
   const getFastestDelivery = (vendors: any[]) => Math.min(...vendors.map(v => v.leadTime));
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <BarChart3 className="h-8 w-8 text-green-600" />
           Automated Bid Comparison
@@ -43,7 +43,7 @@ export default function BidComparison() {
         <p className="text-gray-600 mt-1">Side-by-side comparison of vendor bids</p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {bids.map((bid, idx) => {
           const lowestPrice = getLowestPrice(bid.vendors);
           const fastestDelivery = getFastestDelivery(bid.vendors);

@@ -33,8 +33,8 @@ export default function PayrollReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Payroll Report</h1>
                     <p className="text-gray-600">Employee compensation analysis</p>
@@ -42,7 +42,7 @@ export default function PayrollReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Payroll"
                     value={`$${(data.totalPayroll / 1000).toFixed(0)}K`}
@@ -69,11 +69,11 @@ export default function PayrollReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Deduction Breakdown</CardTitle></CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {data.deductionBreakdown.map((item, idx) => (
                                 <div key={idx}>
                                     <div className="flex justify-between mb-2">

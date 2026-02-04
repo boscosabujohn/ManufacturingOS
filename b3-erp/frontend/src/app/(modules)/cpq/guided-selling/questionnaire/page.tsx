@@ -376,10 +376,10 @@ export default function QuestionnairePage() {
   const totalUsage = questionnaires.reduce((sum, q) => sum + q.usageCount, 0);
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -403,8 +403,8 @@ export default function QuestionnairePage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Questionnaires</span>
             <ClipboardList className="h-5 w-5 text-blue-600" />
@@ -413,7 +413,7 @@ export default function QuestionnairePage() {
           <div className="text-xs text-blue-700 mt-1">{activeQuestionnaires} active</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Qualification Rate</span>
             <Target className="h-5 w-5 text-green-600" />
@@ -422,7 +422,7 @@ export default function QuestionnairePage() {
           <div className="text-xs text-green-700 mt-1">Average across all</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Total Usage</span>
             <TrendingUp className="h-5 w-5 text-purple-600" />
@@ -431,7 +431,7 @@ export default function QuestionnairePage() {
           <div className="text-xs text-purple-700 mt-1">Times used</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-orange-900">Qualified Leads</span>
             <Users className="h-5 w-5 text-orange-600" />
@@ -444,8 +444,8 @@ export default function QuestionnairePage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input

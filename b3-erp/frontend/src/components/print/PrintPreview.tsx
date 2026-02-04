@@ -131,7 +131,7 @@ export function PrintPreview({
     >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <FileText className="w-5 h-5 text-gray-400" />
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h2>
         </div>
@@ -246,11 +246,11 @@ export function PrintPreview({
       <div className="flex-1 flex overflow-hidden">
         {/* Settings panel */}
         {showSettingsPanel && (
-          <div className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4 overflow-y-auto">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Print Settings</h3>
+          <div className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-3 overflow-y-auto">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Print Settings</h3>
 
             {/* Page Size */}
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Page Size
               </label>
@@ -266,7 +266,7 @@ export function PrintPreview({
             </div>
 
             {/* Orientation */}
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Orientation
               </label>
@@ -295,7 +295,7 @@ export function PrintPreview({
             </div>
 
             {/* Margins info */}
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Margins
               </label>

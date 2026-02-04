@@ -540,7 +540,7 @@ const ClaimsApprovalsPage = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -568,8 +568,8 @@ const ClaimsApprovalsPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending Review</p>
@@ -579,7 +579,7 @@ const ClaimsApprovalsPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Critical</p>
@@ -590,7 +590,7 @@ const ClaimsApprovalsPage = () => {
           <div className="text-xs text-gray-500 mt-1">High priority</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Value</p>
@@ -601,7 +601,7 @@ const ClaimsApprovalsPage = () => {
           <div className="text-xs text-gray-500 mt-1">Claims value</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Processing</p>
@@ -612,7 +612,7 @@ const ClaimsApprovalsPage = () => {
           <div className="text-xs text-gray-500 mt-1">Days to resolve</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Approval Rate</p>
@@ -625,8 +625,8 @@ const ClaimsApprovalsPage = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -649,7 +649,7 @@ const ClaimsApprovalsPage = () => {
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pt-4 border-t border-gray-200">
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
@@ -705,7 +705,7 @@ const ClaimsApprovalsPage = () => {
 
       {/* Claims List */}
       <div className="bg-white rounded-lg border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             Claims for Approval ({filteredClaims.length})
           </h2>
@@ -732,7 +732,7 @@ const ClaimsApprovalsPage = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
                     <div>
                       <h4 className="font-medium text-gray-800 mb-1">Customer</h4>
                       <p className="text-sm text-gray-600">{claim.customer.name}</p>
@@ -760,14 +760,14 @@ const ClaimsApprovalsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <h4 className="font-medium text-gray-800 mb-2">Issue Description</h4>
                     <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
                       {claim.claimDetails.issueDescription}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-6 text-sm text-gray-600">
+                  <div className="flex items-center gap-3 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
                       <span>Reported: {claim.claimDetails.reportedDate}</span>
@@ -852,9 +852,9 @@ const ClaimsApprovalsPage = () => {
 
       {/* Claim Details Modal */}
       {selectedClaim && !approvalAction && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Claim Details - {selectedClaim.claimNumber}</h2>
               <button
                 onClick={() => setSelectedClaim(null)}
@@ -864,7 +864,7 @@ const ClaimsApprovalsPage = () => {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status & Priority */}
               <div className="flex items-center gap-3">
                 <span className={`px-3 py-2 text-sm font-medium rounded-full ${getStatusColor(selectedClaim.status)}`}>
@@ -882,7 +882,7 @@ const ClaimsApprovalsPage = () => {
               </div>
 
               {/* Basic Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Customer Information</h3>
                   <div className="space-y-2 text-sm">
@@ -906,8 +906,8 @@ const ClaimsApprovalsPage = () => {
               {/* Issue Details */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Issue Details</h3>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                     <div><strong>Fault Category:</strong> {selectedClaim.claimDetails.faultCategory}</div>
                     <div><strong>Reported Date:</strong> {selectedClaim.claimDetails.reportedDate}</div>
                   </div>
@@ -918,8 +918,8 @@ const ClaimsApprovalsPage = () => {
               {/* Financial Details */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Financial Breakdown</h3>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-center">
                     <div>
                       <div className="text-2xl font-bold text-purple-600">₹{selectedClaim.claimDetails.claimedAmount.toLocaleString()}</div>
                       <div className="text-sm text-gray-500">Claimed Amount</div>
@@ -949,7 +949,7 @@ const ClaimsApprovalsPage = () => {
               {/* Technician Assessment */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Technician Assessment</h3>
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-blue-50 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <div>
                       <strong>{selectedClaim.technician.name}</strong> ({selectedClaim.technician.id})
@@ -973,7 +973,7 @@ const ClaimsApprovalsPage = () => {
               {/* Documentation Status */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Documentation</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-blue-600">{selectedClaim.documentation.photos}</div>
                     <div className="text-sm text-gray-500">Photos</div>
@@ -1006,7 +1006,7 @@ const ClaimsApprovalsPage = () => {
               {/* Warranty Information */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Warranty Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                   <div>
                     <div><strong>Warranty Number:</strong> {selectedClaim.warrantyNumber}</div>
                     <div><strong>Type:</strong> {selectedClaim.warrantyType}</div>
@@ -1065,16 +1065,16 @@ const ClaimsApprovalsPage = () => {
 
       {/* Approval Action Modal */}
       {selectedClaim && approvalAction && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-            <div className="px-6 py-4 border-b border-gray-200">
+            <div className="px-3 py-2 border-b border-gray-200">
               <h2 className="text-xl font-semibold text-gray-900">
                 {approvalAction === 'approve' ? 'Approve Claim' : 'Reject Claim'}
               </h2>
             </div>
 
-            <div className="p-6 space-y-4">
-              <div className="bg-gray-50 p-4 rounded-lg">
+            <div className="p-6 space-y-2">
+              <div className="bg-gray-50 p-3 rounded-lg">
                 <div className="text-sm"><strong>Claim:</strong> {selectedClaim.claimNumber}</div>
                 <div className="text-sm"><strong>Customer:</strong> {selectedClaim.customer.name}</div>
                 <div className="text-sm"><strong>Amount:</strong> ₹{selectedClaim.claimDetails.claimedAmount.toLocaleString()}</div>

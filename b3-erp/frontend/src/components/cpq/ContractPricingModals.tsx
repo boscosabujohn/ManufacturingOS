@@ -114,9 +114,9 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             {contract ? 'Edit Contract' : 'New Contract'}
           </h2>
@@ -128,12 +128,12 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Contract Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Contract Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Contract ID <span className="text-red-500">*</span>
@@ -170,10 +170,10 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
           </div>
 
           {/* Customer Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Customer Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Customer ID <span className="text-red-500">*</span>
@@ -215,10 +215,10 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
           </div>
 
           {/* Pricing Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Pricing Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Contract Value (₹) <span className="text-red-500">*</span>
@@ -268,13 +268,13 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
           </div>
 
           {/* Contract Period */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               Contract Period
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Start Date <span className="text-red-500">*</span>
@@ -332,7 +332,7 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
           </div>
 
           {/* Status */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Status</h3>
 
             <div>
@@ -352,7 +352,7 @@ export function ContractModal({ isOpen, onClose, onSave, contract }: ContractMod
           </div>
 
           {/* Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Contract Summary:</h3>
             <div className="space-y-1 text-xs text-blue-700">
               <p><strong>Contract:</strong> {formData.contractName || 'Not set'}</p>
@@ -406,16 +406,16 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Filter Contracts</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Status Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
@@ -503,7 +503,7 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-end gap-3">
           <button
             onClick={() => setFilters({ status: [], discountRange: { min: 0, max: 0 }, valueRange: { min: 0, max: 0 } })}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 text-sm"

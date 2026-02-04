@@ -163,7 +163,7 @@ export default function SLAAnalyticsPage() {
     }
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
             {/* Header */}
             <div className="flex justify-between items-start">
                 <div>
@@ -201,9 +201,9 @@ export default function SLAAnalyticsPage() {
             </div>
 
             {/* Key Metrics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                 {/* Overall Compliance */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">SLA Compliance</p>
@@ -220,7 +220,7 @@ export default function SLAAnalyticsPage() {
                 </div>
 
                 {/* On Time */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">On Time</p>
@@ -234,7 +234,7 @@ export default function SLAAnalyticsPage() {
                 </div>
 
                 {/* Approaching */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Approaching SLA</p>
@@ -248,7 +248,7 @@ export default function SLAAnalyticsPage() {
                 </div>
 
                 {/* Breached */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm text-gray-500">Breached</p>
@@ -266,9 +266,9 @@ export default function SLAAnalyticsPage() {
             </div>
 
             {/* Average Times */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <div className="flex items-center justify-between mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                    <div className="flex items-center justify-between mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">Average Approval Time</h3>
                         <Clock className="h-5 w-5 text-gray-400" />
                     </div>
@@ -276,8 +276,8 @@ export default function SLAAnalyticsPage() {
                     <p className="text-sm text-gray-500 mt-2">From submission to completion</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <div className="flex items-center justify-between mb-4">
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                    <div className="flex items-center justify-between mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">Average Response Time</h3>
                         <Users className="h-5 w-5 text-gray-400" />
                     </div>
@@ -287,10 +287,10 @@ export default function SLAAnalyticsPage() {
             </div>
 
             {/* Charts Row 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {/* Status Distribution Pie Chart */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Status Distribution</h3>
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Status Distribution</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie
@@ -314,8 +314,8 @@ export default function SLAAnalyticsPage() {
                 </div>
 
                 {/* Trend Line Chart */}
-                <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">SLA Compliance Trend</h3>
+                <div className="bg-white p-3 rounded-lg border border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">SLA Compliance Trend</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <LineChart data={trendData}>
                             <CartesianGrid strokeDasharray="3 3" />
@@ -340,25 +340,25 @@ export default function SLAAnalyticsPage() {
                     <table className="min-w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Workflow
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Total
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     On Time
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Breached
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Avg Time (h)
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Compliance
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Status
                                 </th>
                             </tr>
@@ -366,22 +366,22 @@ export default function SLAAnalyticsPage() {
                         <tbody className="bg-white divide-y divide-gray-200">
                             {workflowPerformance.map((workflow, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {workflow.workflowName}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                                         {workflow.totalCount}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">
                                         {workflow.onTime}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-red-600">
                                         {workflow.breached}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                                         {workflow.avgTime}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                                         <span className={`${workflow.complianceRate >= 95 ? 'text-green-600' :
                                                 workflow.complianceRate >= 90 ? 'text-yellow-600' :
                                                     'text-red-600'
@@ -389,7 +389,7 @@ export default function SLAAnalyticsPage() {
                                             {workflow.complianceRate}%
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <div className="w-full bg-gray-200 rounded-full h-2">
                                             <div
                                                 className={`h-2 rounded-full ${workflow.complianceRate >= 95 ? 'bg-green-500' :
@@ -417,22 +417,22 @@ export default function SLAAnalyticsPage() {
                     <table className="min-w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Approver
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Role
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Total Tasks
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     On Time
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Avg Response (h)
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Compliance
                                 </th>
                             </tr>
@@ -440,7 +440,7 @@ export default function SLAAnalyticsPage() {
                         <tbody className="bg-white divide-y divide-gray-200">
                             {approverPerformance.map((approver, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <div className="flex items-center">
                                             <div className="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
                                                 <span className="text-blue-600 font-medium">
@@ -452,19 +452,19 @@ export default function SLAAnalyticsPage() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                                         {approver.role}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                                         {approver.totalTasks}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">
                                         {approver.completedOnTime}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                                         {approver.avgResponseTime}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-3 py-2 whitespace-nowrap">
                                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${approver.complianceRate >= 95 ? 'bg-green-100 text-green-800' :
                                                 approver.complianceRate >= 90 ? 'bg-yellow-100 text-yellow-800' :
                                                     'bg-red-100 text-red-800'

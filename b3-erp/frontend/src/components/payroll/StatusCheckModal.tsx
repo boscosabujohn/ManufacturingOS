@@ -105,7 +105,7 @@ export default function StatusCheckModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-3 border-b border-gray-200">
           <h2 className="text-xl font-bold text-gray-900">Return Status</h2>
           <button
             onClick={onClose}
@@ -118,13 +118,13 @@ export default function StatusCheckModal({
         {/* Body */}
         <div className="p-6">
           {/* Return ID */}
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="text-sm text-gray-600">Return ID</label>
             <p className="text-lg font-semibold text-gray-900">{returnId}</p>
           </div>
 
           {/* Current Status Badge */}
-          <div className={`flex items-center justify-between p-6 rounded-lg ${config.bgColor} mb-6`}>
+          <div className={`flex items-center justify-between p-3 rounded-lg ${config.bgColor} mb-3`}>
             <div className="flex items-center">
               <Icon className={`h-8 w-8 ${config.color} mr-4`} />
               <div>
@@ -144,7 +144,7 @@ export default function StatusCheckModal({
 
           {/* Acknowledgement Number (if accepted) */}
           {acknowledgeNumber && (
-            <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="mb-3 p-3 bg-green-50 border border-green-200 rounded-lg">
               <label className="text-sm font-medium text-green-900">Acknowledgement Number</label>
               <p className="text-lg font-mono font-bold text-green-700 mt-1">{acknowledgeNumber}</p>
             </div>
@@ -152,7 +152,7 @@ export default function StatusCheckModal({
 
           {/* Message */}
           {message && (
-            <div className={`mb-6 p-4 rounded-lg border ${
+            <div className={`mb-3 p-3 rounded-lg border ${
               status === 'accepted'
                 ? 'bg-green-50 border-green-200'
                 : status === 'rejected'
@@ -174,12 +174,12 @@ export default function StatusCheckModal({
           {/* Status History */}
           {history.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Status History</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Status History</h3>
               <div className="space-y-3">
                 {history.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start p-4 bg-gray-50 rounded-lg border border-gray-200"
+                    className="flex items-start p-3 bg-gray-50 rounded-lg border border-gray-200"
                   >
                     <div className={`flex-shrink-0 w-3 h-3 rounded-full mt-1.5 mr-3 ${
                       item.status === 'accepted' ? 'bg-green-500' :
@@ -208,7 +208,7 @@ export default function StatusCheckModal({
           {/* Status Timeline (visual representation) */}
           {history.length === 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-semibold text-gray-700 mb-4">Status Timeline</h3>
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">Status Timeline</h3>
               <div className="relative">
                 {Object.entries(statusConfig).map(([key, conf], index) => {
                   const isActive = key === status;
@@ -216,7 +216,7 @@ export default function StatusCheckModal({
                   const StatusIcon = conf.icon;
 
                   return (
-                    <div key={key} className="flex items-center mb-4 last:mb-0">
+                    <div key={key} className="flex items-center mb-2 last:mb-0">
                       <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
                         isActive ? conf.bgColor : isPast ? 'bg-green-100' : 'bg-gray-100'
                       }`}>
@@ -240,7 +240,7 @@ export default function StatusCheckModal({
           )}
 
           {/* Help Text */}
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <h4 className="text-sm font-semibold text-blue-900 mb-2">Status Information:</h4>
             <ul className="text-sm text-blue-800 space-y-1">
               <li>• <strong>Draft:</strong> Return is being prepared locally</li>
@@ -253,7 +253,7 @@ export default function StatusCheckModal({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+        <div className="flex justify-end gap-3 p-3 border-t border-gray-200 bg-gray-50">
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}

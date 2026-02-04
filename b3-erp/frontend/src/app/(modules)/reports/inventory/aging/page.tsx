@@ -30,8 +30,8 @@ export default function StockAgingReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Stock Aging Report</h1>
                     <p className="text-gray-600">Slow-moving and obsolete inventory analysis</p>
@@ -39,17 +39,17 @@ export default function StockAgingReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Total Stock Value</p><p className="text-2xl font-bold text-blue-600">${(data.totalValue / 1000000).toFixed(2)}M</p></CardContent></Card>
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Slow-Moving</p><p className="text-2xl font-bold text-orange-600">${(data.slowMoving / 1000).toFixed(0)}K</p><p className="text-xs text-gray-500 mt-1">{((data.slowMoving / data.totalValue) * 100).toFixed(0)}% of total</p></CardContent></Card>
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Obsolete</p><p className="text-2xl font-bold text-red-600">${(data.obsolete / 1000).toFixed(0)}K</p><p className="text-xs text-gray-500 mt-1">{((data.obsolete / data.totalValue) * 100).toFixed(0)}% of total</p></CardContent></Card>
                 <Card><CardContent className="pt-6"><p className="text-sm text-gray-600">Risk Level</p><p className="text-2xl font-bold text-orange-600">Medium</p></CardContent></Card>
             </div>
 
-            <Card className="mb-6">
+            <Card className="mb-3">
                 <CardHeader><CardTitle>Inventory Aging Analysis - Click buckets to drill down</CardTitle></CardHeader>
                 <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {data.agingBuckets.map((bucket, idx) => (
                             <div
                                 key={idx}

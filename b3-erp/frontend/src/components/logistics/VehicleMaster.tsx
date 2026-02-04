@@ -239,8 +239,8 @@ export default function VehicleMaster() {
   return (
     <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="px-3 py-2 bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Truck className="h-8 w-8 text-orange-600" />
@@ -267,11 +267,11 @@ export default function VehicleMaster() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 text-sm font-medium">
+      <div className="flex-1 overflow-y-auto p-3 space-y-3 text-sm font-medium">
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Vehicles</p>
@@ -281,7 +281,7 @@ export default function VehicleMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active</p>
@@ -291,7 +291,7 @@ export default function VehicleMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Maintenance</p>
@@ -301,7 +301,7 @@ export default function VehicleMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Mileage</p>
@@ -311,7 +311,7 @@ export default function VehicleMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Mileage</p>
@@ -321,7 +321,7 @@ export default function VehicleMaster() {
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Service Due</p>
@@ -334,9 +334,9 @@ export default function VehicleMaster() {
 
         <div className="bg-white rounded-lg shadow">
           <div className="p-4 border-b border-gray-200">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-2 items-center">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <input
@@ -372,7 +372,7 @@ export default function VehicleMaster() {
 
               {/* Advanced Filters */}
               {showAdvancedFilters && (
-                <div className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                <div className="flex gap-2 p-3 bg-gray-50 rounded-lg">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Vehicle Type</label>
                     <select
@@ -410,7 +410,7 @@ export default function VehicleMaster() {
 
           {filteredVehicles.length === 0 ? (
             <div className="p-12 text-center">
-              <Truck className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Truck className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-gray-500 mb-2">No vehicles found</p>
               <p className="text-sm text-gray-400">Try adjusting your search or filters</p>
             </div>
@@ -419,31 +419,31 @@ export default function VehicleMaster() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vehicle</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type & Capacity</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Driver</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Service Schedule</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Mileage</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Vehicle</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type & Capacity</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Driver</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Service Schedule</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Mileage</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredVehicles.map((vehicle) => (
                     <tr key={vehicle.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm font-medium">{vehicle.registrationNumber}</div>
                         <div className="text-xs text-gray-500">{vehicle.code} • {vehicle.make} {vehicle.model}</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm">{vehicle.type}</div>
                         <div className="text-xs text-gray-500">{vehicle.capacity} • {vehicle.fuelType}</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm">{vehicle.driverAssigned || 'Unassigned'}</div>
                         <div className="text-xs text-gray-500">{vehicle.totalTrips} trips</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-1 text-xs">
                           <Calendar className="h-3 w-3 text-gray-400" />
                           {vehicle.nextService.toLocaleDateString()}
@@ -455,11 +455,11 @@ export default function VehicleMaster() {
                           </div>
                         )}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="text-sm">{vehicle.mileage.toLocaleString()} km</div>
                         <div className="text-xs text-gray-500">{vehicle.averageSpeed} km/h avg</div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${vehicle.status === 'Active' ? 'bg-green-100 text-green-800' :
                           vehicle.status === 'Maintenance' ? 'bg-orange-100 text-orange-800' :
                             vehicle.status === 'Inactive' ? 'bg-gray-100 text-gray-800' :
@@ -471,7 +471,7 @@ export default function VehicleMaster() {
                           {vehicle.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleViewVehicle(vehicle)}
@@ -497,8 +497,8 @@ export default function VehicleMaster() {
         {/* View Vehicle Modal */}
         {showViewModal && selectedVehicle && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-              <div className="flex justify-between items-start mb-4">
+            <div className="bg-white rounded-lg p-3 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="text-xl font-bold">{selectedVehicle.registrationNumber}</h3>
                   <p className="text-sm text-gray-500">{selectedVehicle.code}</p>
@@ -511,11 +511,11 @@ export default function VehicleMaster() {
                 </button>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Vehicle Details */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Vehicle Details</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs text-gray-500">Type</p>
                       <p className="text-sm font-medium">{selectedVehicle.type}</p>
@@ -546,7 +546,7 @@ export default function VehicleMaster() {
                 {/* Assignment & Performance */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Assignment & Performance</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="bg-blue-50 p-3 rounded-lg">
                       <p className="text-xs text-blue-600">Driver Assigned</p>
                       <p className="text-sm font-bold text-blue-700">{selectedVehicle.driverAssigned || 'Unassigned'}</p>
@@ -569,7 +569,7 @@ export default function VehicleMaster() {
                 {/* Maintenance Schedule */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Maintenance Schedule</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs text-gray-500">Last Service</p>
                       <p className="text-sm font-medium">{selectedVehicle.lastService.toLocaleDateString()}</p>
@@ -590,7 +590,7 @@ export default function VehicleMaster() {
                 {/* Document Expiry */}
                 <div>
                   <h4 className="text-sm font-semibold text-gray-700 mb-3">Document Expiry</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs text-gray-500">Insurance Expiry</p>
                       <p className="text-sm font-medium">{selectedVehicle.insuranceExpiry.toLocaleDateString()}</p>
@@ -620,7 +620,7 @@ export default function VehicleMaster() {
 
         {/* Toast Notification */}
         {showToast && (
-          <div className="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2">
+          <div className="fixed bottom-4 right-4 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg flex items-center gap-2">
             <Download className="h-4 w-4" />
             {toastMessage}
           </div>

@@ -37,10 +37,10 @@ export function ChangePasswordModal({ isOpen, onClose, onSave }: ChangePasswordM
                   formData.newPassword === formData.confirmPassword && formData.newPassword.length >= 8;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Lock className="h-5 w-5 text-white" />
@@ -53,7 +53,7 @@ export function ChangePasswordModal({ isOpen, onClose, onSave }: ChangePasswordM
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Current Password *</label>
             <div className="relative">
@@ -115,7 +115,7 @@ export function ChangePasswordModal({ isOpen, onClose, onSave }: ChangePasswordM
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm font-medium text-blue-900">Password Requirements:</p>
             <ul className="text-sm text-blue-700 mt-2 space-y-1 list-disc list-inside">
               <li>At least 8 characters long</li>
@@ -127,7 +127,7 @@ export function ChangePasswordModal({ isOpen, onClose, onSave }: ChangePasswordM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -169,10 +169,10 @@ export function TwoFactorAuthModal({ isOpen, onClose, onEnable }: TwoFactorAuthM
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Shield className="h-5 w-5 text-white" />
@@ -185,11 +185,11 @@ export function TwoFactorAuthModal({ isOpen, onClose, onEnable }: TwoFactorAuthM
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {step === 'setup' ? (
             <>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-                <div className="w-48 h-48 bg-white border-2 border-green-300 rounded-lg mx-auto mb-4 flex items-center justify-center">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
+                <div className="w-48 h-48 bg-white border-2 border-green-300 rounded-lg mb-2 flex items-center justify-center">
                   <p className="text-gray-500">QR Code Placeholder</p>
                 </div>
                 <p className="text-sm text-green-900 font-medium">Scan this QR code with your authenticator app</p>
@@ -202,7 +202,7 @@ export function TwoFactorAuthModal({ isOpen, onClose, onEnable }: TwoFactorAuthM
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-sm font-medium text-blue-900 mb-2">Recommended Apps:</p>
                 <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
                   <li>Google Authenticator</li>
@@ -227,7 +227,7 @@ export function TwoFactorAuthModal({ isOpen, onClose, onEnable }: TwoFactorAuthM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -271,10 +271,10 @@ export function EmailNotificationsModal({ isOpen, onClose, onSave }: EmailNotifi
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Bell className="h-5 w-5 text-white" />
@@ -287,7 +287,7 @@ export function EmailNotificationsModal({ isOpen, onClose, onSave }: EmailNotifi
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
               <div>
@@ -388,7 +388,7 @@ export function EmailNotificationsModal({ isOpen, onClose, onSave }: EmailNotifi
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -430,10 +430,10 @@ export function PushNotificationsModal({ isOpen, onClose, onSave }: PushNotifica
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <BellOff className="h-5 w-5 text-white" />
@@ -446,8 +446,8 @@ export function PushNotificationsModal({ isOpen, onClose, onSave }: PushNotifica
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          <div className="flex items-center justify-between p-4 bg-orange-50 border border-orange-200 rounded-lg">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
+          <div className="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg">
             <div>
               <p className="font-semibold text-orange-900">Enable Push Notifications</p>
               <p className="text-sm text-orange-700">Receive real-time updates</p>
@@ -519,7 +519,7 @@ export function PushNotificationsModal({ isOpen, onClose, onSave }: PushNotifica
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -561,10 +561,10 @@ export function PrivacySettingsModal({ isOpen, onClose, onSave }: PrivacySetting
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Eye className="h-5 w-5 text-white" />
@@ -577,7 +577,7 @@ export function PrivacySettingsModal({ isOpen, onClose, onSave }: PrivacySetting
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Profile Visibility</label>
             <select
@@ -659,7 +659,7 @@ export function PrivacySettingsModal({ isOpen, onClose, onSave }: PrivacySetting
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
@@ -701,9 +701,9 @@ export function LanguageRegionModal({ isOpen, onClose, onSave }: LanguageRegionM
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Globe className="h-5 w-5 text-white" />
@@ -715,7 +715,7 @@ export function LanguageRegionModal({ isOpen, onClose, onSave }: LanguageRegionM
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
             <select value={settings.language} onChange={(e) => setSettings({ ...settings, language: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent">
@@ -764,7 +764,7 @@ export function LanguageRegionModal({ isOpen, onClose, onSave }: LanguageRegionM
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">Cancel</button>
           <button onClick={handleSubmit} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">Save Settings</button>
         </div>
@@ -790,9 +790,9 @@ export function ThemeCustomizationModal({ isOpen, onClose, onSave }: ThemeCustom
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-white bg-opacity-20 rounded-lg">
               <Palette className="h-5 w-5 text-white" />
@@ -802,7 +802,7 @@ export function ThemeCustomizationModal({ isOpen, onClose, onSave }: ThemeCustom
           <button onClick={onClose} className="text-white hover:bg-white hover:bg-opacity-20 rounded-lg p-1 transition-colors"><X className="h-5 w-5" /></button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Theme Mode</label>
             <div className="grid grid-cols-2 gap-3">
@@ -836,7 +836,7 @@ export function ThemeCustomizationModal({ isOpen, onClose, onSave }: ThemeCustom
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">Cancel</button>
           <button onClick={() => onSave(theme)} className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">Apply Theme</button>
         </div>
@@ -857,9 +857,9 @@ export function SystemBackupModal({ isOpen, onClose, onBackup }: SystemBackupMod
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Database className="h-5 w-5 text-white" />
             <h2 className="text-xl font-semibold text-white">System Backup</h2>
@@ -867,13 +867,13 @@ export function SystemBackupModal({ isOpen, onClose, onBackup }: SystemBackupMod
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <p className="text-gray-700 mb-4">Create a complete system backup including database, files, and configurations.</p>
-          <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
+          <p className="text-gray-700 mb-2">Create a complete system backup including database, files, and configurations.</p>
+          <div className="bg-pink-50 border border-pink-200 rounded-lg p-3">
             <p className="text-sm text-pink-900 font-medium">Last Backup:</p>
             <p className="text-sm text-pink-700">October 25, 2025 - 2:30 PM</p>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={onBackup} className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">Create Backup</button>
         </div>
@@ -896,16 +896,16 @@ export function DataExportModal({ isOpen, onClose, onExport }: DataExportModalPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Download className="h-5 w-5 text-white" />
             <h2 className="text-xl font-semibold text-white">Export Data</h2>
           </div>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <select value={format} onChange={(e) => setFormat(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg">
@@ -926,7 +926,7 @@ export function DataExportModal({ isOpen, onClose, onExport }: DataExportModalPr
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onExport({ format, dataTypes })} className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">Export</button>
         </div>
@@ -948,9 +948,9 @@ export function DataImportModal({ isOpen, onClose, onImport }: DataImportModalPr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Upload className="h-5 w-5 text-white" />
             <h2 className="text-xl font-semibold text-white">Import Data</h2>
@@ -959,7 +959,7 @@ export function DataImportModal({ isOpen, onClose, onImport }: DataImportModalPr
         </div>
         <div className="p-6">
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <Upload className="h-12 w-12 text-gray-400 mb-2" />
             <input type="file" onChange={(e) => setFile(e.target.files?.[0] || null)} className="hidden" id="file-upload" accept=".csv,.json,.xlsx" />
             <label htmlFor="file-upload" className="cursor-pointer text-blue-600 hover:text-blue-700 font-medium">
               Choose a file
@@ -968,7 +968,7 @@ export function DataImportModal({ isOpen, onClose, onImport }: DataImportModalPr
             {file && <p className="text-sm text-green-600 mt-2">Selected: {file.name}</p>}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onImport(file)} disabled={!file} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-300">Import</button>
         </div>
@@ -983,14 +983,14 @@ export function APIConfigurationModal({ isOpen, onClose, onSave }: APIConfigurat
   const [apiKey, setApiKey] = useState('');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3"><Key className="h-5 w-5 text-white" /><h2 className="text-xl font-semibold text-white">API Configuration</h2></div>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6"><input type="text" value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="Enter API Key" className="w-full px-3 py-2 border border-gray-300 rounded-lg" /></div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onSave({ apiKey })} className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700">Save</button>
         </div>
@@ -1004,19 +1004,19 @@ export function UserPreferencesModal({ isOpen, onClose, onSave }: UserPreference
   const [prefs, setPrefs] = useState({ dashboard: 'default', sidebar: 'expanded' });
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3"><User className="h-5 w-5 text-white" /><h2 className="text-xl font-semibold text-white">User Preferences</h2></div>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <select value={prefs.dashboard} onChange={(e) => setPrefs({ ...prefs, dashboard: e.target.value })} className="w-full px-3 py-2 border border-gray-300 rounded-lg">
             <option value="default">Default Dashboard</option>
             <option value="minimal">Minimal Dashboard</option>
           </select>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onSave(prefs)} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">Save</button>
         </div>
@@ -1029,14 +1029,14 @@ interface IntegrationSettingsModalProps { isOpen: boolean; onClose: () => void; 
 export function IntegrationSettingsModal({ isOpen, onClose, onSave }: IntegrationSettingsModalProps) {
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3"><Zap className="h-5 w-5 text-white" /><h2 className="text-xl font-semibold text-white">Integration Settings</h2></div>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6"><p className="text-gray-700">Configure third-party integrations and webhooks.</p></div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700">Close</button>
         </div>
       </div>
@@ -1049,9 +1049,9 @@ export function AuditLogSettingsModal({ isOpen, onClose, onSave }: AuditLogSetti
   const [retention, setRetention] = useState('90');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-slate-600 to-slate-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3"><FileText className="h-5 w-5 text-white" /><h2 className="text-xl font-semibold text-white">Audit Log Settings</h2></div>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
@@ -1059,7 +1059,7 @@ export function AuditLogSettingsModal({ isOpen, onClose, onSave }: AuditLogSetti
           <label className="block text-sm font-medium text-gray-700 mb-2">Retention Period (Days)</label>
           <input type="number" value={retention} onChange={(e) => setRetention(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onSave({ retention })} className="px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700">Save</button>
         </div>
@@ -1072,9 +1072,9 @@ interface SessionManagementModalProps { isOpen: boolean; onClose: () => void; on
 export function SessionManagementModal({ isOpen, onClose, onRevoke }: SessionManagementModalProps) {
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3"><Clock className="h-5 w-5 text-white" /><h2 className="text-xl font-semibold text-white">Session Management</h2></div>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
@@ -1088,7 +1088,7 @@ export function SessionManagementModal({ isOpen, onClose, onRevoke }: SessionMan
             <p className="text-xs text-gray-600">iOS · Safari · 2 hours ago</p>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">Close</button>
           <button onClick={onRevoke} className="px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">Revoke All</button>
         </div>

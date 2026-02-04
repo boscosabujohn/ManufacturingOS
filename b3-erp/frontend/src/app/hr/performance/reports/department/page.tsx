@@ -32,7 +32,7 @@ export default function DepartmentPerformancePage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -43,10 +43,10 @@ export default function DepartmentPerformancePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Comparison Chart */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <Activity className="h-5 w-5 text-gray-500" />
             Average Performance Score
           </h3>
@@ -66,8 +66,8 @@ export default function DepartmentPerformancePage() {
         </div>
 
         {/* Trend Chart */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-gray-500" />
             Performance Trends (Top Depts)
           </h3>
@@ -89,8 +89,8 @@ export default function DepartmentPerformancePage() {
       </div>
 
       {/* KPI Heatmap */}
-      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-6">Department KPI Heatmap</h3>
+      <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">Department KPI Heatmap</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>

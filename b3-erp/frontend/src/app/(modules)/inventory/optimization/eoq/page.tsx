@@ -107,9 +107,9 @@ const EOQPage = () => {
     };
 
     return (
-        <div className="w-full h-full p-6 space-y-6 bg-gray-50 min-h-screen">
+        <div className="w-full h-full p-3 space-y-3 bg-gray-50 min-h-screen">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                 <div>
                     <button
                         onClick={() => router.back()}
@@ -132,9 +132,9 @@ const EOQPage = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Calculator Inputs */}
-                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 lg:col-span-1 space-y-6">
+                <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 lg:col-span-1 space-y-3">
                     <h2 className="text-lg font-semibold text-gray-900 border-b pb-2">EOQ Calculator</h2>
 
                     <div>
@@ -181,7 +181,7 @@ const EOQPage = () => {
                         <p className="text-xs text-gray-500 mt-1">Storage, insurance, obsolescence (Annual $/unit)</p>
                     </div>
 
-                    <div className="bg-blue-50 p-4 rounded-lg flex gap-3 text-sm text-blue-800">
+                    <div className="bg-blue-50 p-3 rounded-lg flex gap-3 text-sm text-blue-800">
                         <Info className="w-5 h-5 shrink-0 mt-0.5" />
                         <p>
                             EOQ = √[(2 × D × S) / H] <br />
@@ -191,10 +191,10 @@ const EOQPage = () => {
                 </div>
 
                 {/* Results Dashboard */}
-                <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-min">
+                <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-2 auto-rows-min">
 
                     {/* Main EOQ Card */}
-                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-md p-6 text-white md:col-span-2">
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-md p-3 text-white md:col-span-2">
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="text-blue-100 font-medium">Optimal Order Quantity (EOQ)</p>
@@ -219,7 +219,7 @@ const EOQPage = () => {
                     </div>
 
                     {/* Operational Metrics */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
+                    <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
                         <div>
                             <p className="text-gray-500 font-medium text-sm">Orders Per Year</p>
                             <p className="text-2xl font-bold text-gray-900 mt-1">{annualOrders}</p>
@@ -230,7 +230,7 @@ const EOQPage = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
+                    <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
                         <div>
                             <p className="text-gray-500 font-medium text-sm">Order Cycle Time</p>
                             <p className="text-2xl font-bold text-gray-900 mt-1">{cycleTime} Days</p>
@@ -242,8 +242,8 @@ const EOQPage = () => {
                     </div>
 
                     {/* Cost Curve visualization placeholder - simplified */}
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 md:col-span-2">
-                        <div className="flex items-center justify-between mb-4">
+                    <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 md:col-span-2">
+                        <div className="flex items-center justify-between mb-2">
                             <h3 className="font-semibold text-gray-900">Cost Trade-off Analysis</h3>
                             <BarChart2 className="w-5 h-5 text-gray-400" />
                         </div>
@@ -287,34 +287,34 @@ const EOQPage = () => {
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th className="px-6 py-4 text-xs font-semibold text-gray-600 uppercase">Item</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Annual Demand</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Ordering Cost</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Holding Cost</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-blue-600 uppercase bg-blue-50">Optimal Qty (EOQ)</th>
-                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase">Min Annual Cost</th>
+                                <th className="px-3 py-2 text-xs font-semibold text-gray-600 uppercase">Item</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Annual Demand</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Ordering Cost</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Holding Cost</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-blue-600 uppercase bg-blue-50">Optimal Qty (EOQ)</th>
+                                <th className="px-3 py-2 text-right text-xs font-semibold text-gray-600 uppercase">Min Annual Cost</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {simulationItems.map((item) => (
                                 <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="px-6 py-4">
+                                    <td className="px-3 py-2">
                                         <p className="font-medium text-gray-900">{item.itemName}</p>
                                         <p className="text-xs text-gray-500">{item.itemCode}</p>
                                     </td>
-                                    <td className="px-6 py-4 text-right text-sm text-gray-700">
+                                    <td className="px-3 py-2 text-right text-sm text-gray-700">
                                         {item.annualDemand.toLocaleString()}
                                     </td>
-                                    <td className="px-6 py-4 text-right text-sm text-gray-700">
+                                    <td className="px-3 py-2 text-right text-sm text-gray-700">
                                         ${item.orderingCost}
                                     </td>
-                                    <td className="px-6 py-4 text-right text-sm text-gray-700">
+                                    <td className="px-3 py-2 text-right text-sm text-gray-700">
                                         ${(item.unitCost * item.holdingCostPercentage).toFixed(2)} <span className="text-xs text-gray-400">/unit</span>
                                     </td>
-                                    <td className="px-6 py-4 text-right bg-blue-50/50">
+                                    <td className="px-3 py-2 text-right bg-blue-50/50">
                                         <span className="text-lg font-bold text-blue-700">{calculateItemEOQ(item).toLocaleString()}</span>
                                     </td>
-                                    <td className="px-6 py-4 text-right text-sm font-medium text-green-700">
+                                    <td className="px-3 py-2 text-right text-sm font-medium text-green-700">
                                         ${calculateItemTotalCost(item).toLocaleString()}
                                     </td>
                                 </tr>

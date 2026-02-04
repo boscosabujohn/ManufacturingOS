@@ -246,13 +246,13 @@ export const ThemeSettingsPanel: React.FC<{
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="flex min-h-screen items-center justify-center p-3">
         <div
           className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70"
           onClick={onClose}
         />
         <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md">
-          <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Palette className="h-5 w-5 text-gray-500 dark:text-gray-400" />
@@ -270,7 +270,7 @@ export const ThemeSettingsPanel: React.FC<{
             </div>
           </div>
 
-          <div className="px-6 py-4 space-y-6">
+          <div className="px-3 py-2 space-y-3">
             {/* Theme Mode */}
             <div>
               <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-3">
@@ -291,7 +291,7 @@ export const ThemeSettingsPanel: React.FC<{
                         : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                     }`}
                   >
-                    <Icon className="h-5 w-5 mx-auto mb-2 text-gray-700 dark:text-gray-300" />
+                    <Icon className="h-5 w-5 mb-2 text-gray-700 dark:text-gray-300" />
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       {label}
                     </div>
@@ -322,7 +322,7 @@ export const ThemeSettingsPanel: React.FC<{
                     }`}
                     title={name}
                   >
-                    <div className={`h-6 w-6 rounded-full ${color} mx-auto`} />
+                    <div className={`h-6 w-6 rounded-full ${color}`} />
                     {theme.colorScheme === key && (
                       <div className="absolute top-1 right-1">
                         <Check className="h-3 w-3 text-white" />
@@ -376,7 +376,7 @@ export const ThemeSettingsPanel: React.FC<{
             </div>
           </div>
 
-          <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700/50 rounded-b-lg">
+          <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700/50 rounded-b-lg">
             <p className="text-xs text-gray-600 dark:text-gray-400">
               Theme preferences are saved automatically and will persist across sessions.
             </p>

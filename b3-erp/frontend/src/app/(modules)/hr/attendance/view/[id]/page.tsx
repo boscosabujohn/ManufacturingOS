@@ -190,11 +190,11 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button onClick={handleBack} className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
               <span className="text-gray-700">Back</span>
@@ -218,28 +218,28 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+        <div className="grid grid-cols-5 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <CheckCircle2 className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{monthSummary.presentDays}</div>
             <div className="text-green-100 text-sm">Present Days</div>
           </div>
-          <div className="bg-gradient-to-br from-red-500 to-red-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-xl text-white">
             <XCircle className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{monthSummary.absentDays}</div>
             <div className="text-red-100 text-sm">Absent Days</div>
           </div>
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <TrendingUp className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{monthSummary.attendancePercentage}%</div>
             <div className="text-blue-100 text-sm">Attendance Rate</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
             <Clock className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{monthSummary.totalHours.toFixed(1)}</div>
             <div className="text-purple-100 text-sm">Total Hours</div>
           </div>
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
             <Timer className="w-8 h-8 mb-3 opacity-80" />
             <div className="text-3xl font-bold mb-1">{monthSummary.overtimeHours.toFixed(1)}</div>
             <div className="text-orange-100 text-sm">Overtime Hours</div>
@@ -247,7 +247,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -287,7 +287,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
             {/* Daily Details Tab */}
             {activeTab === 'details' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Daily Attendance Records</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Daily Attendance Records</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b border-gray-200">
@@ -371,13 +371,13 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
             {/* Summary Tab */}
             {activeTab === 'summary' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Monthly Summary</h3>
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Monthly Summary</h3>
 
                 {/* Attendance Breakdown */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <BarChart3 className="w-5 h-5 text-blue-600" />
                       Attendance Breakdown
                     </h4>
@@ -410,7 +410,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
                   </div>
 
                   <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Clock className="w-5 h-5 text-purple-600" />
                       Work Hours Summary
                     </h4>
@@ -443,11 +443,11 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
                 {/* Performance Indicator */}
                 <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Award className="w-5 h-5 text-green-600" />
                     Attendance Performance
                   </h4>
-                  <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-3">
                     <div className="flex-1">
                       <div className="mb-2 flex justify-between text-sm">
                         <span className="text-gray-700">Attendance Rate</span>
@@ -485,12 +485,12 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
             {/* Analytics Tab */}
             {activeTab === 'analytics' && (
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Attendance Analytics & Insights</h3>
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Attendance Analytics & Insights</h3>
 
                 {/* Attendance Timeline Visualization */}
                 <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Clock className="w-5 h-5 text-blue-600" />
                     Attendance Timeline (Last 20 Days)
                   </h4>
@@ -518,7 +518,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
                       );
                     })}
                   </div>
-                  <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+                  <div className="mt-4 flex items-center justify-center gap-3 text-sm">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 bg-green-500 rounded"></div>
                       <span className="text-gray-700">Present</span>
@@ -543,15 +543,15 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
                 </div>
 
                 {/* Punctuality Analysis */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200">
-                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Timer className="w-5 h-5 text-green-600" />
                       Punctuality Score
                     </h4>
                     <div className="text-center">
                       <div className="text-5xl font-bold text-green-600 mb-2">85%</div>
-                      <p className="text-sm text-gray-600 mb-4">On-time check-ins</p>
+                      <p className="text-sm text-gray-600 mb-2">On-time check-ins</p>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-600">Early Arrivals</span>
@@ -570,7 +570,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
                   </div>
 
                   <div className="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200">
-                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5 text-orange-600" />
                       Anomalies Detected
                     </h4>
@@ -608,11 +608,11 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
                 {/* Location Tracking Insights */}
                 <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-purple-600" />
                     Location Tracking
                   </h4>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div className="p-4 bg-white rounded-lg border border-purple-200">
                       <div className="flex items-center gap-3 mb-2">
                         <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -657,24 +657,24 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
                 {/* Shift Pattern Analysis */}
                 <div className="p-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <BarChart3 className="w-5 h-5 text-indigo-600" />
                     Work Pattern Analysis
                   </h4>
-                  <div className="grid grid-cols-4 gap-4">
-                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                  <div className="grid grid-cols-4 gap-2">
+                    <div className="text-center p-3 bg-white rounded-lg border border-indigo-200">
                       <div className="text-3xl font-bold text-indigo-600 mb-1">9.1</div>
                       <div className="text-sm text-gray-600">Avg Hours/Day</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                    <div className="text-center p-3 bg-white rounded-lg border border-indigo-200">
                       <div className="text-3xl font-bold text-orange-600 mb-1">2.5</div>
                       <div className="text-sm text-gray-600">Total OT Hours</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                    <div className="text-center p-3 bg-white rounded-lg border border-indigo-200">
                       <div className="text-3xl font-bold text-green-600 mb-1">5</div>
                       <div className="text-sm text-gray-600">Perfect Days</div>
                     </div>
-                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                    <div className="text-center p-3 bg-white rounded-lg border border-indigo-200">
                       <div className="text-3xl font-bold text-blue-600 mb-1">Day</div>
                       <div className="text-sm text-gray-600">Current Shift</div>
                     </div>
@@ -683,12 +683,12 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
                 {/* Predictive Insights */}
                 <div className="p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl border border-yellow-200">
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-yellow-600" />
                     Predictive Insights & Recommendations
                   </h4>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-green-200">
+                    <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200">
                       <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <Award className="w-5 h-5 text-green-600" />
                       </div>
@@ -699,7 +699,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-yellow-200">
+                    <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-yellow-200">
                       <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <AlertTriangle className="w-5 h-5 text-yellow-600" />
                       </div>
@@ -710,7 +710,7 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-blue-200">
+                    <div className="flex items-start gap-3 p-3 bg-white rounded-lg border border-blue-200">
                       <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <TrendingUp className="w-5 h-5 text-blue-600" />
                       </div>

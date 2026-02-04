@@ -407,10 +407,10 @@ export default function CrossSellPage() {
   const strongOpportunities = opportunities.filter(o => o.recommendationStrength === 'strong').length;
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -434,8 +434,8 @@ export default function CrossSellPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Opportunities</span>
             <ShoppingCart className="h-5 w-5 text-blue-600" />
@@ -444,7 +444,7 @@ export default function CrossSellPage() {
           <div className="text-xs text-blue-700 mt-1">{strongOpportunities} strong matches</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Total Value</span>
             <IndianRupee className="h-5 w-5 text-green-600" />
@@ -453,7 +453,7 @@ export default function CrossSellPage() {
           <div className="text-xs text-green-700 mt-1">Revenue potential</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Avg Conversion</span>
             <TrendingUp className="h-5 w-5 text-purple-600" />
@@ -462,7 +462,7 @@ export default function CrossSellPage() {
           <div className="text-xs text-purple-700 mt-1">Success rate</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-orange-900">Active Campaigns</span>
             <Sparkles className="h-5 w-5 text-orange-600" />
@@ -475,8 +475,8 @@ export default function CrossSellPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
@@ -512,7 +512,7 @@ export default function CrossSellPage() {
       </div>
 
       {/* Opportunities List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredOpportunities.map((opp) => {
           const relInfo = getRelationshipBadge(opp.relationship);
           const RelIcon = relInfo.icon;
@@ -520,7 +520,7 @@ export default function CrossSellPage() {
             <div key={opp.id} className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
               <div className="p-5">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium ${relInfo.color}`}>
                     <RelIcon className="h-3 w-3" />
                     {relInfo.label}
@@ -539,9 +539,9 @@ export default function CrossSellPage() {
                 </div>
 
                 {/* Product Pairing */}
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-2 items-center mb-2">
                   {/* Primary Product */}
-                  <div className="md:col-span-2 bg-blue-50 rounded-lg p-4">
+                  <div className="md:col-span-2 bg-blue-50 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                       <Package className="h-5 w-5 text-blue-600 mt-1" />
                       <div className="flex-1">
@@ -562,7 +562,7 @@ export default function CrossSellPage() {
                   </div>
 
                   {/* Suggested Product */}
-                  <div className="md:col-span-2 bg-green-50 rounded-lg p-4">
+                  <div className="md:col-span-2 bg-green-50 rounded-lg p-3">
                     <div className="flex items-start gap-3">
                       <Package className="h-5 w-5 text-green-600 mt-1" />
                       <div className="flex-1">
@@ -579,7 +579,7 @@ export default function CrossSellPage() {
                 </div>
 
                 {/* Metrics Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-2">
                   <div className="bg-gray-50 rounded-lg p-3">
                     <div className="text-xs text-gray-600 mb-1">Co-Occurrence</div>
                     <div className="text-lg font-bold text-gray-900">{opp.coOccurrenceRate.toFixed(1)}%</div>

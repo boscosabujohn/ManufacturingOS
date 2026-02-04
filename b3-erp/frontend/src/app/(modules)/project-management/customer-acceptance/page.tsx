@@ -570,8 +570,8 @@ export default function CustomerAcceptancePage() {
      </div>
 
      {/* Statistics Cards */}
-     <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+     <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total</p>
@@ -580,7 +580,7 @@ export default function CustomerAcceptancePage() {
       <FileCheck className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Accepted</p>
@@ -589,7 +589,7 @@ export default function CustomerAcceptancePage() {
       <CheckCircle className="h-8 w-8 text-green-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Conditional</p>
@@ -598,7 +598,7 @@ export default function CustomerAcceptancePage() {
       <AlertTriangle className="h-8 w-8 text-yellow-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Pending</p>
@@ -607,7 +607,7 @@ export default function CustomerAcceptancePage() {
       <Clock className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Rejected</p>
@@ -616,7 +616,7 @@ export default function CustomerAcceptancePage() {
       <XCircle className="h-8 w-8 text-red-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Punch Items</p>
@@ -625,7 +625,7 @@ export default function CustomerAcceptancePage() {
       <FileText className="h-8 w-8 text-orange-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Completed</p>
@@ -637,8 +637,8 @@ export default function CustomerAcceptancePage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg border border-gray-200">
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+   <div className="bg-white p-3 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
      <div className="md:col-span-2">
       <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
       <input
@@ -685,7 +685,7 @@ export default function CustomerAcceptancePage() {
     {paginatedAcceptances.map((acceptance) => (
      <div key={acceptance.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
       {/* Card Header */}
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-2">
        <div>
         <div className="flex items-center space-x-2">
          <h3 className="text-lg font-bold text-gray-900">{acceptance.acceptanceNumber}</h3>
@@ -704,14 +704,14 @@ export default function CustomerAcceptancePage() {
       </div>
 
       {/* Project & Customer Info */}
-      <div className="mb-4">
+      <div className="mb-2">
        <p className="font-medium text-gray-900">{acceptance.projectName}</p>
        <p className="text-sm text-gray-600">{acceptance.customer}</p>
        <p className="text-xs text-gray-500">{acceptance.customerContact}</p>
       </div>
 
       {/* Progress Stats */}
-      <div className="grid grid-cols-2 gap-4 mb-4 bg-gray-50 p-3 rounded-lg">
+      <div className="grid grid-cols-2 gap-2 mb-2 bg-gray-50 p-3 rounded-lg">
        <div>
         <p className="text-xs text-gray-500">Acceptance Criteria</p>
         <div className="flex items-center space-x-2 mt-1">
@@ -774,7 +774,7 @@ export default function CustomerAcceptancePage() {
 
       {/* Defects List */}
       {acceptance.defectsList.length > 0 && (
-       <div className="mb-4 bg-red-50 border border-red-200 p-3 rounded-lg">
+       <div className="mb-2 bg-red-50 border border-red-200 p-3 rounded-lg">
         <div className="flex items-center space-x-2 mb-2">
          <AlertTriangle className="h-4 w-4 text-red-600" />
          <span className="text-sm font-medium text-red-800">{acceptance.defectsList.length} Defects</span>
@@ -792,7 +792,7 @@ export default function CustomerAcceptancePage() {
 
       {/* Sign-off Status */}
       {acceptance.signedDate ? (
-       <div className="bg-green-50 border border-green-200 p-3 rounded-lg mb-4">
+       <div className="bg-green-50 border border-green-200 p-3 rounded-lg mb-2">
         <div className="flex items-center space-x-2 mb-1">
          <CheckCircle className="h-4 w-4 text-green-600" />
          <span className="text-sm font-semibold text-green-800">Signed Off</span>
@@ -802,7 +802,7 @@ export default function CustomerAcceptancePage() {
         </p>
        </div>
       ) : (
-       <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg mb-4">
+       <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg mb-2">
         <div className="flex items-center space-x-2">
          <Clock className="h-4 w-4 text-yellow-600" />
          <span className="text-sm font-semibold text-yellow-800">Awaiting Sign-off</span>
@@ -812,7 +812,7 @@ export default function CustomerAcceptancePage() {
 
       {/* Warranty & AMC */}
       {acceptance.warrantyPeriod && (
-       <div className="grid grid-cols-2 gap-2 text-xs mb-4">
+       <div className="grid grid-cols-2 gap-2 text-xs mb-2">
         <div className="bg-gray-50 p-2 rounded">
          <p className="text-gray-500">Warranty</p>
          <p className="font-medium text-gray-900">{acceptance.warrantyPeriod}</p>
@@ -890,9 +890,9 @@ export default function CustomerAcceptancePage() {
 
    {/* View Details Modal */}
    {selectedAcceptance && (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
-      <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+      <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex justify-between items-center">
        <div>
         <h2 className="text-xl font-bold text-gray-900">{selectedAcceptance.acceptanceNumber}</h2>
         <p className="text-sm text-gray-600">{selectedAcceptance.projectName}</p>
@@ -924,7 +924,7 @@ export default function CustomerAcceptancePage() {
         <h3 className="text-lg font-semibold text-gray-900 mb-3">Acceptance Criteria</h3>
         <div className="space-y-3">
          {selectedAcceptance.acceptanceCriteria.map((criterion, index) => (
-          <div key={criterion.id} className="bg-gray-50 p-4 rounded-lg">
+          <div key={criterion.id} className="bg-gray-50 p-3 rounded-lg">
            <div className="flex items-start justify-between">
             <div className="flex-1">
              <p className="text-sm font-medium text-gray-900">
@@ -983,7 +983,7 @@ export default function CustomerAcceptancePage() {
        </div>
 
        {/* Overall Remarks */}
-       <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+       <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
         <h3 className="text-sm font-semibold text-gray-900 mb-2">Overall Remarks</h3>
         <p className="text-sm text-gray-700">{selectedAcceptance.remarks}</p>
        </div>

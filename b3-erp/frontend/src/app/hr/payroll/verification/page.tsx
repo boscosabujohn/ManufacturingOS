@@ -432,14 +432,14 @@ export default function PayrollVerificationPage() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Payroll Verification</h1>
         <p className="text-sm text-gray-600 mt-1">Verify salary calculations before approval and disbursement</p>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg shadow-sm border border-blue-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg shadow-sm border border-blue-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">{mockBatch.monthYear}</h2>
             <p className="text-sm text-gray-600 mt-1">Pay Period: {mockBatch.payPeriod}</p>
@@ -450,8 +450,8 @@ export default function PayrollVerificationPage() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Employees</p>
@@ -461,7 +461,7 @@ export default function PayrollVerificationPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Gross</p>
@@ -471,7 +471,7 @@ export default function PayrollVerificationPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Deductions</p>
@@ -481,7 +481,7 @@ export default function PayrollVerificationPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Net Payable</p>
@@ -493,8 +493,8 @@ export default function PayrollVerificationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending Verification</p>
@@ -504,7 +504,7 @@ export default function PayrollVerificationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Verified</p>
@@ -514,7 +514,7 @@ export default function PayrollVerificationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Flagged</p>
@@ -525,8 +525,8 @@ export default function PayrollVerificationPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -577,15 +577,15 @@ export default function PayrollVerificationPage() {
       </div>
 
       {showReconciliation && (
-        <div className="mb-6">
+        <div className="mb-3">
           <PayrollReconciliation data={reconciliationData} formatCurrency={formatCurrency} />
         </div>
       )}
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map(record => (
-          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={record.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{record.employeeName}</h3>
@@ -616,8 +616,8 @@ export default function PayrollVerificationPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="font-semibold text-green-900 mb-3 text-sm">Earnings</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -655,7 +655,7 @@ export default function PayrollVerificationPage() {
                 </div>
               </div>
 
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <h4 className="font-semibold text-red-900 mb-3 text-sm">Deductions</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -689,7 +689,7 @@ export default function PayrollVerificationPage() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="font-semibold text-blue-900 mb-3 text-sm">Net Payment</h4>
                 <div className="text-center py-4">
                   <p className="text-xs text-blue-700 mb-2">Net Salary</p>
@@ -747,7 +747,7 @@ export default function PayrollVerificationPage() {
       </div>
 
       {mockBatch.verified === mockBatch.employeeCount && (
-        <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-6">
+        <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold text-green-900">All records verified!</h3>
@@ -755,14 +755,14 @@ export default function PayrollVerificationPage() {
                 Payroll batch is ready for approval and disbursement
               </p>
             </div>
-            <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+            <button className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
               Submit for Approval
             </button>
           </div>
         </div>
       )}
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Verification Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Verify attendance days match with actual attendance records</li>
@@ -813,7 +813,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
   const variance = data.currentPayroll.totalNet - calculatedCurrent;
 
   return (
-    <div className="mb-6 space-y-4">
+    <div className="mb-3 space-y-2">
       {/* Debug info */}
       <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-2">
         <p className="text-xs text-yellow-900">
@@ -822,20 +822,20 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
       </div>
 
       {/* Reconciliation Formula */}
-      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg shadow-sm border-2 border-purple-200 p-6">
-        <h2 className="text-xl font-bold text-purple-900 mb-4 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg shadow-sm border-2 border-purple-200 p-3">
+        <h2 className="text-xl font-bold text-purple-900 mb-2 flex items-center gap-2">
           <FileText className="h-6 w-6" />
           Payroll Reconciliation
         </h2>
 
-        <div className="bg-blue-50 border border-blue-300 rounded-lg p-3 mb-4">
+        <div className="bg-blue-50 border border-blue-300 rounded-lg p-3 mb-2">
           <p className="text-sm text-blue-900">
             <strong>💡 Tip:</strong> Scroll down to see detailed employee information. Click on employee cards below to expand full salary breakdowns.
           </p>
         </div>
 
-        <div className="bg-white rounded-lg p-6 border border-purple-200">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">Reconciliation Formula (Excluding Variable Dues & Deductions)</h3>
+        <div className="bg-white rounded-lg p-3 border border-purple-200">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Reconciliation Formula (Excluding Variable Dues & Deductions)</h3>
 
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <div className="bg-blue-100 px-4 py-3 rounded-lg border border-blue-300">
@@ -898,8 +898,8 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
 
       {/* New Employees */}
       {data.newEmployees.length > 0 && (
-        <div className="bg-white rounded-lg shadow-sm border-2 border-green-200 p-6">
-          <h3 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border-2 border-green-200 p-3">
+          <h3 className="text-lg font-bold text-green-900 mb-2 flex items-center gap-2">
             <UserPlus className="h-5 w-5" />
             New Employees Added ({data.newEmployees.length})
           </h3>
@@ -909,7 +909,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
               return (
                 <div key={emp.employeeId} className="border-2 border-green-200 rounded-lg overflow-hidden">
                   <div
-                    className="bg-green-50 p-4 cursor-pointer hover:bg-green-100 transition-colors"
+                    className="bg-green-50 p-3 cursor-pointer hover:bg-green-100 transition-colors"
                     onClick={() => toggleExpanded(emp.employeeId, 'new')}
                   >
                     <div className="flex items-center justify-between">
@@ -927,7 +927,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                           {emp.designation} • {emp.department}
                         </p>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="text-right">
                           <p className="text-xs text-gray-600">Net Salary</p>
                           <p className="text-lg font-bold text-green-900">{formatCurrency(emp.netSalary)}</p>
@@ -943,8 +943,8 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
 
                   {isExpanded && (
                     <div className="p-4 bg-white border-t border-green-200">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                           <h4 className="font-semibold text-green-900 mb-3 text-sm">Earnings</h4>
                           <div className="space-y-2">
                             <div className="flex justify-between text-xs">
@@ -976,7 +976,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                           </div>
                         </div>
 
-                        <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                        <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                           <h4 className="font-semibold text-red-900 mb-3 text-sm">Deductions</h4>
                           <div className="space-y-2">
                             <div className="flex justify-between text-xs">
@@ -1004,7 +1004,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                           </div>
                         </div>
 
-                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                        <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                           <h4 className="font-semibold text-blue-900 mb-3 text-sm">Net Payment</h4>
                           <div className="text-center py-4">
                             <p className="text-xs text-blue-700 mb-2">Net Salary</p>
@@ -1027,7 +1027,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                 </div>
               );
             })}
-            <div className="bg-green-100 rounded-lg p-4 border-2 border-green-300">
+            <div className="bg-green-100 rounded-lg p-3 border-2 border-green-300">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-green-900 text-lg">Total Addition to Payroll</span>
                 <span className="text-2xl font-bold text-green-900">{formatCurrency(additionsTotal)}</span>
@@ -1039,8 +1039,8 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
 
       {/* Exited Employees */}
       {data.exitedEmployees.length > 0 && (
-        <div className="bg-white rounded-lg shadow-sm border-2 border-red-200 p-6">
-          <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border-2 border-red-200 p-3">
+          <h3 className="text-lg font-bold text-red-900 mb-2 flex items-center gap-2">
             <UserMinus className="h-5 w-5" />
             Exited Employees ({data.exitedEmployees.length})
           </h3>
@@ -1050,7 +1050,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
               return (
                 <div key={emp.employeeId} className="border-2 border-red-200 rounded-lg overflow-hidden">
                   <div
-                    className="bg-red-50 p-4 cursor-pointer hover:bg-red-100 transition-colors"
+                    className="bg-red-50 p-3 cursor-pointer hover:bg-red-100 transition-colors"
                     onClick={() => toggleExpanded(emp.employeeId, 'exited')}
                   >
                     <div className="flex items-center justify-between">
@@ -1070,7 +1070,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                           {emp.designation} • {emp.department}
                         </p>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="text-right">
                           <p className="text-xs text-gray-600">Net Salary</p>
                           <p className="text-lg font-bold text-red-900">{formatCurrency(emp.netSalary)}</p>
@@ -1086,8 +1086,8 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
 
                   {isExpanded && (
                     <div className="p-4 bg-white border-t border-red-200">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                        <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                           <h4 className="font-semibold text-green-900 mb-3 text-sm">Earnings</h4>
                           <div className="space-y-2">
                             <div className="flex justify-between text-xs">
@@ -1119,7 +1119,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                           </div>
                         </div>
 
-                        <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                        <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                           <h4 className="font-semibold text-red-900 mb-3 text-sm">Deductions</h4>
                           <div className="space-y-2">
                             <div className="flex justify-between text-xs">
@@ -1147,7 +1147,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                           </div>
                         </div>
 
-                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                        <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                           <h4 className="font-semibold text-blue-900 mb-3 text-sm">Net Payment</h4>
                           <div className="text-center py-4">
                             <p className="text-xs text-blue-700 mb-2">Net Salary</p>
@@ -1170,7 +1170,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                 </div>
               );
             })}
-            <div className="bg-red-100 rounded-lg p-4 border-2 border-red-300">
+            <div className="bg-red-100 rounded-lg p-3 border-2 border-red-300">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-red-900 text-lg">Total Deduction from Payroll</span>
                 <span className="text-2xl font-bold text-red-900">{formatCurrency(deductionsTotal)}</span>
@@ -1182,8 +1182,8 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
 
       {/* Salary Revisions */}
       {data.revisedSalaries.length > 0 && (
-        <div className="bg-white rounded-lg shadow-sm border-2 border-blue-200 p-6">
-          <h3 className="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border-2 border-blue-200 p-3">
+          <h3 className="text-lg font-bold text-blue-900 mb-2 flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
             Salary Revisions ({data.revisedSalaries.length})
           </h3>
@@ -1195,7 +1195,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
               return (
                 <div key={emp.employeeId} className="border-2 border-blue-200 rounded-lg overflow-hidden">
                   <div
-                    className="bg-blue-50 p-4 cursor-pointer hover:bg-blue-100 transition-colors"
+                    className="bg-blue-50 p-3 cursor-pointer hover:bg-blue-100 transition-colors"
                     onClick={() => toggleExpanded(emp.employeeId, 'revised')}
                   >
                     <div className="flex items-center justify-between">
@@ -1214,7 +1214,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                         </p>
                         <p className="text-xs text-blue-700">{emp.reason}</p>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="text-right">
                           <p className="text-xs text-gray-600 mb-1">
                             {formatCurrency(emp.oldNetSalary)} → {formatCurrency(emp.newNetSalary)}
@@ -1234,9 +1234,9 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
 
                   {isExpanded && (
                     <div className="p-4 bg-white border-t border-blue-200">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                         {/* Old Salary Structure */}
-                        <div className="bg-gray-50 rounded-lg p-4 border-2 border-gray-300">
+                        <div className="bg-gray-50 rounded-lg p-3 border-2 border-gray-300">
                           <h4 className="font-bold text-gray-900 mb-3 text-center">Previous Salary Structure</h4>
 
                           <div className="bg-green-50 rounded p-3 mb-3 border border-green-200">
@@ -1278,7 +1278,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                         </div>
 
                         {/* New Salary Structure */}
-                        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border-2 border-green-400">
+                        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border-2 border-green-400">
                           <h4 className="font-bold text-green-900 mb-3 text-center">Revised Salary Structure</h4>
 
                           <div className="bg-green-100 rounded p-3 mb-3 border-2 border-green-300">
@@ -1347,7 +1347,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
                 </div>
               );
             })}
-            <div className={`rounded-lg p-4 border-2 ${revisionsImpact >= 0 ? 'bg-green-100 border-green-300' : 'bg-red-100 border-red-300'}`}>
+            <div className={`rounded-lg p-3 border-2 ${revisionsImpact >= 0 ? 'bg-green-100 border-green-300' : 'bg-red-100 border-red-300'}`}>
               <div className="flex justify-between items-center">
                 <span className={`font-bold text-lg ${revisionsImpact >= 0 ? 'text-green-900' : 'text-red-900'}`}>
                   Total Revision Impact on Payroll
@@ -1362,10 +1362,10 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
       )}
 
       {/* Summary */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border-2 border-indigo-300 p-6">
-        <h3 className="text-lg font-bold text-indigo-900 mb-4">Reconciliation Summary</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-indigo-200">
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border-2 border-indigo-300 p-3">
+        <h3 className="text-lg font-bold text-indigo-900 mb-2">Reconciliation Summary</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-indigo-200">
             <p className="text-sm text-gray-600 mb-2">Employee Count Change</p>
             <p className="text-2xl font-bold text-gray-900">
               {data.previousPayroll.employeeCount} → {data.currentPayroll.employeeCount}
@@ -1377,7 +1377,7 @@ function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationPr
               </span>
             </p>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-indigo-200">
+          <div className="bg-white rounded-lg p-3 border border-indigo-200">
             <p className="text-sm text-gray-600 mb-2">Net Payroll Change</p>
             <p className="text-2xl font-bold text-gray-900">
               {formatCurrency(data.previousPayroll.totalNet)} → {formatCurrency(data.currentPayroll.totalNet)}

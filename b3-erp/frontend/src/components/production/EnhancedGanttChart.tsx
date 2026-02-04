@@ -406,7 +406,7 @@ export function EnhancedGanttChart({
   return (
     <div className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden ${className}`}>
       {/* Toolbar */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
+      <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-gray-50">
         <div className="flex items-center gap-3">
           {/* View Mode */}
           <div className="flex items-center bg-white border border-gray-300 rounded-lg overflow-hidden">
@@ -680,8 +680,8 @@ export function EnhancedGanttChart({
 
       {/* Legend */}
       <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
-        <div className="flex flex-wrap items-center gap-6 text-xs">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3 text-xs">
+          <div className="flex items-center gap-2">
             <span className="font-medium text-gray-700">Status:</span>
             <div className="flex items-center gap-1">
               <div className="w-3 h-3 rounded bg-gray-400" />
@@ -700,7 +700,7 @@ export function EnhancedGanttChart({
               <span className="text-gray-600">Delayed</span>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <span className="font-medium text-gray-700">Priority:</span>
             <div className="flex items-center gap-1">
               <div className="w-3 h-1 bg-red-500" />

@@ -106,9 +106,9 @@ export function CustomDashboardModal({ isOpen, onClose, onSave }: CustomDashboar
   }, {} as Record<string, typeof availableWidgets>);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Settings className="h-6 w-6" />
             <h2 className="text-xl font-bold">Customize Dashboard</h2>
@@ -118,7 +118,7 @@ export function CustomDashboardModal({ isOpen, onClose, onSave }: CustomDashboar
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Dashboard Name */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Dashboard Name *</label>
@@ -136,7 +136,7 @@ export function CustomDashboardModal({ isOpen, onClose, onSave }: CustomDashboar
             <label className="block text-sm font-semibold text-gray-700 mb-3">
               Select Widgets ({selectedWidgets.length} selected)
             </label>
-            <div className="space-y-4 max-h-96 overflow-y-auto border border-gray-200 rounded-lg p-4">
+            <div className="space-y-2 max-h-96 overflow-y-auto border border-gray-200 rounded-lg p-3">
               {Object.entries(widgetsByCategory).map(([category, widgets]) => (
                 <div key={category}>
                   <h4 className="text-xs font-semibold text-gray-500 uppercase mb-2">{category}</h4>
@@ -166,7 +166,7 @@ export function CustomDashboardModal({ isOpen, onClose, onSave }: CustomDashboar
           </div>
 
           {/* Layout and Refresh Settings */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Layout</label>
               <select
@@ -195,7 +195,7 @@ export function CustomDashboardModal({ isOpen, onClose, onSave }: CustomDashboar
           </div>
 
           {/* Preview */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Configuration Summary</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><span className="font-medium">Widgets:</span> {selectedWidgets.length} selected</p>
@@ -205,7 +205,7 @@ export function CustomDashboardModal({ isOpen, onClose, onSave }: CustomDashboar
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -256,9 +256,9 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Calendar className="h-6 w-6" />
             <h2 className="text-xl font-bold">Time Period Filter</h2>
@@ -268,7 +268,7 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Filter Type */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-3">Filter Type</label>
@@ -281,7 +281,7 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
                     : 'border-gray-200 bg-white hover:bg-gray-50'
                 }`}
               >
-                <Clock className="h-6 w-6 mx-auto mb-2 text-green-600" />
+                <Clock className="h-6 w-6 mb-2 text-green-600" />
                 <span className="text-sm font-medium">Preset Periods</span>
               </button>
               <button
@@ -292,7 +292,7 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
                     : 'border-gray-200 bg-white hover:bg-gray-50'
                 }`}
               >
-                <Calendar className="h-6 w-6 mx-auto mb-2 text-green-600" />
+                <Calendar className="h-6 w-6 mb-2 text-green-600" />
                 <span className="text-sm font-medium">Custom Range</span>
               </button>
             </div>
@@ -327,7 +327,7 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
 
           {/* Custom Range */}
           {filterType === 'custom' && (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Start Date *</label>
                 <input
@@ -365,7 +365,7 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
           </div>
 
           {/* Summary */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Filter Summary</h4>
             <p className="text-sm text-gray-700">
               {filterType === 'preset'
@@ -382,7 +382,7 @@ export function TimePeriodFilterModal({ isOpen, onClose, onApply }: TimePeriodFi
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -454,9 +454,9 @@ export function ExportAnalyticsModal({ isOpen, onClose, onExport }: ExportAnalyt
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-bold">Export Analytics</h2>
@@ -466,7 +466,7 @@ export function ExportAnalyticsModal({ isOpen, onClose, onExport }: ExportAnalyt
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* File Name */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">File Name (Optional)</label>
@@ -493,7 +493,7 @@ export function ExportAnalyticsModal({ isOpen, onClose, onExport }: ExportAnalyt
                       : 'border-gray-200 bg-white hover:bg-gray-50'
                   }`}
                 >
-                  <FileText className="h-6 w-6 mx-auto mb-2 text-purple-600" />
+                  <FileText className="h-6 w-6 mb-2 text-purple-600" />
                   <span className="text-sm font-medium">{format}</span>
                 </button>
               ))}
@@ -555,7 +555,7 @@ export function ExportAnalyticsModal({ isOpen, onClose, onExport }: ExportAnalyt
           </div>
 
           {/* Export Summary */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Export Summary</h4>
             <div className="text-sm text-gray-700 space-y-1">
               <p><span className="font-medium">Format:</span> {exportFormat}</p>
@@ -565,7 +565,7 @@ export function ExportAnalyticsModal({ isOpen, onClose, onExport }: ExportAnalyt
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -636,9 +636,9 @@ export function KPIConfigurationModal({ isOpen, onClose, onSave }: KPIConfigurat
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Target className="h-6 w-6" />
             <h2 className="text-xl font-bold">Configure KPIs & Targets</h2>
@@ -648,7 +648,7 @@ export function KPIConfigurationModal({ isOpen, onClose, onSave }: KPIConfigurat
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <p className="text-sm text-gray-600">
             Select KPIs to track and set target values for performance measurement.
           </p>
@@ -658,7 +658,7 @@ export function KPIConfigurationModal({ isOpen, onClose, onSave }: KPIConfigurat
             {availableKPIs.map(kpi => (
               <div
                 key={kpi.id}
-                className={`border-2 rounded-lg p-4 transition-colors ${
+                className={`border-2 rounded-lg p-3 transition-colors ${
                   selectedKPIs.includes(kpi.id)
                     ? 'border-orange-500 bg-orange-50'
                     : 'border-gray-200 bg-white'
@@ -693,7 +693,7 @@ export function KPIConfigurationModal({ isOpen, onClose, onSave }: KPIConfigurat
           </div>
 
           {/* Summary */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Configuration Summary</h4>
             <p className="text-sm text-gray-700">
               {selectedKPIs.length} KPI(s) selected with targets configured
@@ -701,7 +701,7 @@ export function KPIConfigurationModal({ isOpen, onClose, onSave }: KPIConfigurat
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -736,9 +736,9 @@ export function DrillDownDetailsModal({ isOpen, onClose, metric, data }: DrillDo
   if (!isOpen || !metric) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Eye className="h-6 w-6" />
             <h2 className="text-xl font-bold">Drill-Down: {metric}</h2>
@@ -748,24 +748,24 @@ export function DrillDownDetailsModal({ isOpen, onClose, metric, data }: DrillDo
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-blue-50 p-3 rounded-lg">
               <p className="text-xs text-gray-600 mb-1">Total Value</p>
               <p className="text-2xl font-bold text-blue-700">₹12.5Cr</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg">
+            <div className="bg-green-50 p-3 rounded-lg">
               <p className="text-xs text-gray-600 mb-1">Growth</p>
               <p className="text-2xl font-bold text-green-700">+18%</p>
             </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
+            <div className="bg-purple-50 p-3 rounded-lg">
               <p className="text-xs text-gray-600 mb-1">Trend</p>
               <p className="text-2xl font-bold text-purple-700">
                 <TrendingUp className="h-8 w-8" />
               </p>
             </div>
-            <div className="bg-orange-50 p-4 rounded-lg">
+            <div className="bg-orange-50 p-3 rounded-lg">
               <p className="text-xs text-gray-600 mb-1">vs Target</p>
               <p className="text-2xl font-bold text-orange-700">104%</p>
             </div>
@@ -804,15 +804,15 @@ export function DrillDownDetailsModal({ isOpen, onClose, metric, data }: DrillDo
           </div>
 
           {/* Trend Chart Placeholder */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">Historical Trend</h4>
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Historical Trend</h4>
             <div className="h-48 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-lg flex items-center justify-center">
               <BarChart3 className="h-16 w-16 text-indigo-400" />
             </div>
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
@@ -857,9 +857,9 @@ export function ComparisonAnalysisModal({ isOpen, onClose, metrics }: Comparison
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <BarChart3 className="h-6 w-6" />
             <h2 className="text-xl font-bold">Comparison Analysis</h2>
@@ -869,9 +869,9 @@ export function ComparisonAnalysisModal({ isOpen, onClose, metrics }: Comparison
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Comparison Type */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Compare Type</label>
               <select
@@ -947,7 +947,7 @@ export function ComparisonAnalysisModal({ isOpen, onClose, metrics }: Comparison
           </div>
 
           {/* Insights */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Insights</h4>
             <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">
               <li>Revenue growth of 17.9% indicates strong business expansion</li>
@@ -957,7 +957,7 @@ export function ComparisonAnalysisModal({ isOpen, onClose, metrics }: Comparison
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
@@ -1004,9 +1004,9 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Bell className="h-6 w-6" />
             <h2 className="text-xl font-bold">Alert Thresholds</h2>
@@ -1016,9 +1016,9 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Master Toggle */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <label className="flex items-center space-x-3">
               <input
                 type="checkbox"
@@ -1036,14 +1036,14 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
           {enableAlerts && (
             <>
               {/* Revenue Alert */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <DollarSign className="h-5 w-5 text-gray-600" />
                     <h4 className="text-sm font-semibold text-gray-900">Revenue Alert</h4>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Minimum Monthly Revenue</label>
                     <div className="flex items-center">
@@ -1060,14 +1060,14 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
               </div>
 
               {/* Profit Margin Alert */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <Target className="h-5 w-5 text-gray-600" />
                     <h4 className="text-sm font-semibold text-gray-900">Profit Margin Alert</h4>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Minimum Profit Margin</label>
                     <div className="flex items-center">
@@ -1084,14 +1084,14 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
               </div>
 
               {/* On-Time Delivery Alert */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <Clock className="h-5 w-5 text-gray-600" />
                     <h4 className="text-sm font-semibold text-gray-900">On-Time Delivery Alert</h4>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Minimum Delivery Rate</label>
                     <div className="flex items-center">
@@ -1108,14 +1108,14 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
               </div>
 
               {/* Resource Utilization Alert */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <Users className="h-5 w-5 text-gray-600" />
                     <h4 className="text-sm font-semibold text-gray-900">Resource Utilization Alert</h4>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-xs text-gray-600 mb-1">Maximum Utilization</label>
                     <div className="flex items-center">
@@ -1134,7 +1134,7 @@ export function AlertThresholdModal({ isOpen, onClose, onSave }: AlertThresholdM
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1194,9 +1194,9 @@ export function ScheduleAnalyticsModal({ isOpen, onClose, onSchedule }: Schedule
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Calendar className="h-6 w-6" />
             <h2 className="text-xl font-bold">Schedule Analytics Report</h2>
@@ -1206,7 +1206,7 @@ export function ScheduleAnalyticsModal({ isOpen, onClose, onSchedule }: Schedule
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Report Name *</label>
             <input
@@ -1265,7 +1265,7 @@ export function ScheduleAnalyticsModal({ isOpen, onClose, onSchedule }: Schedule
             </div>
           </div>
 
-          <div className="bg-pink-50 border border-pink-200 rounded-lg p-4">
+          <div className="bg-pink-50 border border-pink-200 rounded-lg p-3">
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
@@ -1278,7 +1278,7 @@ export function ScheduleAnalyticsModal({ isOpen, onClose, onSchedule }: Schedule
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1327,9 +1327,9 @@ export function ShareAnalyticsModal({ isOpen, onClose, onShare }: ShareAnalytics
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Share2 className="h-6 w-6" />
             <h2 className="text-xl font-bold">Share Analytics</h2>
@@ -1339,7 +1339,7 @@ export function ShareAnalyticsModal({ isOpen, onClose, onShare }: ShareAnalytics
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-3">Share Method</label>
             <div className="grid grid-cols-2 gap-3">
@@ -1400,7 +1400,7 @@ export function ShareAnalyticsModal({ isOpen, onClose, onShare }: ShareAnalytics
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -1449,9 +1449,9 @@ export function SavedViewsModal({ isOpen, onClose, onLoad }: SavedViewsModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center space-x-3">
             <Eye className="h-6 w-6" />
             <h2 className="text-xl font-bold">Saved Views</h2>
@@ -1461,14 +1461,14 @@ export function SavedViewsModal({ isOpen, onClose, onLoad }: SavedViewsModalProp
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {views.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-600">No saved views yet. Create a custom dashboard to save your first view.</p>
             </div>
           ) : (
             views.map(view => (
-              <div key={view.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <div key={view.id} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h4 className="text-sm font-semibold text-gray-900">{view.name}</h4>
@@ -1495,7 +1495,7 @@ export function SavedViewsModal({ isOpen, onClose, onLoad }: SavedViewsModalProp
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end rounded-b-lg">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end rounded-b-lg">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"

@@ -75,10 +75,10 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className={`sticky top-0 bg-gradient-to-r ${getPriorityColor(approval.priority)} text-white px-6 py-4 flex items-center justify-between rounded-t-lg`}>
+        <div className={`sticky top-0 bg-gradient-to-r ${getPriorityColor(approval.priority)} text-white px-3 py-2 flex items-center justify-between rounded-t-lg`}>
           <div>
             <h2 className="text-xl font-bold">Approval Request Details</h2>
             <p className="text-sm opacity-90">{approval.quoteNumber} - {approval.customerName}</p>
@@ -88,7 +88,7 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Status and Priority */}
           <div className="flex items-center gap-3">
             <span className={`px-3 py-1.5 inline-flex text-sm font-semibold rounded-full border ${getStatusColor(approval.status)}`}>
@@ -103,8 +103,8 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-blue-600" />
                 <p className="text-sm font-semibold text-blue-900">Quote Value</p>
@@ -112,7 +112,7 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
               <p className="text-2xl font-bold text-blue-900">₹{(approval.value / 100000).toFixed(2)}L</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center gap-2 mb-2">
                 <AlertCircle className="h-5 w-5 text-orange-600" />
                 <p className="text-sm font-semibold text-orange-900">Discount %</p>
@@ -120,7 +120,7 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
               <p className="text-2xl font-bold text-orange-900">{approval.discount}%</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center gap-2 mb-2">
                 <User className="h-5 w-5 text-purple-600" />
                 <p className="text-sm font-semibold text-purple-900">Requester</p>
@@ -130,7 +130,7 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
           </div>
 
           {/* Reason for Approval */}
-          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
             <h3 className="text-sm font-semibold text-yellow-900 mb-2">Reason for Approval Request:</h3>
             <p className="text-sm text-yellow-800">{approval.reason}</p>
           </div>
@@ -140,7 +140,7 @@ export function ViewApprovalModal({ isOpen, onClose, approval, onApprove, onReje
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Approval Chain:</h3>
             <div className="space-y-3">
               {approval.approvers.map((approver, idx) => (
-                <div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div key={idx} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3">
                       <div className={`p-2 rounded-full ${
@@ -261,12 +261,12 @@ export function ApproveRejectModal({ isOpen, onClose, approval, action, onSubmit
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
         {/* Header */}
         <div className={`bg-gradient-to-r ${
           action === 'approve' ? 'from-green-600 to-green-600' : 'from-red-600 to-red-600'
-        } text-white px-6 py-4 flex items-center justify-between rounded-t-lg`}>
+        } text-white px-3 py-2 flex items-center justify-between rounded-t-lg`}>
           <div>
             <h2 className="text-xl font-bold">
               {action === 'approve' ? 'Approve' : 'Reject'} Approval Request
@@ -278,10 +278,10 @@ export function ApproveRejectModal({ isOpen, onClose, approval, action, onSubmit
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {/* Quote Info */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Quote Value</p>
                 <p className="font-bold text-gray-900">₹{(approval.value / 100000).toFixed(2)}L</p>
@@ -396,10 +396,10 @@ export function ApprovalHistoryModal({ isOpen, onClose, approval }: ApprovalHist
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <div>
             <h2 className="text-xl font-bold">Approval History</h2>
             <p className="text-sm opacity-90">{approval.quoteNumber} - {approval.customerName}</p>
@@ -416,7 +416,7 @@ export function ApprovalHistoryModal({ isOpen, onClose, approval }: ApprovalHist
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
 
             {/* Timeline Items */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {history.map((item, idx) => (
                 <div key={idx} className="relative pl-20">
                   {/* Timeline Dot */}
@@ -431,7 +431,7 @@ export function ApprovalHistoryModal({ isOpen, onClose, approval }: ApprovalHist
                   </div>
 
                   {/* Content Card */}
-                  <div className="bg-white rounded-lg border-2 border-gray-200 p-4">
+                  <div className="bg-white rounded-lg border-2 border-gray-200 p-3">
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <h3 className="text-sm font-bold text-gray-900">{item.action}</h3>
@@ -455,7 +455,7 @@ export function ApprovalHistoryModal({ isOpen, onClose, approval }: ApprovalHist
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4">
+        <div className="border-t border-gray-200 px-3 py-2">
           <button
             onClick={onClose}
             className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
@@ -508,17 +508,17 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <h2 className="text-xl font-bold">Filter Approvals</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1 transition-colors">
             <X className="h-6 w-6" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Status Filter */}
           <div>
             <label className="block text-sm font-semibold text-gray-900 mb-3">Status</label>

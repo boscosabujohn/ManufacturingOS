@@ -57,8 +57,8 @@ export default function ContractGeneration() {
   const formatCurrency = (amount: number) => `₹${(amount / 100000).toFixed(2)}L`;
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <FileText className="h-8 w-8 text-emerald-600" />
           Contract Generation
@@ -66,11 +66,11 @@ export default function ContractGeneration() {
         <p className="text-gray-600 mt-1">Automated contract creation from RFQ awards</p>
       </div>
 
-      <div className="bg-white shadow-lg border border-gray-200 p-6">
-        <div className="space-y-4">
+      <div className="bg-white shadow-lg border border-gray-200 p-3">
+        <div className="space-y-2">
           {contracts.map((contract) => (
             <div key={contract.contractId} className="p-5 border border-gray-200 rounded-lg">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div>
                   <h4 className="text-lg font-bold text-gray-900">{contract.contractId}</h4>
                   <p className="text-sm text-gray-600 mt-1">{contract.vendor}</p>
@@ -80,7 +80,7 @@ export default function ContractGeneration() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="p-3 bg-blue-50 rounded-lg">
                   <p className="text-xs text-blue-600 font-medium">RFQ Reference</p>
                   <p className="text-lg font-bold text-blue-900">{contract.rfqId}</p>
@@ -91,7 +91,7 @@ export default function ContractGeneration() {
                 </div>
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-sm font-semibold text-gray-700 mb-2">Contract Terms:</p>
                 <div className="space-y-1">
                   {contract.terms.map((term, idx) => (

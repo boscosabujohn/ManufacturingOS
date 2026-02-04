@@ -122,7 +122,7 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -152,7 +152,7 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
       </div>
 
       {/* Progress Bar */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-700">Installation Progress</span>
           <span className="text-sm font-bold text-gray-900">{installation.progress}%</span>
@@ -170,7 +170,7 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('details')}
             className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
@@ -206,11 +206,11 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
 
       {/* Details Tab */}
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Customer & Location */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
               <div className="space-y-3">
                 <div>
                   <div className="text-sm text-gray-500">Customer Name</div>
@@ -227,8 +227,8 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Installation Location</h2>
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Installation Location</h2>
               <div className="space-y-3">
                 <div>
                   <div className="text-sm text-gray-500">Address</div>
@@ -239,11 +239,11 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
           </div>
 
           {/* Installation Team */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Installation Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Installation Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               {installation.team.map((member, idx) => (
-                <div key={idx} className="border border-gray-200 rounded-lg p-4">
+                <div key={idx} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="w-4 h-4 text-blue-600" />
                     <span className="text-xs font-medium text-blue-600">{member.role}</span>
@@ -256,11 +256,11 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
           </div>
 
           {/* Equipment */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Equipment to Install</h2>
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Equipment to Install</h2>
             <div className="space-y-3">
               {installation.equipment.map((item, idx) => (
-                <div key={idx} className="flex items-start justify-between p-4 border border-gray-200 rounded-lg">
+                <div key={idx} className="flex items-start justify-between p-3 border border-gray-200 rounded-lg">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <Package className="w-4 h-4 text-gray-400" />
@@ -284,9 +284,9 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
           </div>
 
           {/* Site Details */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Site Details</h2>
-            <div className="space-y-4">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Site Details</h2>
+            <div className="space-y-2">
               {installation.requiresSiteSurvey && (
                 <div className="bg-green-50 p-3 rounded-lg">
                   <div className="flex items-center gap-2 mb-1">
@@ -313,11 +313,11 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
 
       {/* Progress Tab */}
       {activeTab === 'progress' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Installation Milestones</h2>
-          <div className="space-y-4">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">Installation Milestones</h2>
+          <div className="space-y-2">
             {installation.milestones.map((milestone, index) => (
-              <div key={milestone.id} className="flex gap-4">
+              <div key={milestone.id} className="flex gap-2">
                 <div className="flex flex-col items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     milestone.status === 'Completed' ? 'bg-green-100' :
@@ -358,8 +358,8 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
 
       {/* Documents Tab */}
       {activeTab === 'documents' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-start gap-3">
               <FileText className="w-6 h-6 text-red-600" />
               <div className="flex-1">
@@ -370,7 +370,7 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-start gap-3">
               <ImageIcon className="w-6 h-6 text-blue-600" />
               <div className="flex-1">
@@ -381,7 +381,7 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-start gap-3">
               <FileText className="w-6 h-6 text-green-600" />
               <div className="flex-1">
@@ -392,7 +392,7 @@ export default function ViewInstallationPage({ params }: { params: { id: string 
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-start gap-3">
               <FileText className="w-6 h-6 text-purple-600" />
               <div className="flex-1">

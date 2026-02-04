@@ -33,8 +33,8 @@ export default function ShippingPerformanceReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Shipping Performance Report</h1>
                     <p className="text-gray-600">Delivery tracking and carrier analysis</p>
@@ -48,7 +48,7 @@ export default function ShippingPerformanceReport() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Shipments"
                     value={data.totalShipments.toString()}
@@ -73,7 +73,7 @@ export default function ShippingPerformanceReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Shipments by Status</CardTitle></CardHeader>
                     <CardContent>

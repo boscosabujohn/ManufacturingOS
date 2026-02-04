@@ -185,8 +185,8 @@ const MESIntegration: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-lg shadow-lg">
+    <div className="space-y-3">
+      <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Cpu className="h-8 w-8" />
@@ -221,8 +221,8 @@ const MESIntegration: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Connected Machines</p>
@@ -234,7 +234,7 @@ const MESIntegration: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Running</p>
@@ -246,7 +246,7 @@ const MESIntegration: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Down/Error</p>
@@ -258,7 +258,7 @@ const MESIntegration: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Parts Today</p>
@@ -272,7 +272,7 @@ const MESIntegration: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900">Real-Time Machine Data</h3>
             <span className="text-sm text-gray-600">Auto-updating every 3 seconds</span>
@@ -282,50 +282,50 @@ const MESIntegration: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-green-600 to-teal-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Machine</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Connection</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Speed (RPM)</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Temp (°C)</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Vibration</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Power (kW)</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Cycle Time</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Part Count</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Last Update</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Machine</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Connection</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Speed (RPM)</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Temp (°C)</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Vibration</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Power (kW)</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Cycle Time</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Part Count</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Last Update</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {machines.map((machine) => (
                 <tr key={machine.machineId} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{machine.machineName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{machine.machineName}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(machine.status)}`}>
                       {machine.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(machine.connectionStatus)}`}>
                       {machine.connectionStatus}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="text-gray-900">{machine.currentSpeed} / {machine.targetSpeed}</div>
                     <div className="w-20 bg-gray-200 rounded-full h-1 mt-1">
                       <div className="bg-blue-500 h-1 rounded-full" style={{ width: `${(machine.currentSpeed / machine.targetSpeed) * 100}%` }}></div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${machine.temperature > 70 ? 'text-red-600' : machine.temperature > 60 ? 'text-yellow-600' : 'text-green-600'}`}>
                       {machine.temperature}°C
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{machine.vibration} mm/s</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{machine.powerConsumption} kW</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{machine.cycleTime > 0 ? `${machine.cycleTime}s` : '-'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{machine.partCount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{machine.lastUpdate}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{machine.vibration} mm/s</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{machine.powerConsumption} kW</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{machine.cycleTime > 0 ? `${machine.cycleTime}s` : '-'}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{machine.partCount}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{machine.lastUpdate}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => handleViewMachine(machine)}
@@ -370,40 +370,40 @@ const MESIntegration: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Data Stream Connections</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Data Points</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Update Freq (sec)</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Sync</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Data Points</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Update Freq (sec)</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Last Sync</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {dataStreams.map((stream) => (
                 <tr key={stream.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">{stream.source}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 text-sm font-medium text-gray-900">{stream.source}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="px-2 py-1 text-xs font-semibold rounded bg-blue-100 text-blue-800 uppercase">
                       {stream.type}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(stream.status)}`}>
                       {stream.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{stream.dataPoints.toLocaleString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{stream.updateFrequency}s</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{stream.lastSync}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{stream.dataPoints.toLocaleString()}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{stream.updateFrequency}s</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{stream.lastSync}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => handleStreamDetails(stream)}

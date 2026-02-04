@@ -374,7 +374,7 @@ function HealthOverview({ systems }: { systems: ConnectedSystem[] }) {
   }, [systems]);
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-2">
       <Card>
         <CardContent className="pt-4">
           <div className="flex items-center gap-3">
@@ -724,7 +724,7 @@ export function IntegrationHealthMonitor({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <Card>
         <CardHeader className="pb-2">
@@ -761,10 +761,10 @@ export function IntegrationHealthMonitor({
       </Card>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-3">
         {/* System Cards */}
         <div className="xl:col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {filteredSystems.map(system => (
               <SystemCard
                 key={system.id}

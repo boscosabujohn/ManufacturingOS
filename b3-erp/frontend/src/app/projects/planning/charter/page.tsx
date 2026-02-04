@@ -596,7 +596,7 @@ export default function ProjectCharterPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-teal-600" />
           Project Charter
@@ -605,8 +605,8 @@ export default function ProjectCharterPage() {
       </div>
 
       {/* Summary Cards - 6 columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-teal-700 text-sm font-medium">Total Charters</p>
             <FileText className="h-5 w-5 text-teal-600" />
@@ -615,7 +615,7 @@ export default function ProjectCharterPage() {
           <p className="text-xs text-teal-600 mt-1">All projects</p>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-700 text-sm font-medium">Draft</p>
             <FileText className="h-5 w-5 text-gray-600" />
@@ -624,7 +624,7 @@ export default function ProjectCharterPage() {
           <p className="text-xs text-gray-600 mt-1">In preparation</p>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-yellow-700 text-sm font-medium">In Review</p>
             <Clock className="h-5 w-5 text-yellow-600" />
@@ -633,7 +633,7 @@ export default function ProjectCharterPage() {
           <p className="text-xs text-yellow-600 mt-1">Pending approval</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-green-700 text-sm font-medium">Approved</p>
             <CheckCircle className="h-5 w-5 text-green-600" />
@@ -642,7 +642,7 @@ export default function ProjectCharterPage() {
           <p className="text-xs text-green-600 mt-1">Ready to execute</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-blue-700 text-sm font-medium">Active</p>
             <Target className="h-5 w-5 text-blue-600" />
@@ -651,7 +651,7 @@ export default function ProjectCharterPage() {
           <p className="text-xs text-blue-600 mt-1">In execution</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-purple-700 text-sm font-medium">Total Budget</p>
             <DollarSign className="h-5 w-5 text-purple-600" />
@@ -662,8 +662,8 @@ export default function ProjectCharterPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <input
               type="text"
@@ -718,11 +718,11 @@ export default function ProjectCharterPage() {
       </div>
 
       {/* Charters List */}
-      <div className="space-y-6 mb-6">
+      <div className="space-y-3 mb-3">
         {filteredCharters.map((charter) => (
-          <div key={charter.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div key={charter.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             {/* Header */}
-            <div className="flex items-start justify-between mb-4 pb-4 border-b border-gray-200">
+            <div className="flex items-start justify-between mb-2 pb-4 border-b border-gray-200">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="font-semibold text-gray-900 text-lg">{charter.projectName}</h3>
@@ -736,7 +736,7 @@ export default function ProjectCharterPage() {
                     {charter.priority.toUpperCase()} PRIORITY
                   </span>
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <span className="font-medium text-teal-600">{charter.charterNumber}</span>
                   <span>•</span>
                   <span>Version {charter.version}</span>
@@ -754,7 +754,7 @@ export default function ProjectCharterPage() {
             </div>
 
             {/* Key Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
               <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
                 <p className="text-xs text-blue-600 font-medium mb-1 flex items-center gap-1">
                   <Users className="h-3 w-3" />
@@ -795,7 +795,7 @@ export default function ProjectCharterPage() {
             </div>
 
             {/* Objectives */}
-            <div className="mb-4">
+            <div className="mb-2">
               <h4 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                 <Target className="h-4 w-4 text-teal-600" />
                 Project Objectives ({charter.objectives.length})
@@ -811,7 +811,7 @@ export default function ProjectCharterPage() {
             </div>
 
             {/* Scope Summary */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div>
                 <h4 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-green-600" />
@@ -850,7 +850,7 @@ export default function ProjectCharterPage() {
             </div>
 
             {/* Stakeholders */}
-            <div className="mb-4">
+            <div className="mb-2">
               <h4 className="font-semibold text-gray-800 mb-2 flex items-center gap-2">
                 <Users className="h-4 w-4 text-blue-600" />
                 Key Stakeholders ({charter.stakeholders.length})
@@ -902,13 +902,13 @@ export default function ProjectCharterPage() {
       </div>
 
       {/* Guidelines Section */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-xl font-bold text-gray-800 mb-2 flex items-center gap-2">
           <AlertCircle className="h-6 w-6 text-teal-600" />
           Project Charter Guidelines
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-semibold text-gray-800 mb-3">Charter Components</h3>
             <ul className="space-y-2 text-sm text-gray-600">

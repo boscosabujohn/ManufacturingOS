@@ -273,7 +273,7 @@ export default function SLAManagement() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -287,7 +287,7 @@ export default function SLAManagement() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -299,7 +299,7 @@ export default function SLAManagement() {
             orange: 'bg-orange-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -314,8 +314,8 @@ export default function SLAManagement() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -357,12 +357,12 @@ export default function SLAManagement() {
       </div>
 
       {/* SLA Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredSLAs.map((sla) => (
           <div key={sla.id} className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <span className={`px-2 py-1 rounded text-xs font-medium ${getPriorityColor(sla.priority)}`}>
@@ -379,7 +379,7 @@ export default function SLAManagement() {
               </div>
 
               {/* Metrics */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Target</div>
                   <div className="text-sm font-semibold text-gray-900">{sla.target}</div>
@@ -404,7 +404,7 @@ export default function SLAManagement() {
               </div>
 
               {/* Compliance Bar */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex justify-between text-xs text-gray-600 mb-1">
                   <span>Compliance Rate</span>
                   <span>{sla.compliance}%</span>
@@ -422,7 +422,7 @@ export default function SLAManagement() {
 
               {/* Footer */}
               <div className="flex items-center justify-between pt-4 border-t">
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-gray-500">
                   <div className="flex items-center gap-1">
                     <Users className="h-3 w-3" />
                     {sla.ticketsCount} tickets
@@ -446,7 +446,7 @@ export default function SLAManagement() {
       {/* No Results */}
       {filteredSLAs.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
-          <Filter className="h-12 w-12 text-gray-400 mb-4" />
+          <Filter className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No SLAs Found</h3>
           <p className="text-gray-600">Try adjusting your filters or search query</p>
         </div>

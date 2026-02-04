@@ -138,8 +138,8 @@ export default function AfterSalesServiceDashboard() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-rose-50 to-pink-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-rose-50 to-pink-50 px-3 py-2">
+      <div className="w-full space-y-3">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">After-Sales Service</h1>
@@ -151,7 +151,7 @@ export default function AfterSalesServiceDashboard() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -208,7 +208,7 @@ export default function AfterSalesServiceDashboard() {
             </div>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {recentTickets.map((ticket) => (
                 <div key={ticket.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
@@ -230,7 +230,7 @@ export default function AfterSalesServiceDashboard() {
                     <p className="text-sm text-gray-600 mt-1">{ticket.issue}</p>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <span className="text-gray-600 text-xs">Assigned: {ticket.assignedTo}</span>
                       {ticket.satisfaction && (
                         <div className="flex items-center gap-1">
@@ -247,9 +247,9 @@ export default function AfterSalesServiceDashboard() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Warranty Claims</h3>
               <Calendar className="h-6 w-6 text-gray-400" />
             </div>
@@ -258,7 +258,7 @@ export default function AfterSalesServiceDashboard() {
           </div>
 
           <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Pending Parts</h3>
               <AlertCircle className="h-6 w-6 text-gray-400" />
             </div>

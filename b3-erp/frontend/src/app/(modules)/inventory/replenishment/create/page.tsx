@@ -145,8 +145,8 @@ export default function CreateReplenishmentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -158,10 +158,10 @@ export default function CreateReplenishmentPage() {
 
       <div className="">
         <form onSubmit={handleSubmit}>
-          <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Item Selection</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Item Selection</h3>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Select Item <span className="text-red-500">*</span>
               </label>
@@ -218,9 +218,9 @@ export default function CreateReplenishmentPage() {
             </div>
 
             {selectedItem && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-2">
                 <h4 className="text-sm font-semibold text-blue-900 mb-3">Item Details</h4>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <div>
                     <p className="text-xs text-blue-600">Current Stock</p>
                     <p className={`text-sm font-bold ${getStockHealthColor(selectedItem.currentStock, selectedItem.minLevel, selectedItem.reorderPoint)}`}>
@@ -260,10 +260,10 @@ export default function CreateReplenishmentPage() {
             )}
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Request Details</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Request Details</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Quantity to Order <span className="text-red-500">*</span>
@@ -352,7 +352,7 @@ export default function CreateReplenishmentPage() {
             </div>
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-3 mb-3 flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
             <div>
               <h4 className="text-sm font-semibold text-yellow-900 mb-1">Important Notes:</h4>
@@ -368,7 +368,7 @@ export default function CreateReplenishmentPage() {
           <div className="flex gap-3">
             <button
               type="submit"
-              className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2"
             >
               <Save className="w-5 h-5" />
               Create Request
@@ -376,7 +376,7 @@ export default function CreateReplenishmentPage() {
             <button
               type="button"
               onClick={handleCancel}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center gap-2"
+              className="flex-1 px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center gap-2"
             >
               <X className="w-5 h-5" />
               Cancel

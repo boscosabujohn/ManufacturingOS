@@ -179,8 +179,8 @@ export default function LoanApprovalPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 w-full">
-      <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="min-h-screen bg-gray-50 p-3 w-full">
+      <div className="mb-3 flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <DollarSign className="h-6 w-6 text-blue-600" />
@@ -201,8 +201,8 @@ export default function LoanApprovalPage() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-xs font-medium uppercase">Total Requests</p>
@@ -213,7 +213,7 @@ export default function LoanApprovalPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-xs font-medium uppercase">Pending Action</p>
@@ -224,7 +224,7 @@ export default function LoanApprovalPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-xs font-medium uppercase">Approved This Month</p>
@@ -235,7 +235,7 @@ export default function LoanApprovalPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-xs font-medium uppercase">Total Value</p>
@@ -248,11 +248,11 @@ export default function LoanApprovalPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main List */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="p-4 border-b border-gray-200 flex items-center gap-4 bg-gray-50/50">
+            <div className="p-4 border-b border-gray-200 flex items-center gap-2 bg-gray-50/50">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
@@ -297,7 +297,7 @@ export default function LoanApprovalPage() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3">
                     <div>
                       <p className="text-xs text-gray-500 mb-0.5">Amount</p>
                       <p className="text-sm font-medium text-gray-900">₹{loan.amount.toLocaleString()}</p>
@@ -328,15 +328,15 @@ export default function LoanApprovalPage() {
         </div>
 
         {/* Details Panel */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {selectedLoan ? (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-6">
-              <div className="flex items-center justify-between mb-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 sticky top-6">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-bold text-gray-900">Application Details</h3>
                 <span className="text-xs font-mono text-gray-500 bg-gray-100 px-2 py-1 rounded">{selectedLoan.id}</span>
               </div>
 
-              <div className="flex items-center gap-4 mb-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
+              <div className="flex items-center gap-2 mb-3 p-3 bg-gray-50 rounded-lg border border-gray-100">
                 <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-lg">
                   {selectedLoan.employeeName.charAt(0)}
                 </div>
@@ -424,7 +424,7 @@ export default function LoanApprovalPage() {
             </div>
           ) : (
             <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-sm border border-gray-200 p-8 text-center sticky top-6">
-              <div className="mx-auto h-16 w-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+              <div className="mx-auto h-16 w-16 bg-blue-50 rounded-full flex items-center justify-center mb-2">
                 <User className="h-8 w-8 text-blue-300" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Select an Application</h3>

@@ -220,7 +220,7 @@ export default function LeaveTypesPage() {
   ].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -249,30 +249,30 @@ export default function LeaveTypesPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Leave Types</div>
           <div className="text-2xl font-bold text-gray-900">{leaveTypes.length}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Paid Leaves</div>
           <div className="text-2xl font-bold text-green-600">
             {leaveTypes.filter(lt => lt.paidLeave).length}
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Encashable</div>
           <div className="text-2xl font-bold text-purple-600">
             {leaveTypes.filter(lt => lt.encashable).length}
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Carry Forward</div>
           <div className="text-2xl font-bold text-blue-600">
             {leaveTypes.filter(lt => lt.carryForward).length}
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Active Types</div>
           <div className="text-2xl font-bold text-indigo-600">
             {leaveTypes.filter(lt => lt.isActive).length}
@@ -281,8 +281,8 @@ export default function LeaveTypesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -320,7 +320,7 @@ export default function LeaveTypesPage() {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Leave Category
@@ -386,7 +386,7 @@ export default function LeaveTypesPage() {
       </div>
 
       {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <Check className="w-5 h-5" />
           Leave Types Configured for Indian Kitchen Manufacturing

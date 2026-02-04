@@ -212,7 +212,7 @@ export default function NotificationHistoryPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
+    <div className="w-full py-2 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -239,7 +239,7 @@ export default function NotificationHistoryPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <Card>
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
@@ -291,7 +291,7 @@ export default function NotificationHistoryPage() {
       {/* Filters */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex flex-wrap gap-4 items-center">
+          <div className="flex flex-wrap gap-2 items-center">
             {/* Search */}
             <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -369,7 +369,7 @@ export default function NotificationHistoryPage() {
 
       {/* Bulk Actions */}
       {selectedIds.size > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-between">
           <span className="text-sm text-blue-800">
             {selectedIds.size} notification(s) selected
           </span>
@@ -395,7 +395,7 @@ export default function NotificationHistoryPage() {
         <CardContent className="p-0">
           {filteredNotifications.length === 0 ? (
             <div className="py-16 text-center">
-              <Bell className="w-16 h-16 text-gray-200 mb-4" />
+              <Bell className="w-16 h-16 text-gray-200 mb-2" />
               <p className="text-gray-500 font-medium">No notifications found</p>
               <p className="text-sm text-gray-400 mt-1">
                 {searchTerm || categoryFilter !== 'all' || statusFilter !== 'all' || dateFilter !== 'all'
@@ -441,7 +441,7 @@ export default function NotificationHistoryPage() {
                           ${isEscalated ? 'bg-red-50 border-l-4 border-l-red-500' : ''}
                         `}
                       >
-                        <div className="flex items-start gap-4">
+                        <div className="flex items-start gap-2">
                           {/* Checkbox */}
                           <Checkbox
                             checked={isSelected}

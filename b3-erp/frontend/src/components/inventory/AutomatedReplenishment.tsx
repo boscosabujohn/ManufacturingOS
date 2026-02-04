@@ -20,34 +20,34 @@ export default function AutomatedReplenishment() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Automated Replenishment System</h1>
           <p className="text-gray-600">Min-max based automatic reorder point management</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
           {[
             { label: 'Auto Reorders Today', value: 12, color: 'blue' },
             { label: 'Pending Approval', value: 5, color: 'yellow' },
             { label: 'Below Min Stock', value: 8, color: 'red' },
             { label: 'Optimal Stock Items', value: 1180, color: 'green' },
           ].map((stat) => (
-            <div key={stat.label} className="bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+            <div key={stat.label} className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">{stat.label}</p>
               <p className={`text-3xl font-bold text-${stat.color}-600`}>{stat.value}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Replenishment Recommendations</h2>
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Replenishment Recommendations</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {replenishmentOrders.map((order) => (
-              <div key={order.id} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-200">
-                <div className="flex items-center justify-between mb-4">
+              <div key={order.id} className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-3 border border-blue-200">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <RefreshCw className="w-6 h-6 text-blue-600" />
                     <div>
@@ -60,7 +60,7 @@ export default function AutomatedReplenishment() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-4 gap-2 mb-2">
                   <div className="bg-white rounded-lg p-3">
                     <p className="text-xs text-gray-600 mb-1">Current Stock</p>
                     <p className={`text-xl font-bold ${order.current < order.min ? 'text-red-600' : 'text-gray-900'}`}>

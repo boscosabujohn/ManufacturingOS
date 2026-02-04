@@ -125,10 +125,10 @@ export function WaterUsageMonitor({
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Key Metrics */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">💧</span>
             <span className="text-xs text-gray-400">This Month</span>
@@ -136,7 +136,7 @@ export function WaterUsageMonitor({
           <p className="text-3xl font-bold text-white">{(metrics.totalConsumption / 1000).toFixed(0)}k</p>
           <p className="text-sm text-gray-400">Liters Consumed</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">♻️</span>
             <span className="text-xs text-green-400">+5% vs target</span>
@@ -144,7 +144,7 @@ export function WaterUsageMonitor({
           <p className="text-3xl font-bold text-green-400">{metrics.recycledPercentage}%</p>
           <p className="text-sm text-gray-400">Recycled Water</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">💰</span>
             <span className="text-xs text-gray-400">This Month</span>
@@ -152,7 +152,7 @@ export function WaterUsageMonitor({
           <p className="text-3xl font-bold text-white">${metrics.totalCost.toLocaleString()}</p>
           <p className="text-sm text-gray-400">Water Cost</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-2xl">⚠️</span>
             {metrics.leakAlerts > 0 && (
@@ -169,13 +169,13 @@ export function WaterUsageMonitor({
       </div>
 
       {/* Real-time Consumption */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-semibold text-white">24-Hour Water Consumption</h3>
             <p className="text-sm text-gray-400">Fresh vs. recycled water usage</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 bg-blue-500 rounded" />
               <span className="text-sm text-gray-400">Fresh</span>
@@ -221,8 +221,8 @@ export function WaterUsageMonitor({
       </div>
 
       {/* Usage by Type */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Usage by Category</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Usage by Category</h3>
         <div className="flex items-center gap-8">
           <div className="relative w-48 h-48">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
@@ -284,7 +284,7 @@ export function WaterUsageMonitor({
   );
 
   const renderZones = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {zones.map(zone => {
         const config = waterUseConfig[zone.use];
         const colors = getColorClass(config.color);
@@ -292,7 +292,7 @@ export function WaterUsageMonitor({
         return (
           <div
             key={zone.id}
-            className={`bg-gray-800 rounded-lg p-4 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border} ${zone.hasLeak ? 'ring-2 ring-red-500' : ''}`}
+            className={`bg-gray-800 rounded-lg p-3 cursor-pointer hover:bg-gray-750 transition-colors border-l-4 ${colors.border} ${zone.hasLeak ? 'ring-2 ring-red-500' : ''}`}
             onClick={() => handleZoneClick(zone)}
           >
             <div className="flex items-center justify-between mb-3">
@@ -318,7 +318,7 @@ export function WaterUsageMonitor({
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <p className="text-2xl font-bold text-white">{zone.dailyConsumption.toLocaleString()}</p>
                 <p className="text-sm text-gray-400">L/day</p>
@@ -342,9 +342,9 @@ export function WaterUsageMonitor({
 
       {/* Zone Detail Modal */}
       {selectedZone && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-lg">
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-lg">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{waterUseConfig[selectedZone.use].icon}</span>
                 <div>
@@ -361,7 +361,7 @@ export function WaterUsageMonitor({
             </div>
 
             {selectedZone.hasLeak && (
-              <div className="mb-6 p-4 bg-red-900/30 border border-red-600 rounded-lg flex items-center gap-3">
+              <div className="mb-3 p-3 bg-red-900/30 border border-red-600 rounded-lg flex items-center gap-3">
                 <span className="text-2xl">⚠️</span>
                 <div>
                   <p className="text-red-400 font-medium">Leak Alert Active</p>
@@ -376,20 +376,20 @@ export function WaterUsageMonitor({
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">{selectedZone.dailyConsumption.toLocaleString()}</p>
                 <p className="text-sm text-gray-400">Liters/Day</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">{(selectedZone.monthlyConsumption / 1000).toFixed(0)}k</p>
                 <p className="text-sm text-gray-400">Liters/Month</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-cyan-400">{selectedZone.percentageOfTotal}%</p>
                 <p className="text-sm text-gray-400">of Total Usage</p>
               </div>
-              <div className="bg-gray-700 rounded-lg p-4 text-center">
+              <div className="bg-gray-700 rounded-lg p-3 text-center">
                 <p className="text-3xl font-bold text-white">
                   ${(selectedZone.monthlyConsumption * metrics.costPerLiter).toFixed(0)}
                 </p>
@@ -403,9 +403,9 @@ export function WaterUsageMonitor({
   );
 
   const renderSources = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Source Breakdown */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {Object.entries(waterSourceConfig).map(([source, config]) => {
           const colors = getColorClass(config.color);
           // Simulated data
@@ -413,7 +413,7 @@ export function WaterUsageMonitor({
           const volume = Math.round(metrics.totalConsumption * usage / 100);
 
           return (
-            <div key={source} className={`bg-gray-800 rounded-lg p-4 border-l-4 ${colors.border}`}>
+            <div key={source} className={`bg-gray-800 rounded-lg p-3 border-l-4 ${colors.border}`}>
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-2xl">{config.icon}</span>
                 <div>
@@ -431,8 +431,8 @@ export function WaterUsageMonitor({
       </div>
 
       {/* Water Balance */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Water Balance</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Water Balance</h3>
         <div className="flex items-center justify-around">
           <div className="text-center">
             <div className="w-24 h-24 bg-blue-600/20 rounded-full flex items-center justify-center mb-2">
@@ -465,8 +465,8 @@ export function WaterUsageMonitor({
       </div>
 
       {/* Efficiency Gauge */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Water Efficiency Score</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Water Efficiency Score</h3>
         <div className="flex items-center gap-8">
           <div className="relative w-40 h-40">
             <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
@@ -523,10 +523,10 @@ export function WaterUsageMonitor({
   );
 
   const renderTrends = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Monthly Trend */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Monthly Water Consumption</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Monthly Water Consumption</h3>
         <div className="h-48 flex items-end gap-2">
           {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'].map((month, i) => {
             const values = [380, 365, 390, 372, 384, 360];
@@ -550,9 +550,9 @@ export function WaterUsageMonitor({
       </div>
 
       {/* Year over Year */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Year-over-Year Comparison</h3>
-        <div className="grid grid-cols-2 gap-6">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Year-over-Year Comparison</h3>
+        <div className="grid grid-cols-2 gap-3">
           <div>
             <p className="text-gray-400 text-sm mb-2">Total Consumption (YTD)</p>
             <div className="space-y-2">
@@ -599,9 +599,9 @@ export function WaterUsageMonitor({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-cyan-600 rounded-lg flex items-center justify-center">
             <span className="text-2xl">💧</span>

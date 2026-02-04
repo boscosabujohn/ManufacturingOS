@@ -166,9 +166,9 @@ export default function CPQIntegrationCRMPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">CRM Integration</h2>
           <p className="text-sm text-gray-600 mt-1">Connect CPQ with your CRM system for seamless data flow</p>
@@ -203,9 +203,9 @@ export default function CPQIntegrationCRMPage() {
       </div>
 
       {/* Connection Status */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-green-600">Connection Status</p>
               {integrationStatus.connected ? (
@@ -220,7 +220,7 @@ export default function CPQIntegrationCRMPage() {
             <p className="text-xs text-green-700 mt-1">CRM: {integrationStatus.crmSystem}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-blue-600">Last Sync</p>
               <Clock className="h-6 w-6 text-blue-600" />
@@ -229,7 +229,7 @@ export default function CPQIntegrationCRMPage() {
             <p className="text-xs text-blue-700 mt-1">Mode: {integrationStatus.syncFrequency}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-purple-600">Records Synced</p>
               <Database className="h-6 w-6 text-purple-600" />
@@ -238,7 +238,7 @@ export default function CPQIntegrationCRMPage() {
             <p className="text-xs text-purple-700 mt-1">Failed: {integrationStatus.failedRecords}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-orange-600">API Usage</p>
               <Activity className="h-6 w-6 text-orange-600" />
@@ -256,8 +256,8 @@ export default function CPQIntegrationCRMPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6 border-b border-gray-200">
-        <div className="flex gap-6">
+      <div className="mb-3 border-b border-gray-200">
+        <div className="flex gap-3">
           {['overview', 'mapping', 'logs', 'settings'].map((tab) => (
             <button
               key={tab}
@@ -276,10 +276,10 @@ export default function CPQIntegrationCRMPage() {
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Data Flows */}
-          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <GitBranch className="h-6 w-6 text-blue-600" />
               </div>
@@ -291,9 +291,9 @@ export default function CPQIntegrationCRMPage() {
 
             <div className="space-y-3">
               {dataFlows.map((flow) => (
-                <div key={flow.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div key={flow.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 flex-1">
+                    <div className="flex items-center gap-2 flex-1">
                       <div className={`w-2 h-2 rounded-full ${flow.success ? 'bg-green-500' : 'bg-red-500'}`}></div>
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -365,8 +365,8 @@ export default function CPQIntegrationCRMPage() {
 
       {/* Mapping Tab */}
       {activeTab === 'mapping' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <ArrowLeftRight className="h-6 w-6 text-purple-600" />
             </div>
@@ -427,8 +427,8 @@ export default function CPQIntegrationCRMPage() {
 
       {/* Logs Tab */}
       {activeTab === 'logs' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-green-100 rounded-lg">
               <Activity className="h-6 w-6 text-green-600" />
             </div>
@@ -440,7 +440,7 @@ export default function CPQIntegrationCRMPage() {
 
           <div className="space-y-3">
             {syncLogs.map((log) => (
-              <div key={log.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={log.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-3 flex-1">
                     {log.status === 'success' ? (
@@ -469,8 +469,8 @@ export default function CPQIntegrationCRMPage() {
 
       {/* Settings Tab */}
       {activeTab === 'settings' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-orange-100 rounded-lg">
               <Settings className="h-6 w-6 text-orange-600" />
             </div>
@@ -480,7 +480,7 @@ export default function CPQIntegrationCRMPage() {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">CRM System</label>
               <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
@@ -546,7 +546,7 @@ export default function CPQIntegrationCRMPage() {
       )}
 
       {/* Info Banner */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start gap-3">
         <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
         <div>
           <p className="text-sm text-blue-900 font-medium">CRM Integration Benefits</p>

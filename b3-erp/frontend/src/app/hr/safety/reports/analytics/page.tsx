@@ -104,9 +104,9 @@ export default function IncidentAnalyticsPage() {
   const [dateRange, setDateRange] = useState('last6months');
 
   return (
-    <div className="p-6 space-y-6 text-sm font-medium">
+    <div className="p-6 space-y-3 text-sm font-medium">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <BarChart3 className="h-8 w-8 text-orange-600" />
@@ -137,8 +137,8 @@ export default function IncidentAnalyticsPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Incidents</p>
@@ -154,7 +154,7 @@ export default function IncidentAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Avg Resolution (Days)</p>
@@ -170,7 +170,7 @@ export default function IncidentAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-yellow-100 shadow-sm">
+        <div className="bg-white p-3 rounded-2xl border border-yellow-100 shadow-sm">
           <div className="flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Near Misses</p>
@@ -186,7 +186,7 @@ export default function IncidentAnalyticsPage() {
           </div>
         </div>
 
-        <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+        <div className="bg-gray-900 p-3 rounded-2xl text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 flex justify-between items-start">
             <div>
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Safety Score</p>
@@ -205,14 +205,14 @@ export default function IncidentAnalyticsPage() {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Monthly Trend Chart */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-orange-600" /> Monthly Incident Trends
             </h3>
-            <div className="flex gap-4 text-[10px]">
+            <div className="flex gap-2 text-[10px]">
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-orange-500"></span> Incidents</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-yellow-500"></span> Near Misses</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-red-500"></span> Lost Days</span>
@@ -234,8 +234,8 @@ export default function IncidentAnalyticsPage() {
         </div>
 
         {/* Incidents by Type */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <Flame className="w-4 h-4 text-orange-600" /> Incidents by Type
           </h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -268,10 +268,10 @@ export default function IncidentAnalyticsPage() {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Incidents by Department */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <MapPin className="w-4 h-4 text-orange-600" /> Incidents by Department
           </h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -286,11 +286,11 @@ export default function IncidentAnalyticsPage() {
         </div>
 
         {/* Incidents by Shift */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <Clock className="w-4 h-4 text-blue-600" /> By Shift
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {incidentsByShift.map((shift, i) => (
               <div key={i}>
                 <div className="flex justify-between items-center mb-1">
@@ -309,8 +309,8 @@ export default function IncidentAnalyticsPage() {
         </div>
 
         {/* Root Causes */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-3">
             <Target className="w-4 h-4 text-red-600" /> Root Causes
           </h3>
           <div className="space-y-3">
@@ -338,35 +338,35 @@ export default function IncidentAnalyticsPage() {
           <table className="w-full text-left">
             <thead className="bg-gray-50 text-[10px] uppercase font-black text-gray-400 border-b border-gray-100">
               <tr>
-                <th className="px-6 py-4">Incident ID</th>
-                <th className="px-6 py-4">Type</th>
-                <th className="px-6 py-4">Location</th>
-                <th className="px-6 py-4">Date</th>
-                <th className="px-6 py-4">Severity</th>
-                <th className="px-6 py-4 text-right">Status</th>
+                <th className="px-3 py-2">Incident ID</th>
+                <th className="px-3 py-2">Type</th>
+                <th className="px-3 py-2">Location</th>
+                <th className="px-3 py-2">Date</th>
+                <th className="px-3 py-2">Severity</th>
+                <th className="px-3 py-2 text-right">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {recentIncidents.map((incident) => (
                 <tr key={incident.id} className="hover:bg-gray-50 transition-colors group cursor-pointer">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="font-black text-gray-900 uppercase group-hover:text-orange-600 transition-colors">{incident.id}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-[11px] text-gray-600 font-bold">{incident.type}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="text-[11px] text-gray-600 font-bold italic">{incident.location}</span>
                   </td>
-                  <td className="px-6 py-4 text-[11px] text-gray-500 font-bold">{incident.date}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-[11px] text-gray-500 font-bold">{incident.date}</td>
+                  <td className="px-3 py-2">
                     <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${incident.severity === 'High' ? 'bg-red-50 text-red-600' :
                         incident.severity === 'Medium' ? 'bg-orange-50 text-orange-600' : 'bg-green-50 text-green-600'
                       }`}>
                       {incident.severity}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <span className={`text-[10px] font-black uppercase tracking-widest ${incident.status === 'Closed' ? 'text-green-600' :
                         incident.status === 'Action Required' ? 'text-red-500' : 'text-yellow-600'
                       }`}>{incident.status}</span>

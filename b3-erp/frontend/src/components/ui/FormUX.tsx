@@ -204,7 +204,7 @@ export function MultiStepForm({
       <div className={`multi-step-form ${className}`}>
         {/* Progress Bar */}
         {showProgressBar && (
-          <div className="mb-6">
+          <div className="mb-3">
             <div className="flex items-center justify-between text-sm mb-2">
               <span className="text-gray-600 dark:text-gray-400">
                 Step {currentStep + 1} of {totalSteps}
@@ -235,7 +235,7 @@ export function MultiStepForm({
         )}
 
         {/* Form Content */}
-        <div className={variant === 'sidebar' ? 'flex gap-6' : ''}>
+        <div className={variant === 'sidebar' ? 'flex gap-3' : ''}>
           {variant === 'sidebar' && showStepList && (
             <div className="w-64 flex-shrink-0">
               <StepList
@@ -251,7 +251,7 @@ export function MultiStepForm({
 
           <div className="flex-1">
             {/* Step Content */}
-            <div className="mt-6 mb-6">
+            <div className="mt-6 mb-3">
               {React.Children.toArray(children)[currentStep]}
             </div>
 
@@ -760,7 +760,7 @@ export function DraftRecoveryBanner({
   if (!hasDraft) return null;
 
   return (
-    <div className={`flex items-center justify-between p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg ${className}`}>
+    <div className={`flex items-center justify-between p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg ${className}`}>
       <div className="flex items-center gap-3">
         <AlertCircle className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
         <div>
@@ -828,8 +828,8 @@ export function UnsavedChangesModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md mx-4">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-3 w-full max-w-md mx-4">
+        <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-yellow-100 dark:bg-yellow-900/30 rounded-full">
             <AlertCircle className="h-6 w-6 text-yellow-600 dark:text-yellow-400" />
           </div>
@@ -837,7 +837,7 @@ export function UnsavedChangesModal({
             Unsaved Changes
           </h3>
         </div>
-        <p className="text-gray-600 dark:text-gray-400 mb-6">
+        <p className="text-gray-600 dark:text-gray-400 mb-3">
           You have unsaved changes that will be lost if you leave this page.
           What would you like to do?
         </p>
@@ -966,7 +966,7 @@ export function FieldHelp({
               <div className={`absolute w-0 h-0 border-4 ${arrowClasses[position]}`} />
             </div>
           ) : (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-4 max-w-sm">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-3 max-w-sm">
               {title && (
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium text-gray-900 dark:text-white">{title}</h4>

@@ -28,7 +28,7 @@ export default function KPIDashboardPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -40,8 +40,8 @@ export default function KPIDashboardPage() {
       </div>
 
       {/* Overview Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Avg KPI Score</p>
@@ -57,7 +57,7 @@ export default function KPIDashboardPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Goals Completed</p>
@@ -73,7 +73,7 @@ export default function KPIDashboardPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">On Track</p>
@@ -86,7 +86,7 @@ export default function KPIDashboardPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">At Risk</p>
@@ -101,10 +101,10 @@ export default function KPIDashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Chart */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <h3 className="font-semibold text-gray-900 mb-6">Performance Trend</h3>
+        <div className="lg:col-span-2 bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+          <h3 className="font-semibold text-gray-900 mb-3">Performance Trend</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data}>
@@ -125,14 +125,14 @@ export default function KPIDashboardPage() {
         </div>
 
         {/* Top Performers */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-gray-900">Top Performers</h3>
             <Users className="h-5 w-5 text-gray-400" />
           </div>
-          <div className="space-y-6">
+          <div className="space-y-3">
             {topPerformers.map((person, i) => (
-              <div key={i} className="flex items-center gap-4">
+              <div key={i} className="flex items-center gap-2">
                 <div className="h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-700 font-bold">
                   {person.name.charAt(0)}
                 </div>

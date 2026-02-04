@@ -177,7 +177,7 @@ export default function Page() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Calendar className="h-8 w-8 text-blue-600" />
           First Day Setup
@@ -186,8 +186,8 @@ export default function Page() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Joiners</p>
@@ -196,7 +196,7 @@ export default function Page() {
             <User className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Today</p>
@@ -205,7 +205,7 @@ export default function Page() {
             <Calendar className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Scheduled</p>
@@ -214,7 +214,7 @@ export default function Page() {
             <Clock className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
@@ -223,7 +223,7 @@ export default function Page() {
             <Clock className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -232,7 +232,7 @@ export default function Page() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-emerald-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-emerald-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Progress</p>
@@ -244,8 +244,8 @@ export default function Page() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Date:</label>
             <input
@@ -275,10 +275,10 @@ export default function Page() {
       <DataTable data={filteredJoiners} columns={columns} />
 
       {/* First Day Timeline */}
-      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Standard First Day Timeline</h3>
-        <div className="space-y-4">
-          <div className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-600">
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Standard First Day Timeline</h3>
+        <div className="space-y-2">
+          <div className="flex items-start gap-2 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-600">
             <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('arrival')}
             </div>
@@ -291,7 +291,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-600">
+          <div className="flex items-start gap-2 p-3 bg-green-50 rounded-lg border-l-4 border-green-600">
             <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('documentation')}
             </div>
@@ -304,7 +304,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 p-4 bg-purple-50 rounded-lg border-l-4 border-purple-600">
+          <div className="flex items-start gap-2 p-3 bg-purple-50 rounded-lg border-l-4 border-purple-600">
             <div className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('facilities')}
             </div>
@@ -317,7 +317,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 p-4 bg-orange-50 rounded-lg border-l-4 border-orange-600">
+          <div className="flex items-start gap-2 p-3 bg-orange-50 rounded-lg border-l-4 border-orange-600">
             <div className="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('it')}
             </div>
@@ -330,7 +330,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 p-4 bg-teal-50 rounded-lg border-l-4 border-teal-600">
+          <div className="flex items-start gap-2 p-3 bg-teal-50 rounded-lg border-l-4 border-teal-600">
             <div className="w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('team')}
             </div>
@@ -343,7 +343,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-600">
+          <div className="flex items-start gap-2 p-3 bg-red-50 rounded-lg border-l-4 border-red-600">
             <div className="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('orientation')}
             </div>
@@ -356,7 +356,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="flex items-start gap-4 p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-600">
+          <div className="flex items-start gap-2 p-3 bg-indigo-50 rounded-lg border-l-4 border-indigo-600">
             <div className="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center flex-shrink-0">
               {getCategoryIcon('team')}
             </div>
@@ -372,7 +372,7 @@ export default function Page() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">First Day Setup Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• HR must confirm all pre-joining tasks are completed before first day</li>

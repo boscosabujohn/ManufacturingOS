@@ -269,7 +269,7 @@ export default function TeamLeaveBalancePage() {
   ].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -291,8 +291,8 @@ export default function TeamLeaveBalancePage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-gray-600">Team Size</div>
             <Users className="w-5 h-5 text-gray-400" />
@@ -301,7 +301,7 @@ export default function TeamLeaveBalancePage() {
           <div className="text-xs text-gray-500 mt-1">members</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-blue-700 font-medium">Total Entitlement</div>
             <Calendar className="w-5 h-5 text-blue-600" />
@@ -310,7 +310,7 @@ export default function TeamLeaveBalancePage() {
           <div className="text-xs text-blue-600 mt-1">days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-red-700 font-medium">Taken</div>
             <TrendingUp className="w-5 h-5 text-red-600" />
@@ -319,7 +319,7 @@ export default function TeamLeaveBalancePage() {
           <div className="text-xs text-red-600 mt-1">{avgUtilization}% utilized</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-green-700 font-medium">Available</div>
             <UserCheck className="w-5 h-5 text-green-600" />
@@ -328,7 +328,7 @@ export default function TeamLeaveBalancePage() {
           <div className="text-xs text-green-600 mt-1">days remaining</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border border-orange-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-orange-700 font-medium">On Leave</div>
             <AlertCircle className="w-5 h-5 text-orange-600" />
@@ -337,7 +337,7 @@ export default function TeamLeaveBalancePage() {
           <div className="text-xs text-orange-600 mt-1">currently away</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-yellow-700 font-medium">Upcoming</div>
             <Calendar className="w-5 h-5 text-yellow-600" />
@@ -348,8 +348,8 @@ export default function TeamLeaveBalancePage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -387,7 +387,7 @@ export default function TeamLeaveBalancePage() {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Shift
@@ -456,7 +456,7 @@ export default function TeamLeaveBalancePage() {
       </div>
 
       {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <AlertCircle className="w-5 h-5" />
           Team Leave Management Tips
@@ -472,10 +472,10 @@ export default function TeamLeaveBalancePage() {
 
       {/* Team Member Detail Modal */}
       {selectedMember && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-lg flex items-center justify-between">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-t-lg flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold">{selectedMember.employeeName}</h2>
                 <p className="text-blue-100 mt-1">
@@ -491,9 +491,9 @@ export default function TeamLeaveBalancePage() {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Employee Information */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="text-xs text-gray-500 mb-1">Department</div>
                   <div className="font-semibold text-gray-900">{selectedMember.department}</div>
@@ -518,27 +518,27 @@ export default function TeamLeaveBalancePage() {
 
               {/* Leave Summary Stats */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Leave Balance Summary</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Leave Balance Summary</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-3">
                     <div className="text-sm text-blue-700 font-medium mb-2">Total Entitlement</div>
                     <div className="text-3xl font-bold text-blue-900">{selectedMember.totalEntitlement}</div>
                     <div className="text-xs text-blue-600 mt-1">days per year</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-3">
                     <div className="text-sm text-red-700 font-medium mb-2">Taken</div>
                     <div className="text-3xl font-bold text-red-900">{selectedMember.totalTaken}</div>
                     <div className="text-xs text-red-600 mt-1">days used</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-4">
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-3">
                     <div className="text-sm text-yellow-700 font-medium mb-2">Pending</div>
                     <div className="text-3xl font-bold text-yellow-900">{selectedMember.totalPending}</div>
                     <div className="text-xs text-yellow-600 mt-1">awaiting approval</div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-4">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-3">
                     <div className="text-sm text-green-700 font-medium mb-2">Available</div>
                     <div className="text-3xl font-bold text-green-900">{selectedMember.totalBalance}</div>
                     <div className="text-xs text-green-600 mt-1">days remaining</div>
@@ -547,7 +547,7 @@ export default function TeamLeaveBalancePage() {
               </div>
 
               {/* Utilization Chart */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <h4 className="text-sm font-semibold text-gray-700 mb-3">Leave Utilization</h4>
                 <div className="relative">
                   <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
@@ -573,7 +573,7 @@ export default function TeamLeaveBalancePage() {
 
               {/* Leave History */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Leave Information</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Leave Information</h3>
                 <div className="space-y-3">
                   {selectedMember.lastLeaveDate && (
                     <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -617,7 +617,7 @@ export default function TeamLeaveBalancePage() {
 
                   {!selectedMember.lastLeaveDate && !selectedMember.upcomingLeave && (
                     <div className="text-center py-8 text-gray-500">
-                      <Calendar className="w-12 h-12 text-gray-300 mx-auto mb-2" />
+                      <Calendar className="w-12 h-12 text-gray-300 mb-2" />
                       <p className="text-sm">No recent leave history</p>
                     </div>
                   )}

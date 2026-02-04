@@ -41,9 +41,9 @@ export default function BudgetAllocationPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <DollarSign className="h-8 w-8 text-purple-600" />
@@ -63,9 +63,9 @@ export default function BudgetAllocationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Total Budget Card */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col justify-center">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col justify-center">
           <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Total Annual Budget</h2>
           <div className="flex items-center gap-2">
             <span className="text-4xl font-extrabold text-gray-900">{formatCurrency(totalBudget)}</span>
@@ -88,7 +88,7 @@ export default function BudgetAllocationPage() {
         </div>
 
         {/* Distribution Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col sm:flex-row items-center gap-8">
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col sm:flex-row items-center gap-8">
           <div className="w-full h-64 sm:w-1/2">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -124,7 +124,7 @@ export default function BudgetAllocationPage() {
 
       {/* Allocation Table */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-900">Departmental Allocations</h2>
           <button className="text-sm text-purple-600 font-medium hover:text-purple-800 flex items-center">
             <Plus className="w-4 h-4 mr-1" /> Add Department
@@ -134,22 +134,22 @@ export default function BudgetAllocationPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Department</th>
-                <th className="px-6 py-4">Percentage</th>
-                <th className="px-6 py-4">Total Amount</th>
-                <th className="px-6 py-4">Spending (YTD)</th>
-                <th className="px-6 py-4">Remaining</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-3 py-2">Department</th>
+                <th className="px-3 py-2">Percentage</th>
+                <th className="px-3 py-2">Total Amount</th>
+                <th className="px-3 py-2">Spending (YTD)</th>
+                <th className="px-3 py-2">Remaining</th>
+                <th className="px-3 py-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {allocations.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                  <td className="px-3 py-2 font-medium text-gray-900 flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }}></div>
                     {item.department}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {isEditing === item.id ? (
                       <input
                         type="number"
@@ -160,10 +160,10 @@ export default function BudgetAllocationPage() {
                       item.allocated + '%'
                     )}
                   </td>
-                  <td className="px-6 py-4 font-semibold">{formatCurrency(item.amount)}</td>
-                  <td className="px-6 py-4 text-gray-500">{formatCurrency(item.spend)}</td>
-                  <td className="px-6 py-4 font-medium text-green-600">{formatCurrency(item.amount - item.spend)}</td>
-                  <td className="px-6 py-4 text-right flex items-center justify-end gap-2">
+                  <td className="px-3 py-2 font-semibold">{formatCurrency(item.amount)}</td>
+                  <td className="px-3 py-2 text-gray-500">{formatCurrency(item.spend)}</td>
+                  <td className="px-3 py-2 font-medium text-green-600">{formatCurrency(item.amount - item.spend)}</td>
+                  <td className="px-3 py-2 text-right flex items-center justify-end gap-2">
                     {isEditing === item.id ? (
                       <button
                         className="text-green-600 hover:text-green-800 p-1"

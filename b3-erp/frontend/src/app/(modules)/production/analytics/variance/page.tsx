@@ -407,10 +407,10 @@ export default function VarianceAnalytics() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -435,7 +435,7 @@ export default function VarianceAnalytics() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -493,13 +493,13 @@ export default function VarianceAnalytics() {
       </div>
 
       {/* Cost Variance Analysis */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Cost Variance Analysis</h2>
           <p className="text-sm text-gray-600 mt-1">Standard vs actual cost comparison</p>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {costVariances.map((variance) => (
               <div key={variance.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -522,7 +522,7 @@ export default function VarianceAnalytics() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-3 text-sm">
+                <div className="grid grid-cols-2 gap-2 mb-3 text-sm">
                   <div>
                     <p className="text-xs text-gray-600">Standard Cost</p>
                     <p className="font-semibold text-gray-900">₹{variance.standardCost.toLocaleString()}</p>
@@ -556,7 +556,7 @@ export default function VarianceAnalytics() {
       </div>
 
       {/* Schedule Variance Analysis */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Schedule Variance Analysis</h2>
           <p className="text-sm text-gray-600 mt-1">Planned vs actual timeline comparison</p>
@@ -606,7 +606,7 @@ export default function VarianceAnalytics() {
       </div>
 
       {/* Quantity & Quality Variances */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Quantity Variance */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
@@ -614,7 +614,7 @@ export default function VarianceAnalytics() {
             <p className="text-sm text-gray-600 mt-1">Yield analysis</p>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {quantityVariances.map((variance) => (
                 <div key={variance.id} className="p-4 rounded-lg border border-gray-200">
                   <div className="flex items-start justify-between mb-2">
@@ -656,7 +656,7 @@ export default function VarianceAnalytics() {
             <p className="text-sm text-gray-600 mt-1">Quality rate analysis</p>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {qualityVariances.map((variance) => (
                 <div key={variance.id} className="p-4 rounded-lg border border-gray-200">
                   <div className="flex items-start justify-between mb-2">

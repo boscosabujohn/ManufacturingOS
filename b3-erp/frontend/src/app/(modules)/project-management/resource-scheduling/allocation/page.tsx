@@ -260,9 +260,9 @@ export default function AllocationMatrixPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className=" px-4 sm:px-6 lg:px-8 py-4">
+        <div className=" px-3 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" onClick={() => router.back()}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -306,7 +306,7 @@ export default function AllocationMatrixPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-6 lg:p-8">
         <div className=" space-y-3">
           {/* Resource Availability Table */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
@@ -330,25 +330,25 @@ export default function AllocationMatrixPage() {
               <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Resource
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Role
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Skills
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Current Allocation
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Availability
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Cost Rate
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -356,7 +356,7 @@ export default function AllocationMatrixPage() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredResources.map((resource) => (
                     <tr key={resource.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
                             {resource.name.split(' ').map(n => n[0]).join('')}
@@ -364,10 +364,10 @@ export default function AllocationMatrixPage() {
                           <p className="font-medium text-gray-900">{resource.name}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <p className="text-sm text-gray-900">{resource.role}</p>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex flex-wrap gap-1">
                           {resource.skills.map((skill, idx) => (
                             <span key={idx} className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
@@ -376,7 +376,7 @@ export default function AllocationMatrixPage() {
                           ))}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="flex items-center gap-2 mb-1">
                             <div className="flex-1 w-24">
@@ -394,15 +394,15 @@ export default function AllocationMatrixPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <p className={`text-sm font-semibold ${getAvailabilityColor(resource.availability)}`}>
                           {resource.availability}%
                         </p>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <p className="text-sm text-gray-900">{formatCurrency(resource.costRate)}/day</p>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => openWorkloadModal(resource)}
@@ -452,7 +452,7 @@ export default function AllocationMatrixPage() {
                           </span>
                         </div>
 
-                        <div className="grid grid-cols-4 gap-4 mt-3">
+                        <div className="grid grid-cols-4 gap-2 mt-3">
                           <div>
                             <p className="text-xs text-gray-500">Project Phase</p>
                             <p className="text-sm font-medium text-gray-900">{allocation.projectPhase}</p>

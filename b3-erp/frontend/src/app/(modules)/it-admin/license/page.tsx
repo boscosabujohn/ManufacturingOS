@@ -181,7 +181,7 @@ export default function LicenseManagement() {
   const utilizationPercentage = (licenseInfo.usedLicenses / licenseInfo.totalLicenses) * 100
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -202,7 +202,7 @@ export default function LicenseManagement() {
 
       {/* License Overview */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg p-8">
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-start justify-between mb-3">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <Award className="h-8 w-8" />
@@ -215,8 +215,8 @@ export default function LicenseManagement() {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white bg-opacity-20 rounded-lg p-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-white bg-opacity-20 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-2">
               <Users className="h-5 w-5 opacity-80" />
               <p className="text-sm opacity-90">Total Licenses</p>
@@ -224,7 +224,7 @@ export default function LicenseManagement() {
             <p className="text-3xl font-bold">{licenseInfo.totalLicenses}</p>
           </div>
 
-          <div className="bg-white bg-opacity-20 rounded-lg p-4">
+          <div className="bg-white bg-opacity-20 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="h-5 w-5 opacity-80" />
               <p className="text-sm opacity-90">Used</p>
@@ -233,7 +233,7 @@ export default function LicenseManagement() {
             <p className="text-xs opacity-75 mt-1">{utilizationPercentage.toFixed(1)}% utilized</p>
           </div>
 
-          <div className="bg-white bg-opacity-20 rounded-lg p-4">
+          <div className="bg-white bg-opacity-20 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-2">
               <Zap className="h-5 w-5 opacity-80" />
               <p className="text-sm opacity-90">Available</p>
@@ -241,7 +241,7 @@ export default function LicenseManagement() {
             <p className="text-3xl font-bold">{licenseInfo.availableLicenses}</p>
           </div>
 
-          <div className="bg-white bg-opacity-20 rounded-lg p-4">
+          <div className="bg-white bg-opacity-20 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-2">
               <Calendar className="h-5 w-5 opacity-80" />
               <p className="text-sm opacity-90">Days Remaining</p>
@@ -251,7 +251,7 @@ export default function LicenseManagement() {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-white bg-opacity-10 rounded-lg">
+        <div className="mt-6 p-3 bg-white bg-opacity-10 rounded-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm opacity-90">License Utilization</span>
             <span className="text-sm font-medium">{utilizationPercentage.toFixed(1)}%</span>
@@ -266,14 +266,14 @@ export default function LicenseManagement() {
       </div>
 
       {/* License Details */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <Key className="h-5 w-5 text-purple-600" />
             <h2 className="text-lg font-semibold text-gray-900">License Details</h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center justify-between pb-3 border-b border-gray-200">
               <span className="text-sm text-gray-600">License Type</span>
               <span className="text-sm font-medium text-gray-900">{licenseInfo.type}</span>
@@ -310,8 +310,8 @@ export default function LicenseManagement() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-3">
             <TrendingUp className="h-5 w-5 text-blue-600" />
             <h2 className="text-lg font-semibold text-gray-900">Usage History (6 Months)</h2>
           </div>
@@ -351,19 +351,19 @@ export default function LicenseManagement() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Module Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Users
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Utilization
                 </th>
               </tr>
@@ -373,24 +373,24 @@ export default function LicenseManagement() {
                 const moduleUtilization = (module.inUse / module.available) * 100
                 return (
                   <tr key={module.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex items-center">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                         <div className="text-sm font-medium text-gray-900">{module.name}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">
                       {module.category}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">
                         Licensed
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {module.inUse} / {module.available}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex items-center gap-3">
                         <div className="flex-1 w-32 bg-gray-200 rounded-full h-2">
                           <div
@@ -412,17 +412,17 @@ export default function LicenseManagement() {
       </div>
 
       {/* Licensed Features */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center gap-2 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center gap-2 mb-3">
           <Zap className="h-5 w-5 text-yellow-600" />
           <h2 className="text-lg font-semibold text-gray-900">Licensed Features</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg"
+              className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg"
             >
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
               <span className="text-sm font-medium text-gray-900">{feature.name}</span>
@@ -432,7 +432,7 @@ export default function LicenseManagement() {
       </div>
 
       {/* Important Notice */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
           <div>

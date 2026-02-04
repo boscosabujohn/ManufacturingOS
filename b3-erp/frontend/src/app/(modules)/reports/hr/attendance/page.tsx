@@ -38,8 +38,8 @@ export default function AttendanceReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Attendance Report</h1>
                     <p className="text-gray-600">Employee attendance tracking and analysis</p>
@@ -54,7 +54,7 @@ export default function AttendanceReport() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
                 <ClickableKPICard
                     title="Avg Attendance"
                     value={`${data.avgAttendance}%`}
@@ -89,11 +89,11 @@ export default function AttendanceReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <Card>
                     <CardHeader><CardTitle>Attendance by Department</CardTitle></CardHeader>
                     <CardContent>
-                        <div className="space-y-4">
+                        <div className="space-y-2">
                             {data.byDepartment.map((dept, idx) => (
                                 <div key={idx} className="cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors" onClick={() => router.push(`/reports/hr/attendance/department?department=${dept.dept}`)}>
                                     <div className="flex justify-between mb-2">

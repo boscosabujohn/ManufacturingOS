@@ -103,21 +103,21 @@ export const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onS
   const emojis = ['🏠', '🏡', '🏘️', '🏚️', '🏢', '🏭', '🏨', '🏗️', '🏛️', '🏪'];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">{product ? 'Edit' : 'Add'} Product</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded p-1">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
                 <input
@@ -185,8 +185,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onS
 
           {/* Pricing */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Pricing</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Pricing</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Base Price (₹) *</label>
                 <input
@@ -236,7 +236,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onS
 
           {/* Image */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Product Image</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Product Image</h3>
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Icon</label>
             <div className="flex flex-wrap gap-2">
               {emojis.map((emoji) => (
@@ -258,8 +258,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onS
 
           {/* Variants */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Variants</h3>
-            <div className="mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Variants</h3>
+            <div className="mb-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">Number of Variants</label>
               <input
                 type="number"
@@ -365,10 +365,10 @@ export const ViewProductModal: React.FC<ViewProductModalProps> = ({ isOpen, onCl
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">{product.name}</h2>
             <p className="text-sm opacity-90">{product.sku}</p>
@@ -378,7 +378,7 @@ export const ViewProductModal: React.FC<ViewProductModalProps> = ({ isOpen, onCl
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Product Image */}
           <div className="flex items-center justify-center h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg">
             <span className="text-8xl">{product.image}</span>
@@ -405,7 +405,7 @@ export const ViewProductModal: React.FC<ViewProductModalProps> = ({ isOpen, onCl
           {/* Pricing Information */}
           <div>
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Pricing Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-600 mb-1">Base Price</p>
                 <p className="text-xl font-bold text-blue-900">₹{(product.basePrice / 100000).toFixed(2)}L</p>
@@ -527,17 +527,17 @@ export const FilterModal: React.FC<FilterModalProps> = ({ isOpen, onClose, onApp
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-md">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg">
           <h2 className="text-xl font-bold">Filter Products</h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded p-1">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Status Filter */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Status</h3>

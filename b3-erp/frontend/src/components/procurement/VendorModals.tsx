@@ -141,10 +141,10 @@ export const AddVendorModal: React.FC<AddVendorModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Plus className="w-6 h-6" />
             <div>
@@ -158,7 +158,7 @@ export const AddVendorModal: React.FC<AddVendorModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           <div className={`flex items-center gap-2 ${currentStep >= 1 ? 'text-blue-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-300'}`}>1</div>
             <span className="font-medium">Basic Info</span>
@@ -176,11 +176,11 @@ export const AddVendorModal: React.FC<AddVendorModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: Basic Info */}
           {currentStep === 1 && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Vendor Name *</label>
                   <input
@@ -296,8 +296,8 @@ export const AddVendorModal: React.FC<AddVendorModalProps> = ({
 
           {/* Step 2: Address */}
           {currentStep === 2 && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Address *</label>
                   <textarea
@@ -372,8 +372,8 @@ export const AddVendorModal: React.FC<AddVendorModalProps> = ({
 
           {/* Step 3: Financial Details */}
           {currentStep === 3 && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tax ID / GST Number *</label>
                   <input
@@ -496,7 +496,7 @@ export const AddVendorModal: React.FC<AddVendorModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -566,10 +566,10 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <div>
@@ -583,17 +583,17 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status Badge */}
-          <div className="mb-6">
+          <div className="mb-3">
             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(vendor.status)}`}>
               {vendor.status.toUpperCase().replace('_', ' ')}
             </span>
           </div>
 
           {/* Vendor Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Building2 className="w-4 h-4" />
                 <p className="text-sm font-medium">Vendor Name</p>
@@ -601,7 +601,7 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
               <p className="text-lg font-bold text-gray-900">{vendor.vendorName}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Award className="w-4 h-4" />
                 <p className="text-sm font-medium">Category</p>
@@ -609,7 +609,7 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
               <p className="text-lg font-bold text-gray-900">{vendor.category}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Star className="w-4 h-4" />
                 <p className="text-sm font-medium">Rating</p>
@@ -619,9 +619,9 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
           </div>
 
           {/* Contact Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Contact Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <Mail className="w-5 h-5 text-gray-600" />
                 <div>
@@ -658,9 +658,9 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
           </div>
 
           {/* Address */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Address</h3>
-            <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Address</h3>
+            <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
               <MapPin className="w-5 h-5 text-gray-600 mt-0.5" />
               <div>
                 <p className="text-gray-900">{vendor.address}</p>
@@ -671,9 +671,9 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
           </div>
 
           {/* Financial Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Financial Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Financial Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Tax ID / GST</p>
                 <p className="font-semibold text-gray-900">{vendor.taxId}</p>
@@ -710,8 +710,8 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
 
           {/* Tags & Certifications */}
           {(vendor.tags && vendor.tags.length > 0) || (vendor.certifications && vendor.certifications.length > 0) ? (
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Tags & Certifications</h3>
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Tags & Certifications</h3>
               <div className="space-y-3">
                 {vendor.tags && vendor.tags.length > 0 && (
                   <div>
@@ -745,8 +745,8 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
           {/* Notes */}
           {vendor.notes && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes</h3>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes</h3>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <p className="text-gray-700">{vendor.notes}</p>
               </div>
             </div>
@@ -754,7 +754,7 @@ export const ViewVendorDetailsModal: React.FC<ViewVendorDetailsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -897,10 +897,10 @@ export const EvaluateVendorPerformanceModal: React.FC<EvaluateVendorPerformanceM
   if (!isOpen || !vendor) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <BarChart3 className="w-6 h-6" />
             <div>
@@ -914,7 +914,7 @@ export const EvaluateVendorPerformanceModal: React.FC<EvaluateVendorPerformanceM
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Evaluation Period */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Evaluation Period *</label>
@@ -939,8 +939,8 @@ export const EvaluateVendorPerformanceModal: React.FC<EvaluateVendorPerformanceM
 
           {/* Performance Metrics */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics (0-100)</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Metrics (0-100)</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* On-Time Delivery */}
               <div>
                 <div className="flex justify-between items-center mb-2">
@@ -1082,7 +1082,7 @@ export const EvaluateVendorPerformanceModal: React.FC<EvaluateVendorPerformanceM
           </div>
 
           {/* Overall Rating */}
-          <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6">
+          <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-3">
             <div className="text-center">
               <p className="text-sm font-medium text-purple-700 mb-2">Overall Performance Rating</p>
               <p className={`text-5xl font-bold ${getScoreColor(formData.overallRating)}`}>
@@ -1174,7 +1174,7 @@ export const EvaluateVendorPerformanceModal: React.FC<EvaluateVendorPerformanceM
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1237,10 +1237,10 @@ export const BlockVendorModal: React.FC<BlockVendorModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Ban className="w-6 h-6" />
             <div>
@@ -1254,9 +1254,9 @@ export const BlockVendorModal: React.FC<BlockVendorModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {/* Warning */}
-          <div className="bg-red-50 border-l-4 border-red-500 p-4">
+          <div className="bg-red-50 border-l-4 border-red-500 p-3">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
               <div>
@@ -1398,7 +1398,7 @@ export const BlockVendorModal: React.FC<BlockVendorModalProps> = ({
           </div>
 
           {/* Notify Vendor */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <label className="flex items-start gap-3">
               <input
                 type="checkbox"
@@ -1415,7 +1415,7 @@ export const BlockVendorModal: React.FC<BlockVendorModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1491,10 +1491,10 @@ export const EditVendorModal: React.FC<EditVendorModalProps> = ({
   if (!isOpen || !vendor) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Edit className="w-6 h-6" />
             <div>
@@ -1508,8 +1508,8 @@ export const EditVendorModal: React.FC<EditVendorModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Vendor Name *</label>
               <input
@@ -1623,7 +1623,7 @@ export const EditVendorModal: React.FC<EditVendorModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

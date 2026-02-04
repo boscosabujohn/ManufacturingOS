@@ -42,7 +42,7 @@ function QuickStats() {
   ];
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
@@ -146,7 +146,7 @@ export default function RealTimeMonitoringPage() {
     switch (currentView) {
       case 'oee':
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <LiveOEEDashboard
               productionLineId={selectedProductionLine}
               refreshInterval={3000}
@@ -197,7 +197,7 @@ export default function RealTimeMonitoringPage() {
       default:
         // Full Dashboard View
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Alerts Banner */}
             <RealTimeAlertsBanner
               soundEnabled
@@ -207,7 +207,7 @@ export default function RealTimeMonitoringPage() {
             />
 
             {/* OEE and Machine Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
               <LiveOEEDashboard
                 productionLineId={selectedProductionLine}
                 refreshInterval={5000}
@@ -240,9 +240,9 @@ export default function RealTimeMonitoringPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6 max-w-full px-4">
+    <div className="w-full py-2 space-y-3 max-w-full px-4">
       {/* Page Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">

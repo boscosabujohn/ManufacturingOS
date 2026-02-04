@@ -44,9 +44,9 @@ export default function MasterSchedulePage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className=" px-4 sm:px-6 lg:px-8 py-4">
+        <div className=" px-3 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <Button variant="ghost" size="sm" onClick={() => router.back()}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -71,7 +71,7 @@ export default function MasterSchedulePage() {
 
           {/* Filters */}
           <div className="flex items-center justify-between mt-6 pb-2">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className="relative w-64">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <input
@@ -105,7 +105,7 @@ export default function MasterSchedulePage() {
       </div>
 
       {/* Gantt Chart Area */}
-      <div className="flex-1 overflow-auto p-4 sm:px-6 lg:px-8">
+      <div className="flex-1 overflow-auto p-3 sm:px-6 lg:px-8">
         <div className=" bg-white rounded-lg shadow border border-gray-200 overflow-hidden">
           {/* Timeline Header */}
           <div className="grid grid-cols-[250px_1fr] border-b border-gray-200">

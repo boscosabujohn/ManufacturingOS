@@ -149,8 +149,8 @@ export default function LiveSLATracking() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6 rounded-lg">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3 rounded-lg">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -174,10 +174,10 @@ export default function LiveSLATracking() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         <button
           onClick={() => setStatusFilter('all')}
-          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-6 hover:border-blue-500 transition-all text-left"
+          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-3 hover:border-blue-500 transition-all text-left"
         >
           <Target className="h-8 w-8 text-blue-600 mb-3" />
           <div className="text-3xl font-bold text-gray-900 mb-1">{stats.compliance}%</div>
@@ -187,7 +187,7 @@ export default function LiveSLATracking() {
 
         <button
           onClick={() => setStatusFilter('met')}
-          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-6 hover:border-green-500 transition-all text-left"
+          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-3 hover:border-green-500 transition-all text-left"
         >
           <CheckCircle className="h-8 w-8 text-green-600 mb-3" />
           <div className="text-3xl font-bold text-green-600 mb-1">{stats.metSLA}</div>
@@ -197,7 +197,7 @@ export default function LiveSLATracking() {
 
         <button
           onClick={() => setStatusFilter('at_risk')}
-          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-6 hover:border-yellow-500 transition-all text-left"
+          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-3 hover:border-yellow-500 transition-all text-left"
         >
           <AlertTriangle className="h-8 w-8 text-yellow-600 mb-3" />
           <div className="text-3xl font-bold text-yellow-600 mb-1">{stats.atRisk}</div>
@@ -207,7 +207,7 @@ export default function LiveSLATracking() {
 
         <button
           onClick={() => setStatusFilter('breached')}
-          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-6 hover:border-red-500 transition-all text-left"
+          className="bg-white shadow-lg border-2 border-gray-200 rounded-lg p-3 hover:border-red-500 transition-all text-left"
         >
           <TrendingUp className="h-8 w-8 text-purple-600 mb-3" />
           <div className="text-3xl font-bold text-purple-600 mb-1">{stats.avgResponse}h</div>
@@ -218,7 +218,7 @@ export default function LiveSLATracking() {
 
       {/* Filter Indicator */}
       {statusFilter !== 'all' && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Filter className="h-5 w-5 text-blue-600" />
             <span className="text-sm font-medium text-blue-900">
@@ -236,7 +236,7 @@ export default function LiveSLATracking() {
 
       {/* Live Tickets Table */}
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-bold text-gray-900">Live Ticket Monitoring</h3>
           <p className="text-sm text-gray-600">
             Showing {filteredTickets.length} of {mockTickets.length} tickets
@@ -246,45 +246,45 @@ export default function LiveSLATracking() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ticket</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time Remaining</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Ticket</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Time Remaining</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredTickets.map((ticket) => (
                 <tr key={ticket.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{ticket.ticketNumber}</div>
                     <div className="text-xs text-gray-500">{ticket.issueType}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{ticket.customer}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${getPriorityColor(ticket.priority)}`}>
                       {ticket.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(ticket.status)}`}>
                       {ticket.status.replace('_', ' ').toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">{formatTimeRemaining(ticket.timeRemaining)}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <User className="h-4 w-4 text-gray-400" />
                       <span className="text-sm text-gray-900">{ticket.assignedTo}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button
                       onClick={() => handleViewDetails(ticket)}
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
@@ -302,10 +302,10 @@ export default function LiveSLATracking() {
 
       {/* Details Modal */}
       {showDetailsModal && selectedTicket && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 flex items-center justify-between rounded-t-lg z-10">
               <div>
                 <h2 className="text-xl font-bold">{selectedTicket.ticketNumber}</h2>
                 <p className="text-sm text-blue-100 mt-1">SLA Performance Details</p>
@@ -319,11 +319,11 @@ export default function LiveSLATracking() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status Overview */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h3 className="font-bold text-gray-900 mb-3">Current Status</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Priority</p>
                     <span className={`inline-flex items-center px-3 py-1 rounded-md text-sm font-medium border ${getPriorityColor(selectedTicket.priority)}`}>
@@ -346,8 +346,8 @@ export default function LiveSLATracking() {
               </div>
 
               {/* Customer & Assignment */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h3 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                     <User className="h-5 w-5" />
                     Customer Details
@@ -364,7 +364,7 @@ export default function LiveSLATracking() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <h3 className="font-bold text-green-900 mb-3 flex items-center gap-2">
                     <Package className="h-5 w-5" />
                     Assignment
@@ -383,8 +383,8 @@ export default function LiveSLATracking() {
               </div>
 
               {/* SLA Timeline */}
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                <h3 className="font-bold text-purple-900 mb-4 flex items-center gap-2">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
+                <h3 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
                   SLA Timeline
                 </h3>
@@ -423,7 +423,7 @@ export default function LiveSLATracking() {
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+            <div className="sticky bottom-0 bg-gray-50 px-3 py-2 flex justify-end gap-3 rounded-b-lg border-t">
               <button
                 onClick={() => setShowDetailsModal(false)}
                 className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"

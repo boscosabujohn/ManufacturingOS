@@ -144,8 +144,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center justify-between">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Probation Feedback</h1>
           <p className="text-sm text-gray-600 mt-1">Review feedback collected during probation period</p>
@@ -159,8 +159,8 @@ export default function Page() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Feedback</p>
@@ -170,7 +170,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Rating</p>
@@ -180,7 +180,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Confirm</p>
@@ -190,7 +190,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Extend</p>
@@ -201,7 +201,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex gap-2">
           {['all', 'manager', 'peer', 'self'].map(type => (
             <button
@@ -219,10 +219,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredFeedback.map(feedback => (
-          <div key={feedback.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={feedback.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="text-lg font-bold text-gray-900">{feedback.employeeName}</h3>
                 <p className="text-sm text-gray-600">{feedback.designation} • {feedback.department}</p>
@@ -247,7 +247,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-2">
               {Object.entries(feedback.categories).map(([category, rating]) => (
                 <div key={category} className="text-center">
                   <p className="text-xs text-gray-500 uppercase mb-1">
@@ -267,12 +267,12 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-green-50 rounded-lg p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+              <div className="bg-green-50 rounded-lg p-3">
                 <p className="text-sm font-semibold text-green-900 mb-2">Strengths</p>
                 <p className="text-sm text-green-800">{feedback.strengths}</p>
               </div>
-              <div className="bg-orange-50 rounded-lg p-4">
+              <div className="bg-orange-50 rounded-lg p-3">
                 <p className="text-sm font-semibold text-orange-900 mb-2">Areas for Improvement</p>
                 <p className="text-sm text-orange-800">{feedback.improvements}</p>
               </div>
@@ -294,9 +294,9 @@ export default function Page() {
 
       {/* Request Feedback Modal */}
       {showRequestModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">Request Probation Feedback</h2>
                 <p className="text-sm text-gray-600 mt-1">Request feedback for an employee on probation</p>
@@ -309,9 +309,9 @@ export default function Page() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitRequest} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitRequest} className="p-6 space-y-3">
               {/* Employee Information */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">
                     Employee Code <span className="text-red-500">*</span>
@@ -341,7 +341,7 @@ export default function Page() {
               </div>
 
               {/* Feedback Details */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">
                     Request Feedback From <span className="text-red-500">*</span>
@@ -402,7 +402,7 @@ export default function Page() {
               </div>
 
               {/* Info Box */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex gap-3">
                   <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div>

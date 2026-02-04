@@ -292,8 +292,8 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
 
       {/* Mega Menu Panel */}
       <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-50 animate-slideDown max-h-[80vh] overflow-y-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className=" px-3 py-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {sections.map((section) => {
               const Icon = section.icon;
               return (
@@ -333,7 +333,7 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
           </div>
 
           {/* Quick Actions Footer */}
-          <div className="mt-6 pt-4 border-t border-gray-100 bg-gray-50/50 -mx-8 -mb-6 px-8 py-4">
+          <div className="mt-6 pt-4 border-t border-gray-100 bg-gray-50/50 -mx-8 -mb-3 px-8 py-4">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-[13px] font-bold text-gray-800">Need help navigating?</h4>

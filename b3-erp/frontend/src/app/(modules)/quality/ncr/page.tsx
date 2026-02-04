@@ -170,9 +170,9 @@ export default function NCRPage() {
     };
 
     return (
-        <div className="w-full px-4 py-6 space-y-6">
+        <div className="w-full px-4 py-2 space-y-3">
             {/* Header Area */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Non-Conformance Reports</h1>
                     <p className="text-gray-500 mt-1">Manage and track quality deviations and corrective actions</p>
@@ -192,7 +192,7 @@ export default function NCRPage() {
             </div>
 
             {/* KPI Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
                 <Card className="bg-gradient-to-br from-gray-50 to-white">
                     <CardContent className="p-4 flex items-center justify-between">
                         <div>
@@ -242,7 +242,7 @@ export default function NCRPage() {
             {/* Filters and Search */}
             <Card className="shadow-sm border-gray-200">
                 <CardContent className="p-4">
-                    <div className="flex flex-col lg:flex-row gap-4 items-center">
+                    <div className="flex flex-col lg:flex-row gap-2 items-center">
                         <div className="relative w-full lg:flex-1">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                             <Input
@@ -283,7 +283,7 @@ export default function NCRPage() {
             </Card>
 
             {/* NCR List */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
                 {error && (
                     <Card className="border-red-200 bg-red-50">
                         <CardContent className="p-4">
@@ -305,7 +305,7 @@ export default function NCRPage() {
                     </div>
                 ) : filteredNCRs.length === 0 ? (
                     <Card className="border-dashed border-2 py-20 text-center">
-                        <div className="mx-auto w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                        <div className="mx-auto w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-2">
                             <AlertTriangle className="h-8 w-8 text-gray-300" />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-900">No NCRs match your criteria</h3>
@@ -315,7 +315,7 @@ export default function NCRPage() {
                         </Button>
                     </Card>
                 ) : (
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-1 gap-2">
                         {filteredNCRs.map((ncr) => (
                             <Card key={ncr.id} className="group hover:border-blue-400 transition-all duration-200 shadow-sm overflow-hidden">
                                 <div className="flex flex-col md:flex-row">
@@ -323,8 +323,8 @@ export default function NCRPage() {
                                     <div className={`w-1 md:w-2 ${ncr.severity === 'critical' ? 'bg-red-500' : ncr.severity === 'major' ? 'bg-orange-500' : 'bg-yellow-500'}`} />
 
                                     <CardContent className="p-6 flex-1">
-                                        <div className="flex flex-col lg:flex-row justify-between gap-6">
-                                            <div className="flex-1 space-y-4">
+                                        <div className="flex flex-col lg:flex-row justify-between gap-3">
+                                            <div className="flex-1 space-y-2">
                                                 {/* Header info */}
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     <span className="text-sm font-bold text-blue-600">{ncr.ncrNumber}</span>
@@ -345,7 +345,7 @@ export default function NCRPage() {
                                                 </div>
 
                                                 {/* Details Grid */}
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2">
                                                     <div className="flex items-start gap-3">
                                                         <div className="p-1.5 bg-gray-50 rounded-md">
                                                             <MapPin className="w-4 h-4 text-gray-400" />

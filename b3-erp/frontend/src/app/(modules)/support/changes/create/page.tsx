@@ -125,7 +125,7 @@ export default function CreateChange() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -140,7 +140,7 @@ export default function CreateChange() {
       </div>
 
       {/* Progress Steps */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
         <div className="flex items-center justify-between mb-8">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center flex-1">
@@ -172,13 +172,13 @@ export default function CreateChange() {
 
         {/* Step 1: Basic Information */}
         {currentStep === 1 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <FileText className="h-5 w-5" />
               Basic Information
             </h2>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
                 <label className="block text-sm font-medium mb-2">
                   Change Title <span className="text-red-500">*</span>
@@ -299,13 +299,13 @@ export default function CreateChange() {
 
         {/* Step 2: Impact Assessment */}
         {currentStep === 2 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <AlertCircle className="h-5 w-5" />
               Impact Assessment
             </h2>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div>
                 <label className="block text-sm font-medium mb-2">
                   Affected Systems <span className="text-red-500">*</span>
@@ -349,7 +349,7 @@ export default function CreateChange() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-medium mb-2">
                     Number of Affected Users <span className="text-red-500">*</span>
@@ -403,7 +403,7 @@ export default function CreateChange() {
               </div>
 
               {/* Risk Assessment */}
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
                 <h3 className="font-medium text-amber-900 mb-2 flex items-center gap-2">
                   <AlertCircle className="h-4 w-4" />
                   Risk Assessment
@@ -421,13 +421,13 @@ export default function CreateChange() {
 
         {/* Step 3: Implementation Plan */}
         {currentStep === 3 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Calendar className="h-5 w-5" />
               Implementation Plan
             </h2>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium mb-2">
                   Implementation Date <span className="text-red-500">*</span>
@@ -470,7 +470,7 @@ export default function CreateChange() {
                 <label className="block text-sm font-medium mb-2">
                   Attachments
                 </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 cursor-pointer">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-gray-400 cursor-pointer">
                   <Upload className="h-8 w-8 text-gray-400 mb-2" />
                   <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
                   <p className="text-xs text-gray-500 mt-1">Implementation plans, diagrams, or documentation</p>
@@ -479,7 +479,7 @@ export default function CreateChange() {
             </div>
 
             {/* Implementation Checklist */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <h3 className="font-medium text-blue-900 mb-3 flex items-center gap-2">
                 <CheckCircle className="h-4 w-4" />
                 Pre-Implementation Checklist
@@ -512,17 +512,17 @@ export default function CreateChange() {
 
         {/* Step 4: Review & Submit */}
         {currentStep === 4 && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <CheckCircle className="h-5 w-5" />
               Review & Submit
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Basic Information Summary */}
-              <div className="border rounded-lg p-4">
+              <div className="border rounded-lg p-3">
                 <h3 className="font-medium mb-3">Basic Information</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Title:</span>
                     <p className="font-medium">{formData.title || 'Not provided'}</p>
@@ -547,9 +547,9 @@ export default function CreateChange() {
               </div>
 
               {/* Impact Summary */}
-              <div className="border rounded-lg p-4">
+              <div className="border rounded-lg p-3">
                 <h3 className="font-medium mb-3">Impact Assessment</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Affected Systems:</span>
                     <p className="font-medium">{formData.affectedSystems.length} systems</p>
@@ -566,9 +566,9 @@ export default function CreateChange() {
               </div>
 
               {/* Implementation Summary */}
-              <div className="border rounded-lg p-4">
+              <div className="border rounded-lg p-3">
                 <h3 className="font-medium mb-3">Implementation Plan</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <span className="text-gray-600">Date:</span>
                     <p className="font-medium">{formData.implementationDate || 'Not set'}</p>
@@ -589,7 +589,7 @@ export default function CreateChange() {
               </div>
 
               {/* Approval Notice */}
-              <div className="bg-gray-50 border rounded-lg p-4">
+              <div className="bg-gray-50 border rounded-lg p-3">
                 <h3 className="font-medium mb-2">Next Steps</h3>
                 <ul className="text-sm text-gray-600 space-y-1">
                   <li>• Your change request will be reviewed by the Change Advisory Board (CAB)</li>

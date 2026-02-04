@@ -624,7 +624,7 @@ export default function WBSPage() {
   return (
    <div key={node.id}>
     <div
-     className="flex items-center gap-3 p-4 hover:bg-gray-50 border-b border-gray-200 transition-colors"
+     className="flex items-center gap-3 p-3 hover:bg-gray-50 border-b border-gray-200 transition-colors"
      style={{ paddingLeft: `${16 + indent}px` }}
     >
      {/* Expand/Collapse Button */}
@@ -750,7 +750,7 @@ export default function WBSPage() {
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
    <div className="px-3 py-2 space-y-3">
    {/* Header Actions */}
-   <div className="flex justify-between items-center mb-4">
+   <div className="flex justify-between items-center mb-2">
     <div className="flex items-center gap-3">
      <button
       onClick={() => setShowImportTemplate(true)}
@@ -779,8 +779,8 @@ export default function WBSPage() {
    </div>
 
    {/* Summary Stats */}
-   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+   <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center gap-2 mb-2">
       <FileText className="w-5 h-5 text-blue-600" />
       <p className="text-sm text-gray-600">Total Work Packages</p>
@@ -789,7 +789,7 @@ export default function WBSPage() {
      <p className="text-xs text-gray-500 mt-1">6 phases · 15 activities</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center gap-2 mb-2">
       <CheckCircle className="w-5 h-5 text-green-600" />
       <p className="text-sm text-gray-600">Completed</p>
@@ -798,7 +798,7 @@ export default function WBSPage() {
      <p className="text-xs text-gray-500 mt-1">57% of total work</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center gap-2 mb-2">
       <Clock className="w-5 h-5 text-blue-600" />
       <p className="text-sm text-gray-600">In Progress</p>
@@ -807,7 +807,7 @@ export default function WBSPage() {
      <p className="text-xs text-gray-500 mt-1">19% of total work</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center gap-2 mb-2">
       <AlertCircle className="w-5 h-5 text-gray-600" />
       <p className="text-sm text-gray-600">Not Started</p>
@@ -818,7 +818,7 @@ export default function WBSPage() {
    </div>
 
    {/* Search & Filters */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
     <div className="relative">
      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
      <input
@@ -834,7 +834,7 @@ export default function WBSPage() {
    {/* WBS Tree */}
    <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
     {/* Header Row */}
-    <div className="bg-gray-50 border-b border-gray-200 p-4 flex items-center gap-3 text-xs font-medium text-gray-600 uppercase tracking-wider">
+    <div className="bg-gray-50 border-b border-gray-200 p-3 flex items-center gap-3 text-xs font-medium text-gray-600 uppercase tracking-wider">
      <div className="w-6"></div>
      <div className="w-20">Code</div>
      <div className="flex-1">Work Package Name</div>

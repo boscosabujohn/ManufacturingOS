@@ -59,10 +59,10 @@ export function PurchaseRequisitionModal({ isOpen, onClose, materials, woNumber,
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-red-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-orange-600 to-red-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <ShoppingCart className="h-6 w-6" />
             <div>
@@ -77,7 +77,7 @@ export function PurchaseRequisitionModal({ isOpen, onClose, materials, woNumber,
 
         <div className="p-6">
           {/* Alert */}
-          <div className="mb-6 bg-orange-50 border-l-4 border-orange-500 p-4">
+          <div className="mb-3 bg-orange-50 border-l-4 border-orange-500 p-3">
             <div className="flex">
               <AlertTriangle className="h-5 w-5 text-orange-600" />
               <div className="ml-3">
@@ -90,9 +90,9 @@ export function PurchaseRequisitionModal({ isOpen, onClose, materials, woNumber,
           </div>
 
           {/* PR Details */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-900 mb-3">Purchase Requisition Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">PR Number</label>
                 <input
@@ -171,7 +171,7 @@ export function PurchaseRequisitionModal({ isOpen, onClose, materials, woNumber,
           </div>
 
           {/* Items */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
               <FileText className="h-4 w-4 mr-2 text-orange-600" />
               Items to Procure ({prFormData.items.length})
@@ -260,7 +260,7 @@ export function PurchaseRequisitionModal({ isOpen, onClose, materials, woNumber,
           </div>
 
           {/* Total Cost */}
-          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <span className="text-sm font-semibold text-gray-900">Total Estimated Procurement Cost:</span>
               <span className="text-xl font-bold text-blue-900">
@@ -270,7 +270,7 @@ export function PurchaseRequisitionModal({ isOpen, onClose, materials, woNumber,
           </div>
 
           {/* Info */}
-          <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-3">
+          <div className="mb-3 bg-green-50 border border-green-200 rounded-lg p-3">
             <div className="flex items-start">
               <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
               <div className="ml-3">

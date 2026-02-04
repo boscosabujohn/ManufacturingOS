@@ -164,11 +164,11 @@ export default function SerialTrackingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-slate-200 rounded-lg text-slate-600"
@@ -180,35 +180,35 @@ export default function SerialTrackingPage() {
               <p className="text-slate-600 mt-1">Track products by serial number and warranty status</p>
             </div>
           </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium">
+          <button className="flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 font-medium">
             <QrCode className="w-5 h-5" />
             Scan QR
           </button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-lg border border-slate-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+          <div className="bg-white rounded-lg border border-slate-200 p-3">
             <p className="text-sm text-slate-600 mb-1">Total Products</p>
             <p className="text-2xl font-bold text-slate-900">{products.length}</p>
           </div>
-          <div className="bg-white rounded-lg border border-slate-200 p-4">
+          <div className="bg-white rounded-lg border border-slate-200 p-3">
             <p className="text-sm text-slate-600 mb-1">Active Warranty</p>
             <p className="text-2xl font-bold text-green-600">{products.filter(p => p.warrantyStatus === 'Active').length}</p>
           </div>
-          <div className="bg-white rounded-lg border border-slate-200 p-4">
+          <div className="bg-white rounded-lg border border-slate-200 p-3">
             <p className="text-sm text-slate-600 mb-1">Expiring Soon</p>
             <p className="text-2xl font-bold text-orange-600">{products.filter(p => p.warrantyStatus === 'Expiring Soon').length}</p>
           </div>
-          <div className="bg-white rounded-lg border border-slate-200 p-4">
+          <div className="bg-white rounded-lg border border-slate-200 p-3">
             <p className="text-sm text-slate-600 mb-1">Deployed</p>
             <p className="text-2xl font-bold text-blue-600">{products.filter(p => p.status === 'Deployed').length}</p>
           </div>
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white rounded-lg border border-slate-200 p-4 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-white rounded-lg border border-slate-200 p-3 mb-3">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             {/* Search */}
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-slate-700 mb-2">Search by Serial / Product</label>
@@ -258,7 +258,7 @@ export default function SerialTrackingPage() {
         </div>
 
         {/* Warning Banner */}
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex gap-3">
+        <div className="mb-3 p-3 bg-red-50 border border-red-200 rounded-lg flex gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
           <div>
             <p className="font-medium text-red-900">1 product has expired warranty</p>
@@ -272,42 +272,42 @@ export default function SerialTrackingPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50">
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Serial Number</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Product</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Batch</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Status</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Warranty</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Expiry Date</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Location</th>
-                  <th className="px-6 py-4 text-left font-semibold text-slate-700">Actions</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Serial Number</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Product</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Batch</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Status</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Warranty</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Expiry Date</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Location</th>
+                  <th className="px-3 py-2 text-left font-semibold text-slate-700">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredProducts.map((product, index) => (
                   <tr key={index} className="border-b border-slate-200 hover:bg-slate-50">
-                    <td className="px-6 py-4 font-mono font-medium text-emerald-600">{product.serialNumber}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 font-mono font-medium text-emerald-600">{product.serialNumber}</td>
+                    <td className="px-3 py-2">
                       <div>
                         <p className="font-medium text-slate-900">{product.productName}</p>
                         <p className="text-xs text-slate-600">{product.productId}</p>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-slate-600">{product.batchNumber}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-slate-600">{product.batchNumber}</td>
+                    <td className="px-3 py-2">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(product.status)}`}>
                         {product.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getWarrantyColor(product.warrantyStatus)}`}>
                         {product.warrantyStatus}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-slate-600">
+                    <td className="px-3 py-2 text-slate-600">
                       {new Date(product.warrantyExpiry).toLocaleDateString()}
                     </td>
-                    <td className="px-6 py-4 text-slate-600 text-sm">{product.location}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-slate-600 text-sm">{product.location}</td>
+                    <td className="px-3 py-2">
                       <div className="flex gap-2">
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Eye className="w-4 h-4 text-gray-600" />
@@ -337,7 +337,7 @@ export default function SerialTrackingPage() {
 
         {/* Export Button */}
         <div className="mt-6 flex justify-end">
-          <button className="flex items-center gap-2 px-6 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium">
+          <button className="flex items-center gap-2 px-3 py-2 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 font-medium">
             <Download className="w-5 h-5" />
             Export Data
           </button>

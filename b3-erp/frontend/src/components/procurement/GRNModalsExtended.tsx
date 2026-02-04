@@ -70,10 +70,10 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <ClipboardCheck className="w-6 h-6" />
             <div>
@@ -87,9 +87,9 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Inspection Details */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Inspection Type</label>
               <select
@@ -144,13 +144,13 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
           {/* Item-wise Quality Check */}
           <div>
             <h3 className="font-semibold text-gray-700 mb-3">Item-wise Quality Assessment</h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {grn.items.map((grnItem, index) => {
                 const qcItem = formData.items[index]
                 if (!qcItem) return null
 
                 return (
-                  <div key={index} className="border border-gray-300 rounded-lg p-4">
+                  <div key={index} className="border border-gray-300 rounded-lg p-3">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h4 className="font-semibold text-gray-900">{grnItem.itemName}</h4>
@@ -171,7 +171,7 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
                       </select>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div>
                         <label className="flex items-center gap-2 text-sm">
                           <input
@@ -202,9 +202,9 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
           </div>
 
           {/* Overall Assessment */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h3 className="font-semibold text-purple-900 mb-3">Overall Assessment</h3>
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <label className="block text-sm font-medium text-purple-700 mb-2">Overall Result</label>
                 <select
@@ -250,7 +250,7 @@ export const QualityInspectionModal: React.FC<QualityInspectionModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -308,10 +308,10 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className={`px-6 py-4 flex justify-between items-center rounded-t-lg ${
+        <div className={`px-3 py-2 flex justify-between items-center rounded-t-lg ${
           action === 'accept' ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 'bg-gradient-to-r from-red-500 to-rose-500'
         } text-white`}>
           <div className="flex items-center gap-3">
@@ -327,9 +327,9 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           {/* Warning/Confirmation Message */}
-          <div className={`border-l-4 p-4 rounded ${
+          <div className={`border-l-4 p-3 rounded ${
             action === 'accept' ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'
           }`}>
             <div className="flex items-start gap-3">
@@ -353,9 +353,9 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
           </div>
 
           {/* GRN Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-2">GRN Summary</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">PO Number:</p>
                 <p className="font-semibold">{grn.poNumber}</p>
@@ -432,7 +432,7 @@ export const AcceptRejectGRNModal: React.FC<AcceptRejectGRNModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -529,10 +529,10 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
   if (!isOpen || !grn) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Warehouse className="w-6 h-6" />
             <div>
@@ -546,9 +546,9 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Warehouse Selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Select Warehouse *</label>
               <select
@@ -652,7 +652,7 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
           </div>
 
           {/* Posting Options */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="font-semibold text-blue-900 mb-3">Posting Options</h4>
             <div className="space-y-2">
               <label className="flex items-center gap-3">
@@ -699,7 +699,7 @@ export const PostToInventoryModal: React.FC<PostToInventoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -763,10 +763,10 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <div>
@@ -780,9 +780,9 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status Badges */}
-          <div className="flex gap-3 mb-6">
+          <div className="flex gap-3 mb-3">
             <span className={`px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(grn.status)}`}>
               {grn.status.toUpperCase().replace('_', ' ')}
             </span>
@@ -792,25 +792,25 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
           </div>
 
           {/* GRN Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">PO Number</p>
               <p className="text-lg font-bold text-gray-900">{grn.poNumber}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Vendor</p>
               <p className="text-lg font-bold text-gray-900">{grn.vendorName}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm text-gray-600 mb-1">Receipt Date</p>
               <p className="text-lg font-bold text-gray-900">{grn.receiptDate}</p>
             </div>
           </div>
 
           {/* Additional Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <p className="text-sm text-gray-600">Delivery Note</p>
               <p className="font-semibold text-gray-900">{grn.deliveryNote}</p>
@@ -834,7 +834,7 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
           </div>
 
           {/* Items Table */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -877,7 +877,7 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
 
           {/* Discrepancy Notes */}
           {grn.discrepancyNotes && (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <h4 className="font-semibold text-yellow-900 mb-2">Discrepancy Notes</h4>
               <p className="text-yellow-800">{grn.discrepancyNotes}</p>
             </div>
@@ -885,7 +885,7 @@ export const ViewGRNDetailsModal: React.FC<ViewGRNDetailsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

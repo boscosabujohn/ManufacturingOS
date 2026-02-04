@@ -161,10 +161,10 @@ export default function NotificationPreferencesPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6 ">
+    <div className="w-full py-2 space-y-3 ">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Link href="/notifications">
             <Button variant="ghost" size="icon">
               <ArrowLeft className="w-5 h-5" />
@@ -199,7 +199,7 @@ export default function NotificationPreferencesPage() {
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className={`w-12 h-12 rounded-full ${localPrefs.enabled ? 'bg-blue-100' : 'bg-gray-100'} flex items-center justify-center`}>
                 <Bell className={`w-6 h-6 ${localPrefs.enabled ? 'text-blue-600' : 'text-gray-400'}`} />
               </div>
@@ -222,10 +222,10 @@ export default function NotificationPreferencesPage() {
           <CardTitle>Delivery Channels</CardTitle>
           <CardDescription>Choose how you want to receive notifications</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-3">
           {/* Push Notifications */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
                 <Smartphone className="w-5 h-5 text-purple-600" />
               </div>
@@ -254,8 +254,8 @@ export default function NotificationPreferencesPage() {
           </div>
 
           {/* Sound */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
                 {localPrefs.soundEnabled ? (
                   <Volume2 className="w-5 h-5 text-orange-600" />
@@ -285,7 +285,7 @@ export default function NotificationPreferencesPage() {
           </CardTitle>
           <CardDescription>Pause notifications during specific hours</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-2">
           <div className="flex items-center justify-between">
             <div>
               <h4 className="font-medium text-gray-900">Enable Quiet Hours</h4>
@@ -298,7 +298,7 @@ export default function NotificationPreferencesPage() {
           </div>
 
           {localPrefs.quietHours.enabled && (
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+            <div className="grid grid-cols-2 gap-2 pt-4 border-t">
               <div className="space-y-2">
                 <Label>Start Time</Label>
                 <Input
@@ -327,7 +327,7 @@ export default function NotificationPreferencesPage() {
           <CardDescription>Configure preferences for each type of notification</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {(Object.keys(categoryConfig) as NotificationCategory[]).map(category => {
               const config = categoryConfig[category];
               const Icon = config.icon;
@@ -335,7 +335,7 @@ export default function NotificationPreferencesPage() {
 
               return (
                 <div key={category} className="p-4 border rounded-lg">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-full ${config.bgColor} flex items-center justify-center`}>
                         <Icon className={`w-5 h-5 ${config.color}`} />
@@ -352,7 +352,7 @@ export default function NotificationPreferencesPage() {
                   </div>
 
                   {catPrefs.enabled && (
-                    <div className="grid grid-cols-2 gap-4 pt-4 border-t ml-13">
+                    <div className="grid grid-cols-2 gap-2 pt-4 border-t ml-13">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Push notifications</span>
                         <Checkbox
@@ -385,9 +385,9 @@ export default function NotificationPreferencesPage() {
           <CardDescription>Choose which modules can send you notifications</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {moduleConfig.map(module => (
-              <div key={module.id} className="flex items-center justify-between p-4 border rounded-lg">
+              <div key={module.id} className="flex items-center justify-between p-3 border rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900">{module.label}</h4>
                   <p className="text-sm text-gray-500">{module.description}</p>

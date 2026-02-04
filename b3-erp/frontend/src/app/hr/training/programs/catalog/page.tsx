@@ -158,7 +158,7 @@ export default function ProgramCatalogPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <BookOpen className="h-8 w-8 text-indigo-600" />
           Training Program Catalog
@@ -167,8 +167,8 @@ export default function ProgramCatalogPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Programs</p>
@@ -177,7 +177,7 @@ export default function ProgramCatalogPage() {
             <BookOpen className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active</p>
@@ -186,7 +186,7 @@ export default function ProgramCatalogPage() {
             <Award className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Upcoming</p>
@@ -195,7 +195,7 @@ export default function ProgramCatalogPage() {
             <Calendar className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Enrolled</p>
@@ -204,7 +204,7 @@ export default function ProgramCatalogPage() {
             <Users className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">With Certificate</p>
@@ -216,8 +216,8 @@ export default function ProgramCatalogPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -240,7 +240,7 @@ export default function ProgramCatalogPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-4 pt-4 border-t">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
               <select
@@ -289,7 +289,7 @@ export default function ProgramCatalogPage() {
       </div>
 
       {/* Programs Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredPrograms.map(program => (
           <div key={program.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
             <div className="p-5">
@@ -301,9 +301,9 @@ export default function ProgramCatalogPage() {
                 <StatusBadge status={program.status} />
               </div>
 
-              <p className="text-sm text-gray-600 mb-4">{program.description}</p>
+              <p className="text-sm text-gray-600 mb-2">{program.description}</p>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center gap-2">
                   <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getCategoryColor(program.category)}`}>
                     {program.category.replace('_', ' ').toUpperCase()}
@@ -313,7 +313,7 @@ export default function ProgramCatalogPage() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     <span>{program.duration}h</span>
@@ -324,7 +324,7 @@ export default function ProgramCatalogPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <Users className="h-4 w-4" />
                     <span>{program.enrolled}/{program.capacity}</span>
@@ -375,13 +375,13 @@ export default function ProgramCatalogPage() {
 
       {filteredPrograms.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <BookOpen className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No programs found matching your criteria</p>
         </div>
       )}
 
       {/* Info Box */}
-      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-indigo-900 mb-2">Training Program Information</h3>
         <ul className="text-sm text-indigo-800 space-y-1">
           <li>• Programs with certification provide official completion certificates</li>

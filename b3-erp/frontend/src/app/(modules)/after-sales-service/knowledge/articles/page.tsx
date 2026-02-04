@@ -229,7 +229,7 @@ export default function ArticlesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Toast Notification */}
       {toast && (
         <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
@@ -245,7 +245,7 @@ export default function ArticlesPage() {
       )}
 
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
             <FileText className="h-8 w-8 text-emerald-600" />
@@ -256,12 +256,12 @@ export default function ArticlesPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowAnalyticsModal(true)}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-md"
+            className="bg-blue-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-md"
           >
             <BarChart3 className="h-5 w-5" />
             View Analytics
           </button>
-          <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+          <button className="bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
             <Plus className="h-5 w-5" />
             New Article
           </button>
@@ -269,7 +269,7 @@ export default function ArticlesPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
         <button
           onClick={() => handleStatsCardClick('total')}
           className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-blue-500 transition-all text-left"
@@ -336,8 +336,8 @@ export default function ArticlesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -349,7 +349,7 @@ export default function ArticlesPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">Category</label>
               <select
@@ -400,14 +400,14 @@ export default function ArticlesPage() {
       </div>
 
       {/* Articles List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredArticles.map((article) => (
           <div
             key={article.id}
             onClick={() => handleArticleClick(article)}
-            className="bg-white rounded-lg border-2 border-gray-200 p-6 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all cursor-pointer"
+            className="bg-white rounded-lg border-2 border-gray-200 p-3 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all cursor-pointer"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-xl font-semibold text-gray-900">{article.title}</h3>
@@ -415,9 +415,9 @@ export default function ArticlesPage() {
                     <span className="bg-purple-100 text-purple-700 text-xs font-medium px-2 py-1 rounded">Featured</span>
                   )}
                 </div>
-                <p className="text-gray-600 mb-4">{article.description}</p>
+                <p className="text-gray-600 mb-2">{article.description}</p>
 
-                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
+                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-2">
                   <div className="flex items-center gap-1">
                     <User className="h-4 w-4" />
                     {article.author}
@@ -435,7 +435,7 @@ export default function ArticlesPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {article.tags.map(tag => (
                     <span key={tag} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
                       #{tag}
@@ -443,7 +443,7 @@ export default function ArticlesPage() {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-6 text-sm text-gray-600">
+                <div className="flex items-center gap-3 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <Eye className="h-4 w-4" />
                     {article.views} views
@@ -497,7 +497,7 @@ export default function ArticlesPage() {
 
         {filteredArticles.length === 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-            <FileText className="h-12 w-12 text-gray-300 mb-4" />
+            <FileText className="h-12 w-12 text-gray-300 mb-2" />
             <p className="text-gray-600 font-medium">No articles found</p>
             <p className="text-gray-500 text-sm">Try adjusting your search or filters</p>
           </div>

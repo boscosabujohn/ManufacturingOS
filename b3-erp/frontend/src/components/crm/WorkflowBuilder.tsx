@@ -251,14 +251,14 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
         <div className="space-y-8">
           {/* Trigger Section */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
+            <div className="flex items-center space-x-2 mb-2">
               <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
                 <span className="text-sm font-bold text-blue-700">1</span>
               </div>
               <h3 className="text-lg font-bold text-gray-900">When this happens</h3>
             </div>
 
-            <div className="ml-12 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border-2 border-blue-200 p-4">
+            <div className="ml-12 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border-2 border-blue-200 p-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   {React.createElement(getTriggerIcon(workflow.trigger.type), {
@@ -281,7 +281,7 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
 
               {showTriggerConfig && (
                 <div className="mt-4 pt-4 border-t border-blue-200">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     {triggerTypes.map((trigger) => (
                       <button
                         key={trigger.value}
@@ -311,7 +311,7 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
 
           {/* Conditions Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
                   <span className="text-sm font-bold text-purple-700">2</span>
@@ -351,7 +351,7 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
                       </div>
                     )}
 
-                    <div className="bg-purple-50 rounded-lg border border-purple-200 p-4">
+                    <div className="bg-purple-50 rounded-lg border border-purple-200 p-3">
                       <div className="flex items-center space-x-3">
                         <Filter className="h-5 w-5 text-purple-600 flex-shrink-0" />
                         <select
@@ -405,8 +405,8 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
                 ))}
               </div>
             ) : (
-              <div className="ml-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-6 text-center">
-                <Filter className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+              <div className="ml-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-3 text-center">
+                <Filter className="h-8 w-8 text-gray-400 mb-2" />
                 <p className="text-sm text-gray-600">No conditions added</p>
                 <p className="text-xs text-gray-500 mt-1">Workflow will run for all matching triggers</p>
               </div>
@@ -415,7 +415,7 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
 
           {/* Actions Section */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
                   <span className="text-sm font-bold text-green-700">3</span>
@@ -439,7 +439,7 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
                         </div>
                       )}
 
-                      <div className="bg-green-50 rounded-lg border border-green-200 p-4">
+                      <div className="bg-green-50 rounded-lg border border-green-200 p-3">
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center space-x-3">
                             <ActionIcon className="h-5 w-5 text-green-600" />
@@ -522,8 +522,8 @@ export const WorkflowBuilder: React.FC<WorkflowBuilderProps> = ({
                 })}
               </div>
             ) : (
-              <div className="ml-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-6 text-center">
-                <Zap className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+              <div className="ml-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-3 text-center">
+                <Zap className="h-8 w-8 text-gray-400 mb-2" />
                 <p className="text-sm text-gray-600 mb-3">No actions added</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {actionTypes.map((actionType) => (

@@ -120,11 +120,11 @@ export default function EmployeeDirectoryPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
-            <div className="w-full space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-3">
+            <div className="w-full space-y-3">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                     <div>
                         <h1 className="text-3xl font-bold text-white flex items-center gap-3">
                             <Users className="w-8 h-8 text-blue-500" />
@@ -145,7 +145,7 @@ export default function EmployeeDirectoryPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700 flex flex-wrap gap-4 items-center">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 border border-gray-700 flex flex-wrap gap-2 items-center">
                     <div className="flex-1 min-w-[300px] relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                         <input
@@ -184,12 +184,12 @@ export default function EmployeeDirectoryPage() {
                 </div>
 
                 {/* Employee Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {filteredEmployees.map((employee) => (
                         <div key={employee.id} className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden hover:border-gray-600 transition-all duration-300 group">
                             <div className="p-6">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div className="flex items-center gap-4">
+                                <div className="flex justify-between items-start mb-2">
+                                    <div className="flex items-center gap-2">
                                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
                                             {employee.name.charAt(0)}
                                         </div>
@@ -241,7 +241,7 @@ export default function EmployeeDirectoryPage() {
 
                 {filteredEmployees.length === 0 && (
                     <div className="text-center py-12">
-                        <UserX className="w-16 h-16 text-gray-600 mb-4" />
+                        <UserX className="w-16 h-16 text-gray-600 mb-2" />
                         <p className="text-gray-400 text-lg">No employees found</p>
                         <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
                     </div>

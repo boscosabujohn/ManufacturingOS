@@ -59,9 +59,9 @@ export default function ProfitLossReport() {
     };
 
     return (
-        <div className="w-full p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Profit & Loss Statement</h1>
                     <p className="text-gray-600">Comprehensive income statement - click any card or row to drill down</p>
@@ -79,7 +79,7 @@ export default function ProfitLossReport() {
             </div>
 
             {/* Summary Cards - NOW CLICKABLE */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Revenue"
                     value={`$${(plData.totalRevenue / 1000).toFixed(0)}K`}
@@ -122,8 +122,8 @@ export default function ProfitLossReport() {
                             <tbody>
                                 {/* Revenue Section */}
                                 <tr className="bg-blue-50">
-                                    <td className="px-6 py-3 font-bold text-blue-900">REVENUE</td>
-                                    <td className="px-6 py-3 text-right font-bold text-blue-900">
+                                    <td className="px-3 py-2 font-bold text-blue-900">REVENUE</td>
+                                    <td className="px-3 py-2 text-right font-bold text-blue-900">
                                         ${plData.totalRevenue.toLocaleString()}
                                     </td>
                                 </tr>
@@ -136,8 +136,8 @@ export default function ProfitLossReport() {
 
                                 {/* COGS Section */}
                                 <tr className="bg-red-50">
-                                    <td className="px-6 py-3 font-bold text-red-900">COST OF GOODS SOLD</td>
-                                    <td className="px-6 py-3 text-right font-bold text-red-900">
+                                    <td className="px-3 py-2 font-bold text-red-900">COST OF GOODS SOLD</td>
+                                    <td className="px-3 py-2 text-right font-bold text-red-900">
                                         ${plData.totalCOGS.toLocaleString()}
                                     </td>
                                 </tr>
@@ -150,8 +150,8 @@ export default function ProfitLossReport() {
 
                                 {/* Gross Profit */}
                                 <tr className="bg-green-50">
-                                    <td className="px-6 py-3 font-bold text-green-900">GROSS PROFIT</td>
-                                    <td className="px-6 py-3 text-right font-bold text-green-900">
+                                    <td className="px-3 py-2 font-bold text-green-900">GROSS PROFIT</td>
+                                    <td className="px-3 py-2 text-right font-bold text-green-900">
                                         ${plData.grossProfit.toLocaleString()}
                                         <span className="text-sm ml-2">({plData.grossMargin}%)</span>
                                     </td>
@@ -159,8 +159,8 @@ export default function ProfitLossReport() {
 
                                 {/* Operating Expenses */}
                                 <tr className="bg-orange-50">
-                                    <td className="px-6 py-3 font-bold text-orange-900">OPERATING EXPENSES</td>
-                                    <td className="px-6 py-3 text-right font-bold text-orange-900">
+                                    <td className="px-3 py-2 font-bold text-orange-900">OPERATING EXPENSES</td>
+                                    <td className="px-3 py-2 text-right font-bold text-orange-900">
                                         ${plData.totalOpEx.toLocaleString()}
                                     </td>
                                 </tr>
@@ -173,8 +173,8 @@ export default function ProfitLossReport() {
 
                                 {/* Operating Income */}
                                 <tr className="bg-purple-50">
-                                    <td className="px-6 py-3 font-bold text-purple-900">OPERATING INCOME</td>
-                                    <td className="px-6 py-3 text-right font-bold text-purple-900">
+                                    <td className="px-3 py-2 font-bold text-purple-900">OPERATING INCOME</td>
+                                    <td className="px-3 py-2 text-right font-bold text-purple-900">
                                         ${plData.operatingIncome.toLocaleString()}
                                     </td>
                                 </tr>
@@ -193,8 +193,8 @@ export default function ProfitLossReport() {
 
                                 {/* Net Income */}
                                 <tr className="bg-gradient-to-r from-green-600 to-green-700">
-                                    <td className="px-6 py-4 font-bold text-white text-lg">NET INCOME</td>
-                                    <td className="px-6 py-4 text-right font-bold text-white text-lg flex items-center justify-end gap-2">
+                                    <td className="px-3 py-2 font-bold text-white text-lg">NET INCOME</td>
+                                    <td className="px-3 py-2 text-right font-bold text-white text-lg flex items-center justify-end gap-2">
                                         ${plData.netIncome.toLocaleString()}
                                         {plData.netIncome > 0 ? (
                                             <TrendingUp className="h-5 w-5" />

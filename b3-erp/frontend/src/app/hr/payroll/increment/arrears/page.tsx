@@ -201,14 +201,14 @@ export default function IncrementArrearsPage() {
   }, [filteredArrears]);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Increment Arrears</h1>
         <p className="text-sm text-gray-600 mt-1">Backpay calculation for delayed increment implementation</p>
       </div>
 
-      <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg shadow-sm border border-orange-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg shadow-sm border border-orange-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">FY 2025-26 Arrears</h2>
             <p className="text-sm text-gray-600 mt-1">Arrears for delayed annual increment implementation</p>
@@ -216,8 +216,8 @@ export default function IncrementArrearsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -227,7 +227,7 @@ export default function IncrementArrearsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Arrears</p>
@@ -237,7 +237,7 @@ export default function IncrementArrearsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">PF Arrears</p>
@@ -247,7 +247,7 @@ export default function IncrementArrearsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Net Arrears</p>
@@ -257,7 +257,7 @@ export default function IncrementArrearsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Approved</p>
@@ -267,7 +267,7 @@ export default function IncrementArrearsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Paid</p>
@@ -279,8 +279,8 @@ export default function IncrementArrearsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -316,10 +316,10 @@ export default function IncrementArrearsPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredArrears.map(arr => (
-          <div key={arr.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={arr.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{arr.employeeName}</h3>
@@ -351,8 +351,8 @@ export default function IncrementArrearsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="text-xs font-semibold text-gray-700 mb-3">Salary Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -372,7 +372,7 @@ export default function IncrementArrearsPage() {
                 </div>
               </div>
 
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="text-xs font-semibold text-orange-900 mb-3">Delay Period</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -392,7 +392,7 @@ export default function IncrementArrearsPage() {
                 </div>
               </div>
 
-              <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+              <div className="bg-amber-50 rounded-lg p-3 border border-amber-200">
                 <h4 className="text-xs font-semibold text-amber-900 mb-3">Arrears Calculation</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -412,7 +412,7 @@ export default function IncrementArrearsPage() {
                 </div>
               </div>
 
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <h4 className="text-xs font-semibold text-red-900 mb-3">Deductions</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -432,7 +432,7 @@ export default function IncrementArrearsPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">Net Payment</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -474,9 +474,9 @@ export default function IncrementArrearsPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-4">
+      <div className="mt-6 bg-orange-50 border border-orange-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-orange-900 mb-2">Arrears Payment Guidelines</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <h4 className="text-xs font-bold text-orange-800 mb-2">Calculation Method:</h4>
             <ul className="text-sm text-orange-800 space-y-1">

@@ -56,7 +56,7 @@ export default function SiteLocationPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -78,13 +78,13 @@ export default function SiteLocationPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Site Address */}
                 <Card className="lg:col-span-2">
                     <CardHeader>
                         <CardTitle>Delivery Address</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-2">
                         <div className="space-y-2">
                             <Label htmlFor="siteAddress">Site Address</Label>
                             <Textarea
@@ -94,7 +94,7 @@ export default function SiteLocationPage() {
                                 rows={2}
                             />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-2">
                             <div className="space-y-2">
                                 <Label htmlFor="city">City</Label>
                                 <Input
@@ -170,8 +170,8 @@ export default function SiteLocationPage() {
                 <CardHeader>
                     <CardTitle>Site Contact Details</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                <CardContent className="space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
                         <div className="space-y-2">
                             <Label htmlFor="contactPerson">Contact Person Name</Label>
                             <div className="flex gap-2">
@@ -195,7 +195,7 @@ export default function SiteLocationPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                         <div className="space-y-2">
                             <Label htmlFor="alternatePhone">Alternate Phone (Optional)</Label>
                             <div className="flex gap-2">
@@ -216,8 +216,8 @@ export default function SiteLocationPage() {
                 <CardHeader>
                     <CardTitle>Delivery Schedule</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                <CardContent className="space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
                         <div className="space-y-2">
                             <Label htmlFor="deliveryDate">Preferred Delivery Date</Label>
                             <Input

@@ -68,7 +68,7 @@ export default function ReceivedFeedbackPage() {
     : feedbackData.filter(f => f.category === filterCategory);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -95,13 +95,13 @@ export default function ReceivedFeedbackPage() {
         ))}
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid gap-2">
         {filteredFeedback.map((item) => (
           <div
             key={item.id}
-            className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+            className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
           >
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-2">
               <div className={`p-3 rounded-lg ${getCategoryColor(item.category)}`}>
                 {getCategoryIcon(item.category)}
               </div>

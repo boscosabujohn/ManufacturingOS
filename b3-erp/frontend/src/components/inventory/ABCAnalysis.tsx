@@ -94,20 +94,20 @@ export default function ABCAnalysis() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-emerald-50 to-green-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-emerald-50 to-green-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">ABC/XYZ Analysis & Classification</h1>
           <p className="text-gray-600">Strategic inventory classification for optimized control</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="flex">
             {['abc', 'xyz', 'matrix'].map((view) => (
               <button
                 key={view}
                 onClick={() => setActiveView(view as any)}
-                className={`flex-1 px-6 py-4 font-medium transition-colors ${
+                className={`flex-1 px-3 py-2 font-medium transition-colors ${
                   activeView === view
                     ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -119,14 +119,14 @@ export default function ABCAnalysis() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
           {activeView === 'abc' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">ABC Classification</h2>
 
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
-                  <div className="flex items-center justify-between mb-4">
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">Class A Items</h3>
                     <span className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl">A</span>
                   </div>
@@ -137,8 +137,8 @@ export default function ABCAnalysis() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-6 border border-yellow-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-3 border border-yellow-200">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">Class B Items</h3>
                     <span className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl">B</span>
                   </div>
@@ -149,8 +149,8 @@ export default function ABCAnalysis() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-6 border border-red-200">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-3 border border-red-200">
+                  <div className="flex items-center justify-between mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">Class C Items</h3>
                     <span className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl">C</span>
                   </div>
@@ -164,7 +164,7 @@ export default function ABCAnalysis() {
 
               <div className="space-y-3">
                 {items.map((item) => (
-                  <div key={item.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={item.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -173,7 +173,7 @@ export default function ABCAnalysis() {
                             Class {item.abcClass}
                           </span>
                         </div>
-                        <div className="grid grid-cols-4 gap-4 text-sm">
+                        <div className="grid grid-cols-4 gap-2 text-sm">
                           <div>
                             <p className="text-gray-600">SKU</p>
                             <p className="font-semibold text-gray-900">{item.sku}</p>
@@ -200,20 +200,20 @@ export default function ABCAnalysis() {
           )}
 
           {activeView === 'xyz' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">XYZ Classification (Demand Variability)</h2>
 
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-3 gap-2 mb-3">
                 {['X', 'Y', 'Z'].map((classification) => {
                   const count = items.filter(i => i.xyzClass === classification).length;
                   const desc = classification === 'X' ? 'Low variability (<20%)' : classification === 'Y' ? 'Medium variability (20-50%)' : 'High variability (>50%)';
                   return (
-                    <div key={classification} className={`rounded-lg p-6 border ${
+                    <div key={classification} className={`rounded-lg p-3 border ${
                       classification === 'X' ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200' :
                       classification === 'Y' ? 'bg-gradient-to-br from-yellow-50 to-amber-50 border-yellow-200' :
                       'bg-gradient-to-br from-red-50 to-orange-50 border-red-200'
                     }`}>
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-between mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">Class {classification}</h3>
                         <span className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl ${
                           classification === 'X' ? 'bg-green-600' : classification === 'Y' ? 'bg-yellow-600' : 'bg-red-600'
@@ -230,7 +230,7 @@ export default function ABCAnalysis() {
 
               <div className="space-y-3">
                 {items.map((item) => (
-                  <div key={item.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={item.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="flex items-center gap-3 mb-2">
@@ -249,11 +249,11 @@ export default function ABCAnalysis() {
           )}
 
           {activeView === 'matrix' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">ABC-XYZ Matrix</h2>
 
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                <div className="grid grid-cols-4 gap-4">
+              <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                <div className="grid grid-cols-4 gap-2">
                   <div></div>
                   <div className="text-center font-semibold text-gray-700">X (Low Var)</div>
                   <div className="text-center font-semibold text-gray-700">Y (Med Var)</div>
@@ -278,7 +278,7 @@ export default function ABCAnalysis() {
                           'Minimal stock';
 
                         return (
-                          <div key={xyz} className={`rounded-lg p-4 border ${
+                          <div key={xyz} className={`rounded-lg p-3 border ${
                             abc === 'A' && xyz === 'X' ? 'bg-green-100 border-green-300' :
                             abc === 'A' ? 'bg-yellow-100 border-yellow-300' :
                             abc === 'C' && xyz === 'Z' ? 'bg-red-100 border-red-300' :

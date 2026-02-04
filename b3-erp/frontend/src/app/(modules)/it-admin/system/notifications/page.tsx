@@ -228,8 +228,8 @@ export default function NotificationSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -248,10 +248,10 @@ export default function NotificationSettingsPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Categories Sidebar */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Categories</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Categories</h2>
           <div className="space-y-2">
             {categories.map((category) => {
               const IconComponent = category.icon;
@@ -275,7 +275,7 @@ export default function NotificationSettingsPage() {
             })}
           </div>
 
-          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-3">
               <Bell className="w-5 h-5 text-blue-600" />
               <h3 className="text-sm font-bold text-blue-900">Statistics</h3>
@@ -306,15 +306,15 @@ export default function NotificationSettingsPage() {
         </div>
 
         {/* Notifications List */}
-        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
-          <div className="mb-6">
+        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3">
+          <div className="mb-3">
             <h2 className="text-lg font-bold text-gray-900 mb-2">
               {selectedCategory === 'all' ? 'All Notifications' : `${selectedCategory} Notifications`}
             </h2>
             <p className="text-sm text-gray-600">Configure which channels should receive each notification type</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredNotifications.map((notification) => (
               <div key={notification.id} className="border border-gray-200 rounded-lg p-5">
                 <div className="flex items-start justify-between mb-3">
@@ -411,7 +411,7 @@ export default function NotificationSettingsPage() {
             </div>
           )}
 
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Notification Guidelines:</h3>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• <strong>Email:</strong> Best for detailed information and non-urgent updates</li>

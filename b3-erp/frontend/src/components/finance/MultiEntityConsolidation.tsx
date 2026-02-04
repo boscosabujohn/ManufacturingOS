@@ -163,7 +163,7 @@ export default function MultiEntityConsolidation({
   const totalAssets = data?.statements.reduce((sum, s) => sum + s.assets, 0) || 1;
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -196,7 +196,7 @@ export default function MultiEntityConsolidation({
       </div>
 
       {/* Consolidated KPIs */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-5">
           <div className="flex items-center justify-between mb-3">
             <DollarSign className="w-10 h-10 text-green-600 opacity-80" />
@@ -260,7 +260,7 @@ export default function MultiEntityConsolidation({
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <nav className="flex gap-4">
+        <nav className="flex gap-2">
           {[
             { id: 'overview', label: 'Consolidation Overview', icon: BarChart3 },
             { id: 'entities', label: 'Entity Breakdown', icon: Building2 },
@@ -288,7 +288,7 @@ export default function MultiEntityConsolidation({
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Consolidated Income Statement */}
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-indigo-50 to-purple-50">
@@ -340,7 +340,7 @@ export default function MultiEntityConsolidation({
             <div className="p-6">
               <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 uppercase mb-4">Assets</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 uppercase mb-2">Assets</h4>
                   <table className="w-full">
                     <tbody className="divide-y divide-gray-200">
                       <tr className="hover:bg-gray-50">
@@ -353,7 +353,7 @@ export default function MultiEntityConsolidation({
                   </table>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 uppercase mb-4">Liabilities & Equity</h4>
+                  <h4 className="text-sm font-semibold text-gray-700 uppercase mb-2">Liabilities & Equity</h4>
                   <table className="w-full">
                     <tbody className="divide-y divide-gray-200">
                       <tr className="hover:bg-gray-50">
@@ -402,26 +402,26 @@ export default function MultiEntityConsolidation({
               </div>
             </div>
             <div className="p-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 bg-red-50 rounded-lg border border-red-200">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div className="text-center p-3 bg-red-50 rounded-lg border border-red-200">
                   <p className="text-xs font-medium text-red-600 uppercase">Revenue Eliminations</p>
                   <p className="text-lg font-bold text-red-900 mt-2">
                     {formatCurrency(data?.consolidatedResult.eliminations.revenue || 0, true)}
                   </p>
                 </div>
-                <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
                   <p className="text-xs font-medium text-green-600 uppercase">Expense Eliminations</p>
                   <p className="text-lg font-bold text-green-900 mt-2">
                     {formatCurrency(data?.consolidatedResult.eliminations.expenses || 0, true)}
                   </p>
                 </div>
-                <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <p className="text-xs font-medium text-blue-600 uppercase">Asset Eliminations</p>
                   <p className="text-lg font-bold text-blue-900 mt-2">
                     {formatCurrency(data?.consolidatedResult.eliminations.assets || 0, true)}
                   </p>
                 </div>
-                <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
                   <p className="text-xs font-medium text-purple-600 uppercase">Liability Eliminations</p>
                   <p className="text-lg font-bold text-purple-900 mt-2">
                     {formatCurrency(data?.consolidatedResult.eliminations.liabilities || 0, true)}
@@ -449,14 +449,14 @@ export default function MultiEntityConsolidation({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Entity</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Country</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Ownership %</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Method</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Revenue</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Assets</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Net Income</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Contribution</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Entity</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Country</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Ownership %</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Method</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Revenue</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Assets</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Net Income</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Contribution</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -466,27 +466,27 @@ export default function MultiEntityConsolidation({
 
                   return (
                     <tr key={entity.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <p className="font-medium text-gray-900">{entity.name}</p>
                           <p className="text-xs text-gray-500 font-mono">{entity.code}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">{entity.country}</td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-sm text-gray-900">{entity.country}</td>
+                      <td className="px-3 py-2 text-center">
                         <span className="text-sm font-semibold text-gray-900">{entity.ownershipPercentage}%</span>
                       </td>
-                      <td className="px-6 py-4 text-center">{getConsolidationMethodBadge(entity.consolidationMethod)}</td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                      <td className="px-3 py-2 text-center">{getConsolidationMethodBadge(entity.consolidationMethod)}</td>
+                      <td className="px-3 py-2 text-right text-sm font-medium text-gray-900">
                         {formatCurrency(statement?.revenue || 0)}
                       </td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                      <td className="px-3 py-2 text-right text-sm font-medium text-gray-900">
                         {formatCurrency(statement?.assets || 0)}
                       </td>
-                      <td className="px-6 py-4 text-right text-sm font-medium text-green-600">
+                      <td className="px-3 py-2 text-right text-sm font-medium text-green-600">
                         {formatCurrency(statement?.netIncome || 0)}
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-3 py-2 text-center">
                         <div className="flex items-center justify-center gap-2">
                           <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                             <div
@@ -523,29 +523,29 @@ export default function MultiEntityConsolidation({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">From Entity</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">To Entity</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Amount</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">From Entity</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">To Entity</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Amount</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.intercompanyTransactions.map((txn) => (
                   <tr key={txn.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-3 py-2 text-sm text-gray-900">
                       {new Date(txn.date).toLocaleDateString('en-IN')}
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{txn.fromEntity}</td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{txn.toEntity}</td>
-                    <td className="px-6 py-4">{getTransactionTypeBadge(txn.type)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">{txn.description}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{txn.fromEntity}</td>
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{txn.toEntity}</td>
+                    <td className="px-3 py-2">{getTransactionTypeBadge(txn.type)}</td>
+                    <td className="px-3 py-2 text-sm text-gray-600 max-w-xs truncate">{txn.description}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-gray-900">
                       {formatCurrency(txn.amount)}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       {txn.eliminated ? (
                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
                           <CheckCircle className="w-3 h-3" />
@@ -584,29 +584,29 @@ export default function MultiEntityConsolidation({
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Affected Entities</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Description</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Amount</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Affected Entities</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.adjustments.map((adj) => (
                   <tr key={adj.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="px-2 py-1 rounded text-xs font-medium bg-purple-100 text-purple-700">
                         {adj.type.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 max-w-md">{adj.description}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 text-sm text-gray-900 max-w-md">{adj.description}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-gray-900">
                       {formatCurrency(adj.amount)}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
+                    <td className="px-3 py-2 text-sm text-gray-600">
                       {adj.affectedEntities.join(', ')}
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
                           adj.status === 'posted'

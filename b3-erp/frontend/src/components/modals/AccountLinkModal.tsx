@@ -180,14 +180,14 @@ export default function AccountLinkModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div
         className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-xl"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between z-10">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Link2 className="w-6 h-6 text-blue-600" />
             {mode === 'edit' ? 'Edit Account Link' : 'Link Account'}
@@ -245,7 +245,7 @@ export default function AccountLinkModal({
             )}
 
             {showDropdown && filteredAccounts.length === 0 && searchQuery.trim() !== '' && (
-              <div className="absolute z-20 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg p-4 text-center text-gray-500">
+              <div className="absolute z-20 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg p-3 text-center text-gray-500">
                 No accounts found matching "{searchQuery}"
               </div>
             )}
@@ -298,7 +298,7 @@ export default function AccountLinkModal({
           </div>
 
           {/* Bidirectional Link */}
-          <div className="border border-gray-300 rounded-lg p-4">
+          <div className="border border-gray-300 rounded-lg p-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -320,7 +320,7 @@ export default function AccountLinkModal({
 
           {/* Relationship Preview */}
           {formData.targetAccountId && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="text-sm font-medium text-gray-700 mb-2">Relationship Preview</div>
               <div className="flex items-center gap-3 text-sm">
                 <span className="font-medium text-gray-900">Current Account</span>

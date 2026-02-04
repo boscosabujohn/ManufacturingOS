@@ -120,7 +120,7 @@ export const TimelineView: React.FC<TimelineViewProps> = ({
               />
             )}
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-2">
               {/* Icon/Avatar */}
               <div className={`relative flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full ${colors.bg}`}>
                 <Icon className={`h-5 w-5 ${colors.icon}`} />

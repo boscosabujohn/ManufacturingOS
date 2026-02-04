@@ -595,8 +595,8 @@ export default function SiteSurveyPage() {
    </div>
 
    {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+   <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Surveys</p>
@@ -605,7 +605,7 @@ export default function SiteSurveyPage() {
       <MapPin className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Completed</p>
@@ -614,7 +614,7 @@ export default function SiteSurveyPage() {
       <CheckCircle className="h-8 w-8 text-green-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">In Progress</p>
@@ -623,7 +623,7 @@ export default function SiteSurveyPage() {
       <Clock className="h-8 w-8 text-blue-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Scheduled</p>
@@ -632,7 +632,7 @@ export default function SiteSurveyPage() {
       <Clock className="h-8 w-8 text-yellow-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Photos</p>
@@ -641,7 +641,7 @@ export default function SiteSurveyPage() {
       <Camera className="h-8 w-8 text-purple-600" />
      </div>
     </div>
-    <div className="bg-white p-4 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Avg Progress</p>
@@ -653,8 +653,8 @@ export default function SiteSurveyPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg border border-gray-200">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+   <div className="bg-white p-3 rounded-lg border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
      <div className="md:col-span-2">
       <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
       <input
@@ -687,7 +687,7 @@ export default function SiteSurveyPage() {
     {paginatedSurveys.map((survey) => (
      <div key={survey.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
       {/* Card Header */}
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-2">
        <div>
         <div className="flex items-center space-x-2">
          <h3 className="text-lg font-bold text-gray-900">{survey.surveyNumber}</h3>
@@ -706,14 +706,14 @@ export default function SiteSurveyPage() {
       </div>
 
       {/* Project Info */}
-      <div className="mb-4">
+      <div className="mb-2">
        <p className="font-medium text-gray-900">{survey.projectName}</p>
        <p className="text-sm text-gray-600">{survey.siteName}</p>
        <p className="text-xs text-gray-500">{survey.siteAddress}, {survey.city}, {survey.state}</p>
       </div>
 
       {/* Measurements */}
-      <div className="grid grid-cols-4 gap-2 mb-4 bg-gray-50 p-3 rounded-lg">
+      <div className="grid grid-cols-4 gap-2 mb-2 bg-gray-50 p-3 rounded-lg">
        <div>
         <p className="text-xs text-gray-500">Length</p>
         <p className="text-sm font-semibold text-gray-900">{survey.measurements.length}m</p>
@@ -733,7 +733,7 @@ export default function SiteSurveyPage() {
       </div>
 
       {/* Site Details */}
-      <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+      <div className="grid grid-cols-2 gap-3 mb-2 text-sm">
        <div className="flex items-center space-x-2">
         <span className="text-gray-600">Accessibility:</span>
         <span className={`font-medium ${getAccessibilityColor(survey.accessibility)}`}>
@@ -764,7 +764,7 @@ export default function SiteSurveyPage() {
 
       {/* Issues */}
       {survey.issues.length > 0 && (
-       <div className="mb-4">
+       <div className="mb-2">
         <div className="flex items-center space-x-2 mb-2">
          <AlertTriangle className="h-4 w-4 text-yellow-600" />
          <span className="text-sm font-medium text-gray-700">{survey.issues.length} Issues Identified</span>
@@ -781,7 +781,7 @@ export default function SiteSurveyPage() {
       )}
 
       {/* Action Buttons */}
-      <div className="mb-4 pb-4 border-b border-gray-200">
+      <div className="mb-2 pb-4 border-b border-gray-200">
        <p className="text-sm font-medium text-gray-700 mb-3">Quick Actions</p>
        <div className="grid grid-cols-4 gap-2">
         <button

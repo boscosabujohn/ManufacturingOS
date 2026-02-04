@@ -167,14 +167,14 @@ export default function PayrollTemplatesPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Salary Templates</h1>
         <p className="text-sm text-gray-600 mt-1">Predefined salary structure templates by grade and role</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Templates</p>
@@ -184,7 +184,7 @@ export default function PayrollTemplatesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Templates</p>
@@ -194,7 +194,7 @@ export default function PayrollTemplatesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Employees Assigned</p>
@@ -205,8 +205,8 @@ export default function PayrollTemplatesPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -237,10 +237,10 @@ export default function PayrollTemplatesPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredTemplates.map(template => (
-          <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{template.templateName}</h3>
@@ -281,8 +281,8 @@ export default function PayrollTemplatesPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="font-semibold text-green-900 mb-3">Earnings</h4>
                 <div className="space-y-2">
                   {template.components.filter(c => c.type === 'earning').map((component, idx) => (
@@ -298,7 +298,7 @@ export default function PayrollTemplatesPage() {
                 </div>
               </div>
 
-              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+              <div className="bg-red-50 rounded-lg p-3 border border-red-200">
                 <h4 className="font-semibold text-red-900 mb-3">Deductions</h4>
                 <div className="space-y-2">
                   {template.components.filter(c => c.type === 'deduction').map((component, idx) => (
@@ -322,7 +322,7 @@ export default function PayrollTemplatesPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Salary Template Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• Templates define standard salary structures for different grades and roles</li>
@@ -414,9 +414,9 @@ function TemplateModal({ template, onClose, onSave }: TemplateModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-t-lg">
           <h2 className="text-2xl font-bold">
             {template ? 'Edit Salary Template' : 'New Salary Template'}
           </h2>
@@ -426,7 +426,7 @@ function TemplateModal({ template, onClose, onSave }: TemplateModalProps) {
         </div>
 
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Template Code *
@@ -509,11 +509,11 @@ function TemplateModal({ template, onClose, onSave }: TemplateModalProps) {
             </div>
           </div>
 
-          <div className="border-t border-gray-200 pt-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Salary Components</h3>
+          <div className="border-t border-gray-200 pt-6 mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Salary Components</h3>
 
             {formData.components && formData.components.length > 0 && (
-              <div className="mb-4 space-y-2">
+              <div className="mb-2 space-y-2">
                 {formData.components.map((comp, index) => (
                   <div key={index} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1 grid grid-cols-4 gap-2 text-sm">
@@ -544,7 +544,7 @@ function TemplateModal({ template, onClose, onSave }: TemplateModalProps) {
               </div>
             )}
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <h4 className="text-sm font-semibold text-blue-900 mb-3">Add Component</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <input

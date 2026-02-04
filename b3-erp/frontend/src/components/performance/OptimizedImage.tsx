@@ -216,7 +216,7 @@ export function OptimizedImage({
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
           <div className="text-center text-gray-400">
             <svg
-              className="w-12 h-12 mx-auto mb-2"
+              className="w-12 h-12 mb-2"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

@@ -91,7 +91,7 @@ export default function SalesPipelineManagement() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900 flex items-center">
@@ -102,8 +102,8 @@ export default function SalesPipelineManagement() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Pipeline Value</p>
@@ -113,7 +113,7 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Weighted Value</p>
@@ -123,7 +123,7 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Avg Deal Size</p>
@@ -133,7 +133,7 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Active Deals</p>
@@ -143,7 +143,7 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-4 border border-emerald-200">
+        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-3 border border-emerald-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-emerald-600">Won This Month</p>
@@ -153,7 +153,7 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Avg Sales Cycle</p>
@@ -163,7 +163,7 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Win Rate</p>
@@ -175,21 +175,21 @@ export default function SalesPipelineManagement() {
       </div>
 
       {/* Pipeline Kanban Board */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
           <BarChart3 className="h-5 w-5 text-blue-600 mr-2" />
           Deal Pipeline - Drag & Drop to Move Stages
         </h3>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-2">
           {stages.filter(s => !['won', 'lost'].includes(s.id)).map((stage) => (
             <div
               key={stage.id}
               onDragOver={handleDragOver}
               onDrop={() => handleDrop(stage.id)}
-              className="bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-4 min-h-[400px]"
+              className="bg-gray-50 rounded-lg border-2 border-dashed border-gray-300 p-3 min-h-[400px]"
             >
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-bold text-gray-900">{stage.name}</h4>
                   <span className="text-xs font-semibold text-gray-500">{stage.probability}%</span>
@@ -234,13 +234,13 @@ export default function SalesPipelineManagement() {
       </div>
 
       {/* Stage Conversion Rates */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
             <ArrowRight className="h-5 w-5 text-green-600 mr-2" />
             Stage Conversion Rates
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {stages.filter(s => !['won', 'lost'].includes(s.id)).map((stage, index, arr) => {
               if (index === arr.length - 1) return null;
               const nextStage = arr[index + 1];
@@ -270,12 +270,12 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
             <Calendar className="h-5 w-5 text-purple-600 mr-2" />
             Sales Cycle Duration by Stage
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {stages.filter(s => !['won', 'lost'].includes(s.id)).map((stage) => {
               const stageDeals = getStageDeals(stage.id);
               const avgDays = stageDeals.length > 0
@@ -303,9 +303,9 @@ export default function SalesPipelineManagement() {
       </div>
 
       {/* Won and Lost Deals */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
-          <h3 className="text-lg font-bold text-green-900 mb-4 flex items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+          <h3 className="text-lg font-bold text-green-900 mb-2 flex items-center">
             <Award className="h-5 w-5 text-green-600 mr-2" />
             Recently Won Deals
           </h3>
@@ -327,8 +327,8 @@ export default function SalesPipelineManagement() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-6 border border-red-200">
-          <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center">
+        <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-lg p-3 border border-red-200">
+          <h3 className="text-lg font-bold text-red-900 mb-2 flex items-center">
             <TrendingDown className="h-5 w-5 text-red-600 mr-2" />
             Recently Lost Deals
           </h3>

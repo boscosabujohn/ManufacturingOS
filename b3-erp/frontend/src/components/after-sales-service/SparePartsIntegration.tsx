@@ -34,11 +34,11 @@ export default function SparePartsIntegration() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header Section */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col md:flex-row md:items-center justify-between gap-3 relative overflow-hidden">
         <div className="relative z-10">
-          <h2 className="text-3xl font-extrabold text-slate-900 flex items-center gap-4">
+          <h2 className="text-3xl font-extrabold text-slate-900 flex items-center gap-2">
             <div className="p-3 bg-indigo-600 rounded-2xl shadow-indigo-100 shadow-xl">
               <Package className="h-7 w-7 text-white" />
             </div>
@@ -46,12 +46,12 @@ export default function SparePartsIntegration() {
           </h2>
           <p className="text-slate-500 mt-2 text-lg">Integrated real-time supply chain and multi-warehouse sync</p>
         </div>
-        <div className="flex items-center gap-4 relative z-10">
+        <div className="flex items-center gap-2 relative z-10">
           <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-xs font-bold text-slate-600">ERP Connected: ERP-992-B</span>
           </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all shadow-lg active:scale-95">
+          <button className="flex items-center gap-2 px-3 py-2 bg-slate-900 text-white rounded-xl font-bold hover:bg-black transition-all shadow-lg active:scale-95">
             <RefreshCw className="h-4 w-4" />
             Sync with ERP
           </button>
@@ -61,15 +61,15 @@ export default function SparePartsIntegration() {
       </div>
 
       {/* High Level Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {[
           { label: 'Total SKU Count', value: '2,845', trend: '+12%', isUp: true, icon: Database, color: 'indigo' },
           { label: 'Inventory Value', value: '₹4.2 Cr', trend: '-2.4%', isUp: false, icon: BarChart3, color: 'blue' },
           { label: 'Availability Rate', value: '98.2%', trend: '+0.5%', isUp: true, icon: CheckCircle, color: 'green' },
           { label: 'Open Requisitions', value: '156', trend: '12 Urgent', isUp: true, icon: Clock, color: 'orange' },
         ].map((stat, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-indigo-500 transition-colors group">
-            <div className="flex items-center justify-between mb-4">
+          <div key={idx} className="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 hover:border-indigo-500 transition-colors group">
+            <div className="flex items-center justify-between mb-2">
               <div className={`p-3 bg-${stat.color}-50 rounded-xl`}>
                 <stat.icon className={`h-6 w-6 text-${stat.color}-600`} />
               </div>
@@ -86,9 +86,9 @@ export default function SparePartsIntegration() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Inventory Management Table */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-            <div className="p-6 border-b border-slate-100 flex items-center justify-between flex-wrap gap-4">
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between flex-wrap gap-2">
               <div>
                 <h3 className="font-bold text-slate-900 text-lg">Inventory Stock Levels</h3>
                 <p className="text-sm text-slate-500">Across 12 regional service warehouses</p>
@@ -111,17 +111,17 @@ export default function SparePartsIntegration() {
               <table className="w-full text-left">
                 <thead className="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                   <tr>
-                    <th className="px-6 py-4">Part / SKU</th>
-                    <th className="px-6 py-4">Stock Status</th>
-                    <th className="px-6 py-4">Quantity</th>
-                    <th className="px-6 py-4 text-right">Actions</th>
+                    <th className="px-3 py-2">Part / SKU</th>
+                    <th className="px-3 py-2">Stock Status</th>
+                    <th className="px-3 py-2">Quantity</th>
+                    <th className="px-3 py-2 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {stockAlerts.map((part, idx) => (
                     <tr key={idx} className="hover:bg-slate-50/50 transition-colors group">
                       <td className="px-6 py-5">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                           <div className="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center">
                             <Package className="h-5 w-5 text-slate-400" />
                           </div>
@@ -177,8 +177,8 @@ export default function SparePartsIntegration() {
           </div>
 
           {/* Supply Chain Timeline */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
               <Truck className="h-5 w-5 text-blue-600" />
               Parts in Transit
             </h3>
@@ -198,7 +198,7 @@ export default function SparePartsIntegration() {
                       <p className="text-[10px] text-slate-400 font-medium">Estimated Arrival</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-blue-500 transition-all duration-1000"
@@ -214,15 +214,15 @@ export default function SparePartsIntegration() {
         </div>
 
         {/* Action Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Smart Compatibility Tool */}
-          <div className="bg-indigo-900 text-white rounded-2xl p-6 shadow-xl relative overflow-hidden group">
+          <div className="bg-indigo-900 text-white rounded-2xl p-3 shadow-xl relative overflow-hidden group">
             <div className="relative z-10">
               <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5 text-indigo-300" />
                 Compatibility AI
               </h3>
-              <p className="text-indigo-100 text-xs mb-6 leading-relaxed">
+              <p className="text-indigo-100 text-xs mb-3 leading-relaxed">
                 Verify if a part fits a specific machine model instantly using our AI database.
               </p>
               <div className="space-y-3">
@@ -250,9 +250,9 @@ export default function SparePartsIntegration() {
           </div>
 
           {/* Quick Stats Sidebar */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-slate-900 mb-4 tracking-tight">Supply Chain Health</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h3 className="font-bold text-slate-900 mb-2 tracking-tight">Supply Chain Health</h3>
+            <div className="space-y-2">
               {[
                 { label: 'Carrier Speed', value: 'Faster than avg', color: 'green' },
                 { label: 'Return Rate', value: '4.2% (Normal)', color: 'blue' },
@@ -268,11 +268,11 @@ export default function SparePartsIntegration() {
 
           {/* Catalog Link */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center group hover:border-indigo-500 transition-colors">
-            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
               <Box className="h-8 w-8 text-slate-400 group-hover:text-indigo-600 transition-colors" />
             </div>
             <h4 className="font-bold text-slate-900 mb-1">Interactive Catalog</h4>
-            <p className="text-xs text-slate-500 mb-6">Browse all 12,000+ parts with detailed 3D renders and assembly guides.</p>
+            <p className="text-xs text-slate-500 mb-3">Browse all 12,000+ parts with detailed 3D renders and assembly guides.</p>
             <button className="w-full py-4 border-2 border-slate-100 rounded-2xl font-black text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-all">
               Open Digital Catalog
             </button>

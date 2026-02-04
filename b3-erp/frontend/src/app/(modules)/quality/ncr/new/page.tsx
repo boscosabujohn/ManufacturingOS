@@ -66,8 +66,8 @@ export default function CreateNCRPage() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex items-center gap-4 mb-6">
+        <div className="w-full p-3">
+            <div className="flex items-center gap-2 mb-3">
                 <Button variant="ghost" onClick={() => router.back()}>
                     <ArrowLeft className="h-4 w-4 mr-2" />
                     Back
@@ -83,8 +83,8 @@ export default function CreateNCRPage() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <form onSubmit={handleSubmit} className="space-y-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div className="space-y-2">
                                 <Label htmlFor="title">Title *</Label>
                                 <Input
@@ -183,7 +183,7 @@ export default function CreateNCRPage() {
                             />
                         </div>
 
-                        <div className="flex justify-end gap-4">
+                        <div className="flex justify-end gap-2">
                             <Button type="button" variant="outline" onClick={() => router.back()}>
                                 Cancel
                             </Button>

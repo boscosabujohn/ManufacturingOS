@@ -125,7 +125,7 @@ export default function OTSettingsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Settings className="h-8 w-8 text-blue-600" />
           Overtime Settings & Configuration
@@ -134,11 +134,11 @@ export default function OTSettingsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-3">
         <div className="flex border-b border-gray-200">
           <button
             onClick={() => setActiveTab('rates')}
-            className={`flex-1 px-6 py-4 font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 font-medium transition-colors ${
               activeTab === 'rates'
                 ? 'border-b-2 border-blue-600 text-blue-600 bg-blue-50'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -151,7 +151,7 @@ export default function OTSettingsPage() {
           </button>
           <button
             onClick={() => setActiveTab('rules')}
-            className={`flex-1 px-6 py-4 font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 font-medium transition-colors ${
               activeTab === 'rules'
                 ? 'border-b-2 border-blue-600 text-blue-600 bg-blue-50'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -164,7 +164,7 @@ export default function OTSettingsPage() {
           </button>
           <button
             onClick={() => setActiveTab('compoff')}
-            className={`flex-1 px-6 py-4 font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 font-medium transition-colors ${
               activeTab === 'compoff'
                 ? 'border-b-2 border-blue-600 text-blue-600 bg-blue-50'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -177,7 +177,7 @@ export default function OTSettingsPage() {
           </button>
           <button
             onClick={() => setActiveTab('limits')}
-            className={`flex-1 px-6 py-4 font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 font-medium transition-colors ${
               activeTab === 'limits'
                 ? 'border-b-2 border-blue-600 text-blue-600 bg-blue-50'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -195,7 +195,7 @@ export default function OTSettingsPage() {
           {/* OT Rates Tab */}
           {activeTab === 'rates' && (
             <div>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-3">
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900">Overtime Rate Configuration</h2>
                   <p className="text-sm text-gray-600 mt-1">Define OT rates by grade and designation</p>
@@ -210,25 +210,25 @@ export default function OTSettingsPage() {
               </div>
 
               {/* Summary Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Lowest OT Rate</p>
                   <p className="text-2xl font-bold text-green-700">₹{Math.min(...otRates.map(r => r.hourlyRate * r.multiplier)).toLocaleString('en-IN')}/hr</p>
                   <p className="text-xs text-gray-500 mt-1">Grade E1</p>
                 </div>
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Highest OT Rate</p>
                   <p className="text-2xl font-bold text-blue-700">₹{Math.max(...otRates.map(r => r.hourlyRate * r.multiplier)).toLocaleString('en-IN')}/hr</p>
                   <p className="text-xs text-gray-500 mt-1">Grade M3</p>
                 </div>
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4">
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Average OT Rate</p>
                   <p className="text-2xl font-bold text-purple-700">
                     ₹{Math.round(otRates.reduce((sum, r) => sum + (r.hourlyRate * r.multiplier), 0) / otRates.length).toLocaleString('en-IN')}/hr
                   </p>
                   <p className="text-xs text-gray-500 mt-1">Across all grades</p>
                 </div>
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-3">
                   <p className="text-sm text-gray-600 mb-1">Total Grades</p>
                   <p className="text-2xl font-bold text-yellow-700">{otRates.length}</p>
                   <p className="text-xs text-gray-500 mt-1">Active configurations</p>
@@ -238,7 +238,7 @@ export default function OTSettingsPage() {
               <DataTable data={otRates} columns={rateColumns} />
 
               {/* Rate Calculation Info */}
-              <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-blue-900 mb-2 flex items-center gap-2">
                   <AlertCircle className="w-4 h-4" />
                   OT Rate Calculation Formula
@@ -256,7 +256,7 @@ export default function OTSettingsPage() {
           {/* OT Rules Tab */}
           {activeTab === 'rules' && (
             <div>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-3">
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900">Overtime Rules & Policies</h2>
                   <p className="text-sm text-gray-600 mt-1">Configure general OT eligibility and approval rules</p>
@@ -274,11 +274,11 @@ export default function OTSettingsPage() {
                 </button>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* OT Hours Limits */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">OT Hours Limits</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">OT Hours Limits</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Minimum OT Hours (per request)
@@ -334,9 +334,9 @@ export default function OTSettingsPage() {
                 </div>
 
                 {/* Special Multipliers */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Special OT Multipliers</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Special OT Multipliers</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Weekend Multiplier
@@ -383,9 +383,9 @@ export default function OTSettingsPage() {
                 </div>
 
                 {/* Approval Settings */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval & Submission Settings</h3>
-                  <div className="space-y-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval & Submission Settings</h3>
+                  <div className="space-y-2">
                     <label className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
                       <input
                         type="checkbox"
@@ -402,7 +402,7 @@ export default function OTSettingsPage() {
                       </div>
                     </label>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Auto-Approve Threshold (hours)
@@ -458,7 +458,7 @@ export default function OTSettingsPage() {
           {/* Comp-Off Policy Tab */}
           {activeTab === 'compoff' && (
             <div>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-3">
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900">Compensatory Off Policy</h2>
                   <p className="text-sm text-gray-600 mt-1">Configure comp-off conversion and utilization rules</p>
@@ -476,10 +476,10 @@ export default function OTSettingsPage() {
                 </button>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Comp-Off Enable/Disable */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <label className="flex items-start gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg cursor-pointer transition-colors">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <label className="flex items-start gap-3 p-3 bg-blue-50 border border-blue-200 rounded-lg cursor-pointer transition-colors">
                     <input
                       type="checkbox"
                       checked={compOffRules.enabled}
@@ -497,9 +497,9 @@ export default function OTSettingsPage() {
                 </div>
 
                 {/* Conversion Rules */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Conversion Rules</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Conversion Rules</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Conversion Ratio (hours → days)
@@ -534,9 +534,9 @@ export default function OTSettingsPage() {
                 </div>
 
                 {/* Accrual & Expiry */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Accrual & Expiry</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Accrual & Expiry</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Expiry Period (days)
@@ -568,8 +568,8 @@ export default function OTSettingsPage() {
                 </div>
 
                 {/* Additional Policies */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Additional Policies</h3>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Additional Policies</h3>
                   <div className="space-y-3">
                     <label className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
                       <input
@@ -629,14 +629,14 @@ export default function OTSettingsPage() {
           {/* OT Limits Tab */}
           {activeTab === 'limits' && (
             <div>
-              <div className="mb-6">
+              <div className="mb-3">
                 <h2 className="text-xl font-semibold text-gray-900">Overtime Limits Summary</h2>
                 <p className="text-sm text-gray-600 mt-1">Overview of all OT limits and thresholds</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-white border-2 border-yellow-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
                       <Clock className="w-6 h-6 text-yellow-600" />
                     </div>
@@ -648,8 +648,8 @@ export default function OTSettingsPage() {
                   <p className="text-xs text-gray-500">Maximum overtime hours allowed in a single day</p>
                 </div>
 
-                <div className="bg-white border-2 border-blue-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                       <Calendar className="w-6 h-6 text-blue-600" />
                     </div>
@@ -661,8 +661,8 @@ export default function OTSettingsPage() {
                   <p className="text-xs text-gray-500">Maximum overtime hours allowed in a week</p>
                 </div>
 
-                <div className="bg-white border-2 border-indigo-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
                       <Calendar className="w-6 h-6 text-indigo-600" />
                     </div>
@@ -674,8 +674,8 @@ export default function OTSettingsPage() {
                   <p className="text-xs text-gray-500">Maximum overtime hours allowed in a month</p>
                 </div>
 
-                <div className="bg-white border-2 border-green-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white border-2 border-green-200 rounded-lg p-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
                       <CheckCircle className="w-6 h-6 text-green-600" />
                     </div>
@@ -687,8 +687,8 @@ export default function OTSettingsPage() {
                   <p className="text-xs text-gray-500">OT requests below this are auto-approved</p>
                 </div>
 
-                <div className="bg-white border-2 border-purple-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
                       <AlertCircle className="w-6 h-6 text-purple-600" />
                     </div>
@@ -700,8 +700,8 @@ export default function OTSettingsPage() {
                   <p className="text-xs text-gray-500">Minimum hours required to qualify for OT</p>
                 </div>
 
-                <div className="bg-white border-2 border-red-200 rounded-lg p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="bg-white border-2 border-red-200 rounded-lg p-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
                       <Clock className="w-6 h-6 text-red-600" />
                     </div>
@@ -715,9 +715,9 @@ export default function OTSettingsPage() {
               </div>
 
               {/* Multipliers Info */}
-              <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Special Multipliers</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Special Multipliers</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-yellow-600 mb-1">{otRules.weekendMultiplier}x</div>
                     <div className="text-sm text-gray-700 font-medium">Weekend OT</div>
@@ -742,7 +742,7 @@ export default function OTSettingsPage() {
 
       {/* Success Message */}
       {!isEditMode && (
-        <div className="bg-green-50 border-l-4 border-green-500 rounded-lg p-4">
+        <div className="bg-green-50 border-l-4 border-green-500 rounded-lg p-3">
           <div className="flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-green-600" />
             <div>

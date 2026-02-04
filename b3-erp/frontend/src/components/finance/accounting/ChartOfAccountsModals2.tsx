@@ -21,14 +21,14 @@ export function ExportChartModal({ isOpen, onClose, onExport }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Export Chart of Accounts</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Export Format</label>
               <select
@@ -119,7 +119,7 @@ export function ExportChartModal({ isOpen, onClose, onExport }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Export Chart:', settings); onExport(settings); }}
@@ -221,14 +221,14 @@ export function AccountHierarchyModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] flex flex-col">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Account Hierarchy</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6 flex-1 overflow-y-auto">
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-2 flex items-center justify-between">
             <p className="text-sm text-gray-600">Click on parent accounts to expand/collapse</p>
             <div className="flex gap-2">
               <button
@@ -250,7 +250,7 @@ export function AccountHierarchyModal({ isOpen, onClose }: any) {
             {hierarchyData.map(node => renderNode(node))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">Close</button>
         </div>
       </div>
@@ -270,9 +270,9 @@ export function ViewAccountTransactionsModal({ isOpen, onClose, account }: any) 
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] flex flex-col">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex justify-between items-center">
           <div>
             <h2 className="text-xl font-bold text-white">Account Transactions</h2>
             <p className="text-sm text-slate-200 mt-1">{account?.code} - {account?.name}</p>
@@ -315,7 +315,7 @@ export function ViewAccountTransactionsModal({ isOpen, onClose, account }: any) 
             </table>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button className="inline-flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-700 font-medium">
             <Download className="h-4 w-4" />
             Export to Excel
@@ -339,17 +339,17 @@ export function MapAccountModal({ isOpen, onClose, onSave, account }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Map Account to External Systems</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-sm font-medium text-blue-900">Mapping: {account?.code} - {account?.name}</p>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Tally Account Code</label>
               <input
@@ -402,7 +402,7 @@ export function MapAccountModal({ isOpen, onClose, onSave, account }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Save Mappings:', mappings); onSave(mappings); }}
@@ -428,23 +428,23 @@ export function AccountValidationModal({ isOpen, onClose }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Account Validation Report</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6 flex-1 overflow-y-auto">
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-700">Errors</p>
               <p className="text-3xl font-bold text-red-900 mt-1">2</p>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <p className="text-sm font-medium text-yellow-700">Warnings</p>
               <p className="text-3xl font-bold text-yellow-900 mt-1">2</p>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-700">Info</p>
               <p className="text-3xl font-bold text-blue-900 mt-1">1</p>
             </div>
@@ -480,7 +480,7 @@ export function AccountValidationModal({ isOpen, onClose }: any) {
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button className="inline-flex items-center gap-2 px-4 py-2 text-pink-600 hover:text-pink-700 font-medium">
             <Download className="h-4 w-4" />
             Export Report
@@ -506,14 +506,14 @@ export function FilterAccountsModal({ isOpen, onClose, onApply }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Filter Accounts</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
               <select
@@ -578,7 +578,7 @@ export function FilterAccountsModal({ isOpen, onClose, onApply }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t">
           <button
             onClick={() => setFilters({ accountType: 'all', status: 'all', balanceRange: 'all', parentAccount: '', searchText: '', hasTransactions: 'all', reconciled: 'all' })}
             className="px-4 py-2 text-violet-600 hover:text-violet-700 font-medium"

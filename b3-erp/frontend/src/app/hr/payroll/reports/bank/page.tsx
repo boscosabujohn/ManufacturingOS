@@ -159,14 +159,14 @@ export default function BankReportPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Bank Transfer Report</h1>
         <p className="text-sm text-gray-600 mt-1">Generate bank file for salary transfer</p>
       </div>
 
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">November 2025</h2>
             <p className="text-sm text-gray-600 mt-1">Payment Date: 01-Dec-2025</p>
@@ -184,8 +184,8 @@ export default function BankReportPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Employees</p>
@@ -195,7 +195,7 @@ export default function BankReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Amount</p>
@@ -205,7 +205,7 @@ export default function BankReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Completed</p>
@@ -215,7 +215,7 @@ export default function BankReportPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-white rounded-lg p-3 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-600">Banks</p>
@@ -227,11 +227,11 @@ export default function BankReportPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-3">Bank-wise Summary</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {Object.entries(totalStats.bankWise).map(([bankName, data]) => (
-            <div key={bankName} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <div key={bankName} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
               <p className="text-xs font-medium text-gray-600">{bankName}</p>
               <div className="flex items-baseline gap-2 mt-2">
                 <p className="text-lg font-bold text-gray-900">{formatCurrency(data.amount)}</p>
@@ -242,8 +242,8 @@ export default function BankReportPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -285,10 +285,10 @@ export default function BankReportPage() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredTransfers.map(transfer => (
-          <div key={transfer.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={transfer.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{transfer.employeeName}</h3>
@@ -315,8 +315,8 @@ export default function BankReportPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="text-xs font-semibold text-blue-900 mb-3">Bank Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -338,7 +338,7 @@ export default function BankReportPage() {
                 </div>
               </div>
 
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <h4 className="text-xs font-semibold text-green-900 mb-3">Payment Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -358,7 +358,7 @@ export default function BankReportPage() {
                 </div>
               </div>
 
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <h4 className="text-xs font-semibold text-purple-900 mb-3">Transaction Status</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
@@ -384,7 +384,7 @@ export default function BankReportPage() {
         ))}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Bank File Generation Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• <strong>File Formats:</strong> NEFT/RTGS file format as per bank requirements</li>

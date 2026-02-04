@@ -411,9 +411,9 @@ const FinancialAutomation = () => {
   ];
 
   const renderDashboardTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-blue-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Rules</p>
@@ -425,7 +425,7 @@ const FinancialAutomation = () => {
             <Zap className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className="bg-green-50 rounded-lg p-4">
+        <div className="bg-green-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Executions Today</p>
@@ -435,7 +435,7 @@ const FinancialAutomation = () => {
             <Activity className="h-8 w-8 text-green-500" />
           </div>
         </div>
-        <div className="bg-purple-50 rounded-lg p-4">
+        <div className="bg-purple-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Time Saved</p>
@@ -445,7 +445,7 @@ const FinancialAutomation = () => {
             <Clock className="h-8 w-8 text-purple-500" />
           </div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
+        <div className="bg-yellow-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Cost Savings</p>
@@ -457,9 +457,9 @@ const FinancialAutomation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Execution Activity</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Execution Activity</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={executionTrend}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -473,8 +473,8 @@ const FinancialAutomation = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Rules by Category</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Rules by Category</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -497,14 +497,14 @@ const FinancialAutomation = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Active Automation Rules</h3>
           <button className="text-blue-600 hover:text-blue-800 text-sm">View All</button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {automationRules.filter(r => r.status === 'active').slice(0, 6).map(rule => (
-            <div key={rule.id} className="border rounded-lg p-4">
+            <div key={rule.id} className="border rounded-lg p-3">
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h4 className="font-medium">{rule.name}</h4>
@@ -568,9 +568,9 @@ const FinancialAutomation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Resource Utilization</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Resource Utilization</h3>
           <div className="space-y-3">
             {resourceUtilization.map(resource => (
               <div key={resource.resource}>
@@ -595,8 +595,8 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Recent Executions</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Recent Executions</h3>
           <div className="space-y-2">
             {ruleExecutions.slice(0, 5).map(execution => {
               const rule = automationRules.find(r => r.id === execution.ruleId);
@@ -622,8 +622,8 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Upcoming Scheduled</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Upcoming Scheduled</h3>
           <div className="space-y-2">
             {automationRules
               .filter(r => r.nextRun)
@@ -647,9 +647,9 @@ const FinancialAutomation = () => {
   );
 
   const renderRulesTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Automation Rules</h3>
           <div className="flex space-x-2">
             <select
@@ -770,15 +770,15 @@ const FinancialAutomation = () => {
       </div>
 
       {selectedRule && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">{selectedRule.name} - Configuration</h3>
             <button onClick={() => setSelectedRule(null)}>
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <h4 className="font-medium mb-3">Trigger Configuration</h4>
               <div className="p-4 bg-gray-50 rounded space-y-2">
@@ -872,9 +872,9 @@ const FinancialAutomation = () => {
   );
 
   const renderTemplatesTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Automation Templates</h3>
           <div className="flex space-x-2">
             <input
@@ -888,9 +888,9 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {automationTemplates.map(template => (
-            <div key={template.id} className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+            <div key={template.id} className="border rounded-lg p-3 hover:shadow-lg transition-shadow">
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h4 className="font-semibold">{template.name}</h4>
@@ -940,9 +940,9 @@ const FinancialAutomation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Popular Use Cases</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Popular Use Cases</h3>
           <div className="space-y-3">
             {[
               { name: 'Automated Invoice Processing', users: 250, savings: '$45K/month' },
@@ -964,8 +964,8 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Template Categories</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Template Categories</h3>
           <ResponsiveContainer width="100%" height={250}>
             <Treemap
               data={[
@@ -988,10 +988,10 @@ const FinancialAutomation = () => {
   );
 
   const renderMonitoringTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">System Health</h3>
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">System Health</h3>
           <div className="space-y-3">
             {[
               { component: 'Rule Engine', status: 'operational', latency: 12 },
@@ -1015,8 +1015,8 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Execution Performance</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Execution Performance</h3>
           <ResponsiveContainer width="100%" height={200}>
             <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={[
               { name: 'Success', value: 98.1, fill: '#10B981' },
@@ -1034,8 +1034,8 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Top Performing Rules</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Top Performing Rules</h3>
           <div className="space-y-2">
             {performanceMetrics
               .sort((a, b) => b.successRate - a.successRate)
@@ -1059,8 +1059,8 @@ const FinancialAutomation = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Execution Logs</h3>
           <div className="flex space-x-2">
             <select className="border rounded px-3 py-2 text-sm">
@@ -1123,9 +1123,9 @@ const FinancialAutomation = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Error Analysis</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Error Analysis</h3>
           <div className="space-y-3">
             {[
               { error: 'Timeout Exception', count: 5, trend: 'down' },
@@ -1149,8 +1149,8 @@ const FinancialAutomation = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Resource Usage Trend</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Resource Usage Trend</h3>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={executionTrend}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -1167,13 +1167,13 @@ const FinancialAutomation = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Financial Automation</h2>
         <p className="text-gray-600">Configure automated rules, workflows, and intelligent process automation</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['dashboard', 'rules', 'templates', 'monitoring'].map((tab) => (
@@ -1202,15 +1202,15 @@ const FinancialAutomation = () => {
 
       {showRuleBuilder && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full  max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Rule Builder</h3>
               <button onClick={() => setShowRuleBuilder(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
             <div className="text-center py-12 border-2 border-dashed border-gray-300 rounded">
-              <Bot className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Bot className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-gray-600">Visual rule builder would be implemented here</p>
               <p className="text-sm text-gray-500 mt-2">Configure triggers, conditions, and actions with drag-and-drop</p>
             </div>
@@ -1231,14 +1231,14 @@ const FinancialAutomation = () => {
 
       {showTestModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Test Rule Execution</h3>
               <button onClick={() => setShowTestModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm">
+            <div className="bg-gray-900 text-green-400 p-3 rounded font-mono text-sm">
               <div>$ testing rule: Auto Invoice Processing...</div>
               <div className="mt-2">✓ Trigger configured: invoice.created</div>
               <div>✓ Conditions validated: 2 conditions</div>
@@ -1264,14 +1264,14 @@ const FinancialAutomation = () => {
 
       {showTemplateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Apply Template</h3>
               <button onClick={() => setShowTemplateModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium mb-1">Rule Name</label>
                 <input type="text" className="w-full border rounded px-3 py-2" defaultValue="Invoice Approval Workflow" />
@@ -1289,7 +1289,7 @@ const FinancialAutomation = () => {
                   <option>Reporting</option>
                 </select>
               </div>
-              <div className="bg-blue-50 p-4 rounded">
+              <div className="bg-blue-50 p-3 rounded">
                 <h4 className="font-medium mb-2">Template Configuration</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">

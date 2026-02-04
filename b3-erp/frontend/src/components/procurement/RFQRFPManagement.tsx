@@ -351,10 +351,10 @@ export default function RFQRFPManagement() {
   const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <FileText className="w-8 h-8 text-blue-600" />
@@ -397,8 +397,8 @@ export default function RFQRFPManagement() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total RFQs</span>
               <FileText className="w-5 h-5 text-blue-600" />
@@ -407,7 +407,7 @@ export default function RFQRFPManagement() {
             <div className="text-sm text-gray-600">This quarter</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Active RFQs</span>
               <Clock className="w-5 h-5 text-green-600" />
@@ -416,7 +416,7 @@ export default function RFQRFPManagement() {
             <div className="text-sm text-orange-600">3 closing soon</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Total Value</span>
               <DollarSign className="w-5 h-5 text-purple-600" />
@@ -425,7 +425,7 @@ export default function RFQRFPManagement() {
             <div className="text-sm text-gray-600">Under bidding</div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Response Rate</span>
               <Users className="w-5 h-5 text-amber-600" />
@@ -434,7 +434,7 @@ export default function RFQRFPManagement() {
             <div className="text-sm text-green-600">↑ 5% vs last</div>
           </div>
 
-          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-rose-600 text-sm font-medium">Cycle Time</span>
               <Timer className="w-5 h-5 text-rose-600" />
@@ -443,7 +443,7 @@ export default function RFQRFPManagement() {
             <div className="text-sm text-green-600">↓ 3 days</div>
           </div>
 
-          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-emerald-600 text-sm font-medium">Savings</span>
               <TrendingUp className="w-5 h-5 text-emerald-600" />
@@ -474,11 +474,11 @@ export default function RFQRFPManagement() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* RFQ Activity Trend */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">RFQ Activity Trend</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">RFQ Activity Trend</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={rfqTrend}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -493,8 +493,8 @@ export default function RFQRFPManagement() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Distribution</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Distribution</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RePieChart>
                       <Pie
@@ -546,7 +546,7 @@ export default function RFQRFPManagement() {
                           </span>
                         </div>
                         <div className="font-medium text-gray-900">{rfq.title}</div>
-                        <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                        <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
                           <span className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
                             Closes: {rfq.responseDeadline}
@@ -590,9 +590,9 @@ export default function RFQRFPManagement() {
           )}
 
           {activeTab === 'rfqs' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Filters */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2 mb-2">
                 <div className="flex items-center gap-2 flex-1">
                   <Search className="w-5 h-5 text-gray-400" />
                   <input
@@ -728,25 +728,25 @@ export default function RFQRFPManagement() {
           )}
 
           {activeTab === 'responses' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Response Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                   <div className="text-blue-600 text-sm font-medium mb-1">Total Responses</div>
                   <div className="text-2xl font-bold text-gray-900">48</div>
                   <div className="text-sm text-gray-600">Across all RFQs</div>
                 </div>
-                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                   <div className="text-yellow-600 text-sm font-medium mb-1">Under Review</div>
                   <div className="text-2xl font-bold text-gray-900">12</div>
                   <div className="text-sm text-gray-600">Pending evaluation</div>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                   <div className="text-green-600 text-sm font-medium mb-1">Shortlisted</div>
                   <div className="text-2xl font-bold text-gray-900">8</div>
                   <div className="text-sm text-gray-600">For final selection</div>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
                   <div className="text-purple-600 text-sm font-medium mb-1">Avg Score</div>
                   <div className="text-2xl font-bold text-gray-900">82.5</div>
                   <div className="text-sm text-gray-600">Quality rating</div>
@@ -874,13 +874,13 @@ export default function RFQRFPManagement() {
           )}
 
           {activeTab === 'evaluation' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Evaluation Criteria */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Evaluation Criteria Weights</h3>
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Evaluation Criteria Weights</h3>
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                   {evaluationCriteria.map((criteria) => (
-                    <div key={criteria.criteria} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={criteria.criteria} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="text-sm text-gray-600 mb-2">{criteria.criteria}</div>
                       <div className="text-2xl font-bold text-gray-900">{criteria.weight}%</div>
                       <div className="mt-2 bg-gray-200 rounded-full h-2">
@@ -922,9 +922,9 @@ export default function RFQRFPManagement() {
               </div>
 
               {/* Scoring Details */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Technical Evaluation</h4>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Technical Evaluation</h4>
                   <div className="space-y-3">
                     {['Solution Architecture', 'Implementation Plan', 'Team Expertise', 'Innovation', 'Risk Management'].map((item) => (
                       <div key={item} className="flex items-center justify-between">
@@ -942,8 +942,8 @@ export default function RFQRFPManagement() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Commercial Evaluation</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Commercial Evaluation</h4>
                   <div className="space-y-3">
                     {['Price Competitiveness', 'Payment Terms', 'Warranty', 'Value for Money', 'Cost Breakdown'].map((item) => (
                       <div key={item} className="flex items-center justify-between">
@@ -965,10 +965,10 @@ export default function RFQRFPManagement() {
           )}
 
           {activeTab === 'analytics' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Supplier Win Rate Analysis */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Performance Analytics</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Supplier Performance Analytics</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={supplierParticipation}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -983,9 +983,9 @@ export default function RFQRFPManagement() {
               </div>
 
               {/* Performance Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Response Time Analysis</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Response Time Analysis</h4>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Average Days to Respond</span>
@@ -1006,8 +1006,8 @@ export default function RFQRFPManagement() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Cost Savings Analysis</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Cost Savings Analysis</h4>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Total Savings YTD</span>
@@ -1028,8 +1028,8 @@ export default function RFQRFPManagement() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Process Efficiency</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Process Efficiency</h4>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Avg Cycle Time</span>
@@ -1054,11 +1054,11 @@ export default function RFQRFPManagement() {
           )}
 
           {activeTab === 'templates' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">RFQ/RFP Templates</h3>
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">RFQ/RFP Templates</h3>
 
               {/* Template Library */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {[
                   { name: 'Standard RFQ Template', category: 'General', uses: 124, lastUpdated: '2024-01-15' },
                   { name: 'IT Services RFP', category: 'Technology', uses: 45, lastUpdated: '2024-02-01' },
@@ -1067,7 +1067,7 @@ export default function RFQRFPManagement() {
                   { name: 'Raw Materials RFQ', category: 'Supply Chain', uses: 89, lastUpdated: '2024-02-05' },
                   { name: 'Logistics RFP Template', category: 'Transportation', uses: 34, lastUpdated: '2024-01-25' }
                 ].map((template) => (
-                  <div key={template.name} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                  <div key={template.name} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
                     <div className="flex items-start justify-between mb-3">
                       <FileText className="w-8 h-8 text-blue-600" />
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">

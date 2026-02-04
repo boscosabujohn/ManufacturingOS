@@ -51,9 +51,9 @@ const safetyScore = 88;
 
 export default function NearMissPage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <AlertTriangle className="h-8 w-8 text-orange-600" />
@@ -67,12 +67,12 @@ export default function NearMissPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Chart Section */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Trend Chart */}
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <div className="flex justify-between items-center mb-6">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-bold text-gray-900">Reporting Trend (Last 6 Months)</h3>
               <span className="text-xs font-medium bg-green-100 text-green-700 px-2 py-1 rounded flex items-center">
                 <TrendingUp className="w-3 h-3 mr-1" /> +12% Reporting
@@ -107,19 +107,19 @@ export default function NearMissPage() {
             <table className="w-full text-left text-sm text-gray-600">
               <thead className="bg-white border-b border-gray-100">
                 <tr>
-                  <th className="px-6 py-4 font-semibold">Hazard</th>
-                  <th className="px-6 py-4 font-semibold">Location</th>
-                  <th className="px-6 py-4 font-semibold">Date</th>
-                  <th className="px-6 py-4 font-semibold">Status</th>
+                  <th className="px-3 py-2 font-semibold">Hazard</th>
+                  <th className="px-3 py-2 font-semibold">Location</th>
+                  <th className="px-3 py-2 font-semibold">Date</th>
+                  <th className="px-3 py-2 font-semibold">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {detailedLogs.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 font-medium text-gray-900">{log.hazard}</td>
-                    <td className="px-6 py-4">{log.location}</td>
-                    <td className="px-6 py-4 text-gray-500">{log.date}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 font-medium text-gray-900">{log.hazard}</td>
+                    <td className="px-3 py-2">{log.location}</td>
+                    <td className="px-3 py-2 text-gray-500">{log.date}</td>
+                    <td className="px-3 py-2">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${log.status === 'Resolved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                         }`}>
                         {log.status}
@@ -133,11 +133,11 @@ export default function NearMissPage() {
         </div>
 
         {/* Sidebar: Score & Hotspots */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Proactive Safety Score */}
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center text-center">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center text-center">
             <h3 className="text-lg font-bold text-gray-900 mb-2">Proactive Safety Score</h3>
-            <div className="relative w-32 h-32 flex items-center justify-center mb-4">
+            <div className="relative w-32 h-32 flex items-center justify-center mb-2">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 <circle className="text-gray-200" strokeWidth="8" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50" />
                 <circle
@@ -165,12 +165,12 @@ export default function NearMissPage() {
           </div>
 
           {/* Hazard Hotspots */}
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-bold text-gray-900">Hazard Hotspots</h3>
               <MapPin className="w-5 h-5 text-gray-400" />
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {hazardMapData.map((zone, idx) => (
                 <div key={idx} className="space-y-1">
                   <div className="flex justify-between text-sm">

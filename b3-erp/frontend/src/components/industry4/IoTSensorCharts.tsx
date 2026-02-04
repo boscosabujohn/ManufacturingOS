@@ -239,7 +239,7 @@ function SensorCard({
   };
 
   return (
-    <div className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${getStatusColor()}`}>
+    <div className={`relative p-3 rounded-xl border-2 transition-all duration-300 ${getStatusColor()}`}>
       {/* Alert indicator */}
       {sensor.status !== 'normal' && (
         <button
@@ -495,7 +495,7 @@ export function IoTSensorCharts({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -518,7 +518,7 @@ export function IoTSensorCharts({
 
       {/* Sensor Cards Grid */}
       <div className="p-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {sensors.map(sensor => (
             <SensorCard
               key={sensor.id}
@@ -530,12 +530,12 @@ export function IoTSensorCharts({
 
         {/* Combined Chart View */}
         <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Combined Sensor Trends (Last {maxDataPoints} readings)
           </h3>
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
             <LargeLineChart sensors={sensors} height={150} />
-            <div className="flex flex-wrap gap-4 mt-4 justify-center">
+            <div className="flex flex-wrap gap-2 mt-4 justify-center">
               {sensors.map(sensor => {
                 const config = sensorConfig[sensor.type];
                 return (

@@ -27,7 +27,7 @@ export default function MessagingPage() {
             {/* Sidebar */}
             <div className="w-80 border-r border-gray-200 flex flex-col">
                 <div className="p-4 border-b border-gray-200">
-                    <div className="flex justify-between items-center mb-4">
+                    <div className="flex justify-between items-center mb-2">
                         <h1 className="text-xl font-bold text-gray-900">Messages</h1>
                         <button className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100">
                             <Plus className="w-5 h-5" />
@@ -48,7 +48,7 @@ export default function MessagingPage() {
                         <button
                             key={chat.id}
                             onClick={() => setSelectedChat(chat.id)}
-                            className={`w-full p-4 flex items-start gap-3 hover:bg-gray-50 transition-colors ${selectedChat === chat.id ? 'bg-blue-50 border-r-4 border-blue-600' : ''
+                            className={`w-full p-3 flex items-start gap-3 hover:bg-gray-50 transition-colors ${selectedChat === chat.id ? 'bg-blue-50 border-r-4 border-blue-600' : ''
                                 }`}
                         >
                             <div className="relative">
@@ -104,7 +104,7 @@ export default function MessagingPage() {
                 </div>
 
                 {/* Messages List */}
-                <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-gray-50">
+                <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-gray-50">
                     {messages.map((msg) => (
                         <div key={msg.id} className={`flex ${msg.isMe ? 'justify-end' : 'justify-start'}`}>
                             <div className={`max-w-[70%] ${msg.isMe ? 'order-2' : 'order-1'}`}>

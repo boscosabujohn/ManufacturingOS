@@ -20,7 +20,7 @@ export default function AssignSupervisorPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -37,7 +37,7 @@ export default function AssignSupervisorPage() {
             <CardDescription>Select a supervisor for this project</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <div className="relative mb-4">
+            <div className="relative mb-2">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
               <Input placeholder="Search by name or skill..." className="pl-9" />
             </div>
@@ -47,8 +47,8 @@ export default function AssignSupervisorPage() {
               { name: 'Rajesh Singh', role: 'Site Engineer', exp: '5 years', projects: 1, status: 'Available' },
               { name: 'Vikram Malhotra', role: 'Project Manager', exp: '12 years', projects: 4, status: 'Busy' },
             ].map((person, i) => (
-              <div key={i} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
-                <div className="flex items-center gap-4">
+              <div key={i} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                <div className="flex items-center gap-2">
                   <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
                     {person.name.charAt(0)}
                   </div>
@@ -57,7 +57,7 @@ export default function AssignSupervisorPage() {
                     <p className="text-xs text-gray-500">{person.role} • {person.exp} exp</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="text-right">
                     <p className="text-xs text-gray-500">Active Projects</p>
                     <p className="font-medium text-gray-900">{person.projects}</p>

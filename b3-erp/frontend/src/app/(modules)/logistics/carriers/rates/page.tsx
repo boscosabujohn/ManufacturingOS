@@ -328,8 +328,8 @@ export default function CarrierRatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -339,8 +339,8 @@ export default function CarrierRatesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-4 shadow-sm">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mb-3">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{rateStats.totalRates}</span>
@@ -348,7 +348,7 @@ export default function CarrierRatesPage() {
           <p className="text-xs font-medium opacity-90">Total Rates</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{rateStats.activeRates}</span>
@@ -356,7 +356,7 @@ export default function CarrierRatesPage() {
           <p className="text-xs font-medium opacity-90">Active Rates</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Calculator className="w-7 h-7 opacity-80" />
             <span className="text-xl font-bold">�{rateStats.avgBaseRate}</span>
@@ -364,7 +364,7 @@ export default function CarrierRatesPage() {
           <p className="text-xs font-medium opacity-90">Avg Base Rate</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-7 h-7 opacity-80" />
             <span className="text-xl font-bold">�{rateStats.avgPerKgRate}</span>
@@ -372,7 +372,7 @@ export default function CarrierRatesPage() {
           <p className="text-xs font-medium opacity-90">Avg Per Kg</p>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-7 h-7 opacity-80" />
             <span className="text-xl font-bold">{rateStats.avgFuelSurcharge}%</span>
@@ -380,7 +380,7 @@ export default function CarrierRatesPage() {
           <p className="text-xs font-medium opacity-90">Avg Fuel Surcharge</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-400 to-green-500 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-green-400 to-green-500 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{rateStats.rateIncreases}</span>
@@ -388,7 +388,7 @@ export default function CarrierRatesPage() {
           <p className="text-xs font-medium opacity-90">Rate Increases</p>
         </div>
 
-        <div className="bg-gradient-to-br from-red-400 to-red-500 text-white rounded-xl p-4 shadow-sm">
+        <div className="bg-gradient-to-br from-red-400 to-red-500 text-white rounded-xl p-3 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <TrendingDown className="w-7 h-7 opacity-80" />
             <span className="text-2xl font-bold">{rateStats.rateDecreases}</span>
@@ -397,8 +397,8 @@ export default function CarrierRatesPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -462,22 +462,22 @@ export default function CarrierRatesPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Carrier & Service</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Route</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Base Rate</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Per Kg Rate</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Fuel Surcharge</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Weight Range</th>
-                <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Transit Time</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Est. Cost (10kg)</th>
-                <th className="text-right px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Rate Change</th>
-                <th className="text-center px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Carrier & Service</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Route</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Base Rate</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Per Kg Rate</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Fuel Surcharge</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Weight Range</th>
+                <th className="text-left px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Transit Time</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Est. Cost (10kg)</th>
+                <th className="text-right px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Rate Change</th>
+                <th className="text-center px-3 py-2 text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredRates.map((rate) => (
                 <tr key={rate.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="text-sm font-semibold text-gray-900">{rate.carrier}</p>
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border mt-1 ${getServiceColor(rate.serviceType)}`}>
@@ -485,7 +485,7 @@ export default function CarrierRatesPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-xs">
                       <div className="flex items-center gap-1 mb-1">
                         <MapPin className="w-3 h-3 text-gray-400" />
@@ -496,26 +496,26 @@ export default function CarrierRatesPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className="text-sm font-semibold text-gray-900">�{rate.baseRate}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className="text-sm font-semibold text-gray-900">�{rate.perKgRate}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className="text-sm font-semibold text-orange-600">{rate.fuelSurcharge}%</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-xs text-gray-600">{rate.minWeight}kg - {rate.maxWeight}kg</p>
                     <p className="text-xs text-gray-500 mt-0.5">Vol: 1:{rate.volumetricDivisor}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-xs text-gray-900 font-medium">{rate.transitTime}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <p className="text-sm font-bold text-blue-600">�{calculateTotalCost(rate.baseRate, rate.perKgRate, rate.fuelSurcharge)}</p>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     {rate.rateChange !== 0 && (
                       <div className="flex items-center justify-end gap-1">
                         {rate.rateChange > 0 ? (
@@ -535,7 +535,7 @@ export default function CarrierRatesPage() {
                       <span className="text-xs text-gray-400">No change</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                       <Edit className="w-4 h-4 text-gray-600" />
                       <span className="text-gray-700">Edit</span>
@@ -549,14 +549,14 @@ export default function CarrierRatesPage() {
 
         {filteredRates.length === 0 && (
           <div className="text-center py-12">
-            <DollarSign className="w-16 h-16 text-gray-400 mb-4" />
+            <DollarSign className="w-16 h-16 text-gray-400 mb-2" />
             <p className="text-gray-500 text-lg mb-2">No rates found</p>
             <p className="text-sm text-gray-400">Try adjusting your search or filter criteria</p>
           </div>
         )}
       </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Rate Calculation Guide:</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
           <div className="flex items-start gap-2">

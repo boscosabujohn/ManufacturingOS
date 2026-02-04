@@ -40,9 +40,9 @@ export default function DepartmentReportsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Building className="h-8 w-8 text-purple-600" />
@@ -58,10 +58,10 @@ export default function DepartmentReportsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Completion Rate Comparison */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Training Completion Rate (%)</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Training Completion Rate (%)</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={departmentData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
@@ -80,8 +80,8 @@ export default function DepartmentReportsPage() {
         </div>
 
         {/* Budget Utilization Comparison */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Budget Utilization</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Budget Utilization</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={departmentData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
@@ -107,31 +107,31 @@ export default function DepartmentReportsPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Department</th>
-                <th className="px-6 py-4 text-center">Employees Trained</th>
-                <th className="px-6 py-4 text-center">Avg. Assessment Score</th>
-                <th className="px-6 py-4 text-center">Completion Rate</th>
-                <th className="px-6 py-4 text-right">Total Spend</th>
+                <th className="px-3 py-2">Department</th>
+                <th className="px-3 py-2 text-center">Employees Trained</th>
+                <th className="px-3 py-2 text-center">Avg. Assessment Score</th>
+                <th className="px-3 py-2 text-center">Completion Rate</th>
+                <th className="px-3 py-2 text-right">Total Spend</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {departmentData.map((dept, index) => (
                 <tr key={index} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                  <td className="px-3 py-2 font-medium text-gray-900 flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: dept.fill }}></div>
                     {dept.name}
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className="font-medium text-gray-900">{dept.trained}</span>
                     <span className="text-gray-400"> / {dept.employees}</span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${dept.avgScore >= 85 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                       }`}>
                       {dept.avgScore}%
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className="flex items-center justify-center gap-2">
                       <span className="text-sm font-medium">{dept.completionRate}%</span>
                       <div className="w-16 bg-gray-200 rounded-full h-1.5">
@@ -139,7 +139,7 @@ export default function DepartmentReportsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-right font-medium text-gray-900">{formatCurrency(dept.spend)}</td>
+                  <td className="px-3 py-2 text-right font-medium text-gray-900">{formatCurrency(dept.spend)}</td>
                 </tr>
               ))}
             </tbody>

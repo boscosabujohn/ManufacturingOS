@@ -41,7 +41,7 @@ export default function UploadRendersPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -121,7 +121,7 @@ export default function UploadRendersPage() {
               <CardDescription>Upload high-quality renders (JPG, PNG, MP4)</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-3">
                 {files.map((file, index) => (
                   <div key={index} className="relative group aspect-video bg-gray-100 rounded-lg overflow-hidden border">
                     {file.type.startsWith('image/') ? (
@@ -187,9 +187,9 @@ export default function UploadRendersPage() {
 
       {/* Image Preview Modal */}
       {previewFile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-3">
           <div className={`bg-white rounded-lg shadow-xl flex flex-col transition-all duration-200 ${isMaximized ? 'w-full h-full' : 'w-full  h-[85vh]'}`}>
-            <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center justify-between p-3 border-b">
               <h3 className="text-lg font-semibold">{previewFile.name}</h3>
               <div className="flex items-center gap-2">
                 <Button variant="ghost" size="sm" onClick={() => setIsMaximized(!isMaximized)}>

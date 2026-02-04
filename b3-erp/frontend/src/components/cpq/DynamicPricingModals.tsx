@@ -98,9 +98,9 @@ export function DynamicFactorModal({ isOpen, onClose, onSave, factor }: DynamicF
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             {factor ? 'Edit Dynamic Factor' : 'Add Dynamic Factor'}
           </h2>
@@ -112,12 +112,12 @@ export function DynamicFactorModal({ isOpen, onClose, onSave, factor }: DynamicF
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Basic Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Factor ID <span className="text-red-500">*</span>
@@ -154,7 +154,7 @@ export function DynamicFactorModal({ isOpen, onClose, onSave, factor }: DynamicF
           </div>
 
           {/* Factor Type */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Factor Type</h3>
 
             <div>
@@ -182,7 +182,7 @@ export function DynamicFactorModal({ isOpen, onClose, onSave, factor }: DynamicF
           </div>
 
           {/* Current Value */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Current Status</h3>
 
             <div>
@@ -206,10 +206,10 @@ export function DynamicFactorModal({ isOpen, onClose, onSave, factor }: DynamicF
           </div>
 
           {/* Impact & Adjustment */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Pricing Impact</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Impact Direction
@@ -258,7 +258,7 @@ export function DynamicFactorModal({ isOpen, onClose, onSave, factor }: DynamicF
           </div>
 
           {/* Preview */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-purple-900 mb-2">Factor Summary:</h3>
             <div className="space-y-1 text-xs text-purple-700">
               <p><strong>Factor:</strong> {formData.name || 'Not set'}</p>
@@ -311,16 +311,16 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Filter Dynamic Factors</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Type Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Factor Type</label>
@@ -370,7 +370,7 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-end gap-3">
           <button
             onClick={() => setFilters({ types: [], impacts: [] })}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 text-sm"

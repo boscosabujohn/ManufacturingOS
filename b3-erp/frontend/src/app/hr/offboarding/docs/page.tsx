@@ -45,30 +45,30 @@ export default function DocsPage() {
                 <p className="text-gray-600 mt-2">Manage generation and issuance of critical offboarding documents</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-8">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Pending Requests</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.pendingRequests}</p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Generated Today</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.generatedToday}</p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Issued (Month)</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.issuedThisMonth}</p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100">
                     <p className="text-sm font-medium text-gray-500">Avg. Turnaround</p>
                     <p className="text-2xl font-bold text-gray-900 mt-1">{stats.avgTurnaroundTime}</p>
                 </div>
             </div>
 
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">Document Modules</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">Document Modules</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {modules.map((module) => (
                     <Link href={module.href} key={module.title} className="block group">
-                        <div className={`p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-md ${module.color} flex items-start gap-4 h-full`}>
+                        <div className={`p-6 rounded-xl border-2 transition-all duration-200 hover:shadow-md ${module.color} flex items-start gap-2 h-full`}>
                             <div className="bg-white p-3 rounded-lg shadow-sm">
                                 {module.icon}
                             </div>
@@ -89,9 +89,9 @@ export default function DocsPage() {
                 ))}
             </div>
 
-            <div className="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-6">
+            <div className="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-3">
                 <h3 className="font-semibold text-gray-900 mb-2">Issuance Workflow</h3>
-                <div className="flex flex-col md:flex-row gap-4 items-center text-sm text-gray-600">
+                <div className="flex flex-col md:flex-row gap-2 items-center text-sm text-gray-600">
                     <div className="flex items-center gap-2">
                         <span className="h-6 w-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">1</span>
                         Request/Trigger

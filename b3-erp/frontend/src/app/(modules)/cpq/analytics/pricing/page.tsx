@@ -113,9 +113,9 @@ export default function CPQAnalyticsPricingPage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Pricing Analytics</h2>
           <p className="text-sm text-gray-600 mt-1">Comprehensive discount and margin analysis</p>
@@ -143,7 +143,7 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 border border-purple-200">
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-medium text-purple-600">Avg Discount</p>
@@ -194,10 +194,10 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Discount Trend */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Discount Trend</h3>
               <p className="text-sm text-gray-600">Average discount percentage over time</p>
@@ -218,8 +218,8 @@ export default function CPQAnalyticsPricingPage() {
         </div>
 
         {/* Margin Trend */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Margin Performance</h3>
               <p className="text-sm text-gray-600">Target vs actual margin percentage</p>
@@ -241,8 +241,8 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Discount Distribution */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Discount Distribution</h3>
             <p className="text-sm text-gray-600">Deal count by discount range with margin impact</p>
@@ -274,8 +274,8 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Price Sensitivity */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Price Sensitivity by Category</h3>
             <p className="text-sm text-gray-600">Elasticity and discount impact analysis</p>
@@ -335,10 +335,10 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Competitive Pricing */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Competitive Pricing Comparison</h3>
               <p className="text-sm text-gray-600">Price positioning vs competitors (₹000s)</p>
@@ -360,8 +360,8 @@ export default function CPQAnalyticsPricingPage() {
         </div>
 
         {/* Discount vs Deal Size */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Discount vs Deal Size</h3>
               <p className="text-sm text-gray-600">Correlation between discount and deal value</p>
@@ -384,8 +384,8 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Pricing Tiers Effectiveness */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Pricing Tier Effectiveness</h3>
             <p className="text-sm text-gray-600">Performance metrics by price tier</p>
@@ -445,16 +445,16 @@ export default function CPQAnalyticsPricingPage() {
       </div>
 
       {/* Key Insights */}
-      <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-md border border-purple-200 p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-md border border-purple-200 p-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-purple-900">Pricing Strategy Insights</h3>
             <p className="text-sm text-purple-700">Actionable recommendations</p>
           </div>
           <Target className="h-6 w-6 text-purple-600" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg p-4 border border-purple-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="bg-white rounded-lg p-3 border border-purple-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-green-100 rounded-lg">
                 <CheckCircle className="h-5 w-5 text-green-600" />
@@ -465,7 +465,7 @@ export default function CPQAnalyticsPricingPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-purple-200">
+          <div className="bg-white rounded-lg p-3 border border-purple-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-yellow-100 rounded-lg">
                 <AlertTriangle className="h-5 w-5 text-yellow-600" />
@@ -476,7 +476,7 @@ export default function CPQAnalyticsPricingPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-purple-200">
+          <div className="bg-white rounded-lg p-3 border border-purple-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <DollarSign className="h-5 w-5 text-blue-600" />
@@ -487,7 +487,7 @@ export default function CPQAnalyticsPricingPage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 border border-purple-200">
+          <div className="bg-white rounded-lg p-3 border border-purple-200">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-red-100 rounded-lg">
                 <TrendingDown className="h-5 w-5 text-red-600" />

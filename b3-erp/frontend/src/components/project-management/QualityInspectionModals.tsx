@@ -36,9 +36,9 @@ export function ScheduleInspectionModal({ isOpen, onClose, onSchedule }: Schedul
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Calendar className="h-6 w-6 text-white" />
@@ -54,8 +54,8 @@ export function ScheduleInspectionModal({ isOpen, onClose, onSchedule }: Schedul
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Project <span className="text-red-500">*</span>
@@ -156,7 +156,7 @@ export function ScheduleInspectionModal({ isOpen, onClose, onSchedule }: Schedul
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">
             Cancel
           </button>
@@ -200,9 +200,9 @@ export function EditInspectionModal({ isOpen, onClose, onEdit, inspection }: Edi
   if (!isOpen || !inspection) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Edit className="h-6 w-6 text-white" />
@@ -217,7 +217,7 @@ export function EditInspectionModal({ isOpen, onClose, onEdit, inspection }: Edi
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] space-y-4">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Inspection Type</label>
             <select
@@ -270,7 +270,7 @@ export function EditInspectionModal({ isOpen, onClose, onEdit, inspection }: Edi
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">
             Cancel
           </button>
@@ -316,9 +316,9 @@ export function UpdateChecklistModal({ isOpen, onClose, onUpdate, inspection }: 
   if (!isOpen || !inspection) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <ClipboardCheck className="h-6 w-6 text-white" />
@@ -334,10 +334,10 @@ export function UpdateChecklistModal({ isOpen, onClose, onUpdate, inspection }: 
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {checklist.map((item: any, index: number) => (
-              <div key={item.id} className="border border-gray-200 rounded-lg p-4">
-                <div className="grid grid-cols-12 gap-4">
+              <div key={item.id} className="border border-gray-200 rounded-lg p-3">
+                <div className="grid grid-cols-12 gap-2">
                   <div className="col-span-5">
                     <p className="text-sm font-semibold text-gray-900">{item.checkPoint}</p>
                     <p className="text-xs text-gray-600 mt-1">Criteria: {item.criteria}</p>
@@ -371,7 +371,7 @@ export function UpdateChecklistModal({ isOpen, onClose, onUpdate, inspection }: 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">
             Cancel
           </button>
@@ -418,9 +418,9 @@ export function AddDefectModal({ isOpen, onClose, onAdd, inspection }: AddDefect
   if (!isOpen || !inspection) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <XCircle className="h-6 w-6 text-white" />
@@ -435,8 +435,8 @@ export function AddDefectModal({ isOpen, onClose, onAdd, inspection }: AddDefect
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Defect Type</label>
               <select
@@ -512,7 +512,7 @@ export function AddDefectModal({ isOpen, onClose, onAdd, inspection }: AddDefect
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Responsible Party</label>
               <input
@@ -535,7 +535,7 @@ export function AddDefectModal({ isOpen, onClose, onAdd, inspection }: AddDefect
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">
             Cancel
           </button>
@@ -578,9 +578,9 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, inspection }: Upl
   if (!isOpen || !inspection) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Camera className="h-6 w-6 text-white" />
@@ -595,7 +595,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, inspection }: Upl
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] space-y-4">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)] space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Photo Category</label>
             <select
@@ -613,7 +613,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, inspection }: Upl
           </div>
 
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-orange-500 transition-colors cursor-pointer">
-            <Camera className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <Camera className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-sm font-medium text-gray-900 mb-1">Click to upload photos</p>
             <p className="text-xs text-gray-500">JPG, PNG (max 10MB each)</p>
             <button
@@ -641,14 +641,14 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, inspection }: Upl
             </div>
           )}
 
-          <div className="bg-orange-50 border border-orange-200 p-4 rounded-lg">
+          <div className="bg-orange-50 border border-orange-200 p-3 rounded-lg">
             <p className="text-sm text-orange-800">
               <span className="font-semibold">Current photos:</span> {inspection.photos} files
             </p>
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">
             Cancel
           </button>
@@ -676,14 +676,14 @@ export function SignOffModal({ isOpen, onClose, onSignOff, inspection }: any) {
   if (!isOpen || !inspection) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Sign Off Inspection</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
-          <div className="bg-indigo-50 p-4 rounded-lg">
+        <div className="p-6 space-y-2">
+          <div className="bg-indigo-50 p-3 rounded-lg">
             <p className="text-sm font-medium">Inspection: {inspection.inspectionNumber}</p>
             <p className="text-sm text-gray-600">Status: {inspection.overallStatus}</p>
             <p className="text-sm text-gray-600">Passed: {inspection.passed}/{inspection.totalCheckPoints}</p>
@@ -710,7 +710,7 @@ export function SignOffModal({ isOpen, onClose, onSignOff, inspection }: any) {
             className="w-full px-3 py-2 border rounded-lg"
           />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onSignOff(signOffData)} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">Sign Off</button>
         </div>
@@ -723,9 +723,9 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, inspection }: any
   const [status, setStatus] = useState(inspection?.overallStatus || 'Pending');
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Update Overall Status</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
@@ -737,7 +737,7 @@ export function UpdateStatusModal({ isOpen, onClose, onUpdate, inspection }: any
             <option value="Failed">Failed</option>
           </select>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onUpdate({ status })} className="px-4 py-2 bg-yellow-600 text-white rounded-lg">Update</button>
         </div>
@@ -750,17 +750,17 @@ export function AssignInspectorModal({ isOpen, onClose, onAssign, inspection }: 
   const [inspector, setInspector] = useState({ name: '', id: '' });
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Assign Inspector</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <input type="text" placeholder="Inspector name" value={inspector.name} onChange={(e) => setInspector({ ...inspector, name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
           <input type="text" placeholder="Inspector ID" value={inspector.id} onChange={(e) => setInspector({ ...inspector, id: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onAssign(inspector)} className="px-4 py-2 bg-teal-600 text-white rounded-lg">Assign</button>
         </div>
@@ -773,18 +773,18 @@ export function AddChecklistItemModal({ isOpen, onClose, onAdd, inspection }: an
   const [item, setItem] = useState({ checkPoint: '', criteria: '', result: 'Pending', remarks: '' });
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Add Checklist Item</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <input type="text" placeholder="Checkpoint description" value={item.checkPoint} onChange={(e) => setItem({ ...item, checkPoint: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
           <input type="text" placeholder="Acceptance criteria" value={item.criteria} onChange={(e) => setItem({ ...item, criteria: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
           <textarea placeholder="Remarks" value={item.remarks} onChange={(e) => setItem({ ...item, remarks: e.target.value })} rows={2} className="w-full px-3 py-2 border rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onAdd(item)} className="px-4 py-2 bg-cyan-600 text-white rounded-lg">Add Item</button>
         </div>
@@ -797,9 +797,9 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, inspection }:
   const [options, setOptions] = useState({ includePhotos: true, includeChecklist: true, format: 'pdf' });
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Generate Report</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
@@ -817,7 +817,7 @@ export function GenerateReportModal({ isOpen, onClose, onGenerate, inspection }:
             <option value="excel">Excel Spreadsheet</option>
           </select>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onGenerate(options)} className="px-4 py-2 bg-emerald-600 text-white rounded-lg">Generate</button>
         </div>
@@ -830,9 +830,9 @@ export function ExportDataModal({ isOpen, onClose, onExport }: any) {
   const [format, setFormat] = useState('excel');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Export Inspection Data</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
@@ -843,7 +843,7 @@ export function ExportDataModal({ isOpen, onClose, onExport }: any) {
             <option value="pdf">PDF Report</option>
           </select>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onExport({ format })} className="px-4 py-2 bg-amber-600 text-white rounded-lg">Export</button>
         </div>
@@ -856,20 +856,20 @@ export function ScheduleReInspectionModal({ isOpen, onClose, onSchedule, inspect
   const [date, setDate] = useState('');
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Schedule Re-Inspection</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
-          <div className="bg-pink-50 p-4 rounded-lg">
+        <div className="p-6 space-y-2">
+          <div className="bg-pink-50 p-3 rounded-lg">
             <p className="text-sm">Original: {inspection.inspectionNumber}</p>
             <p className="text-sm text-gray-600">Defects to verify: {inspection.defects}</p>
           </div>
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onSchedule({ date })} className="px-4 py-2 bg-pink-600 text-white rounded-lg">Schedule</button>
         </div>
@@ -881,20 +881,20 @@ export function ScheduleReInspectionModal({ isOpen, onClose, onSchedule, inspect
 export function ViewFullDetailsModal({ isOpen, onClose, inspection }: any) {
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex justify-between items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-800 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">{inspection.inspectionNumber}</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)] space-y-6">
-          <div className="grid grid-cols-4 gap-4">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)] space-y-3">
+          <div className="grid grid-cols-4 gap-2">
             <div className="bg-green-50 p-3 rounded"><p className="text-xs text-gray-600">Passed</p><p className="text-2xl font-bold text-green-600">{inspection.passed}</p></div>
             <div className="bg-red-50 p-3 rounded"><p className="text-xs text-gray-600">Failed</p><p className="text-2xl font-bold text-red-600">{inspection.failed}</p></div>
             <div className="bg-blue-50 p-3 rounded"><p className="text-xs text-gray-600">Pending</p><p className="text-2xl font-bold text-blue-600">{inspection.pending}</p></div>
             <div className="bg-gray-50 p-3 rounded"><p className="text-xs text-gray-600">N/A</p><p className="text-2xl font-bold text-gray-600">{inspection.notApplicable}</p></div>
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold mb-2">Checklist Details</h3>
             {inspection.checklist?.map((item: any) => (
               <div key={item.id} className="border-b py-2 last:border-0">
@@ -904,7 +904,7 @@ export function ViewFullDetailsModal({ isOpen, onClose, inspection }: any) {
             ))}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 border-t flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 border-t flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-slate-600 text-white rounded-lg">Close</button>
         </div>
       </div>
@@ -916,18 +916,18 @@ export function AddCorrectiveActionModal({ isOpen, onClose, onAdd, inspection }:
   const [action, setAction] = useState({ description: '', responsibleParty: '', targetDate: '' });
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-violet-600 to-violet-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Add Corrective Action</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <textarea placeholder="Corrective action description" value={action.description} onChange={(e) => setAction({ ...action, description: e.target.value })} rows={3} className="w-full px-3 py-2 border rounded-lg" />
           <input type="text" placeholder="Responsible party" value={action.responsibleParty} onChange={(e) => setAction({ ...action, responsibleParty: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
           <input type="date" value={action.targetDate} onChange={(e) => setAction({ ...action, targetDate: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onAdd(action)} className="px-4 py-2 bg-violet-600 text-white rounded-lg">Add Action</button>
         </div>
@@ -940,17 +940,17 @@ export function ScheduleNextInspectionModal({ isOpen, onClose, onSchedule, inspe
   const [nextDate, setNextDate] = useState('');
   if (!isOpen || !inspection) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Schedule Next Inspection</h2>
           <button onClick={onClose} className="text-white"><X className="h-5 w-5" /></button>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <p className="text-sm text-gray-600">Current inspection: {inspection.inspectionNumber}</p>
           <input type="date" value={nextDate} onChange={(e) => setNextDate(e.target.value)} className="w-full px-3 py-2 border rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border rounded-lg">Cancel</button>
           <button onClick={() => onSchedule({ nextDate })} className="px-4 py-2 bg-rose-600 text-white rounded-lg">Schedule</button>
         </div>

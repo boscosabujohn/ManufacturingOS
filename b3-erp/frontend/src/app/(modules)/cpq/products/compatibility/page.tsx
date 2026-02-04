@@ -189,9 +189,9 @@ export default function CPQProductsCompatibilityPage() {
   const stats = getCompatibilityCount()
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -205,7 +205,7 @@ export default function CPQProductsCompatibilityPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -252,7 +252,7 @@ export default function CPQProductsCompatibilityPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -321,9 +321,9 @@ export default function CPQProductsCompatibilityPage() {
       </div>
 
       {/* Legend */}
-      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
+      <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-gray-900 mb-3">Compatibility Legend:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="flex items-start gap-2">
             <XCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
             <div>

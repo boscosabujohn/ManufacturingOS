@@ -230,8 +230,8 @@ export default function DatabaseBackupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2 w-full max-w-full">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -249,8 +249,8 @@ export default function DatabaseBackupPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Database className="w-5 h-5 text-blue-600" />
             <p className="text-sm text-gray-600">Total Backups</p>
@@ -258,7 +258,7 @@ export default function DatabaseBackupPage() {
           <p className="text-2xl font-bold text-gray-900">{stats.totalBackups}</p>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <HardDrive className="w-5 h-5 text-purple-600" />
             <p className="text-sm text-gray-600">Total Size</p>
@@ -266,7 +266,7 @@ export default function DatabaseBackupPage() {
           <p className="text-2xl font-bold text-gray-900">{stats.totalSize}</p>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Clock className="w-5 h-5 text-green-600" />
             <p className="text-sm text-gray-600">Last Backup</p>
@@ -275,7 +275,7 @@ export default function DatabaseBackupPage() {
           <p className="text-xs text-gray-600">{stats.lastBackup.split(' ')[1]}</p>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Clock className="w-5 h-5 text-orange-600" />
             <p className="text-sm text-gray-600">Avg Duration</p>
@@ -283,7 +283,7 @@ export default function DatabaseBackupPage() {
           <p className="text-2xl font-bold text-gray-900">{stats.avgDuration}</p>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle className="w-5 h-5 text-green-600" />
             <p className="text-sm text-gray-600">Success Rate</p>
@@ -292,14 +292,14 @@ export default function DatabaseBackupPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Backup History */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Backup History</h2>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Backup History</h2>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {backups.map((backup) => (
-              <div key={backup.id} className="border border-gray-200 rounded-lg p-4">
+              <div key={backup.id} className="border border-gray-200 rounded-lg p-3">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
@@ -364,7 +364,7 @@ export default function DatabaseBackupPage() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-4 pt-3 border-t border-gray-200">
+                <div className="flex items-center gap-2 pt-3 border-t border-gray-200">
                   <div className="flex items-center gap-2 text-xs text-gray-600">
                     <span className={`px-2 py-1 rounded ${backup.compression === 'gzip' ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-700'}`}>
                       {backup.compression}
@@ -381,7 +381,7 @@ export default function DatabaseBackupPage() {
             ))}
           </div>
 
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Backup Guidelines:</h3>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Full backups capture complete database state</li>
@@ -394,9 +394,9 @@ export default function DatabaseBackupPage() {
         </div>
 
         {/* Scheduled Backups */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="space-y-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-bold text-gray-900">Scheduled Backups</h2>
               <button
                 onClick={() => setShowScheduleModal(true)}
@@ -408,7 +408,7 @@ export default function DatabaseBackupPage() {
 
             <div className="space-y-3">
               {scheduledBackups.map((schedule) => (
-                <div key={schedule.id} className={`border-2 rounded-lg p-4 ${schedule.enabled ? 'border-blue-200 bg-blue-50' : 'border-gray-200 bg-gray-50'}`}>
+                <div key={schedule.id} className={`border-2 rounded-lg p-3 ${schedule.enabled ? 'border-blue-200 bg-blue-50' : 'border-gray-200 bg-gray-50'}`}>
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <h3 className="font-bold text-gray-900 mb-1">{schedule.name}</h3>
@@ -440,8 +440,8 @@ export default function DatabaseBackupPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-xl p-3">
+            <div className="flex items-center gap-2 mb-2">
               <Settings className="w-5 h-5 text-purple-600" />
               <h3 className="text-sm font-bold text-purple-900">Backup Settings</h3>
             </div>
@@ -473,7 +473,7 @@ export default function DatabaseBackupPage() {
             </button>
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <Clock className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div>

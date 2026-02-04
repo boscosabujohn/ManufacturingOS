@@ -24,9 +24,9 @@ export default function CollaborationDashboardPage() {
   ];
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Hero Stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white">
           <div className="flex justify-between items-start">
             <div>
@@ -70,13 +70,13 @@ export default function CollaborationDashboardPage() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-3">
         {/* Team Activity - Compact */}
         <div className="col-span-1">
           <RealTimeCollaborationPanel compact />
 
           {/* Quick Actions */}
-          <div className="mt-4 bg-white border border-gray-200 rounded-lg p-4">
+          <div className="mt-4 bg-white border border-gray-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Quick Actions</h3>
             <div className="space-y-2">
               <button
@@ -115,9 +115,9 @@ export default function CollaborationDashboardPage() {
 
         {/* Recent Activity Feed */}
         <div className="col-span-2">
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 className="text-sm font-semibold text-gray-700 mb-4">Activity Feed</h3>
-            <div className="space-y-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <h3 className="text-sm font-semibold text-gray-700 mb-2">Activity Feed</h3>
+            <div className="space-y-2">
               {[
                 { user: 'Sarah Chen', avatar: 'SC', action: 'completed milestone', target: 'Phase 1 Inspection', time: '5m ago', type: 'milestone' },
                 { user: 'Mike Rodriguez', avatar: 'MR', action: 'uploaded', target: 'QC Report #547', time: '15m ago', type: 'document' },
@@ -157,19 +157,19 @@ export default function CollaborationDashboardPage() {
       </div>
 
       {/* Feature Cards */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         <div
-          className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setActiveTab('timeline')}
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-2xl">📅</div>
             <div>
               <h3 className="font-semibold text-gray-800">Cross-Functional Timeline</h3>
               <p className="text-sm text-gray-500">Unified view of all project milestones</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+          <div className="grid grid-cols-3 gap-2 pt-4 border-t">
             <div className="text-center">
               <div className="text-xl font-bold text-blue-600">5</div>
               <div className="text-xs text-gray-500">Active Projects</div>
@@ -186,17 +186,17 @@ export default function CollaborationDashboardPage() {
         </div>
 
         <div
-          className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="bg-white border border-gray-200 rounded-xl p-3 hover:shadow-lg transition-shadow cursor-pointer"
           onClick={() => setActiveTab('customer')}
         >
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-2xl">🌐</div>
             <div>
               <h3 className="font-semibold text-gray-800">Customer Portal</h3>
               <p className="text-sm text-gray-500">Client-facing project status & approvals</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t">
+          <div className="grid grid-cols-3 gap-2 pt-4 border-t">
             <div className="text-center">
               <div className="text-xl font-bold text-blue-600">8</div>
               <div className="text-xs text-gray-500">Active Orders</div>
@@ -218,7 +218,7 @@ export default function CollaborationDashboardPage() {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
           <span>Production</span>
           <span>/</span>
@@ -249,7 +249,7 @@ export default function CollaborationDashboardPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex gap-2 border-b border-gray-200">
           {tabs.map(tab => (
             <button

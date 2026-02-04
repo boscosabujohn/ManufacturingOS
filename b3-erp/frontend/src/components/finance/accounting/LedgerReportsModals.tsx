@@ -68,10 +68,10 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-6xl my-8">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-2xl w-full  my-8">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Layout className="w-5 h-5 text-white" />
@@ -86,7 +86,7 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
         {/* Content */}
         <div className="p-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
           {/* Basic Settings */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Report Name *</label>
               <input
@@ -114,9 +114,9 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
           </div>
 
           {/* Date Range */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Date Range *</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <input
                 type="date"
                 value={dateRange.start}
@@ -133,7 +133,7 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
           </div>
 
           {/* Column Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Columns to Include</label>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {availableColumns.map((column) => (
@@ -154,7 +154,7 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
           </div>
 
           {/* Grouping & Sorting */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Group By</label>
               <select
@@ -186,9 +186,9 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
           </div>
 
           {/* Advanced Filters */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Advanced Filters</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">Min Amount</label>
                 <input
@@ -213,9 +213,9 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
           </div>
 
           {/* Preview */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-blue-800 font-medium mb-3">📊 Report Configuration Summary</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm text-blue-700">
+            <div className="grid grid-cols-2 gap-2 text-sm text-blue-700">
               <div>
                 <p className="font-medium">Report Details:</p>
                 <ul className="mt-1 space-y-1">
@@ -237,7 +237,7 @@ export function CustomReportBuilderModal({ isOpen, onClose, onGenerate }: Custom
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -295,10 +295,10 @@ export function AgedAnalysisReportModal({ isOpen, onClose, type, onGenerate }: A
   const partyLabel = type === 'receivables' ? 'Customer' : 'Vendor';
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -313,7 +313,7 @@ export function AgedAnalysisReportModal({ isOpen, onClose, type, onGenerate }: A
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Report Settings */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">As of Date *</label>
               <input
@@ -339,9 +339,9 @@ export function AgedAnalysisReportModal({ isOpen, onClose, type, onGenerate }: A
           </div>
 
           {/* Aging Buckets */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Aging Buckets</label>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="space-y-2">
                 {agingBuckets.map((bucket, index) => (
                   <div key={index} className="flex items-center gap-3 p-2 bg-white rounded border border-gray-200">
@@ -362,7 +362,7 @@ export function AgedAnalysisReportModal({ isOpen, onClose, type, onGenerate }: A
           </div>
 
           {/* Options */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Group By</label>
               <select
@@ -390,7 +390,7 @@ export function AgedAnalysisReportModal({ isOpen, onClose, type, onGenerate }: A
           </div>
 
           {/* Sample Preview */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h4 className="text-green-800 font-medium mb-3">📊 Report Preview</h4>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -431,7 +431,7 @@ export function AgedAnalysisReportModal({ isOpen, onClose, type, onGenerate }: A
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -475,10 +475,10 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <DollarSign className="w-5 h-5 text-white" />
@@ -493,9 +493,9 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
         {/* Content */}
         <div className="p-6">
           {/* Method Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Preparation Method *</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setMethod('indirect')}
                 className={`p-4 border rounded-lg transition-colors ${
@@ -522,9 +522,9 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
           </div>
 
           {/* Period Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Period *</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <input
                 type="date"
                 value={period.start}
@@ -541,7 +541,7 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
           </div>
 
           {/* Detail Level */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Detail Level</label>
             <select
               value={detailLevel}
@@ -555,7 +555,7 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -583,7 +583,7 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
           </div>
 
           {/* Statement Structure Preview */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h4 className="text-teal-800 font-medium mb-3">📊 Statement Structure</h4>
             <div className="text-sm text-teal-700 space-y-2">
               <div className="font-medium">1. Operating Activities</div>
@@ -603,7 +603,7 @@ export function CashFlowStatementModal({ isOpen, onClose, onGenerate }: CashFlow
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -648,10 +648,10 @@ export function AccountReconciliationReportModal({ isOpen, onClose, onGenerate }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -666,7 +666,7 @@ export function AccountReconciliationReportModal({ isOpen, onClose, onGenerate }
         {/* Content */}
         <div className="p-6">
           {/* Account Selection */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Bank Account *</label>
             <select
               value={accountCode}
@@ -682,7 +682,7 @@ export function AccountReconciliationReportModal({ isOpen, onClose, onGenerate }
           </div>
 
           {/* Reconciliation Details */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Reconciliation Date *</label>
               <input
@@ -706,7 +706,7 @@ export function AccountReconciliationReportModal({ isOpen, onClose, onGenerate }
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -734,7 +734,7 @@ export function AccountReconciliationReportModal({ isOpen, onClose, onGenerate }
           </div>
 
           {/* Reconciliation Preview */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h4 className="text-purple-800 font-medium mb-3">📋 Reconciliation Format</h4>
             <div className="text-sm text-purple-700 space-y-2">
               <div className="flex justify-between font-medium">
@@ -768,7 +768,7 @@ export function AccountReconciliationReportModal({ isOpen, onClose, onGenerate }
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -813,10 +813,10 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -831,9 +831,9 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Period */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Period *</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <input
                 type="date"
                 value={period.start}
@@ -850,9 +850,9 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
           </div>
 
           {/* Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Statement Format</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setFormat('single_step')}
                 className={`p-4 border rounded-lg transition-colors ${
@@ -879,7 +879,7 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
           </div>
 
           {/* Comparison */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Comparison Period</label>
             <select
               value={comparisonPeriod}
@@ -894,7 +894,7 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
           </div>
 
           {/* Grouping */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Expense Grouping</label>
             <select
               value={groupBy}
@@ -909,7 +909,7 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
           </div>
 
           {/* Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -925,7 +925,7 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
           </div>
 
           {/* Statement Preview */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h4 className="text-orange-800 font-medium mb-3">📊 Statement Structure</h4>
             <div className="text-sm text-orange-700 space-y-2">
               {format === 'single_step' ? (
@@ -954,7 +954,7 @@ export function ProfitLossStatementModal({ isOpen, onClose, onGenerate }: Profit
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -999,10 +999,10 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -1017,7 +1017,7 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
         {/* Content */}
         <div className="p-6">
           {/* As Of Date */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">As of Date *</label>
             <input
               type="date"
@@ -1028,9 +1028,9 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
           </div>
 
           {/* Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Balance Sheet Format</label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => setFormat('account')}
                 className={`p-4 border rounded-lg transition-colors ${
@@ -1057,7 +1057,7 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
           </div>
 
           {/* Detail Level */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Detail Level</label>
             <select
               value={detailLevel}
@@ -1071,7 +1071,7 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
           </div>
 
           {/* Options */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-3 space-y-3">
             <label className="flex items-center gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -1099,9 +1099,9 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
           </div>
 
           {/* Balance Sheet Structure */}
-          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
             <h4 className="text-indigo-800 font-medium mb-3">📊 Balance Sheet Structure</h4>
-            <div className="grid grid-cols-2 gap-6 text-sm text-indigo-700">
+            <div className="grid grid-cols-2 gap-3 text-sm text-indigo-700">
               <div>
                 <div className="font-bold mb-2">ASSETS</div>
                 <div className="space-y-1 text-xs">
@@ -1132,7 +1132,7 @@ export function BalanceSheetModal({ isOpen, onClose, onGenerate }: BalanceSheetM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

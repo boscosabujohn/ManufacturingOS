@@ -65,8 +65,8 @@ export default function ConflictResolutionPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className=" px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-4">
+        <div className=" px-3 py-4">
+          <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={() => router.back()}>
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back
@@ -79,12 +79,12 @@ export default function ConflictResolutionPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-6 lg:p-8">
         <div className=" space-y-3">
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <Card className="bg-red-50 border-red-100">
-              <CardContent className="p-6 flex items-center gap-4">
+              <CardContent className="p-6 flex items-center gap-2">
                 <div className="p-3 bg-red-100 rounded-full">
                   <AlertTriangle className="h-6 w-6 text-red-600" />
                 </div>
@@ -95,7 +95,7 @@ export default function ConflictResolutionPage() {
               </CardContent>
             </Card>
             <Card className="bg-orange-50 border-orange-100">
-              <CardContent className="p-6 flex items-center gap-4">
+              <CardContent className="p-6 flex items-center gap-2">
                 <div className="p-3 bg-orange-100 rounded-full">
                   <AlertTriangle className="h-6 w-6 text-orange-600" />
                 </div>
@@ -106,7 +106,7 @@ export default function ConflictResolutionPage() {
               </CardContent>
             </Card>
             <Card className="bg-yellow-50 border-yellow-100">
-              <CardContent className="p-6 flex items-center gap-4">
+              <CardContent className="p-6 flex items-center gap-2">
                 <div className="p-3 bg-yellow-100 rounded-full">
                   <AlertTriangle className="h-6 w-6 text-yellow-600" />
                 </div>
@@ -127,8 +127,8 @@ export default function ConflictResolutionPage() {
             <CardContent>
               <div className="space-y-2">
                 {conflicts.map((conflict) => (
-                  <div key={conflict.id} className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition-shadow">
-                    <div className="flex items-start gap-4 mb-4 md:mb-0">
+                  <div key={conflict.id} className="flex flex-col md:flex-row items-start md:items-center justify-between p-3 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition-shadow">
+                    <div className="flex items-start gap-2 mb-2 md:mb-0">
                       <div className={`p-2 rounded-lg ${conflict.severity === 'High' ? 'bg-red-100 text-red-600' :
                           conflict.severity === 'Medium' ? 'bg-orange-100 text-orange-600' :
                             'bg-yellow-100 text-yellow-600'
@@ -142,7 +142,7 @@ export default function ConflictResolutionPage() {
                         </div>
                         <p className="text-sm font-medium text-gray-900 mt-1">{conflict.type}</p>
                         <p className="text-sm text-gray-500 mt-1">{conflict.description}</p>
-                        <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3 w-3" />
                             {conflict.date}
@@ -183,15 +183,15 @@ export default function ConflictResolutionPage() {
         size="lg"
       >
         <div className="space-y-3">
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-2">Conflict Details</h4>
             <p className="text-sm text-gray-600">{selectedConflict?.description}</p>
           </div>
 
           <div>
-            <h4 className="font-medium text-gray-900 mb-4">Suggested Actions</h4>
-            <div className="grid grid-cols-1 gap-4">
-              <button className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-200 transition-colors text-left group">
+            <h4 className="font-medium text-gray-900 mb-2">Suggested Actions</h4>
+            <div className="grid grid-cols-1 gap-2">
+              <button className="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-200 transition-colors text-left group">
                 <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-200">
                   <RefreshCw className="h-5 w-5" />
                 </div>
@@ -202,7 +202,7 @@ export default function ConflictResolutionPage() {
                 <ArrowRight className="h-5 w-5 text-gray-400 ml-auto group-hover:text-blue-500" />
               </button>
 
-              <button className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:bg-green-50 hover:border-green-200 transition-colors text-left group">
+              <button className="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-green-50 hover:border-green-200 transition-colors text-left group">
                 <div className="p-2 bg-green-100 text-green-600 rounded-lg group-hover:bg-green-200">
                   <Calendar className="h-5 w-5" />
                 </div>
@@ -213,7 +213,7 @@ export default function ConflictResolutionPage() {
                 <ArrowRight className="h-5 w-5 text-gray-400 ml-auto group-hover:text-green-500" />
               </button>
 
-              <button className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:bg-purple-50 hover:border-purple-200 transition-colors text-left group">
+              <button className="flex items-start gap-2 p-3 border border-gray-200 rounded-lg hover:bg-purple-50 hover:border-purple-200 transition-colors text-left group">
                 <div className="p-2 bg-purple-100 text-purple-600 rounded-lg group-hover:bg-purple-200">
                   <Split className="h-5 w-5" />
                 </div>

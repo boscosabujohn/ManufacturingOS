@@ -208,7 +208,7 @@ function OrgNodeCard({ node, expanded, onToggle }: { node: OrgNode; expanded: bo
 
   return (
     <div className="relative">
-      <div className={`bg-white border-2 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow ${
+      <div className={`bg-white border-2 rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow ${
         node.level === 0 ? 'border-purple-500' :
         node.level === 1 ? 'border-blue-500' :
         node.level === 2 ? 'border-green-500' :
@@ -348,7 +348,7 @@ export default function OrgChartPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -359,30 +359,30 @@ export default function OrgChartPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg border p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Total Employees</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Executive Level</div>
           <div className="text-2xl font-bold text-purple-600">{stats.executive}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Management</div>
           <div className="text-2xl font-bold text-blue-600">{stats.management}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Supervisory</div>
           <div className="text-2xl font-bold text-green-600">{stats.supervisory}</div>
         </div>
-        <div className="bg-white rounded-lg border p-4">
+        <div className="bg-white rounded-lg border p-3">
           <div className="text-sm text-gray-600 mb-1">Org Levels</div>
           <div className="text-2xl font-bold text-orange-600">{stats.levels}</div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg border p-4">
+      <div className="bg-white rounded-lg border p-3">
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <button
@@ -424,7 +424,7 @@ export default function OrgChartPage() {
         </div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2">
           <Network className="w-5 h-5 inline mr-2" />
           Organization Chart Features

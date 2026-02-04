@@ -573,7 +573,7 @@ Timestamp: ${new Date().toLocaleString()}`);
   const totalSavings = totalRouteSavings + totalLoadSavings + totalDriverRevenue;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -604,8 +604,8 @@ Timestamp: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Potential Savings Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 text-green-600" />
             <TrendingUp className="w-5 h-5 text-green-600" />
@@ -615,7 +615,7 @@ Timestamp: ${new Date().toLocaleString()}`);
           <div className="text-xs text-green-600 mt-1">Per month</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <MapPin className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">₹{(totalRouteSavings / 1000).toFixed(0)}K</span>
@@ -624,7 +624,7 @@ Timestamp: ${new Date().toLocaleString()}`);
           <div className="text-xs text-blue-600 mt-1">{routeOptimizations.length} routes analyzed</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">₹{(totalLoadSavings / 1000).toFixed(0)}K</span>
@@ -633,7 +633,7 @@ Timestamp: ${new Date().toLocaleString()}`);
           <div className="text-xs text-purple-600 mt-1">{loadOptimizations.reduce((sum, l) => sum + l.tripReduction, 0)} trips saved</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">₹{(totalDriverRevenue / 1000).toFixed(0)}K</span>
@@ -644,11 +644,11 @@ Timestamp: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Optimization Metrics */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-6">Optimization Metrics</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-3">Optimization Metrics</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {metrics.map((metric, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg p-4">
+            <div key={index} className="border border-gray-200 rounded-lg p-3">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="font-medium text-gray-900">{metric.name}</h3>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(metric.status)}`}>
@@ -693,43 +693,43 @@ Timestamp: ${new Date().toLocaleString()}`);
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distance Saving</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time Saving</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost Saving</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommendation</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distance Saving</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time Saving</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost Saving</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Recommendation</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {routeOptimizations.map((route) => (
                 <tr key={route.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{route.routeName}</div>
                     <div className="text-sm text-gray-600">{route.origin} → {route.destination}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-semibold text-green-600">{route.distanceSaving} km</div>
                     <div className="text-xs text-gray-500">{route.currentDistance} → {route.optimizedDistance} km</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-semibold text-blue-600">{route.timeSaving.toFixed(1)}h</div>
                     <div className="text-xs text-gray-500">{route.currentTime} → {route.optimizedTime}h</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-bold text-green-600">₹{route.costSaving.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">{route.savingPercentage}% saving</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-700 max-w-xs">{route.recommendation}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(route.status)}`}>
                       {route.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     {route.status === 'pending' && (
                       <button
                         onClick={() => handleImplementOptimization(route)}
@@ -750,16 +750,16 @@ Timestamp: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Load & Driver Optimization */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Load Optimization */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Load Optimization</h2>
             <p className="text-sm text-gray-600 mt-1">Improve vehicle load utilization</p>
           </div>
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {loadOptimizations.map((load) => (
-              <div key={load.id} className="border border-gray-200 rounded-lg p-4">
+              <div key={load.id} className="border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-medium text-gray-900">{load.vehicleType}</h3>
                   <span className="text-sm font-bold text-green-600">
@@ -796,9 +796,9 @@ Timestamp: ${new Date().toLocaleString()}`);
             <h2 className="text-lg font-semibold text-gray-900">Driver Utilization</h2>
             <p className="text-sm text-gray-600 mt-1">Maximize driver productivity</p>
           </div>
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-2">
             {driverOptimizations.map((driver) => (
-              <div key={driver.id} className="border border-gray-200 rounded-lg p-4">
+              <div key={driver.id} className="border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-medium text-gray-900">{driver.driverName}</h3>
                   <span className="text-sm font-bold text-purple-600">
@@ -833,9 +833,9 @@ Timestamp: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Zap className="w-6 h-6 text-purple-600" />
             </div>
@@ -852,8 +852,8 @@ Timestamp: ${new Date().toLocaleString()}`);
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <Target className="w-6 h-6 text-green-600" />
             </div>
@@ -870,8 +870,8 @@ Timestamp: ${new Date().toLocaleString()}`);
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <BarChart3 className="w-6 h-6 text-blue-600" />
             </div>

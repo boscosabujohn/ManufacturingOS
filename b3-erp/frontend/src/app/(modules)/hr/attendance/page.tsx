@@ -193,8 +193,8 @@ export default function AttendancePage() {
   // Show loading state
   if (loading) {
     return (
-      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+      <div className="w-full min-h-screen px-3 py-2 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
           <p className="text-gray-600">Loading attendance records...</p>
         </div>
@@ -205,8 +205,8 @@ export default function AttendancePage() {
   // Show error state
   if (error) {
     return (
-      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4 text-center">
+      <div className="w-full min-h-screen px-3 py-2 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-2 text-center">
           <div className="text-red-500 text-lg font-medium">{error}</div>
           <button
             onClick={() => window.location.reload()}
@@ -220,10 +220,10 @@ export default function AttendancePage() {
   }
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen px-3 py-2">
       <div className="w-full">
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
           {statsCards.map((stat, index) => {
             const gradientMap: { [key: string]: string } = {
               'from-green-500 to-emerald-600': 'from-green-50 to-green-100',
@@ -256,7 +256,7 @@ export default function AttendancePage() {
             return (
               <div
                 key={index}
-                className={`bg-gradient-to-br ${gradientMap[stat.gradient]} rounded-lg p-4 border ${borderMap[stat.gradient]}`}
+                className={`bg-gradient-to-br ${gradientMap[stat.gradient]} rounded-lg p-3 border ${borderMap[stat.gradient]}`}
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -271,8 +271,8 @@ export default function AttendancePage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div className="md:col-span-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -334,31 +334,31 @@ export default function AttendancePage() {
             <table className="w-full">
               <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Employee ID
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Department
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Date
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Check In
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Check Out
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Work Hours
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -366,30 +366,30 @@ export default function AttendancePage() {
               <tbody className="divide-y divide-gray-200">
                 {paginatedAttendance.map((record) => (
                   <tr key={record.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="text-sm font-medium text-gray-900">{record.employeeId}</span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{record.employeeName}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="text-sm text-gray-600">{record.department}</span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="text-sm text-gray-600">{record.date}</span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="text-sm font-medium text-gray-900">{record.checkIn}</span>
                       {record.lateBy > 0 && (
                         <span className="ml-1 text-xs text-red-600">({record.lateBy}m late)</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="text-sm font-medium text-gray-900">
                         {record.checkOut || '-'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm">
                         <span className="font-medium text-gray-900">{record.workHours}h</span>
                         {record.overtimeHours > 0 && (
@@ -397,10 +397,10 @@ export default function AttendancePage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {getStatusBadge(record.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm">
                       <button className="text-blue-600 hover:text-blue-800 font-medium mr-3">
                         View
                       </button>
@@ -415,7 +415,7 @@ export default function AttendancePage() {
           </div>
 
           {/* Pagination */}
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 border-t border-gray-200">
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-3 py-2 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-600">
                 Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, filteredAttendance.length)} of {filteredAttendance.length} records

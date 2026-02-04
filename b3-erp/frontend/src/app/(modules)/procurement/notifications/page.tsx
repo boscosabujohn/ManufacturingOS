@@ -179,7 +179,7 @@ export default function NotificationCenter() {
 
   const NotificationItem = ({ notification }: { notification: any }) => (
     <div
-      className={`flex items-start gap-4 p-4 border-b hover:bg-gray-50 cursor-pointer ${
+      className={`flex items-start gap-2 p-3 border-b hover:bg-gray-50 cursor-pointer ${
         !notification.read ? 'bg-blue-50' : ''
       }`}
     >
@@ -197,7 +197,7 @@ export default function NotificationCenter() {
           <div>
             <h4 className="font-medium text-gray-900">{notification.title}</h4>
             <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
-            <div className="flex items-center gap-4 mt-2">
+            <div className="flex items-center gap-2 mt-2">
               <span className="text-xs text-gray-500">{notification.timestamp}</span>
               <span className={`text-xs px-2 py-0.5 rounded-full ${
                 notification.priority === 'urgent' ? 'bg-red-100 text-red-700' :
@@ -249,9 +249,9 @@ export default function NotificationCenter() {
         <div className="p-6">
           {/* Delivery Channels */}
           <div className="mb-8">
-            <h3 className="text-lg font-medium mb-4">Delivery Channels</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 border rounded-lg">
+            <h3 className="text-lg font-medium mb-2">Delivery Channels</h3>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <MailIcon className="h-5 w-5 text-gray-600" />
                   <div>
@@ -270,7 +270,7 @@ export default function NotificationCenter() {
                 </label>
               </div>
 
-              <div className="flex items-center justify-between p-4 border rounded-lg">
+              <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <Bell className="h-5 w-5 text-gray-600" />
                   <div>
@@ -289,7 +289,7 @@ export default function NotificationCenter() {
                 </label>
               </div>
 
-              <div className="flex items-center justify-between p-4 border rounded-lg">
+              <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <Smartphone className="h-5 w-5 text-gray-600" />
                   <div>
@@ -308,7 +308,7 @@ export default function NotificationCenter() {
                 </label>
               </div>
 
-              <div className="flex items-center justify-between p-4 border rounded-lg">
+              <div className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <Monitor className="h-5 w-5 text-gray-600" />
                   <div>
@@ -331,8 +331,8 @@ export default function NotificationCenter() {
 
           {/* Notification Categories */}
           <div className="mb-8">
-            <h3 className="text-lg font-medium mb-4">Notification Categories</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-medium mb-2">Notification Categories</h3>
+            <div className="grid grid-cols-2 gap-2">
               {Object.entries(preferences.categories).map(([category, enabled]) => (
                 <div key={category} className="flex items-center justify-between p-3 border rounded-lg">
                   <span className="capitalize">{category}</span>
@@ -355,9 +355,9 @@ export default function NotificationCenter() {
 
           {/* Quiet Hours */}
           <div className="mb-8">
-            <h3 className="text-lg font-medium mb-4">Quiet Hours</h3>
+            <h3 className="text-lg font-medium mb-2">Quiet Hours</h3>
             <div className="p-4 border rounded-lg">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <div>
                   <div className="font-medium">Enable Quiet Hours</div>
                   <div className="text-sm text-gray-500">Mute notifications during specified hours</div>
@@ -376,7 +376,7 @@ export default function NotificationCenter() {
                 </label>
               </div>
               {preferences.quietHours.enabled && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
                     <input
@@ -423,11 +423,11 @@ export default function NotificationCenter() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+        <div className="flex justify-between items-center mb-3">
+          <div className="flex items-center gap-2">
             <div className="relative">
               <Bell className="h-8 w-8 text-gray-700" />
               {unreadCount > 0 && (
@@ -461,15 +461,15 @@ export default function NotificationCenter() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-gray-50 rounded-lg p-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-gray-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-600">Unread</span>
               <Bell className="h-4 w-4 text-blue-600" />
             </div>
             <div className="text-2xl font-bold text-gray-900">{unreadCount}</div>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-600">Urgent</span>
               <AlertTriangle className="h-4 w-4 text-red-600" />
@@ -478,7 +478,7 @@ export default function NotificationCenter() {
               {notifications.filter(n => n.priority === 'urgent').length}
             </div>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-600">Today</span>
               <Calendar className="h-4 w-4 text-green-600" />
@@ -487,7 +487,7 @@ export default function NotificationCenter() {
               {notifications.filter(n => n.timestamp.includes('hour') || n.timestamp.includes('minute')).length}
             </div>
           </div>
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm text-gray-600">Active Rules</span>
               <CheckCircle className="h-4 w-4 text-purple-600" />
@@ -499,13 +499,13 @@ export default function NotificationCenter() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Notifications List */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-lg shadow-sm">
             {/* Tabs and Actions */}
             <div className="p-4 border-b">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <div className="flex gap-2">
                   {['all', 'unread', 'starred'].map((tab) => (
                     <button
@@ -579,12 +579,12 @@ export default function NotificationCenter() {
         </div>
 
         {/* Alert Rules */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-lg font-semibold mb-4">Alert Rules</h3>
+        <div className="space-y-3">
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h3 className="text-lg font-semibold mb-2">Alert Rules</h3>
             <div className="space-y-3">
               {alertRules.map((rule) => (
-                <div key={rule.id} className="border rounded-lg p-4">
+                <div key={rule.id} className="border rounded-lg p-3">
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="font-medium text-gray-900">{rule.name}</h4>
@@ -618,8 +618,8 @@ export default function NotificationCenter() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h3 className="text-lg font-semibold mb-2">Quick Actions</h3>
             <div className="space-y-3">
               <button className="w-full p-3 text-left border rounded-lg hover:bg-gray-50 flex items-center justify-between">
                 <div className="flex items-center gap-3">

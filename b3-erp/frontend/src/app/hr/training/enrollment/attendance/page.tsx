@@ -38,7 +38,7 @@ export default function AttendancePage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -47,7 +47,7 @@ export default function AttendancePage() {
           </h1>
           <p className="text-gray-500 mt-1">Mark and track attendance for training sessions.</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 text-sm text-gray-600 bg-white px-3 py-1.5 rounded-lg border border-gray-200">
             <Calendar className="h-4 w-4 text-gray-400" />
             <span>Advanced React Patterns • April 10, 2024</span>
@@ -62,31 +62,31 @@ export default function AttendancePage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Stats Cards */}
-        <div className="lg:col-span-4 grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+        <div className="lg:col-span-4 grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-gray-500 uppercase">Present</p>
               <p className="text-2xl font-bold text-green-600">{stats.present}</p>
             </div>
             <div className="p-2 bg-green-50 rounded-lg"><UserCheck className="h-5 w-5 text-green-600" /></div>
           </div>
-          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-gray-500 uppercase">Absent</p>
               <p className="text-2xl font-bold text-red-600">{stats.absent}</p>
             </div>
             <div className="p-2 bg-red-50 rounded-lg"><UserX className="h-5 w-5 text-red-600" /></div>
           </div>
-          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-gray-500 uppercase">Late</p>
               <p className="text-2xl font-bold text-orange-600">{stats.late}</p>
             </div>
             <div className="p-2 bg-orange-50 rounded-lg"><Clock className="h-5 w-5 text-orange-600" /></div>
           </div>
-          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 flex items-center justify-between">
             <div>
               <p className="text-xs font-medium text-gray-500 uppercase">Attendance Rate</p>
               <p className="text-2xl font-bold text-purple-600">{Math.round(((stats.present + stats.late) / stats.total) * 100)}%</p>
@@ -97,8 +97,8 @@ export default function AttendancePage() {
 
         {/* Main List */}
         <div className="lg:col-span-4">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-gray-900">Attendee List</h3>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -126,7 +126,7 @@ export default function AttendancePage() {
                       <td className="py-4 pl-4 font-medium text-gray-900">{attendee.name}</td>
                       <td className="py-4 text-gray-600 text-sm">{attendee.role}</td>
                       <td className="py-4">
-                        <div className="flex justify-center gap-1 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
+                        <div className="flex justify-center gap-1 bg-gray-100 p-1 rounded-lg w-fit">
                           <button
                             onClick={() => updateStatus(attendee.id, 'Present')}
                             className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${attendee.status === 'Present' ? 'bg-white text-green-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'

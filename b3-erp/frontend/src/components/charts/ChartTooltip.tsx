@@ -142,7 +142,7 @@ export function ChartTooltip({
         {/* Items */}
         <div className={`space-y-${variant === 'compact' ? '0.5' : '1.5'}`}>
           {items.map((item, index) => (
-            <div key={index} className="flex items-center justify-between gap-4">
+            <div key={index} className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 {item.color && (
                   <div

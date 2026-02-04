@@ -308,7 +308,7 @@ const SessionManagementPage = () => {
   return (
     <div className="p-6 max-w-[1600px]">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -348,8 +348,8 @@ const SessionManagementPage = () => {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Sessions</span>
             <Shield className="w-4 h-4 text-blue-600" />
@@ -357,7 +357,7 @@ const SessionManagementPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.totalSessions}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active</span>
             <Users className="w-4 h-4 text-green-600" />
@@ -365,7 +365,7 @@ const SessionManagementPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.activeSessions}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Idle</span>
             <Clock className="w-4 h-4 text-yellow-600" />
@@ -373,7 +373,7 @@ const SessionManagementPage = () => {
           <div className="text-2xl font-bold text-yellow-600">{stats.idleSessions}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Suspicious</span>
             <AlertTriangle className="w-4 h-4 text-red-600" />
@@ -381,7 +381,7 @@ const SessionManagementPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.suspiciousSessions}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Unique Users</span>
             <Users className="w-4 h-4 text-purple-600" />
@@ -389,7 +389,7 @@ const SessionManagementPage = () => {
           <div className="text-2xl font-bold text-purple-600">{stats.uniqueUsers}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Mobile Devices</span>
             <Smartphone className="w-4 h-4 text-orange-600" />
@@ -399,9 +399,9 @@ const SessionManagementPage = () => {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="border-b border-gray-200">
-          <div className="flex gap-4 px-6">
+          <div className="flex gap-2 px-6">
             <button
               onClick={() => setActiveTab('active')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
@@ -429,7 +429,7 @@ const SessionManagementPage = () => {
         {activeTab === 'active' && (
           <div className="p-6">
             {/* Filters */}
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-2 mb-3">
               <div className="flex-1 min-w-[300px]">
                 <input
                   type="text"
@@ -583,15 +583,15 @@ const SessionManagementPage = () => {
         {/* Settings Tab */}
         {activeTab === 'settings' && (
           <div className="p-6">
-            <div className="w-full space-y-6">
+            <div className="w-full space-y-3">
               {/* Session Limits */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Settings className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Session Limits</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Maximum Concurrent Sessions per User
@@ -630,13 +630,13 @@ const SessionManagementPage = () => {
               </div>
 
               {/* Timeout Settings */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Timeout Settings</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Session Timeout (minutes)
@@ -696,13 +696,13 @@ const SessionManagementPage = () => {
               </div>
 
               {/* Remember Me */}
-              <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Shield className="w-5 h-5 text-gray-700" />
                   <h3 className="font-semibold text-gray-900">Remember Me</h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <label className="flex items-center gap-2">
                     <input
                       type="checkbox"

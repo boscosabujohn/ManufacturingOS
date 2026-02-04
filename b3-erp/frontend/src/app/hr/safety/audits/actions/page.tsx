@@ -71,9 +71,9 @@ export default function CorrectiveActionsPage() {
   const [activeTab, setActiveTab] = useState('Active');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <CheckCircle className="h-8 w-8 text-orange-600" />
@@ -88,31 +88,31 @@ export default function CorrectiveActionsPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Active CAPAs</p>
           <p className="text-2xl font-bold text-gray-900 mt-2">{actionStats.activeCAPAs}</p>
           <p className="text-[10px] text-orange-600 mt-1 font-bold">4 Scheduled for next 7 days</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Overdue</p>
           <p className="text-2xl font-bold text-red-600 mt-2">{actionStats.overdue}</p>
           <p className="text-[10px] text-red-500 mt-1 font-bold">Immediate attention required</p>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-center flex flex-col items-center">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center flex flex-col items-center">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Avg Closure</p>
           <div className="mt-2 text-2xl font-black text-blue-600 flex items-center gap-1">
             <TrendingDown className="w-5 h-5" /> {actionStats.avgClosureTime}
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center justify-center bg-gray-900 text-white">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center justify-center bg-gray-900 text-white">
           <CheckCheck className="w-6 h-6 text-green-500 mb-1" />
           <p className="text-xl font-bold">{actionStats.completedThisMonth}</p>
           <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Resolved MTD</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* CAPA Tracker Log */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden text-sm">
@@ -143,7 +143,7 @@ export default function CorrectiveActionsPage() {
             <div className="divide-y divide-gray-50">
               {correctiveActions.map((action) => (
                 <div key={action.id} className="p-5 hover:bg-gray-50 transition-all cursor-pointer group">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                     <div className="space-y-1 flex-1">
                       <div className="flex items-center gap-2">
                         <h3 className="font-bold text-gray-900 uppercase group-hover:text-orange-600 transition-colors">{action.title}</h3>
@@ -178,7 +178,7 @@ export default function CorrectiveActionsPage() {
                   </div>
 
                   <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between bg-transparent">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                       <span className="text-[11px] text-gray-500 flex items-center gap-1.5">
                         <User className="w-3 h-3 text-blue-500" />
                         Assignee: <span className="font-bold text-gray-700">{action.owner}</span>
@@ -200,13 +200,13 @@ export default function CorrectiveActionsPage() {
         </div>
 
         {/* Sidebar: Activity & Guidelines */}
-        <div className="space-y-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
               <User className="w-5 h-5 text-gray-400" />
               Responsible Owners
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {[
                 { name: 'David Miller', role: 'Maint. Head', load: 4 },
                 { name: 'Emma Watson', role: 'HSE Officer', load: 7 },
@@ -230,8 +230,8 @@ export default function CorrectiveActionsPage() {
             </div>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-            <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+          <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
+            <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-blue-500" />
               Verification Tip
             </h3>

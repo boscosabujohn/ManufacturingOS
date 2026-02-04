@@ -203,7 +203,7 @@ export function ResponsiveTable<T extends Record<string, any>>({
       >
         {/* Card Header */}
         <div
-          className="flex items-center gap-3 p-4"
+          className="flex items-center gap-3 p-3"
           onClick={() => onRowClick?.(row)}
         >
           {selectable && (
@@ -451,7 +451,7 @@ export function ResponsiveTable<T extends Record<string, any>>({
     <div className={className}>
       {/* Toolbar */}
       {(searchable || !isMobile) && (
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-2">
           {searchable && (
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />

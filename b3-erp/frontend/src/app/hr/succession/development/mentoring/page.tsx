@@ -283,8 +283,8 @@ export default function Page() {
   const totalMeetings = mockPairs.reduce((sum, p) => sum + p.totalMeetings, 0);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Users className="h-6 w-6 text-teal-600" />
           Mentoring Programs
@@ -292,8 +292,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Mentor-mentee relationships and progress tracking</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Total Pairs</p>
@@ -303,7 +303,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Active</p>
@@ -313,7 +313,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-4">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">Avg. Progress</p>
@@ -323,7 +323,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Total Meetings</p>
@@ -334,8 +334,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Program Type</label>
             <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
@@ -360,10 +360,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredPairs.map((pair) => (
-          <div key={pair.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div key={pair.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
                 <span className={`px-3 py-1 text-xs font-semibold rounded-full border-2 ${getTypeColor(pair.programType)}`}>
                   {pair.programType.replace('_', ' ').toUpperCase()}
@@ -377,10 +377,10 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-blue-50 rounded-lg border border-blue-200 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+              <div className="bg-blue-50 rounded-lg border border-blue-200 p-3">
                 <p className="text-xs font-semibold text-blue-600 uppercase mb-3">Mentor</p>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="text-5xl">{pair.mentor.photo}</div>
                   <div>
                     <p className="text-lg font-bold text-gray-900">{pair.mentor.name}</p>
@@ -391,9 +391,9 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="bg-teal-50 rounded-lg border border-teal-200 p-4">
+              <div className="bg-teal-50 rounded-lg border border-teal-200 p-3">
                 <p className="text-xs font-semibold text-teal-600 uppercase mb-3">Mentee</p>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="text-5xl">{pair.mentee.photo}</div>
                   <div>
                     <p className="text-lg font-bold text-gray-900">{pair.mentee.name}</p>
@@ -405,7 +405,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-3">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="text-sm font-bold text-gray-900">Overall Progress</h4>
                 <span className="text-sm font-bold text-teal-600">{pair.progress}%</span>
@@ -415,7 +415,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-3">
               <div className="flex items-center gap-2 mb-3">
                 <Target className="h-4 w-4 text-purple-600" />
                 <h4 className="text-sm font-bold text-gray-900">Mentoring Goals</h4>
@@ -430,7 +430,7 @@ export default function Page() {
               </ul>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-3">
               <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs text-gray-600 uppercase font-medium mb-1">Meeting Frequency</p>
                 <p className="text-sm font-bold text-gray-900">{pair.meetingFrequency}</p>

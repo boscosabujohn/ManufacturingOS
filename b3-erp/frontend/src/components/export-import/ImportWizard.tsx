@@ -353,13 +353,13 @@ export function ImportWizard({
       />
 
       {/* Dialog */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
         <div
           className="w-full max-w-3xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                 <Upload className="w-5 h-5 text-green-600 dark:text-green-400" />
@@ -384,7 +384,7 @@ export function ImportWizard({
           </div>
 
           {/* Progress Steps */}
-          <div className="flex items-center justify-center px-6 py-4 bg-gray-50 dark:bg-gray-800/50">
+          <div className="flex items-center justify-center px-3 py-2 bg-gray-50 dark:bg-gray-800/50">
             {['upload', 'mapping', 'validation', 'complete'].map((s, index, arr) => (
               <React.Fragment key={s}>
                 <div className={`flex items-center gap-2 ${
@@ -413,10 +413,10 @@ export function ImportWizard({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-3">
             {/* Step 1: Upload */}
             {step === 'upload' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div
                   className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-colors ${
                     isDragging
@@ -433,7 +433,7 @@ export function ImportWizard({
                     onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
-                  <FileSpreadsheet className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+                  <FileSpreadsheet className="w-16 h-16 text-gray-400 mb-2" />
                   <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                     Drop your file here or click to browse
                   </p>
@@ -443,7 +443,7 @@ export function ImportWizard({
                 </div>
 
                 {parseError && (
-                  <div className="flex items-center gap-2 p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
+                  <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
                     <AlertCircle className="w-5 h-5 flex-shrink-0" />
                     <span>{parseError}</span>
                   </div>
@@ -471,7 +471,7 @@ export function ImportWizard({
 
             {/* Step 2: Mapping */}
             {step === 'mapping' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {file && (
                   <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
                     <div className="flex items-center gap-3">
@@ -501,7 +501,7 @@ export function ImportWizard({
                     return (
                       <div
                         key={col.key}
-                        className="flex items-center gap-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                        className="flex items-center gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
                       >
                         <div className="flex-1">
                           <span className={`text-sm ${col.required ? 'font-medium' : ''} text-gray-700 dark:text-gray-300`}>
@@ -566,7 +566,7 @@ export function ImportWizard({
 
             {/* Step 3: Validation */}
             {step === 'validation' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className={`p-4 rounded-lg ${
                   validationErrors.length === 0
                     ? 'bg-green-50 dark:bg-green-900/20'
@@ -630,7 +630,7 @@ export function ImportWizard({
             {/* Step 4: Importing */}
             {step === 'importing' && (
               <div className="flex flex-col items-center justify-center py-12">
-                <Loader2 className="w-16 h-16 text-blue-600 animate-spin mb-4" />
+                <Loader2 className="w-16 h-16 text-blue-600 animate-spin mb-2" />
                 <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                   Importing your data...
                 </p>
@@ -642,16 +642,16 @@ export function ImportWizard({
 
             {/* Step 5: Complete */}
             {step === 'complete' && importResult && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className={`p-6 rounded-xl text-center ${
                   importResult.success
                     ? 'bg-green-50 dark:bg-green-900/20'
                     : 'bg-red-50 dark:bg-red-900/20'
                 }`}>
                   {importResult.success ? (
-                    <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+                    <CheckCircle className="w-16 h-16 text-green-600 mb-2" />
                   ) : (
-                    <XCircle className="w-16 h-16 text-red-600 mx-auto mb-4" />
+                    <XCircle className="w-16 h-16 text-red-600 mb-2" />
                   )}
                   <h3 className={`text-xl font-semibold mb-2 ${
                     importResult.success
@@ -660,7 +660,7 @@ export function ImportWizard({
                   }`}>
                     {importResult.success ? 'Import Successful!' : 'Import Failed'}
                   </h3>
-                  <div className="flex items-center justify-center gap-6 text-sm">
+                  <div className="flex items-center justify-center gap-3 text-sm">
                     <div>
                       <span className="font-semibold text-green-600">{importResult.imported}</span>
                       <span className="text-gray-500 ml-1">imported</span>
@@ -694,7 +694,7 @@ export function ImportWizard({
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between px-6 py-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between px-3 py-2 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
             <div>
               {step !== 'upload' && step !== 'importing' && step !== 'complete' && (
                 <button

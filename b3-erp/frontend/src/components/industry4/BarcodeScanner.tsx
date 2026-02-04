@@ -240,7 +240,7 @@ function CameraPreview({
         </>
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
-          <CameraOff className="w-16 h-16 mb-4" />
+          <CameraOff className="w-16 h-16 mb-2" />
           <p>Camera inactive</p>
         </div>
       )}
@@ -338,7 +338,7 @@ function ScanResultDisplay({
     <Card className={`border-2 ${resultColors[result]}`}>
       <CardContent className="p-4">
         {/* Result Header */}
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-3">
             {resultIcons[result]}
             <div>
@@ -353,7 +353,7 @@ function ScanResultDisplay({
 
         {/* Item Details */}
         {item && (
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-900 rounded-lg">
               <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
                 {getItemIcon(item.type)}
@@ -400,7 +400,7 @@ function ScanResultDisplay({
 
         {/* WIP Status */}
         {wipStatus && (
-          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-3">Work In Progress Status</h4>
 
             <div className="space-y-3">
@@ -649,7 +649,7 @@ export function BarcodeScanner({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Mode Selector */}
       <Card>
         <CardContent className="p-4">
@@ -658,9 +658,9 @@ export function BarcodeScanner({
       </Card>
 
       {/* Main Scanner Area */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
         {/* Scanner */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-2">
           <Card>
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">

@@ -184,7 +184,7 @@ export default function TimesheetApprovalPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <CheckCircle className="h-8 w-8 text-blue-600" />
           Timesheet Approval
@@ -193,8 +193,8 @@ export default function TimesheetApprovalPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Pending Approval</p>
@@ -203,7 +203,7 @@ export default function TimesheetApprovalPage() {
             <Clock className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Approved This Week</p>
@@ -212,7 +212,7 @@ export default function TimesheetApprovalPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Hours</p>
@@ -221,7 +221,7 @@ export default function TimesheetApprovalPage() {
             <Clock className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overtime Hours</p>
@@ -234,7 +234,7 @@ export default function TimesheetApprovalPage() {
 
       {/* Alert */}
       {stats.pending > 0 && (
-        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4 mb-6">
+        <div className="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-3 mb-3">
           <div className="flex items-center gap-3">
             <AlertCircle className="w-6 h-6 text-yellow-600" />
             <div>
@@ -248,8 +248,8 @@ export default function TimesheetApprovalPage() {
       )}
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -296,7 +296,7 @@ export default function TimesheetApprovalPage() {
 
       {/* Pending Timesheets */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div className="px-3 py-2 border-b border-gray-200 bg-gray-50">
           <h3 className="text-lg font-semibold text-gray-900">Pending Timesheets ({filteredData.length})</h3>
         </div>
         <DataTable data={filteredData} columns={columns} />
@@ -307,7 +307,7 @@ export default function TimesheetApprovalPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
             <div className="p-6">
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-3">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">Timesheet Details</h3>
                   <p className="text-sm text-gray-500">{selectedTimesheet.week} - {selectedTimesheet.weekPeriod}</p>
@@ -320,7 +320,7 @@ export default function TimesheetApprovalPage() {
                 </button>
               </div>
 
-              <div className="space-y-4 mb-6">
+              <div className="space-y-2 mb-3">
                 <div className="flex justify-between border-b pb-2">
                   <span className="text-gray-600">Employee:</span>
                   <span className="font-medium text-gray-900">{selectedTimesheet.employeeName}</span>

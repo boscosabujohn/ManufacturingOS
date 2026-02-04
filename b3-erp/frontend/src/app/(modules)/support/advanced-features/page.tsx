@@ -35,9 +35,9 @@ export default function SupportAdvancedFeaturesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      <div className="space-y-6">
-        <div className="bg-white shadow-lg p-6">
-          <button onClick={() => router.push('/support')} className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4">
+      <div className="space-y-3">
+        <div className="bg-white shadow-lg p-3">
+          <button onClick={() => router.push('/support')} className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-2">
             <ArrowLeft className="h-5 w-5" />Back to Support
           </button>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
@@ -47,7 +47,7 @@ export default function SupportAdvancedFeaturesPage() {
         <div className="bg-white shadow-lg">
           <nav className="flex overflow-x-auto border-b">
             {tabs.map((tab) => (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={activeTab === tab.id ? 'px-6 py-4 border-b-2 border-blue-600 text-blue-600' : 'px-6 py-4 text-gray-600'}>
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={activeTab === tab.id ? 'px-3 py-2 border-b-2 border-blue-600 text-blue-600' : 'px-3 py-2 text-gray-600'}>
                 {tab.label}
               </button>
             ))}

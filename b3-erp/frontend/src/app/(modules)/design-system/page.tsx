@@ -78,8 +78,8 @@ export default function DesignSystemPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="py-6">
+        <div className="w-full px-3">
+          <div className="py-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
@@ -118,9 +118,9 @@ export default function DesignSystemPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-3 py-2">
         {/* Tab Description */}
-        <div className="mb-6">
+        <div className="mb-3">
           <p className="text-gray-600 dark:text-gray-400">
             {tabs.find((t) => t.id === activeTab)?.description}
           </p>
@@ -132,31 +132,31 @@ export default function DesignSystemPage() {
         {activeTab === 'icons' && <IconUsageGuide />}
         {activeTab === 'colors' && <ColorUsageGuidelines />}
         {activeTab === 'theme' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Theme Settings Panel */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 Theme Configuration
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                 Customize the appearance of the application. Changes are saved automatically and persist across sessions.
               </p>
               <ThemeSwitcher variant="inline" />
             </div>
 
             {/* Theme Preview Grid */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 Theme Preview
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 {/* Light Theme Preview */}
                 <div className="border border-gray-200 rounded-lg overflow-hidden">
                   <div className="bg-gray-100 px-3 py-2 flex items-center gap-2">
                     <Sun className="w-4 h-4 text-amber-500" />
                     <span className="text-sm font-medium text-gray-700">Light Mode</span>
                   </div>
-                  <div className="bg-white p-4">
+                  <div className="bg-white p-3">
                     <div className="space-y-3">
                       <div className="h-3 bg-gray-200 rounded w-3/4" />
                       <div className="h-3 bg-gray-200 rounded w-1/2" />
@@ -178,7 +178,7 @@ export default function DesignSystemPage() {
                     <Moon className="w-4 h-4 text-blue-400" />
                     <span className="text-sm font-medium text-gray-300">Dark Mode</span>
                   </div>
-                  <div className="bg-gray-900 p-4">
+                  <div className="bg-gray-900 p-3">
                     <div className="space-y-3">
                       <div className="h-3 bg-gray-700 rounded w-3/4" />
                       <div className="h-3 bg-gray-700 rounded w-1/2" />
@@ -197,12 +197,12 @@ export default function DesignSystemPage() {
             </div>
 
             {/* Accessibility Features */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                 <Eye className="w-5 h-5" />
                 Accessibility Features
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-500 mt-2" />
                   <div>
@@ -250,12 +250,12 @@ export default function DesignSystemPage() {
       </div>
 
       {/* Footer */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-200 dark:border-gray-700">
+      <div className="w-full px-3 py-8 border-t border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
           <div>
             ManufacturingOS Design System v1.0
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <a href="#" className="hover:text-gray-900 dark:hover:text-white">
               Documentation
             </a>

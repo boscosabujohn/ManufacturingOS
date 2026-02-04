@@ -83,7 +83,7 @@ export default function DiscrepanciesPage() {
   return (
     <div className="w-full py-2 space-y-3">
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </Button>
@@ -107,7 +107,7 @@ export default function DiscrepanciesPage() {
                 Describe the issue found during verification.
               </DialogDescription>
             </DialogHeader>
-            <div className="grid gap-4 py-4">
+            <div className="grid gap-2 py-4">
               <div className="grid gap-2">
                 <Label htmlFor="title">Issue Title</Label>
                 <Input
@@ -172,8 +172,8 @@ export default function DiscrepanciesPage() {
                   <p className="text-center py-8 text-gray-500">No discrepancies logged yet.</p>
                 ) : (
                   discrepancies.map((issue) => (
-                    <div key={issue.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                      <div className="flex items-start gap-4">
+                    <div key={issue.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="flex items-start gap-2">
                         <div className={`p-2 rounded-full mt-1 ${issue.priority === 'High' ? 'bg-red-100 text-red-600' :
                           issue.priority === 'Medium' ? 'bg-yellow-100 text-yellow-600' :
                             'bg-blue-100 text-blue-600'
@@ -192,7 +192,7 @@ export default function DiscrepanciesPage() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${issue.status === 'Open' ? 'bg-red-100 text-red-700' :
                           issue.status === 'In Review' ? 'bg-yellow-100 text-yellow-700' :
                             'bg-green-100 text-green-700'

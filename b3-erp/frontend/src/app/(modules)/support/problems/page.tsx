@@ -163,7 +163,7 @@ export default function Problems() {
   })
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -183,8 +183,8 @@ export default function Problems() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Total Problems</p>
@@ -194,7 +194,7 @@ export default function Problems() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Investigating</p>
@@ -204,7 +204,7 @@ export default function Problems() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Known Errors</p>
@@ -214,7 +214,7 @@ export default function Problems() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">RCA Complete</p>
@@ -224,7 +224,7 @@ export default function Problems() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Resolved</p>
@@ -234,7 +234,7 @@ export default function Problems() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg p-6">
+        <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm opacity-90">Avg Resolution</p>
@@ -246,8 +246,8 @@ export default function Problems() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -323,7 +323,7 @@ export default function Problems() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{problem.title}</h3>
                   <p className="text-sm text-gray-700 mb-3">{problem.description}</p>
 
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 text-sm">
                     <div className="flex items-center gap-2 text-gray-600">
                       <Users className="h-4 w-4" />
                       <span>{problem.assignedTo}</span>
@@ -370,7 +370,7 @@ export default function Problems() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <AlertTriangle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
           <div>

@@ -71,7 +71,7 @@ export default function SetGoalsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Target className="h-8 w-8 text-purple-600" />
           Set Goals
@@ -80,8 +80,8 @@ export default function SetGoalsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Goals</p>
@@ -90,7 +90,7 @@ export default function SetGoalsPage() {
             <Target className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Individual</p>
@@ -99,7 +99,7 @@ export default function SetGoalsPage() {
             <Target className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Team</p>
@@ -108,7 +108,7 @@ export default function SetGoalsPage() {
             <Users className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Department</p>
@@ -120,7 +120,7 @@ export default function SetGoalsPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="mb-6 flex justify-between items-center">
+      <div className="mb-3 flex justify-between items-center">
         <div>
           <h2 className="text-lg font-semibold text-gray-900">My Goals ({goals.length})</h2>
           <p className="text-sm text-gray-600">Define objectives for the current period</p>
@@ -135,10 +135,10 @@ export default function SetGoalsPage() {
       </div>
 
       {/* Goals List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {goals.map((goal) => (
-          <div key={goal.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={goal.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">{goal.title}</h3>
@@ -150,9 +150,9 @@ export default function SetGoalsPage() {
                     <span className="capitalize">{goal.category}</span>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">{goal.description}</p>
+                <p className="text-gray-700 mb-2">{goal.description}</p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Calendar className="w-4 h-4" />
                     <span>
@@ -193,14 +193,14 @@ export default function SetGoalsPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
             <div className="p-6">
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-3">
                 <h3 className="text-xl font-semibold text-gray-900">Add New Goal</h3>
                 <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">
                   <X className="h-6 w-6" />
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Goal Title *</label>
                   <input
@@ -223,7 +223,7 @@ export default function SetGoalsPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
                     <select
@@ -250,7 +250,7 @@ export default function SetGoalsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
                     <input

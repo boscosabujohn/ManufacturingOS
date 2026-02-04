@@ -226,7 +226,7 @@ export function DataTable<T extends Record<string, any>>({
     return (
       <div className="bg-white rounded-lg shadow-sm border">
         <div className="p-8 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           <p className="mt-4 text-gray-600">Loading data...</p>
         </div>
       </div>
@@ -237,8 +237,8 @@ export function DataTable<T extends Record<string, any>>({
     <div className="bg-white rounded-lg shadow-sm border">
       {/* Table Header */}
       <div className="p-4 border-b">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div className="flex items-center gap-4 flex-1">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div className="flex items-center gap-2 flex-1">
             {searchable && (
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -310,7 +310,7 @@ export function DataTable<T extends Record<string, any>>({
 
         {/* Column Filters */}
         {showFilters && (
-          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-2">
             {visibleColumns.filter(col => col.filterable !== false).map(column => (
               <div key={column.key}>
                 <label className="block text-xs font-medium text-gray-700 mb-1">
@@ -330,7 +330,7 @@ export function DataTable<T extends Record<string, any>>({
 
         {/* Column Settings */}
         {showColumnSettings && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
             <h4 className="text-sm font-medium text-gray-900 mb-3">Column Visibility</h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {columns.map(column => (
@@ -447,7 +447,7 @@ export function DataTable<T extends Record<string, any>>({
 
       {/* Table Footer with Pagination */}
       <div className="p-4 border-t">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="text-sm text-gray-700">
             Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} entries
             {selectedRows.length > 0 && (

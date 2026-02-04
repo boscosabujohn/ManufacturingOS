@@ -618,7 +618,7 @@ export default function ResourceUtilizationPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-2">
+   <div className="px-3 py-2">
     {/* Page Header */}
     <div className="mb-3">
      <h1 className="text-3xl font-bold text-gray-900">Resource Utilization Analytics</h1>
@@ -628,7 +628,7 @@ export default function ResourceUtilizationPage() {
     </div>
 
     {/* Header Actions */}
-    <div className="flex flex-wrap justify-end gap-3 mb-4">
+    <div className="flex flex-wrap justify-end gap-3 mb-2">
      <button
       onClick={() => setShowFilterModal(true)}
       className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
@@ -689,8 +689,8 @@ export default function ResourceUtilizationPage() {
     </div>
 
     {/* Overall Metrics Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Resources</p>
@@ -703,7 +703,7 @@ export default function ResourceUtilizationPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Avg Utilization</p>
@@ -716,7 +716,7 @@ export default function ResourceUtilizationPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Available Capacity</p>
@@ -729,7 +729,7 @@ export default function ResourceUtilizationPage() {
       </div>
      </div>
 
-     <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
         <p className="text-sm text-gray-600">Total Revenue</p>
@@ -749,7 +749,7 @@ export default function ResourceUtilizationPage() {
 
     {/* Department Metrics */}
     <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
-     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+     <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
       <BarChart3 className="w-5 h-5 text-cyan-600" />
       Department-wise Utilization
      </h3>
@@ -800,8 +800,8 @@ export default function ResourceUtilizationPage() {
     </div>
 
     {/* Filters */}
-    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
-    <div className="flex flex-col md:flex-row gap-4">
+    <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+    <div className="flex flex-col md:flex-row gap-2">
      <div className="flex-1">
       <input
        type="text"
@@ -864,34 +864,34 @@ export default function ResourceUtilizationPage() {
       <table className="min-w-full divide-y divide-gray-200">
        <thead className="bg-gray-50">
         <tr>
-         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           Resource
          </th>
-         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           Department
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Utilization
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Capacity
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Projects
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Efficiency
          </th>
-         <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
           Revenue
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Availability
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Status
          </th>
-         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+         <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
           Actions
          </th>
         </tr>
@@ -899,17 +899,17 @@ export default function ResourceUtilizationPage() {
        <tbody className="bg-white divide-y divide-gray-200">
         {filteredResources.map((resource) => (
          <tr key={resource.id} className="hover:bg-gray-50">
-          <td className="px-6 py-4 whitespace-nowrap">
+          <td className="px-3 py-2 whitespace-nowrap">
            <div>
             <div className="text-sm font-medium text-gray-900">{resource.resourceName}</div>
             <div className="text-sm text-gray-500">{resource.role}</div>
             <div className="text-xs text-gray-400">{resource.resourceId} • {resource.employeeType}</div>
            </div>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap">
+          <td className="px-3 py-2 whitespace-nowrap">
            <div className="text-sm text-gray-900">{resource.department}</div>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getUtilizationColor(resource.utilization)}`}>
             {resource.utilization.toFixed(1)}%
            </span>
@@ -917,21 +917,21 @@ export default function ResourceUtilizationPage() {
             {resource.allocatedHours}h / {resource.totalCapacity}h
            </div>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <div className="text-sm text-gray-900">{resource.actualHours}h</div>
            <div className="text-xs text-gray-500">Billable: {resource.billableHours}h</div>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
             {resource.activeProjects}
            </span>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${resource.efficiency >= 100 ? 'text-green-600 bg-green-50' : 'text-yellow-600 bg-yellow-50'}`}>
             {resource.efficiency.toFixed(1)}%
            </span>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-right">
+          <td className="px-3 py-2 whitespace-nowrap text-right">
            <div className="text-sm font-medium text-gray-900">
             ₹{(resource.totalRevenue / 100000).toFixed(2)}L
            </div>
@@ -939,17 +939,17 @@ export default function ResourceUtilizationPage() {
             Cost: ₹{(resource.totalCost / 100000).toFixed(2)}L
            </div>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getAvailabilityColor(resource.availability)}`}>
             {resource.availability}
            </span>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(resource.status)}`}>
             {resource.status}
            </span>
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-center">
+          <td className="px-3 py-2 whitespace-nowrap text-center">
            <div className="flex items-center justify-center gap-2">
             <button
              onClick={() => handleViewDetails(resource)}
@@ -980,7 +980,7 @@ export default function ResourceUtilizationPage() {
      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
      {filteredResources.map((resource) => (
       <div key={resource.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
-       <div className="flex items-start justify-between mb-4">
+       <div className="flex items-start justify-between mb-2">
         <div>
          <h3 className="text-lg font-semibold text-gray-900">{resource.resourceName}</h3>
          <p className="text-sm text-gray-600">{resource.role}</p>
@@ -1077,7 +1077,7 @@ export default function ResourceUtilizationPage() {
     {/* Empty State */}
     {filteredResources.length === 0 && (
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-      <AlertCircle className="w-12 h-12 text-gray-400 mb-4" />
+      <AlertCircle className="w-12 h-12 text-gray-400 mb-2" />
       <h3 className="text-lg font-medium text-gray-900 mb-2">No resources found</h3>
       <p className="text-gray-600">Try adjusting your search or filter criteria</p>
      </div>

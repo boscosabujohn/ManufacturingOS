@@ -91,10 +91,10 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
     : '0.00';
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">Inspection Details</h2>
             <p className="text-sm opacity-90">ID: {inspection.id}</p>
@@ -104,11 +104,11 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Inspection Summary Section */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Inspection Summary</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Inspection Summary</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="flex items-center space-x-2 mb-2">
                   <Hash className="h-4 w-4 text-gray-600" />
@@ -148,7 +148,7 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
 
           {/* Inspector Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Inspector Information</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Inspector Information</h3>
             <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
               <div className="flex items-start space-x-3">
                 <User className="h-5 w-5 text-blue-600 mt-0.5" />
@@ -162,8 +162,8 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
 
           {/* Sample Size and Defects Metrics */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quality Metrics</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Metrics</h3>
+            <div className="grid grid-cols-3 gap-2">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-xs text-blue-600 mb-1">Sample Size</p>
                 <p className="text-2xl font-bold text-blue-900">{inspection.sampleSize}</p>
@@ -184,7 +184,7 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
           {/* Defect Categories Breakdown */}
           {inspection.defectCategories && inspection.defectCategories.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Defect Categories</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Defect Categories</h3>
               <div className="border border-gray-200 rounded-lg overflow-hidden">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
@@ -222,7 +222,7 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
 
           {/* Pass/Fail Status with Color-Coded Badge */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Inspection Status</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Inspection Status</h3>
             <div className={`p-4 rounded-lg border-2 ${getStatusColor(inspection.status)}`}>
               <div className="flex items-center space-x-3">
                 {inspection.status === 'passed' ? (
@@ -242,7 +242,7 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
 
           {/* Work Center Info */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Work Center</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Work Center</h3>
             <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-gray-600 mt-0.5" />
@@ -257,7 +257,7 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
           {/* Remarks Section */}
           {inspection.remarks && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Remarks</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Remarks</h3>
               <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
                 <div className="flex items-start space-x-3">
                   <FileText className="h-5 w-5 text-yellow-600 mt-0.5" />
@@ -270,7 +270,7 @@ export const ViewInspectionModal: React.FC<ViewInspectionModalProps> = ({ isOpen
           {/* Approval Information (if approved) */}
           {inspection.approver && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Information</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Information</h3>
               <div className="p-4 bg-green-50 rounded-lg border border-green-200 space-y-2">
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Approved By:</span>
@@ -437,10 +437,10 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
   const workCenters = ['Assembly Line 1', 'Assembly Line 2', 'Quality Lab', 'Packaging', 'Welding Station'];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-bold">
             {mode === 'conduct' ? 'Conduct Inspection' : (inspection ? 'Edit Inspection' : 'Create Inspection')}
           </h2>
@@ -449,11 +449,11 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Basic Information */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Work Order ID *</label>
                 <input
@@ -538,8 +538,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
 
           {/* Inspector and Work Center */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Assignment</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Assignment</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Inspector *</label>
                 <select
@@ -592,8 +592,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
 
           {/* Quality Metrics */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quality Metrics</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Metrics</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Sample Size *</label>
                 <input
@@ -628,7 +628,7 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
 
           {/* Defect Categories Management */}
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Defect Categories</h3>
               <button
                 type="button"
@@ -703,7 +703,7 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
 
           {/* Remarks */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Remarks</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Remarks</h3>
             <textarea
               value={formData.remarks}
               onChange={(e) => setFormData({ ...formData, remarks: e.target.value })}
@@ -802,10 +802,10 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-2 flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold">Approve Inspection</h2>
             <p className="text-sm opacity-90">ID: {inspection.id}</p>
@@ -815,11 +815,11 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Inspection Summary (Read-only) */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Inspection Summary</h3>
-            <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Inspection Summary</h3>
+            <div className="grid grid-cols-2 gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
               <div>
                 <p className="text-xs text-gray-600 mb-1">Work Order</p>
                 <p className="text-sm font-semibold text-gray-900">{inspection.workOrderId}</p>
@@ -849,9 +849,9 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
 
           {/* Approval Decision */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Decision *</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Decision *</h3>
             <div className="space-y-3">
-              <label className="flex items-start p-4 bg-white border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+              <label className="flex items-start p-3 bg-white border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                 <input
                   type="radio"
                   name="decision"
@@ -871,7 +871,7 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
                 </div>
               </label>
 
-              <label className="flex items-start p-4 bg-white border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+              <label className="flex items-start p-3 bg-white border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                 <input
                   type="radio"
                   name="decision"
@@ -891,7 +891,7 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
                 </div>
               </label>
 
-              <label className="flex items-start p-4 bg-white border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+              <label className="flex items-start p-3 bg-white border-2 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                 <input
                   type="radio"
                   name="decision"

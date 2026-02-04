@@ -265,7 +265,7 @@ export default function MobileFieldViewPage() {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 onChange={handlePhotoSelect}
               />
-              <Camera className="h-12 w-12 text-muted-foreground mb-4" />
+              <Camera className="h-12 w-12 text-muted-foreground mb-2" />
               <p className="text-sm text-muted-foreground mb-1">Tap to take a photo</p>
               <p className="text-xs text-muted-foreground">or select from gallery</p>
             </div>
@@ -280,7 +280,7 @@ export default function MobileFieldViewPage() {
               >
                 <X className="h-4 w-4" />
               </Button>
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/50 to-transparent">
                 <Button className="w-full bg-white text-black hover:bg-gray-100">
                   Upload Photo
                 </Button>

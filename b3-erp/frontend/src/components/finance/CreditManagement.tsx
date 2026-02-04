@@ -170,9 +170,9 @@ const CreditManagement = () => {
   ];
 
   const renderDashboardTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-blue-50 rounded-lg p-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-blue-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Credit Limit</p>
@@ -182,7 +182,7 @@ const CreditManagement = () => {
             <CreditCard className="h-8 w-8 text-blue-500" />
           </div>
         </div>
-        <div className="bg-yellow-50 rounded-lg p-4">
+        <div className="bg-yellow-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Current Exposure</p>
@@ -192,7 +192,7 @@ const CreditManagement = () => {
             <Activity className="h-8 w-8 text-yellow-600" />
           </div>
         </div>
-        <div className="bg-red-50 rounded-lg p-4">
+        <div className="bg-red-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue Amount</p>
@@ -202,7 +202,7 @@ const CreditManagement = () => {
             <AlertTriangle className="h-8 w-8 text-red-500" />
           </div>
         </div>
-        <div className="bg-green-50 rounded-lg p-4">
+        <div className="bg-green-50 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Available Credit</p>
@@ -214,9 +214,9 @@ const CreditManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">Credit Utilization Trend</h3>
             <select
               value={selectedTimeframe}
@@ -243,8 +243,8 @@ const CreditManagement = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Risk Distribution</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Risk Distribution</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -268,8 +268,8 @@ const CreditManagement = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Credit Alerts</h3>
           <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
             {creditAlerts.filter(a => !a.acknowledged).length} Unacknowledged
@@ -309,9 +309,9 @@ const CreditManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Aging Analysis</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Aging Analysis</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={agingAnalysis}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -323,8 +323,8 @@ const CreditManagement = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Payment Behavior</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Payment Behavior</h3>
           <div className="space-y-3">
             {paymentBehavior.map(behavior => (
               <div key={behavior.score} className="flex items-center justify-between">
@@ -354,9 +354,9 @@ const CreditManagement = () => {
   );
 
   const renderCustomersTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Customer Credit Profiles</h3>
           <div className="flex space-x-2">
             <select
@@ -479,8 +479,8 @@ const CreditManagement = () => {
       </div>
 
       {selectedCustomer && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">
               Customer Details - {customers.find(c => c.id === selectedCustomer)?.companyName}
             </h3>
@@ -489,7 +489,7 @@ const CreditManagement = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <h4 className="font-semibold mb-3">Contact Information</h4>
               <div className="space-y-2 text-sm">
@@ -563,9 +563,9 @@ const CreditManagement = () => {
   );
 
   const renderApplicationsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Credit Applications</h3>
           <button
             onClick={() => setShowApplicationModal(true)}
@@ -644,9 +644,9 @@ const CreditManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Application Pipeline</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Application Pipeline</h3>
           <div className="space-y-3">
             {['draft', 'submitted', 'under-review', 'approved', 'rejected'].map(status => {
               const count = creditApplications.filter(a => a.status === status).length;
@@ -677,8 +677,8 @@ const CreditManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Approval Metrics</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Approval Metrics</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">Approval Rate</span>
@@ -699,8 +699,8 @@ const CreditManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Required Documents</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Required Documents</h3>
           <div className="space-y-2">
             {['Financial Statements', 'Bank Guarantee', 'Business Plan', 'Tax Returns', 'Insurance Documents'].map(doc => (
               <div key={doc} className="flex items-center justify-between p-2 bg-gray-50 rounded">
@@ -715,10 +715,10 @@ const CreditManagement = () => {
   );
 
   const renderMonitoringTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Credit Score Distribution</h3>
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Credit Score Distribution</h3>
           <ResponsiveContainer width="100%" height={250}>
             <ScatterChart>
               <CartesianGrid strokeDasharray="3 3" />
@@ -741,8 +741,8 @@ const CreditManagement = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Exposure by Risk Level</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Exposure by Risk Level</h3>
           <ResponsiveContainer width="100%" height={250}>
             <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={riskDistribution}>
               <RadialBar dataKey="value" fill="#3B82F6" />
@@ -753,8 +753,8 @@ const CreditManagement = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Payment History</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Payment History</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
@@ -804,9 +804,9 @@ const CreditManagement = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Collection Efficiency</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Collection Efficiency</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">DSO (Days Sales Outstanding)</span>
@@ -827,8 +827,8 @@ const CreditManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Risk Indicators</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Risk Indicators</h3>
           <div className="space-y-3">
             {[
               { indicator: 'Credit Utilization', value: 66.5, threshold: 75, status: 'warning' },
@@ -851,8 +851,8 @@ const CreditManagement = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Credit Reviews</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Credit Reviews</h3>
           <div className="space-y-2">
             {customers.map(customer => {
               const profile = creditProfiles.find(p => p.customerId === customer.id);
@@ -874,13 +874,13 @@ const CreditManagement = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Credit Management</h2>
         <p className="text-gray-600">Manage customer credit limits, monitor exposure, and track payment behavior</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['dashboard', 'customers', 'applications', 'monitoring'].map((tab) => (
@@ -909,15 +909,15 @@ const CreditManagement = () => {
 
       {showApplicationModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">New Credit Application</h3>
               <button onClick={() => setShowApplicationModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Customer</label>
                   <select className="w-full border rounded px-3 py-2">
@@ -945,8 +945,8 @@ const CreditManagement = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Supporting Documents</label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                  <Plus className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center">
+                  <Plus className="h-8 w-8 text-gray-400 mb-2" />
                   <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
                   <p className="text-xs text-gray-500">PDF, XLSX, DOC up to 10MB</p>
                 </div>
@@ -973,14 +973,14 @@ const CreditManagement = () => {
 
       {showLimitModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Update Credit Limit</h3>
               <button onClick={() => setShowLimitModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium mb-1">New Credit Limit</label>
                 <input type="number" className="w-full border rounded px-3 py-2" />

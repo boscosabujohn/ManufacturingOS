@@ -254,11 +254,11 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -300,8 +300,8 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
         </div>
 
         {/* Progress Overview */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Shipment Progress</h3>
               <p className="text-sm text-gray-600">Current location: {shipment.currentLocation}</p>
@@ -320,7 +320,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
           </div>
 
           {/* Progress Bar */}
-          <div className="relative mb-4">
+          <div className="relative mb-2">
             <div className="h-2 bg-gray-200 rounded-full">
               <div
                 className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all"
@@ -330,16 +330,16 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
           </div>
 
           {/* Distance Info */}
-          <div className="grid grid-cols-3 gap-6">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
+          <div className="grid grid-cols-3 gap-3">
+            <div className="text-center p-3 bg-blue-50 rounded-lg">
               <div className="text-2xl font-bold text-blue-600">{shipment.distanceCovered} km</div>
               <div className="text-sm text-blue-700">Distance Covered</div>
             </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
+            <div className="text-center p-3 bg-purple-50 rounded-lg">
               <div className="text-2xl font-bold text-purple-600">{shipment.distanceRemaining} km</div>
               <div className="text-sm text-purple-700">Distance Remaining</div>
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
+            <div className="text-center p-3 bg-green-50 rounded-lg">
               <div className="text-2xl font-bold text-green-600">
                 {Math.round((shipment.distanceCovered / (shipment.distanceCovered + shipment.distanceRemaining)) * 100)}%
               </div>
@@ -348,9 +348,9 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-3 gap-3 mb-3">
           {/* From Location */}
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
             <div className="flex items-center gap-2 mb-3">
               <MapPin className="w-5 h-5" />
               <div className="text-sm opacity-90">Pickup From</div>
@@ -366,7 +366,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
           </div>
 
           {/* Current Status */}
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
             <div className="flex items-center gap-2 mb-3">
               <Truck className="w-5 h-5" />
               <div className="text-sm opacity-90">Current Location</div>
@@ -382,7 +382,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
           </div>
 
           {/* To Location */}
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
             <div className="flex items-center gap-2 mb-3">
               <Navigation className="w-5 h-5" />
               <div className="text-sm opacity-90">Deliver To</div>
@@ -399,7 +399,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               <button
@@ -436,12 +436,12 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
             {/* Timeline Tab */}
             {activeTab === 'timeline' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-6">Tracking Timeline</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Tracking Timeline</h3>
+                <div className="space-y-2">
                   {trackingEvents.map((event, index) => {
                     const iconConfig = getEventIcon(event.icon);
                     return (
-                      <div key={index} className="flex gap-4">
+                      <div key={index} className="flex gap-2">
                         <div className="flex flex-col items-center">
                           <div className={`w-12 h-12 rounded-full flex items-center justify-center ${iconConfig.color}`}>
                             {iconConfig.component}
@@ -451,7 +451,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
                           )}
                         </div>
                         <div className="flex-1 pb-8">
-                          <div className="bg-gray-50 p-4 rounded-lg">
+                          <div className="bg-gray-50 p-3 rounded-lg">
                             <div className="flex items-start justify-between mb-2">
                               <div>
                                 <div className="font-bold text-gray-900">{event.status}</div>
@@ -489,14 +489,14 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
             {/* Route Tab */}
             {activeTab === 'route' && (
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-6">Route Checkpoints</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Route Checkpoints</h3>
 
                 {/* Map Placeholder */}
-                <div className="mb-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-12">
+                <div className="mb-3 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-12">
                   <div className="text-center">
-                    <Map className="w-16 h-16 text-blue-600 mb-4" />
+                    <Map className="w-16 h-16 text-blue-600 mb-2" />
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Interactive Map View</h4>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 mb-2">
                       Real-time shipment tracking on interactive map
                     </p>
                     <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 font-medium transition-all flex items-center gap-2">
@@ -511,7 +511,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
                   {routeCheckpoints.map((checkpoint, index) => (
                     <div
                       key={index}
-                      className={`flex items-center gap-4 p-4 rounded-lg border-2 ${checkpoint.status === 'completed'
+                      className={`flex items-center gap-2 p-3 rounded-lg border-2 ${checkpoint.status === 'completed'
                           ? 'bg-green-50 border-green-300'
                           : checkpoint.status === 'current'
                             ? 'bg-blue-50 border-blue-300'
@@ -561,14 +561,14 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
 
             {/* Details Tab */}
             {activeTab === 'details' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {/* Carrier Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Truck className="w-5 h-5 text-blue-600" />
                     Carrier & Vehicle Information
                   </h3>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg">
                       <div className="text-sm text-gray-600 mb-1">Carrier</div>
                       <div className="font-semibold text-gray-900">{shipment.carrier}</div>
@@ -596,9 +596,9 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
                 </div>
 
                 {/* Location Details */}
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-green-600" />
                       Pickup Location
                     </h3>
@@ -617,7 +617,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                       <Navigation className="w-5 h-5 text-orange-600" />
                       Delivery Location
                     </h3>
@@ -638,11 +638,11 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
 
                 {/* Package Information */}
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                     <Package className="w-5 h-5 text-purple-600" />
                     Package Information
                   </h3>
-                  <div className="grid grid-cols-4 gap-4">
+                  <div className="grid grid-cols-4 gap-2">
                     <div className="p-4 bg-gray-50 rounded-lg text-center">
                       <div className="text-2xl font-bold text-gray-900">{shipment.totalPackages}</div>
                       <div className="text-sm text-gray-600">Packages</div>

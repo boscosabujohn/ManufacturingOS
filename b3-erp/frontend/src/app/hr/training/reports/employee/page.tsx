@@ -58,9 +58,9 @@ export default function EmployeeReportsPage() {
   const [selectedEmployee, setSelectedEmployee] = useState(selectedEmployeeData);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <User className="h-8 w-8 text-purple-600" />
@@ -87,11 +87,11 @@ export default function EmployeeReportsPage() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Profile Card */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
           <div className="flex flex-col items-center">
-            <div className="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center text-2xl font-bold text-purple-600 mb-4 border-4 border-white shadow-lg">
+            <div className="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center text-2xl font-bold text-purple-600 mb-2 border-4 border-white shadow-lg">
               {selectedEmployee.avatar}
             </div>
             <h2 className="text-xl font-bold text-gray-900">{selectedEmployee.name}</h2>
@@ -121,7 +121,7 @@ export default function EmployeeReportsPage() {
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-gray-100 grid grid-cols-2 gap-4">
+          <div className="mt-8 pt-6 border-t border-gray-100 grid grid-cols-2 gap-2">
             <div className="text-center p-3 bg-gray-50 rounded-lg">
               <p className="text-2xl font-bold text-gray-900">{selectedEmployee.totalHours}</p>
               <p className="text-xs text-gray-500 uppercase tracking-wide">Training Hours</p>
@@ -134,8 +134,8 @@ export default function EmployeeReportsPage() {
         </div>
 
         {/* Skills Radar Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col items-center justify-center">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 self-start">Skill Profile</h3>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col items-center justify-center">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 self-start">Skill Profile</h3>
           <div className="w-full h-80">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={selectedEmployee.skills}>
@@ -157,7 +157,7 @@ export default function EmployeeReportsPage() {
         </div>
 
         {/* Compliance / Stats Placeholder */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 relative overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 relative overflow-hidden">
           <h3 className="text-lg font-bold text-gray-900 mb-2">Budget Utilization</h3>
           <div className="relative z-10 mt-6">
             <span className="text-4xl font-extrabold text-gray-900">${selectedEmployee.budgetUsed}</span>
@@ -168,7 +168,7 @@ export default function EmployeeReportsPage() {
           </div>
           <p className="text-sm text-gray-500 mt-2">75% of annual allocation ($3,300)</p>
 
-          <h3 className="text-lg font-bold text-gray-900 mt-8 mb-4">Mandatory Compliance</h3>
+          <h3 className="text-lg font-bold text-gray-900 mt-8 mb-2">Mandatory Compliance</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
               <span className="flex items-center text-gray-700">
@@ -204,19 +204,19 @@ export default function EmployeeReportsPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Course Name</th>
-                <th className="px-6 py-4">Completion Date</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Score</th>
-                <th className="px-6 py-4 text-right">Credits</th>
+                <th className="px-3 py-2">Course Name</th>
+                <th className="px-3 py-2">Completion Date</th>
+                <th className="px-3 py-2">Status</th>
+                <th className="px-3 py-2">Score</th>
+                <th className="px-3 py-2 text-right">Credits</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {selectedEmployee.history.map((record) => (
                 <tr key={record.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900">{record.course}</td>
-                  <td className="px-6 py-4 text-gray-500">{record.date}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 font-medium text-gray-900">{record.course}</td>
+                  <td className="px-3 py-2 text-gray-500">{record.date}</td>
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${record.status === 'Completed' ? 'bg-green-50 text-green-700 ring-green-600/20' :
                         record.status === 'Upcoming' ? 'bg-blue-50 text-blue-700 ring-blue-600/20' :
                           'bg-gray-50 text-gray-600 ring-gray-500/10'
@@ -224,8 +224,8 @@ export default function EmployeeReportsPage() {
                       {record.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-gray-900">{record.score}</td>
-                  <td className="px-6 py-4 text-right font-medium">{record.credits}</td>
+                  <td className="px-3 py-2 text-gray-900">{record.score}</td>
+                  <td className="px-3 py-2 text-right font-medium">{record.credits}</td>
                 </tr>
               ))}
             </tbody>

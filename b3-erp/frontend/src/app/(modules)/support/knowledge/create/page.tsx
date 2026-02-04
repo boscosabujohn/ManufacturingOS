@@ -95,7 +95,7 @@ export default function CreateKnowledgeArticle() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -118,7 +118,7 @@ export default function CreateKnowledgeArticle() {
       </div>
 
       {/* Guidelines */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <BookOpen className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
           <div>
@@ -134,17 +134,17 @@ export default function CreateKnowledgeArticle() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Content - Left Column */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Basic Information */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-purple-600" />
               Article Details
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Article Title *
@@ -158,7 +158,7 @@ export default function CreateKnowledgeArticle() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Category *
@@ -209,11 +209,11 @@ export default function CreateKnowledgeArticle() {
           </div>
 
           {/* Content Editor */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Article Content *</h2>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Article Content *</h2>
 
             {/* Formatting Toolbar */}
-            <div className="flex flex-wrap items-center gap-2 mb-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+            <div className="flex flex-wrap items-center gap-2 mb-2 p-3 bg-gray-50 border border-gray-200 rounded-lg">
               <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Bold className="h-4 w-4 text-gray-600" />
               </button>
@@ -262,8 +262,8 @@ export default function CreateKnowledgeArticle() {
           </div>
 
           {/* Attachments */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Upload className="h-5 w-5 text-purple-600" />
               Attachments
             </h2>
@@ -284,15 +284,15 @@ export default function CreateKnowledgeArticle() {
         </div>
 
         {/* Sidebar - Right Column */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Publishing Options */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Globe className="h-5 w-5 text-purple-600" />
               Publishing
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Visibility
@@ -372,8 +372,8 @@ export default function CreateKnowledgeArticle() {
           </div>
 
           {/* Tags */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Tag className="h-5 w-5 text-purple-600" />
               Tags
             </h2>
@@ -417,8 +417,8 @@ export default function CreateKnowledgeArticle() {
           </div>
 
           {/* Related Articles */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Link className="h-5 w-5 text-purple-600" />
               Related Articles
             </h2>
@@ -458,8 +458,8 @@ export default function CreateKnowledgeArticle() {
           </div>
 
           {/* Reviewers */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Users className="h-5 w-5 text-purple-600" />
               Reviewers
             </h2>

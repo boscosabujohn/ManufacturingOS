@@ -72,7 +72,7 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-5">
           <p className="text-xs font-medium text-blue-600 uppercase">Current Balance</p>
           <p className="text-2xl font-bold text-blue-900 mt-1">{formatCurrency(data?.currentBalance || 0, true)}</p>
@@ -117,7 +117,7 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <nav className="flex gap-4">
+        <nav className="flex gap-2">
           {[
             { id: 'forecast', label: 'Cash Forecast', icon: TrendingUp },
             { id: 'drivers', label: 'Key Drivers', icon: Activity },
@@ -145,25 +145,25 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Period</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Expected Inflows</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Expected Outflows</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Net Cash Flow</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Projected Balance</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Confidence</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Period</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Expected Inflows</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Expected Outflows</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Net Cash Flow</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Projected Balance</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Confidence</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.forecast.slice(0, 12).map((period, idx) => (
                   <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{new Date(period.date).toLocaleDateString('en-IN')}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-green-600">{formatCurrency(period.expectedInflows)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-medium text-red-600">{formatCurrency(period.expectedOutflows)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-bold">
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{new Date(period.date).toLocaleDateString('en-IN')}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-green-600">{formatCurrency(period.expectedInflows)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-medium text-red-600">{formatCurrency(period.expectedOutflows)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-bold">
                       <span className={period.netCashFlow >= 0 ? 'text-green-600' : 'text-red-600'}>{period.netCashFlow >= 0 ? '+' : ''}{formatCurrency(period.netCashFlow)}</span>
                     </td>
-                    <td className="px-6 py-4 text-right text-sm font-bold text-gray-900">{formatCurrency(period.projectedBalance)}</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-right text-sm font-bold text-gray-900">{formatCurrency(period.projectedBalance)}</td>
+                    <td className="px-3 py-2 text-center">
                       <div className="flex items-center justify-center gap-2">
                         <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
                           <div className={`h-full ${period.confidence >= 80 ? 'bg-green-500' : period.confidence >= 60 ? 'bg-yellow-500' : 'bg-red-500'}`} style={{ width: `${period.confidence}%` }} />
@@ -186,27 +186,27 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Driver</th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Category</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Historical Avg</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Projected</th>
-                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Variance</th>
-                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-700 uppercase">Impact</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Driver</th>
+                  <th className="px-3 py-2 text-left text-xs font-semibold text-gray-700 uppercase">Category</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Historical Avg</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Projected</th>
+                  <th className="px-3 py-2 text-right text-xs font-semibold text-gray-700 uppercase">Variance</th>
+                  <th className="px-3 py-2 text-center text-xs font-semibold text-gray-700 uppercase">Impact</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {data?.drivers.map((driver) => (
                   <tr key={driver.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{driver.name}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-sm font-medium text-gray-900">{driver.name}</td>
+                    <td className="px-3 py-2">
                       <span className={`px-2 py-1 rounded text-xs font-medium ${driver.category === 'inflow' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{driver.category.toUpperCase()}</span>
                     </td>
-                    <td className="px-6 py-4 text-right text-sm text-gray-900">{formatCurrency(driver.historicalAverage)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-bold text-gray-900">{formatCurrency(driver.projected)}</td>
-                    <td className="px-6 py-4 text-right text-sm font-semibold">
+                    <td className="px-3 py-2 text-right text-sm text-gray-900">{formatCurrency(driver.historicalAverage)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-bold text-gray-900">{formatCurrency(driver.projected)}</td>
+                    <td className="px-3 py-2 text-right text-sm font-semibold">
                       <span className={driver.variance >= 0 ? 'text-green-600' : 'text-red-600'}>{driver.variance >= 0 ? '+' : ''}{driver.variance.toFixed(1)}%</span>
                     </td>
-                    <td className="px-6 py-4 text-center">{getImpactBadge(driver.impact)}</td>
+                    <td className="px-3 py-2 text-center">{getImpactBadge(driver.impact)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -217,10 +217,10 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
 
       {/* Scenarios Tab */}
       {activeTab === 'scenarios' && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {data?.scenarios.map((scenario) => (
-            <div key={scenario.id} className={`border-2 rounded-lg p-6 ${scenario.type === 'best' ? 'border-green-300 bg-green-50' : scenario.type === 'worst' ? 'border-red-300 bg-red-50' : 'border-blue-300 bg-blue-50'}`}>
-              <div className="flex items-center gap-3 mb-4">
+            <div key={scenario.id} className={`border-2 rounded-lg p-3 ${scenario.type === 'best' ? 'border-green-300 bg-green-50' : scenario.type === 'worst' ? 'border-red-300 bg-red-50' : 'border-blue-300 bg-blue-50'}`}>
+              <div className="flex items-center gap-3 mb-2">
                 <div className={`p-3 rounded-full ${scenario.type === 'best' ? 'bg-green-200' : scenario.type === 'worst' ? 'bg-red-200' : 'bg-blue-200'}`}>
                   {getScenarioIcon(scenario.type)}
                 </div>
@@ -229,7 +229,7 @@ export default function PredictiveCashForecasting({ data, onRefresh, onExport }:
                   <p className="text-xs text-gray-600">{scenario.probability}% probability</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-700 mb-4">{scenario.description}</p>
+              <p className="text-sm text-gray-700 mb-2">{scenario.description}</p>
               <div className="pt-4 border-t border-gray-300">
                 <p className="text-xs text-gray-600 uppercase font-medium">Ending Balance</p>
                 <p className="text-2xl font-bold text-gray-900 mt-1">{formatCurrency(scenario.endingBalance, true)}</p>

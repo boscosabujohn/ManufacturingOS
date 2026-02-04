@@ -46,7 +46,7 @@ export default function SustainabilityPage() {
   return (
     <div className="min-h-screen bg-gray-950">
       {/* Header */}
-      <div className="bg-gray-900 border-b border-gray-800 px-6 py-4">
+      <div className="bg-gray-900 border-b border-gray-800 px-3 py-2">
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-3">
@@ -58,7 +58,7 @@ export default function SustainabilityPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="text-right">
               <p className="text-sm text-gray-400">ESG Score</p>
               <p className="text-2xl font-bold text-green-400">81/100</p>
@@ -71,7 +71,7 @@ export default function SustainabilityPage() {
       </div>
 
       {/* View Selector */}
-      <div className="bg-gray-900/50 border-b border-gray-800 px-6 py-3">
+      <div className="bg-gray-900/50 border-b border-gray-800 px-3 py-2">
         <div className="flex gap-2 overflow-x-auto pb-2">
           {views.map(view => (
             <button
@@ -98,8 +98,8 @@ export default function SustainabilityPage() {
       {/* Main Content */}
       <div className="p-6">
         {/* Feature Info Card */}
-        <div className="mb-6 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-700/50 rounded-xl p-4">
-          <div className="flex items-start gap-4">
+        <div className="mb-3 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-700/50 rounded-xl p-3">
+          <div className="flex items-start gap-2">
             <div className="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center flex-shrink-0">
               <span className="text-2xl">{views.find(v => v.id === currentView)?.icon}</span>
             </div>
@@ -140,9 +140,9 @@ export default function SustainabilityPage() {
       </div>
 
       {/* Footer Info */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-800 px-6 py-3">
+      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-800 px-3 py-2">
         <div className="flex items-center justify-between text-sm">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <span className="text-gray-400">
               <span className="text-green-400 font-medium">6</span> Sustainability Components
             </span>
@@ -150,7 +150,7 @@ export default function SustainabilityPage() {
               <span className="text-emerald-400 font-medium">Industry 5.0</span> - Sustainable Manufacturing
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <span className="flex items-center gap-2 text-gray-400">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               ESG Monitoring Active

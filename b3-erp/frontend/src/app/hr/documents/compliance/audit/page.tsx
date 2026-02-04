@@ -192,14 +192,14 @@ export default function AuditTrailPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Document Audit Trail</h1>
         <p className="text-sm text-gray-600 mt-1">Complete audit log of all document activities</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Activities</p>
@@ -209,7 +209,7 @@ export default function AuditTrailPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Uploads</p>
@@ -219,7 +219,7 @@ export default function AuditTrailPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Views</p>
@@ -229,7 +229,7 @@ export default function AuditTrailPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Downloads</p>
@@ -239,7 +239,7 @@ export default function AuditTrailPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Modifications</p>
@@ -250,8 +250,8 @@ export default function AuditTrailPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
             <select
@@ -355,13 +355,13 @@ export default function AuditTrailPage() {
 
       {filteredLogs.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200 mt-4">
-          <History className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <History className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No audit logs found</h3>
           <p className="text-gray-600">No activities match the selected filters</p>
         </div>
       )}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-6">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <AlertCircle className="h-5 w-5" />
           Audit Trail Information

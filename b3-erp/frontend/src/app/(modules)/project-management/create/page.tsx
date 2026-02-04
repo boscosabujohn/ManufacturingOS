@@ -275,7 +275,7 @@ export default function CreateProjectPage() {
    <div className="w-full px-3 py-2">
     {/* Page Header with Template Actions */}
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-     <div className="flex items-center justify-between mb-4">
+     <div className="flex items-center justify-between mb-2">
       <div>
        <h1 className="text-2xl font-bold text-gray-900">Create New Project</h1>
        <p className="text-sm text-gray-600 mt-1">
@@ -324,7 +324,7 @@ export default function CreateProjectPage() {
     <form onSubmit={handleSubmit} className="space-y-3">
      {/* Basic Information */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-2">
        <Building2 className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Basic Information</h2>
       </div>
@@ -435,7 +435,7 @@ export default function CreateProjectPage() {
 
      {/* Timeline & Budget */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-2">
        <Calendar className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Timeline & Budget</h2>
       </div>
@@ -469,7 +469,7 @@ export default function CreateProjectPage() {
 
        {startDate && endDate && (
         <div className="md:col-span-2">
-         <div className="bg-blue-50 rounded-lg p-4">
+         <div className="bg-blue-50 rounded-lg p-3">
           <p className="text-sm text-blue-900">
            <span className="font-semibold">Project Duration:</span> {calculateDuration()}
           </p>
@@ -513,7 +513,7 @@ export default function CreateProjectPage() {
 
        {estimatedBudget && contractValue && (
         <div className="md:col-span-2">
-         <div className="bg-green-50 rounded-lg p-4">
+         <div className="bg-green-50 rounded-lg p-3">
           <p className="text-sm text-green-900">
            <span className="font-semibold">Estimated Profit Margin:</span>{' '}
            {(((parseFloat(contractValue) - parseFloat(estimatedBudget)) / parseFloat(contractValue)) * 100).toFixed(2)}%
@@ -527,7 +527,7 @@ export default function CreateProjectPage() {
 
      {/* Project Management */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-2">
        <User className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Project Management</h2>
       </div>
@@ -590,7 +590,7 @@ export default function CreateProjectPage() {
 
      {/* Team Members */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <div className="flex items-center gap-2">
         <Users className="w-5 h-5 text-blue-600" />
         <h2 className="text-xl font-semibold text-gray-900">Team Members</h2>
@@ -607,8 +607,8 @@ export default function CreateProjectPage() {
 
       <div className="space-y-3">
        {teamMembers.map((member, index) => (
-        <div key={member.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-         <div className="flex-1 grid grid-cols-3 gap-4">
+        <div key={member.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+         <div className="flex-1 grid grid-cols-3 gap-2">
           <div>
            <label className="block text-xs font-medium text-gray-700 mb-1">Role</label>
            <input
@@ -658,7 +658,7 @@ export default function CreateProjectPage() {
 
      {/* Key Deliverables */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <div className="flex items-center gap-2">
         <Package className="w-5 h-5 text-blue-600" />
         <h2 className="text-xl font-semibold text-gray-900">Key Deliverables</h2>
@@ -675,8 +675,8 @@ export default function CreateProjectPage() {
 
       <div className="space-y-3">
        {deliverables.map((deliverable) => (
-        <div key={deliverable.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-         <div className="flex-1 grid grid-cols-3 gap-4">
+        <div key={deliverable.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+         <div className="flex-1 grid grid-cols-3 gap-2">
           <div>
            <label className="block text-xs font-medium text-gray-700 mb-1">Deliverable Name</label>
            <input
@@ -728,7 +728,7 @@ export default function CreateProjectPage() {
 
      {/* Scope & Requirements */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-2">
        <FileText className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Scope & Requirements</h2>
       </div>
@@ -798,7 +798,7 @@ export default function CreateProjectPage() {
       </div>
 
       {/* Main Action Buttons */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
        <button
         type="button"
         onClick={handleCancel}

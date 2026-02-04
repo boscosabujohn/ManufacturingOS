@@ -39,9 +39,9 @@ export default function OccupationalHealthPage() {
   const [filter, setFilter] = useState('All');
 
   return (
-    <div className="p-6 space-y-6 text-sm font-medium">
+    <div className="p-6 space-y-3 text-sm font-medium">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Briefcase className="h-8 w-8 text-orange-600" />
@@ -60,9 +60,9 @@ export default function OccupationalHealthPage() {
       </div>
 
       {/* Real-time Exposure Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {exposureMetrics.map((met, i) => (
-          <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group">
+          <div key={i} className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden group">
             <div className="flex justify-between items-start relative z-10">
               <div>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{met.label}</p>
@@ -85,11 +85,11 @@ export default function OccupationalHealthPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Surveillance Log */}
         <div className="lg:col-span-3">
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <div className="p-4 border-b border-gray-50 flex items-center justify-between gap-4">
+            <div className="p-4 border-b border-gray-50 flex items-center justify-between gap-2">
               <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic">Health Surveillance Registry</h3>
               <div className="relative flex-1 max-w-xs">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -130,7 +130,7 @@ export default function OccupationalHealthPage() {
                         </div>
                       </td>
                       <td className="px-6 py-5">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                           <span className={`inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-widest ${log.result === 'Normal' ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'
                             }`}>
                             {log.result}
@@ -154,17 +154,17 @@ export default function OccupationalHealthPage() {
         </div>
 
         {/* Vaccination & Reminders Sidebar */}
-        <div className="space-y-6">
-          <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+        <div className="space-y-3">
+          <div className="bg-gray-900 p-3 rounded-2xl text-white shadow-xl relative overflow-hidden">
             <div className="relative z-10 flex flex-col justify-between h-full">
               <div>
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-2">
                   <Syringe className="w-4 h-4 text-orange-500" />
                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Immunization Drive</span>
                 </div>
-                <h3 className="text-lg font-black italic tracking-tighter leading-tight uppercase mb-4">Tetanus Booster <br />Campaign Q2</h3>
+                <h3 className="text-lg font-black italic tracking-tighter leading-tight uppercase mb-2">Tetanus Booster <br />Campaign Q2</h3>
 
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex items-center gap-3 mb-8">
                   <div>
                     <p className="text-[9px] font-bold text-gray-500 uppercase">Enrolled</p>
                     <p className="text-xl font-black italic tracking-tighter">240</p>
@@ -183,16 +183,16 @@ export default function OccupationalHealthPage() {
             <Microscope className="absolute -bottom-6 -right-6 w-32 h-32 opacity-10 rotate-12" />
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-            <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest mb-6 flex items-center gap-2 italic">
+          <div className="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
+            <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest mb-3 flex items-center gap-2 italic">
               <AlertTriangle className="w-4 h-4 text-orange-400" /> Critical Compliance Reminders
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-3">
               {[
                 { emp: 'Mike Ross', detail: 'Particulate exposure limit reached for current cycle.', type: 'Warning' },
                 { emp: 'Dept 2', detail: 'Calibration for noise sensors overdue by 12 days.', type: 'System' }
               ].map((note, i) => (
-                <div key={i} className="flex gap-4 p-4 bg-orange-50 border border-orange-100 rounded-xl relative overflow-hidden">
+                <div key={i} className="flex gap-2 p-3 bg-orange-50 border border-orange-100 rounded-xl relative overflow-hidden">
                   <div className={`w-1 h-full absolute left-0 top-0 ${note.type === 'Warning' ? 'bg-red-500' : 'bg-orange-500'}`}></div>
                   <div>
                     <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">{note.emp} · {note.type}</p>

@@ -122,8 +122,8 @@ const OEEAnalytics: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white p-6 rounded-lg shadow-lg">
+    <div className="space-y-3">
+      <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <BarChart3 className="h-8 w-8" />
@@ -158,8 +158,8 @@ const OEEAnalytics: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Average OEE</p>
@@ -169,7 +169,7 @@ const OEEAnalytics: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Availability</p>
@@ -181,7 +181,7 @@ const OEEAnalytics: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Performance</p>
@@ -193,7 +193,7 @@ const OEEAnalytics: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Quality</p>
@@ -207,13 +207,13 @@ const OEEAnalytics: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">OEE Breakdown by Machine</h3>
         </div>
         <div className="divide-y divide-gray-200">
           {oeeData.map((machine) => (
             <div key={machine.machineId} className="p-6 hover:bg-gray-50">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
                 <h4 className="text-lg font-semibold text-gray-900">{machine.machineName}</h4>
                 <div className="text-right">
                   <div className="text-sm text-gray-600">Overall OEE</div>
@@ -221,7 +221,7 @@ const OEEAnalytics: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                 <div className="p-3 bg-green-50 rounded">
                   <div className="text-sm text-gray-600 mb-1">Availability</div>
                   <div className="flex items-center justify-between">
@@ -319,8 +319,8 @@ const OEEAnalytics: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">OEE Formula & Calculation</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">OEE Formula & Calculation</h3>
         <div className="space-y-3 text-sm">
           <div className="p-3 bg-blue-50 rounded">
             <strong>OEE = Availability × Performance × Quality</strong>

@@ -261,8 +261,8 @@ export default function VendorMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Truck className="w-8 h-8 text-blue-600" />
@@ -289,7 +289,7 @@ export default function VendorMaster() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -355,29 +355,29 @@ export default function VendorMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supply Info</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Supply Info</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredVendors.map((vendor) => (
                   <tr key={vendor.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{vendor.vendorName}</div>
                         <div className="text-sm text-gray-500">{vendor.vendorCode}</div>
                         <div className="text-sm text-gray-500">{vendor.category}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className="capitalize text-sm text-gray-900">{vendor.vendorType.replace('_', ' ')}</span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{vendor.contactPerson}</div>
                       <div className="text-sm text-gray-500 flex items-center gap-1">
                         <Mail className="w-3 h-3" />
@@ -388,24 +388,24 @@ export default function VendorMaster() {
                         {vendor.phone}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">On-time: {vendor.performance.onTimeDelivery}%</div>
                       <div className="text-sm text-gray-500">Quality: {vendor.performance.qualityScore}/5</div>
                       <span className={getRatingBadge(vendor.qualifications.qualityRating)}>
                         {vendor.qualifications.qualityRating}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">Lead: {vendor.supplierInfo.leadTime} days</div>
                       <div className="text-sm text-gray-500">Min: ${vendor.supplierInfo.minimumOrderValue.toLocaleString()}</div>
                       <div className="text-sm text-gray-500">{vendor.supplierInfo.suppliedCategories.length} categories</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(vendor.status)}>
                         {vendor.status.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditVendor(vendor)}
@@ -434,10 +434,10 @@ export default function VendorMaster() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredVendors.map((vendor) => (
-            <div key={vendor.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
-              <div className="flex justify-between items-start mb-4">
+            <div key={vendor.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-3">
+              <div className="flex justify-between items-start mb-2">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">{vendor.vendorName}</h3>
                   <p className="text-sm text-gray-500">{vendor.vendorCode}</p>
@@ -458,7 +458,7 @@ export default function VendorMaster() {
                   </button>
                 </div>
               </div>
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Mail className="w-4 h-4" />
                   {vendor.email}
@@ -581,8 +581,8 @@ function VendorModal({ vendor, onSave, onClose, activeTab, setActiveTab }: Vendo
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {vendor ? 'Edit Vendor' : 'Add New Vendor'}
           </h2>
@@ -611,9 +611,9 @@ function VendorModal({ vendor, onSave, onClose, activeTab, setActiveTab }: Vendo
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Vendor Code</label>
                   <input
@@ -686,8 +686,8 @@ function VendorModal({ vendor, onSave, onClose, activeTab, setActiveTab }: Vendo
             )}
 
             {activeTab === 'contact' && (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input
@@ -728,7 +728,7 @@ function VendorModal({ vendor, onSave, onClose, activeTab, setActiveTab }: Vendo
 
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-3">Address</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
                       <input
@@ -771,7 +771,7 @@ function VendorModal({ vendor, onSave, onClose, activeTab, setActiveTab }: Vendo
             )}
 
             {activeTab === 'supply' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Lead Time (days)</label>
                   <input
@@ -817,7 +817,7 @@ function VendorModal({ vendor, onSave, onClose, activeTab, setActiveTab }: Vendo
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

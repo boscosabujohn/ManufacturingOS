@@ -243,10 +243,10 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Users className="h-6 w-6" />
             <div>
@@ -263,14 +263,14 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Basic Info Section */}
-          <div className="bg-gray-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Eye className="h-5 w-5 text-indigo-600" />
               <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-500">Operator ID</label>
                 <p className="text-gray-900 font-semibold">{operator.employeeId}</p>
@@ -330,12 +330,12 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
 
           {/* Current Activity Section */}
           {operator.currentWorkOrder && (
-            <div className="bg-blue-50 rounded-lg p-6 mb-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-blue-50 rounded-lg p-3 mb-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <Activity className="h-5 w-5 text-blue-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Current Activity</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-500">Active Work Order</label>
                   <p className="text-gray-900 font-semibold">{operator.currentWorkOrder}</p>
@@ -360,12 +360,12 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
           )}
 
           {/* Performance Metrics Section */}
-          <div className="bg-green-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <TrendingUp className="h-5 w-5 text-green-600" />
               <h3 className="text-lg font-semibold text-gray-900">Performance Metrics</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500">Efficiency</label>
                 <div className="flex items-baseline space-x-2">
@@ -418,12 +418,12 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
           </div>
 
           {/* Quality Metrics Section */}
-          <div className="bg-yellow-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-yellow-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <CheckCircle className="h-5 w-5 text-yellow-600" />
               <h3 className="text-lg font-semibold text-gray-900">Quality Metrics</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500">Quality Rate</label>
                 <div className="flex items-baseline space-x-2">
@@ -456,12 +456,12 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
           </div>
 
           {/* Today's Summary Section */}
-          <div className="bg-purple-50 rounded-lg p-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-purple-50 rounded-lg p-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Calendar className="h-5 w-5 text-purple-600" />
               <h3 className="text-lg font-semibold text-gray-900">Today's Summary</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500">Total Operations</label>
                 <div className="flex items-center space-x-2">
@@ -488,7 +488,7 @@ export function OperatorDetailModal({ isOpen, onClose, operator }: OperatorDetai
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50">
           <div className="flex justify-end">
             <button
               onClick={onClose}
@@ -550,10 +550,10 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Wrench className="h-6 w-6" />
             <div>
@@ -570,14 +570,14 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Station Info Section */}
-          <div className="bg-gray-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Eye className="h-5 w-5 text-indigo-600" />
               <h3 className="text-lg font-semibold text-gray-900">Station Information</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-500">Station ID</label>
                 <p className="text-gray-900 font-semibold">{station.stationCode}</p>
@@ -610,7 +610,7 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
             {station.equipmentDetails && (
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <label className="text-sm font-medium text-gray-500 mb-2 block">Equipment Details</label>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                   {station.equipmentDetails.manufacturer && (
                     <div>
                       <label className="text-xs text-gray-400">Manufacturer</label>
@@ -668,12 +668,12 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
 
           {/* Current Operation Section */}
           {station.currentWorkOrder && (
-            <div className="bg-blue-50 rounded-lg p-6 mb-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-blue-50 rounded-lg p-3 mb-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <Activity className="h-5 w-5 text-blue-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Current Operation</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                 <div>
                   <label className="text-sm font-medium text-gray-500">Work Order</label>
                   <p className="text-gray-900 font-semibold">{station.currentWorkOrder}</p>
@@ -703,12 +703,12 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
           )}
 
           {/* Capacity Section */}
-          <div className="bg-green-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <BarChart3 className="h-5 w-5 text-green-600" />
               <h3 className="text-lg font-semibold text-gray-900">Capacity & Utilization</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500 mb-2 block">Utilization Rate</label>
                 <div className="flex items-baseline space-x-2 mb-2">
@@ -735,12 +735,12 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
           </div>
 
           {/* Equipment Status Section */}
-          <div className="bg-yellow-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-yellow-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Wrench className="h-5 w-5 text-yellow-600" />
               <h3 className="text-lg font-semibold text-gray-900">Equipment Status</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-500">Machine Status</label>
                 <p className="text-gray-900 font-semibold">{station.machineStatus}</p>
@@ -776,12 +776,12 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
           </div>
 
           {/* Production Summary Section */}
-          <div className="bg-purple-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-purple-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Package className="h-5 w-5 text-purple-600" />
               <h3 className="text-lg font-semibold text-gray-900">Production Summary</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500">Parts Produced Today</label>
                 <div className="flex items-center space-x-2">
@@ -809,12 +809,12 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
           </div>
 
           {/* OEE Metrics Section */}
-          <div className="bg-indigo-50 rounded-lg p-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-indigo-50 rounded-lg p-3">
+            <div className="flex items-center space-x-2 mb-2">
               <TrendingUp className="h-5 w-5 text-indigo-600" />
               <h3 className="text-lg font-semibold text-gray-900">OEE Metrics</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500">Overall OEE</label>
                 <div className="flex items-baseline space-x-2">
@@ -846,7 +846,7 @@ export function StationDetailModal({ isOpen, onClose, station }: StationDetailMo
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50">
           <div className="flex justify-end">
             <button
               onClick={onClose}
@@ -913,10 +913,10 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
   const progressPercentage = (workOrder.completedQuantity / workOrder.quantity) * 100
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <FileText className="h-6 w-6" />
             <div>
@@ -933,14 +933,14 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Work Order Info Section */}
-          <div className="bg-gray-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <FileText className="h-5 w-5 text-indigo-600" />
               <h3 className="text-lg font-semibold text-gray-900">Work Order Information</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-500">Work Order Number</label>
                 <p className="text-gray-900 font-semibold text-lg">{workOrder.workOrderNumber}</p>
@@ -991,12 +991,12 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
           </div>
 
           {/* Progress Section */}
-          <div className="bg-blue-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <TrendingUp className="h-5 w-5 text-blue-600" />
               <h3 className="text-lg font-semibold text-gray-900">Progress</h3>
             </div>
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-medium text-gray-500">Completion Status</label>
                 <span className="text-sm font-semibold text-gray-900">
@@ -1014,7 +1014,7 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-500">Start Date</label>
                 <div className="flex items-center space-x-2">
@@ -1039,7 +1039,7 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
                 </div>
               )}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
               <div>
                 <label className="text-sm font-medium text-gray-500">Estimated Time</label>
                 <div className="flex items-center space-x-2">
@@ -1059,12 +1059,12 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
 
           {/* Current Operation Section */}
           {workOrder.currentOperation && (
-            <div className="bg-green-50 rounded-lg p-6 mb-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-green-50 rounded-lg p-3 mb-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <Activity className="h-5 w-5 text-green-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Current Operation</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-500">Operation</label>
                   <p className="text-gray-900 font-semibold">{workOrder.currentOperation}</p>
@@ -1088,8 +1088,8 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
           )}
 
           {/* Operations List Section */}
-          <div className="bg-purple-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-purple-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Activity className="h-5 w-5 text-purple-600" />
               <h3 className="text-lg font-semibold text-gray-900">Operations List</h3>
             </div>
@@ -1130,14 +1130,14 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
           </div>
 
           {/* Material Status Section */}
-          <div className="bg-yellow-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-yellow-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Package className="h-5 w-5 text-yellow-600" />
               <h3 className="text-lg font-semibold text-gray-900">Material Status</h3>
             </div>
             <div className="space-y-3">
               {workOrder.materials.map((material, index) => (
-                <div key={index} className="bg-white rounded-lg p-4 border border-yellow-200">
+                <div key={index} className="bg-white rounded-lg p-3 border border-yellow-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex-1">
                       <p className="font-semibold text-gray-900">{material.materialName}</p>
@@ -1147,7 +1147,7 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
                       {material.status.charAt(0).toUpperCase() + material.status.slice(1)}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                     <div>
                       <label className="text-gray-500">Required</label>
                       <p className="text-gray-900 font-semibold">{material.requiredQty} {material.unit}</p>
@@ -1175,12 +1175,12 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
           </div>
 
           {/* Quality Section */}
-          <div className="bg-red-50 rounded-lg p-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-red-50 rounded-lg p-3">
+            <div className="flex items-center space-x-2 mb-2">
               <CheckCircle className="h-5 w-5 text-red-600" />
               <h3 className="text-lg font-semibold text-gray-900">Quality Status</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
                 <label className="text-sm font-medium text-gray-500">Inspection Status</label>
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getInspectionStatusBadge(workOrder.inspectionStatus)}`}>
@@ -1213,7 +1213,7 @@ export function WorkOrderDetailModal({ isOpen, onClose, workOrder }: WorkOrderDe
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50">
           <div className="flex justify-end">
             <button
               onClick={onClose}
@@ -1289,10 +1289,10 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <FileText className="h-6 w-6" />
             <div>
@@ -1309,14 +1309,14 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Log Info Section */}
-          <div className="bg-gray-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-gray-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Eye className="h-5 w-5 text-indigo-600" />
               <h3 className="text-lg font-semibold text-gray-900">Log Information</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="text-sm font-medium text-gray-500">Timestamp</label>
                 <div className="flex items-center space-x-2">
@@ -1354,12 +1354,12 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
           </div>
 
           {/* Activity Details Section */}
-          <div className="bg-blue-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-blue-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <Activity className="h-5 w-5 text-blue-600" />
               <h3 className="text-lg font-semibold text-gray-900">Activity Details</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {log.workOrder && (
                 <div>
                   <label className="text-sm font-medium text-gray-500">Work Order</label>
@@ -1388,12 +1388,12 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
           </div>
 
           {/* Description Section */}
-          <div className="bg-purple-50 rounded-lg p-6 mb-6">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-purple-50 rounded-lg p-3 mb-3">
+            <div className="flex items-center space-x-2 mb-2">
               <FileText className="h-5 w-5 text-purple-600" />
               <h3 className="text-lg font-semibold text-gray-900">Description</h3>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-purple-200">
+            <div className="bg-white rounded-lg p-3 border border-purple-200">
               <p className="text-gray-900">{log.description}</p>
               {log.details && (
                 <div className="mt-3 pt-3 border-t border-purple-200">
@@ -1406,8 +1406,8 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
 
           {/* Actions Taken Section */}
           {log.actionsTaken && log.actionsTaken.length > 0 && (
-            <div className="bg-green-50 rounded-lg p-6 mb-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-green-50 rounded-lg p-3 mb-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Actions Taken</h3>
               </div>
@@ -1424,12 +1424,12 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
 
           {/* Related Data Section */}
           {log.relatedData && (
-            <div className="bg-yellow-50 rounded-lg p-6 mb-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-yellow-50 rounded-lg p-3 mb-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <BarChart3 className="h-5 w-5 text-yellow-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Related Data</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {log.relatedData.quantity !== undefined && (
                   <div className="bg-white p-3 rounded-lg border border-yellow-200">
                     <label className="text-sm font-medium text-gray-500">Quantity</label>
@@ -1490,16 +1490,16 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
 
           {/* Affected Metrics Section */}
           {log.affectedMetrics && log.affectedMetrics.length > 0 && (
-            <div className="bg-red-50 rounded-lg p-6 mb-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-red-50 rounded-lg p-3 mb-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <TrendingUp className="h-5 w-5 text-red-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Affected Metrics</h3>
               </div>
               <div className="space-y-3">
                 {log.affectedMetrics.map((metric, index) => (
-                  <div key={index} className="bg-white p-4 rounded-lg border border-red-200">
+                  <div key={index} className="bg-white p-3 rounded-lg border border-red-200">
                     <p className="font-semibold text-gray-900 mb-2">{metric.metric}</p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="text-xs text-gray-500">Previous Value</label>
                         <p className="text-sm text-gray-700">{metric.previousValue}</p>
@@ -1517,8 +1517,8 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
 
           {/* Attachments Section */}
           {log.attachments && log.attachments.length > 0 && (
-            <div className="bg-indigo-50 rounded-lg p-6">
-              <div className="flex items-center space-x-2 mb-4">
+            <div className="bg-indigo-50 rounded-lg p-3">
+              <div className="flex items-center space-x-2 mb-2">
                 <FileText className="h-5 w-5 text-indigo-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Attachments</h3>
               </div>
@@ -1535,7 +1535,7 @@ export function ActivityLogDetailModal({ isOpen, onClose, log }: ActivityLogDeta
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50">
           <div className="flex justify-end">
             <button
               onClick={onClose}

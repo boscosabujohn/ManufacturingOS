@@ -333,10 +333,10 @@ export default function ContractManagement() {
   const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <FileText className="w-8 h-8 text-blue-600" />
@@ -363,8 +363,8 @@ export default function ContractManagement() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Active Contracts</span>
               <FileText className="w-5 h-5 text-blue-600" />
@@ -373,7 +373,7 @@ export default function ContractManagement() {
             <div className="text-sm text-gray-600">Total active</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Total Value</span>
               <DollarSign className="w-5 h-5 text-green-600" />
@@ -382,7 +382,7 @@ export default function ContractManagement() {
             <div className="text-sm text-green-600">↑ 8% YoY</div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Expiring Soon</span>
               <Clock className="w-5 h-5 text-amber-600" />
@@ -391,7 +391,7 @@ export default function ContractManagement() {
             <div className="text-sm text-red-600">Next 30 days</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Compliance</span>
               <Shield className="w-5 h-5 text-purple-600" />
@@ -400,7 +400,7 @@ export default function ContractManagement() {
             <div className="text-sm text-yellow-600">2% below target</div>
           </div>
 
-          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-rose-600 text-sm font-medium">Risk Level</span>
               <AlertTriangle className="w-5 h-5 text-rose-600" />
@@ -409,7 +409,7 @@ export default function ContractManagement() {
             <div className="text-sm text-gray-600">8 high risk</div>
           </div>
 
-          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-emerald-600 text-sm font-medium">Savings</span>
               <TrendingUp className="w-5 h-5 text-emerald-600" />
@@ -421,7 +421,7 @@ export default function ContractManagement() {
 
         {/* Renewal Alert */}
         {showRenewalAlert && (
-          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+          <div className="mt-4 bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5" />
             <div className="flex-1">
               <h4 className="font-medium text-gray-900">Upcoming Renewals Require Attention</h4>
@@ -441,8 +441,8 @@ export default function ContractManagement() {
 
       {/* Real-Time Monitoring Dashboard */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Activity className="h-5 w-5 text-indigo-600" />
               Real-Time Contract Monitoring
@@ -466,8 +466,8 @@ export default function ContractManagement() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Active Changes</span>
                 <FileEdit className="h-5 w-5 text-blue-600" />
@@ -476,7 +476,7 @@ export default function ContractManagement() {
               <div className="text-xs text-blue-600 mt-1">2 amendments pending</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Renewals This Week</span>
                 <RefreshCw className="h-5 w-5 text-green-600" />
@@ -485,7 +485,7 @@ export default function ContractManagement() {
               <div className="text-xs text-amber-600 mt-1">Decisions needed</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Compliance Alerts</span>
                 <AlertCircle className="h-5 w-5 text-amber-600" />
@@ -494,7 +494,7 @@ export default function ContractManagement() {
               <div className="text-xs text-red-600 mt-1">1 critical</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Contract Value Change</span>
                 <DollarSign className="h-5 w-5 text-purple-600" />
@@ -504,7 +504,7 @@ export default function ContractManagement() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Contract Activity</h4>
             <div className="space-y-2 max-h-32 overflow-y-auto">
               <div className="flex items-center gap-3 text-sm">
@@ -534,8 +534,8 @@ export default function ContractManagement() {
 
       {/* AI-Powered Insights */}
       {showAIInsights && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Zap className="h-5 w-5 text-purple-600" />
               AI-Powered Contract Intelligence
@@ -548,8 +548,8 @@ export default function ContractManagement() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="h-5 w-5 text-blue-600" />
                 <span className="text-sm font-semibold text-gray-900">Renewal Prediction</span>
@@ -558,7 +558,7 @@ export default function ContractManagement() {
               <p className="text-xs text-gray-600">Success rate predicted for upcoming renewals based on supplier performance and market conditions</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
                 <span className="text-sm font-semibold text-gray-900">Risk Alert</span>
@@ -567,7 +567,7 @@ export default function ContractManagement() {
               <p className="text-xs text-gray-600">Contracts with compliance or performance issues requiring immediate attention before renewal</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-green-600" />
                 <span className="text-sm font-semibold text-gray-900">Savings Opportunity</span>
@@ -577,7 +577,7 @@ export default function ContractManagement() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Contract Recommendations</h4>
             <div className="space-y-2">
               <div className="flex items-start gap-3 p-2 bg-amber-50 rounded">
@@ -626,10 +626,10 @@ export default function ContractManagement() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Contract Value Trend */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Value Trend</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Value Trend</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <ComposedChart data={contractValueTrend}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -648,9 +648,9 @@ export default function ContractManagement() {
               </div>
 
               {/* Contract Distribution */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Contracts by Type</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Contracts by Type</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RePieChart>
                       <Pie
@@ -672,8 +672,8 @@ export default function ContractManagement() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Lifecycle Stages</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Lifecycle Stages</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="100%" data={contractLifecycle}>
                       <RadialBar label={{ position: 'insideStart', fill: '#fff' }} background dataKey="contracts">
@@ -696,7 +696,7 @@ export default function ContractManagement() {
                 <div className="p-4 space-y-3">
                   {milestones.filter(m => m.status === 'pending').map((milestone) => (
                     <div key={milestone.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className={`p - 2 rounded - lg ${
   milestone.status === 'completed' ? 'bg-green-100 text-green-600' :
     milestone.status === 'overdue' ? 'bg-red-100 text-red-600' :
@@ -723,9 +723,9 @@ export default function ContractManagement() {
           )}
 
           {activeTab === 'contracts' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Filters */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2 mb-2">
                 <div className="flex items-center gap-2 flex-1">
                   <Search className="w-5 h-5 text-gray-400" />
                   <input
@@ -909,11 +909,11 @@ export default function ContractManagement() {
           )}
 
           {activeTab === 'lifecycle' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Lifecycle Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
                 {contractLifecycle.map((stage) => (
-                  <div key={stage.stage} className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+                  <div key={stage.stage} className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
                     <div className="text-blue-600 text-sm font-medium mb-1">{stage.stage}</div>
                     <div className="text-2xl font-bold text-gray-900">{stage.contracts}</div>
                     <div className="text-sm text-gray-600">Avg: {stage.days}d</div>
@@ -922,8 +922,8 @@ export default function ContractManagement() {
               </div>
 
               {/* Lifecycle Process */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Lifecycle Process</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Lifecycle Process</h3>
                 <div className="relative">
                   <div className="absolute top-8 left-0 right-0 h-0.5 bg-gray-300"></div>
                   <div className="flex justify-between relative">
@@ -952,9 +952,9 @@ export default function ContractManagement() {
               </div>
 
               {/* Lifecycle Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Average Cycle Times</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Average Cycle Times</h4>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Contract Creation</span>
@@ -975,8 +975,8 @@ export default function ContractManagement() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Bottleneck Analysis</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Bottleneck Analysis</h4>
                   <div className="space-y-3">
                     <div>
                       <div className="flex items-center justify-between mb-1">
@@ -1008,8 +1008,8 @@ export default function ContractManagement() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Automation Opportunities</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Automation Opportunities</h4>
                   <div className="space-y-3">
                     <button className="w-full text-left p-2 hover:bg-gray-50 rounded-lg transition flex items-center justify-between">
                       <span className="text-sm text-gray-700">Template Generation</span>
@@ -1034,9 +1034,9 @@ export default function ContractManagement() {
           )}
 
           {activeTab === 'compliance' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Compliance Dashboard */}
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                 {complianceMetrics.map((metric) => (
                   <div key={metric.metric} className={`p - 4 rounded - lg border ${
   metric.status === 'good' ? 'bg-green-50 border-green-200' :
@@ -1098,8 +1098,8 @@ export default function ContractManagement() {
               </div>
 
               {/* Audit Trail */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Audit Activities</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Recent Audit Activities</h3>
                 <div className="space-y-2">
                   {[
                     { action: 'Contract CTR-2024-001 compliance review completed', user: 'John Matthews', time: '2 hours ago' },
@@ -1121,17 +1121,17 @@ export default function ContractManagement() {
           )}
 
           {activeTab === 'renewals' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Renewal Management</h3>
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Renewal Management</h3>
 
               {/* Renewal Timeline */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-semibold text-gray-900 mb-4">Upcoming Renewals Timeline</h4>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Upcoming Renewals Timeline</h4>
                 <div className="space-y-3">
                   {upcomingRenewals.map((contract) => {
                     const daysUntilRenewal = Math.ceil((new Date(contract.renewalDate!).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
                     return (
-                      <div key={contract.id} className="bg-white p-4 rounded-lg border border-gray-200">
+                      <div key={contract.id} className="bg-white p-3 rounded-lg border border-gray-200">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
@@ -1144,7 +1144,7 @@ export default function ContractManagement() {
                               )}
                             </div>
                             <h4 className="font-semibold text-gray-900">{contract.title}</h4>
-                            <div className="flex items-center gap-4 text-sm text-gray-600 mt-2">
+                            <div className="flex items-center gap-2 text-sm text-gray-600 mt-2">
                               <span className="flex items-center gap-1">
                                 <Building2 className="w-4 h-4" />
                                 {contract.supplier}
@@ -1180,9 +1180,9 @@ export default function ContractManagement() {
               </div>
 
               {/* Renewal Actions */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Renewal Checklist</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Renewal Checklist</h4>
                   <div className="space-y-2">
                     {[
                       { task: 'Review contract performance', completed: true },
@@ -1207,9 +1207,9 @@ export default function ContractManagement() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Renewal Settings</h4>
-                  <div className="space-y-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Renewal Settings</h4>
+                  <div className="space-y-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Reminder Period</label>
                       <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -1247,11 +1247,11 @@ export default function ContractManagement() {
           )}
 
           {activeTab === 'analytics' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Contract Analytics */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Value by Department</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Value by Department</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={[
                       { dept: 'IT', value: 3500000 },
@@ -1269,9 +1269,9 @@ export default function ContractManagement() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Performance Metrics</h3>
-                  <div className="space-y-4">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Performance Metrics</h3>
+                  <div className="space-y-2">
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm text-gray-600">On-time Renewals</span>
@@ -1313,9 +1313,9 @@ export default function ContractManagement() {
               </div>
 
               {/* Key Insights */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Insights & Recommendations</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Insights & Recommendations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {[
                     { insight: '15% of contracts are underutilized', action: 'Review and consolidate', impact: 'Save $200K/year' },
                     { insight: '8 contracts expiring without renewal plans', action: 'Initiate renewal process', impact: 'Avoid disruption' },

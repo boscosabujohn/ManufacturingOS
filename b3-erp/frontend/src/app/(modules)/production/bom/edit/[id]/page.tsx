@@ -773,12 +773,12 @@ export default function BOMEditPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/production/bom')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to BOM List</span>
@@ -816,7 +816,7 @@ export default function BOMEditPage() {
 
       {/* Validation Errors */}
       {validationErrors.length > 0 && (
-        <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="mb-3 bg-red-50 border border-red-200 rounded-lg p-3">
           <div className="flex items-start space-x-2">
             <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -832,13 +832,13 @@ export default function BOMEditPage() {
       )}
 
       {/* BOM Details Form */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center space-x-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center space-x-2">
           <Package className="h-5 w-5 text-blue-600" />
           <span>BOM Header Information</span>
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {/* Product Selection */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -963,7 +963,7 @@ export default function BOMEditPage() {
 
         {/* Product Details (Auto-populated) */}
         {selectedProduct && (
-          <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
             <h4 className="text-sm font-semibold text-blue-900 mb-2">Product Details</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
               <div>
@@ -988,8 +988,8 @@ export default function BOMEditPage() {
       </div>
 
       {/* Components Section */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-bold text-gray-900 flex items-center space-x-2">
             <ListTree className="h-5 w-5 text-green-600" />
             <span>Multi-Level Component Tree</span>

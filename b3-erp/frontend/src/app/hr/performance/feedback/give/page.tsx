@@ -85,7 +85,7 @@ export default function GiveFeedbackPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <MessageSquare className="h-8 w-8 text-teal-600" />
           Give Feedback
@@ -94,7 +94,7 @@ export default function GiveFeedbackPage() {
       </div>
 
       {/* Info Banner */}
-      <div className="bg-teal-50 border-l-4 border-teal-500 rounded-lg p-4 mb-6">
+      <div className="bg-teal-50 border-l-4 border-teal-500 rounded-lg p-3 mb-3">
         <div className="flex items-start gap-3">
           <MessageSquare className="w-6 h-6 text-teal-600 mt-0.5" />
           <div>
@@ -107,8 +107,8 @@ export default function GiveFeedbackPage() {
       </div>
 
       {/* Feedback Form */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="space-y-3">
           {/* Select Employee */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -250,7 +250,7 @@ export default function GiveFeedbackPage() {
           </div>
 
           {/* Anonymous Option */}
-          <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
             <input
               type="checkbox"
               id="anonymous"
@@ -272,7 +272,7 @@ export default function GiveFeedbackPage() {
           <div className="flex gap-3 pt-4 border-t border-gray-200">
             <button
               onClick={handleSubmit}
-              className="flex items-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium"
+              className="flex items-center gap-2 px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 font-medium"
             >
               <Send className="h-4 w-4" />
               Submit Feedback
@@ -285,7 +285,7 @@ export default function GiveFeedbackPage() {
                 setFeedbackText('');
                 setIsAnonymous(false);
               }}
-              className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+              className="px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
             >
               Clear Form
             </button>
@@ -294,8 +294,8 @@ export default function GiveFeedbackPage() {
       </div>
 
       {/* Recent Feedback Given */}
-      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <Users className="h-5 w-5 text-teal-600" />
           Recent Feedback Given
         </h2>
@@ -340,7 +340,7 @@ export default function GiveFeedbackPage() {
       </div>
 
       {/* Best Practices */}
-      <div className="mt-6 bg-teal-50 border border-teal-200 rounded-lg p-4">
+      <div className="mt-6 bg-teal-50 border border-teal-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-teal-900 mb-2">Effective Feedback Best Practices</h3>
         <ul className="text-sm text-teal-800 space-y-1">
           <li>• <strong>Be Specific:</strong> Focus on concrete examples and observable behaviors</li>

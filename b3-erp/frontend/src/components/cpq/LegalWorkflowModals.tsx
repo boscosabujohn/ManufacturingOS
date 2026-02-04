@@ -59,9 +59,9 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
   if (!isOpen || !review) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -78,8 +78,8 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Document Summary */}
-          <div className="bg-green-50 rounded-lg p-4 mb-6">
-            <div className="grid grid-cols-2 gap-4 text-sm">
+          <div className="bg-green-50 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Document Type</p>
                 <p className="font-semibold text-gray-900">{review.documentType.toUpperCase()}</p>
@@ -108,7 +108,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
 
           {/* Custom Clauses */}
           {review.customClauses && review.customClauses.length > 0 && (
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">Custom Clauses Reviewed</label>
               <ul className="space-y-1 bg-yellow-50 border border-yellow-200 rounded p-3">
                 {review.customClauses.map((clause, idx) => (
@@ -123,7 +123,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
 
           {/* Resolved Issues */}
           {review.issues && review.issues.filter((i: LegalIssue) => i.status === 'resolved').length > 0 && (
-            <div className="mb-6">
+            <div className="mb-3">
               <label className="block text-sm font-medium text-gray-700 mb-2">Issues Resolved</label>
               <div className="space-y-2">
                 {review.issues.filter((i: LegalIssue) => i.status === 'resolved').map((issue: LegalIssue) => (
@@ -140,7 +140,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
           )}
 
           {/* Compliance Status */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Compliance Checks</label>
             <div className="grid grid-cols-2 gap-2">
               {review.complianceChecks && review.complianceChecks.map((check: ComplianceCheck, idx: number) => (
@@ -159,7 +159,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
           </div>
 
           {/* Legal Opinion */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Legal Opinion <span className="text-red-500">*</span>
             </label>
@@ -173,7 +173,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
           </div>
 
           {/* Conditions */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
@@ -195,7 +195,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
           </div>
 
           {/* Risk Acknowledgment */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <Scale className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -206,7 +206,7 @@ export function ApproveLegalModal({ isOpen, onClose, onApprove, review }: Approv
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -246,9 +246,9 @@ export function RejectLegalModal({ isOpen, onClose, onReject, review }: RejectLe
   if (!isOpen || !review) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <XCircle className="h-6 w-6 text-white" />
@@ -264,12 +264,12 @@ export function RejectLegalModal({ isOpen, onClose, onReject, review }: RejectLe
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <div className="bg-red-50 rounded-lg p-4 mb-6">
+          <div className="bg-red-50 rounded-lg p-3 mb-3">
             <p className="font-semibold text-gray-900">{review.customerName}</p>
             <p className="text-sm text-gray-600">{review.documentType.toUpperCase()} • Risk: {review.riskLevel.toUpperCase()}</p>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Rejection Reason <span className="text-red-500">*</span>
             </label>
@@ -291,7 +291,7 @@ export function RejectLegalModal({ isOpen, onClose, onReject, review }: RejectLe
             </select>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Legal Analysis <span className="text-red-500">*</span>
             </label>
@@ -306,7 +306,7 @@ export function RejectLegalModal({ isOpen, onClose, onReject, review }: RejectLe
 
           {/* Critical Issues */}
           {review.issues && review.issues.filter((i: LegalIssue) => i.status === 'open' && i.severity === 'critical').length > 0 && (
-            <div className="mb-6 bg-red-50 border border-red-200 rounded p-4">
+            <div className="mb-3 bg-red-50 border border-red-200 rounded p-3">
               <p className="font-semibold text-red-900 mb-2">Critical Issues to Address:</p>
               <ul className="space-y-1">
                 {review.issues.filter((i: LegalIssue) => i.status === 'open' && i.severity === 'critical').map((issue: LegalIssue) => (
@@ -316,7 +316,7 @@ export function RejectLegalModal({ isOpen, onClose, onReject, review }: RejectLe
             </div>
           )}
 
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-red-800">
@@ -327,7 +327,7 @@ export function RejectLegalModal({ isOpen, onClose, onReject, review }: RejectLe
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -375,9 +375,9 @@ export function RequestRevisionModal({ isOpen, onClose, onRequestRevision, revie
   if (!isOpen || !review) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <AlertTriangle className="h-6 w-6 text-white" />
             <div>
@@ -391,7 +391,7 @@ export function RequestRevisionModal({ isOpen, onClose, onRequestRevision, revie
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
-          <p className="text-sm text-gray-600 mb-4">List all specific changes required for legal approval:</p>
+          <p className="text-sm text-gray-600 mb-2">List all specific changes required for legal approval:</p>
 
           <div className="space-y-3">
             {changes.map((change, index) => (
@@ -415,7 +415,7 @@ export function RequestRevisionModal({ isOpen, onClose, onRequestRevision, revie
           </button>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>
@@ -438,9 +438,9 @@ export function ViewLegalDocumentModal({ isOpen, onClose, review }: any) {
   if (!isOpen || !review) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Eye className="h-6 w-6 text-white" />
             <div>
@@ -455,9 +455,9 @@ export function ViewLegalDocumentModal({ isOpen, onClose, review }: any) {
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Document preview would go here */}
-          <div className="bg-indigo-50 rounded-lg p-6">
-            <h3 className="text-lg font-bold text-indigo-900 mb-4">{review.customerName}</h3>
-            <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="bg-indigo-50 rounded-lg p-3">
+            <h3 className="text-lg font-bold text-indigo-900 mb-2">{review.customerName}</h3>
+            <div className="grid grid-cols-3 gap-2 text-sm">
               <div>
                 <p className="text-indigo-700">Document Type</p>
                 <p className="font-bold text-indigo-900">{review.documentType.toUpperCase()}</p>
@@ -474,7 +474,7 @@ export function ViewLegalDocumentModal({ isOpen, onClose, review }: any) {
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Close
           </button>
@@ -497,9 +497,9 @@ export function AddLegalCommentModal({ isOpen, onClose, onAddComment, review }: 
   if (!isOpen || !review) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <MessageSquare className="h-6 w-6 text-white" />
             <h2 className="text-xl font-bold text-white">Add Legal Comment</h2>
@@ -519,7 +519,7 @@ export function AddLegalCommentModal({ isOpen, onClose, onAddComment, review }: 
           />
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button onClick={onClose} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
             Cancel
           </button>

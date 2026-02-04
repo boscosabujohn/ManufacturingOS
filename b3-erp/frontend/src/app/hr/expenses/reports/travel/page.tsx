@@ -150,8 +150,8 @@ export default function TravelAnalyticsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex justify-between items-start">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3 flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <TrendingUp className="h-7 w-7 text-purple-600" />
@@ -169,8 +169,8 @@ export default function TravelAnalyticsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-purple-700">Total Trips</p>
             <Plane className="h-8 w-8 text-purple-400" />
@@ -179,7 +179,7 @@ export default function TravelAnalyticsPage() {
           <p className="text-xs text-purple-600 mt-1">{stats.days} total days</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-blue-700">Total Cost</p>
             <MapPin className="h-8 w-8 text-blue-400" />
@@ -188,7 +188,7 @@ export default function TravelAnalyticsPage() {
           <p className="text-xs text-blue-600 mt-1">All travel expenses</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-green-700">Avg Per Trip</p>
             <TrendingUp className="h-8 w-8 text-green-400" />
@@ -197,7 +197,7 @@ export default function TravelAnalyticsPage() {
           <p className="text-xs text-green-600 mt-1">Average trip cost</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg shadow-sm border border-orange-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm text-orange-700">Avg Per Day</p>
             <Hotel className="h-8 w-8 text-orange-400" />
@@ -208,8 +208,8 @@ export default function TravelAnalyticsPage() {
       </div>
 
       {/* Cost Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Plane className="h-5 w-5 text-blue-600" />
             <p className="text-sm font-medium text-gray-700">Flight</p>
@@ -218,7 +218,7 @@ export default function TravelAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">{stats.cost > 0 ? Math.round((stats.flight / stats.cost) * 100) : 0}% of total</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Hotel className="h-5 w-5 text-purple-600" />
             <p className="text-sm font-medium text-gray-700">Hotel</p>
@@ -227,7 +227,7 @@ export default function TravelAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">{stats.cost > 0 ? Math.round((stats.hotel / stats.cost) * 100) : 0}% of total</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <Users className="h-5 w-5 text-green-600" />
             <p className="text-sm font-medium text-gray-700">Meals</p>
@@ -236,7 +236,7 @@ export default function TravelAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">{stats.cost > 0 ? Math.round((stats.meals / stats.cost) * 100) : 0}% of total</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center gap-2 mb-2">
             <MapPin className="h-5 w-5 text-orange-600" />
             <p className="text-sm font-medium text-gray-700">Transport</p>
@@ -247,8 +247,8 @@ export default function TravelAnalyticsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Year</label>
             <select
@@ -278,8 +278,8 @@ export default function TravelAnalyticsPage() {
       </div>
 
       {/* By Destination */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <MapPin className="h-5 w-5 text-purple-600" />
           Travel by Destination
         </h2>
@@ -308,34 +308,34 @@ export default function TravelAnalyticsPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Destination</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Purpose</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dates</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Days</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Cost</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Destination</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Purpose</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Dates</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Days</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total Cost</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredData.map((trip) => (
                 <tr key={trip.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{trip.employeeName}</div>
                       <div className="text-xs text-gray-500">{trip.department}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">{trip.destination}</td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{trip.purpose}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm font-medium text-gray-900">{trip.destination}</td>
+                  <td className="px-3 py-2 text-sm text-gray-700">{trip.purpose}</td>
+                  <td className="px-3 py-2">
                     <div className="text-xs text-gray-600">
                       {new Date(trip.startDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} -
                       {' '}
                       {new Date(trip.endDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{trip.days}</td>
-                  <td className="px-6 py-4 text-sm font-semibold text-gray-900">₹{trip.totalCost.toLocaleString('en-IN')}</td>
+                  <td className="px-3 py-2 text-sm text-gray-700">{trip.days}</td>
+                  <td className="px-3 py-2 text-sm font-semibold text-gray-900">₹{trip.totalCost.toLocaleString('en-IN')}</td>
                 </tr>
               ))}
             </tbody>
@@ -344,7 +344,7 @@ export default function TravelAnalyticsPage() {
       </div>
 
       {/* Info Box */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Travel Expense Guidelines</h3>
         <ul className="text-sm text-blue-800 space-y-1">
           <li>• All travel must be pre-approved by department head</li>

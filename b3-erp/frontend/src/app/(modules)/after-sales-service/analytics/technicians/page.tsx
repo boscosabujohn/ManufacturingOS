@@ -259,10 +259,10 @@ export default function TechniciansAnalyticsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Users className="h-8 w-8 text-emerald-600" />
@@ -270,7 +270,7 @@ export default function TechniciansAnalyticsPage() {
             </h1>
             <p className="text-gray-600 mt-1">Monitor technician metrics, ratings, and service history</p>
           </div>
-          <button onClick={handleExport} className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+          <button onClick={handleExport} className="bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
             <Download className="h-5 w-5" />
             Export Report
           </button>
@@ -278,7 +278,7 @@ export default function TechniciansAnalyticsPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
         <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -330,13 +330,13 @@ export default function TechniciansAnalyticsPage() {
       </div>
 
       {/* Top Performer */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg p-6 mb-6 shadow-md text-white">
+      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-lg p-3 mb-3 shadow-md text-white">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-sm font-medium opacity-90">Top Performer</p>
             <h3 className="text-2xl font-bold mt-2">{stats.topPerformer.name}</h3>
             <p className="text-sm opacity-90 mt-1">{stats.topPerformer.region} • {stats.topPerformer.experience} years experience</p>
-            <div className="flex gap-6 mt-4">
+            <div className="flex gap-3 mt-4">
               <div>
                 <p className="text-xs opacity-75">Rating</p>
                 <p className="text-xl font-bold">{stats.topPerformer.rating}/5</p>
@@ -356,8 +356,8 @@ export default function TechniciansAnalyticsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -369,7 +369,7 @@ export default function TechniciansAnalyticsPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">Status</label>
               <select
@@ -424,7 +424,7 @@ export default function TechniciansAnalyticsPage() {
       </div>
 
       {/* Technicians Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredTechnicians.map((tech) => {
           const ftfRate = ((tech.ftfCount / tech.totalServices) * 100).toFixed(1);
           return (
@@ -454,7 +454,7 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* Info */}
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Total Services</span>
                   <span className="font-semibold text-gray-900">{tech.totalServices}</span>
@@ -474,7 +474,7 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* Location & Experience */}
-              <div className="flex items-center gap-4 text-xs text-gray-600 mb-4 pb-4 border-b">
+              <div className="flex items-center gap-2 text-xs text-gray-600 mb-2 pb-4 border-b">
                 <div className="flex items-center gap-1">
                   <MapPin className="h-4 w-4" />
                   {tech.region}
@@ -525,7 +525,7 @@ export default function TechniciansAnalyticsPage() {
 
       {filteredTechnicians.length === 0 && (
         <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-          <Users className="h-12 w-12 text-gray-300 mb-4" />
+          <Users className="h-12 w-12 text-gray-300 mb-2" />
           <p className="text-gray-600 font-medium">No technicians found</p>
           <p className="text-gray-500 text-sm">Try adjusting your filters</p>
         </div>
@@ -533,11 +533,11 @@ export default function TechniciansAnalyticsPage() {
 
       {/* Technician Details Modal */}
       {showDetailsModal && selectedTechnician && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-2">
                 <div className="bg-white text-emerald-600 rounded-full w-16 h-16 flex items-center justify-center font-bold text-2xl">
                   {selectedTechnician.name.split(' ').map(n => n[0]).join('')}
                 </div>
@@ -552,10 +552,10 @@ export default function TechniciansAnalyticsPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Status & Rating Banner */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border-2 border-yellow-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border-2 border-yellow-200">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-medium text-yellow-800">Performance Rating</p>
                     <Star className="h-5 w-5 text-yellow-600" />
@@ -573,14 +573,14 @@ export default function TechniciansAnalyticsPage() {
                   </div>
                 </div>
 
-                <div className={`rounded-lg p-4 border-2 ${selectedTechnician.status === 'active' ? 'bg-green-50 border-green-200' : selectedTechnician.status === 'on-leave' ? 'bg-yellow-50 border-yellow-200' : 'bg-gray-50 border-gray-200'}`}>
+                <div className={`rounded-lg p-3 border-2 ${selectedTechnician.status === 'active' ? 'bg-green-50 border-green-200' : selectedTechnician.status === 'on-leave' ? 'bg-yellow-50 border-yellow-200' : 'bg-gray-50 border-gray-200'}`}>
                   <p className={`text-sm font-medium mb-2 ${selectedTechnician.status === 'active' ? 'text-green-800' : selectedTechnician.status === 'on-leave' ? 'text-yellow-800' : 'text-gray-800'}`}>Current Status</p>
                   <p className={`text-2xl font-bold ${selectedTechnician.status === 'active' ? 'text-green-900' : selectedTechnician.status === 'on-leave' ? 'text-yellow-900' : 'text-gray-900'}`}>
                     {selectedTechnician.status.charAt(0).toUpperCase() + selectedTechnician.status.slice(1).replace('-', ' ')}
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border-2 border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border-2 border-blue-200">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-medium text-blue-800">Experience</p>
                     <Award className="h-5 w-5 text-blue-600" />
@@ -592,11 +592,11 @@ export default function TechniciansAnalyticsPage() {
 
               {/* Performance Metrics */}
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-5 border border-emerald-200">
-                <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+                <h4 className="font-bold text-emerald-900 mb-2 flex items-center gap-2">
                   <Target className="h-5 w-5" />
                   Performance Metrics
                 </h4>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <div className="bg-white bg-opacity-80 rounded-lg p-3">
                     <p className="text-xs text-gray-600 mb-1">Total Services</p>
                     <p className="text-2xl font-bold text-gray-900">{selectedTechnician.totalServices}</p>
@@ -619,8 +619,8 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* Location & Basic Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                   <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
                     <MapPin className="h-5 w-5" />
                     Location & Assignment
@@ -641,7 +641,7 @@ export default function TechniciansAnalyticsPage() {
                   </div>
                 </div>
 
-                <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                <div className="bg-indigo-50 rounded-lg p-3 border border-indigo-200">
                   <h4 className="font-bold text-indigo-900 mb-3 flex items-center gap-2">
                     <Clock className="h-5 w-5" />
                     Work Statistics
@@ -668,7 +668,7 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* Specializations */}
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <h4 className="font-bold text-orange-900 mb-3 flex items-center gap-2">
                   <Wrench className="h-5 w-5" />
                   Technical Specializations
@@ -683,7 +683,7 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* Certifications */}
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
                   <Award className="h-5 w-5" />
                   Professional Certifications
@@ -699,7 +699,7 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* Performance Analysis */}
-              <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg p-4 border border-gray-200">
+              <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg p-3 border border-gray-200">
                 <h4 className="font-bold text-gray-900 mb-3">Performance Analysis</h4>
                 <div className="space-y-3">
                   <div>
@@ -743,7 +743,7 @@ export default function TechniciansAnalyticsPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+            <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t">
               <button onClick={() => setShowDetailsModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                 Close
               </button>

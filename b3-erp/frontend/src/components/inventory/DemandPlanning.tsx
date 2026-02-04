@@ -217,9 +217,9 @@ export default function DemandPlanning() {
   };
 
   return (
-    <div className="w-full h-full p-6 space-y-6">
+    <div className="w-full h-full p-3 space-y-3">
       {/* Header with Stats */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Demand Planning</h1>
           <p className="text-gray-500">AI-driven forecasting and accuracy analysis</p>
@@ -234,7 +234,7 @@ export default function DemandPlanning() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         <Card className="bg-white shadow-sm border-slate-200">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
@@ -300,8 +300,8 @@ export default function DemandPlanning() {
           <TabsTrigger value="parameters" className="data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900">Configuration</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="forecast" className="mt-6 space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <TabsContent value="forecast" className="mt-6 space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {forecasts.map((item) => (
               <Card key={item.itemId} className="overflow-hidden border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <CardHeader className="bg-slate-50/50 pb-4 border-b border-slate-100">
@@ -398,7 +398,7 @@ export default function DemandPlanning() {
         </TabsContent>
 
         <TabsContent value="seasonality" className="mt-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {seasonalityData.map((item) => (
               <Card key={item.itemId} className="border-slate-200 shadow-sm">
                 <CardHeader>

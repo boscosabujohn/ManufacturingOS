@@ -277,8 +277,8 @@ export default function ConditionalBranching() {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -327,7 +327,7 @@ export default function ConditionalBranching() {
           </div>
 
           <div className="p-8 bg-gray-50">
-            <div className="space-y-6">
+            <div className="space-y-3">
               {rule.branches.map((branch) => renderBranch(branch))}
 
               {rule.defaultAction && (

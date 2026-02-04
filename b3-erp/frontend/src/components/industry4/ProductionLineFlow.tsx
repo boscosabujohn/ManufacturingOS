@@ -384,7 +384,7 @@ export function ProductionLineFlow({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -398,7 +398,7 @@ export function ProductionLineFlow({
 
           <div className="flex items-center gap-3">
             {/* Stats */}
-            <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center gap-2 text-sm">
               <div className="flex items-center gap-1.5">
                 <CheckCircle className="w-4 h-4 text-green-300" />
                 <span>{stats.totalProduced}</span>
@@ -475,7 +475,7 @@ export function ProductionLineFlow({
 
         {/* Legend */}
         <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
             {(Object.keys(statusConfig) as StationStatus[]).map(status => (
               <div key={status} className="flex items-center gap-2">
                 <div className={`w-3 h-3 rounded-full ${statusConfig[status].color}`} />

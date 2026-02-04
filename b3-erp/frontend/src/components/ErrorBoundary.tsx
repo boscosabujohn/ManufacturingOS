@@ -84,7 +84,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
       // Default error UI
       return (
-        <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-orange-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-orange-50 flex items-center justify-center p-3">
           <div className="max-w-2xl w-full">
             <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 text-center">
               {/* Error Icon */}
@@ -116,10 +116,10 @@ export class ErrorBoundary extends Component<Props, State> {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <div className="flex flex-col sm:flex-row gap-2 justify-center mb-8">
                 <button
                   onClick={this.handleReset}
-                  className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 text-white font-semibold rounded-lg hover:from-yellow-700 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-yellow-600 to-orange-600 text-white font-semibold rounded-lg hover:from-yellow-700 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   <RefreshCw className="w-5 h-5 mr-2" />
                   Try Again
@@ -127,7 +127,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 
                 <a
                   href="/dashboard"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-all duration-200"
+                  className="inline-flex items-center justify-center px-3 py-2 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-yellow-600 hover:text-yellow-600 transition-all duration-200"
                 >
                   <Home className="w-5 h-5 mr-2" />
                   Go to Dashboard
@@ -138,7 +138,7 @@ export class ErrorBoundary extends Component<Props, State> {
               <div className="border-t border-gray-200 pt-6">
                 <button
                   onClick={this.toggleDetails}
-                  className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors mx-auto"
+                  className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 transition-colors"
                 >
                   <AlertCircle className="w-4 h-4 mr-2" />
                   {showDetails ? 'Hide' : 'Show'} Exception Details
@@ -151,7 +151,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
                 {/* Error Details Panel */}
                 {showDetails && (
-                  <div className="mt-4 bg-gray-50 rounded-lg p-4 text-left border border-gray-200 animate-fadeIn">
+                  <div className="mt-4 bg-gray-50 rounded-lg p-3 text-left border border-gray-200 animate-fadeIn">
                     <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
                       <AlertCircle className="w-4 h-4 mr-2 text-yellow-600" />
                       Exception Details

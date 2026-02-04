@@ -35,9 +35,9 @@ export default function ItemDetailPage() {
     };
 
     return (
-        <div className="w-full p-6">
+        <div className="w-full p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
                 <div>
                     <Button
                         variant="ghost"
@@ -69,15 +69,15 @@ export default function ItemDetailPage() {
             </div>
 
             {/* Item Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Main Details */}
                 <div className="lg:col-span-2">
-                    <Card className="mb-6">
+                    <Card className="mb-3">
                         <CardHeader>
                             <CardTitle>Item Details</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="grid grid-cols-2 gap-6 mb-6">
+                            <div className="grid grid-cols-2 gap-3 mb-3">
                                 <div>
                                     <p className="text-sm text-gray-500">Description</p>
                                     <p className="font-medium">{item.description}</p>
@@ -97,8 +97,8 @@ export default function ItemDetailPage() {
                             </div>
 
                             <h3 className="font-semibold mb-3">Specifications</h3>
-                            <div className="bg-gray-50 rounded-lg p-4">
-                                <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-gray-50 rounded-lg p-3">
+                                <div className="grid grid-cols-2 gap-2">
                                     {item.specifications.map((spec, idx) => (
                                         <div key={idx}>
                                             <p className="text-sm text-gray-500">{spec.label}</p>
@@ -144,7 +144,7 @@ export default function ItemDetailPage() {
                 </div>
 
                 {/* Sidebar */}
-                <div className="space-y-6">
+                <div className="space-y-3">
                     <Card>
                         <CardHeader>
                             <CardTitle>Stock Status</CardTitle>

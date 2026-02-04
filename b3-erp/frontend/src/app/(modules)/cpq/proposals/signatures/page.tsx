@@ -259,9 +259,9 @@ export default function CPQProposalsSignaturesPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -278,7 +278,7 @@ export default function CPQProposalsSignaturesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -336,7 +336,7 @@ export default function CPQProposalsSignaturesPage() {
       </div>
 
       {/* Status Filter */}
-      <div className="mb-6 flex gap-3">
+      <div className="mb-3 flex gap-3">
         <button className="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-200 text-sm font-medium">
           All Proposals ({totalSignatures})
         </button>
@@ -352,7 +352,7 @@ export default function CPQProposalsSignaturesPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -364,13 +364,13 @@ export default function CPQProposalsSignaturesPage() {
       </div>
 
       {/* Signatures List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {signatures.map((signature) => (
           <div
             key={signature.id}
             className="bg-white rounded-lg shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
                 {getStatusIcon(signature.status)}
                 <div>
@@ -388,7 +388,7 @@ export default function CPQProposalsSignaturesPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
               {/* Contact Information */}
               <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
                 <p className="text-xs font-medium text-blue-600 mb-2 flex items-center gap-1">
@@ -439,7 +439,7 @@ export default function CPQProposalsSignaturesPage() {
             </div>
 
             {/* Additional Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
               <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-gray-600">Reminders sent:</span>
@@ -502,7 +502,7 @@ export default function CPQProposalsSignaturesPage() {
       </div>
 
       {/* Digital Signature Info */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <PenTool className="h-4 w-4" />
           Digital Signature Features:

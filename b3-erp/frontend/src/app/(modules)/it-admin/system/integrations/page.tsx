@@ -298,8 +298,8 @@ export default function IntegrationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2 w-full max-w-full">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -314,8 +314,8 @@ export default function IntegrationsPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <Package className="w-6 h-6 text-blue-600" />
@@ -327,7 +327,7 @@ export default function IntegrationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-green-50 rounded-lg">
               <CheckCircle className="w-6 h-6 text-green-600" />
@@ -339,7 +339,7 @@ export default function IntegrationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-blue-50 rounded-lg">
               <Settings className="w-6 h-6 text-blue-600" />
@@ -351,7 +351,7 @@ export default function IntegrationsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-red-50 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-red-600" />
@@ -364,10 +364,10 @@ export default function IntegrationsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Categories */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Categories</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Categories</h2>
           <div className="space-y-2">
             {categories.map((category) => {
               const IconComponent = category.icon;
@@ -392,12 +392,12 @@ export default function IntegrationsPage() {
         </div>
 
         {/* Integrations List */}
-        <div className="lg:col-span-3 space-y-4">
+        <div className="lg:col-span-3 space-y-2">
           {filteredIntegrations.map((integration) => {
             const IconComponent = getIcon(integration.icon);
             return (
-              <div key={integration.id} className="bg-white rounded-xl border border-gray-200 p-6">
-                <div className="flex items-start gap-4">
+              <div key={integration.id} className="bg-white rounded-xl border border-gray-200 p-3">
+                <div className="flex items-start gap-2">
                   <div className="p-3 bg-gray-50 rounded-lg">
                     <IconComponent className="w-8 h-8 text-gray-700" />
                   </div>
@@ -444,7 +444,7 @@ export default function IntegrationsPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
                       <div>
                         <p className="text-xs font-semibold text-gray-600 mb-2">Features:</p>
                         <div className="flex flex-wrap gap-1">
@@ -488,7 +488,7 @@ export default function IntegrationsPage() {
             </div>
           )}
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <Link className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div>

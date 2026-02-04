@@ -92,8 +92,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <FileText className="h-6 w-6 text-teal-600" />
           Position Profiles
@@ -101,8 +101,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Detailed role requirements and competencies</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Department:</label>
           <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
             <option value="all">All Departments</option>
@@ -114,10 +114,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredProfiles.map(profile => (
-          <div key={profile.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={profile.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{profile.title}</h3>
@@ -135,8 +135,8 @@ export default function Page() {
               )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-              <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
+              <div className="space-y-2">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <GraduationCap className="h-5 w-5 text-blue-600" />
@@ -172,7 +172,7 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <h4 className="text-sm font-bold text-gray-900 mb-2">Required Skills</h4>
                   <div className="flex flex-wrap gap-2">

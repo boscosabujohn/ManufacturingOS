@@ -144,10 +144,10 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
   const differences = version1 && version2 ? calculateDifferences(version1, version2) : [];
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Header */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-1">Version Comparison</h2>
             <p className="text-sm text-gray-600">
@@ -174,24 +174,24 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4">
+        <div className="grid grid-cols-4 gap-2">
+          <div className="bg-blue-50 rounded-lg p-3">
             <p className="text-sm text-blue-600 mb-1">Total Versions</p>
             <p className="text-2xl font-bold text-blue-900">{versions.length}</p>
           </div>
-          <div className="bg-green-50 rounded-lg p-4">
+          <div className="bg-green-50 rounded-lg p-3">
             <p className="text-sm text-green-600 mb-1">Approved</p>
             <p className="text-2xl font-bold text-green-900">
               {versions.filter((v) => v.status === 'approved').length}
             </p>
           </div>
-          <div className="bg-yellow-50 rounded-lg p-4">
+          <div className="bg-yellow-50 rounded-lg p-3">
             <p className="text-sm text-yellow-600 mb-1">In Progress</p>
             <p className="text-2xl font-bold text-yellow-900">
               {versions.filter((v) => v.status === 'draft' || v.status === 'submitted').length}
             </p>
           </div>
-          <div className="bg-red-50 rounded-lg p-4">
+          <div className="bg-red-50 rounded-lg p-3">
             <p className="text-sm text-red-600 mb-1">Rejected</p>
             <p className="text-2xl font-bold text-red-900">
               {versions.filter((v) => v.status === 'rejected').length}
@@ -201,9 +201,9 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
       </div>
 
       {/* Version Selection */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Select Versions to Compare</h3>
-        <div className="grid grid-cols-2 gap-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Select Versions to Compare</h3>
+        <div className="grid grid-cols-2 gap-3">
           {/* Version 1 Selector */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">Version 1 (Base)</label>
@@ -242,14 +242,14 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
 
       {/* Timeline View */}
       {comparisonView === 'timeline' && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Version Timeline</h3>
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Version Timeline</h3>
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200" />
 
             {/* Version Cards */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {versions
                 .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
                 .map((version, index) => {
@@ -270,7 +270,7 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
                       <div
                         className={`bg-white rounded-lg border-2 ${
                           isSelected ? 'border-blue-400 shadow-lg' : 'border-gray-200 hover:border-blue-300'
-                        } hover:shadow-lg transition-all p-6`}
+                        } hover:shadow-lg transition-all p-3`}
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
@@ -293,7 +293,7 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
                             {version.notes && <p className="text-sm text-gray-600 mb-3">{version.notes}</p>}
 
                             {/* Metrics */}
-                            <div className="grid grid-cols-3 gap-4 mb-3">
+                            <div className="grid grid-cols-3 gap-2 mb-3">
                               <div className="bg-gray-50 rounded-lg p-3">
                                 <p className="text-xs text-gray-600 mb-1">Total Cost</p>
                                 <p className="text-lg font-bold text-gray-900">${version.totalCost.toLocaleString()}</p>
@@ -394,21 +394,21 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
 
       {/* Side-by-Side Comparison */}
       {comparisonView === 'side-by-side' && version1 && version2 && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Side-by-Side Comparison</h3>
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Side-by-Side Comparison</h3>
 
           {/* Version Headers */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-3 gap-2 mb-3">
             <div className="text-sm font-semibold text-gray-700">Field</div>
             <div className="text-center">
-              <div className="bg-blue-50 rounded-lg p-4 border-2 border-blue-200">
+              <div className="bg-blue-50 rounded-lg p-3 border-2 border-blue-200">
                 <p className="text-sm text-blue-600 mb-1">Version 1</p>
                 <p className="text-lg font-bold text-blue-900">{version1.version}</p>
                 <p className="text-xs text-gray-600">{version1.name}</p>
               </div>
             </div>
             <div className="text-center">
-              <div className="bg-purple-50 rounded-lg p-4 border-2 border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border-2 border-purple-200">
                 <p className="text-sm text-purple-600 mb-1">Version 2</p>
                 <p className="text-lg font-bold text-purple-900">{version2.version}</p>
                 <p className="text-xs text-gray-600">{version2.name}</p>
@@ -435,7 +435,7 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
               return (
                 <div
                   key={index}
-                  className="grid grid-cols-3 gap-4 items-center py-4 border-b border-gray-200 last:border-0"
+                  className="grid grid-cols-3 gap-2 items-center py-4 border-b border-gray-200 last:border-0"
                 >
                   <div className="font-semibold text-gray-900">{diff.label}</div>
                   <div className="text-center">
@@ -468,7 +468,7 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
           </div>
 
           {/* Summary */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-6 p-3 bg-blue-50 rounded-lg border border-blue-200">
             <div className="flex items-start space-x-3">
               <Info className="h-5 w-5 text-blue-600 mt-0.5" />
               <div className="flex-1">
@@ -488,7 +488,7 @@ export const VersionComparison: React.FC<VersionComparisonProps> = ({
       {/* No comparison selected */}
       {comparisonView === 'side-by-side' && (!version1 || !version2) && (
         <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-          <GitBranch className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <GitBranch className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">Select two versions above to compare them side-by-side</p>
         </div>
       )}

@@ -109,8 +109,8 @@ export default function CompanySettingsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -129,17 +129,17 @@ export default function CompanySettingsPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Company Profile */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+        <div className="lg:col-span-2 space-y-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <Building2 className="w-5 h-5 text-blue-600" />
               <h2 className="text-lg font-bold text-gray-900">Company Profile</h2>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
                   <input
@@ -161,7 +161,7 @@ export default function CompanySettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Industry *</label>
                   <select
@@ -191,7 +191,7 @@ export default function CompanySettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Tax ID (GSTIN) *</label>
                   <input
@@ -227,14 +227,14 @@ export default function CompanySettingsPage() {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <Phone className="w-5 h-5 text-green-600" />
               <h2 className="text-lg font-bold text-gray-900">Contact Information</h2>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <Mail className="w-4 h-4 inline mr-1" />
@@ -262,7 +262,7 @@ export default function CompanySettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <FileText className="w-4 h-4 inline mr-1" />
@@ -293,13 +293,13 @@ export default function CompanySettingsPage() {
           </div>
 
           {/* Address */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-3">
               <MapPin className="w-5 h-5 text-red-600" />
               <h2 className="text-lg font-bold text-gray-900">Registered Address</h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Street Address *</label>
                 <input
@@ -310,7 +310,7 @@ export default function CompanySettingsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">City *</label>
                   <input
@@ -332,7 +332,7 @@ export default function CompanySettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">ZIP/Postal Code *</label>
                   <input
@@ -358,18 +358,18 @@ export default function CompanySettingsPage() {
         </div>
 
         {/* Regional & Financial Settings */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-4">
+        <div className="space-y-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-2">
               <Upload className="w-5 h-5 text-purple-600" />
               <h2 className="text-lg font-bold text-gray-900">Company Logo</h2>
             </div>
 
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
               {settings.logoUrl ? (
-                <img src={settings.logoUrl} alt="Company Logo" className="mx-auto mb-4 max-h-32" />
+                <img src={settings.logoUrl} alt="Company Logo" className="mx-auto mb-2 max-h-32" />
               ) : (
-                <Building2 className="w-16 h-16 text-gray-300 mb-4" />
+                <Building2 className="w-16 h-16 text-gray-300 mb-2" />
               )}
               <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium">
                 Upload Logo
@@ -378,13 +378,13 @@ export default function CompanySettingsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-2">
               <Calendar className="w-5 h-5 text-orange-600" />
               <h2 className="text-lg font-bold text-gray-900">Financial Year</h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Start Month</label>
                 <select
@@ -419,13 +419,13 @@ export default function CompanySettingsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center gap-2 mb-2">
               <Globe className="w-5 h-5 text-indigo-600" />
               <h2 className="text-lg font-bold text-gray-900">Regional Settings</h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                 <select
@@ -481,7 +481,7 @@ export default function CompanySettingsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-3">
             <div className="flex items-center gap-2 mb-3">
               <Users className="w-5 h-5 text-blue-600" />
               <h3 className="text-sm font-bold text-blue-900">Quick Stats</h3>

@@ -34,7 +34,7 @@ export default function ShutterSpecsPage() {
   return (
     <div className="w-full py-2 space-y-3">
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
           </Button>
@@ -69,7 +69,7 @@ export default function ShutterSpecsPage() {
               <CardDescription>Details for wooden shutters and panels</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-2">
                   <Label>Core Material</Label>
                   <Input value={woodSpecs.core} onChange={(e) => setWoodSpecs({ ...woodSpecs, core: e.target.value })} />
@@ -98,7 +98,7 @@ export default function ShutterSpecsPage() {
               <CardDescription>Details for glass shutters and shelves</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-2">
                   <Label>Glass Type</Label>
                   <Input value={glassSpecs.type} onChange={(e) => setGlassSpecs({ ...glassSpecs, type: e.target.value })} />
@@ -127,7 +127,7 @@ export default function ShutterSpecsPage() {
               <CardDescription>Details for granite, marble, or quartz</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-2">
                   <Label>Material Name</Label>
                   <Input value={stoneSpecs.material} onChange={(e) => setStoneSpecs({ ...stoneSpecs, material: e.target.value })} />
@@ -156,7 +156,7 @@ export default function ShutterSpecsPage() {
               <CardDescription>Details for stainless steel tops and fascia</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="space-y-2">
                   <Label>Material Grade</Label>
                   <Input value={metalSpecs.material} onChange={(e) => setMetalSpecs({ ...metalSpecs, material: e.target.value })} />

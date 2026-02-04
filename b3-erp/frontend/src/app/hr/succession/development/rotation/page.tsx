@@ -278,8 +278,8 @@ export default function Page() {
   const avgProgress = Math.round(mockRotations.filter(r => r.status !== 'completed').reduce((sum, r) => sum + r.progress, 0) / mockRotations.filter(r => r.status !== 'completed').length) || 0;
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <RefreshCw className="h-6 w-6 text-teal-600" />
           Job Rotation
@@ -287,8 +287,8 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Cross-functional job rotations and developmental assignments</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-sm border border-purple-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide">Total Rotations</p>
@@ -298,7 +298,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-4">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-sm border border-blue-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Ongoing</p>
@@ -308,7 +308,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow-sm border border-green-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-green-600 uppercase tracking-wide">Completed</p>
@@ -318,7 +318,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-4">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg shadow-sm border border-teal-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-teal-600 uppercase tracking-wide">Avg. Progress</p>
@@ -329,8 +329,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Rotation Type</label>
             <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
@@ -356,10 +356,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredRotations.map((rotation) => (
-          <div key={rotation.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start gap-6 mb-6">
+          <div key={rotation.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start gap-3 mb-3">
               <div className="text-6xl">{rotation.photo}</div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -389,8 +389,8 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-blue-50 rounded-lg border border-blue-200 p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+              <div className="bg-blue-50 rounded-lg border border-blue-200 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <Building2 className="h-4 w-4 text-blue-600" />
                   <p className="text-xs font-semibold text-blue-600 uppercase">Current Assignment</p>
@@ -400,7 +400,7 @@ export default function Page() {
                 <p className="text-xs text-gray-600 mt-1">{rotation.currentSupervisor}</p>
               </div>
 
-              <div className="bg-teal-50 rounded-lg border border-teal-200 p-4">
+              <div className="bg-teal-50 rounded-lg border border-teal-200 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <RefreshCw className="h-4 w-4 text-teal-600" />
                   <p className="text-xs font-semibold text-teal-600 uppercase">Rotation Assignment</p>
@@ -412,7 +412,7 @@ export default function Page() {
             </div>
 
             {rotation.status !== 'planned' && rotation.status !== 'completed' && (
-              <div className="mb-6">
+              <div className="mb-3">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="text-sm font-bold text-gray-900">Progress</h4>
                   <span className="text-sm font-bold text-teal-600">{rotation.progress}%</span>
@@ -423,7 +423,7 @@ export default function Page() {
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <Target className="h-4 w-4 text-purple-600" />
@@ -456,7 +456,7 @@ export default function Page() {
             </div>
 
             {rotation.evaluation.skillsGained.length > 0 && (
-              <div className="mb-6">
+              <div className="mb-3">
                 <h4 className="text-sm font-bold text-gray-900 mb-3">Skills Gained</h4>
                 <div className="flex flex-wrap gap-2">
                   {rotation.evaluation.skillsGained.map((skill, idx) => (

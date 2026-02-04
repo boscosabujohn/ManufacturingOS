@@ -117,11 +117,11 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <DollarSign className="h-8 w-8 text-blue-500" />
             <span className={`flex items-center text-sm ${kpiMetrics.spendChange >= 0 ? 'text-red-600' : 'text-green-600'}`}>
               {kpiMetrics.spendChange >= 0 ? <ArrowUp /> : <ArrowDown />}
@@ -132,8 +132,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           <p className="text-sm text-gray-600">Total Spend</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <ShoppingCart className="h-8 w-8 text-green-500" />
             <span className={`flex items-center text-sm ${kpiMetrics.ordersChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
               {kpiMetrics.ordersChange >= 0 ? <ArrowUp /> : <ArrowDown />}
@@ -144,8 +144,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           <p className="text-sm text-gray-600">Total Orders</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <Users className="h-8 w-8 text-purple-500" />
             <span className={`flex items-center text-sm ${kpiMetrics.suppliersChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
               {kpiMetrics.suppliersChange >= 0 ? <ArrowUp /> : <ArrowDown />}
@@ -156,8 +156,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           <p className="text-sm text-gray-600">Active Suppliers</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center justify-between mb-2">
             <Target className="h-8 w-8 text-orange-500" />
             <span className="text-sm text-gray-500">
               {((kpiMetrics.savingsAchieved / kpiMetrics.savingsTarget) * 100).toFixed(0)}%
@@ -169,10 +169,10 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Main Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Spend Trend */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Spend Trend Analysis</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Spend Trend Analysis</h3>
           <ResponsiveContainer width="100%" height={300}>
             <ComposedChart data={monthlySpendTrend}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -188,8 +188,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
         </div>
 
         {/* Category Distribution */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Spend by Category</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Spend by Category</h3>
           <ResponsiveContainer width="100%" height={300}>
             <RePieChart>
               <Pie
@@ -213,8 +213,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Supplier Performance Table */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Top Suppliers by Spend</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Top Suppliers by Spend</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -273,25 +273,25 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
   );
 
   const renderSpendAnalysis = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Spend Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-white rounded-lg shadow p-3">
           <p className="text-sm text-gray-600 mb-1">Direct Spend</p>
           <p className="text-xl font-bold">$1.8M</p>
           <p className="text-xs text-green-600">73.5% of total</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <p className="text-sm text-gray-600 mb-1">Indirect Spend</p>
           <p className="text-xl font-bold">$650K</p>
           <p className="text-xs text-blue-600">26.5% of total</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <p className="text-sm text-gray-600 mb-1">Contracted Spend</p>
           <p className="text-xl font-bold">$2.1M</p>
           <p className="text-xs text-green-600">85.7% coverage</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-3">
           <p className="text-sm text-gray-600 mb-1">Maverick Spend</p>
           <p className="text-xl font-bold">$208K</p>
           <p className="text-xs text-red-600">8.5% of total</p>
@@ -299,8 +299,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Spend Waterfall Analysis */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Year-over-Year Spend Analysis</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Year-over-Year Spend Analysis</h3>
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={[
             { name: 'Last Year', value: 2200000, fill: '#6B7280' },
@@ -322,9 +322,9 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Department Spend Analysis */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Spend by Department</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Spend by Department</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={[
               { department: 'Manufacturing', spend: 980000 },
@@ -343,8 +343,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Spend Velocity</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Spend Velocity</h3>
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={[
               { week: 'W1', planned: 450000, actual: 480000 },
@@ -367,9 +367,9 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Spend Cube Analysis */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Multi-Dimensional Spend Analysis</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Multi-Dimensional Spend Analysis</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <h4 className="font-medium mb-3">By Payment Terms</h4>
             <div className="space-y-2">
@@ -474,10 +474,10 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
   );
 
   const renderPerformance = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Cycle Time Analysis */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Procurement Cycle Time Analysis</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Procurement Cycle Time Analysis</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={cycleTimeAnalysis}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -490,18 +490,18 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           </BarChart>
         </ResponsiveContainer>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-          <div className="border rounded-lg p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-6">
+          <div className="border rounded-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Total Cycle Time</p>
             <p className="text-2xl font-bold">22.5 days</p>
             <p className="text-xs text-red-600">3.5 days above target</p>
           </div>
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Fastest Process</p>
             <p className="text-2xl font-bold">12 days</p>
             <p className="text-xs text-green-600">Best in class</p>
           </div>
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <p className="text-sm text-gray-600 mb-1">Process Efficiency</p>
             <p className="text-2xl font-bold">76%</p>
             <p className="text-xs text-yellow-600">Room for improvement</p>
@@ -510,9 +510,9 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* KPI Performance */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">KPI Performance Radar</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">KPI Performance Radar</h3>
           <ResponsiveContainer width="100%" height={300}>
             <RadarChart data={[
               { metric: 'Cost Savings', actual: 83, target: 100 },
@@ -532,9 +532,9 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Compliance Metrics</h3>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Compliance Metrics</h3>
+          <div className="space-y-2">
             {complianceMetrics.map((metric, index) => (
               <div key={index}>
                 <div className="flex justify-between items-center mb-1">
@@ -566,9 +566,9 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Process Efficiency */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Process Automation Impact</h3>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Process Automation Impact</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="text-center">
             <div className="relative inline-block">
               <svg className="w-24 h-24">
@@ -694,10 +694,10 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
   );
 
   const renderSavings = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Savings Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-3 text-white">
           <Zap className="h-8 w-8 mb-2" />
           <p className="text-sm opacity-90">YTD Savings Achieved</p>
           <p className="text-3xl font-bold">${(kpiMetrics.savingsAchieved / 1000).toFixed(0)}K</p>
@@ -714,14 +714,14 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <Target className="h-8 w-8 mb-2" />
           <p className="text-sm opacity-90">Identified Opportunities</p>
           <p className="text-3xl font-bold">$235K</p>
           <p className="text-xs mt-2">Across 15 initiatives</p>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <TrendingUp className="h-8 w-8 mb-2" />
           <p className="text-sm opacity-90">Projected Annual</p>
           <p className="text-3xl font-bold">$280K</p>
@@ -730,8 +730,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Savings Opportunities */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Savings Opportunities Pipeline</h3>
           <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2">
             <Plus className="h-4 w-4" />
@@ -782,9 +782,9 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Savings by Category */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Savings by Category</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Savings by Category</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={[
               { category: 'Negotiation', achieved: 45000, potential: 15000 },
@@ -804,8 +804,8 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Monthly Savings Trend</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Monthly Savings Trend</h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={[
               { month: 'Jan', target: 20000, actual: 18500 },
@@ -828,10 +828,10 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Savings Initiatives Tracker */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Active Savings Initiatives</h3>
-        <div className="space-y-4">
-          <div className="border rounded-lg p-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Active Savings Initiatives</h3>
+        <div className="space-y-2">
+          <div className="border rounded-lg p-3">
             <div className="flex justify-between items-start mb-2">
               <div>
                 <h4 className="font-semibold">Supplier Consolidation Program</h4>
@@ -841,7 +841,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
                 ON TRACK
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-4 mt-3">
+            <div className="grid grid-cols-3 gap-2 mt-3">
               <div>
                 <p className="text-xs text-gray-500">Progress</p>
                 <div className="flex items-center gap-2 mt-1">
@@ -862,7 +862,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
             </div>
           </div>
 
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-3">
             <div className="flex justify-between items-start mb-2">
               <div>
                 <h4 className="font-semibold">Payment Terms Optimization</h4>
@@ -872,7 +872,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
                 IN PROGRESS
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-4 mt-3">
+            <div className="grid grid-cols-3 gap-2 mt-3">
               <div>
                 <p className="text-xs text-gray-500">Progress</p>
                 <div className="flex items-center gap-2 mt-1">
@@ -918,7 +918,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-2xl font-bold mb-2">Procurement Analytics Dashboard</h2>
@@ -977,7 +977,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['overview', 'spend-analysis', 'performance', 'savings'].map((tab) => (
           <button
             key={tab}

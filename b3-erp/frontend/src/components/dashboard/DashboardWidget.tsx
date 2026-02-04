@@ -97,9 +97,9 @@ export function DashboardWidget({
   if (isMaximized) {
     return (
       <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-8">
-        <div className="w-full h-full max-w-7xl bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col">
+        <div className="w-full h-full  bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
             <h3 className="font-semibold text-gray-900 dark:text-white">{config.title}</h3>
             <div className="flex items-center gap-2">
               {onRefresh && (
@@ -120,7 +120,7 @@ export function DashboardWidget({
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-auto p-6">
+          <div className="flex-1 overflow-auto p-3">
             {error ? (
               <div className="h-full flex items-center justify-center text-red-500">
                 <p>{error}</p>
@@ -271,7 +271,7 @@ export function DashboardWidget({
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto p-4">
+      <div className="flex-1 overflow-auto p-3">
         {error ? (
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
@@ -355,7 +355,7 @@ export function WidgetStat({
   };
 
   return (
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-2">
       {icon && (
         <div className={`p-3 rounded-lg ${colorClasses[color]}`}>
           {icon}

@@ -46,9 +46,9 @@ export default function CertificationsPage() {
   const [filterStatus, setFilterStatus] = useState('All');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Award className="h-8 w-8 text-purple-600" />
@@ -69,10 +69,10 @@ export default function CertificationsPage() {
       </div>
 
       {/* Expiry Alerts & Compliance */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
 
         {/* Compliance Chart */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col items-center justify-center">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3 flex flex-col items-center justify-center">
           <h2 className="text-lg font-bold text-gray-900 w-full text-left mb-2">Overall Compliance</h2>
           <div className="h-48 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -102,8 +102,8 @@ export default function CertificationsPage() {
         </div>
 
         {/* Expiry Alerts */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-amber-500" />
             Expiring Within 60 Days
           </h2>
@@ -117,7 +117,7 @@ export default function CertificationsPage() {
                     <p className="text-xs text-gray-500">{alert.employee} • Expires {alert.expiry}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <span className={`text-xs font-bold px-2 py-1 rounded-full ${alert.status === 'Critical' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'
                     }`}>
                     {alert.daysLeft} days left
@@ -137,7 +137,7 @@ export default function CertificationsPage() {
 
       {/* Certification Repository Table */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-900">All Certifications</h2>
           <div className="flex gap-2 w-full sm:w-auto">
             <div className="relative flex-1 sm:flex-initial">
@@ -157,30 +157,30 @@ export default function CertificationsPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Employee / Role</th>
-                <th className="px-6 py-4">Certification</th>
-                <th className="px-6 py-4">Provider</th>
-                <th className="px-6 py-4">Validity</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-3 py-2">Employee / Role</th>
+                <th className="px-3 py-2">Certification</th>
+                <th className="px-3 py-2">Provider</th>
+                <th className="px-3 py-2">Validity</th>
+                <th className="px-3 py-2">Status</th>
+                <th className="px-3 py-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {certifications.map((cert) => (
                 <tr key={cert.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="font-semibold text-gray-900">{cert.employee}</p>
                     <p className="text-xs text-gray-500">{cert.role}</p>
                   </td>
-                  <td className="px-6 py-4 font-medium text-gray-900">{cert.cert}</td>
-                  <td className="px-6 py-4">{cert.provider}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 font-medium text-gray-900">{cert.cert}</td>
+                  <td className="px-3 py-2">{cert.provider}</td>
+                  <td className="px-3 py-2">
                     <div className="flex flex-col text-xs">
                       <span className="text-green-700">Issued: {cert.issued}</span>
                       <span className="text-red-700">Expires: {cert.expires}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${cert.status === 'Active' ? 'text-green-700 bg-green-50 ring-green-600/20' :
                         'text-amber-700 bg-amber-50 ring-amber-600/20'
                       }`}>
@@ -188,7 +188,7 @@ export default function CertificationsPage() {
                       {cert.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="text-gray-400 hover:text-gray-600">
                       <MoreVertical className="h-4 w-4" />
                     </button>

@@ -174,27 +174,27 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Requests</p>
           <p className="text-3xl font-bold">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Pending</p>
           <p className="text-3xl font-bold">{stats.pending}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Approved</p>
           <p className="text-3xl font-bold">{stats.approved}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Rejected</p>
           <p className="text-3xl font-bold">{stats.rejected}</p>
         </div>
         {currentUserRole && (
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <p className="text-sm opacity-90">My Pending</p>
             <p className="text-3xl font-bold">{stats.myPending}</p>
           </div>
@@ -206,7 +206,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
         <div className="flex border-b border-gray-200">
           <button
             onClick={() => setActiveTab('requests')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'requests' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -214,7 +214,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('thresholds')}
-            className={`flex-1 px-6 py-3 font-semibold transition-colors ${
+            className={`flex-1 px-3 py-2 font-semibold transition-colors ${
               activeTab === 'thresholds' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -226,7 +226,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
         {activeTab === 'requests' && (
           <div className="p-6">
             {/* Filters */}
-            <div className="flex items-center space-x-2 mb-6">
+            <div className="flex items-center space-x-2 mb-3">
               {['all', 'my-approvals', 'pending', 'approved', 'rejected'].map((f) => (
                 <button
                   key={f}
@@ -241,7 +241,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
             </div>
 
             {/* Requests List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {filteredRequests.map((request) => {
                 const statusConfig = getStatusConfig(request.status);
                 const StatusIcon = statusConfig.icon;
@@ -264,7 +264,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
                               </span>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-4 mb-3">
+                            <div className="grid grid-cols-3 gap-2 mb-3">
                               <div>
                                 <p className="text-xs text-gray-500">Estimate Value</p>
                                 <p className="text-sm font-bold text-gray-900">${request.estimateValue.toLocaleString()}</p>
@@ -381,7 +381,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
 
                     {/* Expanded Details */}
                     {isExpanded && (
-                      <div className="border-t border-gray-200 p-4 bg-gray-50">
+                      <div className="border-t border-gray-200 p-3 bg-gray-50">
                         <h4 className="text-sm font-semibold text-gray-900 mb-3">Approver Details</h4>
                         <div className="space-y-2">
                           {request.approvers.map((approver) => (
@@ -437,7 +437,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
 
             {filteredRequests.length === 0 && (
               <div className="text-center py-12">
-                <Shield className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                <Shield className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600">No approval requests found</p>
               </div>
             )}
@@ -447,7 +447,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
         {/* Thresholds Tab */}
         {activeTab === 'thresholds' && (
           <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-3">
               <h3 className="text-lg font-bold text-gray-900">Approval Thresholds</h3>
               {onCreateThreshold && (
                 <button
@@ -462,7 +462,7 @@ export const WorkflowApprovals: React.FC<WorkflowApprovalsProps> = ({
 
             <div className="space-y-3">
               {thresholds.map((threshold) => (
-                <div key={threshold.id} className="bg-white border-2 border-gray-200 rounded-lg p-4 hover:shadow-md transition-all">
+                <div key={threshold.id} className="bg-white border-2 border-gray-200 rounded-lg p-3 hover:shadow-md transition-all">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-gray-900 mb-1">{threshold.name}</h4>

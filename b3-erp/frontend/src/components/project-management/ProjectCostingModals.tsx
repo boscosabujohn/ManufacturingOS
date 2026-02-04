@@ -61,9 +61,9 @@ export function CostBreakdownModal({ isOpen, onClose, project }: CostBreakdownMo
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <PieChart className="w-6 h-6" />
@@ -75,26 +75,26 @@ export function CostBreakdownModal({ isOpen, onClose, project }: CostBreakdownMo
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="font-semibold text-blue-900">{project.projectName}</h3>
             <p className="text-sm text-blue-700">{project.projectId} - {project.customer}</p>
           </div>
 
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-xs text-gray-600 mb-1">Total Budget</p>
               <p className="text-lg font-bold text-gray-900">₹{project.totalBudget.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-xs text-purple-600 mb-1">Actual Cost</p>
               <p className="text-lg font-bold text-purple-900">₹{project.actualCost.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-xs text-orange-600 mb-1">Committed</p>
               <p className="text-lg font-bold text-orange-900">₹{project.committedCost.toLocaleString('en-IN')}</p>
             </div>
-            <div className={`border rounded-lg p-4 ${project.variance >= 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+            <div className={`border rounded-lg p-3 ${project.variance >= 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <p className={`text-xs mb-1 ${project.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>Variance</p>
               <p className={`text-lg font-bold ${project.variance >= 0 ? 'text-green-900' : 'text-red-900'}`}>
                 ₹{Math.abs(project.variance).toLocaleString('en-IN')}
@@ -142,7 +142,7 @@ export function CostBreakdownModal({ isOpen, onClose, project }: CostBreakdownMo
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -188,9 +188,9 @@ export function AddCostEntryModal({ isOpen, onClose, project, onAdd }: AddCostEn
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <DollarSign className="w-6 h-6" />
@@ -202,13 +202,13 @@ export function AddCostEntryModal({ isOpen, onClose, project, onAdd }: AddCostEn
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <p className="text-sm font-medium text-green-900">{project.projectName}</p>
             <p className="text-xs text-green-700">{project.projectId}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
               <select
@@ -247,7 +247,7 @@ export function AddCostEntryModal({ isOpen, onClose, project, onAdd }: AddCostEn
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date *</label>
               <input
@@ -292,7 +292,7 @@ export function AddCostEntryModal({ isOpen, onClose, project, onAdd }: AddCostEn
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end gap-3">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100"
@@ -325,9 +325,9 @@ export function CostVarianceModal({ isOpen, onClose, project }: CostVarianceModa
   const isOverBudget = project.variance < 0;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <TrendingUp className="w-6 h-6" />
@@ -339,24 +339,24 @@ export function CostVarianceModal({ isOpen, onClose, project }: CostVarianceModa
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h3 className="font-semibold text-orange-900">{project.projectName}</h3>
             <p className="text-sm text-orange-700">{project.projectId}</p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-xs text-blue-600 mb-1">Budget</p>
               <p className="text-2xl font-bold text-blue-900">₹{project.totalBudget.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-xs text-purple-600 mb-1">Actual + Committed</p>
               <p className="text-2xl font-bold text-purple-900">
                 ₹{(project.actualCost + project.committedCost).toLocaleString('en-IN')}
               </p>
             </div>
-            <div className={`border rounded-lg p-4 ${isOverBudget ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
+            <div className={`border rounded-lg p-3 ${isOverBudget ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
               <p className={`text-xs mb-1 ${isOverBudget ? 'text-red-600' : 'text-green-600'}`}>Variance</p>
               <p className={`text-2xl font-bold ${isOverBudget ? 'text-red-900' : 'text-green-900'}`}>
                 {isOverBudget ? '-' : '+'}₹{Math.abs(project.variance).toLocaleString('en-IN')}
@@ -364,7 +364,7 @@ export function CostVarianceModal({ isOpen, onClose, project }: CostVarianceModa
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Variance Analysis</h4>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
@@ -390,7 +390,7 @@ export function CostVarianceModal({ isOpen, onClose, project }: CostVarianceModa
             </div>
           </div>
 
-          <div className={`border rounded-lg p-4 ${isOverBudget ? 'bg-yellow-50 border-yellow-200' : 'bg-green-50 border-green-200'}`}>
+          <div className={`border rounded-lg p-3 ${isOverBudget ? 'bg-yellow-50 border-yellow-200' : 'bg-green-50 border-green-200'}`}>
             <div className="flex items-start gap-2">
               {isOverBudget && <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />}
               <div>
@@ -407,7 +407,7 @@ export function CostVarianceModal({ isOpen, onClose, project }: CostVarianceModa
             </div>
           </div>
 
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Category Variances</h4>
             <div className="space-y-2">
               {project.costBreakdown.map((item, index) => (
@@ -422,7 +422,7 @@ export function CostVarianceModal({ isOpen, onClose, project }: CostVarianceModa
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
@@ -451,9 +451,9 @@ export function ProfitMarginModal({ isOpen, onClose, project }: ProfitMarginModa
   const projectedMargin = (projectedProfit / projectedRevenue) * 100;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Target className="w-6 h-6" />
@@ -465,21 +465,21 @@ export function ProfitMarginModal({ isOpen, onClose, project }: ProfitMarginModa
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
             <h3 className="font-semibold text-indigo-900">{project.projectName}</h3>
             <p className="text-sm text-indigo-700">{project.projectId}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-600 mb-2">Target Profit Margin</p>
               <p className="text-3xl font-bold text-blue-900">{project.profitMargin}%</p>
               <p className="text-xs text-blue-700 mt-1">
                 ₹{(project.totalBudget * project.profitMargin / 100).toLocaleString('en-IN')}
               </p>
             </div>
-            <div className={`border rounded-lg p-4 ${projectedMargin >= project.profitMargin ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+            <div className={`border rounded-lg p-3 ${projectedMargin >= project.profitMargin ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <p className={`text-sm mb-2 ${projectedMargin >= project.profitMargin ? 'text-green-600' : 'text-red-600'}`}>
                 Projected Margin
               </p>
@@ -492,9 +492,9 @@ export function ProfitMarginModal({ isOpen, onClose, project }: ProfitMarginModa
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Financial Summary</h4>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Total Revenue:</span>
@@ -538,7 +538,7 @@ export function ProfitMarginModal({ isOpen, onClose, project }: ProfitMarginModa
             </div>
           </div>
 
-          <div className={`border rounded-lg p-4 ${
+          <div className={`border rounded-lg p-3 ${
             projectedMargin >= project.profitMargin
               ? 'bg-green-50 border-green-200'
               : 'bg-yellow-50 border-yellow-200'
@@ -566,7 +566,7 @@ export function ProfitMarginModal({ isOpen, onClose, project }: ProfitMarginModa
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
@@ -592,9 +592,9 @@ export function CostForecastModal({ isOpen, onClose, project }: CostForecastModa
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Calculator className="w-6 h-6" />
@@ -606,8 +606,8 @@ export function CostForecastModal({ isOpen, onClose, project }: CostForecastModa
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h3 className="font-semibold text-purple-900">{project.projectName}</h3>
             <p className="text-sm text-purple-700">Progress: {project.progress}%</p>
           </div>
@@ -625,22 +625,22 @@ export function CostForecastModal({ isOpen, onClose, project }: CostForecastModa
             </select>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-xs text-blue-600 mb-1">Budget (BAC)</p>
               <p className="text-xl font-bold text-blue-900">₹{project.totalBudget.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-xs text-green-600 mb-1">Actual Cost (AC)</p>
               <p className="text-xl font-bold text-green-900">₹{project.actualCost.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-xs text-orange-600 mb-1">Estimate at Completion</p>
               <p className="text-xl font-bold text-orange-900">₹{project.forecastedCost.toLocaleString('en-IN')}</p>
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Forecast Metrics</h4>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
@@ -671,7 +671,7 @@ export function CostForecastModal({ isOpen, onClose, project }: CostForecastModa
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
@@ -695,9 +695,9 @@ export function ResourceCostModal({ isOpen, onClose, project }: ResourceCostModa
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-teal-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Users className="w-6 h-6" />
@@ -709,15 +709,15 @@ export function ResourceCostModal({ isOpen, onClose, project }: ResourceCostModa
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h3 className="font-semibold text-teal-900">{project.projectName}</h3>
             <p className="text-sm text-teal-700">Resource cost distribution and utilization</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             {project.costBreakdown.filter(c => c.category === 'Labor' || c.category === 'Subcontractors').map((item, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-lg p-4">
+              <div key={index} className="bg-white border border-gray-200 rounded-lg p-3">
                 <h4 className="font-semibold text-gray-900 mb-2">{item.category}</h4>
                 <div className="space-y-1">
                   <div className="flex justify-between text-sm">
@@ -737,7 +737,7 @@ export function ResourceCostModal({ isOpen, onClose, project }: ResourceCostModa
             ))}
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Total Resource Costs</h4>
             <div className="space-y-2">
               <div className="flex justify-between">
@@ -765,7 +765,7 @@ export function ResourceCostModal({ isOpen, onClose, project }: ResourceCostModa
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
@@ -793,9 +793,9 @@ export function CostComparisonModal({ isOpen, onClose, projects }: CostCompariso
   const compareProjects = projects.filter(p => selectedProjects.includes(p.id));
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-pink-600 to-pink-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <BarChart3 className="w-6 h-6" />
@@ -807,7 +807,7 @@ export function CostComparisonModal({ isOpen, onClose, projects }: CostCompariso
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Projects to Compare</label>
             <div className="grid grid-cols-2 gap-2">
@@ -891,7 +891,7 @@ export function CostComparisonModal({ isOpen, onClose, projects }: CostCompariso
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
@@ -909,9 +909,9 @@ export function CostComparisonModal({ isOpen, onClose, projects }: CostCompariso
 export function CostReportModal({ isOpen, onClose, project }: { isOpen: boolean; onClose: () => void; project: ProjectCost | null }) {
   if (!isOpen || !project) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FileText className="w-6 h-6" />
@@ -925,7 +925,7 @@ export function CostReportModal({ isOpen, onClose, project }: { isOpen: boolean;
         <div className="p-6">
           <p className="text-gray-600">Comprehensive cost report for {project.projectName}</p>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
             Close
           </button>
@@ -939,9 +939,9 @@ export function ExportCostDataModal({ isOpen, onClose, onExport }: { isOpen: boo
   const [format, setFormat] = useState('Excel');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Download className="w-6 h-6" />
@@ -952,7 +952,7 @@ export function ExportCostDataModal({ isOpen, onClose, onExport }: { isOpen: boo
             </button>
           </div>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
             <select
@@ -966,7 +966,7 @@ export function ExportCostDataModal({ isOpen, onClose, onExport }: { isOpen: boo
             </select>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end gap-3">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end gap-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">
             Cancel
           </button>
@@ -982,9 +982,9 @@ export function ExportCostDataModal({ isOpen, onClose, onExport }: { isOpen: boo
 export function CostHistoryModal({ isOpen, onClose, project }: { isOpen: boolean; onClose: () => void; project: ProjectCost | null }) {
   if (!isOpen || !project) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <History className="w-6 h-6" />
@@ -998,7 +998,7 @@ export function CostHistoryModal({ isOpen, onClose, project }: { isOpen: boolean
         <div className="p-6">
           <p className="text-gray-600">Historical cost tracking for {project.projectName}</p>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
             Close
           </button>
@@ -1013,9 +1013,9 @@ export function CostApprovalModal({ isOpen, onClose, onSubmit }: { isOpen: boole
   const [comments, setComments] = useState('');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Lock className="w-6 h-6" />
@@ -1026,7 +1026,7 @@ export function CostApprovalModal({ isOpen, onClose, onSubmit }: { isOpen: boole
             </button>
           </div>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Approver</label>
             <select value={approver} onChange={(e) => setApprover(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg">
@@ -1040,7 +1040,7 @@ export function CostApprovalModal({ isOpen, onClose, onSubmit }: { isOpen: boole
             <textarea value={comments} onChange={(e) => setComments(e.target.value)} rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end gap-3">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end gap-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onSubmit({ approver, comments })} disabled={!approver} className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50">
             Submit
@@ -1055,9 +1055,9 @@ export function CostAlertModal({ isOpen, onClose, onSave }: { isOpen: boolean; o
   const [threshold, setThreshold] = useState('90');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-yellow-600 to-yellow-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <AlertTriangle className="w-6 h-6" />
@@ -1072,7 +1072,7 @@ export function CostAlertModal({ isOpen, onClose, onSave }: { isOpen: boolean; o
           <label className="block text-sm font-medium text-gray-700 mb-1">Alert Threshold (%)</label>
           <input type="number" value={threshold} onChange={(e) => setThreshold(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end gap-3">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end gap-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onSave({ threshold })} className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700">Save</button>
         </div>

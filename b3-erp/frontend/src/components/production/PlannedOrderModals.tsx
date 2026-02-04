@@ -142,9 +142,9 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
   ]
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Plus className="h-6 w-6 text-white" />
@@ -161,12 +161,12 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Material Selection */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="h-5 w-5 text-green-600" />
               Material Information
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Material Code / Name <span className="text-red-500">*</span>
@@ -212,8 +212,8 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
           </div>
 
           {/* Quantity and UOM */}
-          <div className="mb-6">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="mb-3">
+            <div className="grid grid-cols-3 gap-2">
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Quantity <span className="text-red-500">*</span>
@@ -246,12 +246,12 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
           </div>
 
           {/* Dates */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-green-600" />
               Planning Dates
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Planned Release Date <span className="text-red-500">*</span>
@@ -281,12 +281,12 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
           </div>
 
           {/* Supplier and Priority */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Truck className="h-5 w-5 text-green-600" />
               Source & Priority
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Supplier / Source <span className="text-red-500">*</span>
@@ -323,7 +323,7 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
           </div>
 
           {/* Notes */}
-          <div className="mb-4">
+          <div className="mb-2">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Notes
             </label>
@@ -337,7 +337,7 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
           </div>
 
           {/* Info Box */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-green-800">
@@ -348,7 +348,7 @@ export function CreatePlannedOrderModal({ isOpen, onClose, onCreate }: CreatePla
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -399,9 +399,9 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -418,8 +418,8 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Summary Header */}
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 mb-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 mb-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-indigo-600 mb-1">Order Number</p>
                 <p className="font-bold text-indigo-900">{order.plannedOrderNumber}</p>
@@ -444,13 +444,13 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
           </div>
 
           {/* Material Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="h-5 w-5 text-indigo-600" />
               Material Details
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Material Code</p>
                   <p className="font-semibold text-gray-900">{order.materialCode}</p>
@@ -472,21 +472,21 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
           </div>
 
           {/* Dates & Timeline */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-indigo-600" />
               Dates & Timeline
             </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-1">Planned Release Date</p>
                 <p className="text-lg font-bold text-blue-900">{order.plannedReleaseDate}</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4">
+              <div className="bg-green-50 rounded-lg p-3">
                 <p className="text-sm text-green-600 mb-1">Planned Receipt Date</p>
                 <p className="text-lg font-bold text-green-900">{order.plannedReceiptDate}</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <p className="text-sm text-purple-600 mb-1">Lead Time</p>
                 <p className="text-lg font-bold text-purple-900">{order.leadTimeDays} days</p>
               </div>
@@ -494,13 +494,13 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
           </div>
 
           {/* Source Requirements */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Truck className="h-5 w-5 text-indigo-600" />
               Source Information
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Supplier / Source</p>
                   <p className="font-semibold text-gray-900">{order.supplier}</p>
@@ -520,25 +520,25 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
           </div>
 
           {/* Cost Breakdown */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-indigo-600" />
               Cost Breakdown
             </h3>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-green-50 rounded-lg p-4">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-green-50 rounded-lg p-3">
                 <p className="text-sm text-green-600 mb-1">Unit Cost</p>
                 <p className="text-xl font-bold text-green-900">
                   {order.estimatedCost > 0 ? `₹${(order.estimatedCost / order.quantity).toFixed(2)}` : '-'}
                 </p>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-1">Total Estimated Cost</p>
                 <p className="text-xl font-bold text-blue-900">
                   {order.estimatedCost > 0 ? `₹${order.estimatedCost.toLocaleString()}` : '-'}
                 </p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4">
+              <div className="bg-purple-50 rounded-lg p-3">
                 <p className="text-sm text-purple-600 mb-1">Order Type</p>
                 <p className="text-xl font-bold text-purple-900 capitalize">{order.orderType}</p>
               </div>
@@ -548,18 +548,18 @@ export function ViewPlannedOrderModal({ isOpen, onClose, order }: ViewPlannedOrd
           {/* Notes */}
           {order.notes && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="h-5 w-5 text-indigo-600" />
                 Notes
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-700">{order.notes}</p>
               </div>
             </div>
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -620,9 +620,9 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
   if (!isOpen || !order) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -639,10 +639,10 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Order Summary */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h3>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 space-y-3">
-              <div className="grid grid-cols-2 gap-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Order Summary</h3>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-blue-600">Order Number</p>
                   <p className="font-semibold text-blue-900">{order.plannedOrderNumber}</p>
@@ -674,7 +674,7 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
           </div>
 
           {/* Comments */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Approval Comments <span className="text-gray-500">(Optional)</span>
             </label>
@@ -688,7 +688,7 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
           </div>
 
           {/* Conditions */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Special Conditions <span className="text-gray-500">(Optional)</span>
             </label>
@@ -702,8 +702,8 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
           </div>
 
           {/* Terms Acceptance */}
-          <div className="mb-6">
-            <label className={`flex items-start gap-3 cursor-pointer p-4 rounded-lg border-2 ${errors.termsAccepted ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+          <div className="mb-3">
+            <label className={`flex items-start gap-3 cursor-pointer p-3 rounded-lg border-2 ${errors.termsAccepted ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
               <input
                 type="checkbox"
                 checked={approvalData.termsAccepted}
@@ -721,7 +721,7 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
           </div>
 
           {/* Info Box */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -737,7 +737,7 @@ export function ApproveOrderModal({ isOpen, onClose, order, onApprove }: Approve
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -819,9 +819,9 @@ export function ConvertToPOModal({ isOpen, onClose, order, onConvert }: ConvertT
   if (!isOpen || !order) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <ShoppingCart className="h-6 w-6 text-white" />
@@ -838,13 +838,13 @@ export function ConvertToPOModal({ isOpen, onClose, order, onConvert }: ConvertT
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Planned Order Summary */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="h-5 w-5 text-purple-600" />
               Planned Order Summary
             </h3>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-purple-600">Planned Order</p>
                   <p className="font-semibold text-purple-900">{order.plannedOrderNumber}</p>
@@ -876,13 +876,13 @@ export function ConvertToPOModal({ isOpen, onClose, order, onConvert }: ConvertT
           </div>
 
           {/* PO Details */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-purple-600" />
               Purchase Order Details
             </h3>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     PO Number <span className="text-red-500">*</span>
@@ -937,8 +937,8 @@ export function ConvertToPOModal({ isOpen, onClose, order, onConvert }: ConvertT
           </div>
 
           {/* Vendor Confirmation */}
-          <div className="mb-6">
-            <label className={`flex items-start gap-3 cursor-pointer p-4 rounded-lg border-2 ${errors.vendorConfirmation ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+          <div className="mb-3">
+            <label className={`flex items-start gap-3 cursor-pointer p-3 rounded-lg border-2 ${errors.vendorConfirmation ? 'border-red-300 bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
               <input
                 type="checkbox"
                 checked={poData.vendorConfirmation}
@@ -956,7 +956,7 @@ export function ConvertToPOModal({ isOpen, onClose, order, onConvert }: ConvertT
           </div>
 
           {/* Info Box */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-purple-800">
@@ -973,7 +973,7 @@ export function ConvertToPOModal({ isOpen, onClose, order, onConvert }: ConvertT
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={handleClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

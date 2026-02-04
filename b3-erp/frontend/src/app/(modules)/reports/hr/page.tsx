@@ -21,10 +21,10 @@ export default function HRReportsPage() {
   const filteredReports = filterCategory === 'all' ? hrReports : hrReports.filter(r => r.category === filterCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
-        <div className="mb-6">
-          <Link href="/reports" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-4">
+        <div className="mb-3">
+          <Link href="/reports" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-2">
             <ArrowLeft className="w-4 h-4" />
             Back to Reports
           </Link>
@@ -39,15 +39,15 @@ export default function HRReportsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow border border-gray-200 p-4 mb-6">
+        <div className="bg-white rounded-lg shadow border border-gray-200 p-3 mb-3">
           <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)} className="px-4 py-2 border border-gray-300 rounded-lg">
             {categories.map(cat => (<option key={cat} value={cat}>{cat === 'all' ? 'All Categories' : cat}</option>))}
           </select>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredReports.map((report) => (
-            <div key={report.id} className="bg-white rounded-lg shadow border border-gray-200 hover:shadow-lg transition-all p-6">
+            <div key={report.id} className="bg-white rounded-lg shadow border border-gray-200 hover:shadow-lg transition-all p-3">
               <div className="flex items-start justify-between mb-3">
                 <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                   <FileText className="w-5 h-5 text-purple-600" />

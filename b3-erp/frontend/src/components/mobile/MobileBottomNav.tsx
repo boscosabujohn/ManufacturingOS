@@ -261,7 +261,7 @@ export function MobileBottomNav({
                     const active = isActive(item);
 
                     const content = (
-                      <div className="flex items-center gap-4 px-4 py-4 active:bg-gray-100 dark:active:bg-gray-800">
+                      <div className="flex items-center gap-2 px-4 py-4 active:bg-gray-100 dark:active:bg-gray-800">
                         <span className={`w-10 h-10 flex items-center justify-center rounded-xl ${
                           active
                             ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'
@@ -308,7 +308,7 @@ export function MobileBottomNav({
 
               {/* Quick Settings */}
               <div className="px-4 py-4 border-t border-gray-200 dark:border-gray-700 mt-2">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <Link
                     href="/settings"
                     onClick={closeMore}

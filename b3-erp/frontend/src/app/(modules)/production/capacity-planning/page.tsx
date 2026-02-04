@@ -681,10 +681,10 @@ const CapacityPlanningPage = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header Section */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Factory className="h-8 w-8 text-blue-600" />
@@ -713,7 +713,7 @@ const CapacityPlanningPage = () => {
         </div>
 
         {/* View Mode Selector */}
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <div className="flex items-center gap-2">
             <label className="text-sm font-medium text-gray-700">Planning Period:</label>
             <div className="flex bg-gray-100 rounded-lg p-1">
@@ -760,8 +760,8 @@ const CapacityPlanningPage = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+        <div className="grid grid-cols-4 gap-2">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Work Centers</p>
@@ -772,7 +772,7 @@ const CapacityPlanningPage = () => {
             </div>
           </div>
 
-          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+          <div className="bg-green-50 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Avg Utilization</p>
@@ -783,7 +783,7 @@ const CapacityPlanningPage = () => {
             </div>
           </div>
 
-          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+          <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">Bottleneck Centers</p>
@@ -794,7 +794,7 @@ const CapacityPlanningPage = () => {
             </div>
           </div>
 
-          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+          <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Overtime Hours</p>
@@ -808,7 +808,7 @@ const CapacityPlanningPage = () => {
       </div>
 
       {/* Planning Strategy Info */}
-      <div className={`rounded-lg p-4 border ${
+      <div className={`rounded-lg p-3 border ${
         planningStrategy === 'chase' ? 'bg-blue-50 border-blue-200' :
         planningStrategy === 'level' ? 'bg-green-50 border-green-200' :
         'bg-purple-50 border-purple-200'
@@ -845,21 +845,21 @@ const CapacityPlanningPage = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center justify-between bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="flex items-center justify-between bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="text-sm text-gray-600">
           Last updated: {new Date().toLocaleString()}
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={exportReport}
-            className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium flex items-center gap-2"
+            className="px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium flex items-center gap-2"
           >
             <Download className="h-5 w-5" />
             Export Report
           </button>
           <button
             onClick={() => setIsResourceRequestModalOpen(true)}
-            className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center gap-2"
+            className="px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center gap-2"
           >
             <Send className="h-5 w-5" />
             Request Additional Resources

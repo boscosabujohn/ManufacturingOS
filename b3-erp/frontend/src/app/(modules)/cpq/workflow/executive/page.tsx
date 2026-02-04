@@ -517,9 +517,9 @@ export default function CPQWorkflowExecutivePage() {
   const avgMargin = (approvals.reduce((sum, a) => sum + a.financialImpact.marginPercentage, 0) / approvals.length).toFixed(1)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -533,7 +533,7 @@ export default function CPQWorkflowExecutivePage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
@@ -586,7 +586,7 @@ export default function CPQWorkflowExecutivePage() {
       </div>
 
       {/* Type Filters */}
-      <div className="mb-6 flex gap-3 overflow-x-auto pb-2">
+      <div className="mb-3 flex gap-3 overflow-x-auto pb-2">
         <button className="px-4 py-2 bg-purple-100 text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-200 text-sm font-medium whitespace-nowrap">
           All Approvals ({totalApprovals})
         </button>
@@ -602,7 +602,7 @@ export default function CPQWorkflowExecutivePage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -614,14 +614,14 @@ export default function CPQWorkflowExecutivePage() {
       </div>
 
       {/* Executive Approvals */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {approvals.map((approval) => (
           <div
             key={approval.id}
-            className="bg-white rounded-lg shadow-md border-2 border-purple-200 p-6"
+            className="bg-white rounded-lg shadow-md border-2 border-purple-200 p-3"
           >
             {/* Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <Crown className="h-5 w-5 text-purple-600" />
@@ -645,13 +645,13 @@ export default function CPQWorkflowExecutivePage() {
             </div>
 
             {/* Business Justification */}
-            <div className="mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mb-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-xs font-semibold text-blue-900 mb-2">Business Justification:</p>
               <p className="text-sm text-blue-800">{approval.businessJustification}</p>
             </div>
 
             {/* Key Highlights */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-xs font-semibold text-gray-700 mb-2">Key Highlights:</p>
               <ul className="space-y-1">
                 {approval.keyHighlights.map((highlight, idx) => (
@@ -664,7 +664,7 @@ export default function CPQWorkflowExecutivePage() {
             </div>
 
             {/* Financial Impact */}
-            <div className="mb-4 bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="mb-2 bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-xs font-semibold text-green-900 mb-2">Financial Impact:</p>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-xs">
                 <div>
@@ -691,7 +691,7 @@ export default function CPQWorkflowExecutivePage() {
             </div>
 
             {/* Risks */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-xs font-semibold text-gray-700 mb-2">Risk Assessment:</p>
               <div className="space-y-2">
                 {approval.risks.map((risk, idx) => (
@@ -711,7 +711,7 @@ export default function CPQWorkflowExecutivePage() {
 
             {/* Competitive Analysis */}
             {approval.competitiveAnalysis && (
-              <div className="mb-4 bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="mb-2 bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <p className="text-xs font-semibold text-purple-900 mb-2">Competitive Analysis:</p>
                 <div className="text-xs space-y-2">
                   <div>
@@ -733,7 +733,7 @@ export default function CPQWorkflowExecutivePage() {
             )}
 
             {/* Approval Chain */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-xs font-semibold text-gray-700 mb-2">Approval Chain:</p>
               <div className="space-y-2">
                 {approval.approvalChain.map((step) => (
@@ -767,7 +767,7 @@ export default function CPQWorkflowExecutivePage() {
 
             {/* Comments */}
             {approval.comments.length > 0 && (
-              <div className="mb-4">
+              <div className="mb-2">
                 <p className="text-xs font-semibold text-gray-700 mb-2">Executive Comments:</p>
                 <div className="space-y-2">
                   {approval.comments.map((comment) => (
@@ -832,7 +832,7 @@ export default function CPQWorkflowExecutivePage() {
       </div>
 
       {/* Executive Approval Info */}
-      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-purple-900 mb-2">Executive Approval Criteria:</h3>
         <ul className="text-xs text-purple-700 space-y-1">
           <li><strong>Strategic Deals:</strong> Partnerships, exclusivity agreements, market entry opportunities</li>

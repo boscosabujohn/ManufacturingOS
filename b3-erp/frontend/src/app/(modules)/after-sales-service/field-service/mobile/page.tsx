@@ -200,9 +200,9 @@ export default function MobileAppPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
           <Smartphone className="h-8 w-8 text-emerald-600" />
           Technician Mobile App
@@ -225,7 +225,7 @@ export default function MobileAppPage() {
       )}
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3 mb-3">
         <button
           onClick={() => setShowDownloadModal(true)}
           className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-blue-500 transition-all text-left"
@@ -329,18 +329,18 @@ export default function MobileAppPage() {
       </div>
 
       {/* Download Section */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg p-8 mb-6 shadow-lg">
+      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg p-8 mb-3 shadow-lg">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="bg-white p-4 rounded-2xl shadow-lg">
+          <div className="flex items-center gap-3">
+            <div className="bg-white p-3 rounded-2xl shadow-lg">
               <Smartphone className="h-16 w-16 text-emerald-600" />
             </div>
             <div className="text-white">
               <h2 className="text-2xl font-bold mb-2">Download Technician App</h2>
-              <p className="text-emerald-100 mb-4 max-w-2xl">
+              <p className="text-emerald-100 mb-2 max-w-2xl">
                 Empower your field technicians with our mobile app. Manage jobs, track time, access customer information, and provide excellent service on the go.
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-lg">
                   <CheckCircle className="h-5 w-5" />
                   <span className="font-medium">iOS & Android</span>
@@ -359,21 +359,21 @@ export default function MobileAppPage() {
           <div className="flex flex-col gap-3">
             <button
               onClick={() => setShowQRCode(true)}
-              className="bg-white text-emerald-600 px-6 py-3 rounded-lg font-medium hover:bg-emerald-50 transition-colors flex items-center gap-2 shadow-md"
+              className="bg-white text-emerald-600 px-3 py-2 rounded-lg font-medium hover:bg-emerald-50 transition-colors flex items-center gap-2 shadow-md"
             >
               <QrCode className="h-5 w-5" />
               Show QR Code
             </button>
             <button
               onClick={() => handleDownloadClick('iOS')}
-              className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors flex items-center gap-2 shadow-md"
+              className="bg-black text-white px-3 py-2 rounded-lg font-medium hover:bg-gray-900 transition-colors flex items-center gap-2 shadow-md"
             >
               <Download className="h-5 w-5" />
               Download for iOS
             </button>
             <button
               onClick={() => handleDownloadClick('Android')}
-              className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors flex items-center gap-2 shadow-md"
+              className="bg-black text-white px-3 py-2 rounded-lg font-medium hover:bg-gray-900 transition-colors flex items-center gap-2 shadow-md"
             >
               <Download className="h-5 w-5" />
               Download for Android
@@ -383,8 +383,8 @@ export default function MobileAppPage() {
       </div>
 
       {/* Category Filter */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-gray-700">Filter by Category:</span>
           <div className="flex gap-2">
             <button
@@ -442,20 +442,20 @@ export default function MobileAppPage() {
       </div>
 
       {/* Features Grid */}
-      <div className="mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">App Features</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="mb-3">
+        <h2 className="text-xl font-bold text-gray-900 mb-2">App Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {filteredFeatures.map((feature) => {
             const IconComponent = feature.icon;
             return (
               <button
                 key={feature.id}
                 onClick={() => handleFeatureClick(feature)}
-                className={`bg-white rounded-lg border-2 border-gray-200 p-6 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all text-left ${
+                className={`bg-white rounded-lg border-2 border-gray-200 p-3 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all text-left ${
                   !feature.available ? 'opacity-60' : ''
                 }`}
               >
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div className={`p-3 rounded-lg ${
                     feature.category === 'core' ? 'bg-blue-100' :
                     feature.category === 'productivity' ? 'bg-purple-100' :
@@ -477,7 +477,7 @@ export default function MobileAppPage() {
                 </div>
 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.name}</h3>
-                <p className="text-sm text-gray-600 mb-4">{feature.description}</p>
+                <p className="text-sm text-gray-600 mb-2">{feature.description}</p>
 
                 <div className="flex items-center justify-between">
                   <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getCategoryColor(feature.category)}`}>
@@ -499,9 +499,9 @@ export default function MobileAppPage() {
       </div>
 
       {/* App Screenshots Section */}
-      <div className="bg-white rounded-lg border border-gray-200 p-8 mb-6 shadow-sm">
-        <h2 className="text-xl font-bold text-gray-900 mb-6">App Screenshots</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-8 mb-3 shadow-sm">
+        <h2 className="text-xl font-bold text-gray-900 mb-3">App Screenshots</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {[
             { title: 'Job Dashboard', color: 'from-blue-400 to-blue-600' },
             { title: 'Navigation', color: 'from-green-400 to-green-600' },
@@ -509,7 +509,7 @@ export default function MobileAppPage() {
             { title: 'Customer Signature', color: 'from-orange-400 to-orange-600' }
           ].map((screen, index) => (
             <div key={index} className="relative">
-              <div className="bg-gray-900 rounded-2xl p-4 shadow-xl">
+              <div className="bg-gray-900 rounded-2xl p-3 shadow-xl">
                 <div className={`bg-gradient-to-br ${screen.color} rounded-lg aspect-[9/16] flex items-center justify-center`}>
                   <div className="text-center text-white">
                     <Smartphone className="h-12 w-12 mb-2 opacity-50" />
@@ -524,10 +524,10 @@ export default function MobileAppPage() {
       </div>
 
       {/* App Management Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* System Requirements */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Settings className="h-5 w-5 text-emerald-600" />
             System Requirements
           </h3>
@@ -566,8 +566,8 @@ export default function MobileAppPage() {
         </div>
 
         {/* What's New */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <RefreshCw className="h-5 w-5 text-emerald-600" />
             What's New in v{appStats.version}
           </h3>
@@ -620,23 +620,23 @@ export default function MobileAppPage() {
 
       {/* QR Code Modal */}
       {showQRCode && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg max-w-md w-full p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Scan to Download</h2>
-            <p className="text-gray-600 mb-6">Scan this QR code with your mobile device to download the app</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Scan to Download</h2>
+            <p className="text-gray-600 mb-3">Scan this QR code with your mobile device to download the app</p>
             
             {/* QR Code Placeholder */}
-            <div className="bg-white border-4 border-gray-200 rounded-lg p-8 mb-6 inline-block">
+            <div className="bg-white border-4 border-gray-200 rounded-lg p-8 mb-3 inline-block">
               <div className="w-64 h-64 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-lg flex items-center justify-center">
                 <div className="text-center">
-                  <QrCode className="h-32 w-32 text-emerald-600 mb-4" />
+                  <QrCode className="h-32 w-32 text-emerald-600 mb-2" />
                   <p className="text-sm text-gray-600">QR Code</p>
                   <p className="text-xs text-gray-500 mt-2">Scan with camera app</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="flex items-center justify-center gap-2 mb-3">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Smartphone className="h-4 w-4" />
                 <span>iOS & Android</span>
@@ -649,7 +649,7 @@ export default function MobileAppPage() {
 
             <button
               onClick={() => setShowQRCode(false)}
-              className="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+              className="w-full bg-emerald-600 text-white px-3 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
             >
               Close
             </button>
@@ -659,10 +659,10 @@ export default function MobileAppPage() {
 
       {/* Feature Details Modal */}
       {showFeatureModal && selectedFeature && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className={`px-6 py-4 border-b sticky top-0 z-10 ${
+            <div className={`px-3 py-2 border-b sticky top-0 z-10 ${
               selectedFeature.category === 'core' ? 'bg-gradient-to-r from-blue-50 to-cyan-50 border-blue-200' :
               selectedFeature.category === 'productivity' ? 'bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200' :
               selectedFeature.category === 'communication' ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' :
@@ -708,7 +708,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
               {/* Feature Details */}
               <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-lg p-5 border border-gray-200">
                 <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
@@ -812,11 +812,11 @@ export default function MobileAppPage() {
               {/* Usage Statistics */}
               {selectedFeature.available && (
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-200">
-                  <h3 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <BarChart3 className="w-5 h-5" />
                     Usage Statistics
                   </h3>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-blue-900">{Math.floor(Math.random() * 40) + 60}%</div>
                       <div className="text-xs text-blue-600 mt-1">Adoption Rate</div>
@@ -867,7 +867,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+            <div className="px-3 py-2 bg-gray-50 border-t flex items-center justify-end gap-3">
               {selectedFeature.available ? (
                 <button
                   onClick={() => {
@@ -902,10 +902,10 @@ export default function MobileAppPage() {
 
       {/* Analytics Modal */}
       {showAnalyticsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 px-6 py-4 border-b border-green-200 sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 px-3 py-2 border-b border-green-200 sticky top-0 z-10">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -924,10 +924,10 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
               {/* Key Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border-2 border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-3 border-2 border-blue-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-sm font-medium text-blue-700">Daily Active Users</div>
                     <Users className="w-5 h-5 text-blue-600" />
@@ -936,7 +936,7 @@ export default function MobileAppPage() {
                   <div className="text-xs text-blue-600 mt-1">+12% from last week</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border-2 border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border-2 border-green-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-sm font-medium text-green-700">Avg Session Time</div>
                     <Clock className="w-5 h-5 text-green-600" />
@@ -945,7 +945,7 @@ export default function MobileAppPage() {
                   <div className="text-xs text-green-600 mt-1">Per technician/day</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border-2 border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border-2 border-purple-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-sm font-medium text-purple-700">Jobs Completed</div>
                     <CheckCircle className="w-5 h-5 text-purple-600" />
@@ -954,7 +954,7 @@ export default function MobileAppPage() {
                   <div className="text-xs text-purple-600 mt-1">This month</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 border-2 border-orange-200">
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-3 border-2 border-orange-200">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-sm font-medium text-orange-700">App Rating</div>
                     <Star className="w-5 h-5 text-orange-600" />
@@ -966,7 +966,7 @@ export default function MobileAppPage() {
 
               {/* Usage Trends */}
               <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-200">
-                <h3 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5" />
                   Usage Trends (Last 7 Days)
                 </h3>
@@ -993,7 +993,7 @@ export default function MobileAppPage() {
 
               {/* Feature Adoption */}
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-5 border border-purple-200">
-                <h3 className="font-semibold text-purple-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
                   <Package className="w-5 h-5" />
                   Feature Adoption Rate
                 </h3>
@@ -1023,27 +1023,27 @@ export default function MobileAppPage() {
 
               {/* Performance Metrics */}
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
-                <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                   <Zap className="w-5 h-5" />
                   Performance Metrics
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
                     <div className="text-sm text-green-700 font-medium mb-2">Avg Jobs/Technician</div>
                     <div className="text-3xl font-bold text-green-900 mb-1">6.8</div>
                     <div className="text-xs text-green-600">Per day</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
                     <div className="text-sm text-green-700 font-medium mb-2">First-Time Fix Rate</div>
                     <div className="text-3xl font-bold text-green-900 mb-1">87%</div>
                     <div className="text-xs text-green-600">Industry avg: 75%</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
                     <div className="text-sm text-green-700 font-medium mb-2">Response Time</div>
                     <div className="text-3xl font-bold text-green-900 mb-1">2.4h</div>
                     <div className="text-xs text-green-600">Average</div>
                   </div>
-                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                  <div className="bg-white rounded-lg p-3 border border-green-200">
                     <div className="text-sm text-green-700 font-medium mb-2">Customer Satisfaction</div>
                     <div className="text-3xl font-bold text-green-900 mb-1">4.6</div>
                     <div className="text-xs text-green-600">Out of 5.0</div>
@@ -1053,7 +1053,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+            <div className="px-3 py-2 bg-gray-50 border-t flex items-center justify-end gap-3">
               <button
                 onClick={() => showToast('Exporting analytics data...', 'success')}
                 className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
@@ -1073,17 +1073,17 @@ export default function MobileAppPage() {
 
       {/* Reviews Modal */}
       {showReviewsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-yellow-50 via-amber-50 to-orange-50 px-6 py-4 border-b border-yellow-200 sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-yellow-50 via-amber-50 to-orange-50 px-3 py-2 border-b border-yellow-200 sticky top-0 z-10">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <Star className="w-6 h-6 text-yellow-600 fill-yellow-600" />
                     <h2 className="text-xl font-bold text-gray-900">User Reviews & Ratings</h2>
                   </div>
-                  <div className="flex items-center gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-sm">
                     <span className="text-gray-600">Average Rating:</span>
                     <span className="text-2xl font-bold text-yellow-600 flex items-center gap-1">
                       {appStats.avgRating}
@@ -1102,10 +1102,10 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
               {/* Rating Distribution */}
               <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-5 border border-yellow-200">
-                <h3 className="font-semibold text-yellow-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-yellow-900 mb-2 flex items-center gap-2">
                   <BarChart3 className="w-5 h-5" />
                   Rating Distribution
                 </h3>
@@ -1133,11 +1133,11 @@ export default function MobileAppPage() {
 
               {/* Recent Reviews */}
               <div>
-                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <MessageSquare className="w-5 h-5" />
                   Recent Reviews
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {[
                     {
                       name: 'Rajesh Kumar',
@@ -1197,7 +1197,7 @@ export default function MobileAppPage() {
                         </div>
                       </div>
                       <p className="text-sm text-gray-700 mb-3">{review.review}</p>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <button className="flex items-center gap-1 hover:text-green-600 transition-colors">
                           <CheckCircle className="h-3 w-3" />
                           <span>Helpful ({review.helpful})</span>
@@ -1210,7 +1210,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+            <div className="px-3 py-2 bg-gray-50 border-t flex items-center justify-end gap-3">
               <button
                 onClick={() => showToast('Opening review submission form...', 'info')}
                 className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
@@ -1230,10 +1230,10 @@ export default function MobileAppPage() {
 
       {/* Download Instructions Modal */}
       {showDownloadModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-blue-50 via-cyan-50 to-teal-50 px-6 py-4 border-b border-blue-200 sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-blue-50 via-cyan-50 to-teal-50 px-3 py-2 border-b border-blue-200 sticky top-0 z-10">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -1252,14 +1252,14 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
               {/* Download Stats */}
               <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-200">
-                <h3 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5" />
                   Download Statistics
                 </h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-2">
                   <div>
                     <div className="text-sm text-blue-600 font-medium mb-1">Total Downloads</div>
                     <div className="text-3xl font-bold text-blue-900">{appStats.totalDownloads}</div>
@@ -1277,7 +1277,7 @@ export default function MobileAppPage() {
 
               {/* iOS Installation */}
               <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-lg p-5 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Smartphone className="w-5 h-5" />
                   iOS Installation Steps
                 </h3>
@@ -1323,7 +1323,7 @@ export default function MobileAppPage() {
 
               {/* Android Installation */}
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
-                <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
                   <Smartphone className="w-5 h-5" />
                   Android Installation Steps
                 </h3>
@@ -1369,7 +1369,7 @@ export default function MobileAppPage() {
 
               {/* Troubleshooting */}
               <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-5 border border-orange-200">
-                <h3 className="font-semibold text-orange-900 mb-4 flex items-center gap-2">
+                <h3 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
                   <Settings className="w-5 h-5" />
                   Troubleshooting Tips
                 </h3>
@@ -1395,7 +1395,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+            <div className="px-3 py-2 bg-gray-50 border-t flex items-center justify-end gap-3">
               <button
                 onClick={() => {
                   setShowDownloadModal(false);

@@ -363,7 +363,7 @@ const getStatusColor = (status: InventoryStatus) => {
 
 function MetricsDashboard({ metrics }: { metrics: InventoryMetrics }) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
       <Card>
         <CardContent className="pt-4">
           <div className="flex items-center gap-3">
@@ -576,7 +576,7 @@ function SuggestionCard({
       <CardContent className="p-4">
         {/* Header */}
         <div className="flex items-start justify-between">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-2">
             <div className={`p-2 rounded-lg ${getUrgencyColor(suggestion.urgency)}`}>
               {suggestion.status === 'stockout' ? (
                 <AlertTriangle className="w-6 h-6 text-white" />
@@ -635,7 +635,7 @@ function SuggestionCard({
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-4 mt-4 text-sm">
+        <div className="grid grid-cols-4 gap-2 mt-4 text-sm">
           <div>
             <p className="text-gray-500 text-xs">Lead Time</p>
             <p className="font-semibold">{suggestion.leadTimeDays} days</p>
@@ -683,7 +683,7 @@ function SuggestionCard({
         {/* Expanded Details */}
         {isExpanded && (
           <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               {/* Demand Forecast */}
               <div>
                 <h5 className="text-sm font-medium mb-2">Demand Forecast</h5>
@@ -826,10 +826,10 @@ export function InventoryOptimization({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <Card>
         <CardHeader className="pb-2">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+          <div className="flex items-center justify-between flex-wrap gap-2">
             <CardTitle className="flex items-center gap-2">
               <Brain className="w-5 h-5 text-indigo-600" />
               AI-Driven Inventory Optimization
@@ -873,7 +873,7 @@ export function InventoryOptimization({
       </Card>
 
       {/* Summary Banner */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
         {(['critical', 'high', 'medium', 'low'] as ReorderUrgency[]).map(urgency => {
           const count = suggestions.filter(s => s.urgency === urgency).length;
           const totalValue = suggestions
@@ -904,7 +904,7 @@ export function InventoryOptimization({
       </div>
 
       {/* Suggestions List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredSuggestions.map(suggestion => (
           <SuggestionCard
             key={suggestion.id}

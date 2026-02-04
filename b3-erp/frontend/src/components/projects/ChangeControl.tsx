@@ -282,9 +282,9 @@ export default function ChangeControl() {
     : changeRequests.filter(r => r.status === filterStatus);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -321,8 +321,8 @@ export default function ChangeControl() {
       {viewMode === 'requests' && (
         <>
           {/* Filter */}
-          <div className="bg-white shadow-md p-4">
-            <div className="flex items-center gap-4">
+          <div className="bg-white shadow-md p-3">
+            <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-gray-700">Filter by Status:</label>
               <select
                 value={filterStatus}
@@ -348,11 +348,11 @@ export default function ChangeControl() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 {filteredRequests.map((request) => (
                   <div key={request.id} className="p-5 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     {/* Request Header */}
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div>
                         <h4 className="text-lg font-bold text-gray-900">{request.title}</h4>
                         <p className="text-sm text-gray-600 mt-1">{request.id} • {request.projectName}</p>
@@ -368,12 +368,12 @@ export default function ChangeControl() {
                     </div>
 
                     {/* Request Details */}
-                    <div className="p-4 bg-gray-50 rounded-lg mb-4">
+                    <div className="p-4 bg-gray-50 rounded-lg mb-2">
                       <p className="text-sm text-gray-700">{request.description}</p>
                     </div>
 
                     {/* Impact Metrics */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-2">
                       <div className="p-3 bg-red-50 rounded-lg border border-red-200">
                         <div className="flex items-center gap-2 mb-1">
                           <DollarSign className="h-4 w-4 text-red-600" />
@@ -402,7 +402,7 @@ export default function ChangeControl() {
                     </div>
 
                     {/* Scope Impact & Justification */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                       <div>
                         <p className="text-xs font-semibold text-gray-700 mb-1">Scope Impact:</p>
                         <p className="text-sm text-gray-600">{request.scopeImpact}</p>
@@ -436,7 +436,7 @@ export default function ChangeControl() {
 
                     {/* Submission Info */}
                     <div className="mt-4 flex items-center justify-between text-xs text-gray-600">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <span>Submitted by: <span className="font-medium">{request.submittedBy}</span></span>
                         <span>Date: {request.submittedDate}</span>
                       </div>
@@ -462,20 +462,20 @@ export default function ChangeControl() {
           </div>
 
           <div className="p-6">
-            <div className="space-y-6">
+            <div className="space-y-3">
               {impactAnalysis.map((analysis) => {
                 const request = changeRequests.find(r => r.id === analysis.changeRequestId);
                 if (!request) return null;
 
                 return (
                   <div key={analysis.changeRequestId} className="p-5 border-2 border-orange-200 rounded-lg bg-orange-50">
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <h4 className="text-lg font-bold text-gray-900">{request.title}</h4>
                       <p className="text-sm text-gray-600">{analysis.changeRequestId}</p>
                     </div>
 
                     {/* Impact Summary */}
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-2 gap-2 mb-2">
                       <div className="p-3 bg-white rounded-lg">
                         <p className="text-xs text-gray-600 mb-1">Budget Variance</p>
                         <p className="text-lg font-bold text-red-900">{formatCurrency(analysis.budgetVariance)}</p>
@@ -487,7 +487,7 @@ export default function ChangeControl() {
                     </div>
 
                     {/* Affected Projects */}
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Affected Projects:</p>
                       <div className="flex flex-wrap gap-2">
                         {analysis.affectedProjects.map((projectId, idx) => (
@@ -499,7 +499,7 @@ export default function ChangeControl() {
                     </div>
 
                     {/* Affected Resources */}
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Affected Resources:</p>
                       <div className="flex flex-wrap gap-2">
                         {analysis.affectedResources.map((resource, idx) => (
@@ -521,7 +521,7 @@ export default function ChangeControl() {
                               <AlertTriangle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
                               <div className="flex-1">
                                 <p className="font-medium text-gray-900">{risk.risk}</p>
-                                <div className="flex items-center gap-4 mt-2">
+                                <div className="flex items-center gap-2 mt-2">
                                   <span className={`text-xs px-2 py-1 rounded ${
                                     risk.likelihood === 'high' ? 'bg-red-100 text-red-700' :
                                     risk.likelihood === 'medium' ? 'bg-yellow-100 text-yellow-700' :

@@ -251,10 +251,10 @@ export default function StrategicSourcing() {
   const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Target className="w-8 h-8 text-blue-600" />
@@ -295,8 +295,8 @@ export default function StrategicSourcing() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total Spend Under Management</span>
               <DollarSign className="w-5 h-5 text-blue-600" />
@@ -308,7 +308,7 @@ export default function StrategicSourcing() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Realized Savings YTD</span>
               <TrendingUp className="w-5 h-5 text-green-600" />
@@ -320,7 +320,7 @@ export default function StrategicSourcing() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Active Strategies</span>
               <Target className="w-5 h-5 text-amber-600" />
@@ -332,7 +332,7 @@ export default function StrategicSourcing() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Supplier Consolidation</span>
               <Users className="w-5 h-5 text-purple-600" />
@@ -348,8 +348,8 @@ export default function StrategicSourcing() {
 
       {/* AI Insights & Alerts */}
       {showAlerts && (
-        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl shadow-sm p-6 border border-purple-200">
-          <div className="flex items-start justify-between mb-4">
+        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl shadow-sm p-3 border border-purple-200">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-purple-600 rounded-lg">
                 <Zap className="w-6 h-6 text-white" />
@@ -367,9 +367,9 @@ export default function StrategicSourcing() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {/* Critical Alert */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-red-500">
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5" />
                 <div className="flex-1">
@@ -385,7 +385,7 @@ export default function StrategicSourcing() {
             </div>
 
             {/* Opportunity Alert */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-green-500">
               <div className="flex items-start gap-3">
                 <TrendingUp className="w-5 h-5 text-green-500 mt-0.5" />
                 <div className="flex-1">
@@ -401,7 +401,7 @@ export default function StrategicSourcing() {
             </div>
 
             {/* Performance Insight */}
-            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg p-3 border-l-4 border-blue-500">
               <div className="flex items-start gap-3">
                 <Award className="w-5 h-5 text-blue-500 mt-0.5" />
                 <div className="flex-1">
@@ -439,10 +439,10 @@ export default function StrategicSourcing() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Predictive Analytics Section */}
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-200">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-3 rounded-lg border border-indigo-200">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-indigo-600 rounded-lg">
                       <Zap className="w-5 h-5 text-white" />
@@ -458,8 +458,8 @@ export default function StrategicSourcing() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="bg-white p-4 rounded-lg">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                  <div className="bg-white p-3 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
                       <TrendingUp className="w-5 h-5 text-green-600" />
                       <span className="text-sm font-medium text-gray-600">Projected Savings (Q2)</span>
@@ -469,7 +469,7 @@ export default function StrategicSourcing() {
                     <div className="text-xs text-gray-500 mt-1">Confidence: 87%</div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-lg">
+                  <div className="bg-white p-3 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
                       <AlertTriangle className="w-5 h-5 text-amber-600" />
                       <span className="text-sm font-medium text-gray-600">Risk Exposure</span>
@@ -479,7 +479,7 @@ export default function StrategicSourcing() {
                     <div className="text-xs text-gray-500 mt-1">Action required</div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-lg">
+                  <div className="bg-white p-3 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
                       <Target className="w-5 h-5 text-blue-600" />
                       <span className="text-sm font-medium text-gray-600">Untapped Opportunities</span>
@@ -489,7 +489,7 @@ export default function StrategicSourcing() {
                     <div className="text-xs text-gray-500 mt-1">Ready to implement</div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-lg">
+                  <div className="bg-white p-3 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
                       <Award className="w-5 h-5 text-purple-600" />
                       <span className="text-sm font-medium text-gray-600">Optimal Supplier Score</span>
@@ -502,8 +502,8 @@ export default function StrategicSourcing() {
               </div>
 
               {/* Spend Trend Analysis */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">Spend Trend Analysis</h3>
                   <div className="flex items-center gap-2">
                     <select
@@ -538,10 +538,10 @@ export default function StrategicSourcing() {
               </div>
 
               {/* Category Performance Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {/* Category Spend Distribution */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Spend Distribution</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Spend Distribution</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RePieChart>
                       <Pie
@@ -564,8 +564,8 @@ export default function StrategicSourcing() {
                 </div>
 
                 {/* Supplier Consolidation Progress */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Consolidation Progress</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Supplier Consolidation Progress</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={supplierConsolidationData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -583,9 +583,9 @@ export default function StrategicSourcing() {
           )}
 
           {activeTab === 'strategies' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Filters */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2 mb-2">
                 <div className="flex items-center gap-2 flex-1">
                   <Search className="w-5 h-5 text-gray-400" />
                   <input
@@ -744,25 +744,25 @@ export default function StrategicSourcing() {
           )}
 
           {activeTab === 'opportunities' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Opportunity Pipeline */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                   <div className="text-blue-600 text-sm font-medium mb-1">Identified</div>
                   <div className="text-2xl font-bold text-gray-900">8</div>
                   <div className="text-sm text-gray-600">$1.2M potential</div>
                 </div>
-                <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                <div className="bg-amber-50 p-3 rounded-lg border border-amber-200">
                   <div className="text-amber-600 text-sm font-medium mb-1">Evaluating</div>
                   <div className="text-2xl font-bold text-gray-900">5</div>
                   <div className="text-sm text-gray-600">$750K potential</div>
                 </div>
-                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
                   <div className="text-purple-600 text-sm font-medium mb-1">Implementing</div>
                   <div className="text-2xl font-bold text-gray-900">3</div>
                   <div className="text-sm text-gray-600">$430K potential</div>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                   <div className="text-green-600 text-sm font-medium mb-1">Realized</div>
                   <div className="text-2xl font-bold text-gray-900">12</div>
                   <div className="text-sm text-gray-600">$1.22M actual</div>
@@ -770,10 +770,10 @@ export default function StrategicSourcing() {
               </div>
 
               {/* Opportunities List */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Active Opportunities</h3>
                 {opportunities.map((opp) => (
-                  <div key={opp.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                  <div key={opp.id} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -795,7 +795,7 @@ export default function StrategicSourcing() {
                           </span>
                         </div>
                         <h4 className="text-lg font-semibold text-gray-900 mb-1">{opp.opportunityType}</h4>
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
                           <span className="flex items-center gap-1">
                             <Users className="w-4 h-4" />
                             {opp.supplier}
@@ -830,12 +830,12 @@ export default function StrategicSourcing() {
           )}
 
           {activeTab === 'analytics' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Advanced Analytics Dashboard */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {/* Savings Performance by Quarter */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Quarterly Savings Performance</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Quarterly Savings Performance</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <AreaChart data={[
                       { quarter: 'Q1 2023', target: 250000, actual: 280000, forecast: 260000 },
@@ -856,8 +856,8 @@ export default function StrategicSourcing() {
                 </div>
 
                 {/* Category Risk Matrix */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Risk Assessment</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Risk Assessment</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RadarChart data={riskMatrixData}>
                       <PolarGrid stroke="#E5E7EB" />
@@ -873,15 +873,15 @@ export default function StrategicSourcing() {
               </div>
 
               {/* Supplier Performance Metrics */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Supplier Performance Metrics</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Top Supplier Performance Metrics</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {[
                     { supplier: 'Global Materials Inc', score: 92, trend: 'up', contracts: 8, spend: 2.3 },
                     { supplier: 'TechPro Solutions', score: 88, trend: 'stable', contracts: 5, spend: 1.8 },
                     { supplier: 'FastTrack Logistics', score: 85, trend: 'up', contracts: 12, spend: 3.1 }
                   ].map((supplier) => (
-                    <div key={supplier.supplier} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={supplier.supplier} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="flex items-start justify-between mb-3">
                         <div>
                           <h4 className="font-semibold text-gray-900">{supplier.supplier}</h4>
@@ -913,10 +913,10 @@ export default function StrategicSourcing() {
           )}
 
           {activeTab === 'risk' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Risk Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-red-50 p-3 rounded-lg border border-red-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-red-600 text-sm font-medium">High Risk Items</span>
                     <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -924,7 +924,7 @@ export default function StrategicSourcing() {
                   <div className="text-2xl font-bold text-gray-900">3</div>
                   <div className="text-sm text-gray-600">Immediate attention required</div>
                 </div>
-                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-yellow-600 text-sm font-medium">Medium Risk Items</span>
                     <AlertCircle className="w-5 h-5 text-yellow-600" />
@@ -932,7 +932,7 @@ export default function StrategicSourcing() {
                   <div className="text-2xl font-bold text-gray-900">8</div>
                   <div className="text-sm text-gray-600">Monitor closely</div>
                 </div>
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <div className="bg-green-50 p-3 rounded-lg border border-green-200">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-green-600 text-sm font-medium">Low Risk Items</span>
                     <CheckCircle className="w-5 h-5 text-green-600" />
@@ -943,22 +943,22 @@ export default function StrategicSourcing() {
               </div>
 
               {/* Risk Matrix Visualization */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Risk Impact Matrix</h3>
-                <div className="grid grid-cols-3 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk Impact Matrix</h3>
+                <div className="grid grid-cols-3 gap-2">
                   <div></div>
                   <div className="text-center text-sm font-medium text-gray-600">Low Impact</div>
                   <div className="text-center text-sm font-medium text-gray-600">High Impact</div>
 
                   <div className="text-sm font-medium text-gray-600">High Probability</div>
-                  <div className="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4 min-h-[120px]">
+                  <div className="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-3 min-h-[120px]">
                     <div className="text-sm font-medium text-yellow-700 mb-2">Medium Risk</div>
                     <div className="space-y-1">
                       <div className="text-xs text-gray-600">• MRO Supplies</div>
                       <div className="text-xs text-gray-600">• Office Supplies</div>
                     </div>
                   </div>
-                  <div className="bg-red-100 border-2 border-red-300 rounded-lg p-4 min-h-[120px]">
+                  <div className="bg-red-100 border-2 border-red-300 rounded-lg p-3 min-h-[120px]">
                     <div className="text-sm font-medium text-red-700 mb-2">High Risk</div>
                     <div className="space-y-1">
                       <div className="text-xs text-gray-600">• Raw Materials</div>
@@ -967,14 +967,14 @@ export default function StrategicSourcing() {
                   </div>
 
                   <div className="text-sm font-medium text-gray-600">Low Probability</div>
-                  <div className="bg-green-100 border-2 border-green-300 rounded-lg p-4 min-h-[120px]">
+                  <div className="bg-green-100 border-2 border-green-300 rounded-lg p-3 min-h-[120px]">
                     <div className="text-sm font-medium text-green-700 mb-2">Low Risk</div>
                     <div className="space-y-1">
                       <div className="text-xs text-gray-600">• Professional Services</div>
                       <div className="text-xs text-gray-600">• Marketing</div>
                     </div>
                   </div>
-                  <div className="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4 min-h-[120px]">
+                  <div className="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-3 min-h-[120px]">
                     <div className="text-sm font-medium text-yellow-700 mb-2">Medium Risk</div>
                     <div className="space-y-1">
                       <div className="text-xs text-gray-600">• IT Services</div>
@@ -985,8 +985,8 @@ export default function StrategicSourcing() {
               </div>
 
               {/* Mitigation Strategies */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Active Mitigation Strategies</h3>
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Active Mitigation Strategies</h3>
                 <div className="space-y-3">
                   {[
                     { risk: 'Supply Chain Disruption - Raw Materials', strategy: 'Dual sourcing implementation', status: 'in-progress', completion: 65 },
@@ -999,7 +999,7 @@ export default function StrategicSourcing() {
                         <div className="font-medium text-gray-900">{item.risk}</div>
                         <div className="text-sm text-gray-600">{item.strategy}</div>
                       </div>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="w-32">
                           <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
                             <span>Progress</span>

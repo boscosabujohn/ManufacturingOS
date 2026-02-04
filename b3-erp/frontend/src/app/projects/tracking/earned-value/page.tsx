@@ -183,7 +183,7 @@ export default function EarnedValueManagementPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <TrendingUp className="h-8 w-8 text-teal-600" />
           Earned Value Management
@@ -192,8 +192,8 @@ export default function EarnedValueManagementPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -214,8 +214,8 @@ export default function EarnedValueManagementPage() {
       </div>
 
       {/* Portfolio Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Planned Value (PV)</p>
@@ -225,7 +225,7 @@ export default function EarnedValueManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Earned Value (EV)</p>
@@ -235,7 +235,7 @@ export default function EarnedValueManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-sm font-medium">Actual Cost (AC)</p>
@@ -245,7 +245,7 @@ export default function EarnedValueManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Cost Variance (CV)</p>
@@ -261,7 +261,7 @@ export default function EarnedValueManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-600 text-sm font-medium">CPI</p>
@@ -273,7 +273,7 @@ export default function EarnedValueManagementPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-600 text-sm font-medium">SPI</p>
@@ -287,7 +287,7 @@ export default function EarnedValueManagementPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex items-center gap-3 flex-wrap">
           <Filter className="h-4 w-4 text-gray-500" />
 
@@ -310,13 +310,13 @@ export default function EarnedValueManagementPage() {
       </div>
 
       {/* Projects Table */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredProjects.map((project) => {
           const metrics = calculateEvmMetrics(project);
 
           return (
-            <div key={project.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={project.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{project.projectName}</h3>
@@ -329,7 +329,7 @@ export default function EarnedValueManagementPage() {
               </div>
 
               {/* Key Metrics Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 p-4 bg-gray-50 rounded-lg">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2 p-3 bg-gray-50 rounded-lg">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Budget at Completion (BAC)</p>
                   <p className="text-sm font-medium text-gray-900">₹{project.budgetAtCompletion.toLocaleString('en-IN')}</p>
@@ -352,7 +352,7 @@ export default function EarnedValueManagementPage() {
               </div>
 
               {/* Variances */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                 <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-xs text-blue-700 font-medium mb-1">Schedule Variance (SV)</p>
                   <p className={`text-lg font-semibold ${getVarianceColor(metrics.scheduleVariance)}`}>
@@ -387,7 +387,7 @@ export default function EarnedValueManagementPage() {
               </div>
 
               {/* Forecasting */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-3 bg-orange-50 border border-orange-200 rounded-lg">
                 <div>
                   <p className="text-xs text-orange-700 font-medium mb-1">Estimate at Completion (EAC)</p>
                   <p className="text-sm font-semibold text-gray-900">₹{metrics.estimateAtCompletion.toLocaleString('en-IN')}</p>
@@ -440,7 +440,7 @@ export default function EarnedValueManagementPage() {
 
         {filteredProjects.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-            <TrendingUp className="h-16 w-16 mx-auto mb-4 text-gray-400" />
+            <TrendingUp className="h-16 w-16 mb-2 text-gray-400" />
             <h3 className="text-lg font-semibold text-gray-700 mb-2">No Projects Found</h3>
             <p className="text-gray-600">No projects match your current filters</p>
           </div>
@@ -448,10 +448,10 @@ export default function EarnedValueManagementPage() {
       </div>
 
       {/* Guidelines Section */}
-      <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">EVM Guidelines</h2>
+      <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">EVM Guidelines</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-medium text-gray-700 mb-2">Key Metrics</h3>
             <ul className="space-y-2 text-sm text-gray-600">
@@ -496,9 +496,9 @@ export default function EarnedValueManagementPage() {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
           <h3 className="font-medium text-blue-800 mb-2">Interpretation Guide</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
             <div>
               <p className="font-medium mb-1">CPI &gt; 1.0:</p>
               <p>Project is under budget (good performance)</p>

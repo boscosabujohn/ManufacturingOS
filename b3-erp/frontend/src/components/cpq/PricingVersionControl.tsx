@@ -149,33 +149,33 @@ export const PricingVersionControl: React.FC<PricingVersionControlProps> = ({
   };
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       {/* Stats Bar */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Total Versions</p>
           <p className="text-3xl font-bold">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Active</p>
           <p className="text-3xl font-bold">{stats.active}</p>
         </div>
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Draft</p>
           <p className="text-3xl font-bold">{stats.draft}</p>
         </div>
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Scheduled</p>
           <p className="text-3xl font-bold">{stats.scheduled}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <p className="text-sm opacity-90">Archived</p>
           <p className="text-3xl font-bold">{stats.archived}</p>
         </div>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             {/* Filter */}
@@ -226,7 +226,7 @@ export const PricingVersionControl: React.FC<PricingVersionControlProps> = ({
         <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200" />
 
         {/* Versions */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {filteredVersions.map((version, index) => {
             const statusConfig = getStatusConfig(version.status);
             const changeTypeConfig = getChangeTypeConfig(version.changeType);
@@ -247,7 +247,7 @@ export const PricingVersionControl: React.FC<PricingVersionControlProps> = ({
                 <div
                   className={`bg-white rounded-lg border-2 ${
                     isCurrentVersion ? 'border-green-400 shadow-lg' : 'border-gray-200 hover:border-blue-400'
-                  } hover:shadow-lg transition-all p-6`}
+                  } hover:shadow-lg transition-all p-3`}
                 >
                   {/* Current Version Badge */}
                   {isCurrentVersion && (
@@ -295,7 +295,7 @@ export const PricingVersionControl: React.FC<PricingVersionControlProps> = ({
                       )}
 
                       {/* Version Metadata */}
-                      <div className="grid grid-cols-2 gap-4 mb-3">
+                      <div className="grid grid-cols-2 gap-2 mb-3">
                         <div className="flex items-center text-sm text-gray-600">
                           <User className="h-4 w-4 mr-2" />
                           Created by {version.createdBy}
@@ -320,7 +320,7 @@ export const PricingVersionControl: React.FC<PricingVersionControlProps> = ({
 
                       {/* Price Changes Summary */}
                       <div className="bg-gray-50 rounded-lg p-3 mb-3">
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-3 gap-2">
                           <div>
                             <p className="text-xs text-gray-500">Total Changes</p>
                             <p className="text-lg font-bold text-gray-900">{version.totalItems}</p>
@@ -444,7 +444,7 @@ export const PricingVersionControl: React.FC<PricingVersionControlProps> = ({
 
       {filteredVersions.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <GitBranch className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <GitBranch className="h-12 w-12 text-gray-400 mb-3" />
           <p className="text-gray-600">No pricing versions found</p>
           {onCreateVersion && (
             <button

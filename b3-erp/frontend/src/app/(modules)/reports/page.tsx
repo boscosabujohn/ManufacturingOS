@@ -118,11 +118,11 @@ export default function ReportsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Reports & Analytics</h1>
               <p className="text-gray-600">
@@ -156,15 +156,15 @@ export default function ReportsPage() {
 
         {/* Quick Access Reports */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Access</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Quick Access</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {quickReports.map((report) => {
               const Icon = report.icon;
               return (
                 <Link
                   key={report.name}
                   href={report.href}
-                  className="bg-white rounded-lg shadow border border-gray-200 p-4 hover:shadow-lg transition-all duration-200"
+                  className="bg-white rounded-lg shadow border border-gray-200 p-3 hover:shadow-lg transition-all duration-200"
                 >
                   <div className={`w-10 h-10 rounded-lg ${report.color} flex items-center justify-center mb-3`}>
                     <Icon className="w-5 h-5" />
@@ -178,8 +178,8 @@ export default function ReportsPage() {
 
         {/* Report Categories */}
         <div className="mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Report Categories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Report Categories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredCategories.map((category) => {
               const Icon = category.icon;
               return (
@@ -190,7 +190,7 @@ export default function ReportsPage() {
                 >
                   <div className="p-6">
                     {/* Icon and Title */}
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div className={`${category.color} w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200`}>
                         <Icon className="h-6 w-6 text-white" />
                       </div>
@@ -205,7 +205,7 @@ export default function ReportsPage() {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-gray-600 mb-4">{category.description}</p>
+                    <p className="text-sm text-gray-600 mb-2">{category.description}</p>
 
                     {/* Subcategories */}
                     {category.subcategories && (
@@ -237,7 +237,7 @@ export default function ReportsPage() {
 
         {/* Recent Reports */}
         <div>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Recently Generated</h2>
             <button className="text-sm text-blue-600 hover:text-blue-700">View All</button>
           </div>
@@ -248,7 +248,7 @@ export default function ReportsPage() {
                   key={index}
                   className="p-4 hover:bg-gray-50 transition-colors cursor-pointer flex items-center justify-between"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-5 h-5 text-blue-600" />
                     </div>
@@ -283,7 +283,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Analytics Dashboard Link */}
-        <div className="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg p-6 text-white">
+        <div className="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold mb-2">Advanced Analytics Dashboard</h3>
@@ -293,7 +293,7 @@ export default function ReportsPage() {
             </div>
             <Link
               href="/reports/dashboards"
-              className="flex items-center gap-2 px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
+              className="flex items-center gap-2 px-3 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold"
             >
               <BarChart3 className="w-5 h-5" />
               View Dashboards

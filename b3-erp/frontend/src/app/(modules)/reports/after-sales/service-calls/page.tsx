@@ -32,8 +32,8 @@ export default function ServiceCallReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Service Call Report</h1>
                     <p className="text-gray-600">Service request tracking and metrics</p>
@@ -47,7 +47,7 @@ export default function ServiceCallReport() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <ClickableKPICard
                     title="Total Service Calls"
                     value={data.totalCalls.toString()}
@@ -73,7 +73,7 @@ export default function ServiceCallReport() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <Card>
                     <CardHeader><CardTitle>Calls by Priority</CardTitle></CardHeader>
                     <CardContent>

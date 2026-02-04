@@ -128,14 +128,14 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Corporate Card Management</h1>
         <p className="text-sm text-gray-600 mt-1">Manage and monitor corporate cards</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Cards</p>
@@ -145,7 +145,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active</p>
@@ -155,7 +155,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Blocked</p>
@@ -165,7 +165,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Limit</p>
@@ -175,7 +175,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Total Spent</p>
@@ -186,8 +186,8 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex gap-2">
           <div className="flex gap-2">
             <span className="text-sm font-medium text-gray-700">Type:</span>
             {['all', 'credit', 'debit', 'fuel'].map(type => (
@@ -223,10 +223,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredCards.map(card => (
-          <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <CreditCard className="h-6 w-6 text-gray-400" />
@@ -243,14 +243,14 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 mb-4">
+            <div className="bg-gray-50 rounded-lg p-3 mb-2">
               <p className="text-xs text-gray-500 uppercase font-medium mb-2">Card Holder</p>
               <p className="text-sm font-semibold text-gray-900">{card.assignedTo}</p>
               <p className="text-xs text-gray-600">{card.designation} • {card.department}</p>
               <p className="text-xs text-gray-500">{card.employeeCode}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-1">Card Limit</p>
                 <p className="text-lg font-bold text-gray-900">₹{card.limit.toLocaleString('en-IN')}</p>
@@ -261,7 +261,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex justify-between text-xs text-gray-600 mb-1">
                 <span>Utilization: {getUtilization(card.spent, card.limit)}%</span>
                 <span>₹{card.spent.toLocaleString('en-IN')} spent</span>

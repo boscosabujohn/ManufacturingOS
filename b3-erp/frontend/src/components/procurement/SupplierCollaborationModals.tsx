@@ -117,10 +117,10 @@ export function ShareForecastModal({ isOpen, onClose, supplier, onSubmit }: Shar
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Share2 className="w-6 h-6" />
@@ -137,15 +137,15 @@ export function ShareForecastModal({ isOpen, onClose, supplier, onSubmit }: Shar
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Forecast Configuration */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Settings className="w-5 h-5 text-blue-600" />
               Forecast Configuration
             </h3>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Forecast Period *
@@ -183,7 +183,7 @@ export function ShareForecastModal({ isOpen, onClose, supplier, onSubmit }: Shar
           </div>
 
           {/* Forecast Items */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <Package className="w-5 h-5 text-indigo-600" />
@@ -252,7 +252,7 @@ export function ShareForecastModal({ isOpen, onClose, supplier, onSubmit }: Shar
           </div>
 
           {/* Additional Options */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Eye className="w-5 h-5 text-purple-600" />
               Sharing Options
@@ -292,7 +292,7 @@ export function ShareForecastModal({ isOpen, onClose, supplier, onSubmit }: Shar
           </div>
 
           {/* Message */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <MessageCircle className="w-5 h-5 text-green-600" />
               Message to Suppliers
@@ -379,10 +379,10 @@ export function RequestQuotesModal({ isOpen, onClose, supplier, onSubmit }: Requ
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <DollarSign className="w-6 h-6" />
@@ -399,9 +399,9 @@ export function RequestQuotesModal({ isOpen, onClose, supplier, onSubmit }: Requ
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* RFQ Details */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <FileText className="w-5 h-5 text-purple-600" />
               RFQ Information
@@ -421,7 +421,7 @@ export function RequestQuotesModal({ isOpen, onClose, supplier, onSubmit }: Requ
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Response Deadline *
@@ -467,7 +467,7 @@ export function RequestQuotesModal({ isOpen, onClose, supplier, onSubmit }: Requ
           </div>
 
           {/* Quote Items */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <Package className="w-5 h-5 text-indigo-600" />
@@ -552,7 +552,7 @@ export function RequestQuotesModal({ isOpen, onClose, supplier, onSubmit }: Requ
           </div>
 
           {/* Requirements & Specifications */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-green-600" />
               Requirements & Specifications
@@ -567,7 +567,7 @@ export function RequestQuotesModal({ isOpen, onClose, supplier, onSubmit }: Requ
           </div>
 
           {/* Options */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -675,10 +675,10 @@ export function CollaborateDesignModal({ isOpen, onClose, supplier, onSubmit }: 
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-teal-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Users className="w-6 h-6" />
@@ -695,9 +695,9 @@ export function CollaborateDesignModal({ isOpen, onClose, supplier, onSubmit }: 
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Project Details */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-green-600" />
               Project Information
@@ -717,7 +717,7 @@ export function CollaborateDesignModal({ isOpen, onClose, supplier, onSubmit }: 
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Project Type
@@ -791,7 +791,7 @@ export function CollaborateDesignModal({ isOpen, onClose, supplier, onSubmit }: 
           </div>
 
           {/* Required Expertise */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Star className="w-5 h-5 text-amber-600" />
               Required Expertise
@@ -816,7 +816,7 @@ export function CollaborateDesignModal({ isOpen, onClose, supplier, onSubmit }: 
           </div>
 
           {/* Kickoff Meeting */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -907,10 +907,10 @@ export function MessageSuppliersModal({ isOpen, onClose, supplier, onSubmit }: M
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-t-xl">
+        <div className="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-3 rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <MessageCircle className="w-6 h-6" />
@@ -927,9 +927,9 @@ export function MessageSuppliersModal({ isOpen, onClose, supplier, onSubmit }: M
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Message Details */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Mail className="w-5 h-5 text-indigo-600" />
               Message Details
@@ -949,7 +949,7 @@ export function MessageSuppliersModal({ isOpen, onClose, supplier, onSubmit }: M
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Priority
@@ -1001,13 +1001,13 @@ export function MessageSuppliersModal({ isOpen, onClose, supplier, onSubmit }: M
           </div>
 
           {/* Attachments */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Paperclip className="w-5 h-5 text-gray-600" />
               Attachments
             </h3>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-              <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center">
+              <Upload className="w-8 h-8 text-gray-400 mb-2" />
               <p className="text-sm text-gray-600 mb-2">Drop files here or click to upload</p>
               <input
                 type="file"
@@ -1026,7 +1026,7 @@ export function MessageSuppliersModal({ isOpen, onClose, supplier, onSubmit }: M
           </div>
 
           {/* Response Options */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"

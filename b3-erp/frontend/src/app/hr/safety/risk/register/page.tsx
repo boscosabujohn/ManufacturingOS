@@ -98,9 +98,9 @@ export default function RiskRegisterPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Database className="h-8 w-8 text-orange-600" />
@@ -115,9 +115,9 @@ export default function RiskRegisterPage() {
       </div>
 
       {/* Analytics Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm lg:col-span-1">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">Risk Level Distribution</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm lg:col-span-1">
+          <h3 className="text-sm font-bold text-gray-900 mb-2">Risk Level Distribution</h3>
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -146,8 +146,8 @@ export default function RiskRegisterPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm lg:col-span-2">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">Risk Exposure by Department</h3>
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm lg:col-span-2">
+          <h3 className="text-sm font-bold text-gray-900 mb-2">Risk Exposure by Department</h3>
           <div className="h-48 mt-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={departmentRiskData}>
@@ -163,8 +163,8 @@ export default function RiskRegisterPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-1 flex flex-col gap-6">
-          <div className="bg-red-600 p-6 rounded-xl text-white shadow-lg">
+        <div className="lg:col-span-1 flex flex-col gap-3">
+          <div className="bg-red-600 p-3 rounded-xl text-white shadow-lg">
             <div className="flex items-center gap-2 mb-2 text-red-100">
               <AlertCircle className="w-5 h-5" />
               <span className="text-sm font-bold uppercase tracking-wider">Site Hazard Level</span>
@@ -172,7 +172,7 @@ export default function RiskRegisterPage() {
             <p className="text-4xl font-extrabold tracking-tight">ELEVATED</p>
             <p className="text-xs text-red-100 mt-2">Based on current open critical investigations and pending risk evaluations.</p>
           </div>
-          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+          <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
               <p className="text-sm font-bold text-gray-900">26 Total Entries</p>
               <p className="text-xs text-gray-500 mt-1">Risk database is 95% complete</p>
@@ -184,7 +184,7 @@ export default function RiskRegisterPage() {
 
       {/* Risk Register Table */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-        <div className="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
             < Database className="w-5 h-5 text-gray-400" />
             Master Risk Register
@@ -209,27 +209,27 @@ export default function RiskRegisterPage() {
           <table className="w-full text-left text-[11px] text-gray-600">
             <thead className="bg-gray-50 text-[10px] uppercase font-bold text-gray-500 border-b border-gray-100">
               <tr>
-                <th className="px-6 py-4">Ref ID & Hazard Description</th>
-                <th className="px-6 py-4">L x I = RPN</th>
-                <th className="px-6 py-4">Risk Level</th>
-                <th className="px-6 py-4">Implemented Controls</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Details</th>
+                <th className="px-3 py-2">Ref ID & Hazard Description</th>
+                <th className="px-3 py-2">L x I = RPN</th>
+                <th className="px-3 py-2">Risk Level</th>
+                <th className="px-3 py-2">Implemented Controls</th>
+                <th className="px-3 py-2">Status</th>
+                <th className="px-3 py-2 text-right">Details</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {riskRegister.map((risk) => (
                 <tr key={risk.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-bold text-gray-900">{risk.hazard}</div>
                     <div className="text-[10px] text-gray-400">Database Reference: {risk.id}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-700">
                       {risk.likelihood} x {risk.impact} = {risk.rpn}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold ${risk.level === 'Critical' ? 'bg-red-100 text-red-800' :
                         risk.level === 'High' ? 'bg-orange-100 text-orange-800' :
                           risk.level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
@@ -238,17 +238,17 @@ export default function RiskRegisterPage() {
                       {risk.level}
                     </span>
                   </td>
-                  <td className="px-6 py-4 max-w-xs truncate text-[10px]">
+                  <td className="px-3 py-2 max-w-xs truncate text-[10px]">
                     {risk.controls}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center gap-1.5 font-bold ${risk.status === 'Mitigated' ? 'text-green-600' : 'text-orange-600'
                       }`}>
                       <div className={`w-1.5 h-1.5 rounded-full ${risk.status === 'Mitigated' ? 'bg-green-500' : 'bg-orange-500'}`}></div>
                       {risk.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="text-gray-300 hover:text-orange-600">
                       <ChevronRight className="w-5 h-5" />
                     </button>

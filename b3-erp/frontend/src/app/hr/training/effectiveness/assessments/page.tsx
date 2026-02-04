@@ -50,9 +50,9 @@ export default function AssessmentsPage() {
   const [timeRange, setTimeRange] = useState('This Month');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <FileCheck className="h-8 w-8 text-purple-600" />
@@ -76,10 +76,10 @@ export default function AssessmentsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Score Distribution Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6">Score Distribution</h2>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">Score Distribution</h2>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={scoreDistribution} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -108,7 +108,7 @@ export default function AssessmentsPage() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-4 flex items-center justify-center gap-6 text-sm text-gray-500">
+          <div className="mt-4 flex items-center justify-center gap-3 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <span>Needs Attention</span>
@@ -121,12 +121,12 @@ export default function AssessmentsPage() {
         </div>
 
         {/* Top Performers Widget */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
             <Trophy className="w-5 h-5 text-amber-500" />
             Top Performers
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {topPerformers.map((performer) => (
               <div key={performer.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
                 <div className="flex items-center gap-3">
@@ -153,7 +153,7 @@ export default function AssessmentsPage() {
 
       {/* Recent Results Table */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-900">Recent Test Results</h2>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -168,22 +168,22 @@ export default function AssessmentsPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Employee</th>
-                <th className="px-6 py-4">Test Name</th>
-                <th className="px-6 py-4">Date Completed</th>
-                <th className="px-6 py-4">Score</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-3 py-2">Employee</th>
+                <th className="px-3 py-2">Test Name</th>
+                <th className="px-3 py-2">Date Completed</th>
+                <th className="px-3 py-2">Score</th>
+                <th className="px-3 py-2">Status</th>
+                <th className="px-3 py-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {recentResults.map((result) => (
                 <tr key={result.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900">{result.employee}</td>
-                  <td className="px-6 py-4">{result.test}</td>
-                  <td className="px-6 py-4">{result.date}</td>
-                  <td className="px-6 py-4 font-semibold">{result.score}%</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 font-medium text-gray-900">{result.employee}</td>
+                  <td className="px-3 py-2">{result.test}</td>
+                  <td className="px-3 py-2">{result.date}</td>
+                  <td className="px-3 py-2 font-semibold">{result.score}%</td>
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${result.status === 'Pass' ? 'text-green-700 bg-green-50 ring-green-600/20' :
                         'text-red-700 bg-red-50 ring-red-600/20'
                       }`}>
@@ -191,7 +191,7 @@ export default function AssessmentsPage() {
                       {result.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="text-gray-400 hover:text-gray-600">
                       <MoreVertical className="h-4 w-4" />
                     </button>

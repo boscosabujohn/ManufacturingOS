@@ -481,7 +481,7 @@ export default function ChartOfAccountsMaster() {
               <div className="text-sm text-gray-500 truncate">{account.description}</div>
             </div>
 
-            <div className="flex items-center gap-4 ml-4">
+            <div className="flex items-center gap-2 ml-4">
               <div className="text-sm text-gray-600">
                 {formatBalance(account.balanceInfo.currentBalance)}
               </div>
@@ -521,8 +521,8 @@ export default function ChartOfAccountsMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <BookOpen className="w-8 h-8 text-blue-600" />
@@ -549,7 +549,7 @@ export default function ChartOfAccountsMaster() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-2 mb-2">
           <div className="flex border border-gray-300 rounded-lg">
             <button
               onClick={() => setViewMode('tree')}
@@ -573,7 +573,7 @@ export default function ChartOfAccountsMaster() {
         </div>
 
         {viewMode === 'list' && (
-          <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row gap-2 mb-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
@@ -620,7 +620,7 @@ export default function ChartOfAccountsMaster() {
 
       {viewMode === 'tree' ? (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="border-b border-gray-200 px-6 py-3 bg-gray-50">
+          <div className="border-b border-gray-200 px-3 py-2 bg-gray-50">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-medium text-gray-900">Account Hierarchy</h3>
               <div className="flex gap-2">
@@ -649,25 +649,25 @@ export default function ChartOfAccountsMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type & Level</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Settings</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Balance</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type & Level</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Settings</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Balance</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredAccounts.map((account) => (
                   <tr key={account.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{account.accountCode}</div>
                         <div className="text-sm text-gray-900">{account.accountName}</div>
                         <div className="text-sm text-gray-500 truncate max-w-xs">{account.description}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="space-y-1">
                         <span className={getTypeBadge(account.accountType)}>
                           {account.accountType}
@@ -676,7 +676,7 @@ export default function ChartOfAccountsMaster() {
                         <div className="text-sm text-gray-500">{account.accountSubType}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="space-y-1">
                         {account.isControlAccount && (
                           <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Control</span>
@@ -689,7 +689,7 @@ export default function ChartOfAccountsMaster() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{formatBalance(account.balanceInfo.currentBalance)}</div>
                       <div className="text-sm text-gray-500">
                         Dr: {formatBalance(account.balanceInfo.debitBalance)}
@@ -698,12 +698,12 @@ export default function ChartOfAccountsMaster() {
                         Cr: {formatBalance(account.balanceInfo.creditBalance)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(account.status)}>
                         {account.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleAddAccount(account.id)}
@@ -820,8 +820,8 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {account?.id ? 'Edit Account' : 'Add New Account'}
           </h2>
@@ -850,9 +850,9 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Account Code</label>
                   <input
@@ -972,9 +972,9 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
             )}
 
             {activeTab === 'tax' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div className="md:col-span-2">
-                  <label className="flex items-center mb-4">
+                  <label className="flex items-center mb-2">
                     <input
                       type="checkbox"
                       checked={formData.taxConfiguration?.taxable}
@@ -1013,7 +1013,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
             )}
 
             {activeTab === 'reporting' && (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Reporting Group</label>
                   <input
@@ -1059,7 +1059,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
             )}
 
             {activeTab === 'balance' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Opening Balance</label>
                   <input
@@ -1108,7 +1108,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

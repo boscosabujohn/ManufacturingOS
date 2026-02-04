@@ -275,14 +275,14 @@ export default function FNFPaymentPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">FNF - Final Payment & Settlement</h1>
         <p className="text-sm text-gray-600 mt-1">Process and track full & final settlement payments</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -292,7 +292,7 @@ export default function FNFPaymentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Approved</p>
@@ -303,7 +303,7 @@ export default function FNFPaymentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Processing</p>
@@ -313,7 +313,7 @@ export default function FNFPaymentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Paid</p>
@@ -325,7 +325,7 @@ export default function FNFPaymentPage() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-2 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
@@ -364,11 +364,11 @@ export default function FNFPaymentPage() {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredPayments.map(payment => {
           return (
-            <div key={payment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={payment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-gray-900">{payment.employeeName}</h3>
@@ -386,8 +386,8 @@ export default function FNFPaymentPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-900 mb-3">Bank Details</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
@@ -415,7 +415,7 @@ export default function FNFPaymentPage() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <h4 className="font-semibold text-green-900 mb-3">FNF Components (Credits)</h4>
                   <div className="space-y-2">
                     {payment.fnfComponents.salary > 0 && (
@@ -453,7 +453,7 @@ export default function FNFPaymentPage() {
               </div>
 
               {Object.keys(payment.deductions).length > 0 && (
-                <div className="bg-red-50 rounded-lg p-4 border border-red-200 mb-4">
+                <div className="bg-red-50 rounded-lg p-3 border border-red-200 mb-2">
                   <h4 className="font-semibold text-red-900 mb-3">Deductions</h4>
                   <div className="space-y-2">
                     {payment.deductions.noticePeriodBuyout && (
@@ -489,7 +489,7 @@ export default function FNFPaymentPage() {
               )}
 
               {payment.fnfComponents.salary < 0 && (
-                <div className="mb-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                <div className="mb-2 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                   <div className="flex items-start gap-2">
                     <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5" />
                     <div>
@@ -504,7 +504,7 @@ export default function FNFPaymentPage() {
                 </div>
               )}
 
-              <div className={`rounded-lg p-4 border-2 ${payment.netPayable >= 0
+              <div className={`rounded-lg p-3 border-2 ${payment.netPayable >= 0
                   ? 'bg-gradient-to-r from-green-50 to-green-100 border-green-300'
                   : 'bg-gradient-to-r from-red-50 to-red-100 border-red-300'
                 }`}>
@@ -641,9 +641,9 @@ export default function FNFPaymentPage() {
 
       {/* Approve Payment Modal */}
       {showApproveModal && selectedPayment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Approve FNF Payment</h2>
@@ -654,7 +654,7 @@ export default function FNFPaymentPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <h3 className="font-bold text-blue-900 mb-2">{selectedPayment.employeeName}</h3>
                 <p className="text-sm text-blue-700">
                   {selectedPayment.designation} • {selectedPayment.department}
@@ -662,7 +662,7 @@ export default function FNFPaymentPage() {
                 <p className="text-xs text-blue-600 mt-1">Employee ID: {selectedPayment.employeeId}</p>
               </div>
 
-              <div className="mb-6 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
+              <div className="mb-3 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
                 <p className="text-sm font-medium text-gray-700 mb-2">Net Payable Amount</p>
                 <p className="text-4xl font-bold text-green-700">
                   {formatCurrency(selectedPayment.netPayable)}
@@ -672,8 +672,8 @@ export default function FNFPaymentPage() {
                 </p>
               </div>
 
-              <div className="mb-6 space-y-4">
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="mb-3 space-y-2">
+                <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                   <h4 className="font-semibold text-gray-900 mb-3">Bank Details</h4>
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div>
@@ -695,7 +695,7 @@ export default function FNFPaymentPage() {
                   </div>
                 </div>
 
-                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                   <h4 className="font-semibold text-blue-900 mb-2">Payment Breakdown</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -714,7 +714,7 @@ export default function FNFPaymentPage() {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmitApproval} className="space-y-4">
+              <form onSubmit={handleSubmitApproval} className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Approving Authority <span className="text-red-500">*</span>
@@ -765,7 +765,7 @@ export default function FNFPaymentPage() {
                   <button
                     type="button"
                     onClick={() => setShowApproveModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -778,9 +778,9 @@ export default function FNFPaymentPage() {
 
       {/* Initiate Payment Modal */}
       {showInitiateModal && selectedPayment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Send className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Initiate FNF Payment</h2>
@@ -791,7 +791,7 @@ export default function FNFPaymentPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <div className="mb-3 p-3 bg-purple-50 rounded-lg border border-purple-200">
                 <h3 className="font-bold text-purple-900 mb-2">{selectedPayment.employeeName}</h3>
                 <p className="text-sm text-purple-700">
                   {selectedPayment.designation} • {selectedPayment.department}
@@ -799,7 +799,7 @@ export default function FNFPaymentPage() {
                 <p className="text-xs text-purple-600 mt-1">Payment ID: {selectedPayment.id}</p>
               </div>
 
-              <div className="mb-6 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
+              <div className="mb-3 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
                 <p className="text-sm font-medium text-gray-700 mb-2">Amount to Transfer</p>
                 <p className="text-4xl font-bold text-green-700">
                   {formatCurrency(selectedPayment.netPayable)}
@@ -820,7 +820,7 @@ export default function FNFPaymentPage() {
                           : 'border-gray-200 hover:border-gray-300'
                         }`}
                     >
-                      <Building2 className={`h-8 w-8 mx-auto mb-2 ${initiateFormData.paymentMethod === 'bank_transfer' ? 'text-purple-600' : 'text-gray-400'
+                      <Building2 className={`h-8 w-8 mb-2 ${initiateFormData.paymentMethod === 'bank_transfer' ? 'text-purple-600' : 'text-gray-400'
                         }`} />
                       <p className="font-semibold text-sm">Bank Transfer</p>
                       <p className="text-xs text-gray-500 mt-1">NEFT/RTGS/IMPS</p>
@@ -833,7 +833,7 @@ export default function FNFPaymentPage() {
                           : 'border-gray-200 hover:border-gray-300'
                         }`}
                     >
-                      <CreditCard className={`h-8 w-8 mx-auto mb-2 ${initiateFormData.paymentMethod === 'cheque' ? 'text-purple-600' : 'text-gray-400'
+                      <CreditCard className={`h-8 w-8 mb-2 ${initiateFormData.paymentMethod === 'cheque' ? 'text-purple-600' : 'text-gray-400'
                         }`} />
                       <p className="font-semibold text-sm">Cheque</p>
                       <p className="text-xs text-gray-500 mt-1">Physical Cheque</p>
@@ -843,7 +843,7 @@ export default function FNFPaymentPage() {
 
                 {initiateFormData.paymentMethod === 'bank_transfer' && (
                   <>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Payment Date <span className="text-red-500">*</span>
@@ -871,7 +871,7 @@ export default function FNFPaymentPage() {
                       </div>
                     </div>
 
-                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                       <h4 className="font-semibold text-gray-900 mb-3">Recipient Bank Details</h4>
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         <div>
@@ -897,7 +897,7 @@ export default function FNFPaymentPage() {
 
                 {initiateFormData.paymentMethod === 'cheque' && (
                   <>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Cheque Number <span className="text-red-500">*</span>
@@ -939,7 +939,7 @@ export default function FNFPaymentPage() {
                       />
                     </div>
 
-                    <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                       <h4 className="font-semibold text-blue-900 mb-3">Payable To</h4>
                       <p className="text-sm text-blue-700">{selectedPayment.bankDetails.accountName}</p>
                       <p className="text-xs text-blue-600 mt-1">{selectedPayment.bankDetails.bankName} - A/C {selectedPayment.bankDetails.accountNumber}</p>
@@ -984,7 +984,7 @@ export default function FNFPaymentPage() {
                   <button
                     type="button"
                     onClick={() => setShowInitiateModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -997,9 +997,9 @@ export default function FNFPaymentPage() {
 
       {/* Confirm Payment Modal */}
       {showConfirmModal && selectedPayment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <CheckCircle className="h-6 w-6" />
                 <h2 className="text-xl font-bold">Confirm Payment Completion</h2>
@@ -1010,7 +1010,7 @@ export default function FNFPaymentPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="mb-3 p-3 bg-green-50 rounded-lg border border-green-200">
                 <h3 className="font-bold text-green-900 mb-2">{selectedPayment.employeeName}</h3>
                 <p className="text-sm text-green-700">
                   {selectedPayment.designation} • {selectedPayment.department}
@@ -1018,7 +1018,7 @@ export default function FNFPaymentPage() {
                 <p className="text-xs text-green-600 mt-1">Payment ID: {selectedPayment.id}</p>
               </div>
 
-              <div className="mb-6 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
+              <div className="mb-3 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
                 <p className="text-sm font-medium text-gray-700 mb-2">Payment Amount</p>
                 <p className="text-4xl font-bold text-green-700">
                   {formatCurrency(selectedPayment.netPayable)}
@@ -1028,8 +1028,8 @@ export default function FNFPaymentPage() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmitConfirm} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmitConfirm} className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Actual Payment Date <span className="text-red-500">*</span>
@@ -1094,7 +1094,7 @@ export default function FNFPaymentPage() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmModal(false)}
-                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                    className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
                   >
                     Cancel
                   </button>
@@ -1107,9 +1107,9 @@ export default function FNFPaymentPage() {
 
       {/* View Payment Details Modal */}
       {showViewModal && selectedPayment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-xl shadow-2xl w-full  max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-3 py-2 flex items-center justify-between rounded-t-xl z-10">
               <div className="flex items-center gap-3">
                 <Eye className="h-6 w-6" />
                 <h2 className="text-xl font-bold">FNF Payment Details</h2>
@@ -1120,7 +1120,7 @@ export default function FNFPaymentPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 flex items-start justify-between">
+              <div className="mb-3 flex items-start justify-between">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedPayment.employeeName}</h3>
                   <p className="text-gray-600">{selectedPayment.designation} • {selectedPayment.department}</p>
@@ -1134,9 +1134,9 @@ export default function FNFPaymentPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                 <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
                     <Building2 className="h-5 w-5 text-gray-600" />
                     Bank Details
                   </h4>
@@ -1167,7 +1167,7 @@ export default function FNFPaymentPage() {
                 </div>
 
                 <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
-                  <h4 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <h4 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-blue-600" />
                     Timeline
                   </h4>
@@ -1219,8 +1219,8 @@ export default function FNFPaymentPage() {
                 </div>
               </div>
 
-              <div className="mb-6 bg-green-50 rounded-lg p-5 border border-green-200">
-                <h4 className="font-semibold text-green-900 mb-4">FNF Components - Credits</h4>
+              <div className="mb-3 bg-green-50 rounded-lg p-5 border border-green-200">
+                <h4 className="font-semibold text-green-900 mb-2">FNF Components - Credits</h4>
                 <div className="space-y-3">
                   {selectedPayment.fnfComponents.salary > 0 && (
                     <div className="flex justify-between items-center">
@@ -1256,8 +1256,8 @@ export default function FNFPaymentPage() {
               </div>
 
               {Object.keys(selectedPayment.deductions).length > 0 && (
-                <div className="mb-6 bg-red-50 rounded-lg p-5 border border-red-200">
-                  <h4 className="font-semibold text-red-900 mb-4">Deductions</h4>
+                <div className="mb-3 bg-red-50 rounded-lg p-5 border border-red-200">
+                  <h4 className="font-semibold text-red-900 mb-2">Deductions</h4>
                   <div className="space-y-3">
                     {selectedPayment.deductions.noticePeriodBuyout && (
                       <div className="flex justify-between items-center">
@@ -1317,7 +1317,7 @@ export default function FNFPaymentPage() {
                 </button>
                 <button
                   onClick={() => handleDownloadStatement(selectedPayment)}
-                  className="px-6 py-3 border-2 border-gray-600 text-gray-700 rounded-lg hover:bg-gray-50 font-semibold"
+                  className="px-3 py-2 border-2 border-gray-600 text-gray-700 rounded-lg hover:bg-gray-50 font-semibold"
                 >
                   <Download className="inline h-5 w-5 mr-2" />
                   Download Statement

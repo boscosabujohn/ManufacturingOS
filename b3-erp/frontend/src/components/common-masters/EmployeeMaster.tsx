@@ -348,8 +348,8 @@ export default function EmployeeMaster() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
               <Users className="w-8 h-8 text-blue-600" />
@@ -376,7 +376,7 @@ export default function EmployeeMaster() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -442,19 +442,19 @@ export default function EmployeeMaster() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employment</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salary</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employment</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salary</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {filteredEmployees.map((employee) => (
                   <tr key={employee.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mr-4">
                           <User className="w-5 h-5 text-gray-600" />
@@ -466,12 +466,12 @@ export default function EmployeeMaster() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{employee.designation}</div>
                       <div className="text-sm text-gray-500">{employee.department}</div>
                       <div className="text-sm text-gray-500">Reports to: {employee.reportingManager}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900 flex items-center gap-1">
                         <Mail className="w-3 h-3" />
                         {employee.email}
@@ -485,7 +485,7 @@ export default function EmployeeMaster() {
                         {employee.workLocation}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getEmploymentTypeBadge(employee.employmentType)}>
                         {employee.employmentType.replace('_', ' ')}
                       </span>
@@ -496,7 +496,7 @@ export default function EmployeeMaster() {
                         Experience: {calculateExperience(employee.dateOfJoining)} years
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
                         ${(employee.salaryInfo.basicSalary + employee.salaryInfo.allowances).toLocaleString()}
                       </div>
@@ -507,12 +507,12 @@ export default function EmployeeMaster() {
                         {employee.salaryInfo.payFrequency}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={getStatusBadge(employee.status)}>
                         {employee.status.replace('_', ' ')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditEmployee(employee)}
@@ -541,10 +541,10 @@ export default function EmployeeMaster() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filteredEmployees.map((employee) => (
-            <div key={employee.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div key={employee.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-3">
+              <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center mr-3">
                     <User className="w-6 h-6 text-gray-600" />
@@ -569,7 +569,7 @@ export default function EmployeeMaster() {
                   </button>
                 </div>
               </div>
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Designation:</span>
                   <span className="font-medium">{employee.designation}</span>
@@ -714,8 +714,8 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             {employee ? 'Edit Employee' : 'Add New Employee'}
           </h2>
@@ -744,9 +744,9 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
         </div>
 
         <form onSubmit={handleSubmit} className="overflow-y-auto max-h-96">
-          <div className="px-6 py-4">
+          <div className="px-3 py-2">
             {activeTab === 'basic' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Employee Code</label>
                   <input
@@ -827,7 +827,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
             )}
 
             {activeTab === 'employment' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
                   <select
@@ -915,10 +915,10 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
             )}
 
             {activeTab === 'salary' && (
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-3">Salary Information</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Basic Salary</label>
                       <input
@@ -966,7 +966,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
 
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-3">Bank Details</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Bank Name</label>
                       <input
@@ -1012,7 +1012,7 @@ function EmployeeModal({ employee, onSave, onClose, activeTab, setActiveTab }: E
           </div>
         </form>
 
-        <div className="px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
+        <div className="px-3 py-2 border-t border-gray-200 flex justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"

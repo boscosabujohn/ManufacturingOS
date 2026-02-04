@@ -22,9 +22,9 @@ export function CreatePayrollRunModal({ isOpen, onClose, onSubmit }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <DollarSign className="h-5 w-5" />
             Create New Payroll Run
@@ -34,8 +34,8 @@ export function CreatePayrollRunModal({ isOpen, onClose, onSubmit }: any) {
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-2">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Payroll Cycle</label>
               <select
@@ -66,7 +66,7 @@ export function CreatePayrollRunModal({ isOpen, onClose, onSubmit }: any) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Pay Period Start</label>
               <input
@@ -122,7 +122,7 @@ export function CreatePayrollRunModal({ isOpen, onClose, onSubmit }: any) {
             </label>
           </div>
 
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <p className="text-sm text-purple-800"><strong>Note:</strong> Payroll will be calculated based on employee attendance, statutory deductions, and tax configurations.</p>
           </div>
 
@@ -144,9 +144,9 @@ export function ProcessPayrollModal({ isOpen, onClose, payrollRun, onConfirm }: 
   if (!isOpen || !payrollRun) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <CheckCircle className="h-5 w-5" />
             Process Payroll
@@ -157,7 +157,7 @@ export function ProcessPayrollModal({ isOpen, onClose, payrollRun, onConfirm }: 
         </div>
 
         <div className="p-6">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-2">
             <p className="font-semibold text-gray-900 mb-2">Payroll Run Details:</p>
             <div className="space-y-1 text-sm text-gray-700">
               <p><strong>Period:</strong> {payrollRun.period}</p>
@@ -166,7 +166,7 @@ export function ProcessPayrollModal({ isOpen, onClose, payrollRun, onConfirm }: 
             </div>
           </div>
 
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="text-sm text-gray-600 mb-2">
             This will process the payroll, generate payslips, and prepare payment files. This action cannot be undone.
           </p>
 
@@ -198,9 +198,9 @@ export function GeneratePayrollReportModal({ isOpen, onClose, onGenerate }: any)
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <FileText className="h-5 w-5" />
             Generate Payroll Report
@@ -210,7 +210,7 @@ export function GeneratePayrollReportModal({ isOpen, onClose, onGenerate }: any)
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onGenerate(formData); }} className="p-6 space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onGenerate(formData); }} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
             <select
@@ -295,9 +295,9 @@ export function AddComplianceRuleModal({ isOpen, onClose, onSubmit }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Shield className="h-5 w-5" />
             Add Compliance Rule
@@ -307,7 +307,7 @@ export function AddComplianceRuleModal({ isOpen, onClose, onSubmit }: any) {
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Rule Name</label>
             <input
@@ -320,7 +320,7 @@ export function AddComplianceRuleModal({ isOpen, onClose, onSubmit }: any) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
               <select
@@ -364,7 +364,7 @@ export function AddComplianceRuleModal({ isOpen, onClose, onSubmit }: any) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
               <input
@@ -432,9 +432,9 @@ export function CreateAnalyticsReportModal({ isOpen, onClose, onGenerate }: any)
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-lg">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
             Create Analytics Report
@@ -444,7 +444,7 @@ export function CreateAnalyticsReportModal({ isOpen, onClose, onGenerate }: any)
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onGenerate(formData); }} className="p-6 space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onGenerate(formData); }} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Report Type</label>
             <select
@@ -525,9 +525,9 @@ export function CreateOnboardingWorkflowModal({ isOpen, onClose, onSubmit }: any
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Users className="h-5 w-5" />
             Create Onboarding Workflow
@@ -537,7 +537,7 @@ export function CreateOnboardingWorkflowModal({ isOpen, onClose, onSubmit }: any
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Workflow Template Name</label>
             <input
@@ -550,7 +550,7 @@ export function CreateOnboardingWorkflowModal({ isOpen, onClose, onSubmit }: any
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
               <select
@@ -579,7 +579,7 @@ export function CreateOnboardingWorkflowModal({ isOpen, onClose, onSubmit }: any
             </div>
           </div>
 
-          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+          <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-3">
             <p className="text-sm text-cyan-800 mb-2"><strong>Default Tasks Included:</strong></p>
             <ul className="text-sm text-cyan-700 space-y-1 list-disc list-inside">
               <li>Complete documentation & contracts</li>
@@ -623,9 +623,9 @@ export function InitiateReviewCycleModal({ isOpen, onClose, onSubmit }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Award className="h-5 w-5" />
             Initiate Review Cycle
@@ -635,7 +635,7 @@ export function InitiateReviewCycleModal({ isOpen, onClose, onSubmit }: any) {
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Review Cycle Name</label>
             <input
@@ -648,7 +648,7 @@ export function InitiateReviewCycleModal({ isOpen, onClose, onSubmit }: any) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Review Type</label>
               <select
@@ -757,9 +757,9 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: any) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-rose-600 to-rose-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <BookOpen className="h-5 w-5" />
             Create New Policy
@@ -769,7 +769,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: any) {
           </button>
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-4">
+        <form onSubmit={(e) => { e.preventDefault(); onSubmit(formData); }} className="p-6 space-y-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Policy Name</label>
             <input
@@ -782,7 +782,7 @@ export function CreatePolicyModal({ isOpen, onClose, onSubmit }: any) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
               <select

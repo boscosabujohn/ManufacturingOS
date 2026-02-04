@@ -27,10 +27,10 @@ export default function CustomerFeedbackLoop() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Featured Header */}
-      <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
-        <div className="relative z-10 flex items-center gap-6">
+      <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex flex-col md:flex-row md:items-center justify-between gap-3 relative overflow-hidden">
+        <div className="relative z-10 flex items-center gap-3">
           <div className="p-4 bg-yellow-400 rounded-3xl shadow-xl shadow-yellow-100 rotate-6 group-hover:rotate-0 transition-transform">
             <Heart className="h-8 w-8 text-white fill-white" />
           </div>
@@ -44,7 +44,7 @@ export default function CustomerFeedbackLoop() {
           </div>
         </div>
         <div className="flex items-center gap-3 relative z-10">
-          <button className="px-6 py-3 bg-slate-900 text-white rounded-2xl font-black hover:bg-black transition-all shadow-lg active:scale-95 flex items-center gap-2">
+          <button className="px-3 py-2 bg-slate-900 text-white rounded-2xl font-black hover:bg-black transition-all shadow-lg active:scale-95 flex items-center gap-2">
             <Share2 className="h-4 w-4" />
             Export Insights
           </button>
@@ -53,15 +53,15 @@ export default function CustomerFeedbackLoop() {
       </div>
 
       {/* Sentiment Awareness Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {[
           { label: 'Overall CSAT', value: '4.8', icon: Star, color: 'text-yellow-600', bg: 'bg-yellow-50', trend: 'Excellent' },
           { label: 'Positive Sentiment', value: '92%', icon: Smile, color: 'text-green-600', bg: 'bg-green-50', trend: '+4% vs LP' },
           { label: 'Response Rate', value: '64%', icon: MessageCircle, color: 'text-blue-600', bg: 'bg-blue-50', trend: 'Target 70%' },
           { label: 'NPS Score', value: '72', icon: TrendingUp, color: 'text-indigo-600', bg: 'bg-indigo-50', trend: 'World Class' },
         ].map((stat, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 group hover:border-yellow-400 transition-colors">
-            <div className="flex items-center justify-between mb-4">
+          <div key={idx} className="bg-white p-3 rounded-2xl shadow-sm border border-slate-200 group hover:border-yellow-400 transition-colors">
+            <div className="flex items-center justify-between mb-2">
               <div className={`p-3 ${stat.bg} rounded-2xl group-hover:rotate-12 transition-transform`}>
                 <stat.icon className={`h-6 w-6 ${stat.color}`} />
               </div>
@@ -75,9 +75,9 @@ export default function CustomerFeedbackLoop() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Feedback Feed */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-            <div className="p-6 border-b border-slate-100 flex items-center justify-between flex-wrap gap-4">
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between flex-wrap gap-2">
               <h3 className="font-bold text-slate-900 flex items-center gap-2">
                 <MessageSquare className="h-5 w-5 text-indigo-600" />
                 Real-time Feedback Stream
@@ -91,8 +91,8 @@ export default function CustomerFeedbackLoop() {
             <div className="divide-y divide-slate-50">
               {reviews.map((rev) => (
                 <div key={rev.id} className="p-6 hover:bg-slate-50/50 transition-colors group">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-start gap-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-start gap-2">
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-black ${rev.sentiment === 'Positive' ? 'bg-green-100 text-green-600' :
                           rev.sentiment === 'Negative' ? 'bg-red-100 text-red-600' :
                             'bg-slate-100 text-slate-500'
@@ -127,7 +127,7 @@ export default function CustomerFeedbackLoop() {
               ))}
             </div>
             <div className="p-6 bg-slate-50 border-t border-slate-100 text-center">
-              <button className="text-sm font-bold text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2 mx-auto">
+              <button className="text-sm font-bold text-slate-600 hover:text-slate-900 flex items-center justify-center gap-2">
                 Load More Conversations <ChevronRight className="h-4 w-4" />
               </button>
             </div>
@@ -135,10 +135,10 @@ export default function CustomerFeedbackLoop() {
         </div>
 
         {/* Analytics Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Visual Sentiment Pie/Chart Representation */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
               <PieChart className="h-5 w-5 text-purple-600" />
               Sentiment Breakdown
             </h3>
@@ -173,8 +173,8 @@ export default function CustomerFeedbackLoop() {
           </div>
 
           {/* Word Cloud / Keyword Mockup */}
-          <div className="bg-slate-900 rounded-2xl p-6 text-white overflow-hidden relative shadow-xl">
-            <h4 className="font-bold text-slate-200 mb-6 flex items-center gap-2">
+          <div className="bg-slate-900 rounded-2xl p-3 text-white overflow-hidden relative shadow-xl">
+            <h4 className="font-bold text-slate-200 mb-3 flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-yellow-400" />
               Trending Keywords
             </h4>
@@ -195,10 +195,10 @@ export default function CustomerFeedbackLoop() {
           </div>
 
           {/* Feedback Recommendation */}
-          <div className="bg-indigo-50 rounded-2xl p-6 border border-indigo-100">
+          <div className="bg-indigo-50 rounded-2xl p-3 border border-indigo-100">
             <p className="text-xs font-black text-indigo-500 uppercase tracking-widest mb-2">AI ADVANTAGE</p>
             <h4 className="font-bold text-indigo-900 mb-3">Service Training Needed</h4>
-            <p className="text-xs text-indigo-700 leading-relaxed mb-4">
+            <p className="text-xs text-indigo-700 leading-relaxed mb-2">
               Analysis suggests 12% of negative feedback is due to "Delay in spare parts arrival". Consider optimizing warehouse logistics for faster dispatch.
             </p>
             <button className="flex items-center gap-1 text-xs font-black text-indigo-900 hover:gap-2 transition-all">

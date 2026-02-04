@@ -318,7 +318,7 @@ export default function GRNInspectionPage() {
   return (
     <div className="p-6 w-full">
       {/* Header */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex justify-between items-start mb-3">
         <div>
           <div className="flex items-center gap-3 mb-2">
             <Link
@@ -350,12 +350,12 @@ export default function GRNInspectionPage() {
       </div>
 
       {/* GRN Details */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <FileText className="h-5 w-5 text-gray-400" />
           Delivery Information
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
           <div>
             <p className="text-sm text-gray-500">Vendor</p>
             <p className="font-medium text-gray-900">{grnDetails.vendorName}</p>
@@ -380,8 +380,8 @@ export default function GRNInspectionPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Ordered</p>
@@ -390,7 +390,7 @@ export default function GRNInspectionPage() {
             <Package className="h-8 w-8 text-gray-400" />
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Received</p>
@@ -399,7 +399,7 @@ export default function GRNInspectionPage() {
             <Truck className="h-8 w-8 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Accepted</p>
@@ -408,7 +408,7 @@ export default function GRNInspectionPage() {
             <CheckCircle className="h-8 w-8 text-green-400" />
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Rejected</p>
@@ -417,7 +417,7 @@ export default function GRNInspectionPage() {
             <XCircle className="h-8 w-8 text-red-400" />
           </div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Acceptance</p>
@@ -429,7 +429,7 @@ export default function GRNInspectionPage() {
       </div>
 
       {/* Inspection Items */}
-      <div className="space-y-4 mb-6">
+      <div className="space-y-2 mb-3">
         {items.map((item, index) => (
           <div key={item.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
             {/* Item Header */}
@@ -438,7 +438,7 @@ export default function GRNInspectionPage() {
               onClick={() => toggleItemExpansion(item.id)}
             >
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="flex items-center gap-2">
                     {expandedItems.includes(item.id) ? (
                       <ChevronUp className="h-5 w-5 text-gray-400" />
@@ -452,7 +452,7 @@ export default function GRNInspectionPage() {
                     <p className="text-sm text-gray-500">{item.itemCode} • {item.description}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="text-right">
                     <p className="text-sm text-gray-500">Status</p>
                     <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(item.inspectionStatus)}`}>
@@ -471,9 +471,9 @@ export default function GRNInspectionPage() {
             {expandedItems.includes(item.id) && (
               <div className="p-4 border-t">
                 {/* Quantity Inspection */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <h5 className="text-sm font-medium text-gray-700 mb-3">Quantity Verification</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                     <div>
                       <label className="block text-xs text-gray-500 mb-1">Ordered Qty</label>
                       <div className="text-lg font-medium text-gray-900">{item.orderedQty} {item.unit}</div>
@@ -560,9 +560,9 @@ export default function GRNInspectionPage() {
                 </div>
 
                 {/* Quality Checks */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <h5 className="text-sm font-medium text-gray-700 mb-3">Quality Checks</h5>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                     {Object.entries(item.qualityChecks).map(([check, status]) => (
                       <div key={check} className="border rounded-lg p-3">
                         <p className="text-xs text-gray-500 mb-2 capitalize">{check}</p>
@@ -595,9 +595,9 @@ export default function GRNInspectionPage() {
                 </div>
 
                 {/* Batch/Serial Numbers */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <h5 className="text-sm font-medium text-gray-700 mb-3">Batch/Serial Information</h5>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <label className="block text-xs text-gray-500 mb-1">Batch Number</label>
                       <input
@@ -619,7 +619,7 @@ export default function GRNInspectionPage() {
                 </div>
 
                 {/* Defects */}
-                <div className="mb-6">
+                <div className="mb-3">
                   <h5 className="text-sm font-medium text-gray-700 mb-3">Defects Found</h5>
                   <div className="flex gap-2 mb-2">
                     <input
@@ -659,7 +659,7 @@ export default function GRNInspectionPage() {
                 </div>
 
                 {/* Remarks */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <h5 className="text-sm font-medium text-gray-700 mb-3">Inspection Remarks</h5>
                   <textarea
                     value={item.remarks || ''}
@@ -673,7 +673,7 @@ export default function GRNInspectionPage() {
                 {/* Image Upload */}
                 <div>
                   <h5 className="text-sm font-medium text-gray-700 mb-3">Attach Images</h5>
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <button className="px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg hover:border-gray-400 flex items-center gap-2 text-sm text-gray-600">
                       <Camera className="h-4 w-4" />
                       Take Photo
@@ -691,8 +691,8 @@ export default function GRNInspectionPage() {
       </div>
 
       {/* Overall Inspection Notes */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <MessageSquare className="h-5 w-5 text-gray-400" />
           Overall Inspection Notes
         </h3>
@@ -706,16 +706,16 @@ export default function GRNInspectionPage() {
       </div>
 
       {/* Attachments */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
           <FileText className="h-5 w-5 text-gray-400" />
           Supporting Documents
         </h3>
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
           <div className="text-center">
-            <Upload className="h-12 w-12 text-gray-400 mb-4" />
+            <Upload className="h-12 w-12 text-gray-400 mb-2" />
             <p className="text-gray-600 mb-2">Drop files here or click to upload</p>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-gray-500 mb-2">
               Quality certificates, test reports, photos (Max 10MB)
             </p>
             <input

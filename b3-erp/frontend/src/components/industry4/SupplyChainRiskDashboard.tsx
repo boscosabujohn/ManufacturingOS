@@ -400,10 +400,10 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
   const unacknowledgedAlerts = riskAlerts.filter(a => !a.acknowledged).length;
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Risk Summary Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Critical Risks</span>
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -411,7 +411,7 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
           <div className="text-3xl font-bold text-red-600">{riskSummary.critical}</div>
           <div className="text-xs text-gray-500 mt-1">Immediate action required</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">High Risks</span>
             <div className="w-3 h-3 rounded-full bg-amber-500"></div>
@@ -419,7 +419,7 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
           <div className="text-3xl font-bold text-amber-600">{riskSummary.high}</div>
           <div className="text-xs text-gray-500 mt-1">Monitor closely</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Sole/Single Source</span>
             <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -429,7 +429,7 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
           <div className="text-3xl font-bold text-red-600">{riskSummary.soleSource + riskSummary.singleSource}</div>
           <div className="text-xs text-gray-500 mt-1">{riskSummary.soleSource} sole, {riskSummary.singleSource} single</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active Alerts</span>
             <svg className="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -442,10 +442,10 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
       </div>
 
       {/* Source Distribution and Stock Levels */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-3">
         {/* Source Type Distribution */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">Supplier Source Distribution</h3>
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Supplier Source Distribution</h3>
           <div className="space-y-3">
             {(['sole', 'single', 'dual', 'multi'] as SourceType[]).map(type => {
               const count = supplierRisks.filter(s => s.sourceType === type).length;
@@ -472,9 +472,9 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
         </div>
 
         {/* Buffer Stock Status */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-4">Buffer Stock Status</h3>
-          <div className="grid grid-cols-2 gap-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">Buffer Stock Status</h3>
+          <div className="grid grid-cols-2 gap-2">
             <div className="text-center p-3 bg-red-50 rounded-lg">
               <div className="text-2xl font-bold text-red-600">{stockSummary.critical}</div>
               <div className="text-xs text-red-700">Critical</div>
@@ -496,8 +496,8 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
       </div>
 
       {/* Recent Alerts */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-sm font-semibold text-gray-700">Recent Risk Alerts</h3>
           <button
             onClick={() => setActiveView('alerts')}
@@ -535,7 +535,7 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
   );
 
   const renderSuppliers = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Filter */}
       <div className="flex gap-2">
         {(['all', 'critical', 'high', 'medium', 'low'] as const).map(level => (
@@ -554,11 +554,11 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
       </div>
 
       {/* Supplier Risk Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {filteredSuppliers.map(supplier => (
           <div
             key={supplier.id}
-            className="bg-white border border-gray-200 rounded-lg p-4"
+            className="bg-white border border-gray-200 rounded-lg p-3"
           >
             <div className="flex justify-between items-start mb-3">
               <div>
@@ -619,7 +619,7 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
   );
 
   const renderInventory = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
         <table className="w-full">
           <thead className="bg-gray-50">
@@ -694,11 +694,11 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
   );
 
   const renderAlerts = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {riskAlerts.map(alert => (
         <div
           key={alert.id}
-          className={`bg-white border border-gray-200 rounded-lg p-4 border-l-4 ${
+          className={`bg-white border border-gray-200 rounded-lg p-3 border-l-4 ${
             alert.acknowledged ? 'opacity-60' : ''
           }`}
           style={{ borderLeftColor: getRiskColor(alert.severity) }}
@@ -721,7 +721,7 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-3">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <div className="text-xs font-medium text-gray-500 mb-1">Affected Items</div>
               <div className="flex flex-wrap gap-1">
@@ -754,8 +754,8 @@ const SupplyChainRiskDashboard: React.FC<SupplyChainRiskDashboardProps> = ({ cla
   );
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="flex justify-between items-center mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="flex justify-between items-center mb-3">
         <div>
           <h2 className="text-xl font-bold text-gray-800">Supply Chain Risk Dashboard</h2>
           <p className="text-sm text-gray-600">Monitor supply chain vulnerabilities and buffer stock levels</p>

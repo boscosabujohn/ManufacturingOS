@@ -225,9 +225,9 @@ export function DrillDownChart({
 
       {/* Detail Modal */}
       {selectedPoint && renderDetailView && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/50">
           <div className="w-full max-w-2xl max-h-[80vh] bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-white">
                   {selectedPoint.label}

@@ -365,7 +365,7 @@ export default function ExpiringServiceContractsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-3 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -391,8 +391,8 @@ export default function ExpiringServiceContractsPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-white p-4 rounded-lg border">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Expiring Soon</p>
@@ -402,7 +402,7 @@ export default function ExpiringServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Current Value</p>
@@ -412,7 +412,7 @@ export default function ExpiringServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Renewal Value</p>
@@ -422,7 +422,7 @@ export default function ExpiringServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Avg Probability</p>
@@ -434,7 +434,7 @@ export default function ExpiringServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">High Risk</p>
@@ -444,7 +444,7 @@ export default function ExpiringServiceContractsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
+        <div className="bg-white p-3 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Confirmed</p>
@@ -456,8 +456,8 @@ export default function ExpiringServiceContractsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="space-y-4">
-        <div className="flex gap-4">
+      <div className="space-y-2">
+        <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
             <input
@@ -487,7 +487,7 @@ export default function ExpiringServiceContractsPage() {
         </div>
 
         {showFilters && (
-          <div className="bg-gray-50 p-4 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 p-3 rounded-lg grid grid-cols-1 md:grid-cols-3 gap-2">
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedType}
@@ -536,25 +536,25 @@ export default function ExpiringServiceContractsPage() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Contract Details
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Customer & Manager
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Expiry & Risk
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Renewal Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Financial Impact
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Performance
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -562,7 +562,7 @@ export default function ExpiringServiceContractsPage() {
             <tbody className="divide-y divide-gray-200">
               {sortedContracts.map((contract) => (
                 <tr key={contract.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">{contract.contractNumber}</div>
                       <div className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getContractTypeColor(contract.contractType)}`}>
@@ -571,7 +571,7 @@ export default function ExpiringServiceContractsPage() {
                       <div className="text-xs text-gray-500">{contract.pricingTier} Tier</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">{contract.customerName}</div>
                       <div className="flex items-center text-xs text-gray-500">
@@ -581,7 +581,7 @@ export default function ExpiringServiceContractsPage() {
                       <div className="text-xs text-gray-500">AM: {contract.accountManager}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className={`text-sm font-medium ${getExpiryUrgencyColor(contract.remainingDays)}`}>
                         {contract.remainingDays} days left
@@ -594,7 +594,7 @@ export default function ExpiringServiceContractsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getRenewalStatusColor(contract.renewalStatus)}`}>
                         {contract.renewalStatus.replace('_', ' ').toUpperCase()}
@@ -607,7 +607,7 @@ export default function ExpiringServiceContractsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Current: ₹{(contract.contractValue / 100000).toFixed(1)}L
@@ -624,7 +624,7 @@ export default function ExpiringServiceContractsPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="space-y-1">
                       <div className="text-sm font-medium text-gray-900">
                         Health: {contract.healthScore}%
@@ -638,7 +638,7 @@ export default function ExpiringServiceContractsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-3 py-2 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => handleRenewalAction(contract)}
@@ -674,9 +674,9 @@ export default function ExpiringServiceContractsPage() {
 
       {/* Renewal Action Modal */}
       {showRenewalModal && selectedContract && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 w-full  max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
+          <div className="bg-white rounded-lg p-3 w-full  max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-bold text-gray-900">Renewal Management</h2>
               <button
                 onClick={() => setShowRenewalModal(false)}
@@ -686,11 +686,11 @@ export default function ExpiringServiceContractsPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Contract Summary */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Contract Summary</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Contract:</span>
                     <span className="font-medium">{selectedContract.contractNumber}</span>
@@ -717,9 +717,9 @@ export default function ExpiringServiceContractsPage() {
               </div>
 
               {/* Renewal Details */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Renewal Details</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+                <div className="bg-gray-50 p-3 rounded-lg space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Status:</span>
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getRenewalStatusColor(selectedContract.renewalStatus)}`}>
@@ -754,9 +754,9 @@ export default function ExpiringServiceContractsPage() {
               </div>
 
               {/* Renewal Notes */}
-              <div className="lg:col-span-2 space-y-4">
+              <div className="lg:col-span-2 space-y-2">
                 <h3 className="text-lg font-semibold text-gray-900">Renewal Notes</h3>
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-gray-50 p-3 rounded-lg">
                   <p className="text-gray-700">{selectedContract.renewalNotes}</p>
                 </div>
               </div>

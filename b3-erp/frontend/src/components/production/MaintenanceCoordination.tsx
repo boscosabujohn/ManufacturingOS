@@ -143,8 +143,8 @@ const MaintenanceCoordination: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-6 rounded-lg shadow-lg">
+    <div className="space-y-3">
+      <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Wrench className="h-8 w-8" />
@@ -174,9 +174,9 @@ const MaintenanceCoordination: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         {(['scheduled', 'in-progress', 'overdue', 'completed'] as MaintenanceStatus[]).map((status) => (
-          <div key={status} className={`bg-white p-4 rounded-lg shadow border-l-4 ${status === 'overdue' ? 'border-red-500' : status === 'in-progress' ? 'border-yellow-500' : status === 'completed' ? 'border-green-500' : 'border-blue-500'}`}>
+          <div key={status} className={`bg-white p-3 rounded-lg shadow border-l-4 ${status === 'overdue' ? 'border-red-500' : status === 'in-progress' ? 'border-yellow-500' : status === 'completed' ? 'border-green-500' : 'border-blue-500'}`}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 capitalize">{status}</p>
@@ -191,53 +191,53 @@ const MaintenanceCoordination: React.FC = () => {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Maintenance Schedule</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Machine</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Task</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Scheduled Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Technician</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Duration</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Machine</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Task</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Scheduled Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Technician</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Duration</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {tasks.map((task) => (
                 <tr key={task.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{task.machineName}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{task.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{task.machineName}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{task.title}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getTypeColor(task.type)}`}>
                       {task.type}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(task.status)}`}>
                       {task.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-medium ${getPriorityColor(task.priority)}`}>
                       {task.priority}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-1 text-gray-400" />
                       {task.scheduledDate}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{task.technician}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{task.estimatedDuration} min</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{task.technician}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{task.estimatedDuration} min</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex space-x-2">
                       <button onClick={() => handleViewTask(task)} className="px-2 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors" title="View Details">
                         <Eye className="h-4 w-4" />

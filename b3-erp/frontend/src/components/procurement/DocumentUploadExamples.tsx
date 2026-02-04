@@ -32,7 +32,7 @@ export const ContractDocumentUpload: React.FC<{
   }
 
   return (
-    <Card title="Contract Documents" className="space-y-4">
+    <Card title="Contract Documents" className="space-y-2">
       <DragDropUpload
         accept={['.pdf', '.doc', '.docx', '.txt']}
         maxFiles={5}
@@ -42,7 +42,7 @@ export const ContractDocumentUpload: React.FC<{
         autoUpload={true}
         showPreview={false}
       >
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex justify-center">
             <FileText className="h-12 w-12 text-blue-500" />
           </div>
@@ -91,8 +91,8 @@ export const InvoiceDocumentUpload: React.FC<{
   }
 
   return (
-    <Card title="Invoice Documents" className="space-y-4">
-      <div className="flex items-center space-x-4 mb-4">
+    <Card title="Invoice Documents" className="space-y-2">
+      <div className="flex items-center space-x-4 mb-2">
         <label className="text-sm font-medium text-gray-700">Upload Method:</label>
         <div className="flex space-x-2">
           <button
@@ -134,7 +134,7 @@ export const InvoiceDocumentUpload: React.FC<{
           quality: 0.8
         }}
       >
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex justify-center">
             <FileText className="h-12 w-12 text-green-500" />
           </div>
@@ -190,8 +190,8 @@ export const VendorDocumentUpload: React.FC<{
   }
 
   return (
-    <Card title="Vendor Documentation" className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+    <Card title="Vendor Documentation" className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
         <div>
           <label htmlFor="document-type" className="block text-sm font-medium text-gray-700 mb-2">
             Document Type
@@ -221,7 +221,7 @@ export const VendorDocumentUpload: React.FC<{
         showPreview={true}
         allowReorder={true}
       >
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex justify-center">
             <Archive className="h-12 w-12 text-purple-500" />
           </div>
@@ -236,7 +236,7 @@ export const VendorDocumentUpload: React.FC<{
         </div>
       </DragDropUpload>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
         <div className="bg-gray-50 p-3 rounded-lg">
           <h4 className="font-medium text-gray-900 mb-2">Required Documents</h4>
           <ul className="text-gray-600 space-y-1">
@@ -308,8 +308,8 @@ export const BulkPOUpload: React.FC<{
   }
 
   return (
-    <Card title="Bulk Purchase Order Upload" className="space-y-6">
-      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+    <Card title="Bulk Purchase Order Upload" className="space-y-3">
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
         <div className="flex items-start space-x-2">
           <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5" />
           <div className="text-sm text-yellow-800">
@@ -330,7 +330,7 @@ export const BulkPOUpload: React.FC<{
         onUpload={handleFileUpload}
         autoUpload={true}
       >
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex justify-center">
             <FileText className="h-12 w-12 text-indigo-500" />
           </div>
@@ -358,23 +358,23 @@ export const BulkPOUpload: React.FC<{
       )}
 
       {processingStatus === 'completed' && validationResults.length > 0 && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <h3 className="text-lg font-medium text-gray-900">Validation Results</h3>
 
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="text-2xl font-bold text-green-600">
                 {validationResults.filter(r => r.status === 'valid').length}
               </div>
               <div className="text-sm text-green-800">Valid Records</div>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <div className="text-2xl font-bold text-yellow-600">
                 {validationResults.filter(r => r.status === 'warning').length}
               </div>
               <div className="text-sm text-yellow-800">Warnings</div>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="text-2xl font-bold text-red-600">
                 {validationResults.filter(r => r.status === 'error').length}
               </div>
@@ -386,19 +386,19 @@ export const BulkPOUpload: React.FC<{
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Row
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Vendor
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Amount
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Message
                   </th>
                 </tr>
@@ -406,16 +406,16 @@ export const BulkPOUpload: React.FC<{
               <tbody className="bg-white divide-y divide-gray-200">
                 {validationResults.map((result, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {result.row}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       {result.vendor}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       ${result.amount.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                         result.status === 'valid'
                           ? 'bg-green-100 text-green-800'
@@ -426,7 +426,7 @@ export const BulkPOUpload: React.FC<{
                         {result.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
+                    <td className="px-3 py-2 text-sm text-gray-600">
                       {result.message || '-'}
                     </td>
                   </tr>
@@ -457,7 +457,7 @@ export const QuickUploadExamples: React.FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
 
   return (
-    <Card title="Quick Upload Actions" className="space-y-4">
+    <Card title="Quick Upload Actions" className="space-y-2">
       <div className="flex flex-wrap gap-3">
         <UploadButton
           onFileSelect={setSelectedFiles}
@@ -498,7 +498,7 @@ export const QuickUploadExamples: React.FC = () => {
       </div>
 
       {selectedFiles.length > 0 && (
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg p-3">
           <h4 className="font-medium text-gray-900 mb-2">Selected Files:</h4>
           <ul className="text-sm text-gray-600 space-y-1">
             {selectedFiles.map((file, index) => (

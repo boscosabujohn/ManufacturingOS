@@ -11,8 +11,8 @@ export default function LoadBalancingPage() {
     ]);
 
     return (
-        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-            <div className="w-full space-y-6">
+        <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
+            <div className="w-full space-y-3">
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Load Balancing</h1>
@@ -25,11 +25,11 @@ export default function LoadBalancingPage() {
                 </div>
 
                 {/* Load Balancers List */}
-                <div className="grid grid-cols-1 gap-6">
+                <div className="grid grid-cols-1 gap-3">
                     {balancers.map((lb) => (
-                        <div key={lb.id} className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-                                <div className="flex items-center gap-4">
+                        <div key={lb.id} className="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-3">
+                                <div className="flex items-center gap-2">
                                     <div className="p-3 bg-blue-50 rounded-lg">
                                         <Network className="w-6 h-6 text-blue-600" />
                                     </div>
@@ -56,7 +56,7 @@ export default function LoadBalancingPage() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-100">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-6 border-t border-gray-100">
                                 <div>
                                     <p className="text-sm text-gray-500 mb-1">Active Connections</p>
                                     <p className="text-2xl font-bold text-gray-900">{lb.connections.toLocaleString()}</p>

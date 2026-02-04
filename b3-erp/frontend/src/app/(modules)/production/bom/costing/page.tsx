@@ -330,10 +330,10 @@ export default function BOMCostingPage() {
   const subcontractPercent = (costSummary.totalSubcontractCost / costSummary.totalManufacturingCost) * 100;
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -366,7 +366,7 @@ export default function BOMCostingPage() {
       </div>
 
       {/* Product Selection */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <label className="block text-sm font-medium text-gray-700 mb-2">Select Product</label>
         <select
           value={selectedProduct}
@@ -382,8 +382,8 @@ export default function BOMCostingPage() {
       </div>
 
       {/* Cost Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Material Cost</span>
             <Package className="h-5 w-5 text-blue-600" />
@@ -392,7 +392,7 @@ export default function BOMCostingPage() {
           <div className="text-xs text-blue-700 mt-1">{materialPercent.toFixed(1)}% of total</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Labor Cost</span>
             <Users className="h-5 w-5 text-green-600" />
@@ -401,7 +401,7 @@ export default function BOMCostingPage() {
           <div className="text-xs text-green-700 mt-1">{laborPercent.toFixed(1)}% of total</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Overhead Cost</span>
             <Settings className="h-5 w-5 text-purple-600" />
@@ -410,7 +410,7 @@ export default function BOMCostingPage() {
           <div className="text-xs text-purple-700 mt-1">{overheadPercent.toFixed(1)}% of total</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-orange-900">Subcontract</span>
             <Layers className="h-5 w-5 text-orange-600" />
@@ -419,7 +419,7 @@ export default function BOMCostingPage() {
           <div className="text-xs text-orange-700 mt-1">{subcontractPercent.toFixed(1)}% of total</div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-indigo-900">Total Mfg Cost</span>
             <Calculator className="h-5 w-5 text-indigo-600" />
@@ -430,13 +430,13 @@ export default function BOMCostingPage() {
       </div>
 
       {/* Cost Breakdown Chart */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <PieChart className="h-5 w-5 text-blue-600" />
             Cost Distribution
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm text-gray-700">Material Cost</span>
@@ -479,8 +479,8 @@ export default function BOMCostingPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-green-600" />
             Pricing Calculation
           </h3>
@@ -511,8 +511,8 @@ export default function BOMCostingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input

@@ -50,7 +50,7 @@ export function ServiceWorkerRegistration() {
 
   return (
     <div className="fixed bottom-20 sm:bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-80 z-50">
-      <div className="bg-blue-600 text-white rounded-xl shadow-lg p-4 flex items-center justify-between gap-4">
+      <div className="bg-blue-600 text-white rounded-xl shadow-lg p-3 flex items-center justify-between gap-2">
         <div>
           <p className="font-medium">Update Available</p>
           <p className="text-sm text-blue-100">A new version is ready</p>

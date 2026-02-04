@@ -169,7 +169,7 @@ const Modal: React.FC<{
   onClose: () => void
   children: React.ReactNode
   maxWidth?: string
-}> = ({ isOpen, onClose, children, maxWidth = 'max-w-4xl' }) => {
+}> = ({ isOpen, onClose, children, maxWidth = '' }) => {
   if (!isOpen) return null
 
   return (
@@ -190,7 +190,7 @@ const ModalHeader: React.FC<{
   gradientClass: string
 }> = ({ title, icon, onClose, gradientClass }) => {
   return (
-    <div className={`${gradientClass} text-white px-6 py-4 rounded-t-lg sticky top-0 z-10`}>
+    <div className={`${gradientClass} text-white px-3 py-2 rounded-t-lg sticky top-0 z-10`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {icon}
@@ -319,7 +319,7 @@ export const ReceiveStockModal: React.FC<ReceiveStockModalProps> = ({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="max-w-6xl">
+    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="">
       <ModalHeader
         title="Receive Stock"
         icon={<Package className="w-6 h-6" />}
@@ -327,9 +327,9 @@ export const ReceiveStockModal: React.FC<ReceiveStockModalProps> = ({
         gradientClass="bg-gradient-to-r from-green-600 to-green-700"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Header Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <FormField label="Receipt Date" required error={errors.receiptDate}>
             <input
               type="date"
@@ -528,7 +528,7 @@ export const ReceiveStockModal: React.FC<ReceiveStockModalProps> = ({
 
             {formData.items.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                <Package className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <Package className="w-12 h-12 mb-2 opacity-50" />
                 <p>No items added. Click "Add Item" to begin.</p>
               </div>
             )}
@@ -548,7 +548,7 @@ export const ReceiveStockModal: React.FC<ReceiveStockModalProps> = ({
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
         <button
           onClick={handleClose}
           className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
@@ -671,7 +671,7 @@ export const IssueStockModal: React.FC<IssueStockModalProps> = ({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="max-w-6xl">
+    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="">
       <ModalHeader
         title="Issue Stock"
         icon={<TruckIcon className="w-6 h-6" />}
@@ -679,9 +679,9 @@ export const IssueStockModal: React.FC<IssueStockModalProps> = ({
         gradientClass="bg-gradient-to-r from-red-600 to-orange-600"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Header Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <FormField label="Issue Date" required error={errors.issueDate}>
             <input
               type="date"
@@ -878,7 +878,7 @@ export const IssueStockModal: React.FC<IssueStockModalProps> = ({
 
             {formData.items.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                <TruckIcon className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <TruckIcon className="w-12 h-12 mb-2 opacity-50" />
                 <p>No items added. Click "Add Item" to begin.</p>
               </div>
             )}
@@ -886,7 +886,7 @@ export const IssueStockModal: React.FC<IssueStockModalProps> = ({
         </div>
 
         {/* Expected Return */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
@@ -922,7 +922,7 @@ export const IssueStockModal: React.FC<IssueStockModalProps> = ({
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
         <button
           onClick={handleClose}
           className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
@@ -1026,7 +1026,7 @@ export const RecordReturnModal: React.FC<RecordReturnModalProps> = ({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="max-w-5xl">
+    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="">
       <ModalHeader
         title="Record Return"
         icon={<RotateCcw className="w-6 h-6" />}
@@ -1034,9 +1034,9 @@ export const RecordReturnModal: React.FC<RecordReturnModalProps> = ({
         gradientClass="bg-gradient-to-r from-blue-600 to-blue-700"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Header Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <FormField label="Return Date" required error={errors.returnDate}>
             <input
               type="date"
@@ -1188,7 +1188,7 @@ export const RecordReturnModal: React.FC<RecordReturnModalProps> = ({
 
             {formData.items.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                <RotateCcw className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <RotateCcw className="w-12 h-12 mb-2 opacity-50" />
                 <p>Enter an issue reference and click search to load items.</p>
               </div>
             )}
@@ -1208,7 +1208,7 @@ export const RecordReturnModal: React.FC<RecordReturnModalProps> = ({
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
         <button
           onClick={handleClose}
           className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
@@ -1273,7 +1273,7 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
   const totalCost = movement.items.reduce((sum, item) => sum + (item.cost * item.quantity), 0)
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-5xl">
+    <Modal isOpen={isOpen} onClose={onClose} maxWidth="">
       <ModalHeader
         title="Movement Details"
         icon={<FileText className="w-6 h-6" />}
@@ -1281,10 +1281,10 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
         gradientClass="bg-gradient-to-r from-indigo-600 to-indigo-700"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4 border border-indigo-200">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-3 border border-indigo-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <p className="text-sm text-gray-600">Movement Number</p>
               <p className="text-lg font-semibold text-gray-900">{movement.movementNumber}</p>
@@ -1309,8 +1309,8 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
         </div>
 
         {/* Source/Destination Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <MapPin className="w-4 h-4" />
               {movement.type === 'receipt' ? 'From' : 'Source'}
@@ -1337,7 +1337,7 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <MapPin className="w-4 h-4" />
               {movement.type === 'issue' ? 'To' : 'Destination'}
@@ -1410,7 +1410,7 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
         </div>
 
         {/* Documents Section */}
-        <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
           <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
             <FileText className="w-4 h-4" />
             Attached Documents
@@ -1420,12 +1420,12 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
         </div>
 
         {/* Audit Trail */}
-        <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
           <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
             <User className="w-4 h-4" />
             Audit Trail
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <p className="text-xs text-gray-600">Created By</p>
               <p className="text-sm font-medium text-gray-900">{movement.createdBy}</p>
@@ -1443,7 +1443,7 @@ export const ViewMovementDetailsModal: React.FC<ViewMovementDetailsModalProps> =
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
         <button
           onClick={handlePrint}
           className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
@@ -1575,7 +1575,7 @@ export const BatchIssueModal: React.FC<BatchIssueModalProps> = ({
   ).length
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="max-w-6xl">
+    <Modal isOpen={isOpen} onClose={handleClose} maxWidth="">
       <ModalHeader
         title="Batch Issue for Production"
         icon={<Archive className="w-6 h-6" />}
@@ -1583,9 +1583,9 @@ export const BatchIssueModal: React.FC<BatchIssueModalProps> = ({
         gradientClass="bg-gradient-to-r from-purple-600 to-purple-700"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Header Information */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <FormField label="Work Order Number" required error={errors.workOrderNumber}>
             <div className="flex gap-2">
               <input
@@ -1626,16 +1626,16 @@ export const BatchIssueModal: React.FC<BatchIssueModalProps> = ({
 
         {/* Summary Cards */}
         {formData.items.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
               <p className="text-sm text-blue-700 font-medium">Total Items</p>
               <p className="text-2xl font-bold text-blue-900">{formData.items.length}</p>
             </div>
-            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
               <p className="text-sm text-green-700 font-medium">Fully Allocated</p>
               <p className="text-2xl font-bold text-green-900">{fullyAllocatedCount}</p>
             </div>
-            <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+            <div className="bg-red-50 rounded-lg p-3 border border-red-200">
               <p className="text-sm text-red-700 font-medium">Shortages</p>
               <p className="text-2xl font-bold text-red-900">{shortageCount}</p>
             </div>
@@ -1752,7 +1752,7 @@ export const BatchIssueModal: React.FC<BatchIssueModalProps> = ({
 
             {formData.items.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                <Archive className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <Archive className="w-12 h-12 mb-2 opacity-50" />
                 <p>Enter a work order number and click search to load BOM items.</p>
               </div>
             )}
@@ -1760,7 +1760,7 @@ export const BatchIssueModal: React.FC<BatchIssueModalProps> = ({
         </div>
 
         {shortageCount > 0 && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-sm font-medium text-yellow-900">Stock Shortage Warning</p>
@@ -1773,7 +1773,7 @@ export const BatchIssueModal: React.FC<BatchIssueModalProps> = ({
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
         <button
           onClick={handleClose}
           className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors"
@@ -1897,7 +1897,7 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-6xl">
+    <Modal isOpen={isOpen} onClose={onClose} maxWidth="">
       <ModalHeader
         title="Movement History"
         icon={<FileText className="w-6 h-6" />}
@@ -1905,15 +1905,15 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
         gradientClass="bg-gradient-to-r from-gray-600 to-gray-700"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Filters */}
-        <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+          <div className="flex items-center gap-2 mb-2">
             <Filter className="w-5 h-5 text-gray-600" />
             <h3 className="text-sm font-semibold text-gray-800">Filters</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-1">Date From</label>
               <input
@@ -1994,8 +1994,8 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <div className="bg-green-50 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-green-700 font-medium">Total Receipts</p>
@@ -2005,7 +2005,7 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
             </div>
           </div>
 
-          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+          <div className="bg-red-50 rounded-lg p-3 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-red-700 font-medium">Total Issues</p>
@@ -2015,7 +2015,7 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
             </div>
           </div>
 
-          <div className={`rounded-lg p-4 border ${netChange >= 0 ? 'bg-blue-50 border-blue-200' : 'bg-orange-50 border-orange-200'}`}>
+          <div className={`rounded-lg p-3 border ${netChange >= 0 ? 'bg-blue-50 border-blue-200' : 'bg-orange-50 border-orange-200'}`}>
             <div className="flex items-center justify-between">
               <div>
                 <p className={`text-sm font-medium ${netChange >= 0 ? 'text-blue-700' : 'text-orange-700'}`}>Net Change</p>
@@ -2097,7 +2097,7 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
 
             {filteredMovements.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                <FileText className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                <FileText className="w-12 h-12 mb-2 opacity-50" />
                 <p>No movements found matching the filters.</p>
               </div>
             )}
@@ -2131,7 +2131,7 @@ export const MovementHistoryModal: React.FC<MovementHistoryModalProps> = ({
       </div>
 
       {/* Footer Actions */}
-      <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
+      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex justify-end gap-3">
         <button
           onClick={onClose}
           className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors"

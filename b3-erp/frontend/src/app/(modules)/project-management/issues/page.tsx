@@ -526,8 +526,8 @@ export default function IssuesRisksPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
      {/* Search */}
      <div className="lg:col-span-2">
       <div className="relative">
@@ -591,7 +591,7 @@ export default function IssuesRisksPage() {
       return (
        <div key={item.id} className="p-6 hover:bg-gray-50 transition-colors">
         <div className="flex items-start justify-between">
-         <div className="flex items-start gap-4 flex-1">
+         <div className="flex items-start gap-2 flex-1">
           {/* Icon */}
           <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
            item.impact === 'Critical' ? 'bg-red-100' :
@@ -639,7 +639,7 @@ export default function IssuesRisksPage() {
 
            <p className="text-sm text-gray-600 mb-3">{item.description}</p>
 
-           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
+           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
             <div>
              <p className="text-xs text-gray-500">ID</p>
              <p className="text-sm font-medium text-gray-900">{item.number}</p>
@@ -662,7 +662,7 @@ export default function IssuesRisksPage() {
            </div>
 
            {/* Impact */}
-           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-3 bg-gray-50 rounded-lg p-3">
+           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3 bg-gray-50 rounded-lg p-3">
             <div>
              <p className="text-xs text-gray-500">Cost Impact</p>
              <p className="text-sm font-semibold text-orange-900">{formatCurrency(item.costImpact)}</p>
@@ -864,7 +864,7 @@ export default function IssuesRisksPage() {
     </div>
 
     {/* Pagination */}
-    <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+    <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
      <div className="text-sm text-gray-700">
       Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredItems.length)} of{' '}
       {filteredItems.length} items

@@ -111,8 +111,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <AlertTriangle className="h-6 w-6 text-teal-600" />
           Succession Risk Assessment
@@ -120,30 +120,30 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Identify and mitigate succession risks</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-sm font-medium text-blue-600">Total Positions</p>
           <p className="text-2xl font-bold text-blue-900">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center gap-2 mb-1">
             <AlertTriangle className="h-5 w-5 text-red-600" />
             <p className="text-sm font-medium text-red-600">Critical Risk</p>
           </div>
           <p className="text-2xl font-bold text-red-900">{stats.critical}</p>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <p className="text-sm font-medium text-orange-600">High Risk</p>
           <p className="text-2xl font-bold text-orange-900">{stats.high}</p>
         </div>
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 border border-gray-200">
+        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
           <p className="text-sm font-medium text-gray-600">Avg Risk Score</p>
           <p className="text-2xl font-bold text-gray-900">{stats.avgRisk}%</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">Risk Level:</label>
           <select value={selectedRiskLevel} onChange={(e) => setSelectedRiskLevel(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
             <option value="all">All Levels</option>
@@ -155,10 +155,10 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRisks.map(risk => (
-          <div key={risk.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={risk.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{risk.title}</h3>
@@ -174,7 +174,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-2">
               <div>
                 <p className="text-xs text-gray-500 uppercase font-medium mb-2">Retirement Risk</p>
                 <div className="bg-gray-200 rounded-full h-2 mb-1">
@@ -212,7 +212,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="bg-orange-50 rounded-lg p-4 mb-4 border border-orange-200">
+            <div className="bg-orange-50 rounded-lg p-3 mb-2 border border-orange-200">
               <div className="flex items-center gap-2 mb-2">
                 <Clock className="h-4 w-4 text-orange-600" />
                 <h4 className="text-sm font-bold text-orange-900">Mitigation Actions (Timeline: {risk.timeline})</h4>

@@ -420,7 +420,7 @@ Senior Support Team`,
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -434,7 +434,7 @@ Senior Support Team`,
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -445,7 +445,7 @@ Senior Support Team`,
             gray: 'bg-gray-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -460,8 +460,8 @@ Senior Support Team`,
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <input
               type="text"
@@ -490,10 +490,10 @@ Senior Support Team`,
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
         {filteredTemplates.map((template) => (
-          <div key={template.id} className="bg-white rounded-lg shadow-sm border p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
+          <div key={template.id} className="bg-white rounded-lg shadow-sm border p-3 hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <span className={`px-3 py-1 rounded text-xs font-medium ${getCategoryColor(template.category)}`}>
@@ -529,11 +529,11 @@ Senior Support Team`,
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded p-3 mb-4 max-h-32 overflow-y-auto">
+            <div className="bg-gray-50 rounded p-3 mb-2 max-h-32 overflow-y-auto">
               <pre className="text-xs text-gray-700 whitespace-pre-wrap font-mono">{template.body.substring(0, 200)}...</pre>
             </div>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-2">
               <div className="text-xs font-medium text-gray-700">TRIGGER CONDITIONS:</div>
               <div className="flex flex-wrap gap-2">
                 {template.trigger.conditions.map((condition, idx) => (
@@ -544,7 +544,7 @@ Senior Support Team`,
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200">
               <div>
                 <div className="text-xs text-gray-500">Usage</div>
                 <div className="text-lg font-semibold text-gray-900">{template.usageCount}</div>
@@ -569,7 +569,7 @@ Senior Support Team`,
 
       {filteredTemplates.length === 0 && (
         <div className="text-center py-12 bg-gray-50 rounded-lg">
-          <Mail className="h-12 w-12 text-gray-400 mb-4" />
+          <Mail className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No templates found matching your criteria</p>
         </div>
       )}

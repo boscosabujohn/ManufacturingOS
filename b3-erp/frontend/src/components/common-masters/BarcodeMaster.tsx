@@ -78,10 +78,10 @@ const BarcodeMaster: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Barcode className="w-8 h-8 text-blue-600" />
@@ -122,8 +122,8 @@ const BarcodeMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Barcodes</p>
@@ -132,7 +132,7 @@ const BarcodeMaster: React.FC = () => {
               <Barcode className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Barcodes</p>
@@ -143,7 +143,7 @@ const BarcodeMaster: React.FC = () => {
               <CheckCircle className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Scans</p>
@@ -154,7 +154,7 @@ const BarcodeMaster: React.FC = () => {
               <Scan className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Labels Printed</p>
@@ -172,19 +172,19 @@ const BarcodeMaster: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Barcode</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">UOM</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Scans</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Barcode</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">UOM</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Scans</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredBarcodes.map(barcode => (
                 <tr key={barcode.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-3">
                       <Barcode className="w-8 h-8 text-gray-400" />
                       <div>
@@ -195,30 +195,30 @@ const BarcodeMaster: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(barcode.barcodeType)}`}>
                       {barcode.barcodeType}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{barcode.itemName}</div>
                     <div className="text-xs text-gray-500">{barcode.itemCode}</div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{barcode.uom || '-'}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-sm text-gray-900">{barcode.uom || '-'}</td>
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{barcode.scanCount.toLocaleString()}</div>
                     {barcode.lastScanned && (
                       <div className="text-xs text-gray-500">Last: {barcode.lastScanned}</div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                       barcode.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
                       {barcode.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex gap-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />

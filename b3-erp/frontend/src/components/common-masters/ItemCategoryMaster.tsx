@@ -471,7 +471,7 @@ const ItemCategoryMaster: React.FC = () => {
               )}
             </div>
             <div className="text-sm text-gray-600 mt-1">{category.description}</div>
-            <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+            <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
               <span>Items: {category.statistics.totalItems}</span>
               <span>Active: {category.statistics.activeItems}</span>
               {category.statistics.totalValue && (
@@ -538,7 +538,7 @@ const ItemCategoryMaster: React.FC = () => {
       {/* Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <FolderTree className="w-8 h-8 text-blue-600" />
@@ -566,7 +566,7 @@ const ItemCategoryMaster: React.FC = () => {
           </div>
 
           {/* Filters */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -625,8 +625,8 @@ const ItemCategoryMaster: React.FC = () => {
       {/* Content */}
       <div className="p-6">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Categories</p>
@@ -638,7 +638,7 @@ const ItemCategoryMaster: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Categories</p>
@@ -650,7 +650,7 @@ const ItemCategoryMaster: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Items</p>
@@ -662,7 +662,7 @@ const ItemCategoryMaster: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Inventory Value</p>
@@ -681,7 +681,7 @@ const ItemCategoryMaster: React.FC = () => {
             <RefreshCw className="w-8 h-8 text-blue-600 animate-spin" />
           </div>
         ) : (
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             {viewMode === 'tree' && (
               <div className="space-y-2">
                 {filteredCategories
@@ -695,7 +695,7 @@ const ItemCategoryMaster: React.FC = () => {
                 {filteredCategories.map(category => (
                   <div
                     key={category.id}
-                    className="flex items-center gap-4 p-4 rounded-lg hover:bg-gray-50 border border-gray-200"
+                    className="flex items-center gap-2 p-3 rounded-lg hover:bg-gray-50 border border-gray-200"
                   >
                     <div
                       className="w-10 h-10 rounded flex items-center justify-center"
@@ -736,11 +736,11 @@ const ItemCategoryMaster: React.FC = () => {
             )}
 
             {viewMode === 'grid' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {filteredCategories.map(category => (
                   <div
                     key={category.id}
-                    className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition"
+                    className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div

@@ -43,12 +43,12 @@ function MovementTypeContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Movement ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From / To</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Movement ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From / To</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -57,10 +57,10 @@ function MovementTypeContent() {
                                     key={m.id}
                                     onClick={() => router.push(`/inventory/movements/view/${m.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{m.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{m.date}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{m.item}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{m.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{m.date}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{m.item}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${m.type === 'Receipt' ? 'bg-green-100 text-green-800' :
                                                 m.type === 'Issue' ? 'bg-orange-100 text-orange-800' :
                                                     'bg-blue-100 text-blue-800'
@@ -68,10 +68,10 @@ function MovementTypeContent() {
                                             {m.type}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right font-medium">
                                         {m.quantity}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                                         {m.from} → {m.to}
                                     </td>
                                 </ClickableTableRow>

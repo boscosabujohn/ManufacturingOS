@@ -44,9 +44,9 @@ export interface LargeButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
 }
 
 const sizeClasses: Record<LargeButtonSize, string> = {
-  lg: 'min-h-[64px] min-w-[64px] px-6 py-4 text-lg',
+  lg: 'min-h-[64px] min-w-[64px] px-3 py-2 text-lg',
   xl: 'min-h-[80px] min-w-[80px] px-8 py-5 text-xl',
-  '2xl': 'min-h-[96px] min-w-[96px] px-10 py-6 text-2xl',
+  '2xl': 'min-h-[96px] min-w-[96px] px-10 py-2 text-2xl',
 };
 
 const iconSizeClasses: Record<LargeButtonSize, string> = {
@@ -237,7 +237,7 @@ export function NumberPad({
   return (
     <div className={`flex flex-col gap-3 ${className}`}>
       {/* Display */}
-      <div className="bg-gray-900 text-white text-4xl font-mono font-bold text-right px-6 py-4 rounded-xl border-2 border-gray-700">
+      <div className="bg-gray-900 text-white text-4xl font-mono font-bold text-right px-3 py-2 rounded-xl border-2 border-gray-700">
         {value.toLocaleString()}
       </div>
 
@@ -381,7 +381,7 @@ export function QuickActionGrid({
   };
 
   return (
-    <div className={`grid ${gridCols[columns]} gap-4 ${className}`}>
+    <div className={`grid ${gridCols[columns]} gap-2 ${className}`}>
       {actions.map(action => (
         <LargeButton
           key={action.id}
@@ -423,7 +423,7 @@ export function LargeNavArrows({
   const NextIcon = vertical ? ChevronDown : ArrowRight;
 
   return (
-    <div className={`flex ${vertical ? 'flex-col' : 'flex-row'} gap-4 ${className}`}>
+    <div className={`flex ${vertical ? 'flex-col' : 'flex-row'} gap-2 ${className}`}>
       <LargeButton
         variant="secondary"
         size={size}

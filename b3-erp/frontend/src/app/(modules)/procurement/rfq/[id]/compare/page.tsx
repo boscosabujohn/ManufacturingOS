@@ -252,7 +252,7 @@ export default function QuotationComparisonPage() {
   }
 
   return (
-    <div className="p-6 w-full space-y-6">
+    <div className="p-6 w-full space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -287,7 +287,7 @@ export default function QuotationComparisonPage() {
       </div>
 
       {/* Vendor Summary Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
         {comparisonData.vendors.map((vendor) => {
           const summary = comparisonData.summary[vendor.id]
           return (
@@ -305,7 +305,7 @@ export default function QuotationComparisonPage() {
 
               <div className="p-4">
                 {/* Vendor Info */}
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex justify-between items-start mb-2">
                   <div>
                     <h3 className="font-semibold text-gray-900 text-lg">{vendor.name}</h3>
                     <p className="text-sm text-gray-500">{vendor.code}</p>
@@ -422,23 +422,23 @@ export default function QuotationComparisonPage() {
 
       {/* Detailed Item Comparison Table */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="bg-gray-50 px-6 py-3 border-b">
+        <div className="bg-gray-50 px-3 py-2 border-b">
           <h3 className="text-lg font-semibold text-gray-900">Detailed Item Comparison</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" rowSpan={2}>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" rowSpan={2}>
                   Item Details
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider" rowSpan={2}>
+                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider" rowSpan={2}>
                   Qty
                 </th>
                 {comparisonData.vendors.map((vendor) => (
                   <th
                     key={vendor.id}
-                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l"
+                    className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-l"
                     colSpan={4}
                   >
                     {vendor.name}
@@ -459,14 +459,14 @@ export default function QuotationComparisonPage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {comparisonData.items.map((item) => (
                 <tr key={item.itemCode} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{item.itemName}</div>
                       <div className="text-xs text-gray-500">{item.itemCode}</div>
                       <div className="text-xs text-gray-600 mt-1">{item.specification}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-3 py-2 text-center">
                     <div className="text-sm font-medium text-gray-900">{item.quantity}</div>
                     <div className="text-xs text-gray-500">{item.unit}</div>
                   </td>
@@ -515,13 +515,13 @@ export default function QuotationComparisonPage() {
             </tbody>
             <tfoot className="bg-gray-50">
               <tr>
-                <td colSpan={2} className="px-6 py-3 text-sm font-semibold text-gray-900">
+                <td colSpan={2} className="px-3 py-2 text-sm font-semibold text-gray-900">
                   Grand Total
                 </td>
                 {comparisonData.vendors.map((vendor) => {
                   const summary = comparisonData.summary[vendor.id]
                   return (
-                    <td key={vendor.id} colSpan={4} className="px-6 py-3 text-center border-l">
+                    <td key={vendor.id} colSpan={4} className="px-3 py-2 text-center border-l">
                       <div className={`text-lg font-bold ${summary.ranking === 1 ? 'text-green-600' : 'text-gray-900'
                         }`}>
                         ${summary.grandTotal.toLocaleString()}
@@ -539,9 +539,9 @@ export default function QuotationComparisonPage() {
       </div>
 
       {/* Evaluation Criteria */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Evaluation Criteria</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Evaluation Criteria</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="flex items-center gap-3">
             <DollarSign className="h-8 w-8 text-blue-500 bg-blue-100 rounded-lg p-1.5" />
             <div>

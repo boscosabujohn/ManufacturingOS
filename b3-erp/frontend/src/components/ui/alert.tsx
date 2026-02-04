@@ -57,7 +57,7 @@ export function Alert({
   return (
     <div
       role="alert"
-      className={`relative flex gap-3 p-4 rounded-lg border ${config.container} ${className}`}
+      className={`relative flex gap-3 p-3 rounded-lg border ${config.container} ${className}`}
     >
       {showIcon && (
         <Icon className={`w-5 h-5 flex-shrink-0 ${config.iconColor}`} />

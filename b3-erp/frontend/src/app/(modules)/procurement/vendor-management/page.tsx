@@ -583,7 +583,7 @@ const VendorManagementDashboard = () => {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-2"></div>
           <p className="text-gray-600">Loading vendor management dashboard...</p>
         </div>
       </div>
@@ -591,11 +591,11 @@ const VendorManagementDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Vendor Management</h1>
               <p className="text-sm text-gray-600 mt-1">Comprehensive vendor analytics and performance tracking</p>
@@ -619,8 +619,8 @@ const VendorManagementDashboard = () => {
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-            <div className="grid grid-cols-5 gap-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="grid grid-cols-5 gap-2">
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Date Range</label>
                 <select
@@ -698,8 +698,8 @@ const VendorManagementDashboard = () => {
         </div>
 
         {/* Quick Stats Cards */}
-        <div className="grid grid-cols-4 gap-6 mb-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="grid grid-cols-4 gap-3 mb-3">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-3">
               <div className="p-3 bg-blue-100 rounded-lg">
                 <Building2 className="w-6 h-6 text-blue-600" />
@@ -714,7 +714,7 @@ const VendorManagementDashboard = () => {
             <p className="text-xs text-gray-500 mt-2">Out of {metrics.total_vendors} total</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-3">
               <div className="p-3 bg-green-100 rounded-lg">
                 <Plus className="w-6 h-6 text-green-600" />
@@ -729,7 +729,7 @@ const VendorManagementDashboard = () => {
             <p className="text-xs text-gray-500 mt-2">Vendors onboarded</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-3">
               <div className="p-3 bg-yellow-100 rounded-lg">
                 <Star className="w-6 h-6 text-yellow-600" />
@@ -751,7 +751,7 @@ const VendorManagementDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-3">
               <div className="p-3 bg-purple-100 rounded-lg">
                 <DollarSign className="w-6 h-6 text-purple-600" />
@@ -770,10 +770,10 @@ const VendorManagementDashboard = () => {
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-2 gap-3 mb-3">
           {/* Top 10 Vendors by Spend */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-blue-600" />
               Top 10 Vendors by Spend (YTD)
             </h3>
@@ -807,13 +807,13 @@ const VendorManagementDashboard = () => {
           </div>
 
           {/* Vendor Rating Distribution */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <PieChart className="w-5 h-5 text-green-600" />
               Vendor Rating Distribution
             </h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                     A
@@ -831,7 +831,7 @@ const VendorManagementDashboard = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                     B
@@ -849,7 +849,7 @@ const VendorManagementDashboard = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+              <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                     C
@@ -867,7 +867,7 @@ const VendorManagementDashboard = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-200">
+              <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                     D
@@ -889,10 +889,10 @@ const VendorManagementDashboard = () => {
         </div>
 
         {/* Performance Trends & Risk Matrix */}
-        <div className="grid grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-3 gap-3 mb-3">
           {/* Vendor Risk Matrix */}
-          <div className="col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-orange-600" />
               Vendor Risk Matrix
             </h3>
@@ -925,7 +925,7 @@ const VendorManagementDashboard = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-2 text-xs text-gray-600">
                     <span>Last delay: {vendor.last_delivery_delay} days</span>
                     {vendor.financial_risk && (
                       <span className="flex items-center gap-1 text-red-600">
@@ -940,8 +940,8 @@ const VendorManagementDashboard = () => {
           </div>
 
           {/* Recent Activities */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Activity className="w-5 h-5 text-indigo-600" />
               Recent Activities
             </h3>
@@ -963,8 +963,8 @@ const VendorManagementDashboard = () => {
         </div>
 
         {/* Pending Actions */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Clock className="w-5 h-5 text-purple-600" />
             Pending Actions ({pendingActions.length})
           </h3>
@@ -1003,8 +1003,8 @@ const VendorManagementDashboard = () => {
         </div>
 
         {/* Vendor Scorecard Table */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Target className="w-5 h-5 text-green-600" />
             Vendor Scorecard ({filteredVendors.length} vendors)
           </h3>

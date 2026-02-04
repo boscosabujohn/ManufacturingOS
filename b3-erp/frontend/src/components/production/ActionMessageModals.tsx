@@ -130,9 +130,9 @@ export function ApproveActionModal({ isOpen, onClose, onApprove, actionMessage }
   if (!isOpen || !actionMessage) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <CheckCircle className="h-6 w-6 text-white" />
@@ -149,9 +149,9 @@ export function ApproveActionModal({ isOpen, onClose, onApprove, actionMessage }
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Action Message Summary */}
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-green-900 mb-4">Action Message Details</h3>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 mb-3">
+            <h3 className="text-lg font-semibold text-green-900 mb-2">Action Message Details</h3>
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <p className="text-sm text-green-600 mb-1">Action Type</p>
                 <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
@@ -204,7 +204,7 @@ export function ApproveActionModal({ isOpen, onClose, onApprove, actionMessage }
           </div>
 
           {/* Approval Form */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {/* Implementation Date */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -271,7 +271,7 @@ export function ApproveActionModal({ isOpen, onClose, onApprove, actionMessage }
             </div>
 
             {/* Auto-Execute */}
-            <label className="flex items-center gap-3 cursor-pointer p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+            <label className="flex items-center gap-3 cursor-pointer p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
               <input
                 type="checkbox"
                 checked={formData.autoExecute}
@@ -289,7 +289,7 @@ export function ApproveActionModal({ isOpen, onClose, onApprove, actionMessage }
           </div>
 
           {/* Info Box */}
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-blue-800">
@@ -305,7 +305,7 @@ export function ApproveActionModal({ isOpen, onClose, onApprove, actionMessage }
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -369,9 +369,9 @@ export function RejectActionModal({ isOpen, onClose, onReject, actionMessage }: 
   if (!isOpen || !actionMessage) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <XCircle className="h-6 w-6 text-white" />
@@ -388,7 +388,7 @@ export function RejectActionModal({ isOpen, onClose, onReject, actionMessage }: 
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Action Message Summary */}
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 mb-6">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-red-600 mb-1">Rejecting Action</p>
@@ -403,7 +403,7 @@ export function RejectActionModal({ isOpen, onClose, onReject, actionMessage }: 
           </div>
 
           {/* Rejection Form */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {/* Rejection Reason */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -472,7 +472,7 @@ export function RejectActionModal({ isOpen, onClose, onReject, actionMessage }: 
           </div>
 
           {/* Warning Box */}
-          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div className="text-sm text-yellow-800">
@@ -486,7 +486,7 @@ export function RejectActionModal({ isOpen, onClose, onReject, actionMessage }: 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end gap-3 border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -511,9 +511,9 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
   if (!isOpen || !actionMessage) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-white/20 p-2 rounded-lg">
               <Eye className="h-6 w-6 text-white" />
@@ -530,8 +530,8 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
 
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
           {/* Summary Header */}
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 mb-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 mb-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <span className={`px-4 py-2 rounded-lg text-sm font-bold ${
                   actionMessage.type === 'Purchase Order' ? 'bg-blue-100 text-blue-700' :
@@ -558,7 +558,7 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
               )}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-sm text-blue-600 mb-1">Material Code</p>
                 <p className="font-bold text-blue-900">{actionMessage.materialCode}</p>
@@ -579,12 +579,12 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
           </div>
 
           {/* Material Information */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="h-5 w-5 text-blue-600" />
               Material Information
             </h3>
-            <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 md:grid-cols-3 gap-2">
               <div>
                 <p className="text-sm text-gray-600">Material Code</p>
                 <p className="font-semibold text-gray-900">{actionMessage.materialCode}</p>
@@ -613,20 +613,20 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
           </div>
 
           {/* Date Comparison */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="h-5 w-5 text-blue-600" />
               Timeline Comparison
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               {actionMessage.currentDate && (
-                <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-3">
                   <p className="text-sm text-yellow-600 font-medium mb-1">Current Date</p>
                   <p className="text-2xl font-bold text-yellow-900">{actionMessage.currentDate}</p>
                   <p className="text-xs text-yellow-600 mt-1">Existing schedule</p>
                 </div>
               )}
-              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-3">
                 <p className="text-sm text-green-600 font-medium mb-1">Suggested Date</p>
                 <p className="text-2xl font-bold text-green-900">{actionMessage.suggestedDate}</p>
                 <p className="text-xs text-green-600 mt-1">Recommended by MRP</p>
@@ -636,21 +636,21 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
 
           {/* Cost Details */}
           {(actionMessage.unitCost || actionMessage.totalCost) && (
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-blue-600" />
                 Cost Details
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 {actionMessage.unitCost && (
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                     <p className="text-sm text-blue-600 mb-1">Unit Cost</p>
                     <p className="text-2xl font-bold text-blue-900">₹{actionMessage.unitCost.toLocaleString()}</p>
                     <p className="text-xs text-blue-600">per {actionMessage.uom}</p>
                   </div>
                 )}
                 {actionMessage.totalCost && (
-                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                     <p className="text-sm text-green-600 mb-1">Total Cost</p>
                     <p className="text-2xl font-bold text-green-900">₹{actionMessage.totalCost.toLocaleString()}</p>
                     <p className="text-xs text-green-600">for {actionMessage.quantity.toLocaleString()} {actionMessage.uom}</p>
@@ -661,13 +661,13 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
           )}
 
           {/* Reason and Impact */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="h-5 w-5 text-blue-600" />
               Reason and Impact Analysis
             </h3>
             <div className="space-y-3">
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                 <div className="flex items-start gap-2">
                   <AlertCircle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
                   <div>
@@ -677,7 +677,7 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
                 </div>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <div className="flex items-start gap-2">
                   <TrendingUp className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
                   <div>
@@ -691,12 +691,12 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
 
           {/* Affected Work Orders */}
           {actionMessage.affectedWorkOrders && actionMessage.affectedWorkOrders.length > 0 && (
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Factory className="h-5 w-5 text-blue-600" />
                 Affected Work Orders
               </h3>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <div className="flex flex-wrap gap-2">
                   {actionMessage.affectedWorkOrders.map((wo, idx) => (
                     <span key={idx} className="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-lg text-sm font-medium border border-purple-300">
@@ -714,13 +714,13 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
           {/* Action History */}
           {actionMessage.history && actionMessage.history.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Clock className="h-5 w-5 text-blue-600" />
                 Action History
               </h3>
               <div className="space-y-3">
                 {actionMessage.history.map((historyItem) => (
-                  <div key={historyItem.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                  <div key={historyItem.id} className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between">
                       <div className="flex items-start gap-3">
                         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
@@ -757,7 +757,7 @@ export function ViewActionDetailsModal({ isOpen, onClose, actionMessage }: ViewA
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 flex justify-end border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"

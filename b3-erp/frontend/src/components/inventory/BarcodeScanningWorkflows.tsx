@@ -15,14 +15,14 @@ export default function BarcodeScanningWorkflows() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Barcode Scanning Workflows</h1>
           <p className="text-gray-600">Mobile-optimized scanning for warehouse operations</p>
         </div>
 
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-2 mb-3">
           {Object.entries(workflows).map(([key, workflow]) => {
             const Icon = workflow.icon;
             return (
@@ -35,7 +35,7 @@ export default function BarcodeScanningWorkflows() {
                     : 'border-gray-200 bg-white hover:border-gray-300'
                 }`}
               >
-                <Icon className={`w-8 h-8 mx-auto mb-2 ${scanMode === key ? `text-${workflow.color}-600` : 'text-gray-400'}`} />
+                <Icon className={`w-8 h-8 mb-2 ${scanMode === key ? `text-${workflow.color}-600` : 'text-gray-400'}`} />
                 <p className={`text-sm font-medium ${scanMode === key ? `text-${workflow.color}-900` : 'text-gray-600'}`}>
                   {workflow.label}
                 </p>
@@ -44,20 +44,20 @@ export default function BarcodeScanningWorkflows() {
           })}
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <div className="text-center mb-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <div className="text-center mb-3">
+            <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full mb-2 flex items-center justify-center">
               <Barcode className="w-12 h-12 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Scan Barcode/QR Code</h2>
             <p className="text-gray-600">Point camera at barcode or enter manually</p>
           </div>
 
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md">
             <input
               type="text"
               placeholder="Scan or enter barcode..."
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg mb-4 focus:border-blue-500 focus:outline-none"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg mb-2 focus:border-blue-500 focus:outline-none"
             />
 
             <div className="space-y-2">
@@ -70,7 +70,7 @@ export default function BarcodeScanningWorkflows() {
                 ))
               ) : (
                 <div className="text-center py-8 text-gray-400">
-                  <Scan className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <Scan className="w-12 h-12 mb-2 opacity-50" />
                   <p>No items scanned yet</p>
                 </div>
               )}

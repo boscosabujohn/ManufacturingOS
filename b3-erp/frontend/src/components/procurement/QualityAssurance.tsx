@@ -2525,10 +2525,10 @@ Report Distribution: Management, Quality Team
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Quality Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Pass Rate</p>
@@ -2538,7 +2538,7 @@ Report Distribution: Management, Quality Team
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-100 text-sm">Defect Rate</p>
@@ -2548,7 +2548,7 @@ Report Distribution: Management, Quality Team
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">Today's Inspections</p>
@@ -2558,7 +2558,7 @@ Report Distribution: Management, Quality Team
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 text-sm">Pending</p>
@@ -2568,7 +2568,7 @@ Report Distribution: Management, Quality Team
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Avg Time</p>
@@ -2578,7 +2578,7 @@ Report Distribution: Management, Quality Team
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-lg p-4 text-white">
+        <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-100 text-sm">Compliance</p>
@@ -2590,10 +2590,10 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* Quality Trends Chart */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Quality Trends</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Quality Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={qualityTrends}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -2608,8 +2608,8 @@ Report Distribution: Management, Quality Team
         </div>
 
         {/* Defect Categories */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Defect Categories</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Defect Categories</h3>
           <ResponsiveContainer width="100%" height={300}>
             <RePieChart>
               <Pie
@@ -2633,8 +2633,8 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Supplier Quality Scores */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Supplier Quality Scores</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Supplier Quality Scores</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -2693,7 +2693,7 @@ Report Distribution: Management, Quality Team
   );
 
   const renderInspections = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Inspection Queue Header */}
       <div className="flex justify-between items-center">
         <h3 className="text-xl font-semibold">Inspection Queue</h3>
@@ -2730,10 +2730,10 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Inspection Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
         {inspectionQueue.map((inspection) => (
-          <div key={inspection.id} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-            <div className="flex justify-between items-start mb-4">
+          <div key={inspection.id} className="bg-white rounded-lg shadow p-3 hover:shadow-lg transition-shadow">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h4 className="font-semibold text-lg">{inspection.id}</h4>
                 <p className="text-gray-600 text-sm">{inspection.poNumber}</p>
@@ -2748,7 +2748,7 @@ Report Distribution: Management, Quality Team
               </span>
             </div>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-2">
               <div className="flex justify-between">
                 <span className="text-gray-600 text-sm">Supplier:</span>
                 <span className="text-sm font-medium">{inspection.supplier}</span>
@@ -2811,9 +2811,9 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Inspection Statistics */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Inspection Volume</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Inspection Volume</h4>
           <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={qualityTrends}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -2825,8 +2825,8 @@ Report Distribution: Management, Quality Team
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Priority Distribution</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Priority Distribution</h4>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={[
               { priority: 'Critical', count: 5 },
@@ -2843,8 +2843,8 @@ Report Distribution: Management, Quality Team
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Inspector Performance</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Inspector Performance</h4>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-sm">John Smith</span>
@@ -2880,7 +2880,7 @@ Report Distribution: Management, Quality Team
   );
 
   const renderTemplates = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Templates Header */}
       <div className="flex justify-between items-center">
         <h3 className="text-xl font-semibold">Inspection Templates</h3>
@@ -2903,18 +2903,18 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {inspectionTemplates.map((template) => (
-          <div key={template.id} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-            <div className="flex justify-between items-start mb-4">
+          <div key={template.id} className="bg-white rounded-lg shadow p-3 hover:shadow-lg transition-shadow">
+            <div className="flex justify-between items-start mb-2">
               <FileText className="h-10 w-10 text-blue-500" />
               <span className="text-xs text-gray-500">{template.id}</span>
             </div>
 
             <h4 className="font-semibold text-lg mb-2">{template.name}</h4>
-            <p className="text-gray-600 text-sm mb-4">Category: {template.category}</p>
+            <p className="text-gray-600 text-sm mb-2">Category: {template.category}</p>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Checkpoints:</span>
                 <span className="font-medium">{template.checkpoints}</span>
@@ -2949,9 +2949,9 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Template Checklist Preview */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h4 className="font-semibold text-lg mb-4">Electronics Inspection Checklist</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h4 className="font-semibold text-lg mb-2">Electronics Inspection Checklist</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <h5 className="font-medium mb-3">Visual Inspection</h5>
             <div className="space-y-2">
@@ -3001,12 +3001,12 @@ Report Distribution: Management, Quality Team
   );
 
   const renderCompliance = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Compliance Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         {complianceStandards.map((standard, index) => (
-          <div key={index} className="bg-white rounded-lg shadow p-6">
-            <div className="flex justify-between items-start mb-4">
+          <div key={index} className="bg-white rounded-lg shadow p-3">
+            <div className="flex justify-between items-start mb-2">
               <Shield className={`h-8 w-8 ${
                 standard.status === 'compliant' ? 'text-green-500' :
                 standard.status === 'pending' ? 'text-yellow-500' :
@@ -3047,8 +3047,8 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Compliance Requirements */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Compliance Requirements Tracking</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Compliance Requirements Tracking</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -3131,9 +3131,9 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Audit Calendar */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Upcoming Audits</h4>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Upcoming Audits</h4>
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center gap-3">
@@ -3166,8 +3166,8 @@ Report Distribution: Management, Quality Team
         </div>
 
         {/* Non-Conformance Tracking */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Non-Conformance Report</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Non-Conformance Report</h4>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={[
               { month: 'Jul', major: 2, minor: 5 },
@@ -3192,11 +3192,11 @@ Report Distribution: Management, Quality Team
   );
 
   const renderReports = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Report Generation */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Generate Quality Reports</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Generate Quality Reports</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium mb-2">Report Type</label>
             <select className="w-full px-3 py-2 border rounded-lg">
@@ -3237,8 +3237,8 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Recent Reports */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Recent Reports</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold mb-2">Recent Reports</h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -3315,10 +3315,10 @@ Report Distribution: Management, Quality Team
       </div>
 
       {/* Quality Metrics Summary */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Quality KPI Summary</h4>
-          <div className="space-y-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Quality KPI Summary</h4>
+          <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Target className="h-5 w-5 text-blue-500" />
@@ -3362,8 +3362,8 @@ Report Distribution: Management, Quality Team
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h4 className="font-semibold mb-4">Scheduled Reports</h4>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h4 className="font-semibold mb-2">Scheduled Reports</h4>
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 border rounded-lg">
               <div>
@@ -3400,13 +3400,13 @@ Report Distribution: Management, Quality Team
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold mb-2">Quality Assurance & Inspection</h2>
         <p className="text-gray-600">Ensure product quality and compliance standards</p>
       </div>
 
       {/* Action Buttons */}
-      <div className="mb-6 flex flex-wrap gap-3">
+      <div className="mb-3 flex flex-wrap gap-3">
         <button
           onClick={handleCreateInspection}
           className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -3453,8 +3453,8 @@ Report Distribution: Management, Quality Team
 
       {/* Real-Time Monitoring Dashboard */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Activity className="h-5 w-5 text-indigo-600" />
               Real-Time Quality Monitoring
@@ -3478,8 +3478,8 @@ Report Distribution: Management, Quality Team
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Active Inspections</span>
                 <ClipboardCheck className="h-5 w-5 text-blue-600" />
@@ -3488,7 +3488,7 @@ Report Distribution: Management, Quality Team
               <div className="text-xs text-green-600 mt-1">↑ 2 in last hour</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Pass Rate Today</span>
                 <CheckCircle className="h-5 w-5 text-green-600" />
@@ -3497,7 +3497,7 @@ Report Distribution: Management, Quality Team
               <div className="text-xs text-green-600 mt-1">↑ 0.7% vs yesterday</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Defects Detected</span>
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
@@ -3506,7 +3506,7 @@ Report Distribution: Management, Quality Team
               <div className="text-xs text-red-600 mt-1">Critical: 1</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Avg Inspection Time</span>
                 <Clock className="h-5 w-5 text-purple-600" />
@@ -3516,7 +3516,7 @@ Report Distribution: Management, Quality Team
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Live Activity Feed</h4>
             <div className="space-y-2 max-h-32 overflow-y-auto">
               <div className="flex items-center gap-3 text-sm">
@@ -3546,8 +3546,8 @@ Report Distribution: Management, Quality Team
 
       {/* AI-Powered Insights */}
       {showAIInsights && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Zap className="h-5 w-5 text-purple-600" />
               AI-Powered Quality Insights
@@ -3560,8 +3560,8 @@ Report Distribution: Management, Quality Team
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="h-5 w-5 text-blue-600" />
                 <span className="text-sm font-semibold text-gray-900">Defect Prediction</span>
@@ -3570,7 +3570,7 @@ Report Distribution: Management, Quality Team
               <p className="text-xs text-gray-600">Predicted defect rate for next batch from Tech Components Ltd based on historical trends</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="h-5 w-5 text-green-600" />
                 <span className="text-sm font-semibold text-gray-900">Quality Trend</span>
@@ -3579,7 +3579,7 @@ Report Distribution: Management, Quality Team
               <p className="text-xs text-gray-600">Overall quality improvement expected this month with current supplier performance</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <AlertCircle className="h-5 w-5 text-red-600" />
                 <span className="text-sm font-semibold text-gray-900">Risk Alert</span>
@@ -3589,7 +3589,7 @@ Report Distribution: Management, Quality Team
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Recommendations</h4>
             <div className="space-y-2">
               <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
@@ -3619,7 +3619,7 @@ Report Distribution: Management, Quality Team
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['overview', 'inspections', 'templates', 'compliance', 'reports'].map((tab) => (
           <button
             key={tab}

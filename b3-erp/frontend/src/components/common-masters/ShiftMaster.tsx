@@ -337,16 +337,16 @@ export default function ShiftMaster() {
   }, [shifts, searchTerm, filterType, filterCategory]);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold mb-2">Shift Master</h2>
         <p className="text-gray-600">Manage work shifts and schedules</p>
       </div>
 
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="flex flex-1 gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+            <div className="flex flex-1 gap-2">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
@@ -399,25 +399,25 @@ export default function ShiftMaster() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Shift
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Type/Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Timing
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Working Days
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Allowances
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -425,19 +425,19 @@ export default function ShiftMaster() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredShifts.map((shift) => (
                 <tr key={shift.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{shift.name}</div>
                       <div className="text-sm text-gray-500">{shift.code}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex flex-col gap-1">
                       {getTypeBadge(shift.type)}
                       {getCategoryBadge(shift.category)}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3 text-gray-400" />
@@ -449,7 +449,7 @@ export default function ShiftMaster() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">{getWorkingDays(shift.days)}</div>
                     {shift.rotation && (
                       <div className="text-xs text-gray-500">
@@ -457,7 +457,7 @@ export default function ShiftMaster() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm">
                       {shift.allowances.shiftAllowance > 0 && (
                         <div className="flex items-center gap-1">
@@ -475,10 +475,10 @@ export default function ShiftMaster() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {getStatusBadge(shift.status)}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleEdit(shift)}
@@ -503,7 +503,7 @@ export default function ShiftMaster() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-lg w-full  max-h-[90vh] overflow-hidden">
             <div className="p-4 border-b border-gray-200">
               <h3 className="text-lg font-semibold">
                 {selectedShift ? 'Edit Shift' : 'Add New Shift'}
@@ -528,8 +528,8 @@ export default function ShiftMaster() {
 
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
               {currentTab === 'basic' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Shift Code *
@@ -554,7 +554,7 @@ export default function ShiftMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Shift Type *
@@ -582,7 +582,7 @@ export default function ShiftMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Effective From *
@@ -620,8 +620,8 @@ export default function ShiftMaster() {
               )}
 
               {currentTab === 'timing' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Start Time *
@@ -644,7 +644,7 @@ export default function ShiftMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Break Start
@@ -688,7 +688,7 @@ export default function ShiftMaster() {
                   {(selectedShift?.type === 'Rotating' || !selectedShift) && (
                     <div className="border-t pt-4">
                       <h4 className="font-medium mb-3">Rotation Settings</h4>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-2">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">
                             Pattern
@@ -727,8 +727,8 @@ export default function ShiftMaster() {
               )}
 
               {currentTab === 'allowances' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Shift Allowance (₹)
@@ -753,7 +753,7 @@ export default function ShiftMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Overtime Rate (x)
@@ -795,8 +795,8 @@ export default function ShiftMaster() {
               )}
 
               {currentTab === 'rules' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Minimum Staff
@@ -819,7 +819,7 @@ export default function ShiftMaster() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Min Rest Hours Between Shifts
@@ -869,7 +869,7 @@ export default function ShiftMaster() {
               )}
 
               {currentTab === 'assignment' && (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Departments

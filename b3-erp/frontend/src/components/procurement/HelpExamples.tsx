@@ -75,14 +75,14 @@ export const PurchaseOrderHelpExample: React.FC = () => {
   ]
 
   return (
-    <Card title="Purchase Order Creation" className="space-y-6">
+    <Card title="Purchase Order Creation" className="space-y-3">
       <SmartHelpSuggestions
         context="Purchase Order Creation"
         suggestions={helpSuggestions}
       />
 
       {/* Form Section with Tooltips */}
-      <div data-tour="po-form" className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div data-tour="po-form" className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
           <div className="flex items-center space-x-2 mb-2">
             <label className="block text-sm font-medium text-gray-700">Vendor</label>
@@ -154,7 +154,7 @@ export const PurchaseOrderHelpExample: React.FC = () => {
 
       {/* Items Section */}
       <div data-tour="add-items">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-2">
             <h3 className="text-lg font-medium text-gray-900">Order Items</h3>
             <InfoTooltip content="Add items to your purchase order. Use the catalog search to find existing items." />
@@ -169,19 +169,19 @@ export const PurchaseOrderHelpExample: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   <div className="flex items-center space-x-1">
                     <span>Item</span>
                     <InfoTooltip content="Item name and description. Use descriptive names for easier searching." size="sm" />
                   </div>
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   <div className="flex items-center space-x-1">
                     <span>Quantity</span>
                     <InfoTooltip content="Order quantity. Consider minimum order quantities and bulk discounts." size="sm" />
                   </div>
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   <div className="flex items-center space-x-1">
                     <span>Unit Price</span>
                     <Tooltip content="Price per unit. This should match the vendor's current pricing." trigger="hover">
@@ -189,17 +189,17 @@ export const PurchaseOrderHelpExample: React.FC = () => {
                     </Tooltip>
                   </div>
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               <tr>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Office Chairs - Ergonomic</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$299.99</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$1,499.95</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">Office Chairs - Ergonomic</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">5</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">$299.99</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">$1,499.95</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                   <div className="flex space-x-2">
                     <Tooltip content="Edit item details">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
@@ -222,7 +222,7 @@ export const PurchaseOrderHelpExample: React.FC = () => {
       </div>
 
       {/* Approval Section */}
-      <div data-tour="approval-routing" className="bg-gray-50 rounded-lg p-4">
+      <div data-tour="approval-routing" className="bg-gray-50 rounded-lg p-3">
         <div className="flex items-center space-x-2 mb-3">
           <h3 className="text-lg font-medium text-gray-900">Approval Routing</h3>
           <Tooltip
@@ -243,7 +243,7 @@ export const PurchaseOrderHelpExample: React.FC = () => {
           </Tooltip>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border">
             <div className="p-2 bg-blue-100 rounded-full">
               <Users className="h-5 w-5 text-blue-600" />
@@ -325,7 +325,7 @@ export const VendorManagementHelpExample: React.FC = () => {
       title: 'Adding New Vendors',
       icon: <Plus className="h-4 w-4 text-green-500" />,
       content: (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <p>To add a new vendor to the system:</p>
           <ol className="list-decimal list-inside space-y-2">
             <li>Click the "Add Vendor" button</li>
@@ -347,7 +347,7 @@ export const VendorManagementHelpExample: React.FC = () => {
       title: 'Vendor Performance Evaluation',
       icon: <BarChart3 className="h-4 w-4 text-blue-500" />,
       content: (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <p>Vendor performance is evaluated based on:</p>
           <ul className="list-disc list-inside space-y-1">
             <li>On-time delivery rate</li>
@@ -365,7 +365,7 @@ export const VendorManagementHelpExample: React.FC = () => {
       title: 'Vendor Approval Process',
       icon: <CheckCircle className="h-4 w-4 text-green-500" />,
       content: (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <p>The vendor approval process includes:</p>
           <div className="space-y-3">
             <div className="flex items-start space-x-3">
@@ -396,7 +396,7 @@ export const VendorManagementHelpExample: React.FC = () => {
   ]
 
   return (
-    <Card title="Vendor Management" className="space-y-6">
+    <Card title="Vendor Management" className="space-y-3">
       {/* Header with Help */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
@@ -423,7 +423,7 @@ export const VendorManagementHelpExample: React.FC = () => {
       </div>
 
       {/* Search and Filters with Help */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         <div>
           <div className="flex items-center space-x-2 mb-2">
             <label className="block text-sm font-medium text-gray-700">Search</label>
@@ -498,9 +498,9 @@ export const VendorManagementHelpExample: React.FC = () => {
       </div>
 
       {/* Vendor Cards with Tooltips */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {[1, 2, 3].map((vendor) => (
-          <div key={vendor} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div key={vendor} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-3">
               <div>
                 <h3 className="text-lg font-medium text-gray-900">ABC Corporation</h3>
@@ -516,7 +516,7 @@ export const VendorManagementHelpExample: React.FC = () => {
               </div>
             </div>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">On-time Delivery:</span>
                 <Tooltip content="Based on last 30 deliveries">
@@ -609,7 +609,7 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
   }
 
   return (
-    <Card title="Procurement Analytics" className="space-y-6">
+    <Card title="Procurement Analytics" className="space-y-3">
       {/* Header with Help */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
@@ -635,9 +635,9 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
       </div>
 
       {/* KPI Cards with Interactive Tooltips */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
         <Tooltip content={kpiHelpContent.totalSpend} interactive maxWidth="300px">
-          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-help">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-help">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Spend</p>
@@ -652,7 +652,7 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
         </Tooltip>
 
         <Tooltip content={kpiHelpContent.savings} interactive maxWidth="300px">
-          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-help">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-help">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Cost Savings</p>
@@ -667,7 +667,7 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
         </Tooltip>
 
         <Tooltip content={kpiHelpContent.avgDelivery} interactive maxWidth="300px">
-          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-help">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-help">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Avg Delivery</p>
@@ -682,7 +682,7 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
         </Tooltip>
 
         <Tooltip content={kpiHelpContent.vendorPerformance} interactive maxWidth="300px">
-          <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-help">
+          <div className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-help">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Vendor Score</p>
@@ -698,8 +698,8 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
       </div>
 
       {/* Chart Section with Help */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-3">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-2">
             <h3 className="text-lg font-medium text-gray-900">Spending Trends</h3>
             <Tooltip
@@ -732,7 +732,7 @@ export const AnalyticsDashboardHelpExample: React.FC = () => {
         {/* Placeholder chart area */}
         <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
           <div className="text-center">
-            <BarChart3 className="h-12 w-12 text-gray-300 mx-auto mb-2" />
+            <BarChart3 className="h-12 w-12 text-gray-300 mb-2" />
             <p className="text-gray-500">Chart visualization would appear here</p>
             <p className="text-sm text-gray-400">Hover over data points for detailed information</p>
           </div>

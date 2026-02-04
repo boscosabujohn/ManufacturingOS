@@ -28,8 +28,8 @@ export default function ARAgingReport() {
     };
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">Accounts Receivable Aging Report</h1>
                     <p className="text-gray-600">Customer payment tracking and collection analysis</p>
@@ -37,17 +37,17 @@ export default function ARAgingReport() {
                 <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-3">
                 <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium text-gray-600">Total AR</CardTitle><DollarSign className="h-4 w-4 text-blue-600" /></CardHeader><CardContent><div className="text-2xl font-bold text-blue-600">${(data.totalAR / 1000000).toFixed(2)}M</div></CardContent></Card>
                 <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium text-gray-600">Overdue</CardTitle><AlertTriangle className="h-4 w-4 text-red-600" /></CardHeader><CardContent><div className="text-2xl font-bold text-red-600">${(data.overdueAmount / 1000).toFixed(0)}K</div><p className="text-xs text-gray-500 mt-1">{((data.overdueAmount / data.totalAR) * 100).toFixed(0)}% of total</p></CardContent></Card>
                 <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium text-gray-600">DSO</CardTitle><Users className="h-4 w-4 text-orange-600" /></CardHeader><CardContent><div className="text-2xl font-bold text-orange-600">{data.dso}</div><p className="text-xs text-gray-500 mt-1">Days Sales Outstanding</p></CardContent></Card>
                 <Card><CardHeader className="flex flex-row items-center justify-between pb-2"><CardTitle className="text-sm font-medium text-gray-600">Collection Rate</CardTitle><DollarSign className="h-4 w-4 text-green-600" /></CardHeader><CardContent><div className="text-2xl font-bold text-green-600">78.6%</div></CardContent></Card>
             </div>
 
-            <Card className="mb-6">
+            <Card className="mb-3">
                 <CardHeader><CardTitle>AR Aging Analysis - Click any bucket to drill down</CardTitle></CardHeader>
                 <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                         {data.agingBuckets.map((bucket, idx) => (
                             <div
                                 key={idx}

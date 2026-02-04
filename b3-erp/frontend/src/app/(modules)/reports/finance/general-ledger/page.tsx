@@ -18,8 +18,8 @@ export default function GeneralLedgerReport() {
     ];
 
     return (
-        <div className="w-full p-6">
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full p-3">
+            <div className="flex justify-between items-center mb-3">
                 <div>
                     <h1 className="text-3xl font-bold mb-2">General Ledger</h1>
                     <p className="text-gray-600">Detailed transactions for all accounts</p>

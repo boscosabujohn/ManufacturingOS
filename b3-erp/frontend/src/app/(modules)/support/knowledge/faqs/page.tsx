@@ -185,7 +185,7 @@ export default function FAQs() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -199,8 +199,8 @@ export default function FAQs() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-4 text-white shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Total FAQs</p>
@@ -210,7 +210,7 @@ export default function FAQs() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 text-sm">Featured</p>
@@ -220,7 +220,7 @@ export default function FAQs() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">Avg Views</p>
@@ -230,7 +230,7 @@ export default function FAQs() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Avg Helpful</p>
@@ -240,7 +240,7 @@ export default function FAQs() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-100 text-sm">Categories</p>
@@ -250,7 +250,7 @@ export default function FAQs() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100 text-sm">Updated</p>
@@ -262,8 +262,8 @@ export default function FAQs() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -301,8 +301,8 @@ export default function FAQs() {
 
       {/* Featured FAQs */}
       {categoryFilter === 'all' && !searchQuery && (
-        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-lg p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Star className="h-5 w-5 text-yellow-600" />
             <h2 className="text-lg font-semibold text-gray-900">Featured FAQs</h2>
           </div>
@@ -310,11 +310,11 @@ export default function FAQs() {
             {faqs.filter(f => f.featured).slice(0, 4).map(faq => (
               <div
                 key={faq.id}
-                className="bg-white rounded-lg p-4 border border-yellow-200 hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-white rounded-lg p-3 border border-yellow-200 hover:shadow-md transition-shadow cursor-pointer"
                 onClick={() => toggleExpand(faq.id)}
               >
                 <h3 className="font-medium text-gray-900 mb-2">{faq.question}</h3>
-                <div className="flex items-center gap-4 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-gray-500">
                   <span className="flex items-center gap-1">
                     <Eye className="h-3 w-3" />
                     {faq.views}
@@ -355,7 +355,7 @@ export default function FAQs() {
                     <HelpCircle className="h-5 w-5 text-purple-600" />
                     {faq.question}
                   </h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <Eye className="h-4 w-4" />
                       {faq.views} views
@@ -396,12 +396,12 @@ export default function FAQs() {
             {expandedFAQ === faq.id && (
               <div className="border-t border-gray-200 bg-gray-50 p-5">
                 <div className="prose prose-sm max-w-none">
-                  <div className="whitespace-pre-line text-gray-700 mb-4">
+                  <div className="whitespace-pre-line text-gray-700 mb-2">
                     {faq.answer}
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 mb-4">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
                   {faq.tags.map((tag, idx) => (
                     <span
                       key={idx}
@@ -413,7 +413,7 @@ export default function FAQs() {
                 </div>
 
                 <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
                     <span>By {faq.author}</span>
                     <span>Updated: {faq.lastUpdated}</span>
                   </div>
@@ -436,7 +436,7 @@ export default function FAQs() {
       </div>
 
       {/* Info Box */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
         <div className="flex items-start gap-3">
           <BookOpen className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
           <div>
@@ -459,7 +459,7 @@ export default function FAQs() {
 
       {filteredFAQs.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <HelpCircle className="h-12 w-12 text-gray-400 mb-4" />
+          <HelpCircle className="h-12 w-12 text-gray-400 mb-2" />
           <p className="text-gray-600">No FAQs found matching your search.</p>
         </div>
       )}

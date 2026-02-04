@@ -367,7 +367,7 @@ export function CommandPalette({
           {/* Footer */}
           <div className="px-4 py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
             <div className="flex items-center justify-between text-xs text-gray-500">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <span className="flex items-center gap-1">
                   <ArrowUp className="w-3 h-3" />
                   <ArrowDown className="w-3 h-3" />

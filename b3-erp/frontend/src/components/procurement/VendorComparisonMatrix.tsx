@@ -291,7 +291,7 @@ export function VendorComparisonMatrix({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -354,7 +354,7 @@ export function VendorComparisonMatrix({
           {/* Vendor Headers */}
           <thead>
             <tr className="bg-gray-50 dark:bg-gray-700/50">
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400 w-48">
+              <th className="px-3 py-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400 w-48">
                 <button
                   onClick={() => {
                     if (sortBy === 'overallScore') {
@@ -396,7 +396,7 @@ export function VendorComparisonMatrix({
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             {/* Key Metrics Section */}
             <tr>
-              <td colSpan={sortedVendors.length + 1} className="px-6 py-3 bg-gray-100 dark:bg-gray-700">
+              <td colSpan={sortedVendors.length + 1} className="px-3 py-2 bg-gray-100 dark:bg-gray-700">
                 <button
                   onClick={() => toggleSection('metrics')}
                   className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -415,7 +415,7 @@ export function VendorComparisonMatrix({
               const Icon = criteria.icon;
               return (
                 <tr key={criteria.key} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <Icon className="h-4 w-4 text-gray-400" />
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -461,7 +461,7 @@ export function VendorComparisonMatrix({
 
             {/* Certifications Section */}
             <tr>
-              <td colSpan={sortedVendors.length + 1} className="px-6 py-3 bg-gray-100 dark:bg-gray-700">
+              <td colSpan={sortedVendors.length + 1} className="px-3 py-2 bg-gray-100 dark:bg-gray-700">
                 <button
                   onClick={() => toggleSection('certifications')}
                   className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -479,7 +479,7 @@ export function VendorComparisonMatrix({
             {expandedSections.includes('certifications') && (
               <>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Certifications
                     </span>
@@ -500,7 +500,7 @@ export function VendorComparisonMatrix({
                   ))}
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Payment Terms
                     </span>
@@ -512,7 +512,7 @@ export function VendorComparisonMatrix({
                   ))}
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Warranty Period
                     </span>
@@ -524,7 +524,7 @@ export function VendorComparisonMatrix({
                   ))}
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Support Level
                     </span>
@@ -546,7 +546,7 @@ export function VendorComparisonMatrix({
 
             {/* Strengths & Weaknesses Section */}
             <tr>
-              <td colSpan={sortedVendors.length + 1} className="px-6 py-3 bg-gray-100 dark:bg-gray-700">
+              <td colSpan={sortedVendors.length + 1} className="px-3 py-2 bg-gray-100 dark:bg-gray-700">
                 <button
                   onClick={() => toggleSection('analysis')}
                   className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -564,7 +564,7 @@ export function VendorComparisonMatrix({
             {expandedSections.includes('analysis') && (
               <>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-medium text-green-600 dark:text-green-400">
                       Strengths
                     </span>
@@ -583,7 +583,7 @@ export function VendorComparisonMatrix({
                   ))}
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                  <td className="px-6 py-3">
+                  <td className="px-3 py-2">
                     <span className="text-sm font-medium text-red-600 dark:text-red-400">
                       Weaknesses
                     </span>
@@ -608,7 +608,7 @@ export function VendorComparisonMatrix({
       </div>
 
       {/* Actions Footer */}
-      <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+      <div className="px-3 py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Select a vendor to proceed with RFQ or view detailed profile

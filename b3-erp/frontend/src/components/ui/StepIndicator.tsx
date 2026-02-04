@@ -120,7 +120,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
   // Default variant
   if (orientation === 'vertical') {
     return (
-      <nav className={`space-y-4 ${className}`}>
+      <nav className={`space-y-2 ${className}`}>
         {steps.map((step, index) => {
           const Icon = step.icon
           const complete = isStepComplete(index)
@@ -133,7 +133,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
               onClick={() => clickable && onStepClick!(index)}
               disabled={!clickable}
               className={`
-                flex items-start gap-4 w-full text-left
+                flex items-start gap-2 w-full text-left
                 ${clickable ? 'cursor-pointer hover:bg-gray-50' : 'cursor-default'}
                 p-3 rounded-lg transition-colors
               `}

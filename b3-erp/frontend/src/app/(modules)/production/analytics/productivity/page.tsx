@@ -339,10 +339,10 @@ export default function ProductivityAnalytics() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -367,7 +367,7 @@ export default function ProductivityAnalytics() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -417,7 +417,7 @@ export default function ProductivityAnalytics() {
       </div>
 
       {/* Monthly Productivity Trend */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Monthly Productivity Trend</h2>
           <p className="text-sm text-gray-600 mt-1">Track production output and efficiency over time</p>
@@ -468,13 +468,13 @@ export default function ProductivityAnalytics() {
       </div>
 
       {/* Product Line Productivity */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Product Line Productivity</h2>
           <p className="text-sm text-gray-600 mt-1">Compare productivity across different product lines</p>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {productLineData.map((line) => (
               <div key={line.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -513,7 +513,7 @@ export default function ProductivityAnalytics() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 text-sm">
+                <div className="grid grid-cols-3 gap-2 text-sm">
                   <div>
                     <p className="text-xs text-gray-600">Revenue</p>
                     <p className="font-semibold text-gray-900">₹{(line.revenue / 10000000).toFixed(2)}Cr</p>

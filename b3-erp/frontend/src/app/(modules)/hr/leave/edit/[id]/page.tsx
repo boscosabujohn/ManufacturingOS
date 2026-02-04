@@ -204,11 +204,11 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
   const totalDays = calculateTotalDays();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-3">
       <div className="w-full">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-white rounded-lg transition-colors"
@@ -223,12 +223,12 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
         </div>
 
         {/* Employee Info Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 mb-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <User className="w-5 h-5 text-blue-600" />
             Employee Information
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="text-sm text-gray-600">Employee ID</label>
               <p className="font-semibold text-gray-900">{leaveRequest.employeeId}</p>
@@ -263,14 +263,14 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
         </div>
 
         {/* Leave Request Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {/* Leave Details Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               Leave Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Leave Type *
@@ -371,12 +371,12 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Contact Information Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Phone className="w-5 h-5 text-blue-600" />
               Contact Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Contact Number During Leave
@@ -435,12 +435,12 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Handover Details Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <UserCheck className="w-5 h-5 text-blue-600" />
               Handover Details
             </h3>
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Handover To *
@@ -478,13 +478,13 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Documents Section */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-blue-600" />
               Supporting Documents
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {attachments.length > 0 && (
                 <div className="space-y-2">
                   {attachments.map((file, index) => (
@@ -533,7 +533,7 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
 
           {/* Status Banner */}
           {leaveRequest.status === 'approved' && (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-medium text-yellow-900">Approved Leave Request</p>
@@ -545,7 +545,7 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
           )}
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-end">
+          <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => router.back()}

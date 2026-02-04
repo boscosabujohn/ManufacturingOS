@@ -283,7 +283,7 @@ export function ContrastChecker({
     <div className={`p-4 border border-gray-200 dark:border-gray-700 rounded-lg ${className}`}>
       {/* Preview */}
       <div
-        className="p-4 rounded-lg mb-4 text-center"
+        className="p-4 rounded-lg mb-2 text-center"
         style={{ backgroundColor: background, color: foreground }}
       >
         <p className="text-lg font-medium">Sample Text</p>
@@ -291,7 +291,7 @@ export function ContrastChecker({
       </div>
 
       {/* Contrast ratio */}
-      <div className="text-center mb-4">
+      <div className="text-center mb-2">
         <span className="text-3xl font-bold text-gray-900 dark:text-white">
           {ratio.toFixed(2)}
         </span>
@@ -511,7 +511,7 @@ export function AccessibilitySettings({ className = '' }: AccessibilitySettingsP
   const { isHighContrast, setHighContrast, contrastLevel, setContrastLevel } = useHighContrast();
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-3 ${className}`}>
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         Accessibility Settings
       </h3>

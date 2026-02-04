@@ -155,10 +155,10 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
   ]
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <div>
@@ -172,7 +172,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Export Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Type</label>
@@ -207,7 +207,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 Date Range <span className="text-red-500">*</span>
               </label>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-xs text-gray-600 mb-1">From</label>
                   <input
@@ -296,7 +296,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
                         : 'border-gray-200 hover:border-green-300'
                     }`}
                   >
-                    <Icon className={`w-8 h-8 mx-auto mb-2 ${config.format === format.value ? 'text-green-600' : 'text-gray-400'}`} />
+                    <Icon className={`w-8 h-8 mb-2 ${config.format === format.value ? 'text-green-600' : 'text-gray-400'}`} />
                     <p className={`font-medium text-center ${config.format === format.value ? 'text-green-900' : 'text-gray-700'}`}>
                       {format.label}
                     </p>
@@ -315,7 +315,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
             </label>
 
             {/* Categories */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-sm font-medium text-gray-600 mb-2">Categories</p>
               <div className="flex flex-wrap gap-2">
                 {['Raw Materials', 'Work in Progress', 'Finished Goods', 'Consumables', 'Spare Parts', 'Packaging'].map((category) => (
@@ -336,7 +336,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
             </div>
 
             {/* Warehouses */}
-            <div className="mb-4">
+            <div className="mb-2">
               <p className="text-sm font-medium text-gray-600 mb-2">Warehouses</p>
               <div className="flex flex-wrap gap-2">
                 {['WH-01', 'WH-02', 'WH-03'].map((warehouse) => (
@@ -410,7 +410,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
           </div>
 
           {/* Preview */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5" />
               <div>
@@ -428,7 +428,7 @@ export function ExportStockDataModal({ isOpen, onClose, onExport }: ExportStockD
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -522,10 +522,10 @@ export function ExportMovementReportModal({ isOpen, onClose, onExport }: ExportM
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <div>
@@ -539,7 +539,7 @@ export function ExportMovementReportModal({ isOpen, onClose, onExport }: ExportM
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Report Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Report Type</label>
@@ -572,7 +572,7 @@ export function ExportMovementReportModal({ isOpen, onClose, onExport }: ExportM
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Date Range <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-xs text-gray-600 mb-1">From</label>
                 <input
@@ -646,7 +646,7 @@ export function ExportMovementReportModal({ isOpen, onClose, onExport }: ExportM
                         : 'border-gray-200 hover:border-blue-300'
                     }`}
                   >
-                    <Icon className={`w-8 h-8 mx-auto mb-2 ${config.format === format.value ? 'text-blue-600' : 'text-gray-400'}`} />
+                    <Icon className={`w-8 h-8 mb-2 ${config.format === format.value ? 'text-blue-600' : 'text-gray-400'}`} />
                     <p className={`font-medium text-center ${config.format === format.value ? 'text-blue-900' : 'text-gray-700'}`}>
                       {format.label}
                     </p>
@@ -686,7 +686,7 @@ export function ExportMovementReportModal({ isOpen, onClose, onExport }: ExportM
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -785,10 +785,10 @@ export function ExportValuationModal({ isOpen, onClose, onExport }: ExportValuat
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <div>
@@ -802,7 +802,7 @@ export function ExportValuationModal({ isOpen, onClose, onExport }: ExportValuat
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Valuation Date */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -909,7 +909,7 @@ export function ExportValuationModal({ isOpen, onClose, onExport }: ExportValuat
                         : 'border-gray-200 hover:border-purple-300'
                     }`}
                   >
-                    <Icon className={`w-8 h-8 mx-auto mb-2 ${config.format === format.value ? 'text-purple-600' : 'text-gray-400'}`} />
+                    <Icon className={`w-8 h-8 mb-2 ${config.format === format.value ? 'text-purple-600' : 'text-gray-400'}`} />
                     <p className={`font-medium text-center ${config.format === format.value ? 'text-purple-900' : 'text-gray-700'}`}>
                       {format.label}
                     </p>
@@ -953,7 +953,7 @@ export function ExportValuationModal({ isOpen, onClose, onExport }: ExportValuat
           </div>
 
           {/* Preview */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5" />
               <div>
@@ -971,7 +971,7 @@ export function ExportValuationModal({ isOpen, onClose, onExport }: ExportValuat
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 bg-gray-50 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

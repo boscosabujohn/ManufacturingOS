@@ -816,7 +816,7 @@ Last Updated: ${new Date().toLocaleString()}`);
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -839,8 +839,8 @@ Last Updated: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <Wrench className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{totalMaintenance}</span>
@@ -849,7 +849,7 @@ Last Updated: ${new Date().toLocaleString()}`);
           <div className="text-xs text-orange-600 mt-1">All Records</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Calendar className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{scheduledMaintenance}</span>
@@ -858,7 +858,7 @@ Last Updated: ${new Date().toLocaleString()}`);
           <div className="text-xs text-blue-600 mt-1">Upcoming</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <Clock className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{inProgressMaintenance}</span>
@@ -867,7 +867,7 @@ Last Updated: ${new Date().toLocaleString()}`);
           <div className="text-xs text-purple-600 mt-1">Currently Under Service</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-8 h-8 text-red-600" />
             <span className="text-2xl font-bold text-red-900">{overdueMaintenance}</span>
@@ -878,8 +878,8 @@ Last Updated: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -939,35 +939,35 @@ Last Updated: ${new Date().toLocaleString()}`);
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Maintenance ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Schedule</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service Provider</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Maintenance ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Schedule</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service Provider</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredRecords.map((record) => (
                 <tr key={record.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="font-medium text-gray-900">{record.maintenanceId}</div>
                     <div className="text-xs text-gray-500">ODO: {record.odometer.toLocaleString()} km</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{record.vehicleNumber}</div>
                     <div className="text-sm text-gray-600">{record.vehicleType}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getMaintenanceTypeColor(record.maintenanceType)}`}>
                       {record.maintenanceType.replace('-', ' ').toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900 max-w-xs">{record.description}</div>
                     {record.partsUsed.length > 0 && (
                       <div className="text-xs text-gray-500 mt-1">
@@ -975,7 +975,7 @@ Last Updated: ${new Date().toLocaleString()}`);
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">
                       <Calendar className="w-4 h-4 inline mr-1" />
                       {new Date(record.scheduledDate).toLocaleDateString()}
@@ -989,14 +989,14 @@ Last Updated: ${new Date().toLocaleString()}`);
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{record.serviceProvider}</div>
                     {record.mechanicName && (
                       <div className="text-xs text-gray-600 mt-1">{record.mechanicName}</div>
                     )}
                     <div className="text-xs text-gray-500">{record.location}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
                       ₹{record.totalCost.toLocaleString()}
                     </div>
@@ -1007,17 +1007,17 @@ Last Updated: ${new Date().toLocaleString()}`);
                       Parts: ₹{(record.totalCost - record.laborCost).toLocaleString()}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getPriorityColor(record.priority)}`}>
                       {record.priority.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(record.status)}`}>
                       {record.status.replace('-', ' ').toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => handleViewMaintenance(record)}
@@ -1053,9 +1053,9 @@ Last Updated: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Maintenance Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <CheckCircle className="w-6 h-6 text-green-600" />
             </div>
@@ -1071,8 +1071,8 @@ Last Updated: ${new Date().toLocaleString()}`);
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-orange-100 rounded-lg">
               <Wrench className="w-6 h-6 text-orange-600" />
             </div>
@@ -1088,8 +1088,8 @@ Last Updated: ${new Date().toLocaleString()}`);
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-red-100 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-red-600" />
             </div>
@@ -1107,7 +1107,7 @@ Last Updated: ${new Date().toLocaleString()}`);
       </div>
 
       {/* Cost Summary */}
-      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold text-blue-900 mb-2">Total Maintenance Cost</h3>

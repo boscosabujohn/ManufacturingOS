@@ -351,7 +351,7 @@ export function MilestoneTimeline({
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
         {/* Header */}
         <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
                 <Flag className="w-5 h-5 text-purple-600" />
@@ -379,7 +379,7 @@ export function MilestoneTimeline({
           </div>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-5 gap-2">
             <div className="text-center p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
               <div className="text-xl font-bold text-green-600">{stats.completed}</div>
               <div className="text-xs text-green-700 dark:text-green-400">Completed</div>
@@ -408,7 +408,7 @@ export function MilestoneTimeline({
           <div className="min-w-[900px]">
             {/* Phase Headers */}
             {showPhases && (
-              <div className="flex mb-4">
+              <div className="flex mb-2">
                 {Object.entries(phaseGroups).map(([phase, phaseMilestones]) => (
                   <div
                     key={phase}
@@ -524,7 +524,7 @@ export function MilestoneTimeline({
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4">
                     <div>
                       <p className="text-xs text-gray-500">Target Date</p>
                       <p className="text-sm font-medium text-gray-900 dark:text-white">
@@ -587,7 +587,7 @@ export function MilestoneTimeline({
 
         {/* Legend */}
         <div className="px-6 pb-6">
-          <div className="flex flex-wrap items-center gap-4 text-sm">
+          <div className="flex flex-wrap items-center gap-2 text-sm">
             <span className="text-gray-500 font-medium">Type:</span>
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 text-yellow-500" />
@@ -613,8 +613,8 @@ export function MilestoneTimeline({
 
   // Vertical Timeline View
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-3">
+      <div className="flex items-center justify-between mb-3">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
           <Flag className="w-5 h-5 text-purple-500" />
           Milestone Timeline
@@ -640,7 +640,7 @@ export function MilestoneTimeline({
         <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" />
 
         {/* Milestones */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {filteredMilestones.map((milestone, index) => {
             const styles = getStatusStyles(milestone.status);
             const Icon = getMilestoneIcon(milestone.type);
@@ -650,7 +650,7 @@ export function MilestoneTimeline({
               <div
                 key={milestone.id}
                 onClick={() => handleMilestoneClick(milestone.id)}
-                className={`relative flex gap-4 cursor-pointer group`}
+                className={`relative flex gap-2 cursor-pointer group`}
               >
                 {/* Milestone Point */}
                 <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 ${
@@ -688,7 +688,7 @@ export function MilestoneTimeline({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                  <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
                     <span className="flex items-center gap-1">
                       <Users className="w-3.5 h-3.5" />
                       {milestone.owner}

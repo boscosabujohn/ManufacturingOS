@@ -258,9 +258,9 @@ export default function InventoryPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className=" px-3 py-8">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <Link href="/" className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Dashboard
@@ -296,8 +296,8 @@ export default function InventoryPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Items</p>
@@ -308,7 +308,7 @@ export default function InventoryPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Inventory Value</p>
@@ -322,7 +322,7 @@ export default function InventoryPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-600">Critical Stock</p>
@@ -333,7 +333,7 @@ export default function InventoryPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Warehouses</p>
@@ -346,10 +346,10 @@ export default function InventoryPage() {
         </div>
 
         {/* Stock Health Overview */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
           {/* Stock Status Distribution */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Stock Status</h3>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Stock Status</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -389,9 +389,9 @@ export default function InventoryPage() {
           </div>
 
           {/* Warehouse Capacity */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Warehouse Capacity</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Warehouse Capacity</h3>
+            <div className="space-y-2">
               {mockWarehouses.map(warehouse => {
                 const utilization = (warehouse.used / warehouse.capacity) * 100;
                 return (
@@ -423,8 +423,8 @@ export default function InventoryPage() {
           </div>
 
           {/* Recent Movements */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Movements</h3>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Recent Movements</h3>
             <div className="space-y-3">
               {mockRecentMovements.slice(0, 5).map(movement => {
                 const config = movementTypeConfig[movement.type] || movementTypeConfig.receipt;
@@ -455,45 +455,45 @@ export default function InventoryPage() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 mb-3">
           <button
             onClick={() => router.push('/inventory/stock')}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
           >
             <Box className="h-6 w-6 text-blue-600 mb-2" />
             <p className="text-sm font-medium text-gray-900">Stock Items</p>
           </button>
           <button
             onClick={() => router.push('/inventory/movements')}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
           >
             <RefreshCw className="h-6 w-6 text-green-600 mb-2" />
             <p className="text-sm font-medium text-gray-900">Movements</p>
           </button>
           <button
             onClick={() => router.push('/inventory/transfers')}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
           >
             <ArrowUpRight className="h-6 w-6 text-purple-600 mb-2" />
             <p className="text-sm font-medium text-gray-900">Transfers</p>
           </button>
           <button
             onClick={() => router.push('/inventory/adjustments')}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
           >
             <Settings className="h-6 w-6 text-orange-600 mb-2" />
             <p className="text-sm font-medium text-gray-900">Adjustments</p>
           </button>
           <button
             onClick={() => router.push('/inventory/analytics/reports')}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
           >
             <BarChart3 className="h-6 w-6 text-indigo-600 mb-2" />
             <p className="text-sm font-medium text-gray-900">Reports</p>
           </button>
           <button
             onClick={() => router.push('/inventory/cycle-count')}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
           >
             <FileText className="h-6 w-6 text-teal-600 mb-2" />
             <p className="text-sm font-medium text-gray-900">Cycle Count</p>
@@ -502,7 +502,7 @@ export default function InventoryPage() {
 
         {/* Critical & Low Stock Items */}
         <div className="bg-white rounded-lg border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200">
+          <div className="px-3 py-2 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-lg font-semibold text-gray-900">Critical & Low Stock Items</h2>
@@ -548,14 +548,14 @@ export default function InventoryPage() {
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item Code</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item Name</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Warehouse</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Current Stock</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Min/Max</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Item Code</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Item Name</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Warehouse</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Current Stock</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Min/Max</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -564,34 +564,34 @@ export default function InventoryPage() {
                   const StatusIcon = config.icon;
                   return (
                     <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm font-mono font-medium text-gray-900">{item.itemCode}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm text-gray-900">{item.itemName}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm text-gray-600">{item.category}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center space-x-1 text-sm text-gray-600">
                           <MapPin className="h-3 w-3" />
                           <span>{item.warehouse}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm font-semibold text-gray-900">{item.currentStock}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="text-sm text-gray-600">{item.minLevel} / {item.maxLevel}</span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className={`inline-flex items-center space-x-1 px-2 py-1 text-xs font-semibold rounded-full border ${config.color}`}>
                           <StatusIcon className="h-3 w-3" />
                           <span className="capitalize">{item.status}</span>
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center space-x-1">
                           <button
                             onClick={() => router.push(`/inventory/stock/view/${item.id}`)}
@@ -618,13 +618,13 @@ export default function InventoryPage() {
 
           {filteredItems.length === 0 && (
             <div className="px-6 py-12 text-center">
-              <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Package className="h-12 w-12 text-gray-400 mb-2" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No items found</h3>
               <p className="text-gray-600">Try adjusting your search or filters</p>
             </div>
           )}
 
-          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
             <p className="text-sm text-gray-600">
               Showing {filteredItems.length} of {mockStockItems.length} items
             </p>

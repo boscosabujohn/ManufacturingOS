@@ -381,7 +381,7 @@ export default function ResourceUtilizationPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <PieChart className="h-8 w-8 text-teal-600" />
           Resource Utilization
@@ -390,8 +390,8 @@ export default function ResourceUtilizationPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -416,8 +416,8 @@ export default function ResourceUtilizationPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-sm font-medium">Total Resources</p>
@@ -426,7 +426,7 @@ export default function ResourceUtilizationPage() {
             <Users className="h-12 w-12 text-teal-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Avg Utilization</p>
@@ -435,7 +435,7 @@ export default function ResourceUtilizationPage() {
             <PieChart className="h-12 w-12 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Optimal</p>
@@ -444,7 +444,7 @@ export default function ResourceUtilizationPage() {
             <TrendingUp className="h-12 w-12 text-green-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-600 text-sm font-medium">Under-utilized</p>
@@ -453,7 +453,7 @@ export default function ResourceUtilizationPage() {
             <AlertTriangle className="h-12 w-12 text-yellow-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-600 text-sm font-medium">Over-utilized</p>
@@ -462,7 +462,7 @@ export default function ResourceUtilizationPage() {
             <AlertTriangle className="h-12 w-12 text-red-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Total Revenue</p>
@@ -474,7 +474,7 @@ export default function ResourceUtilizationPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-2">
         <div className="flex flex-col md:flex-row items-center gap-3">
           <div className="flex items-center gap-2 mr-auto">
             <Filter className="h-4 w-4 text-gray-500" />
@@ -603,12 +603,12 @@ export default function ResourceUtilizationPage() {
       </div>
 
       {/* Guidelines */}
-      <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-blue-600" />
           Resource Utilization Guidelines
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700">
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Utilization Ranges:</h4>
             <ul className="list-disc list-inside space-y-1">

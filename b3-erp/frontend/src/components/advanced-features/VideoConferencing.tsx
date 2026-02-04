@@ -825,10 +825,10 @@ export function JoinMeetingDialog({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-md w-full mx-4 p-6">
-        <h2 className="text-xl font-semibold mb-4">Join Meeting</h2>
+      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl max-w-md w-full mx-4 p-3">
+        <h2 className="text-xl font-semibold mb-2">Join Meeting</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-2">
           <div>
             <label className="block text-sm font-medium mb-1">Meeting ID</label>
             <input

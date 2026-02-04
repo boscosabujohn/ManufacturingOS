@@ -304,10 +304,10 @@ const FinancialWorkflows = () => {
   ];
 
   const renderDashboardTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         {workflowMetrics.map((metric, index) => (
-          <div key={index} className={`rounded-lg p-4 ${
+          <div key={index} className={`rounded-lg p-3 ${
             index === 0 ? 'bg-blue-50' :
             index === 1 ? 'bg-yellow-50' :
             index === 2 ? 'bg-purple-50' :
@@ -344,9 +344,9 @@ const FinancialWorkflows = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Approval Trend</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Approval Trend</h3>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={approvalTrend}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -361,8 +361,8 @@ const FinancialWorkflows = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Workflow Distribution</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Workflow Distribution</h3>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -385,8 +385,8 @@ const FinancialWorkflows = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Active Workflow Instances</h3>
           <button className="text-blue-600 hover:text-blue-800 text-sm">View All</button>
         </div>
@@ -446,9 +446,9 @@ const FinancialWorkflows = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Bottleneck Analysis</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Bottleneck Analysis</h3>
           <div className="space-y-3">
             {bottleneckAnalysis.map(item => (
               <div key={item.stage} className="p-3 bg-gray-50 rounded">
@@ -480,8 +480,8 @@ const FinancialWorkflows = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Active Delegations</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Active Delegations</h3>
           <div className="space-y-3">
             {delegationRules.filter(d => d.status === 'active').map(delegation => (
               <div key={delegation.id} className="p-3 bg-blue-50 rounded">
@@ -521,9 +521,9 @@ const FinancialWorkflows = () => {
   );
 
   const renderWorkflowsTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Workflow Configurations</h3>
           <div className="flex space-x-2">
             <select
@@ -546,11 +546,11 @@ const FinancialWorkflows = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {workflows
             .filter(w => filterStatus === 'all' || w.status === filterStatus)
             .map(workflow => (
-              <div key={workflow.id} className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+              <div key={workflow.id} className="border rounded-lg p-3 hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h4 className="font-semibold">{workflow.name}</h4>
@@ -614,19 +614,19 @@ const FinancialWorkflows = () => {
       </div>
 
       {selectedWorkflow && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="text-lg font-semibold">{selectedWorkflow.name} - Workflow Details</h3>
             <button onClick={() => setSelectedWorkflow(null)}>
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-3">
             <h4 className="font-medium mb-3">Workflow Stages</h4>
             <div className="relative">
               {selectedWorkflow.stages.map((stage, index) => (
-                <div key={stage.id} className="flex items-center mb-4">
+                <div key={stage.id} className="flex items-center mb-2">
                   <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-semibold text-sm">
                     {stage.sequence}
                   </div>
@@ -685,9 +685,9 @@ const FinancialWorkflows = () => {
   );
 
   const renderApprovalMatrixTab = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Approval Matrix</h3>
           <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center">
             <Plus className="h-4 w-4 mr-2" />
@@ -763,9 +763,9 @@ const FinancialWorkflows = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Approval Hierarchy</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Approval Hierarchy</h3>
           <div className="space-y-3">
             {[1, 2, 3].map(level => {
               const levelApprovers = approvers.filter(a => a.level === level);
@@ -788,8 +788,8 @@ const FinancialWorkflows = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Approval Rules</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Approval Rules</h3>
           <div className="space-y-3">
             {[
               { range: '$0 - $10,000', approvers: 'Level 1', color: 'green' },
@@ -817,10 +817,10 @@ const FinancialWorkflows = () => {
   );
 
   const renderMonitoringTab = () => (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">SLA Performance</h3>
+    <div className="space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">SLA Performance</h3>
           <ResponsiveContainer width="100%" height={200}>
             <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="90%" data={[
               { name: 'On Time', value: 94, fill: '#10B981' },
@@ -844,8 +844,8 @@ const FinancialWorkflows = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Processing Time by Category</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Processing Time by Category</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={[
               { category: 'Invoice', time: 18 },
@@ -863,8 +863,8 @@ const FinancialWorkflows = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">User Activity</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">User Activity</h3>
           <div className="space-y-3">
             {[
               { user: 'John Smith', actions: 45, pending: 3 },
@@ -894,8 +894,8 @@ const FinancialWorkflows = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold">Workflow Audit Trail</h3>
           <button className="text-blue-600 hover:text-blue-800 text-sm flex items-center">
             <Download className="h-4 w-4 mr-1" />
@@ -943,9 +943,9 @@ const FinancialWorkflows = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Exception Report</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Exception Report</h3>
           <div className="space-y-3">
             {[
               { type: 'SLA Breach', count: 5, severity: 'high' },
@@ -969,8 +969,8 @@ const FinancialWorkflows = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Upcoming Expirations</h3>
+        <div className="bg-white rounded-lg shadow p-3">
+          <h3 className="text-lg font-semibold mb-2">Upcoming Expirations</h3>
           <div className="space-y-3">
             {[
               { item: 'John Smith Delegation', type: 'delegation', expires: '2 days' },
@@ -999,13 +999,13 @@ const FinancialWorkflows = () => {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
+    <div className="p-6 ">
+      <div className="mb-3">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Financial Workflows</h2>
         <p className="text-gray-600">Configure and manage approval workflows with advanced routing and delegation</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow mb-6">
+      <div className="bg-white rounded-lg shadow mb-3">
         <div className="border-b border-gray-200">
           <nav className="flex -mb-px">
             {['dashboard', 'workflows', 'approval-matrix', 'monitoring'].map((tab) => (
@@ -1034,15 +1034,15 @@ const FinancialWorkflows = () => {
 
       {selectedInstance && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Workflow Instance Details - {selectedInstance.documentId}</h3>
               <button onClick={() => setSelectedInstance(null)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-3 gap-2 mb-3">
               <div>
                 <p className="text-sm text-gray-600">Document Type</p>
                 <p className="font-semibold">{selectedInstance.documentType}</p>
@@ -1118,14 +1118,14 @@ const FinancialWorkflows = () => {
 
       {showDelegationModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Create Delegation Rule</h3>
               <button onClick={() => setShowDelegationModal(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium mb-1">From User</label>
                 <select className="w-full border rounded px-3 py-2">
@@ -1146,7 +1146,7 @@ const FinancialWorkflows = () => {
                   ))}
                 </select>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium mb-1">Start Date</label>
                   <input type="date" className="w-full border rounded px-3 py-2" />
@@ -1193,15 +1193,15 @@ const FinancialWorkflows = () => {
 
       {showWorkflowBuilder && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-lg p-3 w-full  max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-2">
               <h3 className="text-lg font-semibold">Workflow Builder</h3>
               <button onClick={() => setShowWorkflowBuilder(false)}>
                 <X className="h-5 w-5" />
               </button>
             </div>
             <div className="text-center py-12 border-2 border-dashed border-gray-300 rounded">
-              <GitBranch className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <GitBranch className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-gray-600">Visual workflow builder would be implemented here</p>
               <p className="text-sm text-gray-500 mt-2">Drag and drop stages, configure rules, and set up routing</p>
             </div>

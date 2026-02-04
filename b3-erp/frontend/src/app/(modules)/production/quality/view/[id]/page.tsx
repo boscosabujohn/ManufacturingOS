@@ -474,8 +474,8 @@ export default function QualityControlViewPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b sticky top-0 z-10">
-        <div className="px-6 py-4">
-          <div className="flex items-center justify-between mb-4">
+        <div className="px-3 py-2">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -553,8 +553,8 @@ export default function QualityControlViewPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-blue-600 font-medium">Sample Size</p>
@@ -566,7 +566,7 @@ export default function QualityControlViewPage() {
                 <Package className="h-8 w-8 text-blue-600" />
               </div>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-purple-600 font-medium">Tested Quantity</p>
@@ -578,7 +578,7 @@ export default function QualityControlViewPage() {
                 <ClipboardCheck className="h-8 w-8 text-purple-600" />
               </div>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-green-600 font-medium">Pass Rate</p>
@@ -590,7 +590,7 @@ export default function QualityControlViewPage() {
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-red-600 font-medium">Defects Found</p>
@@ -631,14 +631,14 @@ export default function QualityControlViewPage() {
 
       {/* Content - Rendered based on activeTab (similar structure as previous implementation) */}
       <div className="p-6">
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-3">
           {/* Main Content */}
           <div className="col-span-2">
             {activeTab === 'inspection' && (
-              <div className="bg-white rounded-lg border p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-4">
+              <div className="bg-white rounded-lg border p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
                     <div>
                       <label className="text-sm font-medium text-gray-600">QC Number</label>
                       <p className="mt-1 text-gray-900 font-medium">{inspection.qcNumber}</p>
@@ -652,7 +652,7 @@ export default function QualityControlViewPage() {
                       <p className="mt-1 text-gray-900">{inspection.inspector}</p>
                     </div>
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <div>
                       <label className="text-sm font-medium text-gray-600">Work Order</label>
                       <p className="mt-1 text-gray-900 font-medium">{inspection.workOrderNumber}</p>
@@ -674,8 +674,8 @@ export default function QualityControlViewPage() {
             )}
 
             {activeTab === 'results' && (
-              <div className="bg-white rounded-lg border p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Test Results</h2>
+              <div className="bg-white rounded-lg border p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Test Results</h2>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-50 border-b">
@@ -704,12 +704,12 @@ export default function QualityControlViewPage() {
             )}
 
             {activeTab === 'spc' && (
-              <div className="bg-white rounded-lg border p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">SPC Analysis</h2>
+              <div className="bg-white rounded-lg border p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">SPC Analysis</h2>
                 {inspection.spcAnalysis?.map((spc, index) => (
-                  <div key={index} className="mb-6 pb-6 border-b last:border-b-0">
+                  <div key={index} className="mb-3 pb-6 border-b last:border-b-0">
                     <h3 className="font-semibold text-gray-900 mb-3">{spc.parameter}</h3>
-                    <div className="grid grid-cols-5 gap-4">
+                    <div className="grid grid-cols-5 gap-2">
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                         <p className="text-xs text-blue-600 font-medium">Cp</p>
                         <p className="text-xl font-bold text-blue-900 mt-1">{spc.cp.toFixed(2)}</p>
@@ -737,9 +737,9 @@ export default function QualityControlViewPage() {
             )}
 
             {activeTab === 'capa' && (
-              <div className="bg-white rounded-lg border p-6">
+              <div className="bg-white rounded-lg border p-3">
                 <div className="text-center py-12">
-                  <CheckCircle2 className="h-16 w-16 text-green-600 mb-4" />
+                  <CheckCircle2 className="h-16 w-16 text-green-600 mb-2" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">No CAPA Required</h3>
                   <p className="text-gray-600">Inspection passed all quality checks.</p>
                 </div>
@@ -748,8 +748,8 @@ export default function QualityControlViewPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg border p-4">
+          <div className="space-y-3">
+            <div className="bg-white rounded-lg border p-3">
               <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center space-x-2">
                 <Activity className="h-4 w-4 text-blue-600" />
                 <span>Activity Timeline</span>

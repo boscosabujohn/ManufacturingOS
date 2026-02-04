@@ -63,10 +63,10 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Download className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Export Capacity Planning Report</h2>
@@ -78,7 +78,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
 
         <div className="p-6">
           {/* Export Format */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Export Format</label>
             <div className="grid grid-cols-3 gap-3">
               <button
@@ -121,7 +121,7 @@ export function ExportReportModal({ isOpen, onClose, onExport }: ExportReportMod
           </div>
 
           {/* Export Sections */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Include Sections</label>
             <div className="space-y-3">
               <label className="flex items-start gap-3 cursor-pointer p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
@@ -285,10 +285,10 @@ export function RequestResourcesModal({ isOpen, onClose, onSubmit }: RequestReso
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Send className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Request Additional Resources</h2>
@@ -300,12 +300,12 @@ export function RequestResourcesModal({ isOpen, onClose, onSubmit }: RequestReso
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
               <Package className="h-4 w-4" />
               Resource Details
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Resource Type *</label>
                 <select
@@ -411,7 +411,7 @@ export function RequestResourcesModal({ isOpen, onClose, onSubmit }: RequestReso
           </div>
 
           {/* Info Box */}
-          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-blue-900 mb-2 flex items-center gap-2">
               <AlertTriangle className="h-4 w-4" />
               Request Process
@@ -469,9 +469,9 @@ export function WorkCenterConfigModal({ isOpen, onClose, workCenter, onSave }: W
                               formData.workingDaysPerWeek * 4 * (formData.efficiencyFactor / 100)
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3" onClick={onClose}>
       <div className="bg-white rounded-lg shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-2 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Settings className="h-6 w-6" />
             <h2 className="text-xl font-semibold">Configure Work Center</h2>
@@ -482,7 +482,7 @@ export function WorkCenterConfigModal({ isOpen, onClose, workCenter, onSave }: W
         </div>
 
         <form onSubmit={handleSubmit} className="p-6">
-          <div className="space-y-4 mb-6">
+          <div className="space-y-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Work Center Name</label>
               <input
@@ -493,7 +493,7 @@ export function WorkCenterConfigModal({ isOpen, onClose, workCenter, onSave }: W
                 disabled
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Number of Machines</label>
                 <input
@@ -557,7 +557,7 @@ export function WorkCenterConfigModal({ isOpen, onClose, workCenter, onSave }: W
             </div>
           </div>
 
-          <div className="mb-6 bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
+          <div className="mb-3 bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-3">
             <h4 className="text-sm font-semibold text-purple-900 mb-2">Calculated Monthly Capacity</h4>
             <p className="text-3xl font-bold text-purple-900">{Math.round(calculatedCapacity).toLocaleString()} hours</p>
             <p className="text-xs text-purple-700 mt-1">Based on current configuration</p>

@@ -434,10 +434,10 @@ export default function MultiLevelBOMPage() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -477,8 +477,8 @@ export default function MultiLevelBOMPage() {
       </div>
 
       {/* Product Selection and Controls */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-2">Select Product</label>
             <select
@@ -513,8 +513,8 @@ export default function MultiLevelBOMPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-blue-900">Total Levels</span>
             <Layers className="h-5 w-5 text-blue-600" />
@@ -523,7 +523,7 @@ export default function MultiLevelBOMPage() {
           <div className="text-xs text-blue-700 mt-1">Maximum depth</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-green-900">Components</span>
             <Package className="h-5 w-5 text-green-600" />
@@ -532,7 +532,7 @@ export default function MultiLevelBOMPage() {
           <div className="text-xs text-green-700 mt-1">Total items</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-purple-900">Total Cost</span>
             <IndianRupee className="h-5 w-5 text-purple-600" />
@@ -541,7 +541,7 @@ export default function MultiLevelBOMPage() {
           <div className="text-xs text-purple-700 mt-1">Manufacturing cost</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-orange-900">Sub-Assemblies</span>
             <Hash className="h-5 w-5 text-orange-600" />
@@ -575,7 +575,7 @@ export default function MultiLevelBOMPage() {
       </div>
 
       {/* Legend */}
-      <div className="mt-6 bg-gray-50 rounded-lg p-4">
+      <div className="mt-6 bg-gray-50 rounded-lg p-3">
         <h3 className="text-sm font-medium text-gray-700 mb-3">Category Legend</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           <div className="flex items-center gap-2">

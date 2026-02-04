@@ -49,10 +49,10 @@ export function YearEndCloseModal({ isOpen, onClose, fiscalYear, onConfirm }: Ye
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl my-8">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-2xl w-full  my-8">
         {/* Header */}
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Archive className="w-5 h-5 text-white" />
@@ -71,8 +71,8 @@ export function YearEndCloseModal({ isOpen, onClose, fiscalYear, onConfirm }: Ye
         <div className="p-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
           {/* Year-End Checklist */}
           {runChecklist && (
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Year-End Checklist</h3>
+            <div className="mb-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Year-End Checklist</h3>
               <div className="space-y-2">
                 {yearEndChecklist.map((item) => (
                   <div
@@ -100,8 +100,8 @@ export function YearEndCloseModal({ isOpen, onClose, fiscalYear, onConfirm }: Ye
           )}
 
           {/* Year-End Actions */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Year-End Actions</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Year-End Actions</h3>
             <div className="space-y-3">
               <label className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
                 <input
@@ -171,7 +171,7 @@ export function YearEndCloseModal({ isOpen, onClose, fiscalYear, onConfirm }: Ye
           </div>
 
           {/* Warning */}
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-6 h-6 text-orange-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -190,7 +190,7 @@ export function YearEndCloseModal({ isOpen, onClose, fiscalYear, onConfirm }: Ye
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -264,10 +264,10 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Copy className="w-5 h-5 text-white" />
@@ -282,7 +282,7 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
         {/* Content */}
         <div className="p-6">
           {/* Fiscal Year Details */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Fiscal Year *</label>
               <select
@@ -308,7 +308,7 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
           </div>
 
           {/* Period Type */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Period Type *</label>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -336,7 +336,7 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
           </div>
 
           {/* Naming Pattern */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Naming Pattern</label>
             <select
               value={namingPattern}
@@ -351,7 +351,7 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
           </div>
 
           {/* Initial Status */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Initial Status for All Periods</label>
             <div className="grid grid-cols-2 gap-3">
               <button
@@ -380,7 +380,7 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
           </div>
 
           {/* Preview */}
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h4 className="text-teal-800 font-medium mb-3">📅 Periods to be Created</h4>
             <div className="space-y-2 mb-3">
               {previewPeriods().map((period, index) => (
@@ -406,7 +406,7 @@ export function BulkCreatePeriodsModal({ isOpen, onClose, onCreate }: BulkCreate
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -463,10 +463,10 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <Settings className="w-5 h-5 text-white" />
@@ -481,8 +481,8 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
         {/* Content */}
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
           {/* Default Settings */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Default Settings</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Default Settings</h3>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Default Period Type</label>
               <select
@@ -498,9 +498,9 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
           </div>
 
           {/* Auto-Close Settings */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Auto-Close Settings</h3>
-            <div className="space-y-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Auto-Close Settings</h3>
+            <div className="space-y-2">
               <label className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
                 <input
                   type="checkbox"
@@ -534,9 +534,9 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
           </div>
 
           {/* Warning Settings */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Warning Settings</h3>
-            <div className="space-y-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Warning Settings</h3>
+            <div className="space-y-2">
               <label className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
                 <input
                   type="checkbox"
@@ -570,9 +570,9 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
           </div>
 
           {/* Transaction Dating */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Transaction Dating</h3>
-            <div className="space-y-4">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Transaction Dating</h3>
+            <div className="space-y-2">
               <label className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
                 <input
                   type="checkbox"
@@ -606,8 +606,8 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
           </div>
 
           {/* Security Settings */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Security Settings</h3>
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Security Settings</h3>
             <label className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -624,7 +624,7 @@ export function PeriodSettingsModal({ isOpen, onClose, onSave }: PeriodSettingsM
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
@@ -680,10 +680,10 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 rounded-t-xl flex items-center justify-between">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 rounded-t-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
               <FileText className="w-5 h-5 text-white" />
@@ -701,7 +701,7 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
         {/* Content */}
         <div className="p-6">
           {/* Adjustment Type */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-3">Adjustment Type *</label>
             <div className="grid grid-cols-2 gap-3">
               {[
@@ -727,7 +727,7 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
           </div>
 
           {/* Description & Amount */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
               <input
@@ -752,7 +752,7 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
           </div>
 
           {/* Accounts */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-2 mb-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Debit Account *</label>
               <select
@@ -782,7 +782,7 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
           </div>
 
           {/* Options */}
-          <div className="mb-6">
+          <div className="mb-3">
             <label className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100">
               <input
                 type="checkbox"
@@ -798,7 +798,7 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
           </div>
 
           {/* Preview */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h4 className="text-purple-800 font-medium mb-3">📝 Adjustment Entry Preview</h4>
             <div className="space-y-2 text-sm text-purple-700">
               <div className="flex justify-between">
@@ -818,7 +818,7 @@ export function PeriodAdjustmentModal({ isOpen, onClose, periodId, periodName, o
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 rounded-b-xl flex gap-3 justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-xl flex gap-3 justify-end">
           <button
             onClick={onClose}
             className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

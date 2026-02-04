@@ -47,9 +47,9 @@ export default function ProgressPage() {
   const [timeRange, setTimeRange] = useState('Last 30 Days');
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <TrendingUp className="h-8 w-8 text-purple-600" />
@@ -75,8 +75,8 @@ export default function ProgressPage() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">Total Hours Learned</p>
             <h2 className="text-3xl font-bold text-gray-900 mt-2">42.5h</h2>
@@ -89,7 +89,7 @@ export default function ProgressPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">Courses Completed</p>
             <h2 className="text-3xl font-bold text-gray-900 mt-2">12</h2>
@@ -102,7 +102,7 @@ export default function ProgressPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+        <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-500">Avg. Quiz Score</p>
             <h2 className="text-3xl font-bold text-gray-900 mt-2">92%</h2>
@@ -116,10 +116,10 @@ export default function ProgressPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Activity Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-6">Learning Activity</h2>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">Learning Activity</h2>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={progressHistory} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -137,17 +137,17 @@ export default function ProgressPage() {
         </div>
 
         {/* Radar/Summary Widget (Simplified as Certifications List for now) */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Latest Achievements</h2>
-          <div className="space-y-4">
-            <div className="p-4 border border-green-200 bg-green-50 rounded-xl flex items-center gap-4">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Latest Achievements</h2>
+          <div className="space-y-2">
+            <div className="p-4 border border-green-200 bg-green-50 rounded-xl flex items-center gap-2">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-2xl">🏆</div>
               <div>
                 <h3 className="text-sm font-bold text-green-900">Leadership Master</h3>
                 <p className="text-xs text-green-700">Completed Jan 15, 2025</p>
               </div>
             </div>
-            <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl flex items-center gap-4">
+            <div className="p-4 border border-blue-200 bg-blue-50 rounded-xl flex items-center gap-2">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-2xl">🥇</div>
               <div>
                 <h3 className="text-sm font-bold text-blue-900">Security First</h3>
@@ -171,19 +171,19 @@ export default function ProgressPage() {
           <table className="w-full text-left text-sm text-gray-600">
             <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
               <tr>
-                <th className="px-6 py-4">Course Name</th>
-                <th className="px-6 py-4">Progress</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Score</th>
-                <th className="px-6 py-4">Certificate</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-3 py-2">Course Name</th>
+                <th className="px-3 py-2">Progress</th>
+                <th className="px-3 py-2">Status</th>
+                <th className="px-3 py-2">Score</th>
+                <th className="px-3 py-2">Certificate</th>
+                <th className="px-3 py-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {courseDetails.map((course) => (
                 <tr key={course.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-medium text-gray-900">{course.name}</td>
-                  <td className="px-6 py-4 w-48">
+                  <td className="px-3 py-2 font-medium text-gray-900">{course.name}</td>
+                  <td className="px-3 py-2 w-48">
                     <div className="flex items-center gap-2">
                       <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div className={`h-full rounded-full ${course.progress === 100 ? 'bg-green-500' : 'bg-purple-600'}`} style={{ width: `${course.progress}%` }}></div>
@@ -191,7 +191,7 @@ export default function ProgressPage() {
                       <span className="text-xs w-8 text-right">{course.progress}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${course.status === 'Completed' ? 'text-green-700 bg-green-50 ring-green-600/20' :
                         course.status === 'In Progress' ? 'text-blue-700 bg-blue-50 ring-blue-600/20' :
                           'text-gray-600 bg-gray-50 ring-gray-500/10'
@@ -199,15 +199,15 @@ export default function ProgressPage() {
                       {course.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 font-semibold">{course.score ? `${course.score}%` : '-'}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 font-semibold">{course.score ? `${course.score}%` : '-'}</td>
+                  <td className="px-3 py-2">
                     {course.cert === 'Available' ? (
                       <span className="text-purple-600 flex items-center gap-1 cursor-pointer hover:underline"><Download className="w-3 h-3" /> Download</span>
                     ) : (
                       <span className="text-gray-400 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> Locked</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-right">
+                  <td className="px-3 py-2 text-right">
                     <button className="text-gray-400 hover:text-gray-600">
                       <MoreVertical className="w-4 h-4" />
                     </button>

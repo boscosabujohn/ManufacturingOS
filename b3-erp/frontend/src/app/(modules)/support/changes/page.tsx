@@ -375,7 +375,7 @@ export default function ChangeManagement() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -389,7 +389,7 @@ export default function ChangeManagement() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2">
         {stats.map((stat, index) => {
           const Icon = stat.icon
           const colorClasses = {
@@ -401,7 +401,7 @@ export default function ChangeManagement() {
             red: 'bg-red-500'
           }
           return (
-            <div key={index} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={index} className="bg-white rounded-lg shadow-sm border p-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gray-600 text-sm">{stat.label}</span>
                 <div className={`${colorClasses[stat.color as keyof typeof colorClasses]} p-2 rounded-lg`}>
@@ -416,8 +416,8 @@ export default function ChangeManagement() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -462,12 +462,12 @@ export default function ChangeManagement() {
       </div>
 
       {/* Changes Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredChanges.map((change) => (
           <div key={change.id} className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`px-2 py-1 rounded text-xs font-medium ${getPriorityColor(change.priority)}`}>
@@ -487,7 +487,7 @@ export default function ChangeManagement() {
               </div>
 
               {/* Details */}
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-gray-400" />
                   <span className="text-gray-600">Planned: {change.plannedStart}</span>
@@ -507,7 +507,7 @@ export default function ChangeManagement() {
               </div>
 
               {/* Affected Systems */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="text-xs text-gray-500 mb-1">Affected Systems</div>
                 <div className="flex flex-wrap gap-1">
                   {change.affectedSystems.map((system, idx) => (
@@ -539,7 +539,7 @@ export default function ChangeManagement() {
       {/* No Results */}
       {filteredChanges.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm border p-12 text-center">
-          <Filter className="h-12 w-12 text-gray-400 mb-4" />
+          <Filter className="h-12 w-12 text-gray-400 mb-2" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No Changes Found</h3>
           <p className="text-gray-600">Try adjusting your filters or search query</p>
         </div>
@@ -547,7 +547,7 @@ export default function ChangeManagement() {
 
       {/* Detail Modal */}
       {selectedChange && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b">
               <div className="flex justify-between items-start">
@@ -568,12 +568,12 @@ export default function ChangeManagement() {
                 </button>
               </div>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               <div>
                 <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
                 <p className="text-gray-600">{selectedChange.description}</p>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">Status</h4>
                   <span className={`px-2 py-1 rounded text-xs font-medium border ${getStatusColor(selectedChange.status)}`}>
@@ -619,7 +619,7 @@ export default function ChangeManagement() {
                 <h4 className="font-semibold text-gray-900 mb-1">Backout Plan</h4>
                 <p className="text-gray-600">{selectedChange.backoutPlan}</p>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-1">Requested By</h4>
                   <p className="text-gray-600">{selectedChange.requestedBy}</p>

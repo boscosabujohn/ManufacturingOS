@@ -35,10 +35,10 @@ function StockLocationContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item ID</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -47,10 +47,10 @@ function StockLocationContent() {
                                     key={idx}
                                     onClick={() => router.push(`/inventory/items/${item.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{item.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.location}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{item.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{item.location}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right font-medium">
                                         {item.stock} {item.unit}
                                     </td>
                                 </ClickableTableRow>

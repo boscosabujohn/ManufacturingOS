@@ -209,7 +209,7 @@ export default function TeamSkills() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -223,8 +223,8 @@ export default function TeamSkills() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Skills</p>
@@ -234,7 +234,7 @@ export default function TeamSkills() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expert Level</p>
@@ -244,7 +244,7 @@ export default function TeamSkills() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Certifications</p>
@@ -254,7 +254,7 @@ export default function TeamSkills() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg per Agent</p>
@@ -264,7 +264,7 @@ export default function TeamSkills() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Critical Gaps</p>
@@ -276,14 +276,14 @@ export default function TeamSkills() {
       </div>
 
       {/* Skill Gaps */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
           <AlertCircle className="h-5 w-5 text-red-600" />
           Skill Gaps Analysis
         </h2>
         <div className="space-y-3">
           {skillGaps.map((gap, idx) => (
-            <div key={idx} className="border rounded-lg p-4">
+            <div key={idx} className="border rounded-lg p-3">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <span className="font-medium">{gap.skill}</span>
@@ -296,7 +296,7 @@ export default function TeamSkills() {
                   Plan Training
                 </button>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <div className="flex-1">
                   <div className="flex justify-between text-sm mb-1">
                     <span className="text-gray-600">Current: {gap.current} agents</span>
@@ -320,8 +320,8 @@ export default function TeamSkills() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border p-4">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -353,12 +353,12 @@ export default function TeamSkills() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="text-left p-4 font-medium text-gray-600">Agent</th>
-                <th className="text-left p-4 font-medium text-gray-600">Team</th>
-                <th className="text-left p-4 font-medium text-gray-600">Skills</th>
-                <th className="text-left p-4 font-medium text-gray-600">Expert Level</th>
-                <th className="text-left p-4 font-medium text-gray-600">Certifications</th>
-                <th className="text-left p-4 font-medium text-gray-600">Actions</th>
+                <th className="text-left p-3 font-medium text-gray-600">Agent</th>
+                <th className="text-left p-3 font-medium text-gray-600">Team</th>
+                <th className="text-left p-3 font-medium text-gray-600">Skills</th>
+                <th className="text-left p-3 font-medium text-gray-600">Expert Level</th>
+                <th className="text-left p-3 font-medium text-gray-600">Certifications</th>
+                <th className="text-left p-3 font-medium text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -426,7 +426,7 @@ export default function TeamSkills() {
           <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto m-4">
             <div className="p-6 border-b">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                   <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
                     {selectedAgent.avatar}
                   </div>
@@ -444,18 +444,18 @@ export default function TeamSkills() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Summary */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="border rounded-lg p-4 text-center">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="border rounded-lg p-3 text-center">
                   <p className="text-sm text-gray-600">Total Skills</p>
                   <p className="text-3xl font-bold mt-1">{selectedAgent.totalSkills}</p>
                 </div>
-                <div className="border rounded-lg p-4 text-center">
+                <div className="border rounded-lg p-3 text-center">
                   <p className="text-sm text-gray-600">Expert Level</p>
                   <p className="text-3xl font-bold mt-1">{selectedAgent.expertLevel}</p>
                 </div>
-                <div className="border rounded-lg p-4 text-center">
+                <div className="border rounded-lg p-3 text-center">
                   <p className="text-sm text-gray-600">Certifications</p>
                   <p className="text-3xl font-bold mt-1">{selectedAgent.certifications}</p>
                 </div>
@@ -463,10 +463,10 @@ export default function TeamSkills() {
 
               {/* Skills by Category */}
               <div>
-                <h3 className="font-semibold mb-4">Skills Breakdown</h3>
-                <div className="space-y-4">
+                <h3 className="font-semibold mb-2">Skills Breakdown</h3>
+                <div className="space-y-2">
                   {selectedAgent.skills.map((skill, idx) => (
-                    <div key={idx} className="border rounded-lg p-4">
+                    <div key={idx} className="border rounded-lg p-3">
                       <div className="flex items-start justify-between mb-2">
                         <div>
                           <h4 className="font-medium">{skill.skillName}</h4>
@@ -476,7 +476,7 @@ export default function TeamSkills() {
                           {skill.level}
                         </span>
                       </div>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
+                      <div className="grid grid-cols-3 gap-2 text-sm">
                         <div>
                           <p className="text-gray-600">Experience</p>
                           <p className="font-medium">{skill.yearsExperience} years</p>

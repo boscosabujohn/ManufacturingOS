@@ -246,11 +246,11 @@ export function RoleBasedViews({
 
   // Render role-specific dashboard content
   const renderOperatorView = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Current Job */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Current Job</h3>
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Current Job</h3>
+        <div className="flex items-center justify-between mb-2">
           <div>
             <p className="text-2xl font-bold text-white">{operatorData.currentJob.id}</p>
             <p className="text-gray-400">{operatorData.currentJob.product}</p>
@@ -261,7 +261,7 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-2">
           <div className="flex justify-between text-sm mb-1">
             <span className="text-gray-400">Progress</span>
             <span className="text-white">{operatorData.currentJob.completed} / {operatorData.currentJob.target} units</span>
@@ -274,7 +274,7 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <div className="bg-gray-700 rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-green-400">{operatorData.todayStats.efficiency}%</p>
             <p className="text-xs text-gray-400">Efficiency</p>
@@ -287,9 +287,9 @@ export function RoleBasedViews({
       </div>
 
       {/* Today's Stats */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Today&apos;s Stats</h3>
-        <div className="grid grid-cols-2 gap-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Today&apos;s Stats</h3>
+        <div className="grid grid-cols-2 gap-2">
           <div className="text-center">
             <p className="text-3xl font-bold text-white">{operatorData.todayStats.jobsCompleted}</p>
             <p className="text-sm text-gray-400">Jobs Completed</p>
@@ -302,15 +302,15 @@ export function RoleBasedViews({
       </div>
 
       {/* Status Indicators */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
+      <div className="grid grid-cols-2 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3 flex items-center justify-between">
           <span className="text-gray-400">Machine</span>
           <span className="flex items-center gap-2">
             <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
             <span className="text-green-400 font-medium">Running</span>
           </span>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4 flex items-center justify-between">
+        <div className="bg-gray-800 rounded-lg p-3 flex items-center justify-between">
           <span className="text-gray-400">Next Break</span>
           <span className="text-white font-medium">{operatorData.nextBreak}</span>
         </div>
@@ -319,11 +319,11 @@ export function RoleBasedViews({
   );
 
   const renderSupervisorView = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Team Overview */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Team Overview</h3>
-        <div className="grid grid-cols-3 gap-4 mb-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Team Overview</h3>
+        <div className="grid grid-cols-3 gap-2 mb-2">
           <div className="text-center">
             <p className="text-3xl font-bold text-white">{supervisorData.activeOperators}/{supervisorData.teamSize}</p>
             <p className="text-sm text-gray-400">Active Operators</p>
@@ -338,7 +338,7 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-2">
           <div className="flex justify-between text-sm mb-1">
             <span className="text-gray-400">Shift Progress</span>
             <span className="text-white">{supervisorData.shiftProgress}%</span>
@@ -353,9 +353,9 @@ export function RoleBasedViews({
       </div>
 
       {/* Production Status */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Shift Production</h3>
-        <div className="flex items-end justify-between mb-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Shift Production</h3>
+        <div className="flex items-end justify-between mb-2">
           <div>
             <p className="text-4xl font-bold text-white">{supervisorData.todayOutput.toLocaleString()}</p>
             <p className="text-gray-400">of {supervisorData.targetOutput.toLocaleString()} target</p>
@@ -366,7 +366,7 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-700">
+        <div className="grid grid-cols-2 gap-2 pt-4 border-t border-gray-700">
           <div className="flex items-center gap-2">
             <span className="text-green-400">🏆</span>
             <div>
@@ -385,8 +385,8 @@ export function RoleBasedViews({
       </div>
 
       {/* Recent Alerts */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Recent Alerts</h3>
+      <div className="bg-gray-800 rounded-lg p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Recent Alerts</h3>
         <div className="space-y-3">
           <div className="flex items-center gap-3 p-3 bg-yellow-900/30 border border-yellow-700 rounded-lg">
             <span className="text-yellow-400">⚠️</span>
@@ -408,25 +408,25 @@ export function RoleBasedViews({
   );
 
   const renderManagerView = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* KPI Overview */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gray-800 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gray-800 rounded-lg p-3">
           <p className="text-sm text-gray-400 mb-1">Weekly OEE</p>
           <p className="text-2xl font-bold text-green-400">{managerData.weeklyOEE}%</p>
           <p className="text-xs text-green-400">+2.3% vs last week</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <p className="text-sm text-gray-400 mb-1">Quality Rate</p>
           <p className="text-2xl font-bold text-blue-400">{managerData.qualityRate}%</p>
           <p className="text-xs text-blue-400">Target: 98%</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <p className="text-sm text-gray-400 mb-1">On-Time Delivery</p>
           <p className="text-2xl font-bold text-purple-400">{managerData.deliveryOnTime}%</p>
           <p className="text-xs text-yellow-400">-1.2% vs target</p>
         </div>
-        <div className="bg-gray-800 rounded-lg p-4">
+        <div className="bg-gray-800 rounded-lg p-3">
           <p className="text-sm text-gray-400 mb-1">Labor Utilization</p>
           <p className="text-2xl font-bold text-amber-400">{managerData.laborUtilization}%</p>
           <p className="text-xs text-gray-400">87 active workers</p>
@@ -434,8 +434,8 @@ export function RoleBasedViews({
       </div>
 
       {/* Production Chart Placeholder */}
-      <div className="bg-gray-800 rounded-lg p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-gray-800 rounded-lg p-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold text-white">Weekly Production Trend</h3>
           <select className="bg-gray-700 text-white text-sm rounded-lg px-3 py-1 border border-gray-600">
             <option>This Week</option>
@@ -460,9 +460,9 @@ export function RoleBasedViews({
       </div>
 
       {/* Issues & Actions */}
-      <div className="grid grid-cols-2 gap-6">
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Open Issues</h3>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Open Issues</h3>
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
               <div className="flex items-center gap-3">
@@ -488,9 +488,9 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Cost Analysis</h3>
-          <div className="space-y-4">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Cost Analysis</h3>
+          <div className="space-y-2">
             <div>
               <div className="flex justify-between text-sm mb-1">
                 <span className="text-gray-400">Budget Variance</span>
@@ -518,25 +518,25 @@ export function RoleBasedViews({
   );
 
   const renderExecutiveView = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Financial Overview */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700 rounded-lg p-4">
+      <div className="grid grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-700 rounded-lg p-3">
           <p className="text-sm text-green-300 mb-1">Revenue YTD</p>
           <p className="text-3xl font-bold text-white">${executiveData.revenueYTD}M</p>
           <p className="text-sm text-green-400">+{executiveData.revenueGrowth}% YoY</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 border border-blue-700 rounded-lg p-3">
           <p className="text-sm text-blue-300 mb-1">Gross Margin</p>
           <p className="text-3xl font-bold text-white">{executiveData.grossMargin}%</p>
           <p className="text-sm text-blue-400">Target: 35%</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/30 border border-purple-700 rounded-lg p-3">
           <p className="text-sm text-purple-300 mb-1">Operating Margin</p>
           <p className="text-3xl font-bold text-white">{executiveData.operatingMargin}%</p>
           <p className="text-sm text-purple-400">+1.2% vs plan</p>
         </div>
-        <div className="bg-gradient-to-br from-amber-900/50 to-amber-800/30 border border-amber-700 rounded-lg p-4">
+        <div className="bg-gradient-to-br from-amber-900/50 to-amber-800/30 border border-amber-700 rounded-lg p-3">
           <p className="text-sm text-amber-300 mb-1">Market Share</p>
           <p className="text-3xl font-bold text-white">{executiveData.marketShare}%</p>
           <p className="text-sm text-amber-400">+0.8% QoQ</p>
@@ -544,10 +544,10 @@ export function RoleBasedViews({
       </div>
 
       {/* Strategic Overview */}
-      <div className="grid grid-cols-3 gap-6">
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Operations</h3>
-          <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-3">
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Operations</h3>
+          <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-gray-400">Plants Operational</span>
               <span className="text-2xl font-bold text-green-400">{executiveData.plantsOperational}/4</span>
@@ -578,8 +578,8 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Customer Metrics</h3>
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Customer Metrics</h3>
           <div className="flex flex-col items-center justify-center h-40">
             <div className="relative w-32 h-32">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
@@ -610,8 +610,8 @@ export function RoleBasedViews({
           </div>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Strategic Initiatives</h3>
+        <div className="bg-gray-800 rounded-lg p-3">
+          <h3 className="text-lg font-semibold text-white mb-2">Strategic Initiatives</h3>
           <div className="space-y-3">
             <div className="p-3 bg-green-900/30 border border-green-700 rounded-lg">
               <div className="flex items-center justify-between mb-1">
@@ -662,10 +662,10 @@ export function RoleBasedViews({
   };
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <div className="relative">
             <button
               onClick={() => setShowRoleSelector(!showRoleSelector)}
@@ -728,7 +728,7 @@ export function RoleBasedViews({
       </div>
 
       {/* Quick Actions */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h3 className="text-sm font-medium text-gray-400 mb-3">Quick Actions</h3>
         <div className="flex flex-wrap gap-2">
           {availableActions.map(action => (

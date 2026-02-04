@@ -160,7 +160,7 @@ export default function UomconversionmasterPage() {
   const stats = useMemo(() => getUOMConversionStats(), [conversions]);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -181,36 +181,36 @@ export default function UomconversionmasterPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Conversions</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">⚖️ Weight</div>
           <div className="text-2xl font-bold text-blue-600">{stats.weight}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">📏 Length</div>
           <div className="text-2xl font-bold text-green-600">{stats.length}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">🧪 Volume</div>
           <div className="text-2xl font-bold text-purple-600">{stats.volume}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Reversible</div>
           <div className="text-2xl font-bold text-orange-600">{stats.reversible}</div>
         </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="text-sm text-gray-600 mb-1">Total Usage</div>
           <div className="text-2xl font-bold text-teal-600">{stats.totalUsage.toLocaleString('en-IN')}</div>
         </div>
       </div>
 
       {selectedConversion && (
-        <div className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="font-semibold text-blue-900 flex items-center gap-2">
               <Calculator className="w-5 h-5" />
               Quick Conversion Calculator
@@ -219,7 +219,7 @@ export default function UomconversionmasterPage() {
               <X className="w-5 h-5" />
             </button>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">{selectedConversion.fromUOM}</label>
               <input
@@ -251,8 +251,8 @@ export default function UomconversionmasterPage() {
         </div>
       )}
 
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
@@ -273,7 +273,7 @@ export default function UomconversionmasterPage() {
         </div>
 
         {showFilters && (
-          <div className="mt-4 pt-4 border-t grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="mt-4 pt-4 border-t grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
               <select
@@ -304,7 +304,7 @@ export default function UomconversionmasterPage() {
         />
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
           <Scale className="w-5 h-5" />
           UOM Conversion Guidelines

@@ -69,18 +69,18 @@ export default function OnboardingWorkflow() {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-3">
       <div>
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Employee Onboarding Workflow</h1>
           <p className="text-gray-600">Streamlined onboarding process for new hires</p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           {employees.map((employee) => (
-            <div key={employee.id} className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-4">
+            <div key={employee.id} className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
                     {employee.name.split(' ').map(n => n[0]).join('')}
                   </div>
@@ -94,7 +94,7 @@ export default function OnboardingWorkflow() {
                 </span>
               </div>
 
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700">Onboarding Progress</span>
                   <span className="text-sm font-bold text-gray-900">{employee.progress}%</span>

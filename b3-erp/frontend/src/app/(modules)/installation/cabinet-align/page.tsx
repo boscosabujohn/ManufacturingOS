@@ -56,7 +56,7 @@ export default function CabinetAlignPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -80,7 +80,7 @@ export default function CabinetAlignPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 <Card>
                     <CardHeader className="pb-3">
                         <CardTitle className="text-sm font-medium text-muted-foreground">Pending Checks</CardTitle>

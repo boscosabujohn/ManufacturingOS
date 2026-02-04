@@ -101,7 +101,7 @@ export default function ShippingBillPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -122,7 +122,7 @@ export default function ShippingBillPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
                 {/* Bills List */}
                 <Card className="lg:col-span-1">
                     <CardHeader>
@@ -185,9 +185,9 @@ export default function ShippingBillPage() {
                                 </div>
                             </div>
                         </CardHeader>
-                        <CardContent className="space-y-6">
+                        <CardContent className="space-y-3">
                             {/* Header Info */}
-                            <div className="grid grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg">
+                            <div className="grid grid-cols-2 gap-2 p-3 bg-muted/30 rounded-lg">
                                 <div>
                                     <div className="text-sm text-muted-foreground">Order Number</div>
                                     <div className="font-medium">{selectedBill.orderNumber}</div>

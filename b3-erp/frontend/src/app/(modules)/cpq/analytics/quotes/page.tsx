@@ -92,9 +92,9 @@ export default function CPQAnalyticsQuotesPage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header Actions */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Quote Analytics</h2>
           <p className="text-sm text-gray-600 mt-1">Comprehensive insights into quote performance and trends</p>
@@ -123,7 +123,7 @@ export default function CPQAnalyticsQuotesPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-medium text-blue-600">Total Quotes</p>
@@ -176,10 +176,10 @@ export default function CPQAnalyticsQuotesPage() {
       </div>
 
       {/* Charts Row 1 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Quote Volume Trend */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Quote Volume Trend</h3>
               <p className="text-sm text-gray-600">Monthly quote creation and conversion</p>
@@ -200,15 +200,15 @@ export default function CPQAnalyticsQuotesPage() {
         </div>
 
         {/* Quote Status Distribution */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Quote Status Distribution</h3>
               <p className="text-sm text-gray-600">Current status breakdown</p>
             </div>
             <FileText className="h-6 w-6 text-purple-600" />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
             <ResponsiveContainer width="50%" height={250}>
               <PieChart>
                 <Pie
@@ -247,10 +247,10 @@ export default function CPQAnalyticsQuotesPage() {
       </div>
 
       {/* Charts Row 2 */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         {/* Average Quote Value */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Average Quote Value Trend</h3>
               <p className="text-sm text-gray-600">Average and median quote values (₹L)</p>
@@ -271,8 +271,8 @@ export default function CPQAnalyticsQuotesPage() {
         </div>
 
         {/* Conversion Rate by Category */}
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Conversion by Product Category</h3>
               <p className="text-sm text-gray-600">Quote conversion rates by category</p>
@@ -293,8 +293,8 @@ export default function CPQAnalyticsQuotesPage() {
       </div>
 
       {/* Top Performers */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div>
             <h3 className="text-lg font-bold text-gray-900">Top Performing Sales Representatives</h3>
             <p className="text-sm text-gray-600">Ranked by total quote value generated</p>
@@ -353,9 +353,9 @@ export default function CPQAnalyticsQuotesPage() {
       </div>
 
       {/* Quote Turnaround Time */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Quote Turnaround Time</h3>
               <p className="text-sm text-gray-600">Time from request to quote delivery</p>
@@ -364,7 +364,7 @@ export default function CPQAnalyticsQuotesPage() {
           </div>
           <div className="space-y-3">
             {turnaroundTime.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-4">
+              <div key={idx} className="flex items-center gap-2">
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-gray-700">{item.range}</span>
@@ -389,16 +389,16 @@ export default function CPQAnalyticsQuotesPage() {
         </div>
 
         {/* Key Insights */}
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-md border border-purple-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow-md border border-purple-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h3 className="text-lg font-bold text-purple-900">Key Insights</h3>
               <p className="text-sm text-purple-700">Actionable recommendations</p>
             </div>
             <TrendingUp className="h-6 w-6 text-purple-600" />
           </div>
-          <div className="space-y-4">
-            <div className="bg-white rounded-lg p-4 border border-purple-200">
+          <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 border border-purple-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-green-100 rounded-lg">
                   <ArrowUpRight className="h-5 w-5 text-green-600" />
@@ -409,7 +409,7 @@ export default function CPQAnalyticsQuotesPage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-purple-200">
+            <div className="bg-white rounded-lg p-3 border border-purple-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-yellow-100 rounded-lg">
                   <Clock className="h-5 w-5 text-yellow-600" />
@@ -420,7 +420,7 @@ export default function CPQAnalyticsQuotesPage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-4 border border-purple-200">
+            <div className="bg-white rounded-lg p-3 border border-purple-200">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <Users className="h-5 w-5 text-blue-600" />

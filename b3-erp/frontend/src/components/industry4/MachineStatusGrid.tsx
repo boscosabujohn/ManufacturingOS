@@ -129,7 +129,7 @@ function MachineCard({
     <div
       onClick={onClick}
       className={`
-        relative p-4 rounded-xl border-2 ${config.borderColor} ${config.bgColor}
+        relative p-3 rounded-xl border-2 ${config.borderColor} ${config.bgColor}
         cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02]
         dark:bg-gray-800 dark:border-opacity-50
       `}
@@ -145,7 +145,7 @@ function MachineCard({
       </div>
 
       {/* Header */}
-      <div className="flex items-start gap-3 mb-4">
+      <div className="flex items-start gap-3 mb-2">
         <div className={`w-12 h-12 rounded-lg ${config.bgColor} border ${config.borderColor} flex items-center justify-center`}>
           <Cpu className={`w-6 h-6 ${config.color}`} />
         </div>
@@ -358,7 +358,7 @@ export function MachineStatusGrid({
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+      <div className="px-3 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -382,8 +382,8 @@ export function MachineStatusGrid({
       </div>
 
       {/* Status Summary Bar */}
-      <div className="px-6 py-3 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex flex-wrap items-center gap-4">
+      <div className="px-3 py-2 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setStatusFilter('all')}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
@@ -418,7 +418,7 @@ export function MachineStatusGrid({
 
       {/* Machine Grid */}
       <div className="p-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
           {filteredMachines.map(machine => (
             <MachineCard
               key={machine.id}
@@ -431,7 +431,7 @@ export function MachineStatusGrid({
 
         {filteredMachines.length === 0 && (
           <div className="text-center py-12 text-gray-500">
-            <Cpu className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+            <Cpu className="w-12 h-12 mb-3 text-gray-300" />
             <p>No machines match the selected filter</p>
           </div>
         )}

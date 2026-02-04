@@ -137,7 +137,7 @@ export function OperatorTaskCard({
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-4">
+        <div className="mb-2">
           <div className="flex items-center justify-between text-sm mb-1.5">
             <span className="text-gray-600 dark:text-gray-400">Progress</span>
             <span className="font-semibold text-gray-900 dark:text-white">
@@ -159,7 +159,7 @@ export function OperatorTaskCard({
         </div>
 
         {/* Info Row */}
-        <div className="flex flex-wrap gap-4 text-sm">
+        <div className="flex flex-wrap gap-2 text-sm">
           {task.machine && (
             <div className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
               <Wrench className="w-4 h-4" />
@@ -192,7 +192,7 @@ export function OperatorTaskCard({
         )}
 
         {isExpanded && (
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
             {/* Instructions */}
             {task.instructions && (
               <div>

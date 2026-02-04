@@ -67,7 +67,7 @@ export default function TransportSelectionPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -93,7 +93,7 @@ export default function TransportSelectionPage() {
 
             <Card className="border-l-4 border-l-blue-500 bg-blue-50">
                 <CardContent className="pt-6">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
                         <MapPin className="h-6 w-6 text-blue-600" />
                         <div>
                             <div className="font-medium">Delivery Destination</div>
@@ -103,7 +103,7 @@ export default function TransportSelectionPage() {
                 </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {transportOptions.map((option) => (
                     <Card
                         key={option.id}
@@ -131,7 +131,7 @@ export default function TransportSelectionPage() {
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="grid grid-cols-3 gap-4">
+                            <div className="grid grid-cols-3 gap-2">
                                 <div>
                                     <div className="text-sm text-muted-foreground">Estimated Time</div>
                                     <div className="font-bold text-lg">{option.estimatedDays} days</div>

@@ -566,10 +566,10 @@ export default function ProjectReportsPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-2">
+    <div className="px-3 py-2">
      {/* Header Section */}
      <div className="mb-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <div>
         <h1 className="text-2xl font-bold text-gray-900">Reports & Analytics</h1>
         <p className="text-gray-600 mt-1">Generate, schedule, and analyze project reports</p>
@@ -577,7 +577,7 @@ export default function ProjectReportsPage() {
       </div>
 
       {/* Action Buttons Row */}
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-2">
        <button
         onClick={() => setShowGenerateModal(true)}
         className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -630,8 +630,8 @@ export default function ProjectReportsPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
-       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+       <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center justify-between">
          <div>
           <p className="text-sm text-gray-600">Total Reports</p>
@@ -643,7 +643,7 @@ export default function ProjectReportsPage() {
         </div>
        </div>
 
-       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+       <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center justify-between">
          <div>
           <p className="text-sm text-gray-600">Report Templates</p>
@@ -655,7 +655,7 @@ export default function ProjectReportsPage() {
         </div>
        </div>
 
-       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+       <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center justify-between">
          <div>
           <p className="text-sm text-gray-600">This Month</p>
@@ -669,7 +669,7 @@ export default function ProjectReportsPage() {
         </div>
        </div>
 
-       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+       <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center justify-between">
          <div>
           <p className="text-sm text-gray-600">Total Size</p>
@@ -687,7 +687,7 @@ export default function ProjectReportsPage() {
      <div className="flex border-b border-gray-200 mb-3">
       <button
        onClick={() => setActiveTab('recent')}
-       className={`px-6 py-3 font-medium ${activeTab === 'recent'
+       className={`px-3 py-2 font-medium ${activeTab === 'recent'
          ? 'text-cyan-600 border-b-2 border-cyan-600'
          : 'text-gray-600 hover:text-gray-900'
         }`}
@@ -696,7 +696,7 @@ export default function ProjectReportsPage() {
       </button>
       <button
        onClick={() => setActiveTab('templates')}
-       className={`px-6 py-3 font-medium ${activeTab === 'templates'
+       className={`px-3 py-2 font-medium ${activeTab === 'templates'
          ? 'text-cyan-600 border-b-2 border-cyan-600'
          : 'text-gray-600 hover:text-gray-900'
         }`}
@@ -709,8 +709,8 @@ export default function ProjectReportsPage() {
      {activeTab === 'recent' && (
       <>
        {/* Filters */}
-       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
-        <div className="flex flex-col md:flex-row gap-4">
+       <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
          <div className="flex-1">
           <input
            type="text"
@@ -755,7 +755,7 @@ export default function ProjectReportsPage() {
          const IconComponent = report.icon;
          return (
           <div key={report.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
-           <div className="flex items-start justify-between mb-4">
+           <div className="flex items-start justify-between mb-2">
             <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
              <IconComponent className="w-6 h-6 text-gray-600" />
             </div>
@@ -765,9 +765,9 @@ export default function ProjectReportsPage() {
            </div>
 
            <h3 className="text-lg font-semibold text-gray-900 mb-2">{report.reportName}</h3>
-           <p className="text-sm text-gray-600 mb-4 line-clamp-2">{report.description}</p>
+           <p className="text-sm text-gray-600 mb-2 line-clamp-2">{report.description}</p>
 
-           <div className="space-y-2 mb-4">
+           <div className="space-y-2 mb-2">
             <div className="flex items-center justify-between text-sm">
              <span className="text-gray-600">Type:</span>
              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getReportTypeColor(report.reportType)}`}>
@@ -860,7 +860,7 @@ export default function ProjectReportsPage() {
         const IconComponent = template.icon;
         return (
          <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
-          <div className="flex items-start gap-4 mb-4">
+          <div className="flex items-start gap-2 mb-2">
            <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
             <IconComponent className="w-7 h-7 text-white" />
            </div>
@@ -872,9 +872,9 @@ export default function ProjectReportsPage() {
            </div>
           </div>
 
-          <p className="text-sm text-gray-600 mb-4">{template.description}</p>
+          <p className="text-sm text-gray-600 mb-2">{template.description}</p>
 
-          <div className="space-y-3 mb-4">
+          <div className="space-y-3 mb-2">
            <div>
             <p className="text-xs font-semibold text-gray-700 mb-2">Data Points:</p>
             <div className="flex flex-wrap gap-1">

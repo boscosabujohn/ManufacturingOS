@@ -239,10 +239,10 @@ const MachineMaster: React.FC = () => {
   const avgUtilization = machines.reduce((sum, m) => sum + m.performance.utilizationRate, 0) / machines.length;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+    <div className="min-h-screen bg-gray-50 p-3">
+      <div className="">
+        <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
                 <Cog className="w-8 h-8 text-indigo-600" />
@@ -256,7 +256,7 @@ const MachineMaster: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -282,8 +282,8 @@ const MachineMaster: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Machines</p>
@@ -292,7 +292,7 @@ const MachineMaster: React.FC = () => {
               <Cog className="w-12 h-12 text-indigo-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Operational</p>
@@ -303,7 +303,7 @@ const MachineMaster: React.FC = () => {
               <Activity className="w-12 h-12 text-green-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Avg Efficiency</p>
@@ -312,7 +312,7 @@ const MachineMaster: React.FC = () => {
               <Activity className="w-12 h-12 text-blue-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Utilization</p>
@@ -321,7 +321,7 @@ const MachineMaster: React.FC = () => {
               <Wrench className="w-12 h-12 text-purple-600 opacity-20" />
             </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-3 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Investment</p>
@@ -335,10 +335,10 @@ const MachineMaster: React.FC = () => {
         </div>
 
         {/* Machines List */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredMachines.map(machine => (
-            <div key={machine.id} className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex items-start justify-between mb-4">
+            <div key={machine.id} className="bg-white rounded-lg shadow-sm p-3">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{machine.machineName}</h3>
@@ -382,9 +382,9 @@ const MachineMaster: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                 {/* Specifications */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Specifications</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
@@ -405,7 +405,7 @@ const MachineMaster: React.FC = () => {
                 </div>
 
                 {/* Performance */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Performance</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
@@ -426,7 +426,7 @@ const MachineMaster: React.FC = () => {
                 </div>
 
                 {/* Maintenance */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Maintenance</h4>
                   <div className="space-y-1 text-sm">
                     {machine.maintenance.lastServiceDate && (
@@ -451,7 +451,7 @@ const MachineMaster: React.FC = () => {
                 </div>
 
                 {/* Location & Cost */}
-                <div className="border border-gray-200 rounded-lg p-4">
+                <div className="border border-gray-200 rounded-lg p-3">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Location & Cost</h4>
                   <div className="space-y-1 text-sm">
                     <div>

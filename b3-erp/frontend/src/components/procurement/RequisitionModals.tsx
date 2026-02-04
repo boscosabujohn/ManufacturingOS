@@ -188,10 +188,10 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Plus className="w-6 h-6" />
             <div>
@@ -205,7 +205,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
         </div>
 
         {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-4 py-4 bg-gray-50 border-b">
+        <div className="flex items-center justify-center gap-2 py-4 bg-gray-50 border-b">
           <div className={`flex items-center gap-2 ${currentStep >= 1 ? 'text-blue-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-300'}`}>1</div>
             <span className="font-medium">PR Details</span>
@@ -223,11 +223,11 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Step 1: PR Details */}
           {currentStep === 1 && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
                   <select
@@ -342,15 +342,15 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
 
           {/* Step 2: Add Items */}
           {currentStep === 2 && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Add Item Section */}
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-3">
+                <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
                   <Plus className="w-5 h-5" />
                   Add Item to Requisition
                 </h3>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Item Code</label>
                     <input
@@ -424,7 +424,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                     <input
@@ -512,10 +512,10 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
 
           {/* Step 3: Review & Submit */}
           {currentStep === 3 && (
-            <div className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="space-y-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
                 <h3 className="font-semibold text-blue-900 mb-3">Review Requisition</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-2 text-sm">
                   <div>
                     <p className="text-blue-700">Department:</p>
                     <p className="font-semibold text-blue-900">{formData.department}</p>
@@ -566,8 +566,8 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
               </div>
 
               <div className="border-t pt-4">
-                <div className="grid grid-cols-2 gap-4 max-w-md ml-auto">
-                  <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 gap-2 max-w-md ml-auto">
+                  <div className="grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-sm font-medium text-gray-700">Subtotal:</label>
                     <input
                       type="number"
@@ -577,7 +577,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-sm font-medium text-gray-700">Est. Tax:</label>
                     <input
                       type="number"
@@ -588,7 +588,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
                     />
                   </div>
 
-                  <div className="col-span-2 border-t pt-3 grid grid-cols-3 gap-4">
+                  <div className="col-span-2 border-t pt-3 grid grid-cols-3 gap-2">
                     <label className="col-span-2 text-base font-bold text-gray-900">Estimated Total:</label>
                     <input
                       type="number"
@@ -604,7 +604,7 @@ export const CreateRequisitionModal: React.FC<CreateRequisitionModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             type="button"
             onClick={onClose}
@@ -678,10 +678,10 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Eye className="w-6 h-6" />
             <div>
@@ -695,17 +695,17 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {/* Status Badge */}
-          <div className="mb-6">
+          <div className="mb-3">
             <span className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${getStatusColor(requisition.status)}`}>
               {requisition.status.toUpperCase().replace('_', ' ')}
             </span>
           </div>
 
           {/* Requisition Information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <User className="w-4 h-4" />
                 <p className="text-sm font-medium">Requested By</p>
@@ -713,7 +713,7 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
               <p className="text-lg font-bold text-gray-900">{requisition.requestedBy}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <Building2 className="w-4 h-4" />
                 <p className="text-sm font-medium">Department</p>
@@ -721,7 +721,7 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
               <p className="text-lg font-bold text-gray-900">{requisition.department}</p>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <div className="flex items-center gap-2 text-gray-600 mb-2">
                 <DollarSign className="w-4 h-4" />
                 <p className="text-sm font-medium">Estimated Total</p>
@@ -731,7 +731,7 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
           </div>
 
           {/* Additional Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
             <div>
               <p className="text-sm text-gray-600">Request Date</p>
               <p className="font-semibold text-gray-900">{requisition.requestDate}</p>
@@ -767,7 +767,7 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
           </div>
 
           {/* Items Table */}
-          <div className="mb-6">
+          <div className="mb-3">
             <h3 className="font-semibold text-gray-700 mb-3">Requisition Items</h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
@@ -805,7 +805,7 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
           {requisition.justification && (
             <div>
               <p className="text-sm font-medium text-gray-700 mb-2">Justification</p>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-gray-700">{requisition.justification}</p>
               </div>
             </div>
@@ -813,7 +813,7 @@ export const ViewRequisitionDetailsModal: React.FC<ViewRequisitionDetailsModalPr
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -924,10 +924,10 @@ export const ApproveRequisitionModal: React.FC<ApproveRequisitionModalProps> = (
   if (!isOpen || !requisition) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <CheckCircle className="w-6 h-6" />
             <div>
@@ -941,11 +941,11 @@ export const ApproveRequisitionModal: React.FC<ApproveRequisitionModalProps> = (
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Requisition Summary */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h3 className="font-semibold text-gray-700 mb-3">Requisition Summary</h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Requested By:</p>
                 <p className="font-semibold">{requisition.requestedBy}</p>
@@ -1014,7 +1014,7 @@ export const ApproveRequisitionModal: React.FC<ApproveRequisitionModalProps> = (
 
           {/* Budget Approval (only for approve) */}
           {formData.decision === 'approve' && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <label className="flex items-start gap-3">
                 <input
                   type="checkbox"
@@ -1082,7 +1082,7 @@ export const ApproveRequisitionModal: React.FC<ApproveRequisitionModalProps> = (
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1143,10 +1143,10 @@ export const RejectRequisitionModal: React.FC<RejectRequisitionModalProps> = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-red-500 to-rose-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <XCircle className="w-6 h-6" />
             <div>
@@ -1160,9 +1160,9 @@ export const RejectRequisitionModal: React.FC<RejectRequisitionModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
           {/* Warning */}
-          <div className="bg-red-50 border-l-4 border-red-500 p-4">
+          <div className="bg-red-50 border-l-4 border-red-500 p-3">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
               <div>
@@ -1256,7 +1256,7 @@ export const RejectRequisitionModal: React.FC<RejectRequisitionModalProps> = ({
           </div>
 
           {/* Allow Resubmission */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <label className="flex items-start gap-3">
               <input
                 type="checkbox"
@@ -1273,7 +1273,7 @@ export const RejectRequisitionModal: React.FC<RejectRequisitionModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1361,10 +1361,10 @@ export const ConvertToPOModal: React.FC<ConvertToPOModalProps> = ({
   if (!isOpen || !requisition) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <ShoppingCart className="w-6 h-6" />
             <div>
@@ -1378,9 +1378,9 @@ export const ConvertToPOModal: React.FC<ConvertToPOModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Vendor Selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Select Vendor *</label>
               <select
@@ -1498,7 +1498,7 @@ export const ConvertToPOModal: React.FC<ConvertToPOModalProps> = ({
           </div>
 
           {/* Info Box */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h4 className="font-semibold text-purple-900 mb-2">Conversion Summary</h4>
             <ul className="text-sm text-purple-800 space-y-1">
               <li>• A new PO will be created with the selected items</li>
@@ -1509,7 +1509,7 @@ export const ConvertToPOModal: React.FC<ConvertToPOModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1558,10 +1558,10 @@ export const ExportRequisitionsModal: React.FC<ExportRequisitionsModalProps> = (
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-4 flex justify-between items-center rounded-t-lg">
+        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-3 py-2 flex justify-between items-center rounded-t-lg">
           <div className="flex items-center gap-3">
             <Download className="w-6 h-6" />
             <h2 className="text-xl font-bold">Export Requisitions</h2>
@@ -1572,7 +1572,7 @@ export const ExportRequisitionsModal: React.FC<ExportRequisitionsModalProps> = (
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Export Format */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Export Format</label>
@@ -1671,7 +1671,7 @@ export const ExportRequisitionsModal: React.FC<ExportRequisitionsModalProps> = (
         </div>
 
         {/* Footer */}
-        <div className="border-t px-6 py-4 bg-gray-50 flex justify-between rounded-b-lg">
+        <div className="border-t px-3 py-2 bg-gray-50 flex justify-between rounded-b-lg">
           <button
             onClick={onClose}
             className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"

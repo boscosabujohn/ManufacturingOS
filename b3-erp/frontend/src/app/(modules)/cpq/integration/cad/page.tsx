@@ -230,10 +230,10 @@ export default function CPQIntegrationCADPage() {
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Box className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">4</span>
@@ -242,7 +242,7 @@ export default function CPQIntegrationCADPage() {
           <div className="text-xs text-blue-600 mt-1">3 Connected</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <FileText className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">2,724</span>
@@ -251,7 +251,7 @@ export default function CPQIntegrationCADPage() {
           <div className="text-xs text-green-600 mt-1">Last 30 days</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <Activity className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">98.5%</span>
@@ -260,7 +260,7 @@ export default function CPQIntegrationCADPage() {
           <div className="text-xs text-purple-600 mt-1">Import & Convert</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <Zap className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">45</span>
@@ -272,13 +272,13 @@ export default function CPQIntegrationCADPage() {
 
       {/* Connected CAD Systems */}
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Connected CAD Systems</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {cadSystems.map((system) => (
-              <div key={system.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div key={system.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                     <Box className="w-6 h-6 text-blue-600" />
@@ -318,9 +318,9 @@ export default function CPQIntegrationCADPage() {
   );
 
   const renderDesignFiles = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Search and Filters */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-2">
         <div className="flex-1 relative">
           <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
@@ -353,30 +353,30 @@ export default function CPQIntegrationCADPage() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CAD System</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quote ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imported</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CAD System</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quote ID</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imported</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {designFiles.map((file) => (
               <tr key={file.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap">
                   <div className="flex items-center space-x-3">
                     <FileText className="w-5 h-5 text-blue-600" />
                     <span className="text-sm font-medium text-gray-900">{file.fileName}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap">
                   <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded">{file.fileType}</span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{file.cadSystem}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{file.cadSystem}</td>
+                <td className="px-3 py-2 whitespace-nowrap">
                   <button
                     onClick={() => alert(`View quote ${file.quoteId} - Feature coming soon`)}
                     className="text-sm text-blue-600 hover:text-blue-800 font-medium underline"
@@ -384,15 +384,15 @@ export default function CPQIntegrationCADPage() {
                     {file.quoteId}
                   </button>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{file.fileSize}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{file.importedDate}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{file.fileSize}</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{file.importedDate}</td>
+                <td className="px-3 py-2 whitespace-nowrap">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1 w-fit ${getStatusColor(file.status)}`}>
                     {getStatusIcon(file.status)}
                     <span className="capitalize">{file.status}</span>
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
+                <td className="px-3 py-2 whitespace-nowrap text-sm">
                   <div className="flex items-center space-x-2">
                     <button className="p-1 hover:bg-gray-100 rounded">
                       <Download className="w-4 h-4 text-gray-600" />
@@ -414,9 +414,9 @@ export default function CPQIntegrationCADPage() {
   );
 
   const renderTechnicalSpecs = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-b border-gray-200 flex items-center justify-between">
           <h3 className="text-lg font-semibold text-gray-900">Auto-Extracted Technical Specifications</h3>
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
             <RefreshCw className="w-4 h-4" />
@@ -457,13 +457,13 @@ export default function CPQIntegrationCADPage() {
 
       {/* 3D Viewer Preview */}
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">3D Model Preview</h3>
         </div>
         <div className="p-6">
           <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-96 flex items-center justify-center border-2 border-dashed border-gray-300">
             <div className="text-center">
-              <Box className="w-16 h-16 text-gray-400 mb-4" />
+              <Box className="w-16 h-16 text-gray-400 mb-2" />
               <p className="text-gray-600 font-medium">3D Viewer</p>
               <p className="text-sm text-gray-500 mt-1">Select a design file to preview 3D model</p>
             </div>
@@ -474,15 +474,15 @@ export default function CPQIntegrationCADPage() {
   );
 
   const renderSettings = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">CAD Integration Settings</h3>
         </div>
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* File Import Settings */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">File Import Settings</h4>
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">File Import Settings</h4>
             <div className="space-y-3">
               <label className="flex items-center space-x-3">
                 <input type="checkbox" defaultChecked className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
@@ -505,7 +505,7 @@ export default function CPQIntegrationCADPage() {
 
           {/* Supported File Types */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">Supported File Types</h4>
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Supported File Types</h4>
             <div className="flex flex-wrap gap-2">
               {['DWG', 'DXF', 'SLDPRT', 'SLDASM', 'IPT', 'IAM', 'STEP', 'IGES', 'STL', 'F3D'].map((type) => (
                 <span key={type} className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
@@ -517,8 +517,8 @@ export default function CPQIntegrationCADPage() {
 
           {/* API Configuration */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">API Configuration</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">API Configuration</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">AutoCAD API Key</label>
                 <input
@@ -557,7 +557,7 @@ export default function CPQIntegrationCADPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -583,7 +583,7 @@ export default function CPQIntegrationCADPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap flex items-center space-x-2 border-b-2 transition-colors ${
+                  className={`px-3 py-2 text-sm font-medium whitespace-nowrap flex items-center space-x-2 border-b-2 transition-colors ${
                     activeTab === tab.id
                       ? 'border-blue-600 text-blue-600'
                       : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300'

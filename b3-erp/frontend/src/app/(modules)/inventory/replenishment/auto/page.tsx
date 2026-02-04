@@ -238,9 +238,9 @@ export default function AutoReplenishmentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -255,8 +255,8 @@ export default function AutoReplenishmentPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Configs</p>
@@ -268,7 +268,7 @@ export default function AutoReplenishmentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Requests</p>
@@ -280,7 +280,7 @@ export default function AutoReplenishmentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Success Rate</p>
@@ -292,7 +292,7 @@ export default function AutoReplenishmentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Real-time</p>
@@ -305,12 +305,12 @@ export default function AutoReplenishmentPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl border border-gray-200 mb-3">
         <div className="border-b border-gray-200">
           <div className="flex">
             <button
               onClick={() => setActiveTab('configs')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'configs'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -323,7 +323,7 @@ export default function AutoReplenishmentPage() {
             </button>
             <button
               onClick={() => setActiveTab('logs')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'logs'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -339,7 +339,7 @@ export default function AutoReplenishmentPage() {
 
         <div className="p-6">
           {activeTab === 'configs' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {configs.map((config) => (
                 <div key={config.id} className="border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
@@ -366,9 +366,9 @@ export default function AutoReplenishmentPage() {
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600 mb-4">{config.description}</p>
+                      <p className="text-sm text-gray-600 mb-2">{config.description}</p>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                         <div>
                           <p className="text-xs text-gray-500">Category</p>
                           <p className="text-sm font-semibold text-gray-900">{config.category}</p>
@@ -476,7 +476,7 @@ export default function AutoReplenishmentPage() {
         </div>
       </div>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Auto Replenishment Features:</h3>
         <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
           <li><strong>Real-time Monitoring:</strong> Continuous monitoring of inventory levels with instant replenishment triggers</li>

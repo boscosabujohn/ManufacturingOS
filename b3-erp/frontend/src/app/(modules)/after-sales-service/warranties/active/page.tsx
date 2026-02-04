@@ -299,7 +299,7 @@ const ActiveWarrantiesPage = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -327,8 +327,8 @@ const ActiveWarrantiesPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Active</p>
@@ -338,7 +338,7 @@ const ActiveWarrantiesPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Expiring Soon</p>
@@ -349,7 +349,7 @@ const ActiveWarrantiesPage = () => {
           <div className="text-xs text-gray-500 mt-1">Next 30 days</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">High Risk</p>
@@ -360,7 +360,7 @@ const ActiveWarrantiesPage = () => {
           <div className="text-xs text-gray-500 mt-1">Needs attention</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Claims</p>
@@ -371,7 +371,7 @@ const ActiveWarrantiesPage = () => {
           <div className="text-xs text-gray-500 mt-1">Claim value</div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Coverage</p>
@@ -384,8 +384,8 @@ const ActiveWarrantiesPage = () => {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -408,7 +408,7 @@ const ActiveWarrantiesPage = () => {
         </div>
 
         {showFilters && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 pt-4 border-t border-gray-200">
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
@@ -461,7 +461,7 @@ const ActiveWarrantiesPage = () => {
 
       {/* Warranties List/Grid */}
       <div className="bg-white rounded-lg border border-gray-200">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             Active Warranties ({filteredWarranties.length})
           </h2>
@@ -472,13 +472,13 @@ const ActiveWarrantiesPage = () => {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warranty</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipment</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Coverage</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claims</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warranty</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipment</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Coverage</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claims</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -488,7 +488,7 @@ const ActiveWarrantiesPage = () => {
                   
                   return (
                     <tr key={warranty.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-2 whitespace-nowrap">
                         <div>
                           <div className="text-sm font-medium text-gray-900">{warranty.warrantyNumber}</div>
                           <div className="flex items-center gap-2 mt-1">
@@ -503,7 +503,7 @@ const ActiveWarrantiesPage = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="text-sm font-medium text-gray-900">{warranty.customerName}</div>
                           <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
@@ -516,14 +516,14 @@ const ActiveWarrantiesPage = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="text-sm font-medium text-gray-900">{warranty.equipmentModel}</div>
                           <div className="text-sm text-gray-500">{warranty.productCategory}</div>
                           <div className="text-xs text-gray-500 mt-1">{warranty.equipmentId}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <span className={`px-2 py-1 text-xs font-medium rounded-full ${getCoverageColor(warranty.coverage)}`}>
                             {warranty.coverage}
@@ -539,7 +539,7 @@ const ActiveWarrantiesPage = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className={`flex items-center gap-1 text-sm ${expiryInfo.color}`}>
                             <ExpiryIcon className="h-4 w-4" />
@@ -555,7 +555,7 @@ const ActiveWarrantiesPage = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div>
                           <div className="text-sm font-medium text-gray-900">
                             {warranty.claimCount} claims
@@ -570,7 +570,7 @@ const ActiveWarrantiesPage = () => {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => setSelectedWarranty(warranty)}
@@ -601,14 +601,14 @@ const ActiveWarrantiesPage = () => {
             </table>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-3">
             {filteredWarranties.map((warranty) => {
               const expiryInfo = getExpiryWarning(warranty.daysRemaining);
               const ExpiryIcon = expiryInfo.icon;
               
               return (
-                <div key={warranty.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                  <div className="flex items-start justify-between mb-4">
+                <div key={warranty.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{warranty.warrantyNumber}</h3>
                       <p className="text-sm text-gray-500">{warranty.customerName}</p>
@@ -618,7 +618,7 @@ const ActiveWarrantiesPage = () => {
                     </span>
                   </div>
 
-                  <div className="space-y-3 mb-4">
+                  <div className="space-y-3 mb-2">
                     <div className="flex items-center gap-2">
                       <Package className="h-4 w-4 text-gray-400" />
                       <span className="text-sm text-gray-700">{warranty.equipmentModel}</span>
@@ -637,7 +637,7 @@ const ActiveWarrantiesPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-2">
                     <div className="text-sm">
                       <span className="text-gray-500">Claims: </span>
                       <span className="font-medium">{warranty.claimCount}</span>
@@ -678,9 +678,9 @@ const ActiveWarrantiesPage = () => {
 
       {/* Quick Details Modal */}
       {selectedWarranty && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Warranty Details</h2>
               <button
                 onClick={() => setSelectedWarranty(null)}
@@ -690,9 +690,9 @@ const ActiveWarrantiesPage = () => {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-6 space-y-3">
               {/* Basic Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-3">Warranty Information</h3>
                   <div className="space-y-2 text-sm">
@@ -715,7 +715,7 @@ const ActiveWarrantiesPage = () => {
               {/* Customer Info */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Customer Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                   <div>
                     <div><strong>Name:</strong> {selectedWarranty.customerName}</div>
                     <div><strong>Phone:</strong> {selectedWarranty.customerPhone}</div>
@@ -727,7 +727,7 @@ const ActiveWarrantiesPage = () => {
               {/* Status & Dates */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Status & Timeline</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                   <div>
                     <div><strong>Start Date:</strong> {selectedWarranty.startDate}</div>
                     <div><strong>End Date:</strong> {selectedWarranty.endDate}</div>
@@ -749,8 +749,8 @@ const ActiveWarrantiesPage = () => {
               {/* Claims Summary */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-3">Claims Summary</h3>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="grid grid-cols-3 gap-2 text-center">
                     <div>
                       <div className="text-2xl font-bold text-gray-900">{selectedWarranty.claimCount}</div>
                       <div className="text-sm text-gray-500">Total Claims</div>

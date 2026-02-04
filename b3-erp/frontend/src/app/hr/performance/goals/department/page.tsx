@@ -197,7 +197,7 @@ export default function DepartmentGoalsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Building className="h-8 w-8 text-cyan-600" />
           Department Goals
@@ -206,8 +206,8 @@ export default function DepartmentGoalsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-6">
-        <div className="bg-white border-2 border-cyan-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-2 mb-3">
+        <div className="bg-white border-2 border-cyan-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Goals</p>
@@ -216,7 +216,7 @@ export default function DepartmentGoalsPage() {
             <Target className="h-10 w-10 text-cyan-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">On Track</p>
@@ -225,7 +225,7 @@ export default function DepartmentGoalsPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">At Risk</p>
@@ -234,7 +234,7 @@ export default function DepartmentGoalsPage() {
             <AlertCircle className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
@@ -243,7 +243,7 @@ export default function DepartmentGoalsPage() {
             <Award className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Departments</p>
@@ -252,7 +252,7 @@ export default function DepartmentGoalsPage() {
             <Building className="h-10 w-10 text-purple-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Progress</p>
@@ -261,7 +261,7 @@ export default function DepartmentGoalsPage() {
             <TrendingUp className="h-10 w-10 text-orange-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-emerald-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-emerald-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Budget</p>
@@ -273,8 +273,8 @@ export default function DepartmentGoalsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status:</label>
             <select
@@ -310,7 +310,7 @@ export default function DepartmentGoalsPage() {
       <DataTable data={filteredGoals} columns={columns} />
 
       {/* Info Box */}
-      <div className="mt-6 bg-cyan-50 border border-cyan-200 rounded-lg p-4">
+      <div className="mt-6 bg-cyan-50 border border-cyan-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-cyan-900 mb-2">Department Goal Guidelines</h3>
         <ul className="text-sm text-cyan-800 space-y-1">
           <li>• Department goals are strategic initiatives that align with organizational objectives</li>

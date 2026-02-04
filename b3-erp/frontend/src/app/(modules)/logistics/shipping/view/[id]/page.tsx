@@ -178,10 +178,10 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
   const statusConfig = getStatusConfig(shipment.status);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-start justify-between">
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -199,7 +199,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
                 {shipment.priority.toUpperCase()}
               </span>
             </div>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
               <span className="flex items-center gap-1">
                 <FileText className="w-4 h-4" />
                 <span className="font-mono font-semibold">{shipment.shipmentNumber}</span>
@@ -233,8 +233,8 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+      <div className="grid grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 opacity-80" />
           </div>
@@ -242,7 +242,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
           <div className="text-blue-100 text-sm">Packages</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 opacity-80" />
           </div>
@@ -250,7 +250,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
           <div className="text-green-100 text-sm">Total Weight ({shipment.weightUnit})</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-8 h-8 opacity-80" />
           </div>
@@ -258,7 +258,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
           <div className="text-purple-100 text-sm">Volume ({shipment.volumeUnit})</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 opacity-80" />
           </div>
@@ -266,7 +266,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
           <div className="text-orange-100 text-sm">Total Charges</div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 rounded-xl text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 p-3 rounded-xl text-white">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-8 h-8 opacity-80" />
           </div>
@@ -277,7 +277,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
 
       {/* Tabs */}
       <div className="border-b border-gray-200">
-        <div className="flex gap-6">
+        <div className="flex gap-3">
           <button
             onClick={() => setActiveTab('details')}
             className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
@@ -313,11 +313,11 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
 
       {/* Tab Content */}
       {activeTab === 'details' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Shipment Information */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Shipment Information
               </h3>
@@ -351,8 +351,8 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Truck className="w-5 h-5 text-green-600" />
                 Carrier & Vehicle
               </h3>
@@ -386,9 +386,9 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
           </div>
 
           {/* Locations */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-orange-600" />
                 From Location
               </h3>
@@ -412,8 +412,8 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-purple-600" />
                 To Location
               </h3>
@@ -439,8 +439,8 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
           </div>
 
           {/* Charges */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white p-3 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-green-600" />
               Charges Breakdown
             </h3>
@@ -466,7 +466,7 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
 
           {/* Special Instructions */}
           {shipment.specialInstructions && (
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="bg-white p-3 rounded-lg border border-gray-200">
               <h3 className="text-lg font-bold text-gray-900 mb-3">Special Instructions</h3>
               <p className="text-gray-700 leading-relaxed">{shipment.specialInstructions}</p>
             </div>
@@ -475,8 +475,8 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
       )}
 
       {activeTab === 'items' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6">Shipment Items</h3>
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3">Shipment Items</h3>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
@@ -527,14 +527,14 @@ export default function ShippingViewPage({ params }: { params: { id: string } })
       )}
 
       {activeTab === 'tracking' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
             <Clock className="w-5 h-5 text-purple-600" />
             Tracking History
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {trackingEvents.map((event, index) => (
-              <div key={event.id} className="flex gap-4">
+              <div key={event.id} className="flex gap-2">
                 <div className="flex flex-col items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     event.status === 'delivered' ? 'bg-green-100 text-green-600' :

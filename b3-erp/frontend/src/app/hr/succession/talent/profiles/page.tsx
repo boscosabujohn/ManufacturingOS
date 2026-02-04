@@ -83,8 +83,8 @@ export default function Page() {
   const selectedProfile = mockProfiles.find(p => p.id === selectedEmployee) || mockProfiles[0];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <User className="h-6 w-6 text-teal-600" />
           Talent Profiles
@@ -92,7 +92,7 @@ export default function Page() {
         <p className="text-sm text-gray-600 mt-1">Detailed successor candidate profiles</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <label className="block text-sm font-medium text-gray-700 mb-1">Select Talent</label>
         <select value={selectedEmployee} onChange={(e) => setSelectedEmployee(e.target.value)} className="w-full md:w-96 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
           {mockProfiles.map(profile => (
@@ -101,8 +101,8 @@ export default function Page() {
         </select>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-start gap-6 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-start gap-3 mb-3">
           <div className="text-6xl">{selectedProfile.photo}</div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
@@ -113,7 +113,7 @@ export default function Page() {
               </span>
             </div>
             <p className="text-gray-600 mb-3">{selectedProfile.employeeCode} • {selectedProfile.currentRole} • {selectedProfile.department}</p>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-2">
               <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-xs text-blue-600 uppercase font-medium mb-1">Performance</p>
                 <p className="text-2xl font-bold text-blue-900">{selectedProfile.performanceScore}%</p>
@@ -135,9 +135,9 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <GraduationCap className="h-5 w-5 text-blue-600" />
             <h3 className="text-lg font-bold text-gray-900">Education</h3>
           </div>
@@ -151,8 +151,8 @@ export default function Page() {
           </ul>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Award className="h-5 w-5 text-orange-600" />
             <h3 className="text-lg font-bold text-gray-900">Certifications</h3>
           </div>
@@ -166,12 +166,12 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <TrendingUp className="h-5 w-5 text-teal-600" />
           <h3 className="text-lg font-bold text-gray-900">Skills Assessment</h3>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {selectedProfile.skills.map((skill, idx) => (
             <div key={idx}>
               <div className="flex items-center justify-between mb-1">
@@ -186,9 +186,9 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Briefcase className="h-5 w-5 text-purple-600" />
             <h3 className="text-lg font-bold text-gray-900">Career Aspirations</h3>
           </div>
@@ -201,8 +201,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="flex items-center gap-2 mb-2">
             <Star className="h-5 w-5 text-green-600" />
             <h3 className="text-lg font-bold text-gray-900">Successor For</h3>
           </div>
@@ -216,13 +216,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <h3 className="text-sm font-bold text-gray-900 mb-3">Development Plan</h3>
           <p className="text-sm text-gray-700 bg-blue-50 p-3 rounded-lg border border-blue-200">{selectedProfile.developmentPlan}</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <h3 className="text-sm font-bold text-gray-900 mb-3">Mentor & Promotion History</h3>
           <div className="space-y-2">
             <p className="text-sm text-gray-700"><span className="font-semibold">Mentor:</span> {selectedProfile.mentor}</p>

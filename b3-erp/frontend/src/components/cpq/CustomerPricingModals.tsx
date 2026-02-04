@@ -127,9 +127,9 @@ export function CustomerPricingModal({ isOpen, onClose, onSave, customer }: Cust
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">
             {customer ? 'Edit Customer Pricing' : 'Add Customer Pricing'}
           </h2>
@@ -141,12 +141,12 @@ export function CustomerPricingModal({ isOpen, onClose, onSave, customer }: Cust
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-6 space-y-3">
           {/* Customer Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Customer Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Customer ID <span className="text-red-500">*</span>
@@ -186,7 +186,7 @@ export function CustomerPricingModal({ isOpen, onClose, onSave, customer }: Cust
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Lifetime Value (₹)
@@ -227,7 +227,7 @@ export function CustomerPricingModal({ isOpen, onClose, onSave, customer }: Cust
           </div>
 
           {/* Tier Selection */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Customer Tier</h3>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -259,7 +259,7 @@ export function CustomerPricingModal({ isOpen, onClose, onSave, customer }: Cust
           </div>
 
           {/* Pricing Information */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <h3 className="text-sm font-semibold text-gray-900 uppercase">Pricing Information</h3>
 
             <div>
@@ -308,7 +308,7 @@ export function CustomerPricingModal({ isOpen, onClose, onSave, customer }: Cust
           </div>
 
           {/* Summary */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Customer Pricing Summary:</h3>
             <div className="space-y-1 text-xs text-blue-700">
               <p><strong>Customer:</strong> {formData.customerName || 'Not set'} ({formData.customerId || 'N/A'})</p>
@@ -374,10 +374,10 @@ export function ViewCustomerModal({ isOpen, onClose, customer, onEdit }: ViewCus
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className={`sticky top-0 bg-gradient-to-r ${getTierColor(customer.tier)} text-white px-6 py-4 flex items-center justify-between rounded-t-lg`}>
+        <div className={`sticky top-0 bg-gradient-to-r ${getTierColor(customer.tier)} text-white px-3 py-2 flex items-center justify-between rounded-t-lg`}>
           <div className="flex items-center gap-3">
             {getTierIcon(customer.tier)}
             <div>
@@ -390,10 +390,10 @@ export function ViewCustomerModal({ isOpen, onClose, customer, onEdit }: ViewCus
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Customer Tier Badge */}
           <div className="flex items-center justify-center">
-            <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 ${
+            <div className={`inline-flex items-center gap-2 px-3 py-2 rounded-full border-2 ${
               customer.tier === 'platinum' ? 'bg-purple-100 border-purple-300 text-purple-700' :
               customer.tier === 'gold' ? 'bg-yellow-100 border-yellow-300 text-yellow-700' :
               customer.tier === 'silver' ? 'bg-gray-100 border-gray-300 text-gray-700' :
@@ -405,14 +405,14 @@ export function ViewCustomerModal({ isOpen, onClose, customer, onEdit }: ViewCus
           </div>
 
           {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-sm font-medium text-green-600">Base Discount</p>
               <p className="text-3xl font-bold text-green-900 mt-1">{customer.baseDiscount}%</p>
               <p className="text-xs text-green-700 mt-1">Off standard pricing</p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-sm font-medium text-blue-600">Lifetime Value</p>
               <p className="text-3xl font-bold text-blue-900 mt-1">
                 ₹{(customer.lifetimeValue / 100000).toFixed(1)}L
@@ -420,7 +420,7 @@ export function ViewCustomerModal({ isOpen, onClose, customer, onEdit }: ViewCus
               <p className="text-xs text-blue-700 mt-1">Total business value</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-sm font-medium text-purple-600">Active Contracts</p>
               <p className="text-3xl font-bold text-purple-900 mt-1">{customer.activeContracts}</p>
               <p className="text-xs text-purple-700 mt-1">Current agreements</p>
@@ -428,13 +428,13 @@ export function ViewCustomerModal({ isOpen, onClose, customer, onEdit }: ViewCus
           </div>
 
           {/* Special Terms */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-2">Special Terms & Conditions</h3>
             <p className="text-sm text-gray-700">{customer.specialTerms}</p>
           </div>
 
           {/* Tier Benefits */}
-          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Tier Benefits</h3>
             <div className="space-y-2 text-sm text-blue-700">
               {customer.tier === 'platinum' && (
@@ -476,9 +476,9 @@ export function ViewCustomerModal({ isOpen, onClose, customer, onEdit }: ViewCus
           </div>
 
           {/* Metadata */}
-          <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-900 mb-2">Record Information</h3>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-gray-600">Customer ID</p>
                 <p className="font-mono text-gray-900">{customer.id}</p>
@@ -526,16 +526,16 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="border-b border-gray-200 px-3 py-2 flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-900">Filter Customers</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Tier Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Customer Tier</label>
@@ -621,7 +621,7 @@ export function FilterModal({ isOpen, onClose, onApply }: FilterModalProps) {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-6 py-4 flex items-center justify-end gap-3">
+        <div className="border-t border-gray-200 px-3 py-2 flex items-center justify-end gap-3">
           <button
             onClick={() => setFilters({ tiers: [], discountRange: { min: 0, max: 0 }, lifetimeValueRange: { min: 0, max: 0 } })}
             className="px-4 py-2 text-gray-700 hover:text-gray-900 text-sm"

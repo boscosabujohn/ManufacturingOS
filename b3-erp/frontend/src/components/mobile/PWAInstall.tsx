@@ -131,7 +131,7 @@ export function PWAInstallPrompt({
       {/* Install Banner */}
       <div className="fixed bottom-20 left-4 right-4 z-50 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-slide-up">
         <div className="p-4">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-2">
             <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
               <Smartphone className="w-7 h-7 text-white" />
             </div>
@@ -195,8 +195,8 @@ export function PWAInstallPrompt({
           />
           <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-50 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
             <div className="p-6">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="text-center mb-3">
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-2">
                   <Smartphone className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -207,8 +207,8 @@ export function PWAInstallPrompt({
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+              <div className="space-y-2">
+                <div className="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-sm font-semibold text-blue-600">1</span>
                   </div>
@@ -223,7 +223,7 @@ export function PWAInstallPrompt({
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                <div className="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-sm font-semibold text-blue-600">2</span>
                   </div>
@@ -238,7 +238,7 @@ export function PWAInstallPrompt({
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                <div className="flex items-start gap-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-sm font-semibold text-blue-600">3</span>
                   </div>
@@ -328,7 +328,7 @@ export function PWAUpdatePrompt({ onUpdate, onDismiss }: PWAUpdatePromptProps) {
   if (!showUpdate) return null;
 
   return (
-    <div className="fixed top-4 left-4 right-4 z-50 bg-blue-600 text-white rounded-xl shadow-lg p-4">
+    <div className="fixed top-4 left-4 right-4 z-50 bg-blue-600 text-white rounded-xl shadow-lg p-3">
       <div className="flex items-center gap-3">
         <RefreshCw className={`w-5 h-5 ${updating ? 'animate-spin' : ''}`} />
         <div className="flex-1">

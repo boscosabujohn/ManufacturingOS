@@ -68,7 +68,7 @@ export default function ShareDocumentsPage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -92,8 +92,8 @@ export default function ShareDocumentsPage() {
             </CardHeader>
             <CardContent className="space-y-2">
               {documents.map((doc) => (
-                <div key={doc.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center gap-4">
+                <div key={doc.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center gap-2">
                     <Checkbox
                       id={doc.id}
                       checked={selectedDocs.includes(doc.id)}
@@ -129,7 +129,7 @@ export default function ShareDocumentsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-blue-800 mb-4">
+              <p className="text-sm text-blue-800 mb-2">
                 Ensure all documents are final and approved. Once shared, the Technical Team will begin the detailed design process.
               </p>
               <Button

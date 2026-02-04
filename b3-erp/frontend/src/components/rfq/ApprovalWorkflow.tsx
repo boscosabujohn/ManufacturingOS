@@ -26,8 +26,8 @@ export default function ApprovalWorkflow() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
           <GitBranch className="h-8 w-8 text-purple-600" />
           Approval Workflow
@@ -35,18 +35,18 @@ export default function ApprovalWorkflow() {
         <p className="text-gray-600 mt-1">Multi-level approval tracking</p>
       </div>
 
-      <div className="bg-white shadow-lg border border-gray-200 p-6">
-        <div className="space-y-6">
+      <div className="bg-white shadow-lg border border-gray-200 p-3">
+        <div className="space-y-3">
           {workflow.map((step, idx) => (
             <div key={step.step} className="relative">
               {idx < workflow.length - 1 && (
                 <div className="absolute left-6 top-12 bottom-0 w-0.5 bg-gray-300"></div>
               )}
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-2">
                 <div className={`p-2 rounded-full ${step.status === 'approved' ? 'bg-green-100' : step.status === 'rejected' ? 'bg-red-100' : 'bg-yellow-100'}`}>
                   {getStatusIcon(step.status)}
                 </div>
-                <div className="flex-1 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="flex-1 p-3 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="font-bold text-gray-900">{step.approver}</h4>

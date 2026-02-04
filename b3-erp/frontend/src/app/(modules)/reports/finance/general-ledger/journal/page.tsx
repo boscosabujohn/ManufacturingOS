@@ -40,11 +40,11 @@ function JournalEntryContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Code</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Name</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Debit</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Credit</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Code</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Name</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Debit</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Credit</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -53,21 +53,21 @@ function JournalEntryContent() {
                                     key={line.id}
                                     onClick={() => router.push(`/accounts/ledger/${line.accountCode}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.accountCode}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{line.accountName}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{line.description}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{line.accountCode}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{line.accountName}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{line.description}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-gray-900">
                                         {line.debit > 0 ? `₹${line.debit.toLocaleString()}` : '-'}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-gray-900">
                                         {line.credit > 0 ? `₹${line.credit.toLocaleString()}` : '-'}
                                     </td>
                                 </ClickableTableRow>
                             ))}
                             <tr className="bg-gray-50 font-bold">
-                                <td className="px-6 py-4" colSpan={3}>Total</td>
-                                <td className="px-6 py-4 text-right text-blue-600">₹{totalDebit.toLocaleString()}</td>
-                                <td className="px-6 py-4 text-right text-green-600">₹{totalCredit.toLocaleString()}</td>
+                                <td className="px-3 py-2" colSpan={3}>Total</td>
+                                <td className="px-3 py-2 text-right text-blue-600">₹{totalDebit.toLocaleString()}</td>
+                                <td className="px-3 py-2 text-right text-green-600">₹{totalCredit.toLocaleString()}</td>
                             </tr>
                         </tbody>
                     </table>

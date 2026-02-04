@@ -290,10 +290,10 @@ export default function MRPShortagePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -324,8 +324,8 @@ export default function MRPShortagePage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Total Shortages</p>
@@ -337,7 +337,7 @@ export default function MRPShortagePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Critical Items</p>
@@ -349,7 +349,7 @@ export default function MRPShortagePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Impact Value</p>
@@ -361,7 +361,7 @@ export default function MRPShortagePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Affected Work Orders</p>
@@ -375,8 +375,8 @@ export default function MRPShortagePage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-gray-400" />
           <select
             value={filterCriticality}
@@ -404,10 +404,10 @@ export default function MRPShortagePage() {
       </div>
 
       {/* Shortages List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredShortages.map((shortage) => (
-          <div key={shortage.id} className={`bg-white rounded-xl border-2 p-6 ${getCriticalityColor(shortage.criticalityLevel)}`}>
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          <div key={shortage.id} className={`bg-white rounded-xl border-2 p-3 ${getCriticalityColor(shortage.criticalityLevel)}`}>
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-2">
               {/* Left Section - Material Info */}
               <div className="flex-1">
                 <div className="flex items-start gap-3">
@@ -422,7 +422,7 @@ export default function MRPShortagePage() {
                       </span>
                     </div>
                     <p className="text-gray-700 font-medium mb-2">{shortage.materialName}</p>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 text-sm">
                       <div>
                         <p className="text-gray-500">Required</p>
                         <p className="font-semibold text-gray-900">{shortage.requiredQuantity.toLocaleString()} {shortage.uom}</p>

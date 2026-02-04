@@ -68,9 +68,9 @@ export function ProfitabilityDetailsModal({ isOpen, onClose, project }: Profitab
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Eye className="w-6 h-6" />
@@ -82,26 +82,26 @@ export function ProfitabilityDetailsModal({ isOpen, onClose, project }: Profitab
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="font-semibold text-blue-900">{project.projectName}</h3>
             <p className="text-sm text-blue-700">{project.projectId} - {project.clientName}</p>
           </div>
 
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-xs text-green-600 mb-1">Contract Value</p>
               <p className="text-xl font-bold text-green-900">₹{project.contractValue.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-xs text-purple-600 mb-1">Revenue Recognized</p>
               <p className="text-xl font-bold text-purple-900">₹{project.revenueRecognized.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-xs text-orange-600 mb-1">Total Cost</p>
               <p className="text-xl font-bold text-orange-900">₹{project.actualCost.toLocaleString('en-IN')}</p>
             </div>
-            <div className={`border rounded-lg p-4 ${project.netProfit >= 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+            <div className={`border rounded-lg p-3 ${project.netProfit >= 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <p className={`text-xs mb-1 ${project.netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>Net Profit</p>
               <p className={`text-xl font-bold ${project.netProfit >= 0 ? 'text-green-900' : 'text-red-900'}`}>
                 ₹{project.netProfit.toLocaleString('en-IN')}
@@ -109,8 +109,8 @@ export function ProfitabilityDetailsModal({ isOpen, onClose, project }: Profitab
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
               <h4 className="font-semibold text-gray-900 mb-3">Direct Costs</h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -136,7 +136,7 @@ export function ProfitabilityDetailsModal({ isOpen, onClose, project }: Profitab
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
               <h4 className="font-semibold text-gray-900 mb-3">Indirect Costs</h4>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
@@ -155,9 +155,9 @@ export function ProfitabilityDetailsModal({ isOpen, onClose, project }: Profitab
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Profitability Metrics</h4>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Gross Profit:</span>
@@ -186,7 +186,7 @@ export function ProfitabilityDetailsModal({ isOpen, onClose, project }: Profitab
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             Close
           </button>
@@ -217,9 +217,9 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
     const belowTargetProjects = projects.filter(p => p.grossMargin < targetGrossMargin);
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
         <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg">
+          <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-3 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Target className="w-6 h-6" />
@@ -231,19 +231,19 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
             </div>
           </div>
 
-          <div className="p-6 space-y-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+          <div className="p-6 space-y-2">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <h3 className="font-semibold text-green-900">Aggregate Performance</h3>
               <p className="text-sm text-green-700">Analysis across {projects.length} projects</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-2">Avg Gross Margin</p>
                 <p className="text-3xl font-bold text-blue-900">{avgGrossMargin.toFixed(1)}%</p>
                 <p className="text-xs text-blue-700 mt-1">Target: {targetGrossMargin}%</p>
               </div>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <p className="text-sm text-purple-600 mb-2">Avg Net Margin</p>
                 <p className="text-3xl font-bold text-purple-900">{avgNetMargin.toFixed(1)}%</p>
                 <p className="text-xs text-purple-700 mt-1">Target: {targetNetMargin}%</p>
@@ -251,7 +251,7 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
             </div>
 
             {belowTargetProjects.length > 0 && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <h4 className="font-semibold text-yellow-900 mb-2">Projects Below Target ({belowTargetProjects.length})</h4>
                 <ul className="list-disc list-inside text-sm text-yellow-800 space-y-1">
                   {belowTargetProjects.slice(0, 5).map(p => (
@@ -263,7 +263,7 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
             )}
           </div>
 
-          <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+          <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
             <button onClick={onClose} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Close</button>
           </div>
         </div>
@@ -274,9 +274,9 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg">
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Target className="w-6 h-6" />
@@ -288,14 +288,14 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3">
             <h3 className="font-semibold text-green-900">{project.projectName}</h3>
             <p className="text-sm text-green-700">Margin performance analysis</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-600 mb-2">Gross Margin</p>
               <div className="flex items-end justify-between">
                 <div>
@@ -325,7 +325,7 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
               </div>
             </div>
 
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm text-purple-600 mb-2">Net Margin</p>
               <div className="flex items-end justify-between">
                 <div>
@@ -356,7 +356,7 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <h4 className="font-semibold text-gray-900 mb-3">Margin Breakdown</h4>
             <div className="space-y-3">
               <div>
@@ -387,7 +387,7 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
           </div>
 
           {(project.grossMargin < targetGrossMargin || project.netMargin < targetNetMargin) && (
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
               <div className="flex items-start gap-2">
                 <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
                 <div>
@@ -401,7 +401,7 @@ export function MarginAnalysisModal({ isOpen, onClose, project, projects }: Marg
           )}
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
             Close
           </button>
@@ -438,9 +438,9 @@ export function RevenueRecognitionModal({ isOpen, onClose, project, onUpdate }: 
   if (!isOpen || !project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <DollarSign className="w-6 h-6" />
@@ -452,10 +452,10 @@ export function RevenueRecognitionModal({ isOpen, onClose, project, onUpdate }: 
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <h3 className="font-semibold text-purple-900">{project.projectName}</h3>
-            <div className="flex gap-4 mt-2 text-sm">
+            <div className="flex gap-2 mt-2 text-sm">
               <div>
                 <span className="text-purple-600">Contract Value: </span>
                 <span className="font-semibold">₹{project.contractValue.toLocaleString('en-IN')}</span>
@@ -473,7 +473,7 @@ export function RevenueRecognitionModal({ isOpen, onClose, project, onUpdate }: 
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Amount (₹) *</label>
               <input
@@ -496,7 +496,7 @@ export function RevenueRecognitionModal({ isOpen, onClose, project, onUpdate }: 
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Recognition Date *</label>
               <input
@@ -524,7 +524,7 @@ export function RevenueRecognitionModal({ isOpen, onClose, project, onUpdate }: 
           </div>
         </div>
 
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end gap-3">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end gap-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">
             Cancel
           </button>
@@ -550,9 +550,9 @@ export function ProfitForecastModal({ isOpen, onClose, project }: { isOpen: bool
   const projectedProfit = projectedRevenue - projectedCost;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <TrendingUp className="w-6 h-6" />
@@ -563,20 +563,20 @@ export function ProfitForecastModal({ isOpen, onClose, project }: { isOpen: bool
             </button>
           </div>
         </div>
-        <div className="p-6 space-y-4">
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
             <h3 className="font-semibold text-orange-900">{project.projectName}</h3>
           </div>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-xs text-blue-600 mb-1">Projected Revenue</p>
               <p className="text-xl font-bold text-blue-900">₹{projectedRevenue.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-xs text-purple-600 mb-1">Projected Cost</p>
               <p className="text-xl font-bold text-purple-900">₹{Math.round(projectedCost).toLocaleString('en-IN')}</p>
             </div>
-            <div className={`border rounded-lg p-4 ${projectedProfit >= 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+            <div className={`border rounded-lg p-3 ${projectedProfit >= 0 ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <p className={`text-xs mb-1 ${projectedProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>Projected Profit</p>
               <p className={`text-xl font-bold ${projectedProfit >= 0 ? 'text-green-900' : 'text-red-900'}`}>
                 ₹{Math.round(projectedProfit).toLocaleString('en-IN')}
@@ -584,7 +584,7 @@ export function ProfitForecastModal({ isOpen, onClose, project }: { isOpen: bool
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700">
             Close
           </button>
@@ -597,9 +597,9 @@ export function ProfitForecastModal({ isOpen, onClose, project }: { isOpen: bool
 export function CostAllocationModal({ isOpen, onClose, project }: { isOpen: boolean; onClose: () => void; project: ProjectProfitability | null }) {
   if (!isOpen || !project) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full">
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <PieChart className="w-6 h-6" />
@@ -613,7 +613,7 @@ export function CostAllocationModal({ isOpen, onClose, project }: { isOpen: bool
         <div className="p-6">
           <p className="text-gray-600">Cost allocation details for {project.projectName}</p>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
             Close
           </button>
@@ -626,9 +626,9 @@ export function CostAllocationModal({ isOpen, onClose, project }: { isOpen: bool
 export function PaymentTrackingModal({ isOpen, onClose, project }: { isOpen: boolean; onClose: () => void; project: ProjectProfitability | null }) {
   if (!isOpen || !project) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <DollarSign className="w-6 h-6" />
@@ -639,28 +639,28 @@ export function PaymentTrackingModal({ isOpen, onClose, project }: { isOpen: boo
             </button>
           </div>
         </div>
-        <div className="p-6 space-y-4">
-          <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-teal-50 border border-teal-200 rounded-lg p-3">
             <h3 className="font-semibold text-teal-900">{project.projectName}</h3>
           </div>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-xs text-blue-600 mb-1">Billed Amount</p>
               <p className="text-lg font-bold text-blue-900">₹{project.billedAmount.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-xs text-green-600 mb-1">Received</p>
               <p className="text-lg font-bold text-green-900">
                 ₹{(project.billedAmount - project.outstandingAmount).toLocaleString('en-IN')}
               </p>
             </div>
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
               <p className="text-xs text-orange-600 mb-1">Outstanding</p>
               <p className="text-lg font-bold text-orange-900">₹{project.outstandingAmount.toLocaleString('en-IN')}</p>
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
             Close
           </button>
@@ -673,9 +673,9 @@ export function PaymentTrackingModal({ isOpen, onClose, project }: { isOpen: boo
 export function ProfitabilityReportModal({ isOpen, onClose, project }: { isOpen: boolean; onClose: () => void; project: ProjectProfitability | null }) {
   if (!isOpen || !project) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full">
-        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full">
+        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <FileText className="w-6 h-6" />
@@ -689,7 +689,7 @@ export function ProfitabilityReportModal({ isOpen, onClose, project }: { isOpen:
         <div className="p-6">
           <p className="text-gray-600">Comprehensive profitability report for {project.projectName}</p>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
             Close
           </button>
@@ -703,9 +703,9 @@ export function ExportProfitabilityModal({ isOpen, onClose, onExport }: { isOpen
   const [format, setFormat] = useState('Excel');
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Download className="w-6 h-6" />
@@ -724,7 +724,7 @@ export function ExportProfitabilityModal({ isOpen, onClose, onExport }: { isOpen
             <option>CSV</option>
           </select>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end gap-3">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end gap-3">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">Cancel</button>
           <button onClick={() => onExport(format)} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
             Export
@@ -741,9 +741,9 @@ export function BenchmarkComparisonModal({ isOpen, onClose, projects }: { isOpen
   const sortedProjects = [...projects].sort((a, b) => b.netMargin - a.netMargin);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full">
-        <div className="bg-gradient-to-r from-pink-600 to-pink-700 text-white p-6 rounded-t-lg">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl  w-full">
+        <div className="bg-gradient-to-r from-pink-600 to-pink-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <BarChart3 className="w-6 h-6" />
@@ -755,31 +755,31 @@ export function BenchmarkComparisonModal({ isOpen, onClose, projects }: { isOpen
           </div>
         </div>
         <div className="p-6">
-          <p className="text-gray-600 mb-4">Comparing Top 5 Projects by Net Margin</p>
+          <p className="text-gray-600 mb-2">Comparing Top 5 Projects by Net Margin</p>
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm text-left">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3">Project Name</th>
-                  <th className="px-6 py-3 text-right">Revenue</th>
-                  <th className="px-6 py-3 text-right">Net Profit</th>
-                  <th className="px-6 py-3 text-right">Net Margin</th>
+                  <th className="px-3 py-2">Project Name</th>
+                  <th className="px-3 py-2 text-right">Revenue</th>
+                  <th className="px-3 py-2 text-right">Net Profit</th>
+                  <th className="px-3 py-2 text-right">Net Margin</th>
                 </tr>
               </thead>
               <tbody>
                 {sortedProjects.slice(0, 5).map(project => (
                   <tr key={project.id} className="bg-white border-b hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900">{project.projectName}</td>
-                    <td className="px-6 py-4 text-right">₹{project.revenueRecognized.toLocaleString('en-IN')}</td>
-                    <td className="px-6 py-4 text-right">₹{project.netProfit.toLocaleString('en-IN')}</td>
-                    <td className="px-6 py-4 text-right font-bold text-pink-600">{project.netMargin.toFixed(1)}%</td>
+                    <td className="px-3 py-2 font-medium text-gray-900">{project.projectName}</td>
+                    <td className="px-3 py-2 text-right">₹{project.revenueRecognized.toLocaleString('en-IN')}</td>
+                    <td className="px-3 py-2 text-right">₹{project.netProfit.toLocaleString('en-IN')}</td>
+                    <td className="px-3 py-2 text-right font-bold text-pink-600">{project.netMargin.toFixed(1)}%</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">
             Close
           </button>
@@ -798,9 +798,9 @@ export function RiskAssessmentModal({ isOpen, onClose, project, projects }: { is
     const lowRisk = projects.filter(p => p.riskLevel === 'Low');
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
         <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">
-          <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 rounded-t-lg">
+          <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-3 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-6 h-6" />
@@ -811,24 +811,24 @@ export function RiskAssessmentModal({ isOpen, onClose, project, projects }: { is
               </button>
             </div>
           </div>
-          <div className="p-6 space-y-4">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+          <div className="p-6 space-y-2">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-red-600">{highRisk.length}</p>
                 <p className="text-sm text-red-700">High Risk Projects</p>
               </div>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-yellow-600">{mediumRisk.length}</p>
                 <p className="text-sm text-yellow-700">Medium Risk Projects</p>
               </div>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold text-green-600">{lowRisk.length}</p>
                 <p className="text-sm text-green-700">Low Risk Projects</p>
               </div>
             </div>
 
             {highRisk.length > 0 && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <h4 className="font-semibold text-red-900 mb-2">High Risk Projects Attention Needed</h4>
                 <ul className="list-disc list-inside text-sm text-red-800">
                   {highRisk.map(p => (
@@ -838,7 +838,7 @@ export function RiskAssessmentModal({ isOpen, onClose, project, projects }: { is
               </div>
             )}
           </div>
-          <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+          <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
             <button onClick={onClose} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
               Close
             </button>
@@ -851,9 +851,9 @@ export function RiskAssessmentModal({ isOpen, onClose, project, projects }: { is
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">
-        <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 rounded-t-lg">
+        <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-3 rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <AlertTriangle className="w-6 h-6" />
@@ -864,13 +864,13 @@ export function RiskAssessmentModal({ isOpen, onClose, project, projects }: { is
             </button>
           </div>
         </div>
-        <div className="p-6 space-y-4">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="p-6 space-y-2">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
             <h3 className="font-semibold text-red-900">{project.projectName}</h3>
             <p className="text-sm text-red-700">Risk Level: <span className="font-semibold">{project.riskLevel}</span></p>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+        <div className="bg-gray-50 px-3 py-2 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
             Close
           </button>

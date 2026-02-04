@@ -283,10 +283,10 @@ export default function CPQIntegrationEcommercePage() {
   };
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <Globe className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">3</span>
@@ -295,7 +295,7 @@ export default function CPQIntegrationEcommercePage() {
           <div className="text-xs text-blue-600 mt-1">All Active</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <ShoppingCart className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">2,982</span>
@@ -307,7 +307,7 @@ export default function CPQIntegrationEcommercePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">68%</span>
@@ -316,7 +316,7 @@ export default function CPQIntegrationEcommercePage() {
           <div className="text-xs text-purple-600 mt-1">Web to Quote</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">₹8.5Cr</span>
@@ -328,13 +328,13 @@ export default function CPQIntegrationEcommercePage() {
 
       {/* Connected Platforms */}
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Connected E-commerce Platforms</h3>
         </div>
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {platforms.map((platform) => (
-              <div key={platform.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div key={platform.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                     <Globe className="w-6 h-6 text-blue-600" />
@@ -373,7 +373,7 @@ export default function CPQIntegrationEcommercePage() {
 
       {/* Recent Sync Activity */}
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Recent Sync Activity</h3>
         </div>
         <div className="p-6">
@@ -402,9 +402,9 @@ export default function CPQIntegrationEcommercePage() {
   );
 
   const renderWebQuotes = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Search and Filters */}
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-2">
         <div className="flex-1 relative">
           <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
@@ -432,20 +432,20 @@ export default function CPQIntegrationEcommercePage() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quote ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Platform</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Products</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quote ID</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Platform</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Products</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {webQuotes.map((quote) => (
               <tr key={quote.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap">
                   <button
                     onClick={() => alert(`View quote details for ${quote.quoteId} - Feature coming soon`)}
                     className="text-sm font-medium text-blue-600 hover:text-blue-800 underline"
@@ -453,23 +453,23 @@ export default function CPQIntegrationEcommercePage() {
                     {quote.quoteId}
                   </button>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="text-sm font-medium text-gray-900">{quote.customerName}</div>
                   <div className="text-xs text-gray-500">{quote.email}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{quote.platform}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{quote.productCount} items</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{quote.platform}</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{quote.productCount} items</td>
+                <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">
                   ₹{quote.totalValue.toLocaleString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{quote.submittedDate}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{quote.submittedDate}</td>
+                <td className="px-3 py-2 whitespace-nowrap">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1 w-fit ${getStatusColor(quote.status)}`}>
                     {getStatusIcon(quote.status)}
                     <span className="capitalize">{quote.status}</span>
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
+                <td className="px-3 py-2 whitespace-nowrap text-sm">
                   <button className="text-blue-600 hover:text-blue-800 font-medium">Convert to Quote</button>
                 </td>
               </tr>
@@ -481,7 +481,7 @@ export default function CPQIntegrationEcommercePage() {
   );
 
   const renderPricingSync = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">Product Price Synchronization</h3>
@@ -498,14 +498,14 @@ export default function CPQIntegrationEcommercePage() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Code</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CPQ Price</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Web Price</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difference</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Updated</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Code</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CPQ Price</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Web Price</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difference</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Updated</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -515,15 +515,15 @@ export default function CPQIntegrationEcommercePage() {
               
               return (
                 <tr key={product.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.productCode}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{product.productName}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{product.productCode}</td>
+                  <td className="px-3 py-2 text-sm text-gray-900">{product.productName}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">
                     ₹{product.cpqPrice.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-semibold text-gray-900">
                     {product.webPrice > 0 ? `₹${product.webPrice.toLocaleString()}` : '-'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     {difference !== 0 && product.webPrice > 0 ? (
                       <span className={difference > 0 ? 'text-red-600 font-medium' : 'text-green-600 font-medium'}>
                         {difference > 0 ? '+' : ''}₹{difference.toLocaleString()} ({percentDiff}%)
@@ -532,14 +532,14 @@ export default function CPQIntegrationEcommercePage() {
                       <span className="text-gray-400">-</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1 w-fit ${getStatusColor(product.syncStatus)}`}>
                       {getStatusIcon(product.syncStatus)}
                       <span className="capitalize">{product.syncStatus}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{product.lastUpdated}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-600">{product.lastUpdated}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <button className="text-blue-600 hover:text-blue-800 font-medium">Sync Now</button>
                   </td>
                 </tr>
@@ -552,15 +552,15 @@ export default function CPQIntegrationEcommercePage() {
   );
 
   const renderSettings = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">E-commerce Integration Settings</h3>
         </div>
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-3">
           {/* Sync Settings */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">Synchronization Settings</h4>
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Synchronization Settings</h4>
             <div className="space-y-3">
               <label className="flex items-center space-x-3">
                 <input type="checkbox" defaultChecked className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
@@ -583,8 +583,8 @@ export default function CPQIntegrationEcommercePage() {
 
           {/* Pricing Rules */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">Web Pricing Rules</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Web Pricing Rules</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Web Markup (%)</label>
                 <input
@@ -606,8 +606,8 @@ export default function CPQIntegrationEcommercePage() {
 
           {/* Platform API Keys */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-4">Platform API Configuration</h4>
-            <div className="space-y-4">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Platform API Configuration</h4>
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Shopify API Key</label>
                 <input
@@ -654,7 +654,7 @@ export default function CPQIntegrationEcommercePage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -680,7 +680,7 @@ export default function CPQIntegrationEcommercePage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap flex items-center space-x-2 border-b-2 transition-colors ${
+                  className={`px-3 py-2 text-sm font-medium whitespace-nowrap flex items-center space-x-2 border-b-2 transition-colors ${
                     activeTab === tab.id
                       ? 'border-blue-600 text-blue-600'
                       : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300'

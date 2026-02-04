@@ -165,36 +165,36 @@ export default function TransfersPromotionsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2"><TrendingUp className="h-8 w-8 text-green-600" />Transfers & Promotions</h1>
         <p className="text-gray-600 mt-2">Manage employee career movements and progressions</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Total Activities</p><p className="text-2xl font-bold text-indigo-600">{stats.total}</p></div>
           <TrendingUp className="w-8 h-8 text-indigo-400" /></div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Promotions</p><p className="text-2xl font-bold text-green-600">{stats.promotions}</p></div>
           <Award className="w-8 h-8 text-green-400" /></div>
         </div>
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Transfers</p><p className="text-2xl font-bold text-blue-600">{stats.transfers}</p></div>
           <Building2 className="w-8 h-8 text-blue-400" /></div>
         </div>
-        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Pending</p><p className="text-2xl font-bold text-yellow-600">{stats.pending}</p></div>
           <Clock className="w-8 h-8 text-yellow-400" /></div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between"><div><p className="text-sm text-gray-600">Avg Increment</p><p className="text-xl font-bold text-purple-600">{stats.avgIncrement}%</p></div>
           <TrendingUp className="w-8 h-8 text-purple-400" /></div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-semibold text-gray-700">All Transfers & Promotions</h2>
             <span className="text-sm text-gray-500">({filteredData.length} records)</span>
@@ -209,8 +209,8 @@ export default function TransfersPromotionsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2">
           <div className="flex-1 relative"><Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input type="text" placeholder="Search by name or code..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" />
@@ -222,7 +222,7 @@ export default function TransfersPromotionsPage() {
         </div>
 
         {showFilters && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4 pt-4 border-t">
             <div><label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
               <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                 {types.map(type => <option key={type} value={type}>{type === 'all' ? 'All Types' : type.toUpperCase()}</option>)}

@@ -89,7 +89,7 @@ export default function RecognitionPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -108,8 +108,8 @@ export default function RecognitionPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Received This Month</p>
@@ -120,7 +120,7 @@ export default function RecognitionPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Given This Month</p>
@@ -131,7 +131,7 @@ export default function RecognitionPage() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500">Team Shoutouts</p>
@@ -145,15 +145,15 @@ export default function RecognitionPage() {
       </div>
 
       {/* Feed */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         <h2 className="text-lg font-semibold text-gray-900">Recent Shoutouts</h2>
-        <div className="grid gap-4">
+        <div className="grid gap-2">
           {recognitions.map((item) => (
             <div
               key={item.id}
-              className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+              className="bg-white p-3 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-2">
                 <div className="h-12 w-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center text-purple-600 font-bold text-xl">
                   {item.sender.charAt(0)}
                 </div>
@@ -173,7 +173,7 @@ export default function RecognitionPage() {
                   </div>
                   <p className="text-gray-700 mt-3 leading-relaxed">"{item.message}"</p>
 
-                  <div className="mt-4 flex items-center gap-4">
+                  <div className="mt-4 flex items-center gap-2">
                     <button
                       onClick={() => handleReaction(item.id)}
                       className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-purple-600 transition-colors"
@@ -194,7 +194,7 @@ export default function RecognitionPage() {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-lg w-full">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Give Recognition</h2>
@@ -206,7 +206,7 @@ export default function RecognitionPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="p-6 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Recipient</label>
                 <div className="relative">

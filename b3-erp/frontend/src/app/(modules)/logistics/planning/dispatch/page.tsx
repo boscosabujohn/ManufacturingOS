@@ -348,7 +348,7 @@ export default function DispatchManagementPage() {
   });
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -367,8 +367,8 @@ export default function DispatchManagementPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <Send className="w-8 h-8 text-purple-600" />
             <span className="text-2xl font-bold text-purple-900">{totalDispatches}</span>
@@ -377,7 +377,7 @@ export default function DispatchManagementPage() {
           <div className="text-xs text-purple-600 mt-1">Active & Completed</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <Truck className="w-8 h-8 text-green-600" />
             <span className="text-2xl font-bold text-green-900">{inTransit}</span>
@@ -386,7 +386,7 @@ export default function DispatchManagementPage() {
           <div className="text-xs text-green-600 mt-1">Currently Moving</div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 text-blue-600" />
             <span className="text-2xl font-bold text-blue-900">{onTimePercentage}%</span>
@@ -395,7 +395,7 @@ export default function DispatchManagementPage() {
           <div className="text-xs text-blue-600 mt-1">Performance Rate</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <AlertCircle className="w-8 h-8 text-orange-600" />
             <span className="text-2xl font-bold text-orange-900">{dispatches.filter(d => d.status === 'delayed').length}</span>
@@ -406,8 +406,8 @@ export default function DispatchManagementPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg shadow p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -453,26 +453,26 @@ export default function DispatchManagementPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dispatch Details</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle & Driver</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Schedule</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Location</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dispatch Details</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vehicle & Driver</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Route</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Schedule</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Current Location</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredDispatches.map((dispatch) => (
                 <tr key={dispatch.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{dispatch.dispatchId}</div>
                     <div className="text-sm text-gray-600">Load: {dispatch.loadId}</div>
                     <div className="text-xs text-gray-500 mt-1">{dispatch.shipments} shipments • {(dispatch.totalWeight / 1000).toFixed(1)}T</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2 text-sm font-medium text-gray-900">
                       <Truck className="w-4 h-4 text-gray-400" />
                       <span>{dispatch.vehicleNumber}</span>
@@ -483,12 +483,12 @@ export default function DispatchManagementPage() {
                     </div>
                     <div className="text-xs text-gray-500 mt-1">{dispatch.driverPhone}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{dispatch.origin}</div>
                     <div className="text-sm text-gray-600">→ {dispatch.destination}</div>
                     <div className="text-xs text-gray-500 mt-1">{dispatch.routeCode} • {dispatch.distance}km</div>
                   </td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-3 py-2 text-sm">
                     <div className="flex items-center space-x-1 text-gray-900">
                       <Calendar className="w-3 h-3 text-gray-400" />
                       <span>{new Date(dispatch.scheduledDeparture).toLocaleDateString()}</span>
@@ -503,13 +503,13 @@ export default function DispatchManagementPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2 text-sm text-gray-900">
                       <MapPin className="w-4 h-4 text-blue-500" />
                       <span>{dispatch.currentLocation}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 bg-gray-200 rounded-full h-2 w-20">
                         <div
@@ -522,12 +522,12 @@ export default function DispatchManagementPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getPriorityColor(dispatch.priority)}`}>
                       {dispatch.priority.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
                       {getStatusIcon(dispatch.status)}
                       <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(dispatch.status)}`}>
@@ -535,7 +535,7 @@ export default function DispatchManagementPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
@@ -555,9 +555,9 @@ export default function DispatchManagementPage() {
       </div>
 
       {/* Dispatch Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Send className="w-6 h-6 text-purple-600" />
             </div>
@@ -573,8 +573,8 @@ export default function DispatchManagementPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <Truck className="w-6 h-6 text-green-600" />
             </div>
@@ -590,8 +590,8 @@ export default function DispatchManagementPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="bg-white rounded-lg shadow p-3">
+          <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 bg-orange-100 rounded-lg">
               <AlertCircle className="w-6 h-6 text-orange-600" />
             </div>

@@ -124,7 +124,7 @@ export default function Customer360View() {
   const avgCSAT = customer.csatScores.reduce((sum, s) => sum + s.score, 0) / customer.csatScores.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-900 flex items-center">
@@ -135,7 +135,7 @@ export default function Customer360View() {
       </div>
 
       {/* Customer Header Card */}
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg shadow-lg border-2 border-indigo-200 p-6">
+      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg shadow-lg border-2 border-indigo-200 p-3">
         <div className="flex items-start justify-between">
           <div className="flex items-start space-x-4">
             <div className="h-20 w-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -202,20 +202,20 @@ export default function Customer360View() {
         </div>
 
         {/* Key Metrics Row */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-indigo-200">
-          <div className="bg-white rounded-lg p-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mt-6 pt-6 border-t border-indigo-200">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-xs font-medium text-gray-500 mb-1">Lifetime Value</p>
             <p className="text-2xl font-bold text-indigo-900">${(customer.lifetimeValue / 1000).toFixed(0)}K</p>
           </div>
-          <div className="bg-white rounded-lg p-4">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-xs font-medium text-gray-500 mb-1">Monthly Recurring Revenue</p>
             <p className="text-2xl font-bold text-green-900">${(customer.currentMRR / 1000).toFixed(1)}K</p>
           </div>
-          <div className="bg-white rounded-lg p-4">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-xs font-medium text-gray-500 mb-1">Customer Since</p>
             <p className="text-2xl font-bold text-purple-900">{new Date(customer.customerSince).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</p>
           </div>
-          <div className="bg-white rounded-lg p-4">
+          <div className="bg-white rounded-lg p-3">
             <p className="text-xs font-medium text-gray-500 mb-1">Avg CSAT Score</p>
             <div className="flex items-center space-x-2">
               <p className="text-2xl font-bold text-yellow-900">{avgCSAT.toFixed(1)}</p>
@@ -226,7 +226,7 @@ export default function Customer360View() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
         <div className="flex items-center space-x-2">
           {[
             { id: 'overview', label: 'Overview', icon: Activity },
@@ -256,10 +256,10 @@ export default function Customer360View() {
 
       {/* Tab Content */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {/* Contract Details */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
               <FileText className="h-5 w-5 text-blue-600 mr-2" />
               Contract Details
             </h3>
@@ -294,8 +294,8 @@ export default function Customer360View() {
           </div>
 
           {/* Recent Activity Summary */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
               <Activity className="h-5 w-5 text-purple-600 mr-2" />
               Recent Activity Summary
             </h3>
@@ -326,11 +326,11 @@ export default function Customer360View() {
       )}
 
       {activeTab === 'interactions' && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Complete Interaction History</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Complete Interaction History</h3>
           <div className="space-y-3">
             {customer.interactionHistory.map((interaction) => (
-              <div key={interaction.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={interaction.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-1">
@@ -358,11 +358,11 @@ export default function Customer360View() {
       )}
 
       {activeTab === 'tickets' && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Linked Support Tickets</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Linked Support Tickets</h3>
           <div className="space-y-3">
             {customer.linkedTickets.map((ticket) => (
-              <div key={ticket.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={ticket.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
@@ -385,11 +385,11 @@ export default function Customer360View() {
       )}
 
       {activeTab === 'purchases' && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Purchase History & Product Ownership</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Purchase History & Product Ownership</h3>
           <div className="space-y-3">
             {customer.purchaseHistory.map((purchase) => (
-              <div key={purchase.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={purchase.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
@@ -412,11 +412,11 @@ export default function Customer360View() {
       )}
 
       {activeTab === 'csat' && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Customer Satisfaction (CSAT) Scores</h3>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Customer Satisfaction (CSAT) Scores</h3>
+          <div className="space-y-2">
             {customer.csatScores.map((csat, index) => (
-              <div key={index} className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
+              <div key={index} className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-3 border border-yellow-200">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     {[...Array(10)].map((_, i) => (

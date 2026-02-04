@@ -70,14 +70,14 @@ export default function SupplierPortal() {
   ]
 
   const renderDashboard = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-3 text-white">
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-2xl font-bold mb-2">Welcome back, {supplierInfo.name}</h2>
             <p className="opacity-90">Your supplier dashboard for all business operations</p>
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex items-center gap-2 mt-4">
               <div className="flex items-center gap-2">
                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                 <span className="font-semibold">{supplierInfo.rating} Rating</span>
@@ -102,9 +102,9 @@ export default function SupplierPortal() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
-          <div className="flex items-center justify-between mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="bg-white rounded-lg shadow-sm p-3 border">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-blue-100 rounded-lg">
               <ShoppingCart className="h-6 w-6 text-blue-600" />
             </div>
@@ -118,8 +118,8 @@ export default function SupplierPortal() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 border">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-green-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-green-600" />
             </div>
@@ -133,8 +133,8 @@ export default function SupplierPortal() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 border">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-purple-100 rounded-lg">
               <Truck className="h-6 w-6 text-purple-600" />
             </div>
@@ -147,8 +147,8 @@ export default function SupplierPortal() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 border">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-amber-100 rounded-lg">
               <Award className="h-6 w-6 text-amber-600" />
             </div>
@@ -161,8 +161,8 @@ export default function SupplierPortal() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 border">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-red-100 rounded-lg">
               <FileText className="h-6 w-6 text-red-600" />
             </div>
@@ -173,8 +173,8 @@ export default function SupplierPortal() {
           <button className="text-sm text-blue-600 hover:text-blue-700 mt-3">View all →</button>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 border">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg shadow-sm p-3 border">
+          <div className="flex items-center justify-between mb-2">
             <div className="p-3 bg-teal-100 rounded-lg">
               <MessageSquare className="h-6 w-6 text-teal-600" />
             </div>
@@ -190,7 +190,7 @@ export default function SupplierPortal() {
       </div>
 
       {/* Recent Activities */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="bg-white rounded-lg shadow-sm border">
           <div className="p-6 border-b">
             <h3 className="text-lg font-semibold flex items-center gap-2">
@@ -199,9 +199,9 @@ export default function SupplierPortal() {
             </h3>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {purchaseOrders.slice(0, 3).map((po) => (
-                <div key={po.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div key={po.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div>
                     <div className="font-medium text-gray-900">{po.id}</div>
                     <div className="text-sm text-gray-500 mt-1">{po.items} items • ${po.value.toLocaleString()}</div>
@@ -232,14 +232,14 @@ export default function SupplierPortal() {
             </h3>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {performanceData.map((data) => (
                 <div key={data.month} className="flex items-center justify-between">
                   <div>
                     <div className="font-medium text-gray-900">{data.month}</div>
                     <div className="text-sm text-gray-500">{data.delivered} orders delivered</div>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
                     <div className="text-right">
                       <div className="text-sm font-medium text-gray-900">
                         {((data.onTime / data.delivered) * 100).toFixed(0)}%
@@ -264,9 +264,9 @@ export default function SupplierPortal() {
   )
 
   const renderPurchaseOrders = () => (
-    <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="flex justify-between items-center mb-6">
+    <div className="space-y-3">
+      <div className="bg-white rounded-lg shadow-sm border p-3">
+        <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-semibold">Purchase Orders</h3>
           <div className="flex gap-3">
             <div className="relative">
@@ -347,7 +347,7 @@ export default function SupplierPortal() {
   )
 
   const renderRFQs = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold">Request for Quotations</h3>
         <button
@@ -359,10 +359,10 @@ export default function SupplierPortal() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {rfqs.map((rfq) => (
-          <div key={rfq.id} className="bg-white rounded-lg shadow-sm border p-6">
-            <div className="flex justify-between items-start mb-4">
+          <div key={rfq.id} className="bg-white rounded-lg shadow-sm border p-3">
+            <div className="flex justify-between items-start mb-2">
               <span className={`px-2 py-1 rounded-full text-xs font-medium ${rfq.status === 'Open' ? 'bg-green-100 text-green-700' :
                 'bg-blue-100 text-blue-700'
                 }`}>
@@ -374,7 +374,7 @@ export default function SupplierPortal() {
               </button>
             </div>
             <h4 className="font-semibold text-gray-900 mb-2">{rfq.id}</h4>
-            <p className="text-sm text-gray-600 mb-4">{rfq.title}</p>
+            <p className="text-sm text-gray-600 mb-2">{rfq.title}</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-gray-500">Items:</span>
@@ -397,7 +397,7 @@ export default function SupplierPortal() {
   )
 
   const renderInvoices = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold">Invoices</h3>
         <button
@@ -469,7 +469,7 @@ export default function SupplierPortal() {
   )
 
   const renderProfile = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="bg-white rounded-lg shadow-sm border">
         <div className="p-6 border-b">
           <div className="flex justify-between items-center">
@@ -484,7 +484,7 @@ export default function SupplierPortal() {
           </div>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
               <input
@@ -525,7 +525,7 @@ export default function SupplierPortal() {
 
           <div className="mt-6">
             <h4 className="font-medium text-gray-900 mb-3">Contact Information</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-gray-400" />
                 <span className="text-gray-600">supplier@techsupply.com</span>
@@ -614,13 +614,13 @@ export default function SupplierPortal() {
   )
 
   const renderSupport = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div className="bg-white rounded-lg shadow-sm border">
         <div className="p-6 border-b">
           <h3 className="text-lg font-semibold">Help & Support</h3>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="text-center">
               <div className="p-4 bg-blue-100 rounded-lg inline-block mb-3">
                 <MessageSquare className="h-8 w-8 text-blue-600" />
@@ -653,7 +653,7 @@ export default function SupplierPortal() {
         <div className="p-6 border-b">
           <h3 className="text-lg font-semibold">Frequently Asked Questions</h3>
         </div>
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-2">
           <div className="border-b pb-4">
             <h4 className="font-medium text-gray-900 mb-2">How do I submit a quotation?</h4>
             <p className="text-sm text-gray-600">Navigate to the RFQ section and click on any open RFQ to view details and submit your quote.</p>
@@ -675,7 +675,7 @@ export default function SupplierPortal() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-3">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center gap-3">
               <Building2 className="h-8 w-8 text-blue-600" />
@@ -684,7 +684,7 @@ export default function SupplierPortal() {
                 <p className="text-sm text-gray-500">Supplier ID: {supplierInfo.id}</p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <button className="p-2 hover:bg-gray-100 rounded-lg relative">
                 <Bell className="h-5 w-5 text-gray-600" />
                 <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">
@@ -713,7 +713,7 @@ export default function SupplierPortal() {
 
       {/* Navigation Tabs */}
       <div className="bg-white border-b">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-3">
           <nav className="flex space-x-8">
             {[
               { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
@@ -741,9 +741,9 @@ export default function SupplierPortal() {
 
       {/* Real-Time Monitoring Dashboard */}
       {showRealTimeMonitoring && (
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="w-full px-3 py-2">
+          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200 mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-indigo-600" />
                 Real-Time Performance Dashboard
@@ -767,8 +767,8 @@ export default function SupplierPortal() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-600">Orders This Week</span>
                   <ShoppingCart className="h-5 w-5 text-blue-600" />
@@ -777,7 +777,7 @@ export default function SupplierPortal() {
                 <div className="text-xs text-green-600 mt-1">↑ 3 vs last week</div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-600">On-Time Delivery</span>
                   <Truck className="h-5 w-5 text-green-600" />
@@ -786,7 +786,7 @@ export default function SupplierPortal() {
                 <div className="text-xs text-green-600 mt-1">+1.2% improvement</div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-600">Response Time</span>
                   <Clock className="h-5 w-5 text-purple-600" />
@@ -795,7 +795,7 @@ export default function SupplierPortal() {
                 <div className="text-xs text-green-600 mt-1">↓ 30min faster</div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-600">Quality Score</span>
                   <Award className="h-5 w-5 text-amber-600" />
@@ -805,7 +805,7 @@ export default function SupplierPortal() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Activity</h4>
               <div className="space-y-2 max-h-32 overflow-y-auto">
                 <div className="flex items-center gap-3 text-sm">
@@ -836,9 +836,9 @@ export default function SupplierPortal() {
 
       {/* AI-Powered Insights */}
       {showAIInsights && (
-        <div className="w-full px-4 sm:px-6 lg:px-8 pb-6">
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="w-full px-3 pb-6">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200 mb-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <Zap className="h-5 w-5 text-purple-600" />
                 AI-Powered Business Insights
@@ -851,8 +851,8 @@ export default function SupplierPortal() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
                   <span className="text-sm font-semibold text-gray-900">Growth Opportunity</span>
@@ -861,7 +861,7 @@ export default function SupplierPortal() {
                 <p className="text-xs text-gray-600">Projected revenue increase based on current order trends and customer feedback</p>
               </div>
 
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <Target className="h-5 w-5 text-amber-600" />
                   <span className="text-sm font-semibold text-gray-900">Tier Upgrade</span>
@@ -870,7 +870,7 @@ export default function SupplierPortal() {
                 <p className="text-xs text-gray-600">On track to achieve Gold tier status within 2 months with current performance metrics</p>
               </div>
 
-              <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="bg-white rounded-lg p-3 shadow-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="h-5 w-5 text-green-600" />
                   <span className="text-sm font-semibold text-gray-900">Optimization Potential</span>
@@ -880,7 +880,7 @@ export default function SupplierPortal() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Recommendations</h4>
               <div className="space-y-2">
                 <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
@@ -911,7 +911,7 @@ export default function SupplierPortal() {
       )}
 
       {/* Content */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-3 py-2">
         {activeTab === 'dashboard' && renderDashboard()}
         {activeTab === 'orders' && renderPurchaseOrders()}
         {activeTab === 'rfqs' && renderRFQs()}
@@ -928,7 +928,7 @@ export default function SupplierPortal() {
               <h3 className="text-lg font-semibold">Submit Quotation</h3>
             </div>
             <div className="p-6">
-              <p className="text-gray-600 mb-4">Quote submission form would go here</p>
+              <p className="text-gray-600 mb-2">Quote submission form would go here</p>
               <div className="flex gap-3">
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                   Submit Quote
@@ -953,7 +953,7 @@ export default function SupplierPortal() {
               <h3 className="text-lg font-semibold">Create Invoice</h3>
             </div>
             <div className="p-6">
-              <p className="text-gray-600 mb-4">Invoice creation form would go here</p>
+              <p className="text-gray-600 mb-2">Invoice creation form would go here</p>
               <div className="flex gap-3">
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                   Create Invoice

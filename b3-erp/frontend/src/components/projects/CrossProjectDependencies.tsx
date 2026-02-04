@@ -218,9 +218,9 @@ export default function CrossProjectDependencies() {
     : dependencies.filter(d => d.status === filterStatus);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-white shadow-lg p-6">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -257,8 +257,8 @@ export default function CrossProjectDependencies() {
       {viewMode === 'dependencies' && (
         <>
           {/* Filters */}
-          <div className="bg-white shadow-md p-4">
-            <div className="flex items-center gap-4">
+          <div className="bg-white shadow-md p-3">
+            <div className="flex items-center gap-2">
               <label className="text-sm font-medium text-gray-700">Filter by Status:</label>
               <select
                 value={filterStatus}
@@ -283,11 +283,11 @@ export default function CrossProjectDependencies() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {filteredDependencies.map((dep) => (
                   <div key={dep.id} className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                     {/* Dependency Header */}
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <div className="p-2 bg-purple-100 rounded-lg">
                           <Link2 className="h-5 w-5 text-purple-600" />
@@ -319,8 +319,8 @@ export default function CrossProjectDependencies() {
                     </div>
 
                     {/* Dependency Flow */}
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
                         {/* Predecessor */}
                         <div className="p-3 bg-white rounded-lg border border-gray-200">
                           <p className="text-xs text-gray-600 mb-1">Predecessor</p>
@@ -356,7 +356,7 @@ export default function CrossProjectDependencies() {
 
                     {/* Schedule Info */}
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-4 w-4 text-gray-600" />
                           <span className="text-gray-700">Scheduled: {dep.scheduledDate}</span>
@@ -392,11 +392,11 @@ export default function CrossProjectDependencies() {
           </div>
 
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {dependencyChains.map((chain) => (
                 <div key={chain.chainId} className="p-5 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
                   {/* Chain Header */}
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="text-lg font-bold text-gray-900">{chain.chainName}</h4>
                       <p className="text-sm text-gray-600 mt-1">{chain.chainId}</p>
@@ -407,7 +407,7 @@ export default function CrossProjectDependencies() {
                   </div>
 
                   {/* Chain Stats */}
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-2">
                     <div className="text-center p-3 bg-blue-50 rounded-lg">
                       <p className="text-xs text-blue-600 font-medium">Projects</p>
                       <p className="text-xl font-bold text-blue-900">{chain.projects.length}</p>

@@ -122,8 +122,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Receipt className="h-7 w-7 text-blue-600" />
           Submit Travel Expenses
@@ -132,8 +132,8 @@ export default function Page() {
       </div>
 
       {/* Travel Request Info */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <p className="text-xs text-blue-600 uppercase font-medium mb-1">Travel Request</p>
             <p className="text-sm font-bold text-blue-900">{travelRequestId}</p>
@@ -154,8 +154,8 @@ export default function Page() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Expenses</p>
@@ -165,7 +165,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Cash Paid</p>
@@ -175,7 +175,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Corporate Card</p>
@@ -185,7 +185,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Personal Card</p>
@@ -195,7 +195,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className={`bg-white border-2 rounded-lg p-4 ${netPayable >= 0 ? 'border-orange-200' : 'border-red-200'}`}>
+        <div className={`bg-white border-2 rounded-lg p-3 ${netPayable >= 0 ? 'border-orange-200' : 'border-red-200'}`}>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Net Payable</p>
@@ -209,7 +209,7 @@ export default function Page() {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-2">
         <h2 className="text-lg font-bold text-gray-900">Expense Items</h2>
         <div className="flex gap-2">
           <button
@@ -227,9 +227,9 @@ export default function Page() {
       </div>
 
       {/* Expense Items List */}
-      <div className="space-y-3 mb-6">
+      <div className="space-y-3 mb-3">
         {expenseItems.map((expense) => (
-          <div key={expense.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div key={expense.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -249,7 +249,7 @@ export default function Page() {
                   )}
                 </div>
                 <h3 className="text-sm font-bold text-gray-900 mb-1">{expense.description}</h3>
-                <div className="flex items-center gap-4 text-xs text-gray-600">
+                <div className="flex items-center gap-2 text-xs text-gray-600">
                   <span className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     {new Date(expense.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -257,7 +257,7 @@ export default function Page() {
                   <span>Bill #: {expense.billNumber}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <p className="text-xl font-bold text-gray-900">₹{expense.amount.toLocaleString('en-IN')}</p>
                 <button
                   onClick={() => handleRemoveExpense(expense.id)}
@@ -272,8 +272,8 @@ export default function Page() {
       </div>
 
       {/* Settlement Summary */}
-      <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-6 border border-gray-300 mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Settlement Summary</h3>
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-300 mb-3">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">Settlement Summary</h3>
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
             <span className="text-gray-700">Total Expenses:</span>
@@ -299,7 +299,7 @@ export default function Page() {
       </div>
 
       {/* Important Notes */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
         <div className="flex items-start gap-2">
           <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
@@ -320,16 +320,16 @@ export default function Page() {
       <div className="flex gap-3">
         <button
           onClick={() => router.back()}
-          className="flex-1 px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+          className="flex-1 px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
         >
           Cancel
         </button>
-        <button className="flex-1 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium">
+        <button className="flex-1 px-3 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium">
           Save as Draft
         </button>
         <button
           onClick={handleSubmitExpenses}
-          className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+          className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
         >
           Submit for Approval
         </button>
@@ -338,8 +338,8 @@ export default function Page() {
       {/* Add Expense Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-bold text-gray-900">Add Expense Item</h2>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -349,8 +349,8 @@ export default function Page() {
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
                   <select
@@ -390,7 +390,7 @@ export default function Page() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Amount (₹) *</label>
                   <input
@@ -456,8 +456,8 @@ export default function Page() {
               {newExpense.hasReceipt && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Upload Receipt</label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-blue-500 cursor-pointer">
-                    <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-blue-500 cursor-pointer">
+                    <Upload className="h-8 w-8 text-gray-400 mb-2" />
                     <p className="text-sm text-gray-600">Click to upload or drag and drop</p>
                     <p className="text-xs text-gray-500 mt-1">PDF, JPG, PNG (max 5MB)</p>
                   </div>

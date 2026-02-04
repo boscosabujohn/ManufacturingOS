@@ -1940,9 +1940,9 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-lg shadow-lg">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <TrendingDown className="h-8 w-8" />
@@ -1997,8 +1997,8 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Target Savings</p>
@@ -2010,7 +2010,7 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Realized Savings</p>
@@ -2022,7 +2022,7 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Achievement</p>
@@ -2034,7 +2034,7 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Initiatives</p>
@@ -2046,7 +2046,7 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+        <div className="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">At Risk</p>
@@ -2060,8 +2060,8 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
       </div>
 
       {/* Savings by Type */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Savings by Type</h3>
+      <div className="bg-white rounded-lg shadow p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Savings by Type</h3>
         <div className="space-y-3">
           {[
             { type: 'cost-reduction' as SavingsType, label: 'Cost Reduction' },
@@ -2091,53 +2091,53 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
 
       {/* Initiatives Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">Savings Initiatives</h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Initiative</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Owner</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Target</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Realized</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Achievement</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Period</th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Initiative</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Owner</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Target</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Realized</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Achievement</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Period</th>
+                <th className="px-3 py-2 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {initiatives.map((initiative) => (
                 <tr key={initiative.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{initiative.initiative}</div>
                     {initiative.supplier && (
                       <div className="text-xs text-gray-500">Supplier: {initiative.supplier}</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getSavingsTypeColor(initiative.type)}`}>
                       {initiative.type}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{initiative.category}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{initiative.owner}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{initiative.category}</td>
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">{initiative.owner}</td>
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getSavingsStatusColor(initiative.status)}`}>
                       {initiative.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     ${(initiative.targetSavings / 1000).toFixed(0)}K
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-green-600">
                     ${(initiative.realizedSavings / 1000).toFixed(0)}K
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
                         <div
@@ -2153,11 +2153,11 @@ Click 'Export Supplier Report' to generate detailed supplier savings analysis.`)
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                     <div>{initiative.startDate}</div>
                     <div className="text-xs">to {initiative.endDate}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() => handleViewInitiativeDetails(initiative)}

@@ -344,7 +344,7 @@ export default function StatusReportsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <FileText className="h-8 w-8 text-teal-600" />
           Status Reports
@@ -353,8 +353,8 @@ export default function StatusReportsPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -383,8 +383,8 @@ export default function StatusReportsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-sm font-medium">Total Reports</p>
@@ -393,7 +393,7 @@ export default function StatusReportsPage() {
             <FileText className="h-12 w-12 text-teal-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">This Month</p>
@@ -402,7 +402,7 @@ export default function StatusReportsPage() {
             <Calendar className="h-12 w-12 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-sm font-medium">Published</p>
@@ -411,7 +411,7 @@ export default function StatusReportsPage() {
             <CheckCircle2 className="h-12 w-12 text-green-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-600 text-sm font-medium">Draft</p>
@@ -420,7 +420,7 @@ export default function StatusReportsPage() {
             <FileText className="h-12 w-12 text-yellow-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-sm font-medium">Pending Review</p>
@@ -429,7 +429,7 @@ export default function StatusReportsPage() {
             <Clock className="h-12 w-12 text-purple-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-indigo-600 text-sm font-medium">Avg Turnaround</p>
@@ -442,7 +442,7 @@ export default function StatusReportsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-2">
         <div className="flex flex-col md:flex-row gap-3 items-center">
           <div className="flex items-center gap-2 mr-auto">
             <Filter className="h-4 w-4 text-gray-500" />
@@ -575,7 +575,7 @@ export default function StatusReportsPage() {
             </tbody>
           </table>
         </div>
-        <div className="flex items-center justify-between p-4 border-t border-gray-200">
+        <div className="flex items-center justify-between p-3 border-t border-gray-200">
           <div className="text-sm text-gray-600">
             Showing {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, filtered.length)} of {filtered.length}
           </div>
@@ -600,12 +600,12 @@ export default function StatusReportsPage() {
       </div>
 
       {/* Guidelines */}
-      <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-blue-600" />
           Status Reporting Guidelines
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700">
           <div>
             <h4 className="font-semibold text-gray-800 mb-2">Report Types:</h4>
             <ul className="list-disc list-inside space-y-1">

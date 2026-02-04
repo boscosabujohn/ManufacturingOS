@@ -147,7 +147,7 @@ export default function RoleHierarchyPage() {
   const renderHierarchyTree = () => {
     const levels = [1, 2, 3, 4];
     return (
-      <div className="space-y-6">
+      <div className="space-y-3">
         {levels.map((level) => {
           const rolesAtLevel = hierarchy.filter(r => r.level === level);
           if (rolesAtLevel.length === 0) return null;
@@ -161,12 +161,12 @@ export default function RoleHierarchyPage() {
                 <div className="flex-1 h-px bg-gray-200"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {rolesAtLevel.map((role) => (
                   <button
                     key={role.id}
                     onClick={() => setSelectedRole(role.id)}
-                    className={`text-left p-4 rounded-lg border-2 transition-all ${getColorClasses(role.color, selectedRole === role.id)}`}
+                    className={`text-left p-3 rounded-lg border-2 transition-all ${getColorClasses(role.color, selectedRole === role.id)}`}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       {getIcon(role.icon)}
@@ -222,8 +222,8 @@ export default function RoleHierarchyPage() {
       )}
 
       {/* Header Section */}
-      <div className="flex-none px-6 py-4">
-        <div className="flex items-center gap-4">
+      <div className="flex-none px-3 py-2">
+        <div className="flex items-center gap-2">
           <button onClick={() => router.back()} className="p-2 bg-white rounded-lg border border-amber-200 hover:bg-amber-50 transition-colors">
             <ArrowLeft className="w-5 h-5 text-amber-600" />
           </button>
@@ -242,17 +242,17 @@ export default function RoleHierarchyPage() {
       {/* Scrollable Content Area */}
       <div className="flex-1 overflow-hidden px-6">
         <div className="h-full overflow-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Hierarchy Visualization */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
-          <div className="mb-6">
+        <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-3">
+          <div className="mb-3">
             <h2 className="text-lg font-bold text-gray-900 mb-2">Organizational Hierarchy</h2>
             <p className="text-sm text-gray-600">Click on any role to view detailed relationships</p>
           </div>
 
           {renderHierarchyTree()}
 
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <h3 className="text-sm font-semibold text-blue-900 mb-2">Hierarchy Rules:</h3>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>" Higher-level roles can approve actions from lower-level roles</li>
@@ -264,9 +264,9 @@ export default function RoleHierarchyPage() {
         </div>
 
         {/* Role Details Panel */}
-        <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-1 space-y-3">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-bold text-gray-900">Role Details</h2>
               <div className="flex gap-2">
                 <button 
@@ -287,8 +287,8 @@ export default function RoleHierarchyPage() {
             </div>
 
             {selectedRoleData && (
-              <div className="space-y-4">
-                <div className={`flex items-center gap-3 p-4 rounded-lg border-2 ${getColorClasses(selectedRoleData.color, true)}`}>
+              <div className="space-y-2">
+                <div className={`flex items-center gap-3 p-3 rounded-lg border-2 ${getColorClasses(selectedRoleData.color, true)}`}>
                   {getIcon(selectedRoleData.icon)}
                   <div>
                     <p className="font-bold">{selectedRoleData.name}</p>
@@ -334,7 +334,7 @@ export default function RoleHierarchyPage() {
           </div>
 
           {reportingRoles.length > 0 && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
               <h3 className="text-sm font-bold text-gray-900 mb-3">Direct Reports</h3>
               <div className="space-y-2">
                 {reportingRoles.map((role) => (
@@ -352,7 +352,7 @@ export default function RoleHierarchyPage() {
           )}
 
           {approvalRoles.length > 0 && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
               <h3 className="text-sm font-bold text-gray-900 mb-3">Can Approve</h3>
               <div className="space-y-2">
                 {approvalRoles.slice(0, 3).map((role) => (
@@ -370,7 +370,7 @@ export default function RoleHierarchyPage() {
             </div>
           )}
 
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-xl p-6">
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-xl p-3">
             <div className="flex items-center gap-2 mb-3">
               <Users className="w-5 h-5 text-purple-600" />
               <h3 className="text-sm font-bold text-purple-900">Hierarchy Stats</h3>

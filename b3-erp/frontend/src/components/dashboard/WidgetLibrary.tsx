@@ -390,7 +390,7 @@ export function WidgetLibrary({
       {/* Panel */}
       <div className="fixed inset-y-0 right-0 w-full max-w-lg bg-white dark:bg-gray-900 z-50 shadow-2xl flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700">
           <div>
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Widget Library</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -406,7 +406,7 @@ export function WidgetLibrary({
         </div>
 
         {/* Search */}
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -420,7 +420,7 @@ export function WidgetLibrary({
         </div>
 
         {/* Categories */}
-        <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+        <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setSelectedCategory('all')}
@@ -450,7 +450,7 @@ export function WidgetLibrary({
         </div>
 
         {/* Widget List */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-3">
           {selectedCategory === 'all' ? (
             // Show by category
             <>
@@ -459,7 +459,7 @@ export function WidgetLibrary({
                 if (widgets.length === 0) return null;
 
                 return (
-                  <div key={cat.id} className="mb-6">
+                  <div key={cat.id} className="mb-3">
                     <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
                       {cat.icon}
                       {cat.label}
@@ -512,7 +512,7 @@ interface WidgetCardProps {
 
 function WidgetCard({ widget, isAdded, onAdd }: WidgetCardProps) {
   return (
-    <div className={`relative p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 ${
+    <div className={`relative p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 ${
       isAdded ? 'opacity-60' : 'hover:border-blue-300 dark:hover:border-blue-700'
     }`}>
       <div className="flex items-start gap-3">

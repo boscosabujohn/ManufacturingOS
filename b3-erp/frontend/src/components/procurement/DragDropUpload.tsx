@@ -382,7 +382,7 @@ export const DragDropUpload: React.FC<DragDropUploadProps> = ({
   }
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       {/* Drop Zone */}
       <div
         ref={dropZoneRef}
@@ -420,7 +420,7 @@ export const DragDropUpload: React.FC<DragDropUploadProps> = ({
         />
 
         {children || (
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex justify-center">
               <Cloud className="h-12 w-12 text-gray-400" />
             </div>
@@ -446,7 +446,7 @@ export const DragDropUpload: React.FC<DragDropUploadProps> = ({
 
       {/* File List */}
       {files.length > 0 && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium text-gray-900">
               Uploaded Files ({files.length})
@@ -481,7 +481,7 @@ export const DragDropUpload: React.FC<DragDropUploadProps> = ({
                 onDragOver={(e) => handleFileDropOver(e, index)}
                 onDrop={(e) => handleFileDrop(e, index)}
                 className={`
-                  bg-white border border-gray-200 rounded-lg p-4 transition-all
+                  bg-white border border-gray-200 rounded-lg p-3 transition-all
                   ${allowReorder ? 'cursor-move hover:shadow-md' : ''}
                   ${dragOverIndex === index ? 'border-blue-500 shadow-md' : ''}
                   ${file.status === 'error' ? 'border-red-200 bg-red-50' : ''}
@@ -526,9 +526,9 @@ export const DragDropUpload: React.FC<DragDropUploadProps> = ({
                             <button
                               onClick={() => {
                                 const modal = document.createElement('div')
-                                modal.className = 'fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4'
+                                modal.className = 'fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-3'
                                 modal.innerHTML = `
-                                  <div class="bg-white rounded-lg p-4 max-w-4xl max-h-full overflow-auto">
+                                  <div class="bg-white rounded-lg p-3  max-h-full overflow-auto">
                                     <img src="${file.preview}" alt="${file.name}" class="max-w-full h-auto" />
                                     <button class="mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Close</button>
                                   </div>

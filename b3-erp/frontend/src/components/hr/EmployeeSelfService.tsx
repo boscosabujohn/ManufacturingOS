@@ -339,16 +339,16 @@ export default function EmployeeSelfService() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 p-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 p-3">
       <div>
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Employee Self-Service Portal</h1>
           <p className="text-gray-600">Manage your profile, leave, payroll, and more</p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
           <div className="flex overflow-x-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -356,7 +356,7 @@ export default function EmployeeSelfService() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center gap-2 px-6 py-4 font-medium transition-colors whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-3 py-2 font-medium transition-colors whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -371,9 +371,9 @@ export default function EmployeeSelfService() {
         </div>
 
         {/* Tab Content */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
           {activeTab === 'profile' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Personal Information</h2>
                 <button
@@ -385,8 +385,8 @@ export default function EmployeeSelfService() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="space-y-2">
                   <div>
                     <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                       <User className="w-4 h-4" />
@@ -437,7 +437,7 @@ export default function EmployeeSelfService() {
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                       <Briefcase className="w-4 h-4" />
@@ -492,15 +492,15 @@ export default function EmployeeSelfService() {
           )}
 
           {activeTab === 'leave' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Leave Management</h2>
 
               {/* Leave Balances */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Leave Balances</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Leave Balances</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {leaveBalances.filter(lb => lb.total > 0).map((balance) => (
-                    <div key={balance.leaveType} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+                    <div key={balance.leaveType} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
                       <div className="flex items-center justify-between mb-3">
                         <h4 className="font-semibold text-gray-900">{balance.label}</h4>
                         <Calendar className="w-5 h-5 text-blue-600" />
@@ -528,7 +528,7 @@ export default function EmployeeSelfService() {
 
               {/* Leave History */}
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">Leave History</h3>
                   <button
                     onClick={() => setIsApplyLeaveModalOpen(true)}
@@ -539,7 +539,7 @@ export default function EmployeeSelfService() {
                 </div>
                 <div className="space-y-3">
                   {leaveHistory.map((leave) => (
-                    <div key={leave.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={leave.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <Calendar className="w-5 h-5 text-gray-600" />
@@ -567,11 +567,11 @@ export default function EmployeeSelfService() {
           )}
 
           {activeTab === 'payroll' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Payroll & Compensation</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center gap-3 mb-3">
                     <DollarSign className="w-6 h-6 text-green-600" />
                     <h3 className="font-semibold text-gray-900">Latest Gross Pay</h3>
@@ -580,7 +580,7 @@ export default function EmployeeSelfService() {
                   <p className="text-sm text-gray-600 mt-1">{payslips[0].month} {payslips[0].year}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-center gap-3 mb-3">
                     <CreditCard className="w-6 h-6 text-blue-600" />
                     <h3 className="font-semibold text-gray-900">Latest Net Pay</h3>
@@ -589,7 +589,7 @@ export default function EmployeeSelfService() {
                   <p className="text-sm text-gray-600 mt-1">{payslips[0].month} {payslips[0].year}</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-center gap-3 mb-3">
                     <TrendingUp className="w-6 h-6 text-purple-600" />
                     <h3 className="font-semibold text-gray-900">YTD Earnings</h3>
@@ -600,12 +600,12 @@ export default function EmployeeSelfService() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Payslip History</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Payslip History</h3>
                 <div className="space-y-3">
                   {payslips.map((payslip) => (
-                    <div key={payslip.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={payslip.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                           <FileText className="w-5 h-5 text-gray-600" />
                           <div>
                             <p className="font-semibold text-gray-900">{payslip.month} {payslip.year}</p>
@@ -631,7 +631,7 @@ export default function EmployeeSelfService() {
           )}
 
           {activeTab === 'documents' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">My Documents</h2>
                 <button
@@ -643,9 +643,9 @@ export default function EmployeeSelfService() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {documents.map((doc) => (
-                  <div key={doc.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:border-blue-300 transition-colors">
+                  <div key={doc.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200 hover:border-blue-300 transition-colors">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <FileText className="w-8 h-8 text-blue-600" />
@@ -668,7 +668,7 @@ export default function EmployeeSelfService() {
           )}
 
           {activeTab === 'requests' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Service Requests</h2>
                 <button
@@ -681,7 +681,7 @@ export default function EmployeeSelfService() {
 
               <div className="space-y-3">
                 {serviceRequests.map((request) => (
-                  <div key={request.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={request.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <p className="font-semibold text-gray-900">{request.title}</p>
@@ -708,13 +708,13 @@ export default function EmployeeSelfService() {
           )}
 
           {activeTab === 'benefits' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <h2 className="text-2xl font-bold text-gray-900">Benefits & Enrollments</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {benefits.map((benefit) => (
-                  <div key={benefit.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
-                    <div className="flex items-center justify-between mb-4">
+                  <div key={benefit.id} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-200">
+                    <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-3">
                         <Heart className="w-6 h-6 text-purple-600" />
                         <h3 className="font-semibold text-gray-900">{benefit.benefitName}</h3>
@@ -735,7 +735,7 @@ export default function EmployeeSelfService() {
           )}
 
           {activeTab === 'training' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Training & Development</h2>
                 <button
@@ -746,9 +746,9 @@ export default function EmployeeSelfService() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {trainings.map((training) => (
-                  <div key={training.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={training.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
                         <GraduationCap className="w-6 h-6 text-blue-600" />

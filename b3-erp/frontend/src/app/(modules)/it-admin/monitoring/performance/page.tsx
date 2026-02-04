@@ -284,7 +284,7 @@ const PerformanceMonitoringPage = () => {
       )}
 
       {/* Header Section */}
-      <div className="flex-none p-6 pb-4 space-y-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-rose-100 rounded-lg">
@@ -305,8 +305,8 @@ const PerformanceMonitoringPage = () => {
         </div>
 
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg CPU</span>
             <Cpu className="w-4 h-4 text-blue-600" />
@@ -314,7 +314,7 @@ const PerformanceMonitoringPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.avgCpu}%</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Memory</span>
             <Database className="w-4 h-4 text-purple-600" />
@@ -322,7 +322,7 @@ const PerformanceMonitoringPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.avgMemory}%</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Peak CPU</span>
             <TrendingUp className="w-4 h-4 text-red-600" />
@@ -330,7 +330,7 @@ const PerformanceMonitoringPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.peakCpu}%</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Peak Memory</span>
             <TrendingUp className="w-4 h-4 text-orange-600" />
@@ -338,7 +338,7 @@ const PerformanceMonitoringPage = () => {
           <div className="text-2xl font-bold text-orange-600">{stats.peakMemory}%</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Response</span>
             <Zap className="w-4 h-4 text-green-600" />
@@ -346,7 +346,7 @@ const PerformanceMonitoringPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.avgResponseTime}ms</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Throughput</span>
             <BarChart3 className="w-4 h-4 text-indigo-600" />
@@ -358,11 +358,11 @@ const PerformanceMonitoringPage = () => {
 
       {/* Scrollable Content Area */}
       <div className="flex-1 overflow-hidden px-6">
-        <div className="h-full overflow-auto space-y-6">
+        <div className="h-full overflow-auto space-y-3">
       
       {/* Performance Chart */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold text-gray-900">Performance Trends</h3>
           <select
             value={timeRange}
@@ -375,11 +375,11 @@ const PerformanceMonitoringPage = () => {
             <option value="7days">Last 7 Days</option>
           </select>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {history.map((point, index) => (
-            <div key={index} className="flex items-center gap-4">
+            <div key={index} className="flex items-center gap-2">
               <div className="w-16 text-sm text-gray-600">{point.timestamp}</div>
-              <div className="flex-1 grid grid-cols-6 gap-4">
+              <div className="flex-1 grid grid-cols-6 gap-2">
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs text-gray-500">CPU</span>
@@ -459,12 +459,12 @@ const PerformanceMonitoringPage = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center gap-3 mb-2">
           <Filter className="w-5 h-5 text-rose-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
@@ -492,17 +492,17 @@ const PerformanceMonitoringPage = () => {
       </div>
 
       {/* Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredMetrics.map((metric) => (
-          <div key={metric.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div key={metric.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="font-semibold text-gray-900">{metric.metric}</h3>
               <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(metric.status)}`}>
                 {metric.status}
               </span>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-3xl font-bold text-gray-900">
                   {metric.current}
@@ -522,7 +522,7 @@ const PerformanceMonitoringPage = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200">
               <div>
                 <div className="text-xs text-gray-500 mb-1">Average</div>
                 <div className="text-sm font-medium text-gray-900">

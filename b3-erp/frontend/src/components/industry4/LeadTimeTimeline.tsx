@@ -272,7 +272,7 @@ function LeadTimeStatsBar({ orders }: { orders: Order[] }) {
   }, [orders]);
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-2 mb-3">
       <Card>
         <CardContent className="pt-4">
           <div className="flex items-center gap-3">
@@ -432,7 +432,7 @@ function OrderCard({
       <CardContent className="p-4">
         {/* Header */}
         <div className="flex items-start justify-between">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-2">
             <div className={`p-2 rounded-lg ${getStatusBgColor(order.status)}`}>
               <StatusIcon className={`w-6 h-6 ${getStatusColor(order.status)}`} />
             </div>
@@ -457,7 +457,7 @@ function OrderCard({
           </div>
 
           <div className="text-right">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div>
                 <p className="text-xs text-gray-500">Lead Time</p>
                 <p className="font-semibold">{order.leadTimeDays} days</p>
@@ -567,7 +567,7 @@ function GanttView({ orders, onOrderClick }: { orders: Order[]; onOrderClick?: (
         <div className="overflow-x-auto">
           <div className="min-w-[800px]">
             {/* Header with dates */}
-            <div className="flex border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">
+            <div className="flex border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
               <div className="w-48 flex-shrink-0 text-sm font-medium text-gray-500">Order</div>
               <div className="flex-1 relative h-6">
                 {weeks.map((week, i) => (
@@ -680,10 +680,10 @@ export function LeadTimeTimeline({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <Card>
         <CardHeader className="pb-2">
-          <div className="flex items-center justify-between flex-wrap gap-4">
+          <div className="flex items-center justify-between flex-wrap gap-2">
             <CardTitle className="flex items-center gap-2">
               <Calendar className="w-5 h-5 text-blue-600" />
               Lead Time Tracking
@@ -742,7 +742,7 @@ export function LeadTimeTimeline({
       {viewMode === 'gantt' ? (
         <GanttView orders={filteredOrders} onOrderClick={onOrderClick} />
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {filteredOrders.map(order => (
             <OrderCard
               key={order.id}

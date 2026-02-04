@@ -32,7 +32,7 @@ export default function MyLeaveBalancePage() {
   const highestBalance = [...leaveBalances].sort((a, b) => b.balance - a.balance)[0];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -64,8 +64,8 @@ export default function MyLeaveBalancePage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-blue-700 font-medium">Total Entitlement</div>
             <Calendar className="w-5 h-5 text-blue-600" />
@@ -74,7 +74,7 @@ export default function MyLeaveBalancePage() {
           <div className="text-xs text-blue-600 mt-1">days per year</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-green-700 font-medium">Available Balance</div>
             <CheckCircle className="w-5 h-5 text-green-600" />
@@ -83,7 +83,7 @@ export default function MyLeaveBalancePage() {
           <div className="text-xs text-green-600 mt-1">days remaining</div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-red-700 font-medium">Leaves Taken</div>
             <TrendingUp className="w-5 h-5 text-red-600" />
@@ -92,7 +92,7 @@ export default function MyLeaveBalancePage() {
           <div className="text-xs text-red-600 mt-1">days used</div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-4">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-yellow-700 font-medium">Pending Approval</div>
             <Clock className="w-5 h-5 text-yellow-600" />
@@ -101,7 +101,7 @@ export default function MyLeaveBalancePage() {
           <div className="text-xs text-yellow-600 mt-1">days awaiting</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200 p-4">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm text-purple-700 font-medium">Encashable</div>
             <AlertCircle className="w-5 h-5 text-purple-600" />
@@ -112,7 +112,7 @@ export default function MyLeaveBalancePage() {
       </div>
 
       {/* Leave Balance Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {leaveBalances.map((leave) => {
           const utilizationPercentage = leave.totalEntitlement > 0
             ? Math.round((leave.taken / leave.totalEntitlement) * 100)
@@ -125,7 +125,7 @@ export default function MyLeaveBalancePage() {
           return (
             <div key={leave.id} className="bg-white rounded-lg border border-gray-200 p-5 hover:shadow-md transition-shadow">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{leave.leaveTypeIcon}</span>
                   <div>
@@ -139,7 +139,7 @@ export default function MyLeaveBalancePage() {
               </div>
 
               {/* Balance Display */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Entitlement</div>
                   <div className="text-2xl font-bold text-gray-900">{leave.totalEntitlement}</div>
@@ -151,7 +151,7 @@ export default function MyLeaveBalancePage() {
               </div>
 
               {/* Progress Bar */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
                   <span>Utilization</span>
                   <span className="font-medium">{utilizationPercentage}%</span>
@@ -275,14 +275,14 @@ export default function MyLeaveBalancePage() {
 
         {transactions.length === 0 && (
           <div className="p-8 text-center">
-            <History className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+            <History className="w-12 h-12 text-gray-300 mb-3" />
             <p className="text-gray-500">No leave transactions found</p>
           </div>
         )}
       </div>
 
       {/* Information Panel */}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+      <div className="bg-green-50 border border-green-200 rounded-lg p-3">
         <h3 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
           <CheckCircle className="w-5 h-5" />
           Leave Balance Information

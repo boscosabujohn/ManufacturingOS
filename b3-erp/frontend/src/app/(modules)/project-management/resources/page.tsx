@@ -226,7 +226,7 @@ export default function ResourcesListPage() {
  return (
   <div className="w-full min-h-screen px-3 py-2 space-y-3">
    {/* Header Actions */}
-   <div className="flex justify-between items-center mb-4">
+   <div className="flex justify-between items-center mb-2">
     <div className="flex gap-2 items-center">
      <select
       value={selectedProjectId}
@@ -337,8 +337,8 @@ export default function ResourcesListPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
      {/* Search */}
      <div className="lg:col-span-2">
       <div className="relative">
@@ -386,7 +386,7 @@ export default function ResourcesListPage() {
      {paginatedResources.map((resource) => (
       <div key={resource.id} className="p-6 hover:bg-gray-50 transition-colors">
        <div className="flex items-start justify-between">
-        <div className="flex items-start gap-4 flex-1">
+        <div className="flex items-start gap-2 flex-1">
          {/* Avatar */}
          <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 text-white text-xl font-bold">
           {resource.name.split(' ').map(n => n[0]).join('')}
@@ -405,7 +405,7 @@ export default function ResourcesListPage() {
            </span>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
            <div>
             <p className="text-xs text-gray-500">Role</p>
             <div className="flex items-center gap-1 mt-1">
@@ -483,7 +483,7 @@ export default function ResourcesListPage() {
           </div>
 
           {/* Contact */}
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-2 text-sm">
            <div className="flex items-center gap-1 text-gray-600">
             <Mail className="w-4 h-4" />
             <a href={`mailto:${resource.email}`} className="hover:text-blue-600">
@@ -615,7 +615,7 @@ export default function ResourcesListPage() {
     </div>
 
     {/* Pagination */}
-    <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+    <div className="bg-gray-50 px-3 py-2 border-t border-gray-200 flex items-center justify-between">
      <div className="text-sm text-gray-700">
       Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredResources.length)} of{' '}
       {filteredResources.length} resources

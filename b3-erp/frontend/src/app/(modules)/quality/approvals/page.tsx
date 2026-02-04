@@ -96,10 +96,10 @@ export default function QCApprovalsPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header */}
-                <div className="bg-white rounded-lg border p-6">
-                    <div className="flex items-center gap-4">
+                <div className="bg-white rounded-lg border p-3">
+                    <div className="flex items-center gap-2">
                         <Link href="/quality/inspections" className="p-2 hover:bg-gray-100 rounded-lg">
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
@@ -111,8 +111,8 @@ export default function QCApprovalsPage() {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-4 gap-4">
-                    <div className="bg-white p-4 rounded-lg border">
+                <div className="grid grid-cols-4 gap-2">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-gray-600">Total Approvals</p>
@@ -121,7 +121,7 @@ export default function QCApprovalsPage() {
                             <FileText className="w-8 h-8 text-gray-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-green-600">Approved</p>
@@ -130,7 +130,7 @@ export default function QCApprovalsPage() {
                             <CheckCircle className="w-8 h-8 text-green-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-red-600">Rejected</p>
@@ -139,7 +139,7 @@ export default function QCApprovalsPage() {
                             <XCircle className="w-8 h-8 text-red-600" />
                         </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg border">
+                    <div className="bg-white p-3 rounded-lg border">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-yellow-600">Pending</p>
@@ -151,7 +151,7 @@ export default function QCApprovalsPage() {
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white rounded-lg border p-4">
+                <div className="bg-white rounded-lg border p-3">
                     <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="px-4 py-2 border rounded-lg">
                         <option value="all">All Status</option>
                         <option value="Pending Approval">Pending Approval</option>
@@ -161,10 +161,10 @@ export default function QCApprovalsPage() {
                 </div>
 
                 {/* Approvals List */}
-                <div className="grid gap-4">
+                <div className="grid gap-2">
                     {filteredApprovals.map((approval) => (
-                        <div key={approval.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition">
-                            <div className="flex items-start gap-4">
+                        <div key={approval.id} className="bg-white rounded-lg border p-3 hover:shadow-lg transition">
+                            <div className="flex items-start gap-2">
                                 <div className={`w-16 h-16 rounded-lg ${approval.status === 'Approved' ? 'bg-green-500' : approval.status === 'Rejected' ? 'bg-red-500' : 'bg-yellow-500'} flex items-center justify-center`}>
                                     {approval.status === 'Approved' ? <Award className="w-8 h-8 text-white" /> : <FileText className="w-8 h-8 text-white" />}
                                 </div>
@@ -178,7 +178,7 @@ export default function QCApprovalsPage() {
                                             {approval.status}
                                         </span>
                                     </div>
-                                    <div className="grid grid-cols-4 gap-4 mb-3 text-sm">
+                                    <div className="grid grid-cols-4 gap-2 mb-3 text-sm">
                                         <div>
                                             <p className="text-xs text-gray-500">Inspector</p>
                                             <p className="font-medium flex items-center gap-1">

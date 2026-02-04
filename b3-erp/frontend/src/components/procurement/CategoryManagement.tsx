@@ -811,7 +811,7 @@ Integration:
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex justify-between items-center">
           <div>
             <h2 className="text-2xl font-bold mb-2">Category Management System</h2>
@@ -871,8 +871,8 @@ Integration:
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <Package className="h-8 w-8 text-blue-500" />
             <span className="text-sm text-gray-500">Active</span>
@@ -880,7 +880,7 @@ Integration:
           <p className="text-2xl font-bold">{categories.filter(c => c.status === 'active').length}</p>
           <p className="text-sm text-gray-600">Active Categories</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="h-8 w-8 text-green-500" />
             <span className="text-sm text-gray-500">YTD</span>
@@ -888,7 +888,7 @@ Integration:
           <p className="text-2xl font-bold">${(categories.reduce((sum, cat) => sum + cat.budget, 0) / 1000000).toFixed(1)}M</p>
           <p className="text-sm text-gray-600">Total Category Budget</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <Users className="h-8 w-8 text-purple-500" />
             <span className="text-sm text-gray-500">Total</span>
@@ -896,7 +896,7 @@ Integration:
           <p className="text-2xl font-bold">{categories.reduce((sum, cat) => sum + cat.suppliers, 0)}</p>
           <p className="text-sm text-gray-600">Assigned Suppliers</p>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-3">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="h-8 w-8 text-orange-500" />
             <span className="text-sm text-gray-500">Achieved</span>
@@ -908,8 +908,8 @@ Integration:
 
       {/* Real-Time Category Insights */}
       {showRealTimeInsights && (
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl shadow-lg p-6 border border-blue-200 mb-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl shadow-lg p-3 border border-blue-200 mb-3">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Activity className="w-6 h-6 text-blue-600" />
@@ -941,8 +941,8 @@ Integration:
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-blue-100">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-blue-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Budget at Risk</span>
                 <AlertTriangle className="w-4 h-4 text-orange-500" />
@@ -951,7 +951,7 @@ Integration:
               <div className="text-xs text-gray-500 mt-1">3 categories over 85%</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-blue-100">
+            <div className="bg-white rounded-lg p-3 border border-blue-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Savings Achieved</span>
                 <TrendingUp className="w-4 h-4 text-green-500" />
@@ -960,7 +960,7 @@ Integration:
               <div className="text-xs text-green-600 mt-1">Above target by $28K</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-blue-100">
+            <div className="bg-white rounded-lg p-3 border border-blue-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Active Initiatives</span>
                 <Target className="w-4 h-4 text-purple-500" />
@@ -969,7 +969,7 @@ Integration:
               <div className="text-xs text-gray-500 mt-1">8 completed this quarter</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-blue-100">
+            <div className="bg-white rounded-lg p-3 border border-blue-100">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Health Score</span>
                 <Activity className="w-4 h-4 text-blue-500" />
@@ -979,8 +979,8 @@ Integration:
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-white rounded-lg p-4 border border-blue-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="bg-white rounded-lg p-3 border border-blue-100">
               <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <Award className="w-4 h-4 text-green-600" />
                 Top Performing Categories
@@ -999,7 +999,7 @@ Integration:
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-blue-100">
+            <div className="bg-white rounded-lg p-3 border border-blue-100">
               <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 text-orange-600" />
                 Needs Attention
@@ -1029,8 +1029,8 @@ Integration:
 
       {/* AI-Powered Recommendations */}
       {showAIRecommendations && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200 mb-3">
+          <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <Target className="w-6 h-6 text-purple-600" />
@@ -1046,8 +1046,8 @@ Integration:
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="w-5 h-5 text-purple-600" />
                 <span className="font-semibold text-gray-900">Savings Potential</span>
@@ -1059,7 +1059,7 @@ Integration:
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <Users className="w-5 h-5 text-blue-600" />
                 <span className="font-semibold text-gray-900">Supplier Optimization</span>
@@ -1071,7 +1071,7 @@ Integration:
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <div className="bg-white rounded-lg p-3 border border-purple-100">
               <div className="flex items-center gap-2 mb-2">
                 <Shield className="w-5 h-5 text-green-600" />
                 <span className="font-semibold text-gray-900">Risk Mitigation</span>
@@ -1084,7 +1084,7 @@ Integration:
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 border border-purple-100">
+          <div className="bg-white rounded-lg p-3 border border-purple-100">
             <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Tag className="w-4 h-4 text-purple-600" />
               Recommended Strategic Actions
@@ -1129,7 +1129,7 @@ Integration:
       )}
 
       {/* Navigation Tabs */}
-      <div className="flex gap-1 mb-6 border-b">
+      <div className="flex gap-1 mb-3 border-b">
         {['overview', 'categories', 'performance', 'budget'].map((tab) => (
           <button
             key={tab}
@@ -1148,42 +1148,42 @@ Integration:
       {/* Categories Table */}
       {activeTab === 'categories' && (
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
+          <div className="px-3 py-2 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">Category Portfolio</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Manager</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spent</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suppliers</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Savings</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Manager</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Budget</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spent</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilization</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suppliers</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Savings</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {categories.map((category) => (
                   <tr key={category.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div>
                         <div className="text-sm font-medium text-gray-900">{category.name}</div>
                         <div className="text-xs text-gray-500">{category.description}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{category.manager}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{category.manager}</td>
+                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                       ${(category.budget / 1000).toFixed(0)}K
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                       ${(category.spent / 1000).toFixed(0)}K
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
                           <div
@@ -1202,8 +1202,8 @@ Integration:
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{category.suppliers}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{category.suppliers}</td>
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
                         ${(category.actualSavings / 1000).toFixed(0)}K
                       </div>
@@ -1213,17 +1213,17 @@ Integration:
                         {((category.actualSavings / category.savingsTarget) * 100).toFixed(0)}% of target
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getPriorityColor(category.priority)}`}>
                         {category.priority}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(category.status)}`}>
                         {category.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       <div className="flex flex-wrap gap-2">
                         <button
                           onClick={() => handleEditCategory(category)}
@@ -1277,9 +1277,9 @@ Integration:
 
       {/* Performance Charts */}
       {activeTab === 'performance' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Spend by Category (6 Months)</h4>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Spend by Category (6 Months)</h4>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={categoryPerformance}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -1294,8 +1294,8 @@ Integration:
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Budget Utilization by Category</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Budget Utilization by Category</h4>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={categories.map(cat => ({
                 name: cat.name.split(' ')[0],
@@ -1313,8 +1313,8 @@ Integration:
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Savings Performance</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Savings Performance</h4>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={categories.map(cat => ({
                 name: cat.name.split(' ')[0],
@@ -1332,8 +1332,8 @@ Integration:
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Category Budget Distribution</h4>
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Category Budget Distribution</h4>
             <ResponsiveContainer width="100%" height={300}>
               <RePieChart>
                 <Pie
@@ -1363,10 +1363,10 @@ Integration:
 
       {/* Budget Overview */}
       {activeTab === 'budget' && (
-        <div className="space-y-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h4 className="font-semibold mb-4">Budget vs. Spend Analysis</h4>
-            <div className="space-y-4">
+        <div className="space-y-3">
+          <div className="bg-white rounded-lg shadow p-3">
+            <h4 className="font-semibold mb-2">Budget vs. Spend Analysis</h4>
+            <div className="space-y-2">
               {categories.map((category) => (
                 <div key={category.id} className="border-b pb-4 last:border-b-0">
                   <div className="flex justify-between items-center mb-2">
@@ -1398,9 +1398,9 @@ Integration:
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Quarterly Budget Trend</h4>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Quarterly Budget Trend</h4>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={[
                   { quarter: 'Q1', budget: 612500, spent: 580000 },
@@ -1419,8 +1419,8 @@ Integration:
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Budget Alerts</h4>
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Budget Alerts</h4>
               <div className="space-y-3">
                 {categories.filter(cat => (cat.spent / cat.budget) > 0.8).map((category) => (
                   <div key={category.id} className={`p-3 rounded-lg ${
@@ -1442,7 +1442,7 @@ Integration:
                 ))}
                 {categories.filter(cat => (cat.spent / cat.budget) > 0.8).length === 0 && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-center">
-                    <CheckCircle className="h-6 w-6 text-green-500 mx-auto mb-2" />
+                    <CheckCircle className="h-6 w-6 text-green-500 mb-2" />
                     <p className="text-sm text-gray-600">All categories within budget thresholds</p>
                   </div>
                 )}
@@ -1454,11 +1454,11 @@ Integration:
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Top Performing Categories</h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Top Performing Categories</h4>
               <div className="space-y-3">
                 {categories
                   .sort((a, b) => (b.actualSavings / b.savingsTarget) - (a.actualSavings / a.savingsTarget))
@@ -1479,8 +1479,8 @@ Integration:
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Budget Alerts</h4>
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Budget Alerts</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between p-2 bg-red-50 rounded">
                   <span className="text-sm">Over 90% utilized</span>
@@ -1503,8 +1503,8 @@ Integration:
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-              <h4 className="font-semibold mb-4">Savings Summary</h4>
+            <div className="bg-white rounded-lg shadow p-3">
+              <h4 className="font-semibold mb-2">Savings Summary</h4>
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Target</span>

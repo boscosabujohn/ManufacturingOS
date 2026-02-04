@@ -132,7 +132,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   };
 
   const renderStepIndicator = () => (
-    <div className="flex items-center justify-between mb-6">
+    <div className="flex items-center justify-between mb-3">
       {[1, 2, 3, 4, 5].map((step) => (
         <div key={step} className="flex items-center flex-1">
           <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors ${
@@ -151,13 +151,13 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   );
 
   const renderStep1 = () => (
-    <div className="space-y-4">
-      <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+    <div className="space-y-2">
+      <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
         <User className="h-5 w-5 text-indigo-600" />
         Basic Information
       </h3>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Employee Code *</label>
           <input
@@ -181,7 +181,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
           <input
@@ -213,7 +213,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
           <input
@@ -238,7 +238,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Gender *</label>
           <select
@@ -287,7 +287,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">City *</label>
           <input
@@ -320,9 +320,9 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+      <div className="bg-red-50 border border-red-200 rounded-lg p-3">
         <h4 className="font-semibold text-red-900 mb-3">Emergency Contact</h4>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2">
           <div>
             <label className="block text-xs font-medium text-red-700 mb-1">Name *</label>
             <input
@@ -359,13 +359,13 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   );
 
   const renderStep2 = () => (
-    <div className="space-y-4">
-      <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+    <div className="space-y-2">
+      <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
         <Briefcase className="h-5 w-5 text-indigo-600" />
         Employment Details
       </h3>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Designation *</label>
           <input
@@ -398,7 +398,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Joining Date *</label>
           <input
@@ -423,7 +423,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Work Mode *</label>
           <select
@@ -449,7 +449,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Work Location *</label>
           <input
@@ -489,9 +489,9 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   );
 
   const renderStep3 = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
             <GraduationCap className="h-5 w-5 text-indigo-600" />
             Education
@@ -507,7 +507,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
 
         {formData.education.map((edu, index) => (
-          <div key={index} className="bg-gray-50 rounded-lg p-4 mb-3">
+          <div key={index} className="bg-gray-50 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-700">Education {index + 1}</span>
               {formData.education.length > 1 && (
@@ -560,7 +560,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
       </div>
 
       <div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
             <Building2 className="h-5 w-5 text-indigo-600" />
             Previous Experience
@@ -576,7 +576,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
 
         {formData.experience.map((exp, index) => (
-          <div key={index} className="bg-gray-50 rounded-lg p-4 mb-3">
+          <div key={index} className="bg-gray-50 rounded-lg p-3 mb-3">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-700">Experience {index + 1}</span>
               {formData.experience.length > 1 && (
@@ -628,8 +628,8 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   );
 
   const renderStep4 = () => (
-    <div className="space-y-4">
-      <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+    <div className="space-y-2">
+      <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
         <Award className="h-5 w-5 text-indigo-600" />
         Skills & Certifications
       </h3>
@@ -661,14 +661,14 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   );
 
   const renderStep5 = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
-        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
           <Shield className="h-5 w-5 text-indigo-600" />
           Statutory Information
         </h3>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Aadhar Number</label>
             <input
@@ -691,7 +691,7 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-2 gap-2 mt-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">PF Number</label>
             <input
@@ -715,13 +715,13 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
         </div>
       </div>
 
-      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-        <h3 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
+      <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+        <h3 className="text-lg font-bold text-green-900 mb-2 flex items-center gap-2">
           <CreditCard className="h-5 w-5 text-green-700" />
           Bank Account Details
         </h3>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <div className="col-span-2">
             <label className="block text-sm font-medium text-green-700 mb-1">Bank Name</label>
             <input
@@ -769,10 +769,10 @@ export function AddEmployeeProfileModal({ isOpen, onClose, onSubmit }: AddEmploy
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[95vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[95vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-3 py-2 flex justify-between items-center sticky top-0">
           <div>
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
               <User className="h-5 w-5" />

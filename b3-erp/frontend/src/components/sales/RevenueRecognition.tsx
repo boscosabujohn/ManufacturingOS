@@ -92,8 +92,8 @@ export default function RevenueRecognition() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -145,10 +145,10 @@ export default function RevenueRecognition() {
         </div>
 
         <div className="p-6">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {schedules.map((schedule) => (
               <div key={schedule.orderId} className="p-5 border border-gray-200 rounded-lg">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div>
                     <h4 className="font-bold text-gray-900">{schedule.orderId}</h4>
                     <p className="text-sm text-gray-600 mt-1">{schedule.customer}</p>
@@ -158,7 +158,7 @@ export default function RevenueRecognition() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-3 gap-2 mb-2">
                   <div className="p-3 bg-blue-50 rounded-lg">
                     <p className="text-xs text-blue-600 font-medium">Total Revenue</p>
                     <p className="text-lg font-bold text-blue-900">{formatCurrency(schedule.totalRevenue)}</p>

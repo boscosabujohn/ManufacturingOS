@@ -191,7 +191,7 @@ export default function ProcurementCalendar() {
 
         {selectedEvent ? (
           <div className="p-6">
-            <div className="mb-6">
+            <div className="mb-3">
               <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
                 eventTypes[selectedEvent.type as keyof typeof eventTypes].color
               }`}>
@@ -202,10 +202,10 @@ export default function ProcurementCalendar() {
               </div>
             </div>
 
-            <h2 className="text-xl font-semibold mb-4">{selectedEvent.title}</h2>
+            <h2 className="text-xl font-semibold mb-2">{selectedEvent.title}</h2>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm text-gray-500">Date & Time</label>
                   <p className="font-medium">
@@ -278,7 +278,7 @@ export default function ProcurementCalendar() {
           </div>
         ) : (
           <div className="p-6">
-            <form className="space-y-4">
+            <form className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
                 <input
@@ -288,7 +288,7 @@ export default function ProcurementCalendar() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
                   <select className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
@@ -310,7 +310,7 @@ export default function ProcurementCalendar() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
                   <input
@@ -368,10 +368,10 @@ export default function ProcurementCalendar() {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="bg-white rounded-lg shadow-sm p-3 mb-3">
+        <div className="flex justify-between items-center mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Procurement Calendar</h1>
             <p className="text-gray-600 mt-1">Track deliveries, deadlines, and procurement events</p>
@@ -439,7 +439,7 @@ export default function ProcurementCalendar() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Calendar View */}
         <div className="lg:col-span-3">
           <div className="bg-white rounded-lg shadow-sm">
@@ -534,10 +534,10 @@ export default function ProcurementCalendar() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Today's Events */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
               <CalendarDays className="h-5 w-5 text-blue-600" />
               Today's Schedule
             </h3>
@@ -568,8 +568,8 @@ export default function ProcurementCalendar() {
           </div>
 
           {/* Upcoming Events */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
               <Clock className="h-5 w-5 text-amber-600" />
               Upcoming Events
             </h3>
@@ -602,8 +602,8 @@ export default function ProcurementCalendar() {
           </div>
 
           {/* Event Legend */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h3 className="text-lg font-semibold mb-4">Event Types</h3>
+          <div className="bg-white rounded-lg shadow-sm p-3">
+            <h3 className="text-lg font-semibold mb-2">Event Types</h3>
             <div className="space-y-2">
               {Object.entries(eventTypes).map(([type, config]) => (
                 <div key={type} className="flex items-center gap-3">

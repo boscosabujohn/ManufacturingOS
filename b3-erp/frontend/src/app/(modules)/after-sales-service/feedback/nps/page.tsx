@@ -204,9 +204,9 @@ export default function NPSPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
           <Target className="h-8 w-8 text-emerald-600" />
           Net Promoter Score (NPS)
@@ -215,7 +215,7 @@ export default function NPSPage() {
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-3">
         <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg border border-emerald-200 p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <div>
@@ -282,13 +282,13 @@ export default function NPSPage() {
       </div>
 
       {/* NPS Gauge */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <PieChart className="h-5 w-5 text-emerald-600" />
             Response Distribution
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-emerald-700 flex items-center gap-2">
@@ -337,22 +337,22 @@ export default function NPSPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <LineChart className="h-5 w-5 text-emerald-600" />
             Metrics Summary
           </h2>
-          <div className="space-y-4">
-            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-4 border border-emerald-100">
+          <div className="space-y-2">
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-3 border border-emerald-100">
               <p className="text-xs text-gray-600 mb-1">Average Score</p>
               <p className="text-2xl font-bold text-emerald-700">{stats.avgScore} / 10</p>
             </div>
-            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-100">
+            <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-3 border border-blue-100">
               <p className="text-xs text-gray-600 mb-1">Response Rate</p>
               <p className="text-2xl font-bold text-blue-700">100%</p>
               <p className="text-xs text-blue-600 mt-1">All invited customers responded</p>
             </div>
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4 border border-purple-100">
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-3 border border-purple-100">
               <p className="text-xs text-gray-600 mb-1">Benchmark</p>
               <p className="text-2xl font-bold text-purple-700">70-80</p>
               <p className="text-xs text-purple-600 mt-1">Industry average range</p>
@@ -362,8 +362,8 @@ export default function NPSPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 shadow-sm">
-        <div className="flex flex-col gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
             <Search className="h-5 w-5 text-gray-400" />
             <input
@@ -375,7 +375,7 @@ export default function NPSPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="text-sm font-medium text-gray-700 mb-2 block">Category</label>
               <select
@@ -427,10 +427,10 @@ export default function NPSPage() {
       </div>
 
       {/* Responses List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredResponses.map((response) => (
-          <div key={response.id} className={`rounded-lg border ${getCategoryColor(response.category)} p-6 shadow-sm hover:shadow-md transition-all`}>
-            <div className="flex items-start justify-between mb-4">
+          <div key={response.id} className={`rounded-lg border ${getCategoryColor(response.category)} p-3 shadow-sm hover:shadow-md transition-all`}>
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">{response.respondentName}</h3>
@@ -440,11 +440,11 @@ export default function NPSPage() {
                   </span>
                 </div>
 
-                <div className="mb-4">{renderScoreBar(response.score)}</div>
+                <div className="mb-2">{renderScoreBar(response.score)}</div>
 
                 <p className="text-gray-700 mb-3 italic">"{response.feedback}"</p>
 
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <User className="h-4 w-4" />
                     {response.email}
@@ -475,7 +475,7 @@ export default function NPSPage() {
 
         {filteredResponses.length === 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center shadow-sm">
-            <Target className="h-12 w-12 text-gray-300 mb-4" />
+            <Target className="h-12 w-12 text-gray-300 mb-2" />
             <p className="text-gray-600 font-medium">No responses found</p>
             <p className="text-gray-500 text-sm">Try adjusting your filters</p>
           </div>

@@ -220,10 +220,10 @@ export default function ProjectSettingsPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-2 max-w-[1400px]">
+    <div className="px-3 py-2 max-w-[1400px]">
      {/* Header with Title and Quick Access */}
      <div className="mb-3">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
        <div className="flex items-center justify-between">
         <div>
          <h1 className="text-2xl font-bold text-gray-900">Project Management Settings</h1>
@@ -313,8 +313,8 @@ export default function ProjectSettingsPage() {
 
      {/* Settings Quick Access Menu */}
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Settings Categories</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <h2 className="text-lg font-semibold text-gray-900 mb-2">Settings Categories</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
        <button
         onClick={() => setShowGeneralModal(true)}
         className="p-4 border-2 border-blue-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all"
@@ -501,7 +501,7 @@ export default function ProjectSettingsPage() {
      <div className="flex border-b border-gray-200 mb-3 overflow-x-auto">
     <button
      onClick={() => setActiveTab('general')}
-     className={`px-6 py-3 font-medium whitespace-nowrap ${
+     className={`px-3 py-2 font-medium whitespace-nowrap ${
       activeTab === 'general'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -514,7 +514,7 @@ export default function ProjectSettingsPage() {
     </button>
     <button
      onClick={() => setActiveTab('workflow')}
-     className={`px-6 py-3 font-medium whitespace-nowrap ${
+     className={`px-3 py-2 font-medium whitespace-nowrap ${
       activeTab === 'workflow'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -527,7 +527,7 @@ export default function ProjectSettingsPage() {
     </button>
     <button
      onClick={() => setActiveTab('notifications')}
-     className={`px-6 py-3 font-medium whitespace-nowrap ${
+     className={`px-3 py-2 font-medium whitespace-nowrap ${
       activeTab === 'notifications'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -540,7 +540,7 @@ export default function ProjectSettingsPage() {
     </button>
     <button
      onClick={() => setActiveTab('approvals')}
-     className={`px-6 py-3 font-medium whitespace-nowrap ${
+     className={`px-3 py-2 font-medium whitespace-nowrap ${
       activeTab === 'approvals'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -553,7 +553,7 @@ export default function ProjectSettingsPage() {
     </button>
     <button
      onClick={() => setActiveTab('integrations')}
-     className={`px-6 py-3 font-medium whitespace-nowrap ${
+     className={`px-3 py-2 font-medium whitespace-nowrap ${
       activeTab === 'integrations'
        ? 'text-cyan-600 border-b-2 border-cyan-600'
        : 'text-gray-600 hover:text-gray-900'
@@ -570,7 +570,7 @@ export default function ProjectSettingsPage() {
    {activeTab === 'general' && (
     <div className="space-y-3">
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <DollarSign className="w-5 h-5 text-cyan-600" />
        Financial Settings
       </h3>
@@ -630,7 +630,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <FileText className="w-5 h-5 text-cyan-600" />
        Project Numbering
       </h3>
@@ -684,7 +684,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <Calendar className="w-5 h-5 text-cyan-600" />
        Document Management
       </h3>
@@ -739,7 +739,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <h3 className="text-lg font-semibold text-gray-900">Advanced Configuration</h3>
        <button
         onClick={() => setShowGeneralModal(true)}
@@ -760,12 +760,12 @@ export default function ProjectSettingsPage() {
    {activeTab === 'workflow' && (
     <div className="space-y-3">
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <CheckCircle className="w-5 h-5 text-cyan-600" />
        Project Workflow
       </h3>
       <div className="space-y-2">
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Project Creation Approval</p>
          <p className="text-sm text-gray-600">Require approval before creating new projects</p>
@@ -784,7 +784,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Milestone Approval</p>
          <p className="text-sm text-gray-600">Require approval for milestone completion</p>
@@ -803,7 +803,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Document Approval</p>
          <p className="text-sm text-gray-600">Require approval for critical project documents</p>
@@ -825,7 +825,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <DollarSign className="w-5 h-5 text-cyan-600" />
        Budget & Financial Approvals
       </h3>
@@ -888,7 +888,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <Workflow className="w-5 h-5 text-cyan-600" />
        Project Lifecycle Stages
       </h3>
@@ -912,7 +912,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <h3 className="text-lg font-semibold text-gray-900">Advanced Workflow Configuration</h3>
        <button
         onClick={() => setShowWorkflowModal(true)}
@@ -933,12 +933,12 @@ export default function ProjectSettingsPage() {
    {activeTab === 'notifications' && (
     <div className="space-y-3">
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <Bell className="w-5 h-5 text-cyan-600" />
        Project Notifications
       </h3>
       <div className="space-y-2">
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Project Start</p>
          <p className="text-sm text-gray-600">Notify when a new project starts</p>
@@ -957,7 +957,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Milestone Complete</p>
          <p className="text-sm text-gray-600">Notify when milestones are completed</p>
@@ -976,7 +976,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Budget Exceeded</p>
          <p className="text-sm text-gray-600">Alert when project budget is exceeded</p>
@@ -995,7 +995,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Schedule Delay</p>
          <p className="text-sm text-gray-600">Alert when projects are behind schedule</p>
@@ -1017,12 +1017,12 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <Bell className="w-5 h-5 text-cyan-600" />
        Notification Channels
       </h3>
       <div className="space-y-2">
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Email Notifications</p>
          <p className="text-sm text-gray-600">Send notifications via email</p>
@@ -1041,7 +1041,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">SMS Notifications</p>
          <p className="text-sm text-gray-600">Send critical alerts via SMS</p>
@@ -1060,7 +1060,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">In-App Notifications</p>
          <p className="text-sm text-gray-600">Show notifications in the application</p>
@@ -1074,7 +1074,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <h3 className="text-lg font-semibold text-gray-900">Email Templates & Preferences</h3>
        <button
         onClick={() => setShowEmailTemplatesModal(true)}
@@ -1095,12 +1095,12 @@ export default function ProjectSettingsPage() {
    {activeTab === 'approvals' && (
     <div className="space-y-3">
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
        <Shield className="w-5 h-5 text-cyan-600" />
        Approval Hierarchy
       </h3>
       <div className="space-y-2">
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Project Manager</p>
          <p className="text-sm text-gray-600">First level approval for all project activities</p>
@@ -1119,7 +1119,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Department Head</p>
          <p className="text-sm text-gray-600">Second level approval for critical decisions</p>
@@ -1138,7 +1138,7 @@ export default function ProjectSettingsPage() {
         </label>
        </div>
 
-       <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Finance Department</p>
          <p className="text-sm text-gray-600">Approval for financial and budgetary matters</p>
@@ -1180,7 +1180,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Approval Workflow Diagram</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">Approval Workflow Diagram</h3>
       <div className="bg-gray-50 rounded-lg p-3">
        <div className="flex flex-col md:flex-row items-center justify-center gap-3">
         <div className="text-center">
@@ -1219,7 +1219,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <h3 className="text-lg font-semibold text-gray-900">Access Control & Permissions</h3>
        <button
         onClick={() => setShowAccessModal(true)}
@@ -1240,10 +1240,10 @@ export default function ProjectSettingsPage() {
    {activeTab === 'integrations' && (
     <div className="space-y-3">
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Module Integrations</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">Module Integrations</h3>
       <div className="space-y-2">
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-        <div className="flex items-center gap-4">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+        <div className="flex items-center gap-2">
          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
           <DollarSign className="w-6 h-6 text-blue-600" />
          </div>
@@ -1266,8 +1266,8 @@ export default function ProjectSettingsPage() {
         </div>
        </div>
 
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-        <div className="flex items-center gap-4">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+        <div className="flex items-center gap-2">
          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
           <Users className="w-6 h-6 text-green-600" />
          </div>
@@ -1290,8 +1290,8 @@ export default function ProjectSettingsPage() {
         </div>
        </div>
 
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-        <div className="flex items-center gap-4">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+        <div className="flex items-center gap-2">
          <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
           <FileText className="w-6 h-6 text-purple-600" />
          </div>
@@ -1314,8 +1314,8 @@ export default function ProjectSettingsPage() {
         </div>
        </div>
 
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-        <div className="flex items-center gap-4">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+        <div className="flex items-center gap-2">
          <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
           <Settings className="w-6 h-6 text-cyan-600" />
          </div>
@@ -1341,9 +1341,9 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">External Integrations</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">External Integrations</h3>
       <div className="space-y-2">
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Email Server (SMTP)</p>
          <p className="text-sm text-gray-600">Configure email notifications</p>
@@ -1356,7 +1356,7 @@ export default function ProjectSettingsPage() {
         </button>
        </div>
 
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">SMS Gateway</p>
          <p className="text-sm text-gray-600">Setup SMS notifications</p>
@@ -1369,7 +1369,7 @@ export default function ProjectSettingsPage() {
         </button>
        </div>
 
-       <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+       <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
         <div>
          <p className="font-medium text-gray-900">Cloud Storage</p>
          <p className="text-sm text-gray-600">Connect document storage</p>
@@ -1385,7 +1385,7 @@ export default function ProjectSettingsPage() {
      </div>
 
      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
        <h3 className="text-lg font-semibold text-gray-900">API Configuration</h3>
        <button
         onClick={() => setShowAPIModal(true)}
@@ -1407,14 +1407,14 @@ export default function ProjectSettingsPage() {
     <div className="fixed bottom-6 right-6 flex gap-3 shadow-lg">
      <button
       onClick={handleReset}
-      className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50"
+      className="flex items-center gap-2 px-3 py-2 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50"
      >
       <RefreshCw className="w-4 h-4" />
       Reset Changes
      </button>
      <button
       onClick={handleSave}
-      className="flex items-center gap-2 px-6 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 shadow-lg"
+      className="flex items-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 shadow-lg"
      >
       <Save className="w-4 h-4" />
       Save All Changes

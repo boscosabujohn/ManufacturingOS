@@ -59,8 +59,8 @@ export default function OrchestrationEngine() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white shadow-lg p-6">
+    <div className="space-y-3">
+      <div className="bg-white shadow-lg p-3">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
@@ -98,9 +98,9 @@ export default function OrchestrationEngine() {
           </div>
 
           <div className="p-8 bg-gray-50">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {workflow.nodes.map((node, idx) => (
-                <div key={node.id} className="flex items-center gap-4">
+                <div key={node.id} className="flex items-center gap-2">
                   <div className={`p-4 bg-white border-2 rounded-lg shadow-sm ${
                     node.type === 'trigger' ? 'border-yellow-300' :
                     node.type === 'action' ? 'border-blue-300' :

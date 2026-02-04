@@ -143,15 +143,15 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
     <div className="space-y-8">
       {colorTokens.map(category => (
         <div key={category.category}>
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">{category.category} Colors</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <h3 className="text-lg font-semibold text-gray-800 mb-2">{category.category} Colors</h3>
+          <div className="grid grid-cols-2 gap-2">
             {category.colors.map(color => (
               <div
                 key={color.variable}
-                className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer"
                 onClick={() => copyToClipboard(color.variable)}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2">
                   <div
                     className="w-16 h-16 rounded-lg shadow-inner flex-shrink-0"
                     style={{ backgroundColor: color.value }}
@@ -185,19 +185,19 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
   );
 
   const renderSpacing = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-600 mb-6">
+    <div className="space-y-2">
+      <p className="text-sm text-gray-600 mb-3">
         Spacing tokens use a consistent 4px base unit. Use these for margins, padding, and gaps.
       </p>
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Name</th>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Variable</th>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Value</th>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Pixels</th>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Preview</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Name</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Variable</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Value</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Pixels</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Preview</th>
             </tr>
           </thead>
           <tbody>
@@ -230,18 +230,18 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
   );
 
   const renderTypography = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-600 mb-6">
+    <div className="space-y-2">
+      <p className="text-sm text-gray-600 mb-3">
         Typography tokens define consistent text styles across the application.
       </p>
-      <div className="space-y-4">
+      <div className="space-y-2">
         {typographyTokens.map(token => (
           <div
             key={token.variable}
-            className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer"
+            className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => copyToClipboard(token.variable)}
           >
-            <div className="flex justify-between items-start mb-4">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <span className="font-medium text-gray-800">{token.name}</span>
                 <code className="text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded ml-2">
@@ -271,15 +271,15 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
   );
 
   const renderShadows = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-600 mb-6">
+    <div className="space-y-2">
+      <p className="text-sm text-gray-600 mb-3">
         Shadow tokens create depth and hierarchy in the interface.
       </p>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-3">
         {shadowTokens.map(token => (
           <div
             key={token.variable}
-            className="bg-white border border-gray-200 rounded-lg p-6 cursor-pointer"
+            className="bg-white border border-gray-200 rounded-lg p-3 cursor-pointer"
             style={{ boxShadow: token.value }}
             onClick={() => copyToClipboard(token.variable)}
           >
@@ -295,19 +295,19 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
   );
 
   const renderRadius = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-600 mb-6">
+    <div className="space-y-2">
+      <p className="text-sm text-gray-600 mb-3">
         Border radius tokens for consistent rounded corners.
       </p>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         {radiusTokens.map(token => (
           <div
             key={token.variable}
-            className="bg-white border border-gray-200 rounded-lg p-4 text-center cursor-pointer hover:shadow-md transition-shadow"
+            className="bg-white border border-gray-200 rounded-lg p-3 text-center cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => copyToClipboard(token.variable)}
           >
             <div
-              className="w-16 h-16 bg-blue-500 mx-auto mb-3"
+              className="w-16 h-16 bg-blue-500 mb-3"
               style={{ borderRadius: token.value }}
             ></div>
             <div className="font-medium text-sm text-gray-800">{token.name}</div>
@@ -321,14 +321,14 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
   );
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
-      <div className="mb-6">
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
+      <div className="mb-3">
         <h2 className="text-xl font-bold text-gray-800">Design Tokens</h2>
         <p className="text-sm text-gray-600">Formalized color, spacing, typography, and effect tokens</p>
       </div>
 
       {/* Category Tabs */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-3">
         {(['colors', 'spacing', 'typography', 'shadows', 'radius'] as const).map(cat => (
           <button
             key={cat}
@@ -353,8 +353,8 @@ const DesignTokens: React.FC<DesignTokensProps> = ({ className = '' }) => {
 
       {/* CSS Output */}
       <div className="mt-8 pt-6 border-t">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">CSS Variables</h3>
-        <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">CSS Variables</h3>
+        <div className="bg-gray-900 rounded-lg p-3 overflow-x-auto">
           <pre className="text-sm text-gray-300">
 {`:root {
   /* Primary Colors */

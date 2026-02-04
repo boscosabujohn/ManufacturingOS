@@ -140,7 +140,7 @@ export default function FeedbackRequestsPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -158,8 +158,8 @@ export default function FeedbackRequestsPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500">Pending Requests</p>
             <p className="text-2xl font-bold text-gray-900">{requests.filter(r => r.status === 'pending').length}</p>
@@ -168,7 +168,7 @@ export default function FeedbackRequestsPage() {
             <Clock className="h-5 w-5 text-yellow-600" />
           </div>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+        <div className="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-500">Completed Responses</p>
             <p className="text-2xl font-bold text-gray-900">{requests.filter(r => r.status === 'completed').length}</p>
@@ -184,7 +184,7 @@ export default function FeedbackRequestsPage() {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-lg w-full">
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-xl font-semibold text-gray-900">Request Feedback</h2>
@@ -196,7 +196,7 @@ export default function FeedbackRequestsPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="p-6 space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Recipient</label>
                 <div className="relative">

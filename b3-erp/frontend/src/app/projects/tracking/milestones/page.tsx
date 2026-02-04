@@ -453,7 +453,7 @@ export default function MilestonesPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Flag className="h-8 w-8 text-teal-600" />
           Milestones
@@ -462,8 +462,8 @@ export default function MilestonesPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex flex-col md:flex-row gap-2 justify-between">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
@@ -495,7 +495,7 @@ export default function MilestonesPage() {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
               <select
@@ -558,8 +558,8 @@ export default function MilestonesPage() {
       </div>
 
       {/* Stats - 6 columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-teal-600 text-xs font-medium">Total Milestones</p>
@@ -568,7 +568,7 @@ export default function MilestonesPage() {
             <Flag className="h-10 w-10 text-teal-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-600 text-xs font-medium">Achieved</p>
@@ -578,7 +578,7 @@ export default function MilestonesPage() {
             <CheckCircle2 className="h-10 w-10 text-green-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-xs font-medium">In Progress</p>
@@ -588,7 +588,7 @@ export default function MilestonesPage() {
             <Clock className="h-10 w-10 text-blue-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-600 text-xs font-medium">At Risk</p>
@@ -598,7 +598,7 @@ export default function MilestonesPage() {
             <AlertTriangle className="h-10 w-10 text-orange-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-600 text-xs font-medium">Overdue</p>
@@ -608,7 +608,7 @@ export default function MilestonesPage() {
             <AlertTriangle className="h-10 w-10 text-red-600 opacity-50" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-600 text-xs font-medium">Avg Progress</p>
@@ -621,7 +621,7 @@ export default function MilestonesPage() {
       </div>
 
       {/* Milestones table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-3">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -744,12 +744,12 @@ export default function MilestonesPage() {
       </div>
 
       {/* Guidelines */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2">
           <Flag className="h-5 w-5 text-teal-600" />
           Milestone Management Guidelines
         </h2>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-medium text-gray-800 mb-2">Milestone Planning Best Practices</h3>
             <ul className="text-sm text-gray-600 space-y-2">

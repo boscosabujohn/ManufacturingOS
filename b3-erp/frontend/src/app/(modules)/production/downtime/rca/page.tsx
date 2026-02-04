@@ -556,10 +556,10 @@ export default function DowntimeRCAPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Inline Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -590,8 +590,8 @@ export default function DowntimeRCAPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total RCAs</p>
@@ -603,7 +603,7 @@ export default function DowntimeRCAPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-orange-600">Open / Investigating</p>
@@ -615,7 +615,7 @@ export default function DowntimeRCAPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -627,7 +627,7 @@ export default function DowntimeRCAPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Est. Cost</p>
@@ -641,8 +641,8 @@ export default function DowntimeRCAPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-xl border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <Filter className="w-5 h-5 text-gray-400" />
           <select
             value={filterStatus}
@@ -659,15 +659,15 @@ export default function DowntimeRCAPage() {
       </div>
 
       {/* RCA Investigations */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredInvestigations.map((rca) => (
           <div
             key={rca.id}
-            className={`bg-white rounded-xl border-2 p-6 cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(rca.severity)}`}
+            className={`bg-white rounded-xl border-2 p-3 cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(rca.severity)}`}
             onClick={() => handleViewRCA(rca)}
           >
             {/* Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-xl font-bold text-gray-900">{rca.rcaNumber}</h3>
@@ -693,13 +693,13 @@ export default function DowntimeRCAPage() {
             </div>
 
             {/* Problem Statement */}
-            <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="mb-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
               <p className="text-sm font-semibold text-yellow-800 mb-1">Problem Statement</p>
               <p className="text-sm text-gray-700">{rca.problemStatement}</p>
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-2">
               <div className="p-3 bg-gray-50 rounded-lg">
                 <p className="text-xs text-gray-500">Investigation Lead</p>
                 <p className="text-sm font-semibold text-gray-900">{rca.investigationLead}</p>
@@ -720,7 +720,7 @@ export default function DowntimeRCAPage() {
 
             {/* Expanded Details */}
             {selectedRCAId === rca.id && (
-              <div className="space-y-4 pt-4 border-t border-gray-200">
+              <div className="space-y-2 pt-4 border-t border-gray-200">
                 {/* Root Causes */}
                 <div>
                   <h4 className="text-md font-bold text-gray-900 mb-3">Root Causes (5 Whys Analysis)</h4>

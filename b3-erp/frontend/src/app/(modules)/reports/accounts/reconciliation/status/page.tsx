@@ -47,12 +47,12 @@ function ReconciliationStatusContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -61,20 +61,20 @@ function ReconciliationStatusContent() {
                                     key={txn.id}
                                     onClick={() => router.push(`/accounts/transactions/${txn.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{new Date(txn.date).toLocaleDateString()}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{txn.description}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{new Date(txn.date).toLocaleDateString()}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{txn.description}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-center">
                                         <Badge className={txn.type === 'Credit' ? 'bg-green-600' : 'bg-red-600'}>{txn.type}</Badge>
                                     </td>
-                                    <td className={`px-6 py-4 whitespace-nowrap text-sm text-right font-medium ${txn.amount > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                    <td className={`px-3 py-2 whitespace-nowrap text-sm text-right font-medium ${txn.amount > 0 ? 'text-green-600' : 'text-red-600'}`}>
                                         ${Math.abs(txn.amount).toLocaleString()}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                    <td className="px-3 py-2 whitespace-nowrap text-center">
                                         <Badge variant={txn.status === 'Unmatched' ? 'destructive' : 'default'}>
                                             {txn.status}
                                         </Badge>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                    <td className="px-3 py-2 whitespace-nowrap text-center">
                                         {txn.status === 'Unmatched' && (
                                             <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); /* Add match logic */ }}>Match</Button>
                                         )}

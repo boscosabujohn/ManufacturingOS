@@ -285,7 +285,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-2"></div>
           <p className="text-gray-600">Loading project dashboard...</p>
         </div>
       </div>
@@ -333,10 +333,10 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
       </div>
 
       {/* Key Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
         {/* Progress Card */}
         <div className="bg-white p-3 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium text-gray-500">Overall Progress</h3>
             <div className="p-2 bg-blue-50 rounded-lg">
               <CheckCircle className="h-5 w-5 text-blue-600" />
@@ -356,7 +356,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
 
         {/* Budget Card */}
         <div className="bg-white p-3 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium text-gray-500">Budget Status</h3>
             <div className="p-2 bg-green-50 rounded-lg">
               <DollarSign className="h-5 w-5 text-green-600" />
@@ -377,7 +377,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
 
         {/* Timeline Card */}
         <div className="bg-white p-3 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium text-gray-500">Timeline</h3>
             <div className="p-2 bg-purple-50 rounded-lg">
               <Clock className="h-5 w-5 text-purple-600" />
@@ -394,7 +394,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
 
         {/* Resources Card */}
         <div className="bg-white p-3 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium text-gray-500">Team Utilization</h3>
             <div className="p-2 bg-orange-50 rounded-lg">
               <Users className="h-5 w-5 text-orange-600" />
@@ -413,7 +413,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Task Status Chart */}
         <div className="bg-white p-3 rounded-lg border border-gray-200 lg:col-span-1">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Task Distribution</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Task Distribution</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -439,14 +439,14 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
 
         {/* Critical Tasks List */}
         <div className="bg-white p-3 rounded-lg border border-gray-200 lg:col-span-2">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900">Critical Tasks</h3>
             <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">View All</button>
           </div>
           <div className="space-y-2">
             {criticalTasks.map((task) => (
-              <div key={task.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100">
-                <div className="flex items-center gap-4">
+              <div key={task.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
+                <div className="flex items-center gap-2">
                   <div className={`p-2 rounded-full ${task.priority === 'critical' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600'
                     }`}>
                     <AlertTriangle className="h-5 w-5" />

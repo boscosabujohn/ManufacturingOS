@@ -556,9 +556,9 @@ export default function PartsReturnsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
           <RotateCcw className="h-8 w-8 text-emerald-600" />
           Parts Returns
@@ -567,7 +567,7 @@ export default function PartsReturnsPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 mb-3">
         <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between">
             <div>
@@ -630,8 +630,8 @@ export default function PartsReturnsPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3 shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div className="md:col-span-2">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -683,14 +683,14 @@ export default function PartsReturnsPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg p-6 mb-6 shadow-md">
+      <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg p-3 mb-3 shadow-md">
         <div className="flex items-center justify-between">
           <div className="text-white">
             <h3 className="text-lg font-semibold mb-1">Record Parts Return</h3>
             <p className="text-emerald-100 text-sm">Process returned service parts and manage refunds</p>
           </div>
           <button
-            className="bg-white text-emerald-600 px-6 py-3 rounded-lg font-medium hover:bg-emerald-50 transition-colors flex items-center gap-2 shadow-md"
+            className="bg-white text-emerald-600 px-3 py-2 rounded-lg font-medium hover:bg-emerald-50 transition-colors flex items-center gap-2 shadow-md"
             onClick={() => router.push('/after-sales-service/parts/returns/record')}
           >
             <Plus className="h-5 w-5" />
@@ -705,29 +705,29 @@ export default function PartsReturnsPage() {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Return ID</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Returned By</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reason</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Refund</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Return ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Returned By</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reason</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Items</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Refund</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredReturns.map((ret) => (
                 <tr key={ret.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <RotateCcw className="h-4 w-4 text-emerald-600" />
                       <span className="font-medium text-gray-900">{ret.returnId}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Calendar className="h-4 w-4" />
                       {new Date(ret.returnDate).toLocaleDateString('en-IN', {
@@ -737,7 +737,7 @@ export default function PartsReturnsPage() {
                       })}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <User className="h-4 w-4 text-gray-400" />
                       <div>
@@ -746,33 +746,33 @@ export default function PartsReturnsPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{ret.customerName || '-'}</div>
                     {ret.serviceRequestId && (
                       <div className="text-xs text-gray-500">{ret.serviceRequestId}</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getReasonColor(ret.returnReason)}`}>
                       {ret.returnReason.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       {getReturnTypeIcon(ret.returnType)}
                       {ret.returnType.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <Package className="h-4 w-4 text-gray-400" />
                       <span className="text-sm font-medium text-gray-900">{ret.totalItems}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">{formatCurrency(ret.totalValue)}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm font-medium text-purple-600">{formatCurrency(ret.refundAmount)}</div>
                     {ret.creditNoteIssued && (
                       <div className="flex items-center gap-1 text-xs text-green-600 mt-1">
@@ -781,12 +781,12 @@ export default function PartsReturnsPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${getStatusColor(ret.status)}`}>
                       {ret.status.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => {
@@ -824,9 +824,9 @@ export default function PartsReturnsPage() {
 
       {/* Details Modal */}
       {showDetailsModal && selectedReturn && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 z-50">
           <div className="bg-white rounded-lg  w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">Return Details: {selectedReturn.returnId}</h2>
                 <p className="text-sm text-gray-600 mt-1">Complete information about the parts return</p>
@@ -841,7 +841,7 @@ export default function PartsReturnsPage() {
 
             <div className="p-6">
               {/* Return Information */}
-              <div className="grid grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-700 mb-3">Return Information</h3>
                   <div className="space-y-2 text-sm">
@@ -893,7 +893,7 @@ export default function PartsReturnsPage() {
               </div>
 
               {/* Returned Items */}
-              <div className="mb-6">
+              <div className="mb-3">
                 <h3 className="text-sm font-semibold text-gray-700 mb-3">Returned Items</h3>
                 <div className="border border-gray-200 rounded-lg overflow-hidden">
                   <table className="min-w-full divide-y divide-gray-200">
@@ -953,9 +953,9 @@ export default function PartsReturnsPage() {
 
               {/* Notes */}
               {selectedReturn.notes && (
-                <div className="mb-6">
+                <div className="mb-3">
                   <h3 className="text-sm font-semibold text-gray-700 mb-2">Notes</h3>
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-700">
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm text-gray-700">
                     {selectedReturn.notes}
                   </div>
                 </div>

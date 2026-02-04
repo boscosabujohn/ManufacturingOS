@@ -90,20 +90,20 @@ export function ROICalculator() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">ROI Calculator</h2>
+    <div className=" p-3 bg-white rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-gray-900 mb-3">ROI Calculator</h2>
       <p className="text-gray-600 mb-8">
         Calculate your potential return on investment with ManufacturingOS ERP
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Input Section */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">
             Your Organization
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Number of Employees
@@ -157,7 +157,7 @@ export function ROICalculator() {
             Current Pain Points
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Hours/Week on Manual Processes
@@ -201,19 +201,19 @@ export function ROICalculator() {
 
           <button
             onClick={() => setShowResults(true)}
-            className="w-full mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
+            className="w-full mt-6 px-3 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
           >
             Calculate ROI
           </button>
         </div>
 
         {/* Results Section */}
-        <div className={`space-y-6 ${showResults ? '' : 'opacity-50'}`}>
+        <div className={`space-y-3 ${showResults ? '' : 'opacity-50'}`}>
           <h3 className="text-lg font-semibold text-gray-800 border-b pb-2">
             Your Potential Savings
           </h3>
 
-          <div className="bg-green-50 p-6 rounded-lg">
+          <div className="bg-green-50 p-3 rounded-lg">
             <div className="text-center">
               <p className="text-sm text-green-600 font-medium">Annual Savings</p>
               <p className="text-4xl font-bold text-green-700">
@@ -242,16 +242,16 @@ export function ROICalculator() {
           </div>
 
           <div className="border-t pt-6 mt-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Investment Analysis</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Investment Analysis</h3>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-blue-50 p-4 rounded-lg text-center">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-blue-50 p-3 rounded-lg text-center">
                 <p className="text-sm text-blue-600">Payback Period</p>
                 <p className="text-2xl font-bold text-blue-700">
                   {results.paybackMonths.toFixed(1)} months
                 </p>
               </div>
-              <div className="bg-purple-50 p-4 rounded-lg text-center">
+              <div className="bg-purple-50 p-3 rounded-lg text-center">
                 <p className="text-sm text-purple-600">3-Year ROI</p>
                 <p className="text-2xl font-bold text-purple-700">
                   {results.threeYearROI.toFixed(0)}%

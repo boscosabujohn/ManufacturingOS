@@ -52,7 +52,7 @@ export default function TransporterNotificationPage() {
     };
 
     return (
-        <div className="w-full py-6 space-y-8">
+        <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -81,7 +81,7 @@ export default function TransporterNotificationPage() {
                 <CardHeader>
                     <CardTitle>Shipment Details</CardTitle>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     <div>
                         <div className="text-sm text-muted-foreground">Order Number</div>
                         <div className="font-medium">ORD-KT-345</div>

@@ -216,7 +216,7 @@ export default function WorkingHoursPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Clock className="h-8 w-8 text-blue-600" />
           Working Hours Configuration
@@ -225,8 +225,8 @@ export default function WorkingHoursPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Schedules</p>
@@ -235,7 +235,7 @@ export default function WorkingHoursPage() {
             <Calendar className="h-10 w-10 text-blue-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Active Schedules</p>
@@ -244,7 +244,7 @@ export default function WorkingHoursPage() {
             <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Employees</p>
@@ -253,7 +253,7 @@ export default function WorkingHoursPage() {
             <Users className="h-10 w-10 text-indigo-400" />
           </div>
         </div>
-        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Working Hours</p>
@@ -265,7 +265,7 @@ export default function WorkingHoursPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-700">All Working Schedules</h2>
           <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -279,9 +279,9 @@ export default function WorkingHoursPage() {
       <DataTable data={mockSchedules} columns={columns} />
 
       {/* Schedule Types Legend */}
-      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Schedule Types</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Schedule Types</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
             <Sun className="w-6 h-6 text-blue-600 mt-0.5" />
             <div>

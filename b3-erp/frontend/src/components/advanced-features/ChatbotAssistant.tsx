@@ -488,9 +488,9 @@ export function ChatWidget({
     <div className={`fixed ${positionClasses[position]} z-50 ${className}`}>
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 w-80 sm:w-96 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div className="mb-2 w-80 sm:w-96 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
           {/* Header */}
-          <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
+          <div className="bg-blue-600 text-white p-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
               {config.avatar ? (
                 <img
@@ -534,7 +534,7 @@ export function ChatWidget({
           </div>
 
           {/* Messages */}
-          <div className="h-80 overflow-y-auto p-4 space-y-4">
+          <div className="h-80 overflow-y-auto p-3 space-y-2">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -719,7 +719,7 @@ export function InlineChat({ className = '' }: InlineChatProps) {
       </div>
 
       {/* Messages */}
-      <div className="h-64 overflow-y-auto p-4 space-y-3">
+      <div className="h-64 overflow-y-auto p-3 space-y-3">
         {messages.map((message) => (
           <div
             key={message.id}

@@ -66,7 +66,7 @@ export default function DrawingTimelinePage() {
 
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-4 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -118,7 +118,7 @@ export default function DrawingTimelinePage() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 flex items-start gap-3">
+              <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 flex items-start gap-3">
                 <AlertTriangle className="w-5 h-5 text-blue-600 mt-0.5" />
                 <div className="text-sm text-blue-800">
                   <p className="font-medium">Note:</p>

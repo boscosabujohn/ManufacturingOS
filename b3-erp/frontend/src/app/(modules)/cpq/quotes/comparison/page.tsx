@@ -172,9 +172,9 @@ export default function CPQQuotesComparisonPage() {
   const deliveryDiff = quote1.deliveryDays - quote2.deliveryDays
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-between items-center">
+      <div className="mb-3 flex justify-between items-center">
         <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
           <GitCompare className="h-6 w-6 text-blue-600" />
           Quote Comparison
@@ -206,11 +206,11 @@ export default function CPQQuotesComparisonPage() {
       </div>
 
       {/* Quote Selectors */}
-      <div className="mb-6">
-        <div className="flex items-center gap-4 flex-wrap">
+      <div className="mb-3">
+        <div className="flex items-center gap-2 flex-wrap">
           {selectedQuoteObjects.map((quote, idx) => (
             <div key={quote.id} className="flex-1 min-w-[280px]">
-              <div className="bg-white rounded-lg p-4 border-2 border-gray-200 hover:border-blue-300 transition-colors">
+              <div className="bg-white rounded-lg p-3 border-2 border-gray-200 hover:border-blue-300 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <label className="text-xs font-medium text-gray-500 uppercase">Quote {idx + 1}</label>
                   {selectedQuoteObjects.length > 2 && (
@@ -264,8 +264,8 @@ export default function CPQQuotesComparisonPage() {
       </div>
 
       {/* Quick Summary */}
-      <div className="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <p className="text-xs font-medium text-blue-600 mb-1">Value Difference</p>
           <p className={`text-xl font-bold ${valueDiff > 0 ? 'text-green-600' : valueDiff < 0 ? 'text-red-600' : 'text-gray-600'}`}>
             {valueDiff > 0 ? '+' : ''}₹{Math.abs(valueDiff / 100000).toFixed(2)}L
@@ -273,7 +273,7 @@ export default function CPQQuotesComparisonPage() {
           <p className="text-xs text-blue-700 mt-1">{((valueDiff / quote2.value) * 100).toFixed(1)}% change</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
           <p className="text-xs font-medium text-orange-600 mb-1">Discount Difference</p>
           <p className={`text-xl font-bold ${discountDiff > 0 ? 'text-red-600' : discountDiff < 0 ? 'text-green-600' : 'text-gray-600'}`}>
             {discountDiff > 0 ? '+' : ''}{discountDiff}%
@@ -281,7 +281,7 @@ export default function CPQQuotesComparisonPage() {
           <p className="text-xs text-orange-700 mt-1">{discountDiff > 0 ? 'Higher' : discountDiff < 0 ? 'Lower' : 'Same'} discount</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <p className="text-xs font-medium text-purple-600 mb-1">Items Difference</p>
           <p className={`text-xl font-bold ${itemsDiff > 0 ? 'text-blue-600' : itemsDiff < 0 ? 'text-orange-600' : 'text-gray-600'}`}>
             {itemsDiff > 0 ? '+' : ''}{itemsDiff} items
@@ -289,7 +289,7 @@ export default function CPQQuotesComparisonPage() {
           <p className="text-xs text-purple-700 mt-1">{itemsDiff > 0 ? 'More' : itemsDiff < 0 ? 'Fewer' : 'Same'} items</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <p className="text-xs font-medium text-green-600 mb-1">Delivery Difference</p>
           <p className={`text-xl font-bold ${deliveryDiff < 0 ? 'text-green-600' : deliveryDiff > 0 ? 'text-red-600' : 'text-gray-600'}`}>
             {deliveryDiff > 0 ? '+' : ''}{deliveryDiff} days
@@ -304,9 +304,9 @@ export default function CPQQuotesComparisonPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Attribute</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Attribute</th>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <th key={quote.id} className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase">
+                  <th key={quote.id} className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase">
                     <div className="flex flex-col items-center gap-1">
                       <span className={`font-semibold ${
                         idx === 0 ? 'text-blue-600' : idx === 1 ? 'text-orange-600' : 'text-purple-600'
@@ -324,9 +324,9 @@ export default function CPQQuotesComparisonPage() {
             <tbody className="divide-y divide-gray-200">
               {/* Quote Value */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Quote Value</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Quote Value</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-lg font-bold ${getQuoteColor(idx)}`}>
                       ₹{(quote.value / 100000).toFixed(2)}L
                     </span>
@@ -336,9 +336,9 @@ export default function CPQQuotesComparisonPage() {
 
               {/* Discount % */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Discount %</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Discount %</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-base font-semibold ${getQuoteColor(idx)}`}>
                       {quote.discount}%
                     </span>
@@ -348,9 +348,9 @@ export default function CPQQuotesComparisonPage() {
 
               {/* Number of Items */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Number of Items</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Number of Items</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-base font-semibold ${getQuoteColor(idx)}`}>
                       {quote.items}
                     </span>
@@ -360,9 +360,9 @@ export default function CPQQuotesComparisonPage() {
 
               {/* Delivery Timeline */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Delivery Timeline</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Delivery Timeline</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-base font-semibold ${getQuoteColor(idx)}`}>
                       {quote.deliveryDays} days
                     </span>
@@ -372,9 +372,9 @@ export default function CPQQuotesComparisonPage() {
 
               {/* Payment Terms */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Payment Terms</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Payment Terms</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getQuoteColor(idx)}`}>
                       {quote.paymentTerms}
                     </span>
@@ -384,9 +384,9 @@ export default function CPQQuotesComparisonPage() {
 
               {/* Warranty Period */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Warranty Period</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Warranty Period</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getQuoteColor(idx)}`}>
                       {quote.warranty}
                     </span>
@@ -396,9 +396,9 @@ export default function CPQQuotesComparisonPage() {
 
               {/* Quote Validity */}
               <tr className="hover:bg-gray-50">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Quote Validity</td>
+                <td className="px-3 py-2 text-sm font-medium text-gray-900">Quote Validity</td>
                 {selectedQuoteObjects.map((quote, idx) => (
-                  <td key={quote.id} className="px-6 py-4 text-center">
+                  <td key={quote.id} className="px-3 py-2 text-center">
                     <span className={`text-sm font-medium ${getQuoteColor(idx)}`}>
                       {quote.validityDays} days
                     </span>
@@ -411,7 +411,7 @@ export default function CPQQuotesComparisonPage() {
       </div>
 
       {/* Recommendation */}
-      <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+      <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-green-900 mb-2 flex items-center gap-2">
           <CheckCircle className="h-4 w-4" />
           Recommendation:
@@ -424,7 +424,7 @@ export default function CPQQuotesComparisonPage() {
       </div>
 
       {/* Comparison Info */}
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Quote Comparison Benefits:</h3>
         <ul className="text-xs text-blue-700 space-y-1">
           <li><strong>Side-by-Side Analysis:</strong> Compare all key attributes of different quote versions</li>

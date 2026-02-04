@@ -284,9 +284,9 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
   const unreadUpdates = order.recentUpdates.filter(u => !u.isRead).length;
 
   const renderOverview = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Status Cards */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         <div className="bg-white border border-gray-200 rounded-xl p-5">
           <div className="text-sm text-gray-500 mb-1">Order Progress</div>
           <div className="text-3xl font-bold text-blue-600">{order.progress}%</div>
@@ -325,8 +325,8 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
       </div>
 
       {/* Progress Timeline */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="font-semibold text-gray-800 mb-4">Project Timeline</h3>
+      <div className="bg-white border border-gray-200 rounded-xl p-3">
+        <h3 className="font-semibold text-gray-800 mb-2">Project Timeline</h3>
         <div className="relative">
           <div className="absolute top-4 left-0 right-0 h-1 bg-gray-200 rounded"></div>
           <div
@@ -361,8 +361,8 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
       </div>
 
       {/* Recent Updates */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white border border-gray-200 rounded-xl p-3">
+        <div className="flex justify-between items-center mb-2">
           <h3 className="font-semibold text-gray-800">Recent Updates</h3>
           <button
             onClick={() => setActiveTab('updates')}
@@ -393,9 +393,9 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
       </div>
 
       {/* Your Team */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="font-semibold text-gray-800 mb-4">Your Team</h3>
-        <div className="grid grid-cols-3 gap-4">
+      <div className="bg-white border border-gray-200 rounded-xl p-3">
+        <h3 className="font-semibold text-gray-800 mb-2">Your Team</h3>
+        <div className="grid grid-cols-3 gap-2">
           {order.contacts.map(contact => (
             <div key={contact.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-medium">
@@ -413,9 +413,9 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
   );
 
   const renderMilestones = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {pendingApprovals.length > 0 && (
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-3">
           <div className="flex items-center gap-2 text-amber-800 font-medium mb-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -468,7 +468,7 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
           </div>
 
           <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div>
                 <span className="text-gray-500">Planned: </span>
                 <span className="font-medium">{formatDate(milestone.plannedDate)}</span>
@@ -513,16 +513,16 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
   );
 
   const renderDocuments = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
         <table className="w-full">
           <thead className="bg-gray-50">
             <tr>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Document</th>
-              <th className="text-left p-4 text-sm font-semibold text-gray-600">Milestone</th>
-              <th className="text-center p-4 text-sm font-semibold text-gray-600">Date</th>
-              <th className="text-center p-4 text-sm font-semibold text-gray-600">Size</th>
-              <th className="text-center p-4 text-sm font-semibold text-gray-600">Actions</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Document</th>
+              <th className="text-left p-3 text-sm font-semibold text-gray-600">Milestone</th>
+              <th className="text-center p-3 text-sm font-semibold text-gray-600">Date</th>
+              <th className="text-center p-3 text-sm font-semibold text-gray-600">Size</th>
+              <th className="text-center p-3 text-sm font-semibold text-gray-600">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -553,7 +553,7 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
   );
 
   const renderUpdates = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {order.recentUpdates.map(update => (
         <div
           key={update.id}
@@ -589,14 +589,14 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
   );
 
   return (
-    <div className={`bg-gray-50 rounded-lg p-6 ${className}`}>
+    <div className={`bg-gray-50 rounded-lg p-3 ${className}`}>
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white mb-6">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-3 text-white mb-3">
         <div className="flex justify-between items-start">
           <div>
             <div className="text-blue-200 text-sm mb-1">Order #{order.orderNumber}</div>
             <h2 className="text-2xl font-bold mb-2">{order.projectName}</h2>
-            <div className="flex items-center gap-4 text-sm text-blue-100">
+            <div className="flex items-center gap-2 text-sm text-blue-100">
               <span>Order Date: {formatDate(order.orderDate)}</span>
               <span>•</span>
               <span>Value: ${order.totalValue.toLocaleString()} {order.currency}</span>
@@ -614,7 +614,7 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-3">
         {(['overview', 'milestones', 'documents', 'updates'] as const).map(tab => (
           <button
             key={tab}
@@ -653,8 +653,8 @@ const CustomerPortal: React.FC<CustomerPortalProps> = ({ className = '' }) => {
       {/* Document Modal */}
       {selectedMilestone && selectedMilestone.documents && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setSelectedMilestone(null)}>
-          <div className="bg-white rounded-xl p-6 max-w-lg w-full mx-4" onClick={e => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-4">
+          <div className="bg-white rounded-xl p-3 max-w-lg w-full mx-4" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-2">
               <h3 className="font-semibold text-gray-800">Documents - {selectedMilestone.name}</h3>
               <button onClick={() => setSelectedMilestone(null)} className="text-gray-400 hover:text-gray-600">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

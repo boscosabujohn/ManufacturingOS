@@ -480,12 +480,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+    <div className="w-full h-full px-3 py-2 overflow-auto">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={handleCancel}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span>Back to Vendor Details</span>
@@ -521,14 +521,14 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {/* Basic Information */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Building className="h-5 w-5 text-blue-600" />
             <span>Basic Information</span>
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Legal Name <span className="text-red-500">*</span>
@@ -572,12 +572,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Company Registration */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <FileCheck className="h-5 w-5 text-blue-600" />
             <span>Company Registration</span>
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 GST Number <span className="text-red-500">*</span>
@@ -645,8 +645,8 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Contact Persons */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
               <User className="h-5 w-5 text-blue-600" />
               <span>Contact Persons</span>
@@ -660,12 +660,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
             </button>
           </div>
           {errors.contactPersons && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
+            <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
               <AlertCircle className="h-5 w-5 text-red-600" />
               <p className="text-sm text-red-700">{errors.contactPersons}</p>
             </div>
           )}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {formData.contactPersons.map((contact, index) => (
               <div key={contact.id} className="p-4 border border-gray-200 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
@@ -753,8 +753,8 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Addresses */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
               <MapPin className="h-5 w-5 text-blue-600" />
               <span>Addresses</span>
@@ -768,12 +768,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
             </button>
           </div>
           {errors.addresses && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
+            <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2">
               <AlertCircle className="h-5 w-5 text-red-600" />
               <p className="text-sm text-red-700">{errors.addresses}</p>
             </div>
           )}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {formData.addresses.map((address, index) => (
               <div key={address.id} className="p-4 border border-gray-200 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
@@ -877,12 +877,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Banking Information */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Landmark className="h-5 w-5 text-blue-600" />
             <span>Banking Information</span>
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Bank Name</label>
               <input
@@ -946,12 +946,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Payment Terms */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <CreditCard className="h-5 w-5 text-blue-600" />
             <span>Payment Terms</span>
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Credit Period (Days)</label>
               <input
@@ -992,12 +992,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Categories & Products */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Package className="h-5 w-5 text-blue-600" />
             <span>Categories & Products Supplied</span>
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Categories</label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
@@ -1034,12 +1034,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Certifications */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Award className="h-5 w-5 text-blue-600" />
             <span>Certifications</span>
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <label className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
                 <input
@@ -1108,12 +1108,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Quality Parameters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <CheckCircle className="h-5 w-5 text-blue-600" />
             <span>Quality Parameters</span>
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Acceptance Criteria</label>
               <textarea
@@ -1138,12 +1138,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Documents */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <FileText className="h-5 w-5 text-blue-600" />
             <span>Documents</span>
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex space-x-2">
               <label className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 cursor-pointer">
                 <input
@@ -1188,12 +1188,12 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Vendor Rating & Status */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <Star className="h-5 w-5 text-blue-600" />
             <span>Vendor Rating & Status</span>
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Rating (1-5 Stars)</label>
               <div className="flex items-center space-x-2">
@@ -1232,8 +1232,8 @@ export default function VendorEditPage({ params }: { params: Promise<{ id: strin
         </div>
 
         {/* Notes */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
             <FileText className="h-5 w-5 text-blue-600" />
             <span>Notes & Remarks</span>
           </h3>

@@ -191,14 +191,14 @@ export default function ExitInterviewPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Exit Interview</h1>
         <p className="text-sm text-gray-600 mt-1">Conduct and track exit interviews with departing employees</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Pending</p>
@@ -208,7 +208,7 @@ export default function ExitInterviewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Scheduled</p>
@@ -218,7 +218,7 @@ export default function ExitInterviewPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Completed</p>
@@ -229,7 +229,7 @@ export default function ExitInterviewPage() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2">
+      <div className="mb-2 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
           className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
@@ -262,10 +262,10 @@ export default function ExitInterviewPage() {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredInterviews.map(interview => (
-          <div key={interview.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-4">
+          <div key={interview.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-bold text-gray-900">{interview.employeeName}</h3>
@@ -382,9 +382,9 @@ export default function ExitInterviewPage() {
 
       {/* Schedule Interview Modal */}
       {showScheduleModal && selectedInterview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
-            <div className="bg-blue-50 border-b border-blue-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+            <div className="bg-blue-50 border-b border-blue-200 px-3 py-2 flex items-center justify-between rounded-t-lg">
               <div className="flex items-center gap-3">
                 <Calendar className="h-6 w-6 text-blue-600" />
                 <div>
@@ -397,8 +397,8 @@ export default function ExitInterviewPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitSchedule} className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+            <form onSubmit={handleSubmitSchedule} className="p-6 space-y-3">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Interview Date <span className="text-red-500">*</span></label>
                   <input type="date" value={scheduleFormData.interviewDate} onChange={(e) => setScheduleFormData({...scheduleFormData, interviewDate: e.target.value})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
@@ -431,9 +431,9 @@ export default function ExitInterviewPage() {
 
       {/* Conduct Interview Modal */}
       {showConductModal && selectedInterview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-green-50 border-b border-green-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-green-50 border-b border-green-200 px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Send className="h-6 w-6 text-green-600" />
                 <div>
@@ -446,13 +446,13 @@ export default function ExitInterviewPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmitConduct} className="p-6 space-y-6">
+            <form onSubmit={handleSubmitConduct} className="p-6 space-y-3">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">Reason for Leaving <span className="text-red-500">*</span></label>
                 <textarea value={conductFormData.reasonForLeaving} onChange={(e) => setConductFormData({...conductFormData, reasonForLeaving: e.target.value})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" rows={3} required />
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h3 className="font-semibold text-gray-900">Rate the following (1-5 stars):</h3>
                 {['workEnvironment', 'management', 'compensation', 'careerGrowth', 'workLifeBalance'].map((field) => (
                   <div key={field}>
@@ -468,7 +468,7 @@ export default function ExitInterviewPage() {
 
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-2">Would Recommend Company?</label>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <label className="flex items-center gap-2">
                     <input type="radio" checked={conductFormData.wouldRecommend === true} onChange={() => setConductFormData({...conductFormData, wouldRecommend: true})} className="w-4 h-4" />
                     <span>Yes</span>
@@ -496,9 +496,9 @@ export default function ExitInterviewPage() {
 
       {/* View Feedback Modal */}
       {showViewModal && selectedInterview && selectedInterview.feedback && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-3 py-2 flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold text-gray-900">Exit Interview Feedback</h2>
                 <p className="text-sm text-gray-600 mt-1">{selectedInterview.employeeName} • {selectedInterview.designation}</p>
@@ -508,40 +508,40 @@ export default function ExitInterviewPage() {
               </button>
             </div>
 
-            <div className="p-6 space-y-6">
-              <div className="bg-gray-50 rounded-lg p-4">
+            <div className="p-6 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs font-medium text-gray-600 mb-2">Reason for Leaving</p>
                 <p className="text-sm text-gray-900">{selectedInterview.feedback.reasonForLeaving}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs font-medium text-gray-600 mb-2">Work Environment</p>
                   {renderRating(selectedInterview.feedback.workEnvironment)}
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs font-medium text-gray-600 mb-2">Management</p>
                   {renderRating(selectedInterview.feedback.management)}
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs font-medium text-gray-600 mb-2">Compensation</p>
                   {renderRating(selectedInterview.feedback.compensation)}
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs font-medium text-gray-600 mb-2">Career Growth</p>
                   {renderRating(selectedInterview.feedback.careerGrowth)}
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs font-medium text-gray-600 mb-2">Work-Life Balance</p>
                   {renderRating(selectedInterview.feedback.workLifeBalance)}
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs font-medium text-gray-600 mb-2">Would Recommend</p>
                   <p className={`text-lg font-bold ${selectedInterview.feedback.wouldRecommend ? 'text-green-600' : 'text-red-600'}`}>{selectedInterview.feedback.wouldRecommend ? 'Yes' : 'No'}</p>
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-xs font-medium text-gray-600 mb-2">Additional Comments</p>
                 <p className="text-sm text-gray-900">{selectedInterview.feedback.additionalComments}</p>
               </div>

@@ -135,9 +135,9 @@ export default function CPQIntegrationERPPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">ERP Integration</h2>
           <p className="text-sm text-gray-600 mt-1">Seamless integration with ERP for orders, inventory, pricing, and GL</p>
@@ -172,9 +172,9 @@ export default function CPQIntegrationERPPage() {
       </div>
 
       {/* Connection Status */}
-      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-green-600">Connection</p>
               {integrationStatus.connected ? (
@@ -187,7 +187,7 @@ export default function CPQIntegrationERPPage() {
             <p className="text-xs text-green-700 mt-1">ERP: {integrationStatus.erpSystem}</p>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-blue-600">Orders Today</p>
               <ShoppingCart className="h-6 w-6 text-blue-600" />
@@ -196,7 +196,7 @@ export default function CPQIntegrationERPPage() {
             <p className="text-xs text-blue-700 mt-1">Synced to ERP</p>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-purple-600">Inventory Items</p>
               <Package className="h-6 w-6 text-purple-600" />
@@ -205,7 +205,7 @@ export default function CPQIntegrationERPPage() {
             <p className="text-xs text-purple-700 mt-1">Real-time sync</p>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-medium text-orange-600">GL Postings</p>
               <FileText className="h-6 w-6 text-orange-600" />
@@ -217,8 +217,8 @@ export default function CPQIntegrationERPPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6 border-b border-gray-200">
-        <div className="flex gap-6">
+      <div className="mb-3 border-b border-gray-200">
+        <div className="flex gap-3">
           {['overview', 'orders', 'inventory', 'pricing', 'logs'].map((tab) => (
             <button
               key={tab}
@@ -237,10 +237,10 @@ export default function CPQIntegrationERPPage() {
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Integration Points */}
-          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <Database className="h-6 w-6 text-blue-600" />
               </div>
@@ -250,7 +250,7 @@ export default function CPQIntegrationERPPage() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200">
                 <div className="flex items-center gap-3">
                   <ShoppingCart className="h-5 w-5 text-green-600" />
@@ -309,8 +309,8 @@ export default function CPQIntegrationERPPage() {
           </div>
 
           {/* Recent Activity */}
-          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+            <div className="flex items-center gap-3 mb-3">
               <div className="p-2 bg-purple-100 rounded-lg">
                 <Activity className="h-6 w-6 text-purple-600" />
               </div>
@@ -342,8 +342,8 @@ export default function CPQIntegrationERPPage() {
 
       {/* Orders Tab */}
       {activeTab === 'orders' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <ShoppingCart className="h-6 w-6 text-blue-600" />
             </div>
@@ -412,8 +412,8 @@ export default function CPQIntegrationERPPage() {
 
       {/* Inventory Tab */}
       {activeTab === 'inventory' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Package className="h-6 w-6 text-purple-600" />
             </div>
@@ -470,8 +470,8 @@ export default function CPQIntegrationERPPage() {
 
       {/* Pricing Tab */}
       {activeTab === 'pricing' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-green-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-green-600" />
             </div>
@@ -533,8 +533,8 @@ export default function CPQIntegrationERPPage() {
 
       {/* Logs Tab */}
       {activeTab === 'logs' && (
-        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
-          <div className="flex items-center gap-3 mb-6">
+        <div className="bg-white rounded-lg shadow-md border border-gray-200 p-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-orange-100 rounded-lg">
               <Activity className="h-6 w-6 text-orange-600" />
             </div>
@@ -546,7 +546,7 @@ export default function CPQIntegrationERPPage() {
 
           <div className="space-y-3">
             {syncLogs.map((log) => (
-              <div key={log.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={log.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-3 flex-1">
                     {log.status === 'success' ? (

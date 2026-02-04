@@ -335,15 +335,15 @@ export default function BonusProcessingPage() {
   }
 
   return (
-    <div className="p-6 w-full mx-auto">
-      <div className="mb-6">
+    <div className="p-6 w-full">
+      <div className="mb-3">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bonus Processing</h1>
         <p className="text-gray-600">Calculate, approve, and process employee bonuses</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600 mb-1">Total Records</p>
@@ -355,7 +355,7 @@ export default function BonusProcessingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg shadow p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600 mb-1">Calculated</p>
@@ -367,7 +367,7 @@ export default function BonusProcessingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600 mb-1">Approved</p>
@@ -379,7 +379,7 @@ export default function BonusProcessingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg shadow p-6 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg shadow p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600 mb-1">Processed</p>
@@ -391,7 +391,7 @@ export default function BonusProcessingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg shadow p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600 mb-1">Paid</p>
@@ -403,7 +403,7 @@ export default function BonusProcessingPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow p-6 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg shadow p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600 mb-1">Total Amount</p>
@@ -417,8 +417,8 @@ export default function BonusProcessingPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow mb-6 p-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg shadow mb-3 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <input
@@ -479,12 +479,12 @@ export default function BonusProcessingPage() {
       </div>
 
       {/* Bonus Records List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRecords.map((record) => (
           <div key={record.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{record.employeeName}</h3>
@@ -495,7 +495,7 @@ export default function BonusProcessingPage() {
                       {record.bonusType.charAt(0).toUpperCase() + record.bonusType.slice(1)}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
                       {record.employeeId}
@@ -545,9 +545,9 @@ export default function BonusProcessingPage() {
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                 {/* Eligibility Details */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <h4 className="text-xs font-semibold text-blue-900 mb-3 flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     Eligibility
@@ -573,7 +573,7 @@ export default function BonusProcessingPage() {
                 </div>
 
                 {/* Calculation Details */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <h4 className="text-xs font-semibold text-purple-900 mb-3 flex items-center gap-1">
                     <Calculator className="h-3 w-3" />
                     Calculation
@@ -599,7 +599,7 @@ export default function BonusProcessingPage() {
                 </div>
 
                 {/* Tax & Net Amount */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <h4 className="text-xs font-semibold text-green-900 mb-3 flex items-center gap-1">
                     <DollarSign className="h-3 w-3" />
                     Payment
@@ -627,7 +627,7 @@ export default function BonusProcessingPage() {
                 </div>
 
                 {/* Approval Info */}
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
                   <h4 className="text-xs font-semibold text-yellow-900 mb-3 flex items-center gap-1">
                     <CheckCircle className="h-3 w-3" />
                     Approval
@@ -655,7 +655,7 @@ export default function BonusProcessingPage() {
                 </div>
 
                 {/* Additional Info */}
-                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
                   <h4 className="text-xs font-semibold text-indigo-900 mb-3 flex items-center gap-1">
                     <FileText className="h-3 w-3" />
                     Details
@@ -690,12 +690,12 @@ export default function BonusProcessingPage() {
       </div>
 
       {/* Policy Guidelines */}
-      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-6 border border-blue-200">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-md p-3 border border-blue-200">
+        <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
           <FileText className="h-5 w-5 text-blue-600" />
           Bonus Processing Guidelines
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Statutory Bonus (Payment of Bonus Act)</h3>
             <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">

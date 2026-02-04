@@ -13,14 +13,14 @@ export default function SearchRepositoryPage() {
   ];
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
+    <div className="w-full h-full px-3 py-2">
+      <div className="mb-3">
         <h1 className="text-2xl font-bold text-gray-900">Search Repository</h1>
         <p className="text-sm text-gray-600 mt-1">Search for documents across the repository</p>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex gap-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -49,15 +49,15 @@ export default function SearchRepositoryPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+        <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg font-semibold text-gray-900">Search Results</h2>
           <span className="text-sm text-gray-600">{searchResults.length} results found</span>
         </div>
 
         <div className="space-y-3">
           {searchResults.map((result) => (
-            <div key={result.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors">
+            <div key={result.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors">
               <div className="flex items-center gap-3 flex-1">
                 <File className="h-6 w-6 text-blue-600" />
                 <div className="flex-1 min-w-0">

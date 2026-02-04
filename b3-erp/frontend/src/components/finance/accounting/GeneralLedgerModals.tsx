@@ -30,35 +30,35 @@ export function ViewLedgerEntryModal({ isOpen, onClose, entry }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center sticky top-0 z-10">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-lg shadow-xl w-full  max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 flex justify-between items-center sticky top-0 z-10">
           <h2 className="text-xl font-bold text-white">Ledger Entry Details</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
           {/* Summary Cards */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="grid grid-cols-4 gap-2 mb-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm font-medium text-blue-700">Voucher Number</p>
               <p className="text-lg font-bold text-blue-900 mt-1">{mockEntry.voucherNumber}</p>
             </div>
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
               <p className="text-sm font-medium text-green-700">Debit</p>
               <p className="text-lg font-bold text-green-900 mt-1">₹{mockEntry.debit.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
               <p className="text-sm font-medium text-red-700">Credit</p>
               <p className="text-lg font-bold text-red-900 mt-1">₹{mockEntry.credit.toLocaleString('en-IN')}</p>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
               <p className="text-sm font-medium text-purple-700">Balance</p>
               <p className="text-lg font-bold text-purple-900 mt-1">₹{mockEntry.balance.toLocaleString('en-IN')}</p>
             </div>
           </div>
 
           {/* Entry Information */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3 pb-2 border-b">Entry Information</h3>
               <dl className="space-y-2">
@@ -169,7 +169,7 @@ export function ViewLedgerEntryModal({ isOpen, onClose, entry }: any) {
             )}
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t sticky bottom-0">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Close</button>
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800">
             <Printer className="h-4 w-4" />
@@ -203,14 +203,14 @@ export function FilterLedgerModal({ isOpen, onClose, onApply }: any) {
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center sticky top-0">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-3 py-2 flex justify-between items-center sticky top-0">
           <h2 className="text-xl font-bold text-white">Filter Ledger Entries</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
               <input
@@ -319,7 +319,7 @@ export function FilterLedgerModal({ isOpen, onClose, onApply }: any) {
             </div>
             <div className="col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">Reconciliation Status</label>
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <label className="flex items-center space-x-2">
                   <input
                     type="checkbox"
@@ -342,7 +342,7 @@ export function FilterLedgerModal({ isOpen, onClose, onApply }: any) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-between border-t sticky bottom-0">
+        <div className="bg-gray-50 px-3 py-2 flex justify-between border-t sticky bottom-0">
           <button
             onClick={() => setFilters({ startDate: '2025-01-01', endDate: '2025-01-31', voucherType: 'all', minAmount: '', maxAmount: '', costCenter: '', department: '', project: '', reconciledOnly: false, unreconciledOnly: false, searchText: '' })}
             className="px-4 py-2 text-purple-600 hover:text-purple-700 font-medium"
@@ -382,20 +382,20 @@ export function ExportLedgerModal({ isOpen, onClose, onExport, accountInfo }: an
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Export General Ledger</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-sm font-medium text-blue-900">
               Account: {accountInfo?.accountCode} - {accountInfo?.accountName}
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Export Format</label>
               <select
@@ -410,7 +410,7 @@ export function ExportLedgerModal({ isOpen, onClose, onExport, accountInfo }: an
               </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Group By</label>
                 <select
@@ -484,7 +484,7 @@ export function ExportLedgerModal({ isOpen, onClose, onExport, accountInfo }: an
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Export Ledger:', settings); onExport(settings); }}
@@ -513,14 +513,14 @@ export function ReconcileEntryModal({ isOpen, onClose, onReconcile, entry }: any
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-        <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 px-3 py-2 flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Reconcile Entry</h2>
           <button onClick={onClose} className="text-white hover:text-gray-200"><X className="h-5 w-5" /></button>
         </div>
         <div className="p-6">
-          <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <p className="text-xs text-blue-700">Voucher Number</p>
@@ -543,8 +543,8 @@ export function ReconcileEntryModal({ isOpen, onClose, onReconcile, entry }: any
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Reconciled Date *</label>
                 <input
@@ -599,7 +599,7 @@ export function ReconcileEntryModal({ isOpen, onClose, onReconcile, entry }: any
             </label>
           </div>
         </div>
-        <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 border-t">
+        <div className="bg-gray-50 px-3 py-2 flex justify-end space-x-3 border-t">
           <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
           <button
             onClick={() => { console.log('Reconcile Entry:', formData); onReconcile(formData); }}

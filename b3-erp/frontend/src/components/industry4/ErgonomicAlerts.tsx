@@ -274,11 +274,11 @@ export function ErgonomicAlerts({
   };
 
   const renderAlerts = () => (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Active Break Overlay */}
       {activeBreak && (
-        <div className="bg-green-900/50 border border-green-600 rounded-xl p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-green-900/50 border border-green-600 rounded-xl p-3">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
               <span className="text-4xl">☕</span>
               <div>
@@ -292,7 +292,7 @@ export function ErgonomicAlerts({
             </div>
           </div>
 
-          <div className="h-2 bg-green-800 rounded-full overflow-hidden mb-4">
+          <div className="h-2 bg-green-800 rounded-full overflow-hidden mb-2">
             <div
               className="h-full bg-green-500 rounded-full transition-all"
               style={{ width: `${(breakTimer / (activeBreak.duration * 60)) * 100}%` }}
@@ -306,7 +306,7 @@ export function ErgonomicAlerts({
             >
               End Break Early
             </button>
-            <button className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-xl transition-colors">
+            <button className="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-xl transition-colors">
               +5 min
             </button>
           </div>
@@ -316,7 +316,7 @@ export function ErgonomicAlerts({
       {/* Alerts List */}
       {activeAlerts.length === 0 && !activeBreak ? (
         <div className="text-center py-12">
-          <span className="text-6xl mb-4 block">✅</span>
+          <span className="text-6xl mb-2 block">✅</span>
           <p className="text-white text-xl font-medium">All caught up!</p>
           <p className="text-gray-400">No active wellness alerts at the moment</p>
         </div>
@@ -384,10 +384,10 @@ export function ErgonomicAlerts({
   );
 
   const renderSchedule = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Next Break */}
       {nextBreak && (
-        <div className="bg-blue-900/30 border border-blue-600 rounded-xl p-6">
+        <div className="bg-blue-900/30 border border-blue-600 rounded-xl p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-400">Next Break</p>
@@ -401,7 +401,7 @@ export function ErgonomicAlerts({
             <div className="flex gap-2">
               <button
                 onClick={() => handleStartBreak(nextBreak)}
-                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-colors"
+                className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-colors"
               >
                 Start Now
               </button>
@@ -417,13 +417,13 @@ export function ErgonomicAlerts({
       )}
 
       {/* Schedule Timeline */}
-      <div className="bg-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Today&apos;s Break Schedule</h3>
+      <div className="bg-gray-800 rounded-xl p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Today&apos;s Break Schedule</h3>
         <div className="space-y-3">
           {breakSchedule.map(breakItem => (
             <div
               key={breakItem.id}
-              className={`flex items-center gap-4 p-3 rounded-lg ${breakItem.completed ? 'bg-green-900/20 border border-green-700' :
+              className={`flex items-center gap-2 p-3 rounded-lg ${breakItem.completed ? 'bg-green-900/20 border border-green-700' :
                   breakItem.skipped ? 'bg-gray-700/50 opacity-50' :
                     'bg-gray-700'
                 }`}
@@ -465,10 +465,10 @@ export function ErgonomicAlerts({
   );
 
   const renderWellness = () => (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Key Metrics */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-gray-800 rounded-xl p-4">
+      <div className="grid grid-cols-2 gap-2">
+        <div className="bg-gray-800 rounded-xl p-3">
           <p className="text-gray-400 text-sm">Time Since Break</p>
           <p className={`text-3xl font-bold ${metrics.workDuration > 120 ? 'text-red-400' : metrics.workDuration > 90 ? 'text-yellow-400' : 'text-green-400'}`}>
             {formatDuration(metrics.workDuration)}
@@ -477,7 +477,7 @@ export function ErgonomicAlerts({
             {metrics.workDuration > 120 ? 'Break overdue!' : metrics.workDuration > 90 ? 'Break soon' : 'On track'}
           </p>
         </div>
-        <div className="bg-gray-800 rounded-xl p-4">
+        <div className="bg-gray-800 rounded-xl p-3">
           <p className="text-gray-400 text-sm">Breaks Taken</p>
           <p className="text-3xl font-bold text-blue-400">
             {metrics.totalBreaksTaken}/{metrics.totalBreaksScheduled}
@@ -489,9 +489,9 @@ export function ErgonomicAlerts({
       </div>
 
       {/* Wellness Gauges */}
-      <div className="bg-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Wellness Indicators</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-xl p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Wellness Indicators</h3>
+        <div className="space-y-2">
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-gray-400">Fatigue Level</span>
@@ -529,20 +529,20 @@ export function ErgonomicAlerts({
       </div>
 
       {/* Activity Stats */}
-      <div className="bg-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Today&apos;s Activity</h3>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="text-center p-4 bg-gray-700 rounded-lg">
+      <div className="bg-gray-800 rounded-xl p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Today&apos;s Activity</h3>
+        <div className="grid grid-cols-3 gap-2">
+          <div className="text-center p-3 bg-gray-700 rounded-lg">
             <p className="text-3xl mb-1">💧</p>
             <p className="text-2xl font-bold text-cyan-400">{metrics.hydrationReminders}</p>
             <p className="text-xs text-gray-400">Hydration Reminders</p>
           </div>
-          <div className="text-center p-4 bg-gray-700 rounded-lg">
+          <div className="text-center p-3 bg-gray-700 rounded-lg">
             <p className="text-3xl mb-1">🧘</p>
             <p className="text-2xl font-bold text-purple-400">{metrics.postureCorrectionCount}</p>
             <p className="text-xs text-gray-400">Posture Corrections</p>
           </div>
-          <div className="text-center p-4 bg-gray-700 rounded-lg">
+          <div className="text-center p-3 bg-gray-700 rounded-lg">
             <p className="text-3xl mb-1">🤸</p>
             <p className="text-2xl font-bold text-green-400">{metrics.stretchesCompleted}</p>
             <p className="text-xs text-gray-400">Stretches Done</p>
@@ -551,8 +551,8 @@ export function ErgonomicAlerts({
       </div>
 
       {/* IoT Sensor Status */}
-      <div className="bg-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">IoT Sensor Status</h3>
+      <div className="bg-gray-800 rounded-xl p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">IoT Sensor Status</h3>
         <div className="grid grid-cols-2 gap-3">
           {Object.entries(iotStatus).map(([sensor, status]) => (
             <div key={sensor} className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
@@ -573,10 +573,10 @@ export function ErgonomicAlerts({
   );
 
   const renderSettings = () => (
-    <div className="space-y-6">
-      <div className="bg-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Alert Preferences</h3>
-        <div className="space-y-4">
+    <div className="space-y-3">
+      <div className="bg-gray-800 rounded-xl p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Alert Preferences</h3>
+        <div className="space-y-2">
           {Object.entries(alertTypeConfig).map(([type, config]) => (
             <div key={type} className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
               <div className="flex items-center gap-3">
@@ -592,9 +592,9 @@ export function ErgonomicAlerts({
         </div>
       </div>
 
-      <div className="bg-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">Break Intervals</h3>
-        <div className="space-y-4">
+      <div className="bg-gray-800 rounded-xl p-3">
+        <h3 className="text-lg font-semibold text-white mb-2">Break Intervals</h3>
+        <div className="space-y-2">
           <div>
             <label className="text-gray-400 text-sm">Micro Break Frequency</label>
             <select className="w-full mt-1 bg-gray-700 text-white rounded-lg px-4 py-3 border border-gray-600 focus:border-blue-500 outline-none">
@@ -617,10 +617,10 @@ export function ErgonomicAlerts({
   );
 
   return (
-    <div className={`bg-gray-900 rounded-xl p-6 ${className}`}>
+    <div className={`bg-gray-900 rounded-xl p-3 ${className}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-2xl">
             🧘
           </div>
@@ -643,7 +643,7 @@ export function ErgonomicAlerts({
       </div>
 
       {/* View Tabs */}
-      <div className="flex bg-gray-800 rounded-lg p-1 mb-6">
+      <div className="flex bg-gray-800 rounded-lg p-1 mb-3">
         {[
           { id: 'alerts', label: 'Alerts', icon: '🔔' },
           { id: 'schedule', label: 'Schedule', icon: '📅' },
@@ -677,10 +677,10 @@ export function ErgonomicAlerts({
 
       {/* Snooze Modal */}
       {showSnoozeModal && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-800 rounded-xl p-6 w-full max-w-sm">
-            <h3 className="text-xl font-bold text-white mb-4">Snooze Alert</h3>
-            <p className="text-gray-400 mb-4">Remind me again in:</p>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-3">
+          <div className="bg-gray-800 rounded-xl p-3 w-full max-w-sm">
+            <h3 className="text-xl font-bold text-white mb-2">Snooze Alert</h3>
+            <p className="text-gray-400 mb-2">Remind me again in:</p>
             <div className="grid grid-cols-2 gap-3">
               {[5, 10, 15, 30].map(mins => (
                 <button

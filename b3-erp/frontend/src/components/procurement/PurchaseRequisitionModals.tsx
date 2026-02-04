@@ -96,10 +96,10 @@ export function SubmitRequisitionModal({ isOpen, onClose, onSubmit, editData }: 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <FileText className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">
@@ -112,15 +112,15 @@ export function SubmitRequisitionModal({ isOpen, onClose, onSubmit, editData }: 
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Basic Information */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <FileText className="w-5 h-5 text-blue-600" />
               Basic Information
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Requisition Title *
@@ -253,7 +253,7 @@ export function SubmitRequisitionModal({ isOpen, onClose, onSubmit, editData }: 
           </div>
 
           {/* Requisition Items */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-gray-900 flex items-center gap-2">
                 <Package className="w-5 h-5 text-blue-600" />
@@ -270,7 +270,7 @@ export function SubmitRequisitionModal({ isOpen, onClose, onSubmit, editData }: 
 
             <div className="space-y-3">
               {items.map((item: any, index: number) => (
-                <div key={index} className="bg-white p-4 rounded-lg border border-gray-200 space-y-3">
+                <div key={index} className="bg-white p-3 rounded-lg border border-gray-200 space-y-3">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Item {index + 1}</span>
                     {items.length > 1 && (
@@ -390,20 +390,20 @@ export function SubmitRequisitionModal({ isOpen, onClose, onSubmit, editData }: 
             </div>
 
             {/* Total */}
-            <div className="bg-blue-50 p-4 rounded-lg flex items-center justify-between">
+            <div className="bg-blue-50 p-3 rounded-lg flex items-center justify-between">
               <span className="text-lg font-semibold text-gray-900">Total Requisition Amount</span>
               <span className="text-2xl font-bold text-blue-600">${calculateTotal().toFixed(2)}</span>
             </div>
           </div>
 
           {/* Attachments */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <Paperclip className="w-5 h-5 text-blue-600" />
               Attachments
             </h3>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition cursor-pointer">
-              <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-blue-400 transition cursor-pointer">
+              <Upload className="w-8 h-8 text-gray-400 mb-2" />
               <p className="text-sm text-gray-600 mb-1">Click to upload or drag and drop</p>
               <p className="text-xs text-gray-500">Quotes, specifications, or supporting documents</p>
             </div>
@@ -411,7 +411,7 @@ export function SubmitRequisitionModal({ isOpen, onClose, onSubmit, editData }: 
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -513,10 +513,10 @@ export function ApproveRejectModal({ isOpen, onClose, requisition, action, onSub
   const HeaderIcon = config.icon
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
       <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className={`bg-gradient-to-r ${config.gradient} p-6 flex items-center justify-between sticky top-0 z-10`}>
+        <div className={`bg-gradient-to-r ${config.gradient} p-3 flex items-center justify-between sticky top-0 z-10`}>
           <div className="flex items-center gap-3">
             <HeaderIcon className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">{config.title}</h2>
@@ -527,9 +527,9 @@ export function ApproveRejectModal({ isOpen, onClose, requisition, action, onSub
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Requisition Summary */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Requisition Summary</h3>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -646,7 +646,7 @@ export function ApproveRejectModal({ isOpen, onClose, requisition, action, onSub
                 />
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <div className="flex items-start gap-3">
                   <AlertCircle className="w-5 h-5 text-red-600 mt-0.5" />
                   <div>
@@ -711,7 +711,7 @@ export function ApproveRejectModal({ isOpen, onClose, requisition, action, onSub
           )}
 
           {/* Notification Options */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -727,7 +727,7 @@ export function ApproveRejectModal({ isOpen, onClose, requisition, action, onSub
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -820,10 +820,10 @@ export function ConvertToPOModal({ isOpen, onClose, requisition, onSubmit }: Con
   const totals = calculateTotals()
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-3 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <ShoppingCart className="w-6 h-6 text-white" />
             <h2 className="text-2xl font-bold text-white">Convert to Purchase Order</h2>
@@ -834,9 +834,9 @@ export function ConvertToPOModal({ isOpen, onClose, requisition, onSubmit }: Con
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Requisition Reference */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+          <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-purple-600 font-medium">Converting Requisition</p>
@@ -850,13 +850,13 @@ export function ConvertToPOModal({ isOpen, onClose, requisition, onSubmit }: Con
           </div>
 
           {/* PO Details */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-4">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-2">
             <h3 className="font-semibold text-gray-900 flex items-center gap-2">
               <FileCheck className="w-5 h-5 text-purple-600" />
               Purchase Order Details
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div>
                 <label className="flex items-center gap-2 mb-2">
                   <input
@@ -1042,10 +1042,10 @@ export function ConvertToPOModal({ isOpen, onClose, requisition, onSubmit }: Con
           </div>
 
           {/* Tax Configuration */}
-          <div className="bg-gray-50 p-4 rounded-lg space-y-3">
+          <div className="bg-gray-50 p-3 rounded-lg space-y-3">
             <h3 className="font-semibold text-gray-900">Tax & Totals</h3>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -1073,7 +1073,7 @@ export function ConvertToPOModal({ isOpen, onClose, requisition, onSubmit }: Con
               )}
             </div>
 
-            <div className="bg-white p-4 rounded-lg border border-gray-200 space-y-2">
+            <div className="bg-white p-3 rounded-lg border border-gray-200 space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Subtotal</span>
                 <span className="font-medium">${totals.subtotal.toFixed(2)}</span>
@@ -1099,7 +1099,7 @@ export function ConvertToPOModal({ isOpen, onClose, requisition, onSubmit }: Con
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
@@ -1184,10 +1184,10 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+      <div className="bg-white rounded-xl shadow-2xl  w-full max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-6 flex items-center justify-between sticky top-0 z-10">
+        <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 p-3 flex items-center justify-between sticky top-0 z-10">
           <div className="flex items-center gap-3">
             <Activity className="w-6 h-6 text-white" />
             <div>
@@ -1201,13 +1201,13 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3">
           {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             {metrics.map((metric, index) => {
               const IconComponent = metric.icon
               return (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg">
+                <div key={index} className="bg-gray-50 p-3 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <IconComponent className={`w-5 h-5 text-${metric.color}-600`} />
                     <span className="text-sm text-gray-600">{metric.label}</span>
@@ -1219,9 +1219,9 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
           </div>
 
           {/* Requisition Details */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Requisition Details</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
               <div>
                 <span className="text-gray-600">Requestor:</span>
                 <span className="ml-2 font-medium">{requisition?.requestor}</span>
@@ -1250,8 +1250,8 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
           </div>
 
           {/* Status Timeline */}
-          <div className="bg-white border border-gray-200 rounded-lg p-4">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="font-semibold text-gray-900">Status Timeline</h3>
               <button
                 onClick={() => setShowExport(true)}
@@ -1262,13 +1262,13 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {timeline.map((event, index) => {
                 const IconComponent = event.icon
                 const isLast = index === timeline.length - 1
 
                 return (
-                  <div key={index} className="flex gap-4">
+                  <div key={index} className="flex gap-2">
                     {/* Timeline line */}
                     <div className="flex flex-col items-center">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
@@ -1293,7 +1293,7 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
 
                     {/* Event details */}
                     <div className="flex-1 pb-6">
-                      <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="bg-gray-50 p-3 rounded-lg">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <h4 className="font-semibold text-gray-900">{event.action}</h4>
@@ -1322,7 +1322,7 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
           </div>
 
           {/* Current Status Alert */}
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
             <div className="flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-yellow-600 mt-0.5" />
               <div>
@@ -1335,7 +1335,7 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
           </div>
 
           {/* Related Documents */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-3 rounded-lg">
             <h3 className="font-semibold text-gray-900 mb-3">Related Documents</h3>
             <div className="space-y-2">
               {[
@@ -1361,7 +1361,7 @@ export function TrackStatusModal({ isOpen, onClose, requisition }: TrackStatusMo
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+        <div className="bg-gray-50 px-3 py-2 flex items-center justify-between border-t border-gray-200">
           <div className="text-sm text-gray-600">
             Last updated: {new Date().toLocaleString()}
           </div>

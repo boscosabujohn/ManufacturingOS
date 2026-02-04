@@ -360,7 +360,7 @@ export function FavoritesManager({
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
           {sortedFavorites.length === 0 ? (
             <div className="px-4 py-8 text-center text-gray-500">
-              <Star className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+              <Star className="w-8 h-8 mb-2 text-gray-300" />
               <p>No favorites yet</p>
               <p className="text-sm mt-1">Click the star icon on any page to add it here</p>
             </div>

@@ -107,11 +107,11 @@ export default function WorkflowPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-cyan-100 rounded-lg">
                 <Workflow className="w-6 h-6 text-cyan-600" />
@@ -140,7 +140,7 @@ export default function WorkflowPage() {
           </div>
 
           {/* Search and Filters */}
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -176,8 +176,8 @@ export default function WorkflowPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-white rounded-lg shadow border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <Workflow className="w-8 h-8 text-cyan-600" />
               <span className="text-2xl font-bold text-gray-900">{workflowTemplates.length}</span>
@@ -185,7 +185,7 @@ export default function WorkflowPage() {
             <p className="text-sm text-gray-600">Total Workflows</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <Play className="w-8 h-8 text-green-600" />
               <span className="text-2xl font-bold text-gray-900">
@@ -195,7 +195,7 @@ export default function WorkflowPage() {
             <p className="text-sm text-gray-600">Active Workflows</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <Clock className="w-8 h-8 text-orange-600" />
               <span className="text-2xl font-bold text-gray-900">
@@ -205,7 +205,7 @@ export default function WorkflowPage() {
             <p className="text-sm text-gray-600">Running Instances</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 text-blue-600" />
               <span className="text-2xl font-bold text-gray-900">847</span>
@@ -216,15 +216,15 @@ export default function WorkflowPage() {
 
         {/* Workflows Grid */}
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Workflow Templates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Workflow Templates</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {filteredWorkflows.map((workflow) => (
               <div
                 key={workflow.id}
                 className="bg-white rounded-lg shadow border border-gray-200 hover:shadow-lg transition-all overflow-hidden"
               >
                 <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
                       <GitBranch className="w-6 h-6 text-cyan-600" />
                     </div>
@@ -234,9 +234,9 @@ export default function WorkflowPage() {
                   </div>
 
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{workflow.name}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{workflow.description}</p>
+                  <p className="text-sm text-gray-600 mb-2">{workflow.description}</p>
 
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-2 mb-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">Category</span>
                       <span className="font-medium text-gray-900">{workflow.category}</span>
@@ -277,10 +277,10 @@ export default function WorkflowPage() {
         </div>
 
         {/* Quick Links */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-3">
           <Link
             href="/workflow/designer"
-            className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg p-6 text-white hover:shadow-xl transition-all"
+            className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg p-3 text-white hover:shadow-xl transition-all"
           >
             <div className="flex items-center justify-between">
               <div>
@@ -293,7 +293,7 @@ export default function WorkflowPage() {
 
           <Link
             href="/workflow/approvals"
-            className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg shadow-lg p-6 text-white hover:shadow-xl transition-all"
+            className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg shadow-lg p-3 text-white hover:shadow-xl transition-all"
           >
             <div className="flex items-center justify-between">
               <div>

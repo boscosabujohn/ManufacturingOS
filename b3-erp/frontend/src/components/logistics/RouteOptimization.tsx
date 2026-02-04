@@ -30,34 +30,34 @@ export default function RouteOptimization() {
   ];
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-6">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 p-3">
+      <div className="">
+        <div className="mb-3">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Route Optimization & Planning</h1>
           <p className="text-gray-600">AI-powered route optimization for cost and time savings</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
           {[
             { label: 'Routes Optimized', value: '248', color: 'blue' },
             { label: 'Distance Saved', value: '2,450 km', color: 'green' },
             { label: 'Time Saved', value: '45 hrs', color: 'purple' },
             { label: 'Cost Savings', value: '₹1.8L', color: 'orange' },
           ].map((stat) => (
-            <div key={stat.label} className="bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+            <div key={stat.label} className="bg-white rounded-xl shadow-lg p-3 border border-gray-200">
               <p className="text-sm text-gray-600 mb-1">{stat.label}</p>
               <p className={`text-3xl font-bold text-${stat.color}-600`}>{stat.value}</p>
             </div>
           ))}
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Optimized Routes</h2>
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Optimized Routes</h2>
 
-          <div className="space-y-6">
+          <div className="space-y-3">
             {optimizedRoutes.map((route) => (
-              <div key={route.id} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
-                <div className="flex items-center justify-between mb-4">
+              <div key={route.id} className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <Navigation className="w-6 h-6 text-green-600" />
                     <div>
@@ -70,7 +70,7 @@ export default function RouteOptimization() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                   <div className="bg-white rounded-lg p-3">
                     <p className="text-xs text-gray-600 mb-1">Original Distance</p>
                     <p className="text-lg font-bold text-red-600 line-through">{route.originalDistance} km</p>

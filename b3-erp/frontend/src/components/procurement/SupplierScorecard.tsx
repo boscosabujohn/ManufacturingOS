@@ -304,10 +304,10 @@ export default function SupplierScorecard() {
   }
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-3 bg-gray-50 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-xl shadow-sm p-3 border border-gray-200">
+        <div className="flex items-center justify-between mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <Award className="w-8 h-8 text-blue-600" />
@@ -377,8 +377,8 @@ export default function SupplierScorecard() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Average Score</span>
               <Star className="w-5 h-5 text-blue-600" />
@@ -390,7 +390,7 @@ export default function SupplierScorecard() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-green-600 text-sm font-medium">Top Performers</span>
               <Trophy className="w-5 h-5 text-green-600" />
@@ -399,7 +399,7 @@ export default function SupplierScorecard() {
             <div className="text-sm text-gray-600">Score ≥90</div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-amber-600 text-sm font-medium">Need Improvement</span>
               <AlertTriangle className="w-5 h-5 text-amber-600" />
@@ -408,7 +408,7 @@ export default function SupplierScorecard() {
             <div className="text-sm text-gray-600">Score &lt;75</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-purple-600 text-sm font-medium">Evaluated</span>
               <Users className="w-5 h-5 text-purple-600" />
@@ -417,7 +417,7 @@ export default function SupplierScorecard() {
             <div className="text-sm text-gray-600">This quarter</div>
           </div>
 
-          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-4 rounded-lg">
+          <div className="bg-gradient-to-br from-rose-50 to-rose-100 p-3 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-rose-600 text-sm font-medium">Action Items</span>
               <Zap className="w-5 h-5 text-rose-600" />
@@ -430,8 +430,8 @@ export default function SupplierScorecard() {
 
       {/* Real-Time Monitoring Dashboard */}
       {showRealTimeMonitoring && (
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-3 border border-indigo-200">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Activity className="h-5 w-5 text-indigo-600" />
               Real-Time Supplier Performance Monitoring
@@ -455,8 +455,8 @@ export default function SupplierScorecard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Score Changes</span>
                 <TrendingUp className="h-5 w-5 text-green-600" />
@@ -465,7 +465,7 @@ export default function SupplierScorecard() {
               <div className="text-xs text-green-600 mt-1">Improved today</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Tier Movements</span>
                 <Trophy className="h-5 w-5 text-blue-600" />
@@ -474,7 +474,7 @@ export default function SupplierScorecard() {
               <div className="text-xs text-blue-600 mt-1">This week</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">At-Risk Suppliers</span>
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
@@ -483,7 +483,7 @@ export default function SupplierScorecard() {
               <div className="text-xs text-red-600 mt-1">Below threshold</div>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Evaluations Due</span>
                 <Clock className="h-5 w-5 text-purple-600" />
@@ -493,7 +493,7 @@ export default function SupplierScorecard() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Performance Events</h4>
             <div className="space-y-2 max-h-32 overflow-y-auto">
               <div className="flex items-center gap-3 text-sm">
@@ -523,8 +523,8 @@ export default function SupplierScorecard() {
 
       {/* AI-Powered Insights */}
       {showAIInsights && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-3 border border-purple-200">
+          <div className="flex items-center justify-between mb-2">
             <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <Zap className="h-5 w-5 text-purple-600" />
               AI-Powered Supplier Insights
@@ -537,8 +537,8 @@ export default function SupplierScorecard() {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="h-5 w-5 text-blue-600" />
                 <span className="text-sm font-semibold text-gray-900">Performance Prediction</span>
@@ -547,7 +547,7 @@ export default function SupplierScorecard() {
               <p className="text-xs text-gray-600">Overall supplier performance expected to improve next quarter based on current trends</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingDown className="h-5 w-5 text-red-600" />
                 <span className="text-sm font-semibold text-gray-900">Risk Alert</span>
@@ -556,7 +556,7 @@ export default function SupplierScorecard() {
               <p className="text-xs text-gray-600">Suppliers showing concerning performance decline patterns requiring immediate attention</p>
             </div>
 
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-5 w-5 text-green-600" />
                 <span className="text-sm font-semibold text-gray-900">Optimization Opportunity</span>
@@ -566,7 +566,7 @@ export default function SupplierScorecard() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm">
+          <div className="bg-white rounded-lg p-3 shadow-sm">
             <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Recommendations</h4>
             <div className="space-y-2">
               <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
@@ -615,11 +615,11 @@ export default function SupplierScorecard() {
 
         <div className="p-6">
           {activeTab === 'overview' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Performance Overview */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Distribution</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Distribution</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <RadarChart data={performanceMetrics}>
                       <PolarGrid stroke="#E5E7EB" />
@@ -633,8 +633,8 @@ export default function SupplierScorecard() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Score Trend Analysis</h3>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Score Trend Analysis</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={scorecardHistory}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -656,9 +656,9 @@ export default function SupplierScorecard() {
                   <h3 className="text-lg font-semibold text-gray-900">Top Performing Suppliers</h3>
                 </div>
                 <div className="p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     {supplierScores.slice(0, 3).map((supplier, index) => (
-                      <div key={supplier.supplierId} className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+                      <div key={supplier.supplierId} className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-3 rounded-lg border border-gray-200">
                         <div className={`absolute -top-3 -right-3 w-12 h-12 rounded-full flex items-center justify-center ${getTierColor(supplier.tier)}`}>
                           {getTierIcon(supplier.tier)}
                         </div>
@@ -737,11 +737,11 @@ export default function SupplierScorecard() {
               </div>
 
               {/* KPI Performance */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Performance Indicators</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Performance Indicators</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                   {kpiDetails.map((kpi) => (
-                    <div key={kpi.kpi} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={kpi.kpi} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="flex items-start justify-between mb-2">
                         <div className="text-sm text-gray-600">{kpi.kpi}</div>
                         {kpi.status === 'good' ? (
@@ -762,9 +762,9 @@ export default function SupplierScorecard() {
           )}
 
           {activeTab === 'rankings' && (
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Filters */}
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2 mb-2">
                 <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                   <option>All Categories</option>
                   <option>IT Services</option>
@@ -932,13 +932,13 @@ export default function SupplierScorecard() {
           )}
 
           {activeTab === 'metrics' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Weighted Metrics */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics & Weights</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Metrics & Weights</h3>
                 <div className="space-y-3">
                   {performanceMetrics.map((metric) => (
-                    <div key={metric.metric} className="bg-white p-4 rounded-lg border border-gray-200">
+                    <div key={metric.metric} className="bg-white p-3 rounded-lg border border-gray-200">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <div className="text-sm font-medium text-gray-900">{metric.metric}</div>
@@ -957,7 +957,7 @@ export default function SupplierScorecard() {
                           <span className="text-sm text-gray-600">{metric.trend}</span>
                         </div>
                       </div>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-2">
                         <div>
                           <div className="text-xs text-gray-600">Target</div>
                           <div className="font-medium">{metric.target}</div>
@@ -993,9 +993,9 @@ export default function SupplierScorecard() {
               </div>
 
               {/* Calculation Method */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Scorecard Calculation Method</h3>
-                <div className="space-y-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Scorecard Calculation Method</h3>
+                <div className="space-y-2">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-sm font-bold text-blue-600">1</span>
@@ -1038,10 +1038,10 @@ export default function SupplierScorecard() {
           )}
 
           {activeTab === 'benchmarks' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Category Benchmarks */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Category Benchmarking</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Category Benchmarking</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={categoryBenchmarks}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -1057,9 +1057,9 @@ export default function SupplierScorecard() {
               </div>
 
               {/* Industry Comparison */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Industry Percentile Ranking</h4>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Industry Percentile Ranking</h4>
                   <div className="space-y-3">
                     {[
                       { metric: 'Overall Score', percentile: 75, industry: 82 },
@@ -1086,7 +1086,7 @@ export default function SupplierScorecard() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 flex items-center gap-4 text-xs text-gray-600">
+                  <div className="mt-4 flex items-center gap-2 text-xs text-gray-600">
                     <span className="flex items-center gap-1">
                       <div className="w-3 h-3 bg-blue-500 rounded"></div>
                       Your Position
@@ -1098,8 +1098,8 @@ export default function SupplierScorecard() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Best Practices Gap Analysis</h4>
+                <div className="bg-white border border-gray-200 rounded-lg p-3">
+                  <h4 className="font-semibold text-gray-900 mb-2">Best Practices Gap Analysis</h4>
                   <div className="space-y-3">
                     {[
                       { practice: 'Digital Integration', adoption: 65, bestInClass: 90 },
@@ -1129,10 +1129,10 @@ export default function SupplierScorecard() {
           )}
 
           {activeTab === 'trends' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Historical Performance */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Trend Analysis</h3>
+              <div className="bg-gray-50 p-3 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Trend Analysis</h3>
                 <ResponsiveContainer width="100%" height={350}>
                   <ComposedChart data={scorecardHistory}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -1150,9 +1150,9 @@ export default function SupplierScorecard() {
               </div>
 
               {/* Predictive Analytics */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Predictions</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Performance Predictions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-blue-600">88.5</div>
                     <div className="text-sm text-gray-600 mt-1">Q2 2024 Forecast</div>
@@ -1179,13 +1179,13 @@ export default function SupplierScorecard() {
           )}
 
           {activeTab === 'actions' && (
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Improvement Actions & Initiatives</h3>
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Improvement Actions & Initiatives</h3>
 
               {/* Action Items */}
               <div className="space-y-3">
                 {improvementActions.map((action, index) => (
-                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-4">
+                  <div key={index} className="bg-white border border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
@@ -1222,8 +1222,8 @@ export default function SupplierScorecard() {
               </div>
 
               {/* Action Summary */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-red-600 text-sm font-medium">High Priority</span>
                     <AlertTriangle className="w-5 h-5 text-red-600" />
@@ -1232,7 +1232,7 @@ export default function SupplierScorecard() {
                   <div className="text-sm text-gray-600">Immediate action required</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-blue-600 text-sm font-medium">In Progress</span>
                     <Activity className="w-5 h-5 text-blue-600" />
@@ -1241,7 +1241,7 @@ export default function SupplierScorecard() {
                   <div className="text-sm text-gray-600">Being addressed</div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-green-600 text-sm font-medium">Completed</span>
                     <CheckCircle className="w-5 h-5 text-green-600" />

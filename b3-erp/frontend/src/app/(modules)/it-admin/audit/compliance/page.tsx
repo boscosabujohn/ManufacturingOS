@@ -412,7 +412,7 @@ const ComplianceAuditPage = () => {
       )}
 
       {/* Header Section */}
-      <div className="flex-none p-6 pb-4 space-y-4">
+      <div className="flex-none p-3 pb-4 space-y-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-orange-100 rounded-lg">
@@ -442,8 +442,8 @@ const ComplianceAuditPage = () => {
         </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-2">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Overall Score</span>
             <Award className="w-4 h-4 text-green-600" />
@@ -453,7 +453,7 @@ const ComplianceAuditPage = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Requirements</span>
             <Target className="w-4 h-4 text-blue-600" />
@@ -461,7 +461,7 @@ const ComplianceAuditPage = () => {
           <div className="text-2xl font-bold text-gray-900">{stats.totalRequirements}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Compliant</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -469,7 +469,7 @@ const ComplianceAuditPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.compliant}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Partial</span>
             <Clock className="w-4 h-4 text-yellow-600" />
@@ -477,7 +477,7 @@ const ComplianceAuditPage = () => {
           <div className="text-2xl font-bold text-yellow-600">{stats.partiallyCompliant}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Non-Compliant</span>
             <XCircle className="w-4 h-4 text-red-600" />
@@ -485,7 +485,7 @@ const ComplianceAuditPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.nonCompliant}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Open Issues</span>
             <AlertTriangle className="w-4 h-4 text-orange-600" />
@@ -493,7 +493,7 @@ const ComplianceAuditPage = () => {
           <div className="text-2xl font-bold text-orange-600">{stats.openViolations}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Critical</span>
             <Shield className="w-4 h-4 text-red-600" />
@@ -511,7 +511,7 @@ const ComplianceAuditPage = () => {
         <div className="flex">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors ${
               activeTab === 'overview'
                 ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50'
                 : 'text-gray-600 hover:text-gray-900'
@@ -524,7 +524,7 @@ const ComplianceAuditPage = () => {
           </button>
           <button
             onClick={() => setActiveTab('requirements')}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors ${
               activeTab === 'requirements'
                 ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50'
                 : 'text-gray-600 hover:text-gray-900'
@@ -537,7 +537,7 @@ const ComplianceAuditPage = () => {
           </button>
           <button
             onClick={() => setActiveTab('violations')}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
+            className={`flex-1 px-3 py-2 text-sm font-medium transition-colors ${
               activeTab === 'violations'
                 ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50'
                 : 'text-gray-600 hover:text-gray-900'
@@ -552,14 +552,14 @@ const ComplianceAuditPage = () => {
       </div>
 
           {/* Content Area */}
-          <div className="flex-1 overflow-auto p-4">
+          <div className="flex-1 overflow-auto p-3">
       {/* Filters */}
-      <div className="bg-gray-50 rounded-lg p-4 mb-6">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="bg-gray-50 rounded-lg p-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           <div className="flex-1 min-w-[250px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -626,11 +626,11 @@ const ComplianceAuditPage = () => {
 
       {/* Overview Tab */}
       {activeTab === 'overview' && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Compliance by Category */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Compliance by Regulatory Framework</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Compliance by Regulatory Framework</h3>
+            <div className="space-y-2">
               {['GDPR', 'SOC 2', 'ISO 27001', 'PCI DSS', 'HIPAA'].map(category => {
                 const categoryReqs = requirements.filter(r => r.category === category);
                 const avgCompliance = categoryReqs.length > 0
@@ -660,8 +660,8 @@ const ComplianceAuditPage = () => {
           </div>
 
           {/* Recent Violations */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Critical Violations</h3>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Recent Critical Violations</h3>
             <div className="space-y-3">
               {violations.filter(v => v.severity === 'Critical' && v.status !== 'Resolved').slice(0, 3).map(violation => (
                 <div key={violation.id} className="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -674,7 +674,7 @@ const ComplianceAuditPage = () => {
                       </span>
                     </div>
                     <p className="text-sm text-red-900">{violation.description}</p>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-red-700">
+                    <div className="flex items-center gap-2 mt-2 text-xs text-red-700">
                       <span>Category: {violation.category}</span>
                       <span>Assigned: {violation.assignedTo}</span>
                       <span>Due: {violation.dueDate}</span>
@@ -854,9 +854,9 @@ const ComplianceAuditPage = () => {
 
       {/* Details Modal */}
       {selectedItem && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-xl max-w-3xl w-full max-h-[90vh] overflow-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200">
               <h3 className="text-xl font-bold text-gray-900">
                 {'violationId' in selectedItem ? 'Violation Details' : 'Requirement Details'}
               </h3>
@@ -871,7 +871,7 @@ const ComplianceAuditPage = () => {
 
             <div className="p-6">
               {'violationId' in selectedItem ? (
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="col-span-2">
                     <label className="block text-sm font-medium text-gray-600 mb-1">Violation ID</label>
                     <code className="text-lg font-bold text-red-800 bg-red-50 px-3 py-2 rounded">{selectedItem.violationId}</code>
@@ -910,7 +910,7 @@ const ComplianceAuditPage = () => {
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-600 mb-1">Category</label>
                     <div className="bg-gray-50 rounded-lg p-3 text-gray-900">{selectedItem.category}</div>
@@ -953,7 +953,7 @@ const ComplianceAuditPage = () => {
               )}
             </div>
 
-            <div className="flex justify-end gap-3 p-6 border-t border-gray-200">
+            <div className="flex justify-end gap-3 p-3 border-t border-gray-200">
               <button
                 onClick={handleCloseDetails}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"

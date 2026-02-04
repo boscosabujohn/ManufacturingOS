@@ -84,17 +84,17 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
       showCloseButton={false}
     >
       <div className="text-center">
-        <div className={`mx-auto flex items-center justify-center h-12 w-12 rounded-full ${config.bgColor} mb-4`}>
+        <div className={`mx-auto flex items-center justify-center h-12 w-12 rounded-full ${config.bgColor} mb-2`}>
           <Icon className={`h-6 w-6 ${config.iconColor}`} />
         </div>
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
           {title}
         </h3>
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-gray-600 mb-2">
           {message}
         </p>
         {impactAnalysis && impactAnalysis.length > 0 && (
-          <div className={`${config.bgColor} rounded-lg p-4 mb-6 text-left`}>
+          <div className={`${config.bgColor} rounded-lg p-3 mb-3 text-left`}>
             <p className="text-sm font-medium text-gray-700 mb-2">Impact Analysis:</p>
             <ul className="space-y-1">
               {impactAnalysis.map((impact, index) => (

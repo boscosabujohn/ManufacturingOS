@@ -204,8 +204,8 @@ export default function BrandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
+      <div className="mb-3 flex items-center gap-2">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
@@ -233,10 +233,10 @@ export default function BrandingPage() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Tabs */}
-        <div className="bg-white rounded-xl border border-gray-200 p-4">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Settings</h2>
+        <div className="bg-white rounded-xl border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Settings</h2>
 
           <div className="space-y-2">
             {tabs.map((tab) => {
@@ -284,19 +284,19 @@ export default function BrandingPage() {
         </div>
 
         {/* Content */}
-        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-6">
+        <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-3">
           {/* Logo & Images Tab */}
           {activeTab === 'logo' && (
             <div>
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Logo & Images</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Logo & Images</h2>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Primary Logo</label>
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                     <Upload className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-sm font-medium text-gray-900 mb-1">Drop your logo here or click to browse</p>
-                    <p className="text-xs text-gray-500 mb-4">PNG, SVG (Max 2MB, Recommended: 200x60px)</p>
+                    <p className="text-xs text-gray-500 mb-2">PNG, SVG (Max 2MB, Recommended: 200x60px)</p>
                     <input type="file" className="hidden" id="primary-logo" accept="image/png,image/svg+xml" />
                     <label htmlFor="primary-logo" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer inline-block text-sm font-medium">
                       Select File
@@ -310,7 +310,7 @@ export default function BrandingPage() {
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                     <Upload className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-sm font-medium text-gray-900 mb-1">Drop your light logo here or click to browse</p>
-                    <p className="text-xs text-gray-500 mb-4">PNG, SVG (Max 2MB)</p>
+                    <p className="text-xs text-gray-500 mb-2">PNG, SVG (Max 2MB)</p>
                     <input type="file" className="hidden" id="secondary-logo" accept="image/png,image/svg+xml" />
                     <label htmlFor="secondary-logo" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer inline-block text-sm font-medium">
                       Select File
@@ -324,7 +324,7 @@ export default function BrandingPage() {
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
                     <Upload className="w-12 h-12 text-gray-400 mb-3" />
                     <p className="text-sm font-medium text-gray-900 mb-1">Drop your favicon here or click to browse</p>
-                    <p className="text-xs text-gray-500 mb-4">ICO, PNG (32x32px or 64x64px)</p>
+                    <p className="text-xs text-gray-500 mb-2">ICO, PNG (32x32px or 64x64px)</p>
                     <input type="file" className="hidden" id="favicon" accept="image/x-icon,image/png" />
                     <label htmlFor="favicon" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer inline-block text-sm font-medium">
                       Select File
@@ -339,9 +339,9 @@ export default function BrandingPage() {
           {/* Colors Tab */}
           {activeTab === 'colors' && (
             <div>
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Brand Colors</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Brand Colors</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {Object.entries(settings.colors).map(([key, value]) => (
                   <div key={key}>
                     <label className="block text-sm font-medium text-gray-700 mb-2 capitalize">
@@ -369,7 +369,7 @@ export default function BrandingPage() {
                 ))}
               </div>
 
-              <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h3 className="text-sm font-semibold text-blue-900 mb-2">Color Usage:</h3>
                 <ul className="text-sm text-blue-700 space-y-1">
                   <li>• <strong>Primary:</strong> Main brand color, buttons, links</li>
@@ -384,9 +384,9 @@ export default function BrandingPage() {
           {/* Typography Tab */}
           {activeTab === 'typography' && (
             <div>
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Typography</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Typography</h2>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Heading Font</label>
                   <select
@@ -439,12 +439,12 @@ export default function BrandingPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-4">Preview</h3>
+                <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-sm font-semibold text-gray-900 mb-2">Preview</h3>
                   <div style={{ fontFamily: settings.typography.headingFont }}>
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Heading 1</h1>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Heading 2</h2>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Heading 3</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">Heading 3</h3>
                   </div>
                   <div style={{ fontFamily: settings.typography.bodyFont }}>
                     <p className="text-gray-700">
@@ -460,9 +460,9 @@ export default function BrandingPage() {
           {/* Layout Tab */}
           {activeTab === 'layout' && (
             <div>
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Layout Settings</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Layout Settings</h2>
 
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-3">Sidebar Position</label>
                   <div className="grid grid-cols-2 gap-3">
@@ -506,7 +506,7 @@ export default function BrandingPage() {
                 </div>
 
                 <div>
-                  <label className="flex items-center gap-3 cursor-pointer p-4 border-2 border-gray-200 rounded-lg hover:border-blue-300">
+                  <label className="flex items-center gap-3 cursor-pointer p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300">
                     <input
                       type="checkbox"
                       checked={settings.layout.compactMode}
@@ -526,9 +526,9 @@ export default function BrandingPage() {
           {/* Custom CSS Tab */}
           {activeTab === 'css' && (
             <div>
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Custom CSS</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-2">Custom CSS</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Custom Styles</label>
                   <textarea
@@ -544,7 +544,7 @@ export default function BrandingPage() {
                   <p className="text-xs text-gray-600 mt-2">Advanced users can add custom CSS to further customize the appearance</p>
                 </div>
 
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <h3 className="text-sm font-semibold text-yellow-900 mb-2">Warning:</h3>
                   <ul className="text-sm text-yellow-700 space-y-1">
                     <li>• Custom CSS can override system styles</li>

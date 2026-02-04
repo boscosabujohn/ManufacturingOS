@@ -28,11 +28,11 @@ export default function AutomatedEscalations() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {/* Header with Visual Hierarchy */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col md:flex-row md:items-center justify-between gap-3 relative overflow-hidden">
         <div className="relative z-10">
-          <h2 className="text-3xl font-black text-slate-900 flex items-center gap-4 tracking-tight">
+          <h2 className="text-3xl font-black text-slate-900 flex items-center gap-2 tracking-tight">
             <div className="p-3 bg-orange-600 rounded-2xl shadow-xl shadow-orange-100">
               <ShieldAlert className="h-7 w-7 text-white" />
             </div>
@@ -41,11 +41,11 @@ export default function AutomatedEscalations() {
           <p className="text-slate-500 mt-2 text-lg font-medium">Automated mult-level response systems for SLA compliance</p>
         </div>
         <div className="flex items-center gap-3 relative z-10">
-          <button className="flex items-center gap-2 px-6 py-3 border-2 border-slate-100 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
+          <button className="flex items-center gap-2 px-3 py-2 border-2 border-slate-100 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition-all">
             <Settings className="h-4 w-4" />
             Rules Library
           </button>
-          <button className="flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg shadow-orange-100 active:scale-95">
+          <button className="flex items-center gap-2 px-3 py-2 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg shadow-orange-100 active:scale-95">
             <Plus className="h-4 w-4" />
             New Trigger
           </button>
@@ -55,7 +55,7 @@ export default function AutomatedEscalations() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Rules Logic Builder Representation */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             <div className="p-6 border-b border-slate-100 flex items-center justify-between">
               <h3 className="font-bold text-slate-900 flex items-center gap-2">
@@ -78,11 +78,11 @@ export default function AutomatedEscalations() {
               </div>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-2">
               {rules.map((rule, idx) => (
                 <div key={idx} className="group p-5 bg-slate-50/50 hover:bg-white border border-transparent hover:border-orange-200 rounded-2xl transition-all">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex items-start gap-4">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                    <div className="flex items-start gap-2">
                       <div className={`p-2.5 rounded-xl ${rule.status === 'Active' ? 'bg-green-100 text-green-600' : 'bg-slate-200 text-slate-500'}`}>
                         <Bell className="h-5 w-5" />
                       </div>
@@ -126,9 +126,9 @@ export default function AutomatedEscalations() {
           </div>
 
           {/* Escalation Matrix Preview */}
-          <div className="bg-slate-50 p-6 rounded-2xl border border-dashed border-slate-300">
-            <h4 className="font-bold text-slate-700 mb-4 text-sm">Escalation Path Hierarchy</h4>
-            <div className="flex items-center justify-between max-w-lg mx-auto">
+          <div className="bg-slate-50 p-3 rounded-2xl border border-dashed border-slate-300">
+            <h4 className="font-bold text-slate-700 mb-2 text-sm">Escalation Path Hierarchy</h4>
+            <div className="flex items-center justify-between max-w-lg">
               <div className="flex flex-col items-center gap-2">
                 <div className="w-12 h-12 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center text-xs font-black text-slate-500">L1</div>
                 <span className="text-[10px] font-bold text-slate-400">TECHNICIAN</span>
@@ -152,9 +152,9 @@ export default function AutomatedEscalations() {
         </div>
 
         {/* Live Breach Monitor */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <div className="space-y-3">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-red-600" />
               Live Violation Monitor
             </h3>
@@ -182,9 +182,9 @@ export default function AutomatedEscalations() {
           </div>
 
           {/* Notification Distribution */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h4 className="font-black text-slate-900 text-[10px] uppercase tracking-widest mb-6">Alert Channels Health</h4>
-            <div className="space-y-6">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-3">
+            <h4 className="font-black text-slate-900 text-[10px] uppercase tracking-widest mb-3">Alert Channels Health</h4>
+            <div className="space-y-3">
               {[
                 { label: 'Push Notifications', value: 98, color: 'blue' },
                 { label: 'SMS Gateway', value: 85, color: 'orange' },
@@ -206,7 +206,7 @@ export default function AutomatedEscalations() {
           {/* Promotion Card */}
           <div className="bg-gradient-to-br from-indigo-900 to-purple-900 p-8 rounded-2xl text-white shadow-xl group">
             <h3 className="text-xl font-bold mb-2 tracking-tight">AI Escalation Prediction</h3>
-            <p className="text-indigo-100 text-xs mb-6 leading-relaxed">
+            <p className="text-indigo-100 text-xs mb-3 leading-relaxed">
               Leverage historical data to predict which tickets are likely to violate HLA before they occur.
             </p>
             <button className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-black transition-all text-sm backdrop-blur">

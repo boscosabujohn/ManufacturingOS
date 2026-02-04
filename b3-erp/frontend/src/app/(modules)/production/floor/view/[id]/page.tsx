@@ -1318,10 +1318,10 @@ export default function ProductionFloorViewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-3">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-3">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-4">
             <button
               onClick={() => router.push('/production/floor')}
@@ -1363,8 +1363,8 @@ export default function ProductionFloorViewPage() {
         </div>
 
         {/* Floor Info */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-          <div className="bg-white p-4 rounded-lg border">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+          <div className="bg-white p-3 rounded-lg border">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Shift</p>
@@ -1376,7 +1376,7 @@ export default function ProductionFloorViewPage() {
               <Clock className="w-8 h-8 text-blue-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border">
+          <div className="bg-white p-3 rounded-lg border">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Date</p>
@@ -1386,7 +1386,7 @@ export default function ProductionFloorViewPage() {
               <Calendar className="w-8 h-8 text-purple-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border">
+          <div className="bg-white p-3 rounded-lg border">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Status</p>
@@ -1403,7 +1403,7 @@ export default function ProductionFloorViewPage() {
               <Activity className="w-8 h-8 text-green-600" />
             </div>
           </div>
-          <div className="bg-white p-4 rounded-lg border">
+          <div className="bg-white p-3 rounded-lg border">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Operators</p>
@@ -1418,8 +1418,8 @@ export default function ProductionFloorViewPage() {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-lg text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-lg text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-blue-100">Active Work Orders</p>
@@ -1428,7 +1428,7 @@ export default function ProductionFloorViewPage() {
               <ClipboardList className="w-12 h-12 text-blue-200" />
             </div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 p-4 rounded-lg text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-lg text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-green-100">Output Today</p>
@@ -1440,7 +1440,7 @@ export default function ProductionFloorViewPage() {
               <Target className="w-12 h-12 text-green-200" />
             </div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-4 rounded-lg text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-lg text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-purple-100">OEE %</p>
@@ -1453,7 +1453,7 @@ export default function ProductionFloorViewPage() {
               <Gauge className="w-12 h-12 text-purple-200" />
             </div>
           </div>
-          <div className="bg-gradient-to-br from-red-500 to-red-600 p-4 rounded-lg text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-lg text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-red-100">Downtime Hours</p>
@@ -1477,12 +1477,12 @@ export default function ProductionFloorViewPage() {
       </div>
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg border mb-6">
+      <div className="bg-white rounded-lg border mb-3">
         <div className="border-b">
           <div className="flex space-x-1 p-1">
             <button
               onClick={() => setActiveTab('floor')}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'floor'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -1493,7 +1493,7 @@ export default function ProductionFloorViewPage() {
             </button>
             <button
               onClick={() => setActiveTab('operators')}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'operators'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -1504,7 +1504,7 @@ export default function ProductionFloorViewPage() {
             </button>
             <button
               onClick={() => setActiveTab('materials')}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'materials'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -1515,7 +1515,7 @@ export default function ProductionFloorViewPage() {
             </button>
             <button
               onClick={() => setActiveTab('tools')}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-colors ${
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-medium transition-colors ${
                 activeTab === 'tools'
                   ? 'bg-blue-50 text-blue-700'
                   : 'text-gray-600 hover:bg-gray-50'
@@ -1531,15 +1531,15 @@ export default function ProductionFloorViewPage() {
         <div className="p-6">
           {/* Floor Status Tab */}
           {activeTab === 'floor' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Work Center Cards */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Live Work Center Status</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Live Work Center Status</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                   {floorData.floorActivities.map((activity) => (
                     <div
                       key={activity.id}
-                      className={`bg-white border-2 rounded-lg p-4 ${
+                      className={`bg-white border-2 rounded-lg p-3 ${
                         activity.status === 'breakdown'
                           ? 'border-red-300 animate-pulse'
                           : 'border-gray-200'
@@ -1677,10 +1677,10 @@ export default function ProductionFloorViewPage() {
               </div>
 
               {/* Alerts Section */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {/* Downtime Alerts */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
                     <AlertTriangle className="w-5 h-5 text-red-600" />
                     <span>Downtime Alerts</span>
                   </h3>
@@ -1688,7 +1688,7 @@ export default function ProductionFloorViewPage() {
                     {floorData.downtimeAlerts.map((alert) => (
                       <div
                         key={alert.id}
-                        className={`bg-white border-l-4 rounded-lg p-4 ${
+                        className={`bg-white border-l-4 rounded-lg p-3 ${
                           alert.status === 'ongoing' ? 'border-red-500' : 'border-gray-300'
                         }`}
                       >
@@ -1732,13 +1732,13 @@ export default function ProductionFloorViewPage() {
 
                 {/* Material Requests */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
                     <PackageCheck className="w-5 h-5 text-orange-600" />
                     <span>Material Call-off Requests</span>
                   </h3>
                   <div className="space-y-3">
                     {floorData.materialRequests.map((request) => (
-                      <div key={request.id} className="bg-white border rounded-lg p-4">
+                      <div key={request.id} className="bg-white border rounded-lg p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <p className="font-semibold text-gray-900">{request.workCenter}</p>
@@ -1780,16 +1780,16 @@ export default function ProductionFloorViewPage() {
               </div>
 
               {/* Quality Alerts & Shift Handover */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 {/* Quality Alerts */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
                     <Shield className="w-5 h-5 text-purple-600" />
                     <span>Quality Alerts</span>
                   </h3>
                   <div className="space-y-3">
                     {floorData.qualityAlerts.map((alert) => (
-                      <div key={alert.id} className="bg-white border-l-4 border-purple-500 rounded-lg p-4">
+                      <div key={alert.id} className="bg-white border-l-4 border-purple-500 rounded-lg p-3">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <p className="font-semibold text-gray-900">{alert.workCenter}</p>
@@ -1832,12 +1832,12 @@ export default function ProductionFloorViewPage() {
 
                 {/* Shift Handover Notes */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
                     <MessageSquare className="w-5 h-5 text-blue-600" />
                     <span>Shift Handover Notes</span>
                   </h3>
                   {floorData.shiftHandoverNotes.map((note) => (
-                    <div key={note.id} className="bg-white border rounded-lg p-4">
+                    <div key={note.id} className="bg-white border rounded-lg p-3">
                       <div className="flex items-center justify-between mb-3">
                         <div>
                           <p className="font-semibold text-gray-900">
@@ -1863,7 +1863,7 @@ export default function ProductionFloorViewPage() {
                           ))}
                         </ul>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 mb-3">
+                      <div className="grid grid-cols-2 gap-2 mb-3">
                         <div className="bg-green-50 p-2 rounded">
                           <p className="text-xs text-green-600">Completed WOs</p>
                           <p className="text-lg font-semibold text-green-900">{note.completedWOs}</p>
@@ -1889,12 +1889,12 @@ export default function ProductionFloorViewPage() {
 
               {/* Activity Timeline */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
                   <Clock className="w-5 h-5 text-blue-600" />
                   <span>Activity Timeline</span>
                 </h3>
-                <div className="bg-white border rounded-lg p-4">
-                  <div className="space-y-4">
+                <div className="bg-white border rounded-lg p-3">
+                  <div className="space-y-2">
                     {floorData.activityTimeline.map((activity, index) => (
                       <div key={activity.id} className="flex items-start space-x-4">
                         <div className="flex flex-col items-center">
@@ -1929,14 +1929,14 @@ export default function ProductionFloorViewPage() {
 
           {/* Operator Performance Tab */}
           {activeTab === 'operators' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Top Performers */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center space-x-2">
                   <Award className="w-5 h-5 text-yellow-600" />
                   <span>Top Performers Today</span>
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {floorData.operatorPerformance
                     .sort((a, b) => b.efficiency - a.efficiency)
                     .slice(0, 3)
@@ -1949,7 +1949,7 @@ export default function ProductionFloorViewPage() {
                             : index === 1
                             ? 'from-gray-100 to-gray-200 border-gray-400'
                             : 'from-orange-100 to-orange-200 border-orange-400'
-                        } border-2 rounded-lg p-4`}
+                        } border-2 rounded-lg p-3`}
                       >
                         <div className="flex items-center space-x-3 mb-3">
                           <div
@@ -1989,12 +1989,12 @@ export default function ProductionFloorViewPage() {
 
               {/* Operator Performance Cards */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">All Operators</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">All Operators</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {floorData.operatorPerformance.map((operator) => (
-                    <div key={operator.id} className="bg-white border rounded-lg p-4">
+                    <div key={operator.id} className="bg-white border rounded-lg p-3">
                       {/* Header */}
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-3">
                           <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                             <User className="w-6 h-6 text-blue-600" />
@@ -2015,7 +2015,7 @@ export default function ProductionFloorViewPage() {
                       </div>
 
                       {/* Performance Metrics */}
-                      <div className="grid grid-cols-3 gap-3 mb-4">
+                      <div className="grid grid-cols-3 gap-3 mb-2">
                         <div className="bg-blue-50 p-3 rounded text-center">
                           <p className="text-xs text-blue-600 mb-1">Operations</p>
                           <p className="text-lg font-bold text-blue-900">{operator.operationsCompleted}</p>
@@ -2031,7 +2031,7 @@ export default function ProductionFloorViewPage() {
                       </div>
 
                       {/* Production Progress */}
-                      <div className="mb-4">
+                      <div className="mb-2">
                         <div className="flex items-center justify-between text-sm mb-1">
                           <span className="text-gray-600">Production Target</span>
                           <span className="font-semibold text-gray-900">
@@ -2052,7 +2052,7 @@ export default function ProductionFloorViewPage() {
                       </div>
 
                       {/* Time Info */}
-                      <div className="grid grid-cols-2 gap-3 mb-4">
+                      <div className="grid grid-cols-2 gap-3 mb-2">
                         <div>
                           <p className="text-xs text-gray-600">Login Time</p>
                           <p className="text-sm font-medium text-gray-900">{operator.loginTime}</p>
@@ -2066,7 +2066,7 @@ export default function ProductionFloorViewPage() {
                       </div>
 
                       {/* Attendance Streak */}
-                      <div className="mb-4">
+                      <div className="mb-2">
                         <div className="flex items-center space-x-2 bg-orange-50 p-2 rounded">
                           <Calendar className="w-4 h-4 text-orange-600" />
                           <span className="text-sm text-orange-900">
@@ -2076,7 +2076,7 @@ export default function ProductionFloorViewPage() {
                       </div>
 
                       {/* Skills */}
-                      <div className="mb-4">
+                      <div className="mb-2">
                         <p className="text-xs font-medium text-gray-700 mb-2">Skills:</p>
                         <div className="flex flex-wrap gap-1">
                           {operator.skills.map((skill, index) => (
@@ -2091,7 +2091,7 @@ export default function ProductionFloorViewPage() {
                       </div>
 
                       {/* Certifications */}
-                      <div className="mb-4">
+                      <div className="mb-2">
                         <p className="text-xs font-medium text-gray-700 mb-2">Certifications:</p>
                         <div className="flex flex-wrap gap-1">
                           {operator.certifications.map((cert, index) => (
@@ -2133,10 +2133,10 @@ export default function ProductionFloorViewPage() {
 
           {/* Material Consumption Tab */}
           {activeTab === 'materials' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Summary Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-blue-600">Total Materials</p>
@@ -2147,7 +2147,7 @@ export default function ProductionFloorViewPage() {
                     <Box className="w-8 h-8 text-blue-600" />
                   </div>
                 </div>
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-green-600">Total Cost</p>
@@ -2161,7 +2161,7 @@ export default function ProductionFloorViewPage() {
                     <DollarSign className="w-8 h-8 text-green-600" />
                   </div>
                 </div>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-yellow-600">Avg Scrap %</p>
@@ -2178,7 +2178,7 @@ export default function ProductionFloorViewPage() {
                     <TrendingDown className="w-8 h-8 text-yellow-600" />
                   </div>
                 </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-red-600">Critical Items</p>
@@ -2193,7 +2193,7 @@ export default function ProductionFloorViewPage() {
 
               {/* Material Consumption Table */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Material Consumption Details</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Material Consumption Details</h3>
                 <div className="bg-white border rounded-lg overflow-hidden">
                   <div className="overflow-x-auto">
                     <table className="w-full">
@@ -2325,10 +2325,10 @@ export default function ProductionFloorViewPage() {
 
           {/* Wrench & Die Tracking Tab */}
           {activeTab === 'tools' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Summary Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-green-600">Active Tools</p>
@@ -2339,7 +2339,7 @@ export default function ProductionFloorViewPage() {
                     <CheckCircle2 className="w-8 h-8 text-green-600" />
                   </div>
                 </div>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-yellow-600">Due for Maintenance</p>
@@ -2353,7 +2353,7 @@ export default function ProductionFloorViewPage() {
                     <Settings className="w-8 h-8 text-yellow-600" />
                   </div>
                 </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-red-600">Replacement Due</p>
@@ -2364,7 +2364,7 @@ export default function ProductionFloorViewPage() {
                     <AlertTriangle className="w-8 h-8 text-red-600" />
                   </div>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-blue-600">Total Tools</p>
@@ -2379,12 +2379,12 @@ export default function ProductionFloorViewPage() {
 
               {/* Wrench Cards */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Active Tools & Dies</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Active Tools & Dies</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                   {floorData.toolTracking.map((tool) => (
                     <div
                       key={tool.id}
-                      className={`bg-white border-2 rounded-lg p-4 ${
+                      className={`bg-white border-2 rounded-lg p-3 ${
                         tool.status === 'replacement_due'
                           ? 'border-red-300'
                           : tool.status === 'due_for_maintenance'

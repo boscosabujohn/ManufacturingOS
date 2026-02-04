@@ -253,10 +253,10 @@ export default function MaintenanceHistoryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -278,8 +278,8 @@ export default function MaintenanceHistoryPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Records</p>
@@ -288,7 +288,7 @@ export default function MaintenanceHistoryPage() {
             <Calendar className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Cost</p>
@@ -297,7 +297,7 @@ export default function MaintenanceHistoryPage() {
             <TrendingUp className="w-8 h-8 text-orange-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Downtime</p>
@@ -306,7 +306,7 @@ export default function MaintenanceHistoryPage() {
             <TrendingDown className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        <div className="bg-white rounded-lg p-4 border border-gray-200">
+        <div className="bg-white rounded-lg p-3 border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Duration</p>
@@ -318,8 +318,8 @@ export default function MaintenanceHistoryPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
@@ -366,60 +366,60 @@ export default function MaintenanceHistoryPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Equipment</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Start</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Completed</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Technician</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Downtime</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Equipment</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Start</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Completed</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Technician</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Cost</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Downtime</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredHistory.map((record) => (
                 <tr key={record.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-medium text-gray-900">{record.maintenanceId}</span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm font-medium text-gray-900">{record.equipmentCode}</div>
                     <div className="text-sm text-gray-500">{record.equipmentName}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${getTypeColor(record.maintenanceType)}`}>
                       {record.maintenanceType}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{record.startDate}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{record.completionDate}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{record.duration}h</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{record.technician}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="text-sm font-semibold text-gray-900">₹{(record.cost / 1000).toFixed(1)}K</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`text-sm font-semibold ${record.downtime > 0 ? 'text-red-600' : 'text-green-600'}`}>
                       {record.downtime}h
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(record.status)}`}>
                       {record.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <button
                       onClick={() => handleViewDetails(record)}
                       className="text-blue-600 hover:text-blue-900"
@@ -437,9 +437,9 @@ export default function MaintenanceHistoryPage() {
 
       {/* View Details Modal */}
       {selectedHistory && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <h2 className="text-xl font-bold text-gray-900">Maintenance Record - {selectedHistory.maintenanceId}</h2>
               <button
                 onClick={() => setSelectedHistory(null)}
@@ -448,8 +448,8 @@ export default function MaintenanceHistoryPage() {
                 <AlertCircle className="w-6 h-6" />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700">Equipment Code</label>
                   <p className="text-gray-900">{selectedHistory.equipmentCode}</p>

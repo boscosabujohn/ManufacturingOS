@@ -38,11 +38,11 @@ function RevenueDetailsContent() {
                     <table className="w-full">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice #</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice #</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -51,13 +51,13 @@ function RevenueDetailsContent() {
                                     key={inv.id}
                                     onClick={() => router.push(`/sales/invoices/${inv.id}`)}
                                 >
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{inv.id}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{inv.date}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{inv.customer}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-blue-600">{inv.id}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{inv.date}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">{inv.customer}</td>
+                                    <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-gray-900">
                                         ₹{inv.amount.toLocaleString()}
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm">
+                                    <td className="px-3 py-2 whitespace-nowrap text-center text-sm">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${inv.status === 'Paid' ? 'bg-green-100 text-green-800' :
                                                 inv.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                                                     'bg-red-100 text-red-800'
