@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -12,8 +12,20 @@ import {
     PackageCheck,
     CheckCircle2,
     Camera,
-    FileText
+    FileText,
+    Search,
+    FolderKanban,
+    Building2,
+    Loader2,
 } from 'lucide-react';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
+
+interface ProjectInfo {
+    id: string;
+    name: string;
+    clientName: string;
+    status: string;
+}
 
 interface DeliveryItem {
     id: string;
@@ -27,7 +39,16 @@ interface DeliveryItem {
 
 export default function DeliveryConfirmationPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { toast } = useToast();
+
+    // Project selection state
+    const [projects, setProjects] = useState<ProjectInfo[]>([]);
+    const [selectedProject, setSelectedProject] = useState<ProjectInfo | null>(null);
+    const [projectSearch, setProjectSearch] = useState('');
+    const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+
+    // Page data state
     const [deliveryItems, setDeliveryItems] = useState<DeliveryItem[]>([
         { id: '1', packageId: 'PKG-001', description: 'Main Cabinet Units', quantity: 10, received: true, condition: 'Good', notes: '' },
         { id: '2', packageId: 'PKG-002', description: 'Side Panels', quantity: 5, received: true, condition: 'Good', notes: '' },
@@ -36,6 +57,49 @@ export default function DeliveryConfirmationPage() {
 
     const [deliveryConfirmed, setDeliveryConfirmed] = useState(false);
     const [signatureUploaded, setSignatureUploaded] = useState(false);
+
+    useEffect(() => {
+        loadProjects();
+    }, []);
+
+    const loadProjects = async () => {
+        try {
+            const allProjects = await projectManagementService.getProjects();
+            const projectInfos: ProjectInfo[] = allProjects.map((p: Project) => ({
+                id: p.id,
+                name: p.name || `Project ${p.id}`,
+                clientName: p.clientName || 'Unknown Client',
+                status: p.status || 'active',
+            }));
+            setProjects(projectInfos);
+
+            const projectId = searchParams.get('projectId');
+            if (projectId) {
+                const found = projectInfos.find(p => p.id === projectId);
+                if (found) {
+                    setSelectedProject(found);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading projects:', error);
+        } finally {
+            setIsLoadingProjects(false);
+        }
+    };
+
+    const handleProjectSelect = (project: ProjectInfo) => {
+        setSelectedProject(project);
+        toast({ title: 'Project Selected', description: `Viewing delivery confirmation for ${project.name}` });
+    };
+
+    const handleChangeProject = () => {
+        setSelectedProject(null);
+    };
+
+    const filteredProjects = projects.filter(p =>
+        p.name.toLowerCase().includes(projectSearch.toLowerCase()) ||
+        p.clientName.toLowerCase().includes(projectSearch.toLowerCase())
+    );
 
     const handleToggleReceived = (id: string) => {
         setDeliveryItems(deliveryItems.map(item =>
@@ -78,6 +142,71 @@ export default function DeliveryConfirmationPage() {
         return <Badge className={styles[condition]}>{condition}</Badge>;
     };
 
+    // Project Selection View
+    if (!selectedProject) {
+        return (
+            <div className="w-full h-screen overflow-y-auto bg-gray-50">
+                <div className="px-4 py-4 space-y-4">
+                    <div className="bg-white rounded-lg border p-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <PackageCheck className="h-5 w-5 text-orange-600" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold text-gray-900">Delivery Confirmation</h1>
+                                <p className="text-sm text-gray-600">Select a project to confirm delivery</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search projects..."
+                            value={projectSearch}
+                            onChange={(e) => setProjectSearch(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        />
+                    </div>
+
+                    {isLoadingProjects ? (
+                        <div className="flex items-center justify-center py-12">
+                            <Loader2 className="h-8 w-8 animate-spin text-orange-600" />
+                            <span className="ml-2 text-gray-600">Loading projects...</span>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {filteredProjects.map((project) => (
+                                <Card key={project.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleProjectSelect(project)}>
+                                    <CardHeader className="pb-2">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <FolderKanban className="h-5 w-5 text-orange-600" />
+                                                <CardTitle className="text-base">{project.name}</CardTitle>
+                                            </div>
+                                            <Badge variant="outline" className="capitalize">{project.status}</Badge>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="pb-2">
+                                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                                            <Building2 className="h-4 w-4" />
+                                            <span>{project.clientName}</span>
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter>
+                                        <Button className="w-full bg-orange-600 hover:bg-orange-700">Select Project</Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Main Content View
     return (
         <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
@@ -87,12 +216,12 @@ export default function DeliveryConfirmationPage() {
                         7.8 Delivery Confirmation
                     </h1>
                     <p className="text-muted-foreground">
-                        Verify unloading, capture receipt sign-off, and confirm delivery completion.
+                        {selectedProject.name} • {selectedProject.clientName}
                     </p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" onClick={() => router.push('/logistics/tracking')}>
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                    <Button variant="outline" onClick={handleChangeProject}>
+                        Change Project
                     </Button>
                     <Button
                         onClick={() => router.push('/logistics/site-notification')}

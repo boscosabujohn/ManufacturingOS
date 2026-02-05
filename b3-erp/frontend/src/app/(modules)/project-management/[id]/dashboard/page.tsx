@@ -28,6 +28,7 @@ import {
   MoreVertical,
   Flag,
 } from 'lucide-react'
+import { useProjectContext } from '@/context/ProjectContext'
 import { projectManagementService, Project, ProjectTask, ProjectResource, ProjectBudget } from '@/services/ProjectManagementService'
 
 interface ProjectMetrics {
@@ -74,6 +75,7 @@ interface CriticalTask {
 const COLORS = ['#10b981', '#f59e0b', '#ef4444', '#3b82f6']
 
 export default function ProjectDashboardPage({ params }: { params: { id: string } }) {
+  const { loadProject } = useProjectContext()
   const [project, setProject] = useState<Project | null>(null)
   const [tasks, setTasks] = useState<ProjectTask[]>([])
   const [resources, setResources] = useState<ProjectResource[]>([])
@@ -104,7 +106,15 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
       setResources(resourcesData)
       setBudgets(budgetsData)
 
-      // Calculate metrics from fetched data
+      // Initialize global ProjectContext
+      loadProject({
+        id: projectData.id,
+        name: projectData.name,
+        projectType: projectData.projectType || 'Commercial Kitchen',
+        customerName: projectData.clientName,
+        status: projectData.status
+      })
+    } catch (error) {
       const completedTasks = tasksData.filter(t => t.status === 'Completed' || t.status === 'completed').length
       const inProgressTasks = tasksData.filter(t => t.status === 'In Progress' || t.status === 'in_progress').length
       const blockedTasks = tasksData.filter(t => t.status === 'Blocked' || t.status === 'blocked').length
@@ -306,13 +316,12 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-2xl font-bold text-gray-900">{project?.name || 'Project Dashboard'}</h1>
-            <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-              project?.status === 'Completed' ? 'bg-green-100 text-green-800' :
+            <span className={`px-2 py-1 text-xs font-semibold rounded-full ${project?.status === 'Completed' ? 'bg-green-100 text-green-800' :
               project?.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
-              project?.status === 'Delayed' ? 'bg-red-100 text-red-800' :
-              project?.status === 'On Hold' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-gray-100 text-gray-800'
-            }`}>
+                project?.status === 'Delayed' ? 'bg-red-100 text-red-800' :
+                  project?.status === 'On Hold' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-gray-100 text-gray-800'
+              }`}>
               {project?.status || 'Active'}
             </span>
           </div>
@@ -460,8 +469,8 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
                   <div className="text-right">
                     <p className="text-sm font-medium text-gray-900">Due {new Date(task.dueDate).toLocaleDateString()}</p>
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${task.status === 'blocked' ? 'bg-red-100 text-red-800' :
-                        task.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
-                          'bg-gray-100 text-gray-800'
+                      task.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
+                        'bg-gray-100 text-gray-800'
                       }`}>
                       {task.status.replace('_', ' ')}
                     </span>
@@ -485,8 +494,8 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
             {milestones.map((milestone, index) => (
               <div key={milestone.id} className="flex flex-col items-center">
                 <div className={`w-4 h-4 rounded-full border-2 z-10 ${milestone.status === 'completed' ? 'bg-green-500 border-green-500' :
-                    milestone.status === 'upcoming' ? 'bg-white border-blue-500' :
-                      'bg-red-500 border-red-500'
+                  milestone.status === 'upcoming' ? 'bg-white border-blue-500' :
+                    'bg-red-500 border-red-500'
                   }`}></div>
                 <div className="mt-4 text-center">
                   <p className="font-medium text-gray-900">{milestone.name}</p>

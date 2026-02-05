@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { useProjectContextOptional } from '@/context/ProjectContext';
+import { SIDEBAR_PHASE_MAPPING, getPhaseWorkflowStatus } from '@/lib/projectChecklistData';
 import {
   Users,
   ShoppingCart,
@@ -32,6 +34,9 @@ import {
   Palette,
   Search,
   HelpCircle,
+  Lock,
+  CheckCircle2,
+  Circle,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -3791,9 +3796,56 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
   const { hasPermission, isLoading, user } = useAuth();
+  const projectContext = useProjectContextOptional();
   const pathname = usePathname();
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(['project-management']));
   const [expandedSubItems, setExpandedSubItems] = useState<Set<string>>(new Set());
+
+  // Helper to get phase status icon for workflow phases
+  const getPhaseStatusIcon = (phaseName: string) => {
+    if (!projectContext?.checklist) return null;
+
+    const phaseId = SIDEBAR_PHASE_MAPPING[phaseName];
+    if (!phaseId) return null;
+
+    const status = getPhaseWorkflowStatus(projectContext.checklist, phaseId);
+
+    switch (status) {
+      case 'completed':
+        return <CheckCircle2 className="w-3 h-3 text-green-500" />;
+      case 'in_progress':
+        return <Circle className="w-3 h-3 text-blue-500 fill-blue-200" />;
+      case 'not_applicable':
+        return <Lock className="w-3 h-3 text-gray-400" />;
+      default:
+        return null;
+    }
+  };
+
+  // Check if a phase is applicable based on project checklist
+  const isPhaseDisabled = (phaseName: string): boolean => {
+    if (!projectContext?.checklist) return false;
+
+    // Handle extraction if name includes "Phase X: "
+    const cleanName = phaseName.includes(': ') ? phaseName.split(': ')[1] : phaseName;
+    const phaseId = SIDEBAR_PHASE_MAPPING[phaseName] || SIDEBAR_PHASE_MAPPING[cleanName];
+
+    if (!phaseId) return false;
+
+    const status = getPhaseWorkflowStatus(projectContext.checklist, phaseId);
+    return status === 'not_applicable';
+  };
+
+  // Check if an individual step is applicable
+  const isStepDisabled = (stepName: string, href: string): boolean => {
+    if (!projectContext?.checklist) return false;
+
+    // Try finding by href first as it's more reliable
+    const step = getStepByHref(projectContext.checklist, href);
+    if (step) return step.status === 'not_applicable';
+
+    return false;
+  };
 
   // Auto-expand based on current pathname
   useEffect(() => {
@@ -3956,16 +4008,18 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
             <div key={subItem.id}>
               {hasNestedItems ? (
                 <button
-                  onClick={() => toggleSubItem(parentId, subItem.id)}
+                  onClick={() => !isPhaseDisabled(subItem.name) && toggleSubItem(parentId, subItem.id)}
                   className={`w-full flex items-center justify-between py-1.5 text-[13px] hover:bg-brand-blue/10 transition-all duration-200 group ${isExpanded || isActive ? 'bg-brand-red/10 text-brand-lightBlue font-medium' : 'text-white'
-                    }`}
+                    } ${isPhaseDisabled(subItem.name) ? 'opacity-50 cursor-not-allowed' : ''}`}
                   style={{ paddingLeft, paddingRight: '0.75rem' }}
+                  disabled={isPhaseDisabled(subItem.name)}
                 >
                   <div className="flex items-center space-x-2">
                     <ChevronRight className={`h-3 w-3 ${isExpanded || isActive ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
                     <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                       {subItem.name}
                     </span>
+                    {getPhaseStatusIcon(subItem.name)}
                   </div>
                   <ChevronDown
                     className={`h-3 w-3 ${isExpanded || isActive ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
@@ -3975,8 +4029,9 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
               ) : (
                 <Link
                   href={subItem.href}
-                  className={`block py-1.5 text-[13px] ${isActive ? 'text-brand-lightBlue font-semibold bg-brand-red/10' : 'text-white'} hover:text-brand-lightBlue hover:bg-brand-red/10 transition-all duration-200 group`}
+                  className={`block py-1.5 text-[13px] ${isActive ? 'text-brand-lightBlue font-semibold bg-brand-red/10' : 'text-white'} hover:text-brand-lightBlue hover:bg-brand-red/10 transition-all duration-200 group ${isStepDisabled(subItem.name, subItem.href) ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`}
                   style={{ paddingLeft, paddingRight: '0.75rem' }}
+                  onClick={(e) => isStepDisabled(subItem.name, subItem.href) && e.preventDefault()}
                 >
                   <div className="flex items-center justify-between">
                     <span className="group-hover:translate-x-0.5 transition-transform duration-200">

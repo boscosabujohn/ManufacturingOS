@@ -4,34 +4,66 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Textarea } from '@/components/ui/Textarea';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { projectManagementService, Drawing } from '@/services/ProjectManagementService';
+import { projectManagementService, Drawing, Project } from '@/services/ProjectManagementService';
+import { useSearchParams } from 'next/navigation';
+import { LayoutGrid, List } from 'lucide-react';
 
 export default function DrawingVerificationPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const searchParams = useSearchParams();
+  const projectId = searchParams.get('projectId');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [drawings, setDrawings] = useState<Drawing[]>([]);
   const [loading, setLoading] = useState(true);
   const [rejectingId, setRejectingId] = useState<string | null>(null);
   const [rejectReason, setRejectReason] = useState('');
 
   useEffect(() => {
-    loadDrawings();
-  }, []);
+    if (projectId) {
+      loadProjectData(projectId);
+    } else {
+      loadProjects();
+    }
+  }, [projectId]);
 
-  const loadDrawings = async () => {
+  const loadProjects = async () => {
+    setLoading(true);
     try {
-      const data = await projectManagementService.getDrawings('current-project');
-      setDrawings(data);
+      const data = await projectManagementService.getProjects();
+      setProjects(data);
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to load drawings.",
+        description: "Failed to load projects.",
       });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadProjectData = async (id: string) => {
+    setLoading(true);
+    try {
+      const [project, drawingsData] = await Promise.all([
+        projectManagementService.getProject(id),
+        projectManagementService.getDrawings(id)
+      ]);
+      setSelectedProject(project);
+      setDrawings(drawingsData);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to load project details.",
+      });
+      router.push('/project-management/documents/verification');
     } finally {
       setLoading(false);
     }
@@ -77,16 +109,83 @@ export default function DrawingVerificationPage() {
   const pendingCount = drawings.filter(d => d.status === 'Pending').length;
   const isComplete = pendingCount === 0 && drawings.length > 0;
 
+  if (!projectId) {
+    return (
+      <div className="w-full py-2 space-y-6">
+        <div className="flex items-center gap-2 mb-3">
+          <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Select Project for Verification</h1>
+            <p className="text-sm text-gray-500">Choose a project to verify its layout drawings against BOQ</p>
+          </div>
+        </div>
+
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
+            <p className="mt-4 text-gray-500">Loading projects...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {projects.map((project) => (
+              <Card key={project.id} className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-3">
+                  <div className="flex justify-between items-start">
+                    <Badge variant="outline" className="mb-2">{project.projectCode}</Badge>
+                    <Badge className={project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' : ''}>
+                      {project.status}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-xl line-clamp-1">{project.name}</CardTitle>
+                  <CardDescription>{project.clientName}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <div className="flex justify-between">
+                      <span>Type:</span>
+                      <span className="font-medium">{project.projectType}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Location:</span>
+                      <span className="font-medium">{project.location}</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className="w-full"
+                    onClick={() => router.push(`/project-management/documents/verification?projectId=${project.id}`)}
+                  >
+                    Verify Drawings
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-2 mb-3">
-        <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
-          <ArrowLeft className="w-6 h-6 text-gray-600" />
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Drawing Verification</h1>
-          <p className="text-sm text-gray-500">Step 2.1: Verify layout drawings against BOQ and 3D models</p>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" onClick={() => router.push('/project-management/documents/verification')} className="p-0 hover:bg-transparent">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Drawing Verification</h1>
+            <p className="text-sm text-gray-500">
+              {selectedProject?.name} • Step 2.1: Verify layout drawings against BOQ
+            </p>
+          </div>
         </div>
+        <Button variant="outline" size="sm" onClick={() => router.push('/project-management/documents/verification')}>
+          Change Project
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

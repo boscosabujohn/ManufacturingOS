@@ -36,7 +36,7 @@ import {
 } from '@/components/ui/FormUX';
 import { SearchableSelect } from '@/components/ui/SearchableSelect';
 import { DragDropUpload, type FileItem } from '@/components/procurement/DragDropUpload';
-import { Paperclip } from 'lucide-react';
+import { Paperclip, ClipboardList, GitBranch } from 'lucide-react';
 import {
   CreateTemplateModal,
   EditTemplateModal,
@@ -49,6 +49,15 @@ import {
   ArchiveTemplateModal,
   FavoriteTemplateModal,
 } from '@/components/project-management/TemplatesModals';
+import {
+  ProjectChecklistModal,
+  ChecklistConfirmation,
+} from '@/components/project-management/ProjectChecklistModal';
+import { useProjectContext } from '@/context/ProjectContext';
+import {
+  ProjectChecklist,
+  getDefaultChecklist,
+} from '@/lib/projectChecklistData';
 
 // Field help content
 const FIELD_HELP = {
@@ -169,10 +178,13 @@ interface FormData {
   safetyRequirements: string;
   // Documents
   attachments: FileItem[];
+  // Workflow Checklist
+  checklist: ProjectChecklist | null;
 }
 
 const STEPS = [
   { id: 'basic', label: 'Basic Info', description: 'Project details', icon: Building2 },
+  { id: 'workflow', label: 'Workflow', description: 'Project checklist', icon: GitBranch },
   { id: 'timeline', label: 'Timeline & Budget', description: 'Schedule and costs', icon: Calendar },
   { id: 'team', label: 'Team', description: 'Assign team members', icon: Users },
   { id: 'deliverables', label: 'Deliverables', description: 'Key milestones', icon: Package },
@@ -203,9 +215,11 @@ const initialFormData: FormData = {
   specialRequirements: '',
   safetyRequirements: '',
   attachments: [],
+  checklist: null,
 };
 
 export default function CreateProjectEnhancedPage() {
+  const { loadProject } = useProjectContext();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -226,6 +240,17 @@ export default function CreateProjectEnhancedPage() {
   const [showArchiveTemplateModal, setShowArchiveTemplateModal] = useState(false);
   const [showFavoriteTemplateModal, setShowFavoriteTemplateModal] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
+
+  // Checklist Modal State
+  const [showChecklistModal, setShowChecklistModal] = useState(false);
+
+  // Auto-populate checklist when project type changes
+  useEffect(() => {
+    if (formData.projectType) {
+      const defaultChecklist = getDefaultChecklist(formData.projectType);
+      setFormData(prev => ({ ...prev, checklist: defaultChecklist }));
+    }
+  }, [formData.projectType]);
 
   // Auto-save draft - exclude attachments to prevent localStorage quota issues
   const persistableData = useMemo(() => {
@@ -373,7 +398,10 @@ export default function CreateProjectEnhancedPage() {
         if (!formData.customerName.trim()) newErrors.customerName = 'Customer name is required';
         if (!formData.location.trim()) newErrors.location = 'Location is required';
         break;
-      case 1: // Timeline & Budget
+      case 1: // Workflow Checklist - no required validation, just needs checklist to exist
+        // Checklist is auto-populated, so no validation needed
+        break;
+      case 2: // Timeline & Budget
         if (!formData.startDate) newErrors.startDate = 'Start date is required';
         if (!formData.endDate) newErrors.endDate = 'End date is required';
         if (!formData.estimatedBudget) newErrors.estimatedBudget = 'Budget is required';
@@ -382,7 +410,7 @@ export default function CreateProjectEnhancedPage() {
           newErrors.endDate = 'End date must be after start date';
         }
         break;
-      case 2: // Team
+      case 3: // Team
         if (!formData.projectManager) newErrors.projectManager = 'Project manager is required';
         break;
     }
@@ -409,8 +437,18 @@ export default function CreateProjectEnhancedPage() {
     setIsSubmitting(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const newProjectId = `PRJ-${Date.now()}`;
       console.log('Project created:', formData);
+
+      // Initialize global ProjectContext
+      loadProject({
+        id: newProjectId,
+        name: formData.projectName,
+        projectType: formData.projectType,
+        customerName: formData.customerName,
+        status: 'Planning'
+      });
+
       clearDraft();
       router.push('/project-management');
     } catch (error) {
@@ -628,6 +666,55 @@ export default function CreateProjectEnhancedPage() {
         );
 
       case 1:
+        // Workflow Checklist Step
+        return (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <GitBranch className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-semibold text-gray-900">Workflow Checklist</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowChecklistModal(true)}
+                className="px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-2"
+              >
+                <ClipboardList className="w-4 h-4" />
+                Edit Checklist
+              </button>
+            </div>
+
+            <p className="text-sm text-gray-600 mb-4">
+              Based on your selected project type <strong>({formData.projectType})</strong>, the following workflow phases and steps have been configured.
+              You can customize which steps are required, optional, or not applicable for this project.
+            </p>
+
+            {formData.checklist ? (
+              <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
+                <ChecklistConfirmation
+                  checklist={formData.checklist}
+                  onOpenModal={() => setShowChecklistModal(true)}
+                />
+              </div>
+            ) : (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+                <p className="text-yellow-800">
+                  Please select a project type first to generate the workflow checklist.
+                </p>
+              </div>
+            )}
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+              <h4 className="font-medium text-blue-900 mb-2">💡 Tip</h4>
+              <p className="text-sm text-blue-800">
+                Steps marked as &quot;Not Applicable&quot; will be hidden from the workflow navigation.
+                You can always change these settings later from the project details page.
+              </p>
+            </div>
+          </div>
+        );
+
+      case 2:
         return (
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-2">
@@ -726,7 +813,7 @@ export default function CreateProjectEnhancedPage() {
           </div>
         );
 
-      case 2:
+      case 3:
         return (
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-2">
@@ -851,7 +938,7 @@ export default function CreateProjectEnhancedPage() {
           </div>
         );
 
-      case 3:
+      case 4:
         return (
           <div className="space-y-3">
             <div className="flex items-center justify-between mb-2">
@@ -934,7 +1021,7 @@ export default function CreateProjectEnhancedPage() {
           </div>
         );
 
-      case 4:
+      case 5:
         return (
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-2">
@@ -979,7 +1066,7 @@ export default function CreateProjectEnhancedPage() {
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-2">
@@ -1001,7 +1088,7 @@ export default function CreateProjectEnhancedPage() {
           </div>
         );
 
-      case 6:
+      case 7:
         return (
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-2">
@@ -1131,6 +1218,19 @@ export default function CreateProjectEnhancedPage() {
                   </div>
                 ) : (
                   <p className="text-sm text-gray-500">No attachments uploaded</p>
+                )}
+              </div>
+
+              {/* Workflow Checklist */}
+              <div className="border-t pt-4">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Workflow Checklist</h3>
+                {formData.checklist ? (
+                  <ChecklistConfirmation
+                    checklist={formData.checklist}
+                    onOpenModal={() => setShowChecklistModal(true)}
+                  />
+                ) : (
+                  <p className="text-sm text-gray-500">No checklist configured</p>
                 )}
               </div>
             </div>
@@ -1380,6 +1480,18 @@ export default function CreateProjectEnhancedPage() {
           onToggleFavorite={handleToggleFavorite}
           template={selectedTemplate}
         />
+
+        {/* Project Checklist Modal */}
+        {formData.checklist && (
+          <ProjectChecklistModal
+            isOpen={showChecklistModal}
+            onClose={() => setShowChecklistModal(false)}
+            checklist={formData.checklist}
+            onChecklistChange={(updatedChecklist) => {
+              setFormData(prev => ({ ...prev, checklist: updatedChecklist }));
+            }}
+          />
+        )}
       </div>
     </div>
   );

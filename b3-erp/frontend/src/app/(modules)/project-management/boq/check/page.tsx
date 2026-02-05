@@ -4,33 +4,73 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, CheckSquare, FileSpreadsheet, AlertCircle, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/Input';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { projectManagementService, BOQItem } from '@/services/ProjectManagementService';
+import { projectManagementService, BOQItem, Project } from '@/services/ProjectManagementService';
+import { useProjectContext } from '@/context/ProjectContext';
+import { useSearchParams } from 'next/navigation';
 
 export default function BOQCheckPage() {
+  const { loadProject } = useProjectContext();
   const router = useRouter();
   const { toast } = useToast();
+  const searchParams = useSearchParams();
+  const projectId = searchParams.get('projectId');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [items, setItems] = useState<BOQItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    loadItems();
-  }, []);
+    if (projectId) {
+      loadProjectData(projectId);
+    } else {
+      loadProjects();
+    }
+  }, [projectId]);
 
-  const loadItems = async () => {
+  const loadProjects = async () => {
+    setLoading(true);
     try {
-      const data = await projectManagementService.getBOQItems('current-project');
-      setItems(data);
+      const data = await projectManagementService.getProjects();
+      setProjects(data);
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to load BOQ items.",
+        description: "Failed to load projects.",
       });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadProjectData = async (id: string) => {
+    setLoading(true);
+    try {
+      const [project, boqData] = await Promise.all([
+        projectManagementService.getProject(id),
+        projectManagementService.getBOQItems(id)
+      ]);
+      setSelectedProject(project);
+      setItems(boqData);
+      loadProject({
+        id: project.id,
+        name: project.name,
+        projectType: project.projectType || 'Commercial Kitchen',
+        customerName: project.clientName,
+        status: project.status
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to load project details.",
+      });
+      router.push('/project-management/boq/check');
     } finally {
       setLoading(false);
     }
@@ -88,16 +128,83 @@ export default function BOQCheckPage() {
 
   const mismatchCount = items.filter(i => i.status === 'Mismatch').length;
 
+  if (!projectId) {
+    return (
+      <div className="w-full py-2 space-y-6">
+        <div className="flex items-center gap-2 mb-3">
+          <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Select Project for BOQ Check</h1>
+            <p className="text-sm text-gray-500">Choose a project to verify BOQ quantities match drawing specifications</p>
+          </div>
+        </div>
+
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
+            <p className="mt-4 text-gray-500">Loading projects...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {projects.map((project) => (
+              <Card key={project.id} className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-3">
+                  <div className="flex justify-between items-start">
+                    <Badge variant="outline" className="mb-2">{project.projectCode}</Badge>
+                    <Badge className={project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' : ''}>
+                      {project.status}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-xl line-clamp-1">{project.name}</CardTitle>
+                  <CardDescription>{project.clientName}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2 text-sm text-gray-600">
+                    <div className="flex justify-between">
+                      <span>Type:</span>
+                      <span className="font-medium">{project.projectType}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Location:</span>
+                      <span className="font-medium">{project.location}</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className="w-full"
+                    onClick={() => router.push(`/project-management/boq/check?projectId=${project.id}`)}
+                  >
+                    Check BOQ
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="w-full py-2 space-y-3">
-      <div className="flex items-center gap-2 mb-3">
-        <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
-          <ArrowLeft className="w-6 h-6 text-gray-600" />
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">BOQ Cross-Check</h1>
-          <p className="text-sm text-gray-500">Step 2.2: Verify BOQ quantities match drawing specifications</p>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" onClick={() => router.push('/project-management/boq/check')} className="p-0 hover:bg-transparent">
+            <ArrowLeft className="w-6 h-6 text-gray-600" />
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">BOQ Cross-Check</h1>
+            <p className="text-sm text-gray-500">
+              {selectedProject?.name} • Step 2.2: Verify BOQ quantities match drawings
+            </p>
+          </div>
         </div>
+        <Button variant="outline" size="sm" onClick={() => router.push('/project-management/boq/check')}>
+          Change Project
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">

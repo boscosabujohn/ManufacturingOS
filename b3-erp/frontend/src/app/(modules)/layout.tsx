@@ -5,6 +5,7 @@ import DashboardLayout from '@/components/DashboardLayout';
 import { ToastProvider } from '@/components/ui/Toast';
 import { NotificationProvider } from '@/context/NotificationContext';
 import { EnhancedToastProvider } from '@/components/ui/EnhancedToast';
+import { ProjectProvider } from '@/context/ProjectContext';
 
 export default function ModulesLayout({
   children,
@@ -24,12 +25,14 @@ export default function ModulesLayout({
   };
 
   return (
-    <NotificationProvider>
-      <EnhancedToastProvider>
-        <ToastProvider>
-          <DashboardLayout pageTitle={getPageTitle()}>{children}</DashboardLayout>
-        </ToastProvider>
-      </EnhancedToastProvider>
-    </NotificationProvider>
+    <ProjectProvider>
+      <NotificationProvider>
+        <EnhancedToastProvider>
+          <ToastProvider>
+            <DashboardLayout pageTitle={getPageTitle()}>{children}</DashboardLayout>
+          </ToastProvider>
+        </EnhancedToastProvider>
+      </NotificationProvider>
+    </ProjectProvider>
   );
 }

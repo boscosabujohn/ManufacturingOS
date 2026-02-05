@@ -49,6 +49,7 @@ import {
   ArchiveTemplateModal,
   FavoriteTemplateModal,
 } from '@/components/project-management/TemplatesModals';
+import { useProjectContext } from '@/context/ProjectContext';
 
 // Field help content
 const FIELD_HELP = {
@@ -258,6 +259,7 @@ const mockProjects = [
 ];
 
 export default function EditProjectPage({ params }: { params: { id: string } }) {
+  const { loadProject } = useProjectContext();
   const router = useRouter();
   const { id } = params;
   const [currentStep, setCurrentStep] = useState(0);
@@ -300,8 +302,17 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
         priority: project.priority,
         // In a real app, you'd fetch team members and deliverables here
       });
+
+      // Initialize global ProjectContext
+      loadProject({
+        id: id,
+        name: project.projectName,
+        projectType: project.projectType as any,
+        customerName: project.customer,
+        status: project.status as any
+      });
     }
-  }, [id]);
+  }, [id, loadProject]);
 
   // Form field definitions for progress indicator
   const formFields = useMemo(() => [
@@ -460,6 +471,16 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       console.log('Project updated:', formData);
+
+      // Initialize global ProjectContext
+      loadProject({
+        id: id,
+        name: formData.projectName,
+        projectType: formData.projectType as any,
+        customerName: formData.customerName,
+        status: 'Planning' // Or fetch the actual status
+      });
+
       router.push('/project-management');
     } catch (error) {
       console.error('Error updating project:', error);

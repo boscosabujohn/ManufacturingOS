@@ -1,459 +1,373 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/Input';
+import { useToast } from '@/hooks/use-toast';
+import CAPAService, { CAPA } from '@/services/capa.service';
 import {
-    Plus,
-    Activity,
+    Shield,
+    CheckCircle2,
     Clock,
-    CheckCircle,
-    TrendingUp,
-    AlertCircle,
-    Search,
+    XCircle,
+    ArrowLeft,
+    FileText,
     User,
     Calendar,
-    FileText,
-    Link2,
     Target,
-    Eye,
-    MoreHorizontal,
-    Download,
-    ShieldCheck,
-    RefreshCw,
-    Loader2
+    FolderKanban,
+    Search,
+    Building2,
+    Loader2,
+    ArrowRight,
 } from 'lucide-react';
-import Link from 'next/link';
-import { CAPAService, CAPA as ServiceCAPA, CAPAStatus, CAPAType, CAPAPriority } from '@/services/capa.service';
+import { projectManagementService } from '@/services/ProjectManagementService';
 
-interface CAPA {
+interface ProjectInfo {
     id: string;
-    capaNumber: string;
-    title: string;
-    type: 'corrective' | 'preventive';
-    priority: 'high' | 'medium' | 'low';
-    status: 'planned' | 'in-progress' | 'completed' | 'overdue' | 'verified';
-    owner: string;
-    dueDate: string;
-    progress: number;
-    linkedNCR?: string;
-    description: string;
-    department: string;
-    rootCause?: string;
-    verifiedBy?: string;
+    name: string;
+    clientName: string;
+    status: string;
 }
 
-// CAPA data is now fetched from CAPAService
-
 export default function CAPAPage() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const { toast } = useToast();
+
+    // Project selection state
+    const [projects, setProjects] = useState<ProjectInfo[]>([]);
+    const [selectedProject, setSelectedProject] = useState<ProjectInfo | null>(null);
+    const [projectsLoading, setProjectsLoading] = useState(true);
+    const [projectSearch, setProjectSearch] = useState('');
+
+    // CAPA state
     const [capas, setCapas] = useState<CAPA[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [filter, setFilter] = useState('all');
-    const [searchTerm, setSearchTerm] = useState('');
-    const [typeFilter, setTypeFilter] = useState('all');
+    const [filterStatus, setFilterStatus] = useState<string>('all');
+    const [filterType, setFilterType] = useState<string>('all');
+    const [loading, setLoading] = useState(false);
 
-    // Transform service CAPA to page format
-    const transformCAPA = (capa: ServiceCAPA): CAPA => {
-        // Map type
-        const typeMap: Record<string, CAPA['type']> = {
-            'corrective': 'corrective',
-            'preventive': 'preventive',
-            'both': 'corrective', // Default to corrective for "both" type
-        };
+    // Load projects
+    useEffect(() => {
+        const loadProjects = async () => {
+            try {
+                const allProjects = await projectManagementService.getProjects();
+                const projectInfos: ProjectInfo[] = allProjects.map((p: any) => ({
+                    id: p.id,
+                    name: p.projectName || p.name || `Project ${p.id}`,
+                    clientName: p.clientName || p.customer || 'Unknown Client',
+                    status: p.status || 'active',
+                }));
+                setProjects(projectInfos);
 
-        // Map priority
-        const priorityMap: Record<string, CAPA['priority']> = {
-            'critical': 'high',
-            'high': 'high',
-            'medium': 'medium',
-            'low': 'low',
-        };
-
-        // Map status
-        let status: CAPA['status'] = 'planned';
-        switch (capa.status) {
-            case CAPAStatus.DRAFT:
-            case CAPAStatus.PENDING_APPROVAL:
-            case CAPAStatus.APPROVED:
-                status = 'planned';
-                break;
-            case CAPAStatus.INITIATED:
-            case CAPAStatus.IN_PROGRESS:
-            case CAPAStatus.IMPLEMENTATION:
-            case CAPAStatus.VERIFICATION:
-                status = 'in-progress';
-                break;
-            case CAPAStatus.EFFECTIVENESS_REVIEW:
-            case CAPAStatus.CLOSED:
-                status = capa.effectivenessVerified ? 'verified' : 'completed';
-                break;
-            default:
-                // Check if rejected or cancelled
-                if (capa.status === CAPAStatus.REJECTED || capa.status === CAPAStatus.CANCELLED) {
-                    status = 'completed';
-                } else {
-                    status = 'planned';
+                const projectId = searchParams.get('projectId');
+                if (projectId) {
+                    const found = projectInfos.find(p => p.id === projectId);
+                    if (found) {
+                        setSelectedProject(found);
+                    }
                 }
-        }
-
-        return {
-            id: capa.id,
-            capaNumber: capa.capaNumber,
-            title: capa.title,
-            type: typeMap[capa.type] || 'corrective',
-            priority: priorityMap[capa.priority] || 'medium',
-            status: status,
-            owner: capa.ownerName,
-            dueDate: new Date(capa.targetCompletionDate).toISOString().split('T')[0],
-            progress: capa.overallProgress,
-            linkedNCR: capa.ncrNumber,
-            description: capa.description,
-            department: capa.ownerDepartment,
-            rootCause: capa.rootCauseAnalysis?.rootCause,
-            verifiedBy: capa.effectivenessVerifiedBy,
+            } catch (error) {
+                console.error('Failed to load projects:', error);
+                toast({ title: 'Error', description: 'Failed to load projects', variant: 'destructive' });
+            } finally {
+                setProjectsLoading(false);
+            }
         };
-    };
+        loadProjects();
+    }, [searchParams, toast]);
 
-    const fetchCAPAs = async () => {
+    // Load CAPAs when project is selected
+    useEffect(() => {
+        if (selectedProject) {
+            loadCAPAs();
+        }
+    }, [selectedProject]);
+
+    const loadCAPAs = async () => {
+        setLoading(true);
         try {
-            setLoading(true);
-            setError(null);
-
             const data = await CAPAService.getAllCAPAs();
-            const transformedData = data.map(transformCAPA);
-            setCapas(transformedData);
-        } catch (err) {
-            console.error('Failed to fetch CAPAs:', err);
-            setError('Failed to load CAPAs. Please try again.');
+            setCapas(data);
+        } catch (error) {
+            console.error('Failed to load CAPAs:', error);
+            toast({ title: 'Error', description: 'Failed to load CAPAs', variant: 'destructive' });
         } finally {
             setLoading(false);
         }
     };
 
-    useEffect(() => {
-        fetchCAPAs();
-    }, []);
+    const handleProjectSelect = (project: ProjectInfo) => {
+        setSelectedProject(project);
+        router.push(`/quality/capa?projectId=${project.id}`);
+        toast({ title: 'Project Selected', description: `Viewing CAPAs for ${project.name}` });
+    };
 
-    const filteredCAPAs = useMemo(() => {
-        return capas.filter(c => {
-            const matchesStatus = filter === 'all' || c.status === filter;
-            const matchesType = typeFilter === 'all' || c.type === typeFilter;
-            const matchesSearch = c.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                c.capaNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                c.department.toLowerCase().includes(searchTerm.toLowerCase());
-            return matchesStatus && matchesType && matchesSearch;
-        });
-    }, [capas, filter, typeFilter, searchTerm]);
+    const filteredProjects = projects.filter(p =>
+        p.name.toLowerCase().includes(projectSearch.toLowerCase()) ||
+        p.clientName.toLowerCase().includes(projectSearch.toLowerCase())
+    );
+
+    const filteredCAPAs = capas.filter((capa) => {
+        const matchesStatus = filterStatus === 'all' || capa.status === filterStatus;
+        const matchesType = filterType === 'all' || capa.type === filterType;
+        return matchesStatus && matchesType;
+    });
+
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'closed':
+                return 'bg-green-100 text-green-800 border-green-300';
+            case 'in-progress':
+                return 'bg-blue-100 text-blue-800 border-blue-300';
+            case 'open':
+                return 'bg-red-100 text-red-800 border-red-300';
+            case 'pending-verification':
+                return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+            default:
+                return 'bg-gray-100 text-gray-800 border-gray-300';
+        }
+    };
+
+    const getTypeColor = (type: string) => {
+        switch (type) {
+            case 'corrective':
+                return 'bg-orange-100 text-orange-800 border-orange-300';
+            case 'preventive':
+                return 'bg-purple-100 text-purple-800 border-purple-300';
+            default:
+                return 'bg-gray-100 text-gray-800 border-gray-300';
+        }
+    };
 
     const stats = {
         total: capas.length,
-        active: capas.filter(c => c.status === 'in-progress' || c.status === 'planned').length,
-        completed: capas.filter(c => c.status === 'completed' || c.status === 'verified').length,
-        overdue: capas.filter(c => c.status === 'overdue').length,
+        open: capas.filter((c) => c.status === 'open').length,
+        inProgress: capas.filter((c) => c.status === 'in-progress').length,
+        closed: capas.filter((c) => c.status === 'closed').length,
     };
 
-    const getPriorityBadge = (priority: string) => {
-        const config: any = {
-            high: 'bg-red-100 text-red-700 border-red-200',
-            medium: 'bg-yellow-100 text-yellow-700 border-yellow-200',
-            low: 'bg-green-100 text-green-700 border-green-200',
-        };
+    // Project selection view
+    if (!selectedProject) {
         return (
-            <Badge variant="outline" className={`${config[priority] || 'bg-gray-100'} font-semibold capitalize`}>
-                {priority}
-            </Badge>
-        );
-    };
-
-    const getStatusBadge = (status: string) => {
-        const config: any = {
-            planned: { color: 'bg-blue-50 text-blue-600 border-blue-200', icon: Clock },
-            'in-progress': { color: 'bg-amber-50 text-amber-600 border-amber-200', icon: RefreshCw },
-            completed: { color: 'bg-green-50 text-green-600 border-green-200', icon: CheckCircle },
-            verified: { color: 'bg-emerald-50 text-emerald-700 border-emerald-200', icon: ShieldCheck },
-            overdue: { color: 'bg-red-50 text-red-600 border-red-200', icon: AlertCircle },
-        };
-        const { color, icon: Icon } = config[status] || config.planned;
-        return (
-            <Badge variant="outline" className={`${color} font-medium capitalize`}>
-                <Icon className="mr-1 h-3 w-3" />
-                {status.replace('-', ' ')}
-            </Badge>
-        );
-    };
-
-    const getTypeBadge = (type: string) => {
-        const config: any = {
-            corrective: 'bg-orange-50 text-orange-700 border-orange-200',
-            preventive: 'bg-purple-50 text-purple-700 border-purple-200',
-        };
-        return (
-            <Badge variant="outline" className={`${config[type] || 'bg-gray-50'} font-medium capitalize`}>
-                {type}
-            </Badge>
-        );
-    };
-
-    return (
-        <div className="w-full px-4 py-2 space-y-3">
-            {/* Header Area */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-                <div>
-                    <h1 className="text-3xl font-bold text-gray-900 tracking-tight">CAPA Management</h1>
-                    <p className="text-gray-500 mt-1">Corrective and Preventive Actions tracking</p>
-                </div>
-                <div className="flex gap-2">
-                    <Button variant="outline" className="hidden sm:flex items-center gap-2">
-                        <Download className="w-4 h-4" />
-                        Export
-                    </Button>
-                    <Link href="/quality/capa/new">
-                        <Button className="bg-blue-600 hover:bg-blue-700">
-                            <Plus className="mr-2 h-4 w-4" />
-                            Create CAPA
-                        </Button>
-                    </Link>
-                </div>
-            </div>
-
-            {/* KPI Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-                <Card className="bg-gradient-to-br from-gray-50 to-white">
-                    <CardContent className="p-4 flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium text-gray-500">Total CAPAs</p>
-                            <h3 className="text-2xl font-bold mt-1">{stats.total}</h3>
-                        </div>
-                        <div className="p-2 bg-gray-100 rounded-lg">
-                            <FileText className="w-6 h-6 text-gray-600" />
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="bg-gradient-to-br from-amber-50 to-white">
-                    <CardContent className="p-4 flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium text-amber-600">Active</p>
-                            <h3 className="text-2xl font-bold mt-1">{stats.active}</h3>
-                        </div>
-                        <div className="p-2 bg-amber-100 rounded-lg">
-                            <TrendingUp className="w-6 h-6 text-amber-600" />
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="bg-gradient-to-br from-green-50 to-white">
-                    <CardContent className="p-4 flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium text-green-600">Completed</p>
-                            <h3 className="text-2xl font-bold mt-1">{stats.completed}</h3>
-                        </div>
-                        <div className="p-2 bg-green-100 rounded-lg">
-                            <CheckCircle className="w-6 h-6 text-green-600" />
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="bg-gradient-to-br from-red-50 to-white">
-                    <CardContent className="p-4 flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium text-red-600">Overdue</p>
-                            <h3 className="text-2xl font-bold mt-1">{stats.overdue}</h3>
-                        </div>
-                        <div className="p-2 bg-red-100 rounded-lg">
-                            <AlertCircle className="w-6 h-6 text-red-600" />
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* Filters and Search */}
-            <Card className="shadow-sm border-gray-200">
-                <CardContent className="p-4">
-                    <div className="flex flex-col lg:flex-row gap-2 items-center">
-                        <div className="relative w-full lg:flex-1">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                            <Input
-                                placeholder="Search by CAPA #, title, or department..."
-                                className="pl-10 w-full"
-                                value={searchTerm}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-                            />
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
-                            <div className="flex bg-gray-100 p-1 rounded-lg">
-                                {['all', 'planned', 'in-progress', 'completed', 'overdue'].map((status) => (
-                                    <button
-                                        key={status}
-                                        onClick={() => setFilter(status)}
-                                        className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${filter === status
-                                            ? 'bg-white text-blue-600 shadow-sm'
-                                            : 'text-gray-500 hover:text-gray-700'
-                                            }`}
-                                    >
-                                        {status === 'all' ? 'All Status' : status.replace('-', ' ').charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
-                                    </button>
-                                ))}
+            <div className="w-full h-screen overflow-y-auto bg-gray-50">
+                <div className="px-3 py-2 space-y-3">
+                    {/* Header */}
+                    <div className="bg-white rounded-lg border p-3">
+                        <div className="flex items-center gap-2">
+                            <div className="p-2 bg-blue-100 rounded-lg">
+                                <Shield className="w-6 h-6 text-blue-600" />
                             </div>
-                            <select
-                                className="text-sm border-gray-200 rounded-lg px-3 py-2 bg-white outline-none focus:ring-2 focus:ring-blue-500 transition-all border"
-                                value={typeFilter}
-                                onChange={(e) => setTypeFilter(e.target.value)}
-                            >
-                                <option value="all">Any Type</option>
-                                <option value="corrective">Corrective</option>
-                                <option value="preventive">Preventive</option>
-                            </select>
+                            <div>
+                                <h1 className="text-3xl font-bold text-gray-900">Corrective & Preventive Actions</h1>
+                                <p className="text-sm text-gray-600 mt-1">Select a project to view CAPAs</p>
+                            </div>
                         </div>
                     </div>
-                </CardContent>
-            </Card>
 
-            {/* CAPA List */}
-            <div className="flex flex-col gap-2">
-                {error && (
-                    <Card className="border-red-200 bg-red-50">
-                        <CardContent className="p-4">
-                            <p className="text-red-600">{error}</p>
-                            <Button
-                                variant="link"
-                                onClick={fetchCAPAs}
-                                className="text-red-700 p-0 h-auto mt-1"
-                            >
-                                Try again
-                            </Button>
-                        </CardContent>
-                    </Card>
-                )}
-                {loading ? (
-                    <div className="flex items-center justify-center py-20">
-                        <Loader2 className="h-10 w-10 animate-spin text-blue-600" />
-                        <span className="ml-3 text-gray-600">Loading CAPAs...</span>
+                    {/* Search */}
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search projects..."
+                            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            value={projectSearch}
+                            onChange={(e) => setProjectSearch(e.target.value)}
+                        />
                     </div>
-                ) : filteredCAPAs.length === 0 ? (
-                    <Card className="border-dashed border-2 py-20 text-center">
-                        <div className="mx-auto w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-2">
-                            <Activity className="h-8 w-8 text-gray-300" />
+
+                    {/* Projects Grid */}
+                    {projectsLoading ? (
+                        <div className="flex items-center justify-center py-12">
+                            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                            <span className="ml-2 text-gray-600">Loading projects...</span>
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">No CAPAs match your criteria</h3>
-                        <p className="text-gray-500 mt-2">Try adjusting your filters or search terms.</p>
-                        <Button variant="outline" className="mt-6" onClick={() => { setFilter('all'); setTypeFilter('all'); setSearchTerm(''); }}>
-                            Clear All Filters
-                        </Button>
-                    </Card>
-                ) : (
-                    <div className="grid grid-cols-1 gap-2">
-                        {filteredCAPAs.map((capa) => (
-                            <Card key={capa.id} className="group hover:border-blue-400 transition-all duration-200 shadow-sm overflow-hidden">
-                                <div className="flex flex-col md:flex-row">
-                                    {/* Left highlight bar based on status */}
-                                    <div className={`w-1 md:w-2 ${capa.status === 'overdue' ? 'bg-red-500' : capa.status === 'in-progress' ? 'bg-amber-500' : capa.status === 'completed' || capa.status === 'verified' ? 'bg-green-500' : 'bg-blue-500'}`} />
-
-                                    <CardContent className="p-6 flex-1">
-                                        <div className="flex flex-col lg:flex-row justify-between gap-3">
-                                            <div className="flex-1 space-y-2">
-                                                {/* Header info */}
-                                                <div className="flex flex-wrap items-center gap-2">
-                                                    <span className="text-sm font-bold text-blue-600">{capa.capaNumber}</span>
-                                                    <span className="text-gray-300">•</span>
-                                                    {getTypeBadge(capa.type)}
-                                                    {getPriorityBadge(capa.priority)}
-                                                    {getStatusBadge(capa.status)}
-                                                </div>
-
-                                                {/* Title and Description */}
-                                                <div>
-                                                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{capa.title}</h3>
-                                                    <p className="text-gray-600 mt-2 line-clamp-2">{capa.description}</p>
-                                                </div>
-
-                                                {/* Progress Bar */}
-                                                <div className="pt-2">
-                                                    <div className="flex justify-between text-sm mb-1">
-                                                        <span className="text-gray-500 font-medium">Progress</span>
-                                                        <span className="font-bold text-gray-700">{capa.progress}%</span>
-                                                    </div>
-                                                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                                                        <div
-                                                            className={`h-2.5 rounded-full transition-all ${capa.progress === 100 ? 'bg-green-500' : capa.status === 'overdue' ? 'bg-red-500' : 'bg-blue-600'}`}
-                                                            style={{ width: `${capa.progress}%` }}
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                {/* Details Grid */}
-                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2">
-                                                    <div className="flex items-start gap-3">
-                                                        <div className="p-1.5 bg-gray-50 rounded-md">
-                                                            <User className="w-4 h-4 text-gray-400" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Owner</p>
-                                                            <p className="text-sm font-medium text-gray-700">{capa.owner}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-start gap-3">
-                                                        <div className="p-1.5 bg-gray-50 rounded-md">
-                                                            <Target className="w-4 h-4 text-gray-400" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Department</p>
-                                                            <p className="text-sm font-medium text-gray-700">{capa.department}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex items-start gap-3">
-                                                        <div className="p-1.5 bg-gray-50 rounded-md">
-                                                            <Calendar className="w-4 h-4 text-gray-400" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Due Date</p>
-                                                            <p className={`text-sm font-medium ${capa.status === 'overdue' ? 'text-red-600' : 'text-gray-700'}`}>
-                                                                {new Date(capa.dueDate).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    {capa.linkedNCR && (
-                                                        <div className="flex items-start gap-3">
-                                                            <div className="p-1.5 bg-gray-50 rounded-md">
-                                                                <Link2 className="w-4 h-4 text-gray-400" />
-                                                            </div>
-                                                            <div>
-                                                                <p className="text-xs text-gray-400 uppercase font-semibold">Linked NCR</p>
-                                                                <Link href={`/quality/ncr`} className="text-sm font-medium text-blue-600 hover:underline">
-                                                                    {capa.linkedNCR}
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </div>
-
-                                                {/* Root Cause (if available) */}
-                                                {capa.rootCause && (
-                                                    <div className="pt-2 p-3 bg-amber-50 rounded-lg border border-amber-100">
-                                                        <p className="text-xs font-semibold text-amber-700 uppercase mb-1">Root Cause</p>
-                                                        <p className="text-sm text-gray-700">{capa.rootCause}</p>
-                                                    </div>
-                                                )}
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {filteredProjects.map((project) => (
+                                <Card key={project.id} className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-blue-300" onClick={() => handleProjectSelect(project)}>
+                                    <CardHeader className="pb-2">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <FolderKanban className="h-5 w-5 text-blue-600" />
+                                                <CardTitle className="text-lg">{project.name}</CardTitle>
                                             </div>
-
-                                            {/* Action Sidebar */}
-                                            <div className="flex lg:flex-col justify-end items-end gap-2 shrink-0 md:border-l border-gray-100 md:pl-6">
-                                                <Link href={`/quality/capa/${capa.id}`} className="w-full">
-                                                    <Button className="w-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 border-none shadow-none" size="sm">
-                                                        <Eye className="w-4 h-4 mr-2" />
-                                                        View Details
-                                                    </Button>
-                                                </Link>
-                                                <Button size="sm" variant="ghost" className="text-gray-400 hover:text-blue-600">
-                                                    <MoreHorizontal className="w-5 h-5" />
-                                                </Button>
-                                            </div>
+                                            <Badge variant="outline" className="capitalize">{project.status}</Badge>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="pb-2">
+                                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                                            <Building2 className="h-4 w-4" />
+                                            <span>{project.clientName}</span>
                                         </div>
                                     </CardContent>
-                                </div>
-                            </Card>
-                        ))}
+                                    <CardFooter>
+                                        <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                                            Select Project
+                                        </Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // CAPA view
+    return (
+        <div className="w-full h-screen overflow-y-auto bg-gray-50">
+            <div className="px-3 py-2 space-y-3">
+                {/* Header */}
+                <div className="bg-white rounded-lg border p-3">
+                    <div className="flex items-center gap-2">
+                        <button onClick={() => setSelectedProject(null)} className="p-2 hover:bg-gray-100 rounded-lg">
+                            <ArrowLeft className="w-5 h-5" />
+                        </button>
+                        <div className="flex-1">
+                            <h1 className="text-3xl font-bold text-gray-900">Corrective & Preventive Actions</h1>
+                            <p className="text-sm text-gray-600 mt-1">{selectedProject.name} • {selectedProject.clientName}</p>
+                        </div>
+                        <div className="flex gap-2">
+                            <Button variant="outline" onClick={() => setSelectedProject(null)}>
+                                <FolderKanban className="w-4 h-4 mr-2" />
+                                Change Project
+                            </Button>
+                            <Button onClick={() => router.push(`/quality/defects?projectId=${selectedProject.id}`)}>
+                                Defects <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                        </div>
                     </div>
+                </div>
+
+                {loading ? (
+                    <div className="flex items-center justify-center py-12">
+                        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                        <span className="ml-2 text-gray-600">Loading CAPAs...</span>
+                    </div>
+                ) : (
+                    <>
+                        {/* Stats */}
+                        <div className="grid grid-cols-4 gap-2">
+                            <div className="bg-white p-3 rounded-lg border">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-sm text-gray-600">Total CAPAs</p>
+                                        <p className="text-2xl font-bold">{stats.total}</p>
+                                    </div>
+                                    <Shield className="w-8 h-8 text-gray-600" />
+                                </div>
+                            </div>
+                            <div className="bg-white p-3 rounded-lg border">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-sm text-red-600">Open</p>
+                                        <p className="text-2xl font-bold text-red-900">{stats.open}</p>
+                                    </div>
+                                    <XCircle className="w-8 h-8 text-red-600" />
+                                </div>
+                            </div>
+                            <div className="bg-white p-3 rounded-lg border">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-sm text-blue-600">In Progress</p>
+                                        <p className="text-2xl font-bold text-blue-900">{stats.inProgress}</p>
+                                    </div>
+                                    <Clock className="w-8 h-8 text-blue-600" />
+                                </div>
+                            </div>
+                            <div className="bg-white p-3 rounded-lg border">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-sm text-green-600">Closed</p>
+                                        <p className="text-2xl font-bold text-green-900">{stats.closed}</p>
+                                    </div>
+                                    <CheckCircle2 className="w-8 h-8 text-green-600" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Filters */}
+                        <div className="bg-white rounded-lg border p-3">
+                            <div className="flex gap-2">
+                                <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="px-4 py-2 border rounded-lg">
+                                    <option value="all">All Status</option>
+                                    <option value="open">Open</option>
+                                    <option value="in-progress">In Progress</option>
+                                    <option value="pending-verification">Pending Verification</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                                <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="px-4 py-2 border rounded-lg">
+                                    <option value="all">All Types</option>
+                                    <option value="corrective">Corrective</option>
+                                    <option value="preventive">Preventive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* CAPA List */}
+                        <div className="grid gap-2">
+                            {filteredCAPAs.map((capa) => (
+                                <div key={capa.id} className="bg-white rounded-lg border p-3 hover:shadow-lg transition">
+                                    <div className="flex items-start gap-2">
+                                        <div className={`w-16 h-16 rounded-lg ${capa.type === 'corrective' ? 'bg-orange-500' : 'bg-purple-500'} flex items-center justify-center`}>
+                                            <Shield className="w-8 h-8 text-white" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="flex items-start justify-between mb-3">
+                                                <div>
+                                                    <h3 className="text-xl font-bold">{capa.title}</h3>
+                                                    <p className="text-sm text-gray-600">{capa.capaNumber}</p>
+                                                </div>
+                                                <div className="flex gap-2">
+                                                    <span className={`px-3 py-1 text-xs font-medium rounded-full border capitalize ${getTypeColor(capa.type)}`}>
+                                                        {capa.type}
+                                                    </span>
+                                                    <span className={`px-3 py-1 text-xs font-medium rounded-full border capitalize ${getStatusColor(capa.status)}`}>
+                                                        {capa.status}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="grid grid-cols-4 gap-2 mb-3 text-sm">
+                                                <div>
+                                                    <p className="text-xs text-gray-500">Initiated By</p>
+                                                    <p className="font-medium flex items-center gap-1">
+                                                        <User className="w-3 h-3" />
+                                                        {capa.initiatedBy}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-gray-500">Date</p>
+                                                    <p className="font-medium flex items-center gap-1">
+                                                        <Calendar className="w-3 h-3" />
+                                                        {new Date(capa.initiatedAt).toLocaleDateString()}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-gray-500">Assigned To</p>
+                                                    <p className="font-medium">{capa.assignedTo || <span className="text-gray-500">Unassigned</span>}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-xs text-gray-500">Target Date</p>
+                                                    <p className="font-medium flex items-center gap-1">
+                                                        <Target className="w-3 h-3" />
+                                                        {new Date(capa.targetDate).toLocaleDateString()}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="bg-blue-50 border border-blue-200 rounded p-2 text-sm text-blue-800">
+                                                <strong>Root Cause:</strong> {capa.rootCause || 'Under investigation'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
                 )}
             </div>
         </div>

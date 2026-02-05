@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
     DollarSign,
     CheckCircle,
@@ -12,8 +12,23 @@ import {
     ArrowLeft,
     FileText,
     AlertTriangle,
+    Search,
+    FolderKanban,
+    Building2,
+    Loader2,
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
+
+interface ProjectInfo {
+    id: string;
+    name: string;
+    clientName: string;
+    status: string;
+}
 
 interface PaymentVerification {
     id: string;
@@ -82,9 +97,62 @@ const mockVerifications: PaymentVerification[] = [
 ];
 
 export default function PaymentVerificationPage() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const { toast } = useToast();
+
+    // Project selection state
+    const [projects, setProjects] = useState<ProjectInfo[]>([]);
+    const [selectedProject, setSelectedProject] = useState<ProjectInfo | null>(null);
+    const [projectSearch, setProjectSearch] = useState('');
+    const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+
+    // Page data state
     const [verifications] = useState<PaymentVerification[]>(mockVerifications);
     const [filterStatus, setFilterStatus] = useState<string>('all');
+
+    useEffect(() => {
+        loadProjects();
+    }, []);
+
+    const loadProjects = async () => {
+        try {
+            const allProjects = await projectManagementService.getProjects();
+            const projectInfos: ProjectInfo[] = allProjects.map((p: Project) => ({
+                id: p.id,
+                name: p.name || `Project ${p.id}`,
+                clientName: p.clientName || 'Unknown Client',
+                status: p.status || 'active',
+            }));
+            setProjects(projectInfos);
+
+            const projectId = searchParams.get('projectId');
+            if (projectId) {
+                const found = projectInfos.find(p => p.id === projectId);
+                if (found) {
+                    setSelectedProject(found);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading projects:', error);
+        } finally {
+            setIsLoadingProjects(false);
+        }
+    };
+
+    const handleProjectSelect = (project: ProjectInfo) => {
+        setSelectedProject(project);
+        toast({ title: 'Project Selected', description: `Viewing payment verifications for ${project.name}` });
+    };
+
+    const handleChangeProject = () => {
+        setSelectedProject(null);
+    };
+
+    const filteredProjects = projects.filter(p =>
+        p.name.toLowerCase().includes(projectSearch.toLowerCase()) ||
+        p.clientName.toLowerCase().includes(projectSearch.toLowerCase())
+    );
 
     const filteredVerifications = verifications.filter(
         (ver) => filterStatus === 'all' || ver.status === filterStatus
@@ -127,21 +195,87 @@ export default function PaymentVerificationPage() {
         pending: verifications.filter((v) => v.status === 'Pending Verification' || v.status === 'Sales Notified').length,
     };
 
+    // Project Selection View
+    if (!selectedProject) {
+        return (
+            <div className="w-full h-screen overflow-y-auto bg-gray-50">
+                <div className="px-4 py-4 space-y-4">
+                    <div className="bg-white rounded-lg border p-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <DollarSign className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold text-gray-900">Payment Verification Gate</h1>
+                                <p className="text-sm text-gray-600">Select a project to view payment verifications</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search projects..."
+                            value={projectSearch}
+                            onChange={(e) => setProjectSearch(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+
+                    {isLoadingProjects ? (
+                        <div className="flex items-center justify-center py-12">
+                            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                            <span className="ml-2 text-gray-600">Loading projects...</span>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {filteredProjects.map((project) => (
+                                <Card key={project.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleProjectSelect(project)}>
+                                    <CardHeader className="pb-2">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <FolderKanban className="h-5 w-5 text-blue-600" />
+                                                <CardTitle className="text-base">{project.name}</CardTitle>
+                                            </div>
+                                            <Badge variant="outline" className="capitalize">{project.status}</Badge>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="pb-2">
+                                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                                            <Building2 className="h-4 w-4" />
+                                            <span>{project.clientName}</span>
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter>
+                                        <Button className="w-full bg-blue-600 hover:bg-blue-700">Select Project</Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Main Content View
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
             <div className="px-3 py-2 space-y-3">
                 {/* Header */}
                 <div className="bg-white rounded-lg border p-3">
-                    <div className="flex items-center gap-2">
-                        <Link href="/packaging/staging" className="p-2 hover:bg-gray-100 rounded-lg">
-                            <ArrowLeft className="w-5 h-5" />
-                        </Link>
-                        <div>
-                            <h1 className="text-3xl font-bold text-gray-900">Payment Verification Gate</h1>
-                            <p className="text-sm text-gray-600 mt-1">
-                                Verify payments before dispatch (Steps 7.1-7.3)
-                            </p>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <DollarSign className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <h1 className="text-xl font-bold text-gray-900">Payment Verification Gate</h1>
+                                <p className="text-sm text-gray-600">{selectedProject.name} • {selectedProject.clientName}</p>
+                            </div>
                         </div>
+                        <Button variant="outline" onClick={handleChangeProject}>Change Project</Button>
                     </div>
                 </div>
 
@@ -278,34 +412,6 @@ export default function PaymentVerificationPage() {
                                             <div className={`border rounded p-2 text-sm ${ver.status === 'Verified' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-yellow-50 border-yellow-200 text-yellow-800'}`}>
                                                 <strong>Note:</strong> {ver.notes}
                                             </div>
-                                        )}
-                                    </div>
-                                    {/* Actions */}
-                                    <div className="mt-4 flex gap-3 border-t pt-4">
-                                        <button
-                                            onClick={() => {
-                                                toast({
-                                                    title: "Opening Details",
-                                                    description: `Viewing details for ${ver.woNumber}`,
-                                                });
-                                            }}
-                                            className="flex-1 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-colors"
-                                        >
-                                            View Details
-                                        </button>
-                                        {ver.status === 'Pending Verification' && (
-                                            <button
-                                                onClick={() => {
-                                                    toast({
-                                                        title: "Payment Verified",
-                                                        description: `Payment for ${ver.woNumber} has been verified.`,
-                                                        variant: "default",
-                                                    });
-                                                }}
-                                                className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-medium transition-colors"
-                                            >
-                                                Verify Payment
-                                            </button>
                                         )}
                                     </div>
                                 </div>

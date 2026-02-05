@@ -25,6 +25,7 @@ import {
     UserPlus,
     StickyNote,
 } from 'lucide-react';
+import { useProjectContext } from '@/context/ProjectContext';
 import {
     AdvancedFilterModal,
     BulkUpdateModal,
@@ -278,6 +279,7 @@ const mockProjects: Project[] = [
 ];
 
 export default function ProjectsListPage() {
+    const { loadProject, activeProject, clearProject } = useProjectContext();
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -346,6 +348,19 @@ export default function ProjectsListPage() {
     const [showQuickNotes, setShowQuickNotes] = useState(false);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [selectedProjects, setSelectedProjects] = useState<Project[]>([]);
+
+    // Load project into global context when selected locally
+    useEffect(() => {
+        if (selectedProject) {
+            loadProject({
+                id: selectedProject.id,
+                name: selectedProject.projectName,
+                projectType: selectedProject.projectType,
+                customerName: selectedProject.customer,
+                status: selectedProject.status
+            });
+        }
+    }, [selectedProject, loadProject]);
 
     // Calculate statistics
     const stats = {

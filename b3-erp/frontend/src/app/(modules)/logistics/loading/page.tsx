@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
     Package,
@@ -10,8 +11,23 @@ import {
     ArrowLeft,
     FileText,
     Truck,
-    Camera,
+    Search,
+    FolderKanban,
+    Building2,
+    Loader2,
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
+
+interface ProjectInfo {
+    id: string;
+    name: string;
+    clientName: string;
+    status: string;
+}
 
 interface LoadingJob {
     id: string;
@@ -91,8 +107,61 @@ const mockLoadingJobs: LoadingJob[] = [
 ];
 
 export default function LoadingDispatchPage() {
+    const searchParams = useSearchParams();
+    const { toast } = useToast();
+
+    // Project selection state
+    const [projects, setProjects] = useState<ProjectInfo[]>([]);
+    const [selectedProject, setSelectedProject] = useState<ProjectInfo | null>(null);
+    const [projectSearch, setProjectSearch] = useState('');
+    const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+
+    // Page data state
     const [jobs] = useState<LoadingJob[]>(mockLoadingJobs);
     const [filterStatus, setFilterStatus] = useState<string>('all');
+
+    useEffect(() => {
+        loadProjects();
+    }, []);
+
+    const loadProjects = async () => {
+        try {
+            const allProjects = await projectManagementService.getProjects();
+            const projectInfos: ProjectInfo[] = allProjects.map((p: Project) => ({
+                id: p.id,
+                name: p.name || `Project ${p.id}`,
+                clientName: p.clientName || 'Unknown Client',
+                status: p.status || 'active',
+            }));
+            setProjects(projectInfos);
+
+            const projectId = searchParams.get('projectId');
+            if (projectId) {
+                const found = projectInfos.find(p => p.id === projectId);
+                if (found) {
+                    setSelectedProject(found);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading projects:', error);
+        } finally {
+            setIsLoadingProjects(false);
+        }
+    };
+
+    const handleProjectSelect = (project: ProjectInfo) => {
+        setSelectedProject(project);
+        toast({ title: 'Project Selected', description: `Viewing loading jobs for ${project.name}` });
+    };
+
+    const handleChangeProject = () => {
+        setSelectedProject(null);
+    };
+
+    const filteredProjects = projects.filter(p =>
+        p.name.toLowerCase().includes(projectSearch.toLowerCase()) ||
+        p.clientName.toLowerCase().includes(projectSearch.toLowerCase())
+    );
 
     const filteredJobs = jobs.filter((job) => filterStatus === 'all' || job.status === filterStatus);
 
@@ -117,21 +186,87 @@ export default function LoadingDispatchPage() {
         loading: jobs.filter((j) => j.status === 'Loading' || j.status === 'Loaded').length,
     };
 
+    // Project Selection View
+    if (!selectedProject) {
+        return (
+            <div className="w-full h-screen overflow-y-auto bg-gray-50">
+                <div className="px-4 py-4 space-y-4">
+                    <div className="bg-white rounded-lg border p-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <Truck className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold text-gray-900">Loading & Dispatch</h1>
+                                <p className="text-sm text-gray-600">Select a project to view loading jobs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search projects..."
+                            value={projectSearch}
+                            onChange={(e) => setProjectSearch(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+
+                    {isLoadingProjects ? (
+                        <div className="flex items-center justify-center py-12">
+                            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                            <span className="ml-2 text-gray-600">Loading projects...</span>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {filteredProjects.map((project) => (
+                                <Card key={project.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleProjectSelect(project)}>
+                                    <CardHeader className="pb-2">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <FolderKanban className="h-5 w-5 text-blue-600" />
+                                                <CardTitle className="text-base">{project.name}</CardTitle>
+                                            </div>
+                                            <Badge variant="outline" className="capitalize">{project.status}</Badge>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="pb-2">
+                                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                                            <Building2 className="h-4 w-4" />
+                                            <span>{project.clientName}</span>
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter>
+                                        <Button className="w-full bg-blue-600 hover:bg-blue-700">Select Project</Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Main Content View
     return (
         <div className="w-full h-screen overflow-y-auto bg-gray-50">
             <div className="px-3 py-2 space-y-3">
                 {/* Header */}
                 <div className="bg-white rounded-lg border p-3">
-                    <div className="flex items-center gap-2">
-                        <Link href="/logistics/delivery-coordination" className="p-2 hover:bg-gray-100 rounded-lg">
-                            <ArrowLeft className="w-5 h-5" />
-                        </Link>
-                        <div>
-                            <h1 className="text-3xl font-bold text-gray-900">Loading & Dispatch</h1>
-                            <p className="text-sm text-gray-600 mt-1">
-                                Loading checklist and dispatch bill generation (Steps 7.10, 7.11)
-                            </p>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <Truck className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div>
+                                <h1 className="text-xl font-bold text-gray-900">Loading & Dispatch</h1>
+                                <p className="text-sm text-gray-600">{selectedProject.name} • {selectedProject.clientName}</p>
+                            </div>
                         </div>
+                        <Button variant="outline" onClick={handleChangeProject}>Change Project</Button>
                     </div>
                 </div>
 

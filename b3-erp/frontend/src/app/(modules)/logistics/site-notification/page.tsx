@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -13,8 +13,20 @@ import {
     Send,
     CheckCircle2,
     Calendar,
-    Clock
+    Clock,
+    Search,
+    FolderKanban,
+    Building2,
+    Loader2,
 } from 'lucide-react';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
+
+interface ProjectInfo {
+    id: string;
+    name: string;
+    clientName: string;
+    status: string;
+}
 
 interface TeamMember {
     id: string;
@@ -26,7 +38,16 @@ interface TeamMember {
 
 export default function SiteNotificationPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { toast } = useToast();
+
+    // Project selection state
+    const [projects, setProjects] = useState<ProjectInfo[]>([]);
+    const [selectedProject, setSelectedProject] = useState<ProjectInfo | null>(null);
+    const [projectSearch, setProjectSearch] = useState('');
+    const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+
+    // Page data state
     const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
         { id: '1', name: 'Rajesh Kumar', role: 'Senior Installation Engineer', phone: '+91 98765 11111', status: 'Available' },
         { id: '2', name: 'Suresh Babu', role: 'Installation Technician', phone: '+91 98765 22222', status: 'Available' },
@@ -35,6 +56,49 @@ export default function SiteNotificationPage() {
 
     const [selectedTeam, setSelectedTeam] = useState<string[]>([]);
     const [notificationSent, setNotificationSent] = useState(false);
+
+    useEffect(() => {
+        loadProjects();
+    }, []);
+
+    const loadProjects = async () => {
+        try {
+            const allProjects = await projectManagementService.getProjects();
+            const projectInfos: ProjectInfo[] = allProjects.map((p: Project) => ({
+                id: p.id,
+                name: p.name || `Project ${p.id}`,
+                clientName: p.clientName || 'Unknown Client',
+                status: p.status || 'active',
+            }));
+            setProjects(projectInfos);
+
+            const projectId = searchParams.get('projectId');
+            if (projectId) {
+                const found = projectInfos.find(p => p.id === projectId);
+                if (found) {
+                    setSelectedProject(found);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading projects:', error);
+        } finally {
+            setIsLoadingProjects(false);
+        }
+    };
+
+    const handleProjectSelect = (project: ProjectInfo) => {
+        setSelectedProject(project);
+        toast({ title: 'Project Selected', description: `Viewing site notifications for ${project.name}` });
+    };
+
+    const handleChangeProject = () => {
+        setSelectedProject(null);
+    };
+
+    const filteredProjects = projects.filter(p =>
+        p.name.toLowerCase().includes(projectSearch.toLowerCase()) ||
+        p.clientName.toLowerCase().includes(projectSearch.toLowerCase())
+    );
 
     const handleToggleMember = (id: string) => {
         setSelectedTeam(prev =>
@@ -62,6 +126,71 @@ export default function SiteNotificationPage() {
         return <Badge className={styles[status]}>{status}</Badge>;
     };
 
+    // Project Selection View
+    if (!selectedProject) {
+        return (
+            <div className="w-full h-screen overflow-y-auto bg-gray-50">
+                <div className="px-4 py-4 space-y-4">
+                    <div className="bg-white rounded-lg border p-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <Users className="h-5 w-5 text-orange-600" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold text-gray-900">Site Contact Notification</h1>
+                                <p className="text-sm text-gray-600">Select a project to notify installation team</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search projects..."
+                            value={projectSearch}
+                            onChange={(e) => setProjectSearch(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        />
+                    </div>
+
+                    {isLoadingProjects ? (
+                        <div className="flex items-center justify-center py-12">
+                            <Loader2 className="h-8 w-8 animate-spin text-orange-600" />
+                            <span className="ml-2 text-gray-600">Loading projects...</span>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {filteredProjects.map((project) => (
+                                <Card key={project.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleProjectSelect(project)}>
+                                    <CardHeader className="pb-2">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <FolderKanban className="h-5 w-5 text-orange-600" />
+                                                <CardTitle className="text-base">{project.name}</CardTitle>
+                                            </div>
+                                            <Badge variant="outline" className="capitalize">{project.status}</Badge>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="pb-2">
+                                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                                            <Building2 className="h-4 w-4" />
+                                            <span>{project.clientName}</span>
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter>
+                                        <Button className="w-full bg-orange-600 hover:bg-orange-700">Select Project</Button>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // Main Content View
     return (
         <div className="w-full py-2 space-y-8">
             <div className="flex justify-between items-center">
@@ -71,12 +200,12 @@ export default function SiteNotificationPage() {
                         7.9 Site Contact Notification
                     </h1>
                     <p className="text-muted-foreground">
-                        Alert installation team about delivery completion and schedule installation.
+                        {selectedProject.name} • {selectedProject.clientName}
                     </p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" onClick={() => router.push('/logistics/delivery-confirmation')}>
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                    <Button variant="outline" onClick={handleChangeProject}>
+                        Change Project
                     </Button>
                     <Button
                         onClick={() => router.push('/installation/tool-prep')}
@@ -94,12 +223,12 @@ export default function SiteNotificationPage() {
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-2">
                     <div>
-                        <div className="text-sm text-muted-foreground">Order Number</div>
-                        <div className="font-medium">ORD-KT-345</div>
+                        <div className="text-sm text-muted-foreground">Project</div>
+                        <div className="font-medium">{selectedProject.name}</div>
                     </div>
                     <div>
                         <div className="text-sm text-muted-foreground">Customer</div>
-                        <div className="font-medium">Pearl Apartments</div>
+                        <div className="font-medium">{selectedProject.clientName}</div>
                     </div>
                     <div>
                         <div className="text-sm text-muted-foreground">Delivery Date</div>
@@ -158,22 +287,18 @@ export default function SiteNotificationPage() {
                 </CardHeader>
                 <CardContent>
                     <div className="p-4 bg-muted/30 rounded-lg space-y-2">
-                        <div className="font-medium">Subject: Installation Required - Order #ORD-KT-345 Delivered</div>
+                        <div className="font-medium">Subject: Installation Required - {selectedProject.name} Delivered</div>
                         <div className="text-sm text-muted-foreground whitespace-pre-line">
                             {`Installation Team,
 
 Materials for the following project have been delivered to site:
 
-Order Number: ORD-KT-345
-Customer: Pearl Apartments - Tower A
-Location: Bangalore, Karnataka
+Project: ${selectedProject.name}
+Customer: ${selectedProject.clientName}
 
 Delivery Completed: Dec 18, 2024
 Total Packages Received: 18
 All items verified and in good condition.
-
-Site Contact Person: Mr. Rajesh Kumar
-Site Contact: +91 98765 43210
 
 Please coordinate with the site contact for installation scheduling.
 Tools and team assignment details will follow.

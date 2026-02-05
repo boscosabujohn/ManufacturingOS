@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import {
   Search,
   Filter,
@@ -30,9 +31,23 @@ import {
   BarChart3,
   Target,
   Zap,
-  Loader2
+  Loader2,
+  FolderKanban,
+  Building2
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 import { shipmentService, Shipment } from '@/services/shipment.service';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
+
+interface ProjectInfo {
+  id: string;
+  name: string;
+  clientName: string;
+  status: string;
+}
 
 // TrackingEvent Interface
 interface TrackingEvent {
@@ -109,6 +124,15 @@ const mapShipmentToTrackingEvent = (shipment: Shipment, index: number): Tracking
 };
 
 export default function LogisticsTrackingPage() {
+  const searchParams = useSearchParams();
+  const { toast } = useToast();
+
+  // Project selection state
+  const [projects, setProjects] = useState<ProjectInfo[]>([]);
+  const [selectedProject, setSelectedProject] = useState<ProjectInfo | null>(null);
+  const [projectSearch, setProjectSearch] = useState('');
+  const [isLoadingProjects, setIsLoadingProjects] = useState(true);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('all');
@@ -126,10 +150,55 @@ export default function LogisticsTrackingPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
 
-  // Load tracking events from shipment service
+  // Load projects and tracking data
   useEffect(() => {
-    loadTrackingData();
+    loadProjects();
   }, []);
+
+  useEffect(() => {
+    if (selectedProject) {
+      loadTrackingData();
+    }
+  }, [selectedProject]);
+
+  const loadProjects = async () => {
+    try {
+      const allProjects = await projectManagementService.getProjects();
+      const projectInfos: ProjectInfo[] = allProjects.map((p: Project) => ({
+        id: p.id,
+        name: p.name || `Project ${p.id}`,
+        clientName: p.clientName || 'Unknown Client',
+        status: p.status || 'active',
+      }));
+      setProjects(projectInfos);
+
+      const projectId = searchParams.get('projectId');
+      if (projectId) {
+        const found = projectInfos.find(p => p.id === projectId);
+        if (found) {
+          setSelectedProject(found);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading projects:', error);
+    } finally {
+      setIsLoadingProjects(false);
+    }
+  };
+
+  const handleProjectSelect = (project: ProjectInfo) => {
+    setSelectedProject(project);
+    toast({ title: 'Project Selected', description: `Viewing tracking for ${project.name}` });
+  };
+
+  const handleChangeProject = () => {
+    setSelectedProject(null);
+  };
+
+  const filteredProjects = projects.filter(p =>
+    p.name.toLowerCase().includes(projectSearch.toLowerCase()) ||
+    p.clientName.toLowerCase().includes(projectSearch.toLowerCase())
+  );
 
   const loadTrackingData = async () => {
     setIsLoading(true);
@@ -205,17 +274,17 @@ export default function LogisticsTrackingPage() {
       const shipmentNumber = `SHP-2025-${String(trackingEvents.length + 1).padStart(3, '0')}`;
 
       alert('✓ New Shipment Added to Tracking System!\n\n' +
-            `Tracking ID: ${trackingId}\n` +
-            `Shipment Number: ${shipmentNumber}\n` +
-            `Status: Picked Up - Processing\n` +
-            `Carrier: To be assigned\n\n` +
-            'Features enabled:\n' +
-            '• Real-time GPS tracking\n' +
-            '• Temperature & humidity monitoring\n' +
-            '• Checkpoint notifications\n' +
-            '• ETA calculations\n' +
-            '• Route optimization\n\n' +
-            'You can now monitor this shipment in the tracking dashboard.');
+        `Tracking ID: ${trackingId}\n` +
+        `Shipment Number: ${shipmentNumber}\n` +
+        `Status: Picked Up - Processing\n` +
+        `Carrier: To be assigned\n\n` +
+        'Features enabled:\n' +
+        '• Real-time GPS tracking\n' +
+        '• Temperature & humidity monitoring\n' +
+        '• Checkpoint notifications\n' +
+        '• ETA calculations\n' +
+        '• Route optimization\n\n' +
+        'You can now monitor this shipment in the tracking dashboard.');
     } catch (error) {
       alert('✗ Failed to add new shipment. Please try again.');
     } finally {
@@ -295,20 +364,20 @@ export default function LogisticsTrackingPage() {
       document.body.removeChild(link);
 
       alert('✓ Tracking Data Exported Successfully!\n\n' +
-            `File: shipment_tracking_export_${new Date().toISOString().split('T')[0]}.csv\n` +
-            `Records exported: ${filteredEvents.length}\n\n` +
-            'Export includes:\n' +
-            '• Tracking & shipment numbers\n' +
-            '• Customer information\n' +
-            '• Current locations & status\n' +
-            '• Temperature & humidity data\n' +
-            '• Delivery times (estimated & actual)\n' +
-            '• Carrier & route details\n' +
-            '• Checkpoint progress\n' +
-            '• Delay information\n' +
-            '• Priority levels\n' +
-            '• Event notes\n\n' +
-            'The file has been downloaded to your default downloads folder.');
+        `File: shipment_tracking_export_${new Date().toISOString().split('T')[0]}.csv\n` +
+        `Records exported: ${filteredEvents.length}\n\n` +
+        'Export includes:\n' +
+        '• Tracking & shipment numbers\n' +
+        '• Customer information\n' +
+        '• Current locations & status\n' +
+        '• Temperature & humidity data\n' +
+        '• Delivery times (estimated & actual)\n' +
+        '• Carrier & route details\n' +
+        '• Checkpoint progress\n' +
+        '• Delay information\n' +
+        '• Priority levels\n' +
+        '• Event notes\n\n' +
+        'The file has been downloaded to your default downloads folder.');
     } catch (error) {
       alert('✗ Failed to export tracking data. Please try again.');
     } finally {
@@ -332,47 +401,47 @@ export default function LogisticsTrackingPage() {
     ).join('\n');
 
     alert('📦 Detailed Shipment Tracking Information\n\n' +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `TRACKING DETAILS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `Tracking ID: ${shipment.tracking_id}\n` +
-          `Shipment Number: ${shipment.shipment_number}\n` +
-          `Customer: ${shipment.customer_name}\n` +
-          `Priority: ${shipment.priority.toUpperCase()}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `ROUTE INFORMATION\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `Origin: ${shipment.origin}\n` +
-          `Destination: ${shipment.destination}\n` +
-          `Current Location: ${shipment.current_location}\n` +
-          `Distance Remaining: ${shipment.distance_remaining_km} km\n` +
-          `Carrier: ${shipment.carrier}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `STATUS & PROGRESS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `Event Type: ${shipment.event_type.replace(/_/g, ' ').toUpperCase()}\n` +
-          `Status: ${shipment.status}\n` +
-          `Progress: ${shipment.checkpoints_passed}/${shipment.total_checkpoints} checkpoints (${((shipment.checkpoints_passed / shipment.total_checkpoints) * 100).toFixed(0)}%)\n` +
-          `Delay: ${shipment.delay_hours > 0 ? shipment.delay_hours + ' hours' : 'On schedule'}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `TIMELINE & CHECKPOINTS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `${timeline}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `ENVIRONMENTAL CONDITIONS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `Temperature: ${shipment.temperature ? shipment.temperature + '°C' : 'Not monitored'}\n` +
-          `Humidity: ${shipment.humidity ? shipment.humidity + '%' : 'Not monitored'}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `DELIVERY SCHEDULE\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `Estimated Delivery: ${shipment.estimated_delivery}\n` +
-          `${shipment.actual_delivery ? 'Actual Delivery: ' + shipment.actual_delivery + '\n' : ''}` +
-          `Last Update: ${shipment.last_update}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `NOTES\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `${shipment.notes}`);
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `TRACKING DETAILS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Tracking ID: ${shipment.tracking_id}\n` +
+      `Shipment Number: ${shipment.shipment_number}\n` +
+      `Customer: ${shipment.customer_name}\n` +
+      `Priority: ${shipment.priority.toUpperCase()}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `ROUTE INFORMATION\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Origin: ${shipment.origin}\n` +
+      `Destination: ${shipment.destination}\n` +
+      `Current Location: ${shipment.current_location}\n` +
+      `Distance Remaining: ${shipment.distance_remaining_km} km\n` +
+      `Carrier: ${shipment.carrier}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `STATUS & PROGRESS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Event Type: ${shipment.event_type.replace(/_/g, ' ').toUpperCase()}\n` +
+      `Status: ${shipment.status}\n` +
+      `Progress: ${shipment.checkpoints_passed}/${shipment.total_checkpoints} checkpoints (${((shipment.checkpoints_passed / shipment.total_checkpoints) * 100).toFixed(0)}%)\n` +
+      `Delay: ${shipment.delay_hours > 0 ? shipment.delay_hours + ' hours' : 'On schedule'}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `TIMELINE & CHECKPOINTS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `${timeline}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `ENVIRONMENTAL CONDITIONS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Temperature: ${shipment.temperature ? shipment.temperature + '°C' : 'Not monitored'}\n` +
+      `Humidity: ${shipment.humidity ? shipment.humidity + '%' : 'Not monitored'}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `DELIVERY SCHEDULE\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Estimated Delivery: ${shipment.estimated_delivery}\n` +
+      `${shipment.actual_delivery ? 'Actual Delivery: ' + shipment.actual_delivery + '\n' : ''}` +
+      `Last Update: ${shipment.last_update}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `NOTES\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `${shipment.notes}`);
   };
 
   const handleViewOnMap = (shipment: TrackingEvent) => {
@@ -414,91 +483,91 @@ export default function LogisticsTrackingPage() {
       `${shipment.origin}      ${shipment.current_location}      ${shipment.destination}`;
 
     alert('🗺️ Shipment Location Map View\n\n' +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `SHIPMENT: ${shipment.tracking_id}\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
-          `📍 CURRENT POSITION\n` +
-          `Location: ${shipment.current_location}\n` +
-          `Coordinates: ${currentCoords.lat.toFixed(4)}°N, ${currentCoords.lng.toFixed(4)}°E\n` +
-          `Last Update: ${shipment.last_update}\n` +
-          `Speed Status: ${shipment.event_type === 'in_transit' ? 'Moving' : 'Stationary'}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `ROUTE VISUALIZATION\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `${routeVisualization}\n\n` +
-          `🚀 ORIGIN POINT\n` +
-          `Location: ${shipment.origin}\n` +
-          `Coordinates: ${originCoords.lat.toFixed(4)}°N, ${originCoords.lng.toFixed(4)}°E\n\n` +
-          `📍 CURRENT POSITION\n` +
-          `Location: ${shipment.current_location}\n` +
-          `Coordinates: ${currentCoords.lat.toFixed(4)}°N, ${currentCoords.lng.toFixed(4)}°E\n` +
-          `Progress: ${((shipment.checkpoints_passed / shipment.total_checkpoints) * 100).toFixed(0)}% complete\n\n` +
-          `🎯 DESTINATION\n` +
-          `Location: ${shipment.destination}\n` +
-          `Coordinates: ${destCoords.lat.toFixed(4)}°N, ${destCoords.lng.toFixed(4)}°E\n` +
-          `Distance Remaining: ${shipment.distance_remaining_km} km\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `ROUTE DETAILS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `Carrier: ${shipment.carrier}\n` +
-          `Transit Mode: Road Transport\n` +
-          `Route Type: ${shipment.priority === 'critical' || shipment.priority === 'high' ? 'Express Route' : 'Standard Route'}\n` +
-          `Checkpoints: ${shipment.checkpoints_passed}/${shipment.total_checkpoints} passed\n` +
-          `ETA: ${shipment.estimated_delivery}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `MAP FEATURES AVAILABLE\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `✓ Real-time GPS tracking\n` +
-          `✓ Route optimization display\n` +
-          `✓ Checkpoint markers\n` +
-          `✓ Traffic conditions overlay\n` +
-          `✓ Weather alerts on route\n` +
-          `✓ Delivery zone boundaries\n` +
-          `✓ Historical path tracking\n\n` +
-          `Note: Full interactive map view available in web interface`);
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `SHIPMENT: ${shipment.tracking_id}\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+      `📍 CURRENT POSITION\n` +
+      `Location: ${shipment.current_location}\n` +
+      `Coordinates: ${currentCoords.lat.toFixed(4)}°N, ${currentCoords.lng.toFixed(4)}°E\n` +
+      `Last Update: ${shipment.last_update}\n` +
+      `Speed Status: ${shipment.event_type === 'in_transit' ? 'Moving' : 'Stationary'}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `ROUTE VISUALIZATION\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `${routeVisualization}\n\n` +
+      `🚀 ORIGIN POINT\n` +
+      `Location: ${shipment.origin}\n` +
+      `Coordinates: ${originCoords.lat.toFixed(4)}°N, ${originCoords.lng.toFixed(4)}°E\n\n` +
+      `📍 CURRENT POSITION\n` +
+      `Location: ${shipment.current_location}\n` +
+      `Coordinates: ${currentCoords.lat.toFixed(4)}°N, ${currentCoords.lng.toFixed(4)}°E\n` +
+      `Progress: ${((shipment.checkpoints_passed / shipment.total_checkpoints) * 100).toFixed(0)}% complete\n\n` +
+      `🎯 DESTINATION\n` +
+      `Location: ${shipment.destination}\n` +
+      `Coordinates: ${destCoords.lat.toFixed(4)}°N, ${destCoords.lng.toFixed(4)}°E\n` +
+      `Distance Remaining: ${shipment.distance_remaining_km} km\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `ROUTE DETAILS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Carrier: ${shipment.carrier}\n` +
+      `Transit Mode: Road Transport\n` +
+      `Route Type: ${shipment.priority === 'critical' || shipment.priority === 'high' ? 'Express Route' : 'Standard Route'}\n` +
+      `Checkpoints: ${shipment.checkpoints_passed}/${shipment.total_checkpoints} passed\n` +
+      `ETA: ${shipment.estimated_delivery}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `MAP FEATURES AVAILABLE\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `✓ Real-time GPS tracking\n` +
+      `✓ Route optimization display\n` +
+      `✓ Checkpoint markers\n` +
+      `✓ Traffic conditions overlay\n` +
+      `✓ Weather alerts on route\n` +
+      `✓ Delivery zone boundaries\n` +
+      `✓ Historical path tracking\n\n` +
+      `Note: Full interactive map view available in web interface`);
   };
 
   const handleEditTracking = (shipment: TrackingEvent) => {
     alert('✏️ Edit Tracking Details\n\n' +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `SHIPMENT: ${shipment.tracking_id}\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
-          `Current Details:\n` +
-          `• Tracking ID: ${shipment.tracking_id}\n` +
-          `• Shipment Number: ${shipment.shipment_number}\n` +
-          `• Customer: ${shipment.customer_name}\n` +
-          `• Current Location: ${shipment.current_location}\n` +
-          `• Status: ${shipment.status}\n` +
-          `• Priority: ${shipment.priority.toUpperCase()}\n` +
-          `• Carrier: ${shipment.carrier}\n` +
-          `• ETA: ${shipment.estimated_delivery}\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `EDITABLE FIELDS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `✓ Current Location\n` +
-          `✓ Event Type & Status\n` +
-          `✓ Priority Level\n` +
-          `✓ Estimated Delivery Time\n` +
-          `✓ Carrier Assignment\n` +
-          `✓ Environmental Conditions\n` +
-          `✓ Checkpoint Progress\n` +
-          `✓ Delay Information\n` +
-          `✓ Tracking Notes\n` +
-          `✓ Route Modifications\n\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `AVAILABLE ACTIONS\n` +
-          `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-          `• Update current location\n` +
-          `• Modify delivery schedule\n` +
-          `• Change priority level\n` +
-          `• Reassign carrier\n` +
-          `• Add checkpoint milestone\n` +
-          `• Update environmental readings\n` +
-          `• Record delay/exception\n` +
-          `• Add tracking notes\n` +
-          `• Update customer notifications\n\n` +
-          `Would you like to proceed with editing this shipment?\n` +
-          `(Full edit form available in production interface)`);
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `SHIPMENT: ${shipment.tracking_id}\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+      `Current Details:\n` +
+      `• Tracking ID: ${shipment.tracking_id}\n` +
+      `• Shipment Number: ${shipment.shipment_number}\n` +
+      `• Customer: ${shipment.customer_name}\n` +
+      `• Current Location: ${shipment.current_location}\n` +
+      `• Status: ${shipment.status}\n` +
+      `• Priority: ${shipment.priority.toUpperCase()}\n` +
+      `• Carrier: ${shipment.carrier}\n` +
+      `• ETA: ${shipment.estimated_delivery}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `EDITABLE FIELDS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `✓ Current Location\n` +
+      `✓ Event Type & Status\n` +
+      `✓ Priority Level\n` +
+      `✓ Estimated Delivery Time\n` +
+      `✓ Carrier Assignment\n` +
+      `✓ Environmental Conditions\n` +
+      `✓ Checkpoint Progress\n` +
+      `✓ Delay Information\n` +
+      `✓ Tracking Notes\n` +
+      `✓ Route Modifications\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `AVAILABLE ACTIONS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `• Update current location\n` +
+      `• Modify delivery schedule\n` +
+      `• Change priority level\n` +
+      `• Reassign carrier\n` +
+      `• Add checkpoint milestone\n` +
+      `• Update environmental readings\n` +
+      `• Record delay/exception\n` +
+      `• Add tracking notes\n` +
+      `• Update customer notifications\n\n` +
+      `Would you like to proceed with editing this shipment?\n` +
+      `(Full edit form available in production interface)`);
   };
 
   // Event type badge component
@@ -566,15 +635,82 @@ export default function LogisticsTrackingPage() {
     );
   };
 
+  // Project Selection View
+  if (!selectedProject) {
+    return (
+      <div className="w-full h-screen overflow-y-auto bg-gray-50">
+        <div className="px-4 py-4 space-y-4">
+          <div className="bg-white rounded-lg border p-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Navigation className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Logistics Tracking</h1>
+                <p className="text-sm text-gray-600">Select a project to view tracking data</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={projectSearch}
+              onChange={(e) => setProjectSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          {isLoadingProjects ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              <span className="ml-2 text-gray-600">Loading projects...</span>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {filteredProjects.map((project) => (
+                <Card key={project.id} className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleProjectSelect(project)}>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-2">
+                        <FolderKanban className="h-5 w-5 text-blue-600" />
+                        <CardTitle className="text-base">{project.name}</CardTitle>
+                      </div>
+                      <Badge variant="outline" className="capitalize">{project.status}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pb-2">
+                    <div className="flex items-center gap-1 text-sm text-gray-600">
+                      <Building2 className="h-4 w-4" />
+                      <span>{project.clientName}</span>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700">Select Project</Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Logistics Tracking System</h1>
-          <p className="text-sm text-gray-500 mt-1">Real-time shipment tracking, monitoring, and analytics dashboard</p>
+          <p className="text-sm text-gray-500 mt-1">{selectedProject.name} • {selectedProject.clientName}</p>
         </div>
         <div className="flex gap-2">
+          <Button variant="outline" onClick={handleChangeProject}>
+            Change Project
+          </Button>
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}
@@ -932,11 +1068,10 @@ export default function LogisticsTrackingPage() {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-3 py-1 rounded text-sm ${
-                    currentPage === page
-                      ? 'bg-blue-600 text-white'
-                      : 'border border-gray-300 hover:bg-gray-50'
-                  }`}
+                  className={`px-3 py-1 rounded text-sm ${currentPage === page
+                    ? 'bg-blue-600 text-white'
+                    : 'border border-gray-300 hover:bg-gray-50'
+                    }`}
                 >
                   {page}
                 </button>

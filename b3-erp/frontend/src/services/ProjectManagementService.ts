@@ -140,9 +140,214 @@ export interface Drawing {
     uploadDate: string;
     url: string;
     notes?: string;
+    projectId?: string;
+}
+
+export interface DrawingRevision {
+    id: string;
+    projectId: string;
+    documentNumber: string;
+    documentName: string;
+    version: string;
+    revisionDate: string;
+    revisedBy: string;
+    status: 'Draft' | 'Under Review' | 'Approved' | 'Superseded';
+    changeDescription: string;
+    changesCount: number;
+    reviewedBy?: string;
+    approvedDate?: string;
+    previousVersion?: string;
+}
+
+export interface MEPDrawing {
+    id: string;
+    mepNumber: string;
+    projectId: string;
+    projectName: string;
+    drawingType: 'Electrical' | 'Plumbing' | 'HVAC' | 'Fire Safety' | 'Drainage';
+    drawingName: string;
+    version: string;
+    status: 'Draft' | 'Under Review' | 'Approved' | 'Shared with Site' | 'Site Work Complete';
+    createdDate: string;
+    createdBy: string;
+    approvedDate?: string;
+    siteWorkProgress: number;
+    siteWorkStatus: 'Not Started' | 'In Progress' | 'Pending Inspection' | 'Completed';
+    assignedTo: string;
+    fileSize: string;
+}
+
+export interface SiteVisit {
+    id: string;
+    projectId: string;
+    date: string;
+    time: string;
+    location: string;
+    contactName: string;
+    status: 'Confirmed' | 'Pending' | 'Canceled';
+}
+
+export interface CabinetMarkingTask {
+    id: string;
+    taskNumber: string;
+    projectId: string;
+    projectName: string;
+    cabinetType: string;
+    quantity: number;
+    scheduledDate: string;
+    assignedTeam: string;
+    status: 'Scheduled' | 'In Progress' | 'Completed' | 'Pending Review';
+    completionPercentage: number;
+    markedItems: number;
+    totalItems: number;
+    photosUploaded: number;
+    reportGenerated: boolean;
+}
+
+export interface DrawingTimeline {
+    id: string;
+    timelineNumber: string;
+    projectId: string;
+    projectName: string;
+    drawingType: string;
+    quantity: number;
+    complexity: 'Low' | 'Medium' | 'High' | 'Very High';
+    estimatedDays: number;
+    startDate: string;
+    targetDate: string;
+    assignedDesigner: string;
+    status: 'Not Started' | 'In Progress' | 'Completed' | 'Delayed';
+    progress: number;
+}
+
+export interface Supervisor {
+    id: string;
+    name: string;
+    role: string;
+    exp: string;
+    projects: number;
+    status: 'Available' | 'Busy';
+}
+
+export interface SiteReadiness {
+    projectId: string;
+    isReady: boolean | null;
+    lastChecked: string;
+    checkList: { item: string; completed: boolean }[];
+    comments?: string;
+}
+
+export interface TechnicalDocument {
+    id: string;
+    projectId: string;
+    name: string;
+    type: 'BOQ' | 'Drawing' | 'Render' | 'Spec';
+    status: 'Ready' | 'Pending' | 'Missing';
+    date: string;
+}
+
+export interface TechnicalBriefing {
+    projectId: string;
+    date: string;
+    time: string;
+    notes: string;
+    attendees: string[];
+    isCompleted: boolean;
+}
+
+export interface DrawingTimeline {
+    projectId: string;
+    complexity: 'Low' | 'Medium' | 'High' | 'Complex';
+    resources: number;
+    startDate: string;
+    estimatedDays: number;
+    completionDate: string;
+    isConfirmed: boolean;
+}
+
+export interface ProductionDrawing {
+    id: string;
+    projectId: string;
+    name: string;
+    version: string;
+    type: 'CAD' | 'PDF' | 'Production';
+    uploadedBy: string;
+    date: string;
+    status: 'Draft' | 'Approved';
+}
+
+export interface AccessoryItem {
+    id: string;
+    projectId: string;
+    category: string;
+    name: string;
+    quantity: number;
+    unit: string;
+    notes: string;
+}
+
+export interface ShutterSpecs {
+    projectId: string;
+    glass: { type: string; thickness: string; finish: string; notes: string };
+    wood: { core: string; finish: string; edgeBand: string; notes: string };
+    stone: { material: string; thickness: string; edgeProfile: string; notes: string };
+    metal: { material: string; gauge: string; finish: string; notes: string };
+}
+
+export interface BOMValidation {
+    projectId: string;
+    checks: {
+        drawings: boolean;
+        accessories: boolean;
+        specs: boolean;
+        quantities: boolean;
+    };
+    isSubmitted: boolean;
+    submittedAt?: string;
+}
+
+export interface BOMReception {
+    id: string;
+    projectId: string;
+    submittedBy: string;
+    date: string;
+    itemsCount: number;
+    status: 'Pending' | 'Processing' | 'Completed';
+    priority: 'High' | 'Medium' | 'Low';
+}
+
+export interface StockItem {
+    id: string;
+    projectId: string;
+    name: string;
+    category: string;
+    requiredQty: number;
+    availableQty: number;
+    unit: string;
+    status: 'Available' | 'Shortfall';
 }
 
 class ProjectManagementService {
+    private bomValidations: BOMValidation[] = [
+        {
+            projectId: 'proj-001',
+            checks: { drawings: true, accessories: true, specs: true, quantities: false },
+            isSubmitted: false
+        }
+    ];
+
+    private bomReceptions: BOMReception[] = [
+        { id: 'BOM-001', projectId: 'proj-001', submittedBy: 'Alex Tech', date: '2025-02-01', itemsCount: 45, status: 'Pending', priority: 'High' },
+        { id: 'BOM-002', projectId: 'proj-002', submittedBy: 'Sarah Design', date: '2025-02-02', itemsCount: 120, status: 'Processing', priority: 'Medium' },
+    ];
+
+    private stockItems: StockItem[] = [
+        { id: 'ITM-001', projectId: 'proj-001', name: 'Plywood 18mm MR Grade', category: 'Wood', requiredQty: 50, availableQty: 120, unit: 'sheets', status: 'Available' },
+        { id: 'ITM-002', projectId: 'proj-001', name: 'Laminate - White Gloss', category: 'Finish', requiredQty: 30, availableQty: 10, unit: 'sheets', status: 'Shortfall' },
+        { id: 'ITM-003', projectId: 'proj-001', name: 'Hettich Soft Close Hinge', category: 'Hardware', requiredQty: 100, availableQty: 45, unit: 'pcs', status: 'Shortfall' },
+        { id: 'ITM-004', projectId: 'proj-001', name: 'Fevicol SH', category: 'Adhesive', requiredQty: 20, availableQty: 50, unit: 'kg', status: 'Available' },
+    ];
+
     // ... existing mock data stores ...
     private claims: TAClaim[] = [
         { id: 'CLM-001', date: '2023-10-25', amount: 1500, description: 'Site visit travel', status: 'Approved', projectId: 'proj-001' },
@@ -196,6 +401,253 @@ class ProjectManagementService {
         { id: 'DIS-001', title: 'Tall Unit Quantity Mismatch', description: 'BOQ says 2, Drawing shows 3', priority: 'High', status: 'Open', date: '2025-01-20', reportedBy: 'Site Supervisor' },
         { id: 'DIS-002', title: 'Sink Position Conflict', description: 'Plumbing not aligned with cabinet', priority: 'Medium', status: 'In Review', date: '2025-01-19', reportedBy: 'MEP Engineer' },
         { id: 'DIS-003', title: 'Material Finish Unavailable', description: 'Selected laminate out of stock', priority: 'Low', status: 'Resolved', date: '2025-01-18', reportedBy: 'Procurement' },
+    ];
+
+    private drawingRevisions: DrawingRevision[] = [
+        {
+            id: '1',
+            projectId: 'proj-001',
+            documentNumber: 'D-2025-001',
+            documentName: 'Equipment Layout Drawing',
+            version: '3.0',
+            revisionDate: '2025-01-20',
+            revisedBy: 'Design Team',
+            status: 'Approved',
+            changeDescription: 'Updated kitchen equipment positions based on site measurements. Adjusted spacing for exhaust hoods.',
+            changesCount: 8,
+            reviewedBy: 'Project Manager',
+            approvedDate: '2025-01-21',
+            previousVersion: '2.0',
+        }
+    ];
+
+    private mepDrawings: MEPDrawing[] = [
+        {
+            id: '1',
+            mepNumber: 'MEP-2025-001',
+            projectId: 'proj-001',
+            projectName: 'Taj Hotels - Commercial Kitchen Setup',
+            drawingType: 'Electrical',
+            drawingName: 'Kitchen Power Distribution - Main Panel',
+            version: '2.0',
+            status: 'Shared with Site',
+            createdDate: '2025-01-15',
+            createdBy: 'MEP Designer',
+            approvedDate: '2025-01-16',
+            siteWorkProgress: 75,
+            siteWorkStatus: 'In Progress',
+            assignedTo: 'Site Supervisor - Anil Kumar',
+            fileSize: '3.2 MB',
+        }
+    ];
+
+    private siteVisits: SiteVisit[] = [
+        { id: '1', projectId: 'proj-001', date: '2025-01-24', time: '10:00 AM', location: 'Taj Hotels', contactName: 'Client Representative', status: 'Confirmed' },
+        { id: '2', projectId: 'proj-001', date: '2025-01-26', time: '02:00 PM', location: 'BigBasket', contactName: 'Site Manager', status: 'Pending' },
+    ];
+
+    private cabinetMarkingTasks: CabinetMarkingTask[] = [
+        {
+            id: '1',
+            taskNumber: 'CM-2025-001',
+            projectId: 'proj-001',
+            projectName: 'Taj Hotels - Commercial Kitchen Setup',
+            cabinetType: 'Wall Cabinets - Upper Level',
+            quantity: 24,
+            scheduledDate: '2025-01-22',
+            assignedTeam: 'Installation Team A - 4 members',
+            status: 'Completed',
+            completionPercentage: 100,
+            markedItems: 24,
+            totalItems: 24,
+            photosUploaded: 12,
+            reportGenerated: true,
+        },
+        {
+            id: '2',
+            taskNumber: 'CM-2025-002',
+            projectId: 'proj-001',
+            projectName: 'Taj Hotels - Commercial Kitchen Setup',
+            cabinetType: 'Base Cabinets - Floor Level',
+            quantity: 18,
+            scheduledDate: '2025-01-23',
+            assignedTeam: 'Installation Team A - 4 members',
+            status: 'In Progress',
+            completionPercentage: 65,
+            markedItems: 12,
+            totalItems: 18,
+            photosUploaded: 8,
+            reportGenerated: false,
+        },
+        {
+            id: '4',
+            taskNumber: 'CM-2025-004',
+            projectId: 'proj-002',
+            projectName: 'BigBasket Cold Storage Facility',
+            cabinetType: 'Control Panel Enclosures',
+            quantity: 8,
+            scheduledDate: '2025-01-26',
+            assignedTeam: 'Installation Team C - 2 members',
+            status: 'Pending Review',
+            completionPercentage: 100,
+            markedItems: 8,
+            totalItems: 8,
+            photosUploaded: 4,
+            reportGenerated: false,
+        },
+    ];
+
+    private drawingTimelines: DrawingTimeline[] = [
+        {
+            id: '1',
+            timelineNumber: 'TL-2025-001',
+            projectId: 'proj-001',
+            projectName: 'Taj Hotels - Commercial Kitchen Setup',
+            drawingType: 'Technical Fabrication Drawings',
+            quantity: 12,
+            complexity: 'High',
+            estimatedDays: 14,
+            startDate: '2025-01-18',
+            targetDate: '2025-02-01',
+            assignedDesigner: 'Technical Designer Team A',
+            status: 'In Progress',
+            progress: 60,
+        },
+        {
+            id: '2',
+            timelineNumber: 'TL-2025-002',
+            projectId: 'proj-001',
+            projectName: 'Taj Hotels - Commercial Kitchen Setup',
+            drawingType: 'Assembly Drawings',
+            quantity: 8,
+            complexity: 'Medium',
+            estimatedDays: 7,
+            startDate: '2025-01-25',
+            targetDate: '2025-02-01',
+            assignedDesigner: 'Technical Designer Team B',
+            status: 'Not Started',
+            progress: 0,
+        },
+        {
+            id: '3',
+            timelineNumber: 'TL-2025-003',
+            projectId: 'proj-002',
+            projectName: 'BigBasket Cold Storage Facility',
+            drawingType: 'Cold Room Technical Drawings',
+            quantity: 15,
+            complexity: 'Very High',
+            estimatedDays: 21,
+            startDate: '2025-01-22',
+            targetDate: '2025-02-12',
+            assignedDesigner: 'Senior Technical Designer',
+            status: 'Not Started',
+            progress: 0,
+        },
+    ];
+
+    private supervisors: Supervisor[] = [
+        { id: 'SUP-001', name: 'Anil Kumar', role: 'Senior Supervisor', exp: '8 years', projects: 2, status: 'Available' },
+        { id: 'SUP-002', name: 'Rajesh Singh', role: 'Site Engineer', exp: '5 years', projects: 1, status: 'Available' },
+        { id: 'SUP-003', name: 'Vikram Malhotra', role: 'Project Manager', exp: '12 years', projects: 4, status: 'Busy' },
+    ];
+
+    private siteReadinessRecords: SiteReadiness[] = [
+        {
+            projectId: 'proj-001',
+            isReady: null,
+            lastChecked: '2025-02-01',
+            checkList: [
+                { item: 'Civil work completed', completed: false },
+                { item: 'Flooring installed', completed: false },
+                { item: 'Power & water points available', completed: false },
+                { item: 'Access for material delivery clear', completed: false },
+            ],
+        },
+    ];
+
+    private technicalDocuments: TechnicalDocument[] = [
+        { id: '1', projectId: 'proj-001', name: 'Final_Approved_BOQ_v2.pdf', type: 'BOQ', status: 'Ready', date: '2025-01-20' },
+        { id: '2', projectId: 'proj-001', name: 'Site_Measurements_Verified.pdf', type: 'Drawing', status: 'Ready', date: '2025-01-22' },
+        { id: '3', projectId: 'proj-001', name: 'Kitchen_Layout_Concept_v3.jpg', type: 'Render', status: 'Ready', date: '2025-01-18' },
+        { id: '4', projectId: 'proj-001', name: 'Appliance_Specifications_Sheet.pdf', type: 'Spec', status: 'Ready', date: '2025-01-19' },
+        { id: '5', projectId: 'proj-002', name: 'BOQ_Rough_Draft.pdf', type: 'BOQ', status: 'Ready', date: '2025-01-25' },
+    ];
+
+    private technicalBriefings: TechnicalBriefing[] = [
+        {
+            projectId: 'proj-001',
+            date: '2025-01-25',
+            time: '10:00',
+            notes: 'Reviewed site constraints and kitchen layout requirements.',
+            attendees: ['Project Manager', 'Technical Lead', 'Kitchen Specialist'],
+            isCompleted: true,
+        },
+    ];
+
+    private drawingTimelines: DrawingTimeline[] = [
+        {
+            projectId: 'proj-001',
+            complexity: 'Medium',
+            resources: 2,
+            startDate: '2025-01-26',
+            estimatedDays: 5,
+            completionDate: '2025-01-31',
+            isConfirmed: true,
+        },
+    ];
+
+    private productionDrawings: ProductionDrawing[] = [
+        {
+            id: 'DWG-001',
+            projectId: 'proj-001',
+            name: 'Kitchen_Joinery_Detail_A.dwg',
+            version: 'v1.0',
+            type: 'CAD',
+            uploadedBy: 'Tech Lead',
+            date: '2025-01-25',
+            status: 'Draft',
+        },
+        {
+            id: 'DWG-002',
+            projectId: 'proj-001',
+            name: 'Wardrobe_Section_B.pdf',
+            version: 'v1.0',
+            type: 'PDF',
+            uploadedBy: 'Tech Lead',
+            date: '2025-01-25',
+            status: 'Draft',
+        },
+    ];
+
+    private accessoriesBOM: AccessoryItem[] = [
+        {
+            id: 'ACC-001',
+            projectId: 'proj-001',
+            category: 'Hinges',
+            name: 'Soft Close Hinge 110°',
+            quantity: 24,
+            unit: 'pcs',
+            notes: 'Blum or Hettich',
+        },
+        {
+            id: 'ACC-002',
+            projectId: 'proj-001',
+            category: 'Handles',
+            name: 'Brushed Nickel Bar Handle',
+            quantity: 12,
+            unit: 'pcs',
+            notes: '128mm center',
+        },
+    ];
+
+    private shutterSpecs: ShutterSpecs[] = [
+        {
+            projectId: 'proj-001',
+            glass: { type: 'Toughened', thickness: '5mm', finish: 'Clear', notes: '' },
+            wood: { core: 'MDF', finish: 'Laminate', edgeBand: '2mm PVC', notes: '' },
+            stone: { material: 'Granite', thickness: '20mm', edgeProfile: 'Chamfered', notes: '' },
+            metal: { material: 'SS 304', gauge: '18G', finish: 'Brushed', notes: '' },
+        }
     ];
 
     private mockProjectResources: any[] = [
@@ -758,6 +1210,170 @@ class ProjectManagementService {
         };
         this.discrepancies.unshift(newDiscrepancy);
         return newDiscrepancy;
+    }
+
+    // Site Visit Schedule
+    async getSiteVisits(projectId: string): Promise<SiteVisit[]> {
+        return this.siteVisits.filter(v => v.projectId === projectId);
+    }
+
+    // Drawing Revisions
+    async getDrawingRevisions(projectId: string): Promise<DrawingRevision[]> {
+        return this.drawingRevisions.filter(r => r.projectId === projectId);
+    }
+
+    // MEP Drawing Management
+    async getMEPDrawings(projectId: string): Promise<MEPDrawing[]> {
+        return this.mepDrawings.filter(d => d.projectId === projectId);
+    }
+
+    // Cabinet Marking
+    async getCabinetMarkingTasks(projectId: string): Promise<CabinetMarkingTask[]> {
+        return this.cabinetMarkingTasks.filter(t => t.projectId === projectId);
+    }
+
+    // Drawing Timelines
+    async getDrawingTimelines(projectId: string): Promise<DrawingTimeline[]> {
+        return this.drawingTimelines.filter(t => t.projectId === projectId);
+    }
+
+    // Team Assignment
+    async getSupervisors(): Promise<Supervisor[]> {
+        return this.supervisors;
+    }
+
+    // Site Readiness
+    async getSiteReadiness(projectId: string): Promise<SiteReadiness | null> {
+        return this.siteReadinessRecords.find(r => r.projectId === projectId) || null;
+    }
+
+    async updateSiteReadiness(record: SiteReadiness): Promise<void> {
+        const index = this.siteReadinessRecords.findIndex(r => r.projectId === record.projectId);
+        if (index >= 0) {
+            this.siteReadinessRecords[index] = record;
+        } else {
+            this.siteReadinessRecords.push(record);
+        }
+    }
+
+    // Technical Sharing
+    async getTechnicalDocuments(projectId: string): Promise<TechnicalDocument[]> {
+        return this.technicalDocuments.filter(d => d.projectId === projectId);
+    }
+
+    // Technical Briefing
+    async getTechnicalBriefing(projectId: string): Promise<TechnicalBriefing | null> {
+        return this.technicalBriefings.find(b => b.projectId === projectId) || null;
+    }
+
+    async updateTechnicalBriefing(briefing: TechnicalBriefing): Promise<void> {
+        const index = this.technicalBriefings.findIndex(b => b.projectId === briefing.projectId);
+        if (index >= 0) {
+            this.technicalBriefings[index] = briefing;
+        } else {
+            this.technicalBriefings.push(briefing);
+        }
+    }
+
+    // Technical Timeline (Drawings)
+    async getDrawingTimeline(projectId: string): Promise<DrawingTimeline | null> {
+        return this.drawingTimelines.find(t => t.projectId === projectId) || null;
+    }
+
+    async updateDrawingTimeline(timeline: DrawingTimeline): Promise<void> {
+        const index = this.drawingTimelines.findIndex(t => t.projectId === timeline.projectId);
+        if (index >= 0) {
+            this.drawingTimelines[index] = timeline;
+        } else {
+            this.drawingTimelines.push(timeline);
+        }
+    }
+
+    // Production Drawings
+    async getProductionDrawings(projectId: string): Promise<ProductionDrawing[]> {
+        return this.productionDrawings.filter(d => d.projectId === projectId);
+    }
+
+    async addProductionDrawing(drawing: ProductionDrawing): Promise<void> {
+        this.productionDrawings.push(drawing);
+    }
+
+    async deleteProductionDrawing(id: string): Promise<void> {
+        this.productionDrawings = this.productionDrawings.filter(d => d.id !== id);
+    }
+
+    // Accessories BOM
+    async getAccessoriesBOM(projectId: string): Promise<AccessoryItem[]> {
+        return this.accessoriesBOM.filter(i => i.projectId === projectId);
+    }
+
+    async addAccessoryItem(item: AccessoryItem): Promise<void> {
+        this.accessoriesBOM.push(item);
+    }
+
+    async deleteAccessoryItem(id: string): Promise<void> {
+        this.accessoriesBOM = this.accessoriesBOM.filter(i => i.id !== id);
+    }
+
+    // Shutter Specs
+    async getShutterSpecs(projectId: string): Promise<ShutterSpecs | null> {
+        return this.shutterSpecs.find(s => s.projectId === projectId) || null;
+    }
+
+    async updateShutterSpecs(specs: ShutterSpecs): Promise<void> {
+        const index = this.shutterSpecs.findIndex(s => s.projectId === specs.projectId);
+        if (index >= 0) {
+            this.shutterSpecs[index] = specs;
+        } else {
+            this.shutterSpecs.push(specs);
+        }
+    }
+
+    // BOM Validation
+    async getBOMValidation(projectId: string): Promise<BOMValidation | null> {
+        return this.bomValidations.find(v => v.projectId === projectId) || null;
+    }
+
+    async updateBOMValidation(validation: BOMValidation): Promise<void> {
+        const index = this.bomValidations.findIndex(v => v.projectId === validation.projectId);
+        if (index >= 0) {
+            this.bomValidations[index] = validation;
+        } else {
+            this.bomValidations.push(validation);
+        }
+    }
+
+    // BOM Reception
+    async getBOMReceptions(projectId?: string): Promise<BOMReception[]> {
+        if (projectId) {
+            return this.bomReceptions.filter(r => r.projectId === projectId);
+        }
+        return this.bomReceptions;
+    }
+
+    async updateBOMReception(reception: BOMReception): Promise<void> {
+        const index = this.bomReceptions.findIndex(r => r.id === reception.id);
+        if (index >= 0) {
+            this.bomReceptions[index] = reception;
+        } else {
+            this.bomReceptions.push(reception);
+        }
+    }
+
+    // Stock Check
+    async getStockItems(projectId: string): Promise<StockItem[]> {
+        return this.stockItems.filter(i => i.projectId === projectId);
+    }
+
+    async updateStockItems(items: StockItem[]): Promise<void> {
+        for (const item of items) {
+            const index = this.stockItems.findIndex(i => i.id === item.id);
+            if (index >= 0) {
+                this.stockItems[index] = item;
+            } else {
+                this.stockItems.push(item);
+            }
+        }
     }
 }
 
