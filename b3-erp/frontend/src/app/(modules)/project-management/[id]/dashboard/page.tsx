@@ -114,7 +114,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         customerName: projectData.clientName,
         status: projectData.status
       })
-    } catch (error) {
+
       const completedTasks = tasksData.filter(t => t.status === 'Completed' || t.status === 'completed').length
       const inProgressTasks = tasksData.filter(t => t.status === 'In Progress' || t.status === 'in_progress').length
       const blockedTasks = tasksData.filter(t => t.status === 'Blocked' || t.status === 'blocked').length

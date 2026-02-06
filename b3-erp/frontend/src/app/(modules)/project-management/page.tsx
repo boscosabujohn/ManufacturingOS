@@ -24,6 +24,7 @@ import {
     Archive,
     UserPlus,
     StickyNote,
+    BarChart3,
 } from 'lucide-react';
 import { useProjectContext } from '@/context/ProjectContext';
 import {
@@ -38,6 +39,7 @@ import {
     TeamMembersModal,
     QuickNotesModal,
 } from '@/components/project-management/ProjectListModals';
+import { ProjectRoadmapModal } from '@/components/project-management/ProjectRoadmapModal';
 import { WorkflowQuickActions } from '@/components/project-management/WorkflowQuickActions';
 import { projectManagementService, Project as ServiceProject } from '@/services/ProjectManagementService';
 
@@ -346,6 +348,7 @@ export default function ProjectsListPage() {
     const [showTimeline, setShowTimeline] = useState(false);
     const [showTeamMembers, setShowTeamMembers] = useState(false);
     const [showQuickNotes, setShowQuickNotes] = useState(false);
+    const [showRoadmap, setShowRoadmap] = useState(false);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [selectedProjects, setSelectedProjects] = useState<Project[]>([]);
 
@@ -494,6 +497,11 @@ export default function ProjectsListPage() {
     const openQuickNotesModal = (project: Project) => {
         setSelectedProject(project);
         setShowQuickNotes(true);
+    };
+
+    const openRoadmapModal = (project: Project) => {
+        setSelectedProject(project);
+        setShowRoadmap(true);
     };
 
     return (
@@ -720,7 +728,29 @@ export default function ProjectsListPage() {
                                                 <button className="p-1.5 text-gray-400 hover:bg-gray-100 rounded-md transition-colors">
                                                     <MoreVertical className="w-3.5 h-3.5" />
                                                 </button>
-                                                {/* Dropdown would go here if needed, keeping it simple for density */}
+                                                {/* Action Dropdown */}
+                                                <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-2xl border border-slate-200 py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                                                    <button
+                                                        onClick={() => openRoadmapModal(project)}
+                                                        className="w-full text-left px-4 py-2 text-xs font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-600 flex items-center gap-2"
+                                                    >
+                                                        <BarChart3 className="w-3.5 h-3.5" />
+                                                        Interactive Roadmap
+                                                    </button>
+                                                    <button
+                                                        onClick={() => openTimelineModal(project)}
+                                                        className="w-full text-left px-4 py-2 text-xs font-bold text-slate-700 hover:bg-purple-50 hover:text-purple-600 flex items-center gap-2"
+                                                    >
+                                                        <Calendar className="w-3.5 h-3.5" />
+                                                        Schedule View
+                                                    </button>
+                                                    <button
+                                                        className="w-full text-left px-4 py-2 text-xs font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-600 flex items-center gap-2"
+                                                    >
+                                                        <UserPlus className="w-3.5 h-3.5" />
+                                                        Assign Resources
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -797,6 +827,12 @@ export default function ProjectsListPage() {
                             onClose={() => setShowArchive(false)}
                             project={selectedProject}
                             onArchive={handleArchive}
+                        />
+
+                        <ProjectRoadmapModal
+                            isOpen={showRoadmap}
+                            onClose={() => setShowRoadmap(false)}
+                            project={selectedProject}
                         />
 
                         <ProjectTimelineModal

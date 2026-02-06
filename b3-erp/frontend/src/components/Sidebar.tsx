@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useProjectContextOptional } from '@/context/ProjectContext';
-import { SIDEBAR_PHASE_MAPPING, getPhaseWorkflowStatus } from '@/lib/projectChecklistData';
+import { SIDEBAR_PHASE_MAPPING, getPhaseWorkflowStatus, getStepByHref } from '@/lib/projectChecklistData';
 import {
   Users,
   ShoppingCart,

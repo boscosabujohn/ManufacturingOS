@@ -3,546 +3,491 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import {
- FolderKanban,
- TrendingUp,
- AlertTriangle,
- CheckCircle,
- DollarSign,
- Clock,
- Users,
- Calendar,
- Package,
- BarChart3,
- ArrowRight,
- Filter,
- RefreshCw,
- Layout,
- Download,
- Bell,
- Zap,
+  FolderKanban,
+  TrendingUp,
+  AlertTriangle,
+  CheckCircle,
+  DollarSign,
+  Clock,
+  Users,
+  Calendar,
+  Package,
+  BarChart3,
+  ArrowRight,
+  Filter,
+  RefreshCw,
+  Layout,
+  Download,
+  Bell,
+  Zap,
+  Activity,
+  Target,
 } from 'lucide-react';
 import {
- CreateProjectModal,
- QuickActionsModal,
- FilterDashboardModal,
- CustomizeWidgetsModal,
- ExportDashboardModal,
- ViewAlertsModal,
- RefreshDashboardModal,
- ViewDetailsModal,
+  CreateProjectModal,
+  QuickActionsModal,
+  FilterDashboardModal,
+  CustomizeWidgetsModal,
+  ExportDashboardModal,
+  ViewAlertsModal,
+  RefreshDashboardModal,
+  ViewDetailsModal,
 } from '@/components/project-management/DashboardModals';
+import { StatHighlight, PremiumCard } from '@/components/dashboard/DashboardWidgets';
 
 export default function ProjectDashboardPage() {
- // Modal states
- const [showCreateModal, setShowCreateModal] = useState(false);
- const [showQuickActionsModal, setShowQuickActionsModal] = useState(false);
- const [showFilterModal, setShowFilterModal] = useState(false);
- const [showCustomizeModal, setShowCustomizeModal] = useState(false);
- const [showExportModal, setShowExportModal] = useState(false);
- const [showAlertsModal, setShowAlertsModal] = useState(false);
- const [showRefreshModal, setShowRefreshModal] = useState(false);
- const [showDetailsModal, setShowDetailsModal] = useState(false);
- const [selectedProject, setSelectedProject] = useState<any>(null);
+  // Modal states
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showQuickActionsModal, setShowQuickActionsModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showCustomizeModal, setShowCustomizeModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showAlertsModal, setShowAlertsModal] = useState(false);
+  const [showRefreshModal, setShowRefreshModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
- // Statistics
- const stats = {
-  totalProjects: 10,
-  activeProjects: 7,
-  completedProjects: 1,
-  delayedProjects: 2,
-  totalBudget: 95000000,
-  spentAmount: 47400000,
-  plannedRevenue: 118750000,
-  actualRevenue: 62000000,
-  resourceUtilization: 78,
-  avgProjectHealth: 72,
- };
+  // Statistics
+  const stats = {
+    totalProjects: 10,
+    activeProjects: 7,
+    completedProjects: 1,
+    delayedProjects: 2,
+    totalBudget: 95000000,
+    spentAmount: 47400000,
+    plannedRevenue: 118750000,
+    actualRevenue: 62000000,
+    resourceUtilization: 78,
+    avgProjectHealth: 72,
+  };
 
- // Recent Projects
- const recentProjects = [
-  {
-   id: '1',
-   name: 'Taj Hotel Commercial Kitchen Installation',
-   progress: 65,
-   status: 'On Track',
-   dueDate: '2024-04-30',
-   manager: 'Rajesh Kumar',
-   budget: 8500000,
-   spent: 5200000,
-  },
-  {
-   id: '2',
-   name: 'BigBasket Cold Storage Facility',
-   progress: 45,
-   status: 'On Track',
-   dueDate: '2024-05-15',
-   manager: 'Priya Sharma',
-   budget: 12000000,
-   spent: 4800000,
-  },
-  {
-   id: '3',
-   name: 'L&T Switchgear Panel Manufacturing',
-   progress: 75,
-   status: 'At Risk',
-   dueDate: '2024-03-20',
-   manager: 'Amit Patel',
-   budget: 6500000,
-   spent: 5400000,
-  },
-  {
-   id: '4',
-   name: 'Siemens HT Switchgear Project',
-   progress: 35,
-   status: 'On Track',
-   dueDate: '2024-06-15',
-   manager: 'Manoj Kumar',
-   budget: 15000000,
-   spent: 4500000,
-  },
- ];
+  // Recent Projects
+  const recentProjects = [
+    {
+      id: '1',
+      name: 'Taj Hotel Commercial Kitchen Installation',
+      progress: 65,
+      status: 'On Track',
+      dueDate: '2024-04-30',
+      manager: 'Rajesh Kumar',
+      budget: 8500000,
+      spent: 5200000,
+    },
+    {
+      id: '2',
+      name: 'BigBasket Cold Storage Facility',
+      progress: 45,
+      status: 'On Track',
+      dueDate: '2024-05-15',
+      manager: 'Priya Sharma',
+      budget: 12000000,
+      spent: 4800000,
+    },
+    {
+      id: '3',
+      name: 'L&T Switchgear Panel Manufacturing',
+      progress: 75,
+      status: 'At Risk',
+      dueDate: '2024-03-20',
+      manager: 'Amit Patel',
+      budget: 6500000,
+      spent: 5400000,
+    },
+    {
+      id: '4',
+      name: 'Siemens HT Switchgear Project',
+      progress: 35,
+      status: 'On Track',
+      dueDate: '2024-06-15',
+      manager: 'Manoj Kumar',
+      budget: 15000000,
+      spent: 4500000,
+    },
+  ];
 
- // Upcoming Milestones
- const upcomingMilestones = [
-  { project: 'Taj Hotel Kitchen', milestone: 'Equipment Installation Complete', date: '2024-03-25', days: 8 },
-  { project: 'BigBasket Cold Storage', milestone: 'Panel Assembly Complete', date: '2024-03-30', days: 13 },
-  { project: 'L&T Switchgear', milestone: 'Final Testing & Documentation', date: '2024-03-20', days: 3 },
-  { project: 'ITC Grand Kitchen', milestone: 'Design Approval', date: '2024-03-15', days: -2 },
- ];
+  // Upcoming Milestones
+  const upcomingMilestones = [
+    { project: 'Taj Hotel Kitchen', milestone: 'Equipment Installation Complete', date: '2024-03-25', days: 8 },
+    { project: 'BigBasket Cold Storage', milestone: 'Panel Assembly Complete', date: '2024-03-30', days: 13 },
+    { project: 'L&T Switchgear', milestone: 'Final Testing & Documentation', date: '2024-03-20', days: 3 },
+    { project: 'ITC Grand Kitchen', milestone: 'Design Approval', date: '2024-01-15', days: -2 },
+  ];
 
- // Resource Utilization
- const resourceData = [
-  { role: 'Project Managers', allocated: 8, available: 2, utilization: 80 },
-  { role: 'Civil Engineers', allocated: 12, available: 3, utilization: 80 },
-  { role: 'Installation Team', allocated: 45, available: 8, utilization: 85 },
-  { role: 'QC Inspectors', allocated: 6, available: 2, utilization: 75 },
-  { role: 'Commissioning Team', allocated: 10, available: 4, utilization: 71 },
- ];
+  // Resource Utilization
+  const resourceData = [
+    { role: 'Project Managers', allocated: 8, available: 2, utilization: 80 },
+    { role: 'Civil Engineers', allocated: 12, available: 3, utilization: 80 },
+    { role: 'Installation Team', allocated: 45, available: 8, utilization: 85 },
+    { role: 'QC Inspectors', allocated: 6, available: 2, utilization: 75 },
+    { role: 'Commissioning Team', allocated: 10, available: 4, utilization: 71 },
+  ];
 
- // Project Health Trend (last 6 months)
- const healthTrend = [
-  { month: 'Oct', score: 68 },
-  { month: 'Nov', score: 72 },
-  { month: 'Dec', score: 70 },
-  { month: 'Jan', score: 75 },
-  { month: 'Feb', score: 73 },
-  { month: 'Mar', score: 72 },
- ];
+  // Project Health Trend (last 6 months)
+  const healthTrend = [
+    { month: 'Oct', score: 68 },
+    { month: 'Nov', score: 72 },
+    { month: 'Dec', score: 70 },
+    { month: 'Jan', score: 75 },
+    { month: 'Feb', score: 73 },
+    { month: 'Mar', score: 72 },
+  ];
 
- const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('en-IN', {
-   style: 'currency',
-   currency: 'INR',
-   minimumFractionDigits: 0,
-   maximumFractionDigits: 0,
-  }).format(amount);
- };
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
 
- const getStatusColor = (status: string) => {
-  switch (status) {
-   case 'On Track': return 'bg-green-100 text-green-700';
-   case 'At Risk': return 'bg-yellow-100 text-yellow-700';
-   case 'Delayed': return 'bg-red-100 text-red-700';
-   default: return 'bg-gray-100 text-gray-700';
-  }
- };
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'On Track': return 'bg-green-100 text-green-700';
+      case 'At Risk': return 'bg-yellow-100 text-yellow-700';
+      case 'Delayed': return 'bg-red-100 text-red-700';
+      default: return 'bg-gray-100 text-gray-700';
+    }
+  };
 
- // Handler functions
- const handleCreateProject = (data: any) => {
-  console.log('Create Project:', data);
-  setShowCreateModal(false);
- };
+  // Handler functions
+  const handleCreateProject = (data: any) => {
+    console.log('Create Project:', data);
+    setShowCreateModal(false);
+  };
 
- const handleQuickAction = (action: string) => {
-  console.log('Quick Action:', action);
-  setShowQuickActionsModal(false);
- };
+  const handleQuickAction = (action: string) => {
+    console.log('Quick Action:', action);
+    setShowQuickActionsModal(false);
+  };
 
- const handleApplyFilters = (filters: any) => {
-  console.log('Apply Filters:', filters);
-  setShowFilterModal(false);
- };
+  const handleApplyFilters = (filters: any) => {
+    console.log('Apply Filters:', filters);
+    setShowFilterModal(false);
+  };
 
- const handleSaveWidgets = (widgets: any) => {
-  console.log('Save Widgets:', widgets);
-  setShowCustomizeModal(false);
- };
+  const handleSaveWidgets = (widgets: any) => {
+    console.log('Save Widgets:', widgets);
+    setShowCustomizeModal(false);
+  };
 
- const handleExport = (settings: any) => {
-  console.log('Export Dashboard:', settings);
-  setShowExportModal(false);
- };
+  const handleExport = (settings: any) => {
+    console.log('Export Dashboard:', settings);
+    setShowExportModal(false);
+  };
 
- const handleRefresh = () => {
-  console.log('Refresh Dashboard');
-  setShowRefreshModal(false);
- };
+  const handleRefresh = () => {
+    console.log('Refresh Dashboard');
+    setShowRefreshModal(false);
+  };
 
- const openDetailsModal = (project: any) => {
-  setSelectedProject(project);
-  setShowDetailsModal(true);
- };
+  const openDetailsModal = (project: any) => {
+    setSelectedProject(project);
+    setShowDetailsModal(true);
+  };
 
- return (
-  <div className="w-full min-h-screen px-3 py-2 space-y-3">
-   {/* Header Actions */}
-   <div className="flex justify-between items-start gap-3 mb-2">
-    <div className="flex items-center gap-3">
-     <button
-      onClick={() => setShowQuickActionsModal(true)}
-      className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-     >
-      <Zap className="h-5 w-5" />
-      <span>Quick Actions</span>
-     </button>
-     <button
-      onClick={() => setShowFilterModal(true)}
-      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-     >
-      <Filter className="h-5 w-5" />
-      <span>Filter</span>
-     </button>
-     <button
-      onClick={() => setShowAlertsModal(true)}
-      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors relative"
-     >
-      <Bell className="h-5 w-5" />
-      <span>Alerts</span>
-      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-     </button>
-    </div>
-    <div className="flex items-center gap-3">
-     <button
-      onClick={() => setShowCustomizeModal(true)}
-      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-     >
-      <Layout className="h-5 w-5" />
-      <span>Customize</span>
-     </button>
-     <button
-      onClick={() => setShowExportModal(true)}
-      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-     >
-      <Download className="h-5 w-5" />
-      <span>Export</span>
-     </button>
-     <button
-      onClick={() => setShowRefreshModal(true)}
-      className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-     >
-      <RefreshCw className="h-5 w-5" />
-      <span>Refresh</span>
-     </button>
-     <Link
-      href="/project-management"
-      className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-     >
-      View All Projects
-     </Link>
-     <button
-      onClick={() => setShowCreateModal(true)}
-      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-     >
-      Create Project
-     </button>
-    </div>
-   </div>
-
-   {/* Key Metrics */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-2">
-      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-       <FolderKanban className="w-6 h-6 text-blue-600" />
-      </div>
-      <span className="text-sm text-green-600 font-medium">+2 this month</span>
-     </div>
-     <p className="text-sm text-gray-600 mb-1">Total Projects</p>
-     <p className="text-3xl font-bold text-gray-900">{stats.totalProjects}</p>
-     <p className="text-sm text-gray-500 mt-2">{stats.activeProjects} active · {stats.completedProjects} completed</p>
-    </div>
-
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-2">
-      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-       <DollarSign className="w-6 h-6 text-green-600" />
-      </div>
-      <span className="text-sm text-blue-600 font-medium">
-       {Math.round((stats.spentAmount / stats.totalBudget) * 100)}% spent
-      </span>
-     </div>
-     <p className="text-sm text-gray-600 mb-1">Total Budget</p>
-     <p className="text-3xl font-bold text-gray-900">{formatCurrency(stats.totalBudget)}</p>
-     <p className="text-sm text-gray-500 mt-2">Spent: {formatCurrency(stats.spentAmount)}</p>
-    </div>
-
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-2">
-      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-       <TrendingUp className="w-6 h-6 text-purple-600" />
-      </div>
-      <span className="text-sm text-green-600 font-medium">↑ 12%</span>
-     </div>
-     <p className="text-sm text-gray-600 mb-1">Revenue Pipeline</p>
-     <p className="text-3xl font-bold text-gray-900">{formatCurrency(stats.plannedRevenue)}</p>
-     <p className="text-sm text-gray-500 mt-2">Realized: {formatCurrency(stats.actualRevenue)}</p>
-    </div>
-
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-2">
-      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-       <AlertTriangle className="w-6 h-6 text-orange-600" />
-      </div>
-      <span className="text-sm text-red-600 font-medium">Needs attention</span>
-     </div>
-     <p className="text-sm text-gray-600 mb-1">Projects at Risk</p>
-     <p className="text-3xl font-bold text-orange-900">{stats.delayedProjects}</p>
-     <p className="text-sm text-gray-500 mt-2">Out of {stats.activeProjects} active projects</p>
-    </div>
-   </div>
-
-   {/* Charts Row */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-    {/* Project Health Trend */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <h3 className="text-lg font-semibold text-gray-900 mb-2">Project Health Trend</h3>
-     <div className="h-64 flex items-end justify-between gap-2">
-      {healthTrend.map((data, index) => (
-       <div key={index} className="flex-1 flex flex-col items-center">
-        <div className="w-full bg-gray-100 rounded-t relative group">
-         <div
-          className="w-full bg-blue-500 rounded-t transition-all duration-500 hover:bg-blue-600"
-          style={{ height: `${(data.score / 100) * 200}px` }}
-         >
-          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-           <span className="text-sm font-semibold text-gray-900">{data.score}%</span>
-          </div>
-         </div>
-        </div>
-        <span className="text-xs text-gray-600 mt-2">{data.month}</span>
-       </div>
-      ))}
-     </div>
-     <div className="mt-4 flex items-center justify-center gap-2">
-      <div className="text-sm text-gray-600">Average Project Health Score:</div>
-      <div className="text-lg font-bold text-blue-600">{stats.avgProjectHealth}%</div>
-     </div>
-    </div>
-
-    {/* Resource Utilization */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-     <div className="flex items-center justify-between mb-2">
-      <h3 className="text-lg font-semibold text-gray-900">Resource Utilization</h3>
-      <div className="flex items-center gap-2">
-       <Users className="w-5 h-5 text-gray-400" />
-       <span className="text-sm text-gray-600">Overall: {stats.resourceUtilization}%</span>
-      </div>
-     </div>
-     <div className="space-y-2">
-      {resourceData.map((resource, index) => (
-       <div key={index}>
-        <div className="flex items-center justify-between mb-1">
-         <span className="text-sm font-medium text-gray-900">{resource.role}</span>
-         <span className="text-sm text-gray-600">
-          {resource.allocated} / {resource.allocated + resource.available}
-         </span>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
-         <div
-          className={`h-2 rounded-full ${resource.utilization >= 85 ? 'bg-red-500' :
-            resource.utilization >= 75 ? 'bg-orange-500' :
-             'bg-green-500'
-           }`}
-          style={{ width: `${resource.utilization}%` }}
-         ></div>
-        </div>
-        <div className="flex justify-between mt-1">
-         <span className="text-xs text-gray-500">{resource.utilization}% utilized</span>
-         <span className="text-xs text-green-600">{resource.available} available</span>
-        </div>
-       </div>
-      ))}
-     </div>
-    </div>
-   </div>
-
-   {/* Recent Projects & Milestones */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-    {/* Recent Projects */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-     <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-      <h3 className="text-lg font-semibold text-gray-900">Active Projects</h3>
-      <Link href="/project-management" className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1">
-       View All <ArrowRight className="w-4 h-4" />
-      </Link>
-     </div>
-     <div className="divide-y divide-gray-200">
-      {recentProjects.map((project) => (
-       <div key={project.id} className="p-6 hover:bg-gray-50 transition-colors">
-        <div className="flex items-start justify-between mb-3">
-         <div className="flex-1">
-          <Link href={`/project-management/view/${project.id}`} className="text-base font-semibold text-gray-900 hover:text-blue-600">
-           {project.name}
-          </Link>
-          <p className="text-sm text-gray-600 mt-1">PM: {project.manager}</p>
-         </div>
-         <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-          {project.status}
-         </span>
-        </div>
-        <div className="mb-3">
-         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs text-gray-600">Progress</span>
-          <span className="text-xs font-medium text-gray-900">{project.progress}%</span>
-         </div>
-         <div className="w-full bg-gray-200 rounded-full h-2">
-          <div
-           className="bg-blue-600 h-2 rounded-full"
-           style={{ width: `${project.progress}%` }}
-          ></div>
-         </div>
-        </div>
-        <div className="flex items-center justify-between text-sm">
-         <div className="flex items-center gap-1 text-gray-600">
-          <Calendar className="w-4 h-4" />
-          Due: {new Date(project.dueDate).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}
-         </div>
-         <div className="text-gray-900">
-          {formatCurrency(project.spent)} / {formatCurrency(project.budget)}
-         </div>
-        </div>
-       </div>
-      ))}
-     </div>
-    </div>
-
-    {/* Upcoming Milestones */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-     <div className="p-6 border-b border-gray-200 flex items-center justify-between">
-      <h3 className="text-lg font-semibold text-gray-900">Upcoming Milestones</h3>
-      <Link href="/project-management/deliverables" className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1">
-       View All <ArrowRight className="w-4 h-4" />
-      </Link>
-     </div>
-     <div className="divide-y divide-gray-200">
-      {upcomingMilestones.map((milestone, index) => (
-       <div key={index} className="p-6 hover:bg-gray-50 transition-colors">
+  return (
+    <div className="w-full min-h-screen px-3 py-2 space-y-3 bg-slate-50 overflow-x-hidden">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-start gap-4">
         <div className="flex items-start gap-3">
-         <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${milestone.days < 0 ? 'bg-red-100' :
-           milestone.days <= 7 ? 'bg-orange-100' :
-            'bg-blue-100'
-          }`}>
-          <Package className={`w-5 h-5 ${milestone.days < 0 ? 'text-red-600' :
-            milestone.days <= 7 ? 'text-orange-600' :
-             'text-blue-600'
-           }`} />
-         </div>
-         <div className="flex-1">
-          <h4 className="text-sm font-semibold text-gray-900">{milestone.milestone}</h4>
-          <p className="text-sm text-gray-600 mt-1">{milestone.project}</p>
-          <div className="flex items-center gap-2 mt-2">
-           <Calendar className="w-4 h-4 text-gray-400" />
-           <span className="text-sm text-gray-600">
-            {new Date(milestone.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
-           </span>
-           <span className={`text-sm font-medium ${milestone.days < 0 ? 'text-red-600' :
-             milestone.days <= 7 ? 'text-orange-600' :
-              'text-gray-600'
-            }`}>
-            {milestone.days < 0 ? `${Math.abs(milestone.days)} days overdue` :
-             milestone.days === 0 ? 'Due today' :
-              `${milestone.days} days left`}
-           </span>
+          <div className="p-2 bg-blue-600 rounded-lg shadow-md shadow-blue-100 mt-1">
+            <FolderKanban className="h-5 w-5 text-white" />
           </div>
-         </div>
+          <div>
+            <h1 className="text-2xl font-black text-gray-900 tracking-tight leading-none mb-1">
+              Project Portfolio
+            </h1>
+            <p className="text-sm text-gray-500 font-medium">Real-time execution oversight and strategic metrics</p>
+          </div>
         </div>
-       </div>
-      ))}
-     </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setShowQuickActionsModal(true)}
+            className="flex items-center space-x-1.5 px-3 py-1.5 bg-emerald-600 text-white rounded-lg font-black uppercase tracking-tight text-[9px] hover:bg-emerald-700 transition-all shadow-md shadow-emerald-100"
+          >
+            <Zap className="h-3.5 w-3.5" />
+            <span>Launch Action</span>
+          </button>
+          <div className="h-6 w-[1px] bg-gray-200 hidden md:block"></div>
+          <button
+            onClick={() => setShowFilterModal(true)}
+            className="p-2 bg-white border border-gray-100 rounded-lg hover:bg-gray-50 transition-all shadow-sm group"
+            title="Filter Insights"
+          >
+            <Filter className="h-4 w-4 text-gray-400 group-hover:text-blue-600" />
+          </button>
+          <button
+            onClick={() => setShowRefreshModal(true)}
+            className="p-2 bg-white border border-gray-100 rounded-lg hover:bg-gray-50 transition-all shadow-sm group"
+            title="Refresh Data"
+          >
+            <RefreshCw className="h-4 w-4 text-gray-400 group-hover:text-emerald-600" />
+          </button>
+          <Link
+            href="/project-management/create-enhanced"
+            className="flex items-center space-x-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-lg font-black uppercase tracking-tight text-[9px] hover:bg-blue-700 transition-all shadow-md shadow-blue-100"
+          >
+            <Zap className="h-3.5 w-3.5" />
+            <span>New Project</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Primary Metrics Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <StatHighlight
+          label="Portfolio Health"
+          value={`${stats.avgProjectHealth}%`}
+          subValue="↑ 2.4% this week"
+          icon={Activity}
+          colorClass="bg-blue-600"
+        />
+        <StatHighlight
+          label="Budget Utilization"
+          value={Math.round((stats.spentAmount / stats.totalBudget) * 100) + '%'}
+          subValue={`${formatCurrency(stats.spentAmount)} spent`}
+          icon={DollarSign}
+          colorClass="bg-emerald-600"
+        />
+        <StatHighlight
+          label="Resource Load"
+          value={`${stats.resourceUtilization}%`}
+          subValue="85th percentile peak"
+          icon={Users}
+          colorClass="bg-indigo-600"
+        />
+        <StatHighlight
+          label="Critical Risks"
+          value={stats.delayedProjects.toString()}
+          subValue="Action required"
+          icon={AlertTriangle}
+          colorClass="bg-rose-600"
+        />
+      </div>
+
+      {/* Visual Analytics Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <PremiumCard className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="text-lg font-black text-gray-900 leading-none mb-1">Performance Trend</h3>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Aggregate Health Score</p>
+            </div>
+            <div className="p-2 bg-blue-50 rounded-lg">
+              <TrendingUp className="w-4 h-4 text-blue-600" />
+            </div>
+          </div>
+          <div className="h-40 flex items-end justify-between gap-2.5">
+            {healthTrend.map((data, index) => (
+              <div key={index} className="flex-1 flex flex-col items-center group">
+                <div className="w-full bg-gray-50 rounded-lg relative h-full flex items-end overflow-hidden">
+                  <div
+                    className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg transition-all duration-700 group-hover:to-blue-300"
+                    style={{ height: `${data.score}%` }}
+                  >
+                    <div className="absolute top-0 left-0 right-0 p-1 text-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[8px] font-black text-blue-900 bg-white/80 backdrop-blur-sm px-1.5 py-0.5 rounded-md">{data.score}%</span>
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[9px] font-black text-gray-400 mt-2 uppercase tracking-tight">{data.month}</span>
+              </div>
+            ))}
+          </div>
+        </PremiumCard>
+
+        <PremiumCard className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="text-lg font-black text-gray-900 leading-none mb-1">Resource Orbit</h3>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Deployment Efficiency</p>
+            </div>
+            <div className="p-2 bg-indigo-50 rounded-lg">
+              <Users className="w-4 h-4 text-indigo-600" />
+            </div>
+          </div>
+          <div className="space-y-3">
+            {resourceData.slice(0, 4).map((resource, index) => (
+              <div key={index}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-black text-gray-700 uppercase tracking-tight">{resource.role}</span>
+                  <span className="text-[9px] font-black text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded-md">{resource.utilization}% UTILIZED</span>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden shadow-inner">
+                  <div
+                    className={`h-full rounded-full transition-all duration-1000 ${resource.utilization >= 85 ? 'bg-gradient-to-r from-rose-500 to-rose-400' :
+                      resource.utilization >= 75 ? 'bg-gradient-to-r from-indigo-500 to-indigo-400' :
+                        'bg-gradient-to-r from-emerald-500 to-emerald-400'
+                      }`}
+                    style={{ width: `${resource.utilization}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </PremiumCard>
+      </div>
+
+      {/* Projects and Milestones */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="lg:col-span-2 space-y-2.5">
+          <div className="flex items-center justify-between bg-white/50 backdrop-blur-md p-2 rounded-xl border border-white/50">
+            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">Focus Projects</h3>
+            <Link href="/project-management" className="text-[9px] font-black text-blue-600 uppercase tracking-tight hover:translate-x-0.5 transition-transform flex items-center gap-1">
+              Deep Dive <ArrowRight className="w-2.5 h-2.5" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {recentProjects.map((project) => (
+              <PremiumCard
+                key={project.id}
+                className="p-3 border-l-4 border-l-blue-600 group cursor-pointer hover:border-l-blue-400 rounded-xl"
+                onClick={() => openDetailsModal(project)}
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-black text-gray-900 leading-tight mb-0.5 group-hover:text-blue-600 transition-colors truncate">{project.name}</h4>
+                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-tight">Lead: {project.manager}</p>
+                  </div>
+                  <span className={`px-1.5 py-0.5 rounded-md text-[8px] font-black uppercase tracking-tight flex-shrink-0 ${getStatusColor(project.status).replace('bg-', 'bg-opacity-20 text-').replace('text-', 'text-opacity-100 ')}`}>
+                    {project.status}
+                  </span>
+                </div>
+                <div className="mb-2">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[8px] font-black text-gray-400 uppercase tracking-tight">EXECUTION PHASE</span>
+                    <span className="text-[8px] font-black text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded-md">{project.progress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden shadow-inner">
+                    <div
+                      className="bg-gradient-to-r from-blue-700 to-blue-500 h-full rounded-full transition-all duration-1000"
+                      style={{ width: `${project.progress}%` }}
+                    ></div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-gray-50">
+                  <div className="flex items-center gap-1.5 text-gray-400">
+                    <Calendar className="w-3 h-3" />
+                    <span className="text-[8px] font-bold">{new Date(project.dueDate).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</span>
+                  </div>
+                  <p className="text-[8px] font-black text-gray-900 uppercase tracking-tight">BUDGET: {Math.round(project.spent / 100000)}L / {Math.round(project.budget / 100000)}L</p>
+                </div>
+              </PremiumCard>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-2.5">
+          <div className="flex items-center justify-between bg-white/50 backdrop-blur-md p-2 rounded-xl border border-white/50">
+            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">Milestone Watch</h3>
+            <Target className="w-4 h-4 text-gray-400" />
+          </div>
+          <div className="space-y-2">
+            {upcomingMilestones.map((milestone, index) => (
+              <PremiumCard key={index} className="p-3 flex items-start gap-3 hover:bg-white transition-colors cursor-pointer group rounded-xl">
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md ${milestone.days < 0 ? 'bg-rose-600 shadow-rose-100' :
+                  milestone.days <= 7 ? 'bg-orange-600 shadow-orange-100' :
+                    'bg-blue-600 shadow-blue-100'
+                  }`}>
+                  <Package className="w-4 h-4 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[11px] font-black text-gray-900 uppercase tracking-tight mb-0.5 group-hover:text-blue-600 transition-colors truncate">{milestone.milestone}</h4>
+                  <p className="text-[9px] text-gray-500 font-bold mb-2 truncate">{milestone.project}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-gray-400">
+                      <Calendar className="w-3 h-3" />
+                      <span className="text-[8px] font-bold">{new Date(milestone.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</span>
+                    </div>
+                    <span className={`text-[8px] font-black uppercase tracking-tight px-1.5 py-0.5 rounded-md ${milestone.days < 0 ? 'bg-rose-50 text-rose-600' :
+                      milestone.days === 0 ? 'bg-orange-50 text-orange-600' :
+                        'bg-blue-50 text-blue-600'
+                      }`}>
+                      {milestone.days < 0 ? `${Math.abs(milestone.days)}D OVER` :
+                        milestone.days === 0 ? 'DUE' :
+                          `${milestone.days}D REM`}
+                    </span>
+                  </div>
+                </div>
+              </PremiumCard>
+            ))}
+          </div>
+          <button className="w-full py-2 bg-white border border-gray-100 rounded-xl text-[9px] font-black uppercase tracking-tight text-gray-400 hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
+            Exploded View
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Intelligence Pannel Placeholder */}
+      <PremiumCard className="p-6 text-center bg-gradient-to-br from-indigo-900 via-blue-900 to-indigo-950 text-white relative overflow-hidden group rounded-2xl">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 group-hover:scale-110 transition-transform duration-[10s]"></div>
+        <div className="relative z-10">
+          <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 backdrop-blur-md border border-white/10 shadow-xl">
+            <Zap className="w-6 h-6 text-blue-400" />
+          </div>
+          <h2 className="text-2xl font-black tracking-tight mb-2 italic">Next-Gen Predictive AI</h2>
+          <p className="text-blue-200/60 font-black uppercase tracking-widest text-[10px] mb-4 max-w-sm mx-auto leading-relaxed">System is synthesizing historical performance for neural forecasting</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white text-indigo-900 rounded-lg font-black uppercase tracking-tight text-[9px] shadow-xl transform hover:scale-105 active:scale-95 transition-all">
+            <BarChart3 className="w-3.5 h-3.5" />
+            <span>Enable Neural Insights</span>
+          </div>
+        </div>
+        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/20 rounded-full blur-[60px] group-hover:bg-blue-400/30 transition-all duration-700"></div>
+        <div className="absolute -top-10 -left-10 w-40 h-40 bg-indigo-600/20 rounded-full blur-[60px] group-hover:bg-indigo-400/30 transition-all duration-700"></div>
+      </PremiumCard>
+
+      {/* Modals */}
+      <CreateProjectModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onCreate={handleCreateProject}
+      />
+
+      <QuickActionsModal
+        isOpen={showQuickActionsModal}
+        onClose={() => setShowQuickActionsModal(false)}
+        onAction={handleQuickAction}
+      />
+
+      <FilterDashboardModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleApplyFilters}
+      />
+
+      <CustomizeWidgetsModal
+        isOpen={showCustomizeModal}
+        onClose={() => setShowCustomizeModal(false)}
+        onSave={handleSaveWidgets}
+      />
+
+      <ExportDashboardModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <ViewAlertsModal
+        isOpen={showAlertsModal}
+        onClose={() => setShowAlertsModal(false)}
+      />
+
+      <RefreshDashboardModal
+        isOpen={showRefreshModal}
+        onClose={() => setShowRefreshModal(false)}
+        onRefresh={handleRefresh}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedProject(null);
+        }}
+        project={selectedProject}
+      />
     </div>
-   </div>
-
-   {/* Quick Actions */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
-    <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Actions</h3>
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-     <Link href="/project-management/create" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
-      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-       <FolderKanban className="w-6 h-6 text-blue-600" />
-      </div>
-      <span className="text-sm font-medium text-gray-900">Create Project</span>
-     </Link>
-     <Link href="/project-management/tasks" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
-      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
-       <CheckCircle className="w-6 h-6 text-purple-600" />
-      </div>
-      <span className="text-sm font-medium text-gray-900">View Tasks</span>
-     </Link>
-     <Link href="/project-management/resources" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
-      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-       <Users className="w-6 h-6 text-green-600" />
-      </div>
-      <span className="text-sm font-medium text-gray-900">Manage Resources</span>
-     </Link>
-     <Link href="/project-management/analytics" className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">
-      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
-       <BarChart3 className="w-6 h-6 text-orange-600" />
-      </div>
-      <span className="text-sm font-medium text-gray-900">View Analytics</span>
-     </Link>
-    </div>
-   </div>
-
-   {/* All Modals */}
-   <CreateProjectModal
-    isOpen={showCreateModal}
-    onClose={() => setShowCreateModal(false)}
-    onCreate={handleCreateProject}
-   />
-
-   <QuickActionsModal
-    isOpen={showQuickActionsModal}
-    onClose={() => setShowQuickActionsModal(false)}
-    onAction={handleQuickAction}
-   />
-
-   <FilterDashboardModal
-    isOpen={showFilterModal}
-    onClose={() => setShowFilterModal(false)}
-    onApply={handleApplyFilters}
-   />
-
-   <CustomizeWidgetsModal
-    isOpen={showCustomizeModal}
-    onClose={() => setShowCustomizeModal(false)}
-    onSave={handleSaveWidgets}
-   />
-
-   <ExportDashboardModal
-    isOpen={showExportModal}
-    onClose={() => setShowExportModal(false)}
-    onExport={handleExport}
-   />
-
-   <ViewAlertsModal
-    isOpen={showAlertsModal}
-    onClose={() => setShowAlertsModal(false)}
-   />
-
-   <RefreshDashboardModal
-    isOpen={showRefreshModal}
-    onClose={() => setShowRefreshModal(false)}
-    onRefresh={handleRefresh}
-   />
-
-   <ViewDetailsModal
-    isOpen={showDetailsModal}
-    onClose={() => {
-     setShowDetailsModal(false);
-     setSelectedProject(null);
-    }}
-    project={selectedProject}
-   />
-  </div>
- );
+  );
 }

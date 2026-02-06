@@ -24,9 +24,11 @@ import {
   ChevronDown,
   Wrench,
   FolderKanban,
+  Zap,
 } from 'lucide-react';
 import MegaMenu from '@/components/MegaMenu';
 import Sidebar from '@/components/Sidebar';
+import { StatHighlight, ModuleLink, PremiumCard } from '@/components/dashboard/DashboardWidgets';
 
 // Module definitions
 const modules = [
@@ -36,7 +38,7 @@ const modules = [
     description: 'Customer Relationship Management',
     icon: Users,
     href: '/crm',
-    color: 'bg-blue-500',
+    color: 'bg-gradient-to-br from-blue-500 to-blue-600',
     stats: { total: 1234, new: 45 },
   },
   {
@@ -45,7 +47,7 @@ const modules = [
     description: 'Sales Order Management',
     icon: ShoppingCart,
     href: '/sales',
-    color: 'bg-green-500',
+    color: 'bg-gradient-to-br from-green-500 to-emerald-600',
     stats: { total: 856, new: 23 },
   },
   {
@@ -54,7 +56,7 @@ const modules = [
     description: 'Cost Estimation & Quotations',
     icon: Calculator,
     href: '/estimation',
-    color: 'bg-purple-500',
+    color: 'bg-gradient-to-br from-purple-500 to-pink-600',
     stats: { total: 432, new: 12 },
   },
   {
@@ -63,7 +65,7 @@ const modules = [
     description: 'Warehouse & Stock Management',
     icon: Package,
     href: '/inventory',
-    color: 'bg-orange-500',
+    color: 'bg-gradient-to-br from-orange-500 to-amber-600',
     stats: { total: 3421, new: 87 },
   },
   {
@@ -72,7 +74,7 @@ const modules = [
     description: 'Production Planning & Control',
     icon: Factory,
     href: '/production',
-    color: 'bg-red-500',
+    color: 'bg-gradient-to-br from-red-500 to-rose-600',
     stats: { total: 234, new: 15 },
   },
   {
@@ -81,7 +83,7 @@ const modules = [
     description: 'Purchase Order Management',
     icon: ShoppingBag,
     href: '/procurement',
-    color: 'bg-indigo-500',
+    color: 'bg-gradient-to-br from-indigo-500 to-indigo-600',
     stats: { total: 567, new: 28 },
   },
   {
@@ -90,7 +92,7 @@ const modules = [
     description: 'Manufacturing Project Execution',
     icon: FolderKanban,
     href: '/project-management/dashboard',
-    color: 'bg-cyan-500',
+    color: 'bg-gradient-to-br from-cyan-500 to-cyan-600',
     stats: { total: 10, new: 2 },
   },
   {
@@ -99,7 +101,7 @@ const modules = [
     description: 'Financial Accounting',
     icon: DollarSign,
     href: '/finance',
-    color: 'bg-yellow-500',
+    color: 'bg-gradient-to-br from-yellow-500 to-orange-600',
     stats: { total: 2341, new: 156 },
   },
   {
@@ -108,7 +110,7 @@ const modules = [
     description: 'Human Resource Management',
     icon: UserCog,
     href: '/hr',
-    color: 'bg-pink-500',
+    color: 'bg-gradient-to-br from-pink-500 to-rose-600',
     stats: { total: 145, new: 3 },
   },
   {
@@ -117,7 +119,7 @@ const modules = [
     description: 'Workflow Automation',
     icon: Workflow,
     href: '/workflow',
-    color: 'bg-cyan-500',
+    color: 'bg-gradient-to-br from-cyan-500 to-teal-600',
     stats: { total: 89, new: 7 },
   },
   {
@@ -126,7 +128,7 @@ const modules = [
     description: 'Report Generation & Analytics',
     icon: BarChart3,
     href: '/reports',
-    color: 'bg-teal-500',
+    color: 'bg-gradient-to-br from-teal-500 to-emerald-600',
     stats: { total: 432, new: 21 },
   },
   {
@@ -135,7 +137,7 @@ const modules = [
     description: 'Logistics & Transportation',
     icon: Truck,
     href: '/logistics',
-    color: 'bg-lime-500',
+    color: 'bg-gradient-to-br from-lime-500 to-green-600',
     stats: { total: 312, new: 18 },
   },
   {
@@ -144,7 +146,7 @@ const modules = [
     description: 'Service Contracts & Field Support',
     icon: Wrench,
     href: '/after-sales-service/dashboard',
-    color: 'bg-emerald-500',
+    color: 'bg-gradient-to-br from-emerald-500 to-teal-600',
     stats: { total: 287, new: 24 },
   },
   {
@@ -153,7 +155,7 @@ const modules = [
     description: 'Customer Support & Incidents',
     icon: Headphones,
     href: '/support',
-    color: 'bg-rose-500',
+    color: 'bg-gradient-to-br from-rose-500 to-red-600',
     stats: { total: 156, new: 9 },
   },
   {
@@ -162,7 +164,7 @@ const modules = [
     description: 'System Administration',
     icon: Settings,
     href: '/it-admin',
-    color: 'bg-gray-500',
+    color: 'bg-gradient-to-br from-gray-500 to-slate-600',
     stats: { total: 45, new: 2 },
   },
 ];
@@ -170,7 +172,6 @@ const modules = [
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   const filteredModules = modules.filter((module) => {
@@ -178,13 +179,6 @@ export default function DashboardPage() {
       module.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesSearch;
   });
-
-  const categories = [
-    { id: 'all', name: 'All Modules' },
-    { id: 'operations', name: 'Operations' },
-    { id: 'finance', name: 'Finance & Accounting' },
-    { id: 'admin', name: 'Administration' },
-  ];
 
   const megaMenuItems = [
     { id: 'sales', name: 'Sales & Marketing' },
@@ -194,24 +188,23 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="h-screen flex flex-col bg-white overflow-hidden">
+    <div className="h-screen flex flex-col bg-slate-50 overflow-hidden font-sans">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'}`}>
-        {/* Header */}
-        <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
-          <div className="w-full px-3">
-            <div className="flex justify-between items-center h-16">
-              {/* Logo and Mobile Menu Toggle */}
+        {/* Header - Glassmorphism */}
+        <header className="bg-white/70 backdrop-blur-xl border-b border-white/20 sticky top-0 z-40 shadow-sm flex-shrink-0">
+          <div className="w-full px-4">
+            <div className="flex justify-between items-center h-12">
               <div className="flex items-center space-x-4">
                 <button
                   onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="lg:hidden p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                  className="lg:hidden p-1.5 rounded-lg text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-all"
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                 </button>
                 <div className="flex items-center space-x-3">
-                  <div className="relative w-10 h-10 flex-shrink-0">
+                  <div className="relative w-8 h-8 flex-shrink-0 bg-white rounded-lg p-1 shadow-inner border border-gray-100">
                     <Image
                       src="/optiforge-logo.png"
                       alt="OptiForge Logo"
@@ -219,228 +212,275 @@ export default function DashboardPage() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <h1 className="text-2xl font-black text-brand-blue tracking-tighter uppercase italic leading-none">OptiForge</h1>
-                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">Manufacturing ERP</p>
+                  <div>
+                    <h1 className="text-xl font-black text-brand-blue tracking-tighter leading-none drop-shadow-sm">OptiForge</h1>
+                    <p className="text-[8px] text-blue-400 font-black uppercase tracking-[0.2em] mt-0.5">Manufacturing OS</p>
                   </div>
                 </div>
               </div>
 
-              {/* Mega Menu Navigation */}
-              <nav className="hidden md:flex items-center space-x-1">
+              {/* Navigation Tabs */}
+              <nav className="hidden xl:flex items-center space-x-1 bg-gray-100/50 p-0.5 rounded-xl">
                 {megaMenuItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => setActiveMegaMenu(activeMegaMenu === item.id ? null : item.id)}
-                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-colors ${activeMegaMenu === item.id
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-700 hover:bg-gray-100'
+                    className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg transition-all ${activeMegaMenu === item.id
+                      ? 'bg-white text-blue-600 shadow-sm font-bold'
+                      : 'text-gray-500 hover:text-blue-600 hover:bg-white/50 font-medium'
                       }`}
                   >
-                    <span className="font-medium text-sm">{item.name}</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${activeMegaMenu === item.id ? 'rotate-180' : ''}`} />
+                    <span className="text-xs">{item.name}</span>
+                    <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${activeMegaMenu === item.id ? 'rotate-180' : ''}`} />
                   </button>
                 ))}
               </nav>
 
-              {/* User Actions */}
               <div className="flex items-center space-x-3">
-                <button className="relative p-2 text-gray-400 hover:text-blue-600 transition-colors rounded-lg hover:bg-blue-50">
-                  <Bell className="h-6 w-6" />
-                  <span className="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white animate-pulse"></span>
+                <div className="relative hidden md:block group">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400 group-focus-within:text-blue-500 transition-colors" />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-48 pl-9 pr-3 py-1.5 bg-gray-100/80 border-transparent rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all shadow-inner"
+                  />
+                </div>
+                <button className="relative p-2 text-gray-400 hover:text-blue-600 transition-all rounded-lg hover:bg-white shadow-sm border border-transparent hover:border-blue-100">
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute top-1.5 right-1.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white animate-pulse shadow-sm"></span>
                 </button>
-                <button className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
-                  <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
-                    <User className="h-5 w-5 text-white" />
+                <div className="h-6 w-[1px] bg-gray-200 hidden md:block"></div>
+                <button className="flex items-center space-x-2 p-1 bg-white/50 rounded-lg border border-white/50 hover:bg-white hover:border-blue-100 transition-all shadow-sm">
+                  <div className="h-7 w-7 bg-gradient-to-br from-indigo-500 via-blue-600 to-blue-700 rounded-md flex items-center justify-center shadow-md transform active:scale-95 transition-transform">
+                    <User className="h-3.5 w-3.5 text-white" />
                   </div>
-                  <span className="hidden md:block font-medium">Admin</span>
+                  <div className="hidden lg:block text-left">
+                    <p className="text-[9px] font-black text-blue-600 uppercase tracking-tight leading-none mb-0.5 whitespace-nowrap">Root Admin</p>
+                    <p className="text-[8px] text-gray-500 font-bold whitespace-nowrap">Superuser</p>
+                  </div>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Mega Menu */}
           {activeMegaMenu && (
             <MegaMenu activeMenu={activeMegaMenu} onClose={() => setActiveMegaMenu(null)} />
           )}
         </header>
 
-        {/* Search Bar Section */}
-        <div className="bg-white border-b border-gray-200 py-4 flex-shrink-0">
-          <div className="w-full px-3">
-            <div className="relative max-w-2xl">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search modules, features, or functions..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto px-4 py-4">
+          <div className="max-w-[1920px] mx-auto space-y-4">
+            {/* Page Title & Quick Action */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+              <div>
+                <h2 className="text-2xl font-black text-gray-900 tracking-tight leading-none mb-1">Command Center</h2>
+                <p className="text-sm text-gray-500 font-medium">Enterprise Orchestration & Real-time Oversight</p>
+              </div>
+              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-xl font-black uppercase tracking-tight text-[10px] hover:bg-blue-700 hover:shadow-lg active:scale-95 transition-all shadow-md">
+                <Zap className="h-4 w-4" />
+                <span>Quick Actions</span>
+              </button>
+            </div>
+
+            {/* Premium Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <StatHighlight
+                label="Orders Flow"
+                value="1,234"
+                subValue="↑ 12% vs last month"
+                icon={ShoppingCart}
+                colorClass="bg-blue-600"
+              />
+              <StatHighlight
+                label="Total Revenue"
+                value="₹45.2L"
+                subValue="↑ 8% pipeline growth"
+                icon={DollarSign}
+                colorClass="bg-emerald-600"
+              />
+              <StatHighlight
+                label="Manufacturing"
+                value="234"
+                subValue="↑ 15% efficiency"
+                icon={Factory}
+                colorClass="bg-orange-600"
+              />
+              <StatHighlight
+                label="Stock Level"
+                value="3,421"
+                subValue="• Warehouse Alpha"
+                icon={Package}
+                colorClass="bg-indigo-600"
               />
             </div>
-          </div>
-        </div>
 
-        {/* Main Content - Scrollable */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden">
-          <div className="w-full px-3 py-2 max-w-[1920px]">
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-blue-600 mb-1">Total Orders</p>
-                    <p className="text-2xl font-bold text-blue-700">1,234</p>
-                    <span className="text-xs font-semibold text-green-600">↑ 12%</span>
-                  </div>
-                  <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <ShoppingCart className="h-6 w-6 text-blue-600" />
-                  </div>
+            {/* Module Grid Section */}
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="h-5 w-1.5 bg-blue-600 rounded-full"></div>
+                  <h3 className="text-lg font-black text-gray-900 tracking-tight">Active Modules</h3>
                 </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-green-600 mb-1">Revenue</p>
-                    <p className="text-2xl font-bold text-green-700">₹45.2L</p>
-                    <span className="text-xs font-semibold text-green-600">↑ 8%</span>
-                  </div>
-                  <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <DollarSign className="h-6 w-6 text-green-600" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-orange-600 mb-1">Production</p>
-                    <p className="text-2xl font-bold text-orange-700">234</p>
-                    <span className="text-xs font-semibold text-green-600">↑ 15%</span>
-                  </div>
-                  <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Factory className="h-6 w-6 text-orange-600" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-purple-600 mb-1">Inventory Items</p>
-                    <p className="text-2xl font-bold text-purple-700">3,421</p>
-                    <span className="text-xs font-semibold text-red-600">↓ 3%</span>
-                  </div>
-                  <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Package className="h-6 w-6 text-purple-600" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Filter Tabs */}
-            <div className="mb-3">
-              <div className="border-b border-gray-200">
-                <nav className="-mb-px flex space-x-8">
-                  {categories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => setSelectedCategory(category.id)}
-                      className={`${selectedCategory === category.id
-                        ? 'border-blue-500 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                        } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
-                    >
-                      {category.name}
+                <div className="flex bg-gray-100/50 p-0.5 rounded-lg">
+                  {['All', 'Operations', 'Finance'].map(tab => (
+                    <button key={tab} className={`px-3 py-1 text-[10px] font-black uppercase tracking-tight rounded-md transition-all ${tab === 'All' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-900'}`}>
+                      {tab}
                     </button>
                   ))}
-                </nav>
-              </div>
-            </div>
-
-            {/* Module Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
-              {filteredModules.map((module) => {
-                const Icon = module.icon;
-                return (
-                  <Link
-                    key={module.id}
-                    href={module.href}
-                    className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-400 hover:-translate-y-1"
-                  >
-                    <div className="p-6">
-                      {/* Icon */}
-                      <div className={`${module.color} w-14 h-14 rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
-                        <Icon className="h-7 w-7 text-white" />
-                      </div>
-
-                      {/* Module Name */}
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">
-                        {module.name}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-sm text-gray-600 mb-2 leading-relaxed">
-                        {module.description}
-                      </p>
-
-                      {/* Stats */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div className="flex items-center space-x-4">
-                          <div>
-                            <p className="text-xs font-medium text-gray-500">Total</p>
-                            <p className="text-base font-bold text-gray-900">{module.stats.total.toLocaleString()}</p>
-                          </div>
-                          <div>
-                            <p className="text-xs font-medium text-gray-500">New</p>
-                            <p className="text-base font-bold text-green-600">+{module.stats.new}</p>
-                          </div>
-                        </div>
-                        <div className="text-blue-600 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Hover Effect Bar */}
-                    <div className={`h-1.5 ${module.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Empty State */}
-            {filteredModules.length === 0 && (
-              <div className="text-center py-16 bg-white rounded-xl border-2 border-dashed border-gray-300">
-                <div className="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mb-2">
-                  <Search className="h-10 w-10 text-gray-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No modules found</h3>
-                <p className="text-gray-600 max-w-md">We couldn't find any modules matching your search. Try adjusting your search query or explore all available modules.</p>
               </div>
-            )}
+
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
+                {filteredModules.map((module) => (
+                  <ModuleLink
+                    key={module.id}
+                    name={module.name}
+                    description={module.description}
+                    href={module.href}
+                    icon={module.icon}
+                    color={module.color}
+                    stats={module.stats}
+                  />
+                ))}
+              </div>
+
+              {filteredModules.length === 0 && (
+                <PremiumCard className="p-16 flex flex-col items-center justify-center text-center">
+                  <div className="bg-blue-50 w-24 h-24 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                    <Search className="h-10 w-10 text-blue-200" />
+                  </div>
+                  <h3 className="text-2xl font-black text-gray-900 mb-2">No results matching "{searchQuery}"</h3>
+                  <p className="text-gray-500 max-w-md font-medium">Try searching for a different keyword or explore our full module catalog.</p>
+                </PremiumCard>
+              )}
+            </div>
+
+            {/* Intelligence Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <PremiumCard className="lg:col-span-2 p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-black text-gray-900">Production Intelligence</h3>
+                  <BarChart3 className="w-5 h-5 text-blue-600" />
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                  <div className="bg-blue-50 p-3 rounded-xl">
+                    <p className="text-[10px] font-bold text-blue-600 uppercase tracking-tight mb-1">Active Jobs</p>
+                    <p className="text-2xl font-black text-blue-900">47</p>
+                    <p className="text-[9px] text-blue-500 font-medium">↑ 12 from yesterday</p>
+                  </div>
+                  <div className="bg-green-50 p-3 rounded-xl">
+                    <p className="text-[10px] font-bold text-green-600 uppercase tracking-tight mb-1">Completed Today</p>
+                    <p className="text-2xl font-black text-green-900">23</p>
+                    <p className="text-[9px] text-green-500 font-medium">↑ 8% efficiency</p>
+                  </div>
+                  <div className="bg-orange-50 p-3 rounded-xl">
+                    <p className="text-[10px] font-bold text-orange-600 uppercase tracking-tight mb-1">On Hold</p>
+                    <p className="text-2xl font-black text-orange-900">5</p>
+                    <p className="text-[9px] text-orange-500 font-medium">Awaiting materials</p>
+                  </div>
+                  <div className="bg-purple-50 p-3 rounded-xl">
+                    <p className="text-[10px] font-bold text-purple-600 uppercase tracking-tight mb-1">Machine Util.</p>
+                    <p className="text-2xl font-black text-purple-900">87%</p>
+                    <p className="text-[9px] text-purple-500 font-medium">↑ 3% this week</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-bold text-gray-700">CNC Machine #1</span>
+                    </div>
+                    <span className="text-[10px] font-black text-green-600 uppercase">Running</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-bold text-gray-700">Edge Bander #2</span>
+                    </div>
+                    <span className="text-[10px] font-black text-green-600 uppercase">Running</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-bold text-gray-700">Laser Cutter #1</span>
+                    </div>
+                    <span className="text-[10px] font-black text-yellow-600 uppercase">Maintenance</span>
+                  </div>
+                </div>
+              </PremiumCard>
+              <PremiumCard className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-black text-gray-900">Recent Activity</h3>
+                  <UserCog className="w-5 h-5 text-purple-600" />
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <ShoppingCart className="w-4 h-4 text-blue-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-gray-800 truncate">New order #SO-2456</p>
+                      <p className="text-[10px] text-gray-500">Kitchen Project - ₹4.5L</p>
+                    </div>
+                    <span className="text-[9px] text-gray-400 whitespace-nowrap">2m ago</span>
+                  </div>
+                  <div className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Package className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-gray-800 truncate">Stock received</p>
+                      <p className="text-[10px] text-gray-500">Marine Plywood - 50 sheets</p>
+                    </div>
+                    <span className="text-[9px] text-gray-400 whitespace-nowrap">15m ago</span>
+                  </div>
+                  <div className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Factory className="w-4 h-4 text-orange-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-gray-800 truncate">Production complete</p>
+                      <p className="text-[10px] text-gray-500">WO-1892 - 45 cabinets</p>
+                    </div>
+                    <span className="text-[9px] text-gray-400 whitespace-nowrap">1h ago</span>
+                  </div>
+                  <div className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Truck className="w-4 h-4 text-purple-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-gray-800 truncate">Dispatch scheduled</p>
+                      <p className="text-[10px] text-gray-500">DO-892 - Mumbai Site</p>
+                    </div>
+                    <span className="text-[9px] text-gray-400 whitespace-nowrap">2h ago</span>
+                  </div>
+                </div>
+              </PremiumCard>
+            </div>
           </div>
         </main>
 
         {/* Footer */}
-        <footer className="bg-white border-t border-gray-200 flex-shrink-0">
-          <div className="w-full px-3 py-2">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-              <div className="text-center md:text-left">
-                <p className="text-sm font-semibold text-gray-700 mb-1">
-                  OptiForge - Solution to manufacturers
-                </p>
-                <p className="text-xs text-gray-500">
-                  Powered by KreupAI Technologies LLC
-                </p>
+        <footer className="bg-white/80 backdrop-blur-md border-t border-gray-100 flex-shrink-0">
+          <div className="w-full px-4 py-2 flex flex-col md:flex-row justify-between items-center gap-2">
+            <div className="flex items-center gap-3">
+              <div className="text-left border-l-2 border-blue-600 pl-3">
+                <p className="text-xs font-black text-gray-900 tracking-tight">OptiForge <span className="text-blue-600">v4.0 Platinum</span></p>
+                <p className="text-[8px] text-gray-400 font-bold uppercase tracking-[0.2em]">© 2026 KreupAI Technologies LLC</p>
               </div>
-              <div className="flex space-x-8">
-                <Link href="/help" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Help Center</Link>
-                <Link href="/documentation" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Documentation</Link>
-                <Link href="/support/incidents" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Contact Support</Link>
+            </div>
+            <div className="flex items-center space-x-8">
+              <div className="flex space-x-4">
+                {['Help Center', 'API Docs', 'Legal'].map(link => (
+                  <Link key={link} href="#" className="text-[9px] font-black text-gray-400 hover:text-blue-600 transition-colors uppercase tracking-tight">{link}</Link>
+                ))}
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="h-1.5 w-1.5 bg-green-500 rounded-full animate-pulse shadow-sm shadow-green-200"></div>
+                <span className="text-[9px] font-black text-green-600 uppercase tracking-tight">System Operational</span>
               </div>
             </div>
           </div>
