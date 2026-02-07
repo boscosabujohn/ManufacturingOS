@@ -58,6 +58,20 @@ const generateSampleMilestones = (): Milestone[] => {
 
   return [
     {
+      id: 'm0',
+      name: 'Project Awarded',
+      description: 'Work order received and project officially awarded',
+      date: new Date(baseDate.getTime() - 5 * 24 * 60 * 60 * 1000),
+      status: 'completed',
+      type: 'major',
+      phase: 'Project Initiation',
+      phaseNumber: 1,
+      owner: 'Client',
+      deliverables: ['Work Order', 'Award Letter'],
+      actualDate: new Date(baseDate.getTime() - 5 * 24 * 60 * 60 * 1000),
+      percentComplete: 100,
+    },
+    {
       id: 'm1',
       name: 'Project Kickoff',
       description: 'Official project start and team onboarding',
@@ -451,13 +465,12 @@ export function MilestoneTimeline({
                       {/* Milestone Point */}
                       <button
                         onClick={() => handleMilestoneClick(milestone.id)}
-                        className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          milestone.status === 'completed'
+                        className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${milestone.status === 'completed'
                             ? 'bg-green-500 text-white'
                             : isNext
-                            ? `${styles.bg} text-white ring-4 ${styles.ring} scale-110`
-                            : `bg-white dark:bg-gray-700 border-2 ${styles.border} ${styles.text}`
-                        } hover:scale-110 cursor-pointer shadow-md`}
+                              ? `${styles.bg} text-white ring-4 ${styles.ring} scale-110`
+                              : `bg-white dark:bg-gray-700 border-2 ${styles.border} ${styles.text}`
+                          } hover:scale-110 cursor-pointer shadow-md`}
                       >
                         {milestone.status === 'completed' ? (
                           <CheckCircle2 className="w-6 h-6" />
@@ -475,9 +488,8 @@ export function MilestoneTimeline({
 
                       {/* Milestone Info */}
                       <div className="mt-3 text-center px-1">
-                        <p className={`text-xs font-medium ${
-                          isNext ? 'text-blue-600 dark:text-blue-400' : 'text-gray-900 dark:text-white'
-                        } line-clamp-2`}>
+                        <p className={`text-xs font-medium ${isNext ? 'text-blue-600 dark:text-blue-400' : 'text-gray-900 dark:text-white'
+                          } line-clamp-2`}>
                           {milestone.name}
                         </p>
                         <p className="text-xs text-gray-500 mt-0.5">
@@ -653,13 +665,12 @@ export function MilestoneTimeline({
                 className={`relative flex gap-2 cursor-pointer group`}
               >
                 {/* Milestone Point */}
-                <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 ${
-                  milestone.status === 'completed'
+                <div className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 ${milestone.status === 'completed'
                     ? 'bg-green-500 text-white'
                     : isNext
-                    ? `${styles.bg} text-white ring-4 ${styles.ring}`
-                    : `bg-white dark:bg-gray-700 border-2 ${styles.border} ${styles.text}`
-                } shadow-md`}>
+                      ? `${styles.bg} text-white ring-4 ${styles.ring}`
+                      : `bg-white dark:bg-gray-700 border-2 ${styles.border} ${styles.text}`
+                  } shadow-md`}>
                   {milestone.status === 'completed' ? (
                     <CheckCircle2 className="w-6 h-6" />
                   ) : (
@@ -668,9 +679,8 @@ export function MilestoneTimeline({
                 </div>
 
                 {/* Content */}
-                <div className={`flex-1 pb-6 border-b border-gray-100 dark:border-gray-700 ${
-                  index === filteredMilestones.length - 1 ? 'border-b-0' : ''
-                }`}>
+                <div className={`flex-1 pb-6 border-b border-gray-100 dark:border-gray-700 ${index === filteredMilestones.length - 1 ? 'border-b-0' : ''
+                  }`}>
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">

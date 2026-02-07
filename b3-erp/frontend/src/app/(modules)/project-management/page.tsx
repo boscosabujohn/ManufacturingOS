@@ -42,6 +42,7 @@ import {
 import { ProjectRoadmapModal } from '@/components/project-management/ProjectRoadmapModal';
 import { WorkflowQuickActions } from '@/components/project-management/WorkflowQuickActions';
 import { projectManagementService, Project as ServiceProject } from '@/services/ProjectManagementService';
+import { DocumentControlWidget } from '@/components/project-management/DocumentControlWidget';
 
 interface Project {
     id: string;
@@ -61,6 +62,10 @@ interface Project {
     actualCost: number;
     phase: string;
     priority: 'P1' | 'P2' | 'P3';
+    awardDate: string;
+    clientContactPerson?: string;
+    clientContactEmail?: string;
+    handoverStatus?: 'pending' | 'approved' | 'rejected' | 'n/a';
     team: number;
     deliverables: number;
     completedDeliverables: number;
@@ -84,6 +89,7 @@ const mockProjects: Project[] = [
         actualCost: 5200000,
         phase: 'Installation',
         priority: 'P1',
+        awardDate: '2024-01-05',
         team: 12,
         deliverables: 8,
         completedDeliverables: 5,
@@ -315,6 +321,9 @@ export default function ProjectsListPage() {
                     actualCost: p.budgetSpent || 0,
                     phase: p.status || 'Planning',
                     priority: (p.priority as Project['priority']) || 'P2',
+                    awardDate: p.awardDate || p.startDate || new Date().toISOString().split('T')[0],
+                    clientContactPerson: p.clientContactPerson,
+                    clientContactEmail: p.clientContactEmail,
                     team: 0,
                     deliverables: 0,
                     completedDeliverables: 0,
@@ -401,6 +410,16 @@ export default function ProjectsListPage() {
             case 'On Hold': return 'bg-yellow-100 text-yellow-700';
             case 'Cancelled': return 'bg-gray-100 text-gray-700';
             default: return 'bg-gray-100 text-gray-700';
+        }
+    };
+
+    const getHandoverStatusColor = (status: string) => {
+        switch (status) {
+            case 'approved': return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+            case 'pending': return 'bg-amber-100 text-amber-700 border-amber-200';
+            case 'rejected': return 'bg-rose-100 text-rose-700 border-rose-200';
+            case 'n/a': return 'bg-slate-100 text-slate-700 border-slate-200';
+            default: return 'bg-gray-100 text-gray-700 border-gray-200';
         }
     };
 
@@ -653,7 +672,14 @@ export default function ProjectsListPage() {
             </div>
 
             {/* Workflow Quick Actions - Enhanced Forms Navigation */}
-            <WorkflowQuickActions variant="compact" />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                <div className="lg:col-span-2">
+                    <WorkflowQuickActions variant="compact" />
+                </div>
+                <div>
+                    <DocumentControlWidget />
+                </div>
+            </div>
 
 
             {/* Projects Table */}
@@ -666,6 +692,7 @@ export default function ProjectsListPage() {
                                 <th className="px-3 py-2 text-left text-[10px] font-bold text-gray-500 uppercase tracking-wider">Client & PM</th>
                                 <th className="px-3 py-2 text-left text-[10px] font-bold text-gray-500 uppercase tracking-wider">Schedule</th>
                                 <th className="px-3 py-2 text-left text-[10px] font-bold text-gray-500 uppercase tracking-wider">Status & Progress</th>
+                                <th className="px-3 py-2 text-left text-[10px] font-bold text-gray-500 uppercase tracking-wider">Handover Gate</th>
                                 <th className="px-3 py-2 text-left text-[10px] font-bold text-gray-500 uppercase tracking-wider">Financials</th>
                                 <th className="px-3 py-2 text-right text-[10px] font-bold text-gray-500 uppercase tracking-wider">Actions</th>
                             </tr>
@@ -694,6 +721,11 @@ export default function ProjectsListPage() {
                                     <td className="px-3 py-2">
                                         <div className="text-xs font-bold text-gray-700">{formatDate(project.startDate)}</div>
                                         <div className="text-[10px] text-gray-400 uppercase font-black tracking-tighter">to {formatDate(project.endDate)}</div>
+                                        {project.awardDate && (
+                                            <div className="mt-1 text-[10px] text-blue-600 font-bold bg-blue-50 px-1.5 py-0.5 rounded-sm inline-block">
+                                                Awarded: {formatDate(project.awardDate)}
+                                            </div>
+                                        )}
                                     </td>
                                     <td className="px-3 py-2">
                                         <div className="flex items-center gap-2">
@@ -704,6 +736,12 @@ export default function ProjectsListPage() {
                                         </div>
                                         <div className="w-24 bg-gray-100 rounded-full h-1 mt-1">
                                             <div className="bg-blue-600 h-1 rounded-full" style={{ width: `${project.progress}%` }}></div>
+                                        </div>
+                                    </td>
+                                    <td className="px-3 py-2">
+                                        <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border text-[10px] font-black uppercase ${getHandoverStatusColor(project.handoverStatus || 'pending')}`}>
+                                            {project.handoverStatus === 'approved' && <CheckCircle className="w-2.5 h-2.5" />}
+                                            {project.handoverStatus || 'pending'}
                                         </div>
                                     </td>
                                     <td className="px-3 py-2">

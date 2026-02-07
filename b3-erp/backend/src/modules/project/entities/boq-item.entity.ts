@@ -1,6 +1,7 @@
 
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { BOQ } from './boq.entity';
+import { Item } from '../../core/entities/item.entity';
 
 @Entity('boq_items')
 export class BOQItem {
@@ -10,6 +11,19 @@ export class BOQItem {
     @ManyToOne(() => BOQ, boq => boq.items, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'boqId' })
     boq: BOQ;
+
+    @Column({ nullable: true })
+    itemId: string;
+
+    @ManyToOne(() => Item, { nullable: true })
+    @JoinColumn({ name: 'itemId' })
+    item: Item;
+
+    @Column({ nullable: true })
+    itemCode: string;
+
+    @Column({ nullable: true })
+    itemName: string;
 
     @Column()
     description: string;

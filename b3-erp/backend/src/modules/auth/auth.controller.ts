@@ -14,7 +14,7 @@ export class AuthController {
     @ApiOperation({ summary: 'Login with username and password' })
     @ApiResponse({ status: 200, description: 'Login successful' })
     @ApiResponse({ status: 401, description: 'Unauthorized' })
-    async login(@Request() req, @Body() body: any) {
+    async login(@Request() req: any, @Body() body: any) {
         return this.authService.login(req.user);
     }
 
@@ -22,7 +22,7 @@ export class AuthController {
     @Get('profile')
     @ApiOperation({ summary: 'Get current user profile' })
     @ApiResponse({ status: 200, description: 'Profile retrieved' })
-    async getProfile(@Request() req) {
+    async getProfile(@Request() req: any) {
         return this.authService.getProfile(req.user.id);
     }
 }

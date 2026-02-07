@@ -2,8 +2,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BOQ } from '../entities/boq.entity';
-import { BOQItem } from '../entities/boq-item.entity';
+import { BOQ } from '../../project/entities/boq.entity';
+import { BOQItem } from '../../project/entities/boq-item.entity';
+import { Item } from '../../core/entities/item.entity';
 
 @Injectable()
 export class BOQService {
@@ -12,6 +13,8 @@ export class BOQService {
         private boqRepository: Repository<BOQ>,
         @InjectRepository(BOQItem)
         private boqItemRepository: Repository<BOQItem>,
+        @InjectRepository(Item)
+        private itemRepository: Repository<Item>,
     ) { }
 
     async createBOQ(data: Partial<BOQ>): Promise<BOQ> {
@@ -89,5 +92,28 @@ export class BOQService {
 
         boq.totalAmount = total;
         await this.boqRepository.save(boq);
+    }
+
+    async syncWithInventory(boqId: string): Promise<BOQItem[]> {
+        const boqItems = await this.boqItemRepository.find({ where: { boq: { id: boqId } } });
+
+        for (const boqItem of boqItems) {
+            // Try to find item by code or description
+            const item = await this.itemRepository.findOne({
+                where: [
+                    { itemCode: boqItem.itemCode },
+                    { itemName: boqItem.description }
+                ]
+            });
+
+            if (item) {
+                boqItem.itemId = item.id;
+                boqItem.itemCode = item.itemCode;
+                boqItem.itemName = item.itemName;
+                await this.boqItemRepository.save(boqItem);
+            }
+        }
+
+        return this.boqItemRepository.find({ where: { boq: { id: boqId } }, relations: ['item'] });
     }
 }

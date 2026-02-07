@@ -39,4 +39,16 @@ export class CreateProjectDto {
     @IsEnum(ProjectPriority)
     @IsOptional()
     priority?: ProjectPriority;
+
+    @IsDateString()
+    @IsOptional()
+    awardDate?: string;
+
+    @IsString()
+    @IsOptional()
+    clientContactPerson?: string;
+
+    @IsString()
+    @IsOptional()
+    clientContactEmail?: string;
 }

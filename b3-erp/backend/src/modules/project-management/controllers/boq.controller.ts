@@ -2,8 +2,8 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, HttpCode, HttpStatus, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { BOQService } from '../services/boq.service';
-import { BOQ } from '../entities/boq.entity';
-import { BOQItem } from '../entities/boq-item.entity';
+import { BOQ } from '../../project/entities/boq.entity';
+import { BOQItem } from '../../project/entities/boq-item.entity';
 
 @ApiTags('BOQ')
 @Controller('api/boq')

@@ -27,9 +27,10 @@ import {
   ArrowRight,
   MoreVertical,
   Flag,
+  ChevronRight
 } from 'lucide-react'
-import { useProjectContext } from '@/context/ProjectContext'
 import { projectManagementService, Project, ProjectTask, ProjectResource, ProjectBudget } from '@/services/ProjectManagementService'
+import { HandoverGate } from '@/components/project-management/HandoverGate'
 
 interface ProjectMetrics {
   progress: number
@@ -418,6 +419,106 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
           </p>
         </div>
       </div>
+
+      {/* Handover Gate Section - Only show if not approved */}
+      {project?.handoverStatus !== 'approved' && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+          <div className="lg:col-span-2">
+            <HandoverGate
+              projectId={params.id}
+              onApprove={async () => {
+                await projectManagementService.updateHandoverStatus(params.id, 'approved');
+                fetchProjectData();
+              }}
+            />
+          </div>
+          <div className="lg:col-span-1 space-y-3">
+            <div className="bg-blue-600 rounded-2xl p-6 text-white shadow-xl shadow-blue-200">
+              <h3 className="text-lg font-black uppercase tracking-wider italic">Strategic Notice</h3>
+              <p className="text-xs font-bold text-blue-100 mt-2 leading-relaxed">
+                The Handover Gate ensures that all technical and commercial prerequisites are met before production begins.
+                Completion of this gate is mandatory for ISO-9001 compliance.
+              </p>
+              <div className="mt-4 flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                  <Flag className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-white/80">Goal: Project Completed</span>
+              </div>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+              <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Linked Assets</h4>
+              <div className="space-y-2">
+                <a href={`/project-management/${params.id}/boq`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Project BOQ</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/design-assets`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Design Drawings</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <div className="h-px bg-gray-50 my-1"></div>
+                <a href={`/project-management/${params.id}/verification/comparison`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-blue-600">Verification Engine</span>
+                  <ChevronRight className="w-4 h-4 text-blue-300" />
+                </a>
+                <a href={`/project-management/${params.id}/verification/site-survey`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-blue-600">Site Assessment</span>
+                  <ChevronRight className="w-4 h-4 text-blue-300" />
+                </a>
+                <a href={`/project-management/${params.id}/technical/bom`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Detailed BOM</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/technical/workload`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Designer Workload</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/procurement`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Procurement Control</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/procurement/receipt`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Receive Goods (GRN)</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/production`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Factory Floor Dashboard</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/production/nesting`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Nesting Drawings</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/qc`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Final QC Audit</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/packaging`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Packaging Control</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/logistics`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Dispatch & Logistics</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/installation/readiness`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Site Readiness Portal</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/installation/field`} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-100 transition-all">
+                  <span className="text-xs font-bold text-gray-700">Field Agent Terminal</span>
+                  <ChevronRight className="w-4 h-4 text-gray-300" />
+                </a>
+                <a href={`/project-management/${params.id}/closure`} className="flex items-center justify-between p-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-all shadow-lg shadow-slate-100">
+                  <span className="text-xs font-black uppercase italic tracking-widest">Project Finalization & Handover</span>
+                  <Trophy className="w-4 h-4 text-amber-400" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Task Status Chart */}

@@ -33,10 +33,10 @@ export class PermissionsGuard implements CanActivate {
 
         // Extract all permission codes from user roles
         const userPermissions = new Set<string>();
-        if (userWithPermissions.roles) {
-            userWithPermissions.roles.forEach(userRole => {
-                if (userRole.role && userRole.role.permissions) {
-                    userRole.role.permissions.forEach(rolePermission => {
+        if (userWithPermissions.userRoles) {
+            userWithPermissions.userRoles.forEach((userRole: any) => {
+                if (userRole.role && userRole.role.rolePermissions) {
+                    userRole.role.rolePermissions.forEach((rolePermission: any) => {
                         if (rolePermission.permission) {
                             userPermissions.add(rolePermission.permission.code);
                         }

@@ -16,6 +16,7 @@ export interface Project {
     projectManagerId?: string;
     location?: string;
     projectType?: string;
+    handoverStatus?: 'pending' | 'approved' | 'rejected' | 'n/a';
 }
 
 export interface ProjectTask {
@@ -1373,6 +1374,13 @@ class ProjectManagementService {
             } else {
                 this.stockItems.push(item);
             }
+        }
+    }
+
+    async updateHandoverStatus(projectId: string, status: string): Promise<void> {
+        const project = this.mockProjects.find(p => p.id === projectId);
+        if (project) {
+            project.handoverStatus = status as any;
         }
     }
 }

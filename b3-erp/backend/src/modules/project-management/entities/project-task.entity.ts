@@ -65,6 +65,9 @@ export class ProjectTask {
     @Column({ default: false })
     milestone: boolean;
 
+    @Column({ name: 'target_completion', type: 'date', nullable: true })
+    targetCompletion: Date;
+
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 

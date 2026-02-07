@@ -63,6 +63,10 @@ export default function CreateProjectPage() {
     const [customerName, setCustomerName] = useState('');
     const [location, setLocation] = useState('');
     const [description, setDescription] = useState('');
+    const [awardDate, setAwardDate] = useState('');
+    const [clientContactPerson, setClientContactPerson] = useState('');
+    const [clientContactEmail, setClientContactEmail] = useState('');
+    const [attachments, setAttachments] = useState<File[]>([]);
 
     // Timeline & Budget
     const [startDate, setStartDate] = useState('');
@@ -159,44 +163,63 @@ export default function CreateProjectPage() {
         return '';
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Here you would typically send the data to your backend
-        console.log({
+
+        const projectData = {
             projectName,
             projectType,
-            salesOrderNumber,
-            customerId,
-            customerName,
+            customer: customerName,
             location,
-            description,
+            salesOrderNumber,
+            projectManager,
             startDate,
             endDate,
-            estimatedBudget,
-            contractValue,
-            currency,
-            projectManager,
-            priority,
-            department,
-            teamMembers,
-            deliverables,
-            scope,
-            specialRequirements,
-            safetyRequirements,
-        });
+            budget: parseFloat(estimatedBudget) || 0,
+            priority: priority === 'P1' ? 'critical' : priority === 'P2' ? 'high' : priority === 'P3' ? 'medium' : 'low',
+            awardDate,
+            clientContactPerson,
+            clientContactEmail,
+        };
 
-        // Initialize global ProjectContext
-        const newProjectId = `PRJ-${Date.now()}`;
-        loadProject({
-            id: newProjectId,
-            name: projectName,
-            projectType: projectType as any,
-            customerName: customerName,
-            status: 'Planning'
-        });
+        try {
+            // 1. Create Project
+            const response = await fetch('/api/projects', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(projectData),
+            });
 
-        // Redirect to project list or details page
-        router.push('/project-management');
+            if (!response.ok) throw new Error('Failed to create project');
+            const newProject = await response.json();
+
+            // 2. Upload Attachments if any
+            if (attachments.length > 0) {
+                const formData = new FormData();
+                attachments.forEach(file => formData.append('files', file));
+                formData.append('category', 'confirmation');
+
+                await fetch(`/api/projects/${newProject.id}/attachments`, {
+                    method: 'POST',
+                    body: formData,
+                });
+            }
+
+            // 3. Initialize global ProjectContext
+            loadProject({
+                id: newProject.id,
+                name: newProject.name,
+                projectType: newProject.projectType as any,
+                customerName: newProject.clientName,
+                status: 'Planning'
+            });
+
+            // 4. Redirect
+            router.push('/project-management');
+        } catch (error) {
+            console.error('Error creating project:', error);
+            alert('Failed to create project. Please try again.');
+        }
     };
 
     const handleCancel = () => {
@@ -429,6 +452,54 @@ export default function CreateProjectPage() {
                                     placeholder="e.g., Mumbai, Maharashtra"
                                     required
                                 />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Work Awarded Date <span className="text-red-500">*</span>
+                                </label>
+                                <div className="relative">
+                                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                    <input
+                                        type="date"
+                                        value={awardDate}
+                                        onChange={(e) => setAwardDate(e.target.value)}
+                                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Client Contact Person
+                                </label>
+                                <div className="relative">
+                                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                    <input
+                                        type="text"
+                                        value={clientContactPerson}
+                                        onChange={(e) => setClientContactPerson(e.target.value)}
+                                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                        placeholder="e.g., John Doe"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Client Contact Email
+                                </label>
+                                <div className="relative">
+                                    <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                    <input
+                                        type="email"
+                                        value={clientContactEmail}
+                                        onChange={(e) => setClientContactEmail(e.target.value)}
+                                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                        placeholder="e.g., john@example.com"
+                                    />
+                                </div>
                             </div>
 
                             <div className="md:col-span-2">
@@ -785,6 +856,66 @@ export default function CreateProjectPage() {
                                     placeholder="Safety protocols, PPE requirements, site restrictions..."
                                 />
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Phase 1.2: Handover Package & Attachments */}
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                            <FileUp className="w-5 h-5 text-blue-600" />
+                            <h2 className="text-xl font-semibold text-gray-900">Handover Package (Confirmation DOCS)</h2>
+                        </div>
+
+                        <div className="p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 flex flex-col items-center justify-center transition-colors hover:border-blue-400">
+                            <input
+                                type="file"
+                                multiple
+                                onChange={(e) => {
+                                    if (e.target.files) {
+                                        setAttachments(prev => [...prev, ...Array.from(e.target.files!)]);
+                                    }
+                                }}
+                                className="hidden"
+                                id="file-upload"
+                            />
+                            <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center">
+                                <Plus className="w-12 h-12 text-blue-500 mb-2" />
+                                <span className="text-sm text-gray-700 font-semibold text-center">Click to upload confirmation emails or award letters</span>
+                                <span className="text-xs text-gray-500 mt-1">PDF, JPG, PNG supported (Max 10MB)</span>
+                            </label>
+
+                            {attachments.length > 0 && (
+                                <div className="mt-6 w-full max-w-md">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <p className="text-sm font-bold text-gray-800">Selected Files ({attachments.length}):</p>
+                                        <button
+                                            type="button"
+                                            onClick={() => setAttachments([])}
+                                            className="text-xs text-red-600 hover:underline"
+                                        >
+                                            Clear All
+                                        </button>
+                                    </div>
+                                    <ul className="space-y-2">
+                                        {attachments.map((file, i) => (
+                                            <li key={i} className="text-sm text-blue-700 flex items-center justify-between bg-blue-50 p-3 rounded-lg border border-blue-100 shadow-sm animate-in fade-in slide-in-from-top-1">
+                                                <div className="flex items-center gap-3 truncate">
+                                                    <FileText className="w-4 h-4 flex-shrink-0" />
+                                                    <span className="truncate font-medium">{file.name}</span>
+                                                    <span className="text-xs text-blue-400">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setAttachments(attachments.filter((_, idx) => idx !== i))}
+                                                    className="p-1 hover:bg-blue-100 rounded-full transition-colors"
+                                                >
+                                                    <X className="w-4 h-4 text-gray-500 hover:text-red-500" />
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </div>
 
